@@ -721,6 +721,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_ZYGARDE] = gMonFootprint_Zygarde,
     [SPECIES_DIANCIE] = gMonFootprint_Diancie,
     [SPECIES_HOOPA] = gMonFootprint_Hoopa,
+    [SPECIES_WYRDEER] = gMonFootprint_Wyrdeer,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

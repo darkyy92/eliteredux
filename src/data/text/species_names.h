@@ -898,6 +898,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
+[SPECIES_WYRDEER] = _("Wyrdeer"),
 
     // Megas
     [SPECIES_VENUSAUR_MEGA] = _("Venusaur"),
