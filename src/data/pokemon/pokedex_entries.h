@@ -10787,4 +10787,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 256,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_WYRDEER] =
+    {
+        .categoryName = _("Wyrdeer"),
+        .height = 18,
+        .weight = 951,
+        .description = gWyrdeerPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

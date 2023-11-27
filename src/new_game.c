@@ -106,7 +106,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
-    gSaveBlock2Ptr->optionsHpBarSpeed = OPTIONS_TEXT_SPEED_MEDIUM;
+    gSaveBlock2Ptr->optionsHpBarSpeed = OPTIONS_TEXT_SPEED_MID;
 }
 
 static void ClearPokedexFlags(void)

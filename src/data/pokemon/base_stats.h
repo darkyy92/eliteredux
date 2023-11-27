@@ -29778,6 +29778,38 @@ const struct BaseStats gBaseStats[] =
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
+
+    [SPECIES_WYRDEER] =
+    {
+        .baseHP        = 103,
+        .baseAttack    = 105,
+        .baseDefense   = 72,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 75,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 45,
+        .expYield = 263,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 1,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_FRISK, ABILITY_SAP_SIPPER },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+    },
     
     /* Unfinished in RH-Hideout
 [SPECIES_WYRDEER] =
