@@ -1901,8 +1901,8 @@ PetalburgCity_Gym_EventScript_Kangaskhan_Text_1:
 
 PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Dad: Sorry {PLAYER}, but you need to\n"
-	.string "defeat every trainer on this Gym before\l"
-	.string "battling your dad.$"
+	.string "defeat every trainer on this Gym\l"
+	.string "before battling your dad.$"
 
 PetalburgCity_Gym_EventScript_Norman_Text_0:
 	.string "This is a failsafe, if you find this file\n"

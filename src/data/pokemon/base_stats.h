@@ -29874,82 +29874,6 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
-    
-    /* Unfinished in RH-Hideout
-[SPECIES_WYRDEER] =
-    {
-    .baseHP        = 103,
-    .baseAttack    = 105,
-    .baseDefense   = 72,
-    .baseSpeed     = 65,
-    .baseSpAttack  = 105,
-    .baseSpDefense = 75,
-    .type1 = TYPE_NORMAL,
-    .type2 = TYPE_PSYCHIC,
-    .catchRate = 45,
-    .expYield = 184,
-    .evYield_Attack    = 1,
-    .genderRatio = PERCENT_FEMALE(50),
-    .eggCycles = 20,
-    .friendship = 70,
-    .growthRate = GROWTH_SLOW,
-    .eggGroup1 = EGG_GROUP_FIELD,
-    .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_INTIMIDATE, ABILITY_FRISK, ABILITY_SAP_SIPPER},
-    .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    .bodyColor = BODY_COLOR_GRAY,
-    .noFlip = FALSE,
-    },
-    
-[SPECIES_KLEAVOR] =
-    {
-    .baseHP        = 70,
-    .baseAttack    = 135,
-    .baseDefense   = 95,
-    .baseSpeed     = 85,
-    .baseSpAttack  = 45,
-    .baseSpDefense = 70,
-    .type1 = TYPE_BUG,
-    .type2 = TYPE_ROCK,
-    .catchRate = 25,
-    .expYield = 175,
-    .evYield_Attack    = 2,
-    .genderRatio = PERCENT_FEMALE(50),
-    .eggCycles = 25,
-    .friendship = 70,
-    .growthRate = GROWTH_MEDIUM_FAST,
-    .eggGroup1 = EGG_GROUP_BUG,
-    .eggGroup2 = EGG_GROUP_BUG,
-    .abilities = {ABILITY_SWARM, ABILITY_SHEER_FORCE, ABILITY_STEADFAST},
-    .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    .bodyColor = BODY_COLOR_BROWN,
-    .noFlip = FALSE,
-    },
-
-[SPECIES_URSALUNA] =
-    {
-    .baseHP        = 130,
-    .baseAttack    = 140,
-    .baseDefense   = 105,
-    .baseSpeed     = 50,
-    .baseSpAttack  = 45,
-    .baseSpDefense = 80,
-    .type1 = TYPE_GROUND,
-    .type2 = TYPE_NORMAL,
-    .catchRate = 75,
-    .expYield = 194,
-    .evYield_Attack    = 3,
-    .genderRatio = PERCENT_FEMALE(50),
-    .eggCycles = 20,
-    .friendship = 70,
-    .growthRate = GROWTH_MEDIUM_FAST,
-    .eggGroup1 = EGG_GROUP_FIELD,
-    .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_GUTS, ABILITY_BULLETPROOF, ABILITY_UNNERVE},
-    .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    .bodyColor = BODY_COLOR_BROWN,
-    .noFlip = FALSE,
-    },
 
 [SPECIES_BASCULEGION] =
     {
@@ -30027,7 +29951,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-    [SPECIES_ENAMORUS] =
+[SPECIES_ENAMORUS] =
     {
         .baseHP        = 74,
         .baseAttack    = 115,
@@ -30047,43 +29971,17 @@ const struct BaseStats gBaseStats[] =
         .evYield_Speed     = 0,
         .item1 = ITEM_NONE,
         .item2 = ITEM_NONE,
-        .genderRatio = PERCENT_FEMALE(100),
+        .genderRatio = MON_FEMALE,
         .eggCycles = 20,
         .friendship = 50,
         .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_FILED,
-        .eggGroup2 = EGG_GROUP_FILED,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_CONTRARY },
         .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
-
-[SPECIES_ENAMORUS] =
-    {
-    .baseHP        = 74,
-    .baseAttack    = 115,
-    .baseDefense   = 70,
-    .baseSpeed     = 106,
-    .baseSpAttack  = 135,
-    .baseSpDefense = 80,
-    .type1 = TYPE_FAIRY,
-    .type2 = TYPE_FLYING,
-    .catchRate = 3,
-    .expYield = 261,
-    .evYield_SpAttack    = 3,
-    .genderRatio = MON_FEMALE,
-    .eggCycles = 120,
-    .friendship = 90,
-    .growthRate = GROWTH_SLOW,
-    .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-    .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_CONTRARY},
-    .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    .bodyColor = BODY_COLOR_PINK,
-    .noFlip = FALSE,
-    },
-    */
 
 [SPECIES_WEEZING_GALARIAN] =
     {
