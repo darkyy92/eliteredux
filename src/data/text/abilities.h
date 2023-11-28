@@ -438,7 +438,7 @@ static const u8 sFaeHunterDescription[] = _("Does 50% more damage to\nFairy-type
 static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n5 turns.");
 
 // Nyaaaa's Custom Abilities
-static const u8 sEvaporateDescription[] = _("Water moves against this\nPokemon are nullified");
+static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
