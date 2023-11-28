@@ -2127,6 +2127,8 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }*/
+                if((gBattleMons[targetId].ability == ABILITY_EVAPORATE || BattlerHasInnate(targetId, ABILITY_EVAPORATE)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum))
+                    abilityNullifiesDamage = TRUE;
 
                 if(gBattleMons[targetId].ability == ABILITY_WATER_COMPACTION || BattlerHasInnate(targetId, ABILITY_WATER_COMPACTION)){
                     tempMod = UQ_4_12(0.5);
