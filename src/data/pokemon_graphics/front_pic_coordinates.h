@@ -4496,18 +4496,18 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x68,
         .y_offset = 2,
     },
-    // Megas
     [SPECIES_WYRDEER] =
     {
         .size = 0,
         .y_offset =  0
     },
-    [SPECIES_VENUSAUR_MEGA] =
     [SPECIES_KLEAVOR] =
     {
         .size = 0,
         .y_offset =  0
     },
+    // Megas
+    [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,
         .y_offset = 6,

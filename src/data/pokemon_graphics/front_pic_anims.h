@@ -9468,12 +9468,14 @@ static const union AnimCmd sAnim_WYRDEER_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
-static const union AnimCmd sAnim_VENUSAUR_MEGA_1[] =
+
 static const union AnimCmd sAnim_KLEAVOR_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+
+static const union AnimCmd sAnim_VENUSAUR_MEGA_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -15126,11 +15128,13 @@ static const union AnimCmd *const sAnims_WYRDEER[] ={
     sAnim_GeneralFrame0,
     sAnim_WYRDEER_1,
 };
-static const union AnimCmd *const sAnims_VENUSAUR_MEGA[] ={
+
 static const union AnimCmd *const sAnims_KLEAVOR[] ={
     sAnim_GeneralFrame0,
     sAnim_KLEAVOR_1,
 };
+
+static const union AnimCmd *const sAnims_VENUSAUR_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_VENUSAUR_MEGA_1,
 };
