@@ -29874,38 +29874,6 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
-
-    [SPECIES_SNEASLER] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 130,
-        .baseDefense   = 60,
-        .baseSpeed     = 120,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 80,
-        .type1 = TYPE_FIGHTING,
-        .type2 = TYPE_POISON,
-        .catchRate = 20,
-        .expYield = 102,
-        .evYield_HP        = 0,
-        .evYield_Attack    = 1,
-        .evYield_Defense   = 0,
-        .evYield_SpAttack  = 0,
-        .evYield_SpDefense = 0,
-        .evYield_Speed     = 1,
-        .item1 = ITEM_NONE,
-        .item2 = ITEM_NONE,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 50,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = { ABILITY_PRESSURE, ABILITY_UNBURDEN, ABILITY_POISON_TOUCH },
-        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-    },
     
     /* Unfinished in RH-Hideout
 [SPECIES_WYRDEER] =

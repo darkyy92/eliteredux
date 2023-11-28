@@ -10835,4 +10835,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_OVERQWIL] =
+    {
+        .categoryName = _("Overqwil"),
+        .height = 25,
+        .weight = 605,
+        .description = gOverqwilPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

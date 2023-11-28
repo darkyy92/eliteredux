@@ -5379,3 +5379,9 @@ const u8 gSneaslerPokedexText[] = _(
     "daunting physical prowess, no other species\n"
     "could hope to best it on the frozen highlands.\n"
     "");
+
+const u8 gOverqwilPokedexText[] = _(
+    "Its lancelike spikes and savage temperament\n"
+    "have earned it the nickname ''sea fiend''.\n"
+    " It slurps up poison to nourish itself.\n"
+    "");
