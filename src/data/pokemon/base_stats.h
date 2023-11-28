@@ -29810,6 +29810,38 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+
+    [SPECIES_KLEAVOR] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 135,
+        .baseDefense   = 95,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 70,
+        .type1 = TYPE_BUG,
+        .type2 = TYPE_ROCK,
+        .catchRate = 15,
+        .expYield = 175,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 2,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_BUG,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = { ABILITY_SWARM, ABILITY_SHEER_FORCE, ABILITY_KEEN_EDGE },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .noFlip = FALSE,
+    },
     
     /* Unfinished in RH-Hideout
 [SPECIES_WYRDEER] =

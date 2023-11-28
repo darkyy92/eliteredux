@@ -5361,3 +5361,9 @@ const u8 gWyrdeerPokedexText[] = _(
     "light when the Pokémon is erecting\n"
     "invisible barriers.\n"
     "");
+
+const u8 gKleavorPokedexText[] = _(
+    "A violent creature that fells towering\n"
+    "trees with its crude axes and shields it\n"
+    "self with hard stone. If one should chance upon this\n"
+    "Pokémon in the wilds, one's only recourse is to flee.");

@@ -10799,4 +10799,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_KLEAVOR] =
+    {
+        .categoryName = _("Kleavor"),
+        .height = 10,
+        .weight = 100,
+        .description = gKleavorPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

@@ -20270,6 +20270,23 @@ static const struct LevelUpMove sWyrdeerLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sKleavorLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 4, MOVE_FURY_CUTTER),
+    LEVEL_UP_MOVE( 8, MOVE_FALSE_SWIPE),
+    LEVEL_UP_MOVE(12, MOVE_SMACK_DOWN),
+    LEVEL_UP_MOVE(16, MOVE_DOUBLE_TEAM),
+    LEVEL_UP_MOVE(20, MOVE_DOUBLE_HIT),
+    LEVEL_UP_MOVE(24, MOVE_SLASH),
+    LEVEL_UP_MOVE(28, MOVE_FOCUS_ENERGY),
+    LEVEL_UP_MOVE(32, MOVE_AGILITY),
+    LEVEL_UP_MOVE(36, MOVE_ROCK_SLIDE),
+    LEVEL_UP_MOVE(40, MOVE_X_SCISSOR),
+    LEVEL_UP_MOVE(44, MOVE_SWORDS_DANCE),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sRaichuAlolanLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 0, MOVE_PSYBEAM),

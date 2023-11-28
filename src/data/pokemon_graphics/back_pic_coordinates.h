@@ -4502,6 +4502,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .y_offset =  0
     },
     [SPECIES_VENUSAUR_MEGA] =
+    [SPECIES_KLEAVOR] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     {
         .size = 0,
         .y_offset = 10,
