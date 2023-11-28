@@ -10847,4 +10847,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_ENAMORUS] =
+    {
+        .categoryName = _("Enamorus"),
+        .height = 16,
+        .weight = 480,
+        .description = gEnamorusPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

@@ -604,6 +604,7 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_URSALUNA]                     = BACK_ANIM_NONE,
     [SPECIES_SNEASLER]                     = BACK_ANIM_NONE,
     [SPECIES_OVERQWIL]                     = BACK_ANIM_NONE,
+    [SPECIES_ENAMORUS]                     = BACK_ANIM_NONE,
     [SPECIES_CHIMECHO]   = BACK_ANIM_CONVEX_DOUBLE_ARC,
 };
 

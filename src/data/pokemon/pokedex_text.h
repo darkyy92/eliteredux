@@ -5385,3 +5385,9 @@ const u8 gOverqwilPokedexText[] = _(
     "have earned it the nickname ''sea fiend''.\n"
     " It slurps up poison to nourish itself.\n"
     "");
+
+const u8 gEnamorusPokedexText[] = _(
+    "When it flies to this land from across the sea,\n"
+    "the bitter winter comes to an end.\n"
+    "\n"
+    "");
