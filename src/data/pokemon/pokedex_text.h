@@ -5373,3 +5373,9 @@ const u8 gUrsalunaPokedexText[] = _(
     "that gave Ursaluna its burly physique and\n"
     "newfound capacity to manipulate peat at will.\n"
     "");
+
+const u8 gSneaslerPokedexText[] = _(
+    "Because of Sneasler's virulent poison and\n"
+    "daunting physical prowess, no other species\n"
+    "could hope to best it on the frozen highlands.\n"
+    "");

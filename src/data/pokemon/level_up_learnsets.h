@@ -20308,6 +20308,24 @@ static const struct LevelUpMove sUrsalunaLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sSneaslerLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_FLING),
+    LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 1, MOVE_ROCK_SMASH),
+    LEVEL_UP_MOVE( 6, MOVE_TAUNT),
+    LEVEL_UP_MOVE(12, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE(18, MOVE_METAL_CLAW),
+    LEVEL_UP_MOVE(24, MOVE_POISON_JAB),
+    LEVEL_UP_MOVE(30, MOVE_BRICK_BREAK),
+    LEVEL_UP_MOVE(36, MOVE_HONE_CLAWS),
+    LEVEL_UP_MOVE(42, MOVE_SLASH),
+    LEVEL_UP_MOVE(48, MOVE_AGILITY),
+    LEVEL_UP_MOVE(54, MOVE_SCREECH),
+    LEVEL_UP_MOVE(60, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sRaichuAlolanLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 0, MOVE_PSYBEAM),

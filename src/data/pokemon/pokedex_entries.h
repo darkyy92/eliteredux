@@ -10823,4 +10823,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_SNEASLER] =
+    {
+        .categoryName = _("Sneasler"),
+        .height = 13,
+        .weight = 430,
+        .description = gSneaslerPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };
