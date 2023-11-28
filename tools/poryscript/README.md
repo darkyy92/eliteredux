@@ -85,14 +85,16 @@ It's also a good idea to add `tools/poryscript` to your `.gitignore` before your
 
 2. Update the Makefile with these changes (Note, don't add the `+` symbol at the start of the lines. That's just to show the line is being added.):
 ```diff
+FIX := tools/gbafix/gbafix$(EXE)
+MAPJSON := tools/mapjson/mapjson$(EXE)
+JSONPROC := tools/jsonproc/jsonproc$(EXE)
 + SCRIPT := tools/poryscript/poryscript$(EXE)
 ```
 ```diff
-mostlyclean: tidy
-	rm -f sound/direct_sound_samples/*.bin
-	rm -f $(MID_SUBDIR)/*.s
-	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
+mostlyclean: tidynonmodern tidymodern
+	...
 	rm -f $(AUTO_GEN_TARGETS)
+	@$(MAKE) clean -C libagbsyscall
 +	rm -f $(patsubst %.pory,%.inc,$(shell find data/ -type f -name '*.pory'))
 ```
 ```diff
@@ -105,16 +107,6 @@ mostlyclean: tidy
 ```diff
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 + data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@ -fc tools/poryscript/font_config.json
-```
-```diff
--TOOLDIRS := $(filter-out tools/agbcc tools/binutils,$(wildcard tools/*))
-+TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
-```
-
-3. Update `make_tools.mk` with the same change:
-```diff
--TOOLDIRS := $(filter-out tools/agbcc tools/binutils,$(wildcard tools/*))
-+TOOLDIRS := $(filter-out tools/agbcc tools/binutils tools/poryscript,$(wildcard tools/*))
 ```
 
 ## Convert Existing Scripts
@@ -414,6 +406,14 @@ Becomes:
 .string "Amazing!\p"
 .string "So glad to meet you!$"
 ```
+
+Additionally, `format()` supports a special line break `\N`, which will automatically insert the appropriate `\n` or `\l` line break. While this is an uncommon use case, it's useful in situations where a line break is desired for dramatic/stylistic purposes. In the following example, we want explicit line breaks for the `"..."` texts, but we don't know if the first one should use `\n` or `\l`. Using `\N` makes it easy:
+```
+text MyText {
+    format("You are my favorite trainer!\N...\N...\N...\NBut I'm better!")
+}
+```
+
 The font id can optionally be specified as the second parameter to `format()`.
 ```
 text MyText {
@@ -428,6 +428,8 @@ Becomes:
 .string "So glad to meet you!$"
 ```
 The font configuration JSON file informs Poryscript how many pixels wide each character in the message is, as well as setting a default maximum line length. Fonts have different character widths, and games have different text box sizes. For convenience, Poryscript comes with `font_config.json`, which contains the configuration for pokeemerald's `1_latin` font as `1_latin_rse`, as well as pokefirered's equivalent as `1_latin_frlg`. More fonts can be added to this file by simply creating anothing font id node under the `fonts` key in `font_config.json`.
+
+`cursorOverlapWidth` can be used to ensure there is always enough room for the cursor icon to be displayed in the text box. (This "cursor icon" is the small icon that's shown when the player needs to press A to advance the text box.)
 
 The length of a line can optionally be specified as the third parameter to `format()` if a font id was specified as the second parameter.
 

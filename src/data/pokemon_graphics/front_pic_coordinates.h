@@ -4507,6 +4507,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .y_offset =  0
     },
     // Megas
+    [SPECIES_URSALUNA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

@@ -320,8 +320,8 @@ Route113_EventScript_LegendaryNPC_Text_1:
 	.string "smoke-filled land, looking for a valiant\l"
 	.string "aid...\p"
 	.string "Could you be the one they're looking\n"
-	.string "for? Come back after becoming\l"
-	.string "champion to meet them.$"
+	.string "for? Come back after becoming champion\l"
+	.string "to meet them.$"
 
 Route113_EventScript_LegendaryNPC_Text_2:
 	.string "You are now worthy of catching the\n"

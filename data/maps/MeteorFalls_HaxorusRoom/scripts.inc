@@ -864,8 +864,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1:
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_0:
 	.string "Haxorus seems to want to join your\n"
-	.string "team, will you let this Haxorus join\l"
-	.string "you?$"
+	.string "team, will you let this Haxorus join you?$"
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1:
 	.string "{PLAYER} received a Haxorus!$"

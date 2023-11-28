@@ -5367,3 +5367,9 @@ const u8 gKleavorPokedexText[] = _(
     "trees with its crude axes and shields it\n"
     "self with hard stone. If one should chance upon this\n"
     "Pokémon in the wilds, one's only recourse is to flee.");
+
+const u8 gUrsalunaPokedexText[] = _(
+    "I believe it was Hisui's swampy terrain\n"
+    "that gave Ursaluna its burly physique and\n"
+    "newfound capacity to manipulate peat at will.\n"
+    "");

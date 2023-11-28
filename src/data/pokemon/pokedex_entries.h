@@ -10811,4 +10811,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_URSALUNA] =
+    {
+        .categoryName = _("Ursaluna"),
+        .height = 24,
+        .weight = 2900,
+        .description = gUrsalunaPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

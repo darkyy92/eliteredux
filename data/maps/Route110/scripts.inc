@@ -1161,8 +1161,8 @@ Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_2:
 	.string "Did you know? Galarians used to build\n"
 	.string "machines powered by Pokémon! You can\l"
-	.string "have a steam-powered-pokémon too,\l"
-	.string "but only after showing these\l"
+	.string "have a steam-powered-pokémon too, but\l"
+	.string "only after showing these\l"
 	.string "muscle-powered-bike-wielding\l"
 	.string "Hoennians a lesson!$"
 

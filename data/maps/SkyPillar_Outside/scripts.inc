@@ -257,15 +257,15 @@ SkyPillar_Outside_EventScript_HideGauntletTrainers_2:
 
 SkyPillar_Outside_Text_Gauntlet_Text_0:
 	.string "Does thou seek might, young seeker?\n"
-	.string "Display thine prowess unto us, and\l"
-	.string "thee shall be endowed with strength\l"
+	.string "Display thine prowess unto us, and thee\l"
+	.string "shall be endowed with strength\l"
 	.string "unparalleled.$"
 
 SkyPillar_Outside_Text_Gauntlet_Text_1:
 	.string "Overcome our united strength, and the\n"
-	.string "ancient dragon's power shall awaken\l"
-	.string "for you. Prove your worth and harness\l"
-	.string "the legacy.$"
+	.string "ancient dragon's power shall awaken for\l"
+	.string "you. Prove your worth and harness the\l"
+	.string "legacy.$"
 
 SkyPillar_Outside_Text_Gauntlet_Text_2:
 	.string "Thus, we commence.$"

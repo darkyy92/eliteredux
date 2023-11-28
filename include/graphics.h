@@ -1,5 +1,6 @@
 extern const u8 gMonFootprint_Wyrdeer[];
 extern const u8 gMonFootprint_Kleavor[];
+extern const u8 gMonFootprint_Ursaluna[];
 #ifndef GUARD_GRAPHICS_H
 #define GUARD_GRAPHICS_H
 
@@ -978,6 +979,7 @@ extern const u32 gMonFrontPic_Spectrier[];
 extern const u32 gMonFrontPic_Calyrex[];
 extern const u32 gMonFrontPic_Wyrdeer[];
 extern const u32 gMonFrontPic_Kleavor[];
+extern const u32 gMonFrontPic_Ursaluna[];
 extern const u32 gMonFrontPic_VenusaurMega[];
 extern const u32 gMonFrontPic_CharizardMegaX[];
 extern const u32 gMonFrontPic_CharizardMegaY[];
@@ -2149,6 +2151,7 @@ extern const u32 gMonBackPic_Spectrier[];
 extern const u32 gMonBackPic_Calyrex[];
 extern const u32 gMonBackPic_Wyrdeer[];
 extern const u32 gMonBackPic_Kleavor[];
+extern const u32 gMonBackPic_Ursaluna[];
 extern const u32 gMonBackPic_VenusaurMega[];
 extern const u32 gMonBackPic_CharizardMegaX[];
 extern const u32 gMonBackPic_CharizardMegaY[];
@@ -3320,6 +3323,7 @@ extern const u32 gMonPalette_Spectrier[];
 extern const u32 gMonPalette_Calyrex[];
 extern const u32 gMonPalette_Wyrdeer[];
 extern const u32 gMonPalette_Kleavor[];
+extern const u32 gMonPalette_Ursaluna[];
 extern const u32 gMonPalette_VenusaurMega[];
 extern const u32 gMonPalette_CharizardMegaX[];
 extern const u32 gMonPalette_CharizardMegaY[];
@@ -4518,6 +4522,7 @@ extern const u32 gMonShinyPalette_Spectrier[];
 extern const u32 gMonShinyPalette_Calyrex[];
 extern const u32 gMonShinyPalette_Wyrdeer[];
 extern const u32 gMonShinyPalette_Kleavor[];
+extern const u32 gMonShinyPalette_Ursaluna[];
 extern const u32 gMonShinyPalette_VenusaurMega[];
 extern const u32 gMonShinyPalette_CharizardMegaX[];
 extern const u32 gMonShinyPalette_CharizardMegaY[];
@@ -5706,6 +5711,7 @@ extern const u8 gMonIcon_Spectrier[];
 extern const u8 gMonIcon_Calyrex[];
 extern const u8 gMonIcon_Wyrdeer[];
 extern const u8 gMonIcon_Kleavor[];
+extern const u8 gMonIcon_Ursaluna[];
 extern const u8 gMonIcon_VenusaurMega[];
 extern const u8 gMonIcon_CharizardMegaX[];
 extern const u8 gMonIcon_CharizardMegaY[];

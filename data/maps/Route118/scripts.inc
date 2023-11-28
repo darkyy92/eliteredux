@@ -572,9 +572,9 @@ Route118_EventScript_LegendaryNPC_Text_1:
 
 Route118_EventScript_LegendaryNPC_Text_2:
 	.string "Your skills in battle have been tested,\n"
-	.string "and you have succeded against all\l"
-	.string "odds. Congratulations. Use your DexNav\l"
-	.string "to finally meet these extraordinary\l"
+	.string "and you have succeded against all odds.\l"
+	.string "Congratulations. Use your DexNav to\l"
+	.string "finally meet these extraordinary\l"
 	.string "protectors.$"
 
 Route118_EventScript_LegendaryNPC_Text_3:
@@ -616,9 +616,9 @@ Route118East_EventScript_Gen8_NPC_Text_1:
 
 Route118East_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all three regular\n"
-	.string "trainers at the east side of this\l"
-	.string "route, I will give you this fossil I\l"
-	.string "stole from school!$"
+	.string "trainers at the east side of this route,\l"
+	.string "I will give you this fossil I stole from\l"
+	.string "school!$"
 
 Route118_EventScript_StevenTrigger_Text_0:
 	.string "Steven: Hi, {PLAYER}{KUN} I hope you're\n"

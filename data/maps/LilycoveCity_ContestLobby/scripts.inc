@@ -1186,8 +1186,8 @@ LilycoveCity_ContestLobby_EventScript_BrokenMachine_Text_0:
 LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_0:
 	.string "I played a lot with this {POKEBLOCK} machine\n"
 	.string "and I broke it so nobody can play, but\l"
-	.string "now I have a lot of {POKEBLOCK}s, do you\l"
-	.string "want some?.$"
+	.string "now I have a lot of {POKEBLOCK}s, do you want\l"
+	.string "some?.$"
 
 LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_1:
 	.string "More for me I guess.$"

@@ -292,19 +292,18 @@ Route115_EventScript_Gen8_NPC_20:
 Route115_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: Understanding. Sentiment.\n"
 	.string "Resolve. I sing about the blessings\l"
-	.string "bestowed upon us by the Lake\l"
-	.string "Guardians for those who are interested\l"
-	.string "in listening.$"
+	.string "bestowed upon us by the Lake Guardians\l"
+	.string "for those who are interested in\l"
+	.string "listening.$"
 
 Route115_EventScript_LegendaryNPC_Text_1:
 	.string "Knowledge. Emotion. Willpower. The\n"
 	.string "slumbering Lake Guardians await a\l"
 	.string "chosen one who can fathom their\l"
 	.string "depths. It is through understanding\l"
-	.string "their purpose that you shall become\l"
-	.string "the conduit of their might. Embrace\l"
-	.string "their call, young trainer, and return to\l"
-	.string "me.$"
+	.string "their purpose that you shall become the\l"
+	.string "conduit of their might. Embrace their\l"
+	.string "call, young trainer, and return to me.$"
 
 Route115_EventScript_LegendaryNPC_Text_2:
 	.string "Insight. Zeal. Perseverance. These\n"

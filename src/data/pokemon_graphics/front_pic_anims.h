@@ -9475,6 +9475,11 @@ static const union AnimCmd sAnim_KLEAVOR_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_URSALUNA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_VENUSAUR_MEGA_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15134,6 +15139,10 @@ static const union AnimCmd *const sAnims_KLEAVOR[] ={
     sAnim_KLEAVOR_1,
 };
 
+static const union AnimCmd *const sAnims_URSALUNA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_URSALUNA_1,
+};
 static const union AnimCmd *const sAnims_VENUSAUR_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_VENUSAUR_MEGA_1,
@@ -16924,7 +16933,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(CALYREX),
     ANIM_CMD(WYRDEER),    ANIM_CMD(VENUSAUR_MEGA),
     ANIM_CMD(KLEAVOR),    ANIM_CMD(CHARIZARD_MEGA_X),
-    ANIM_CMD(CHARIZARD_MEGA_Y),
+    ANIM_CMD(URSALUNA),    ANIM_CMD(CHARIZARD_MEGA_Y),
     ANIM_CMD(BLASTOISE_MEGA),
     ANIM_CMD(BEEDRILL_MEGA),
     ANIM_CMD(PIDGEOT_MEGA),
