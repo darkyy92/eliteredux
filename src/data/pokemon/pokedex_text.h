@@ -5398,6 +5398,12 @@ const u8 gSprigatitoPokedexText[] = _(
     "grows stronger when this Pokémon is in the sun.\n"
     "");
 
+const u8 gFloragatoPokedexText[] = _(
+    "The hardness of Floragato's\n"
+    "fur depends on the Pokémon's mood.\n"
+    "\n"
+    "");
+
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
     "that perished before fulfilling their\n"

@@ -9503,6 +9503,11 @@ static const union AnimCmd sAnim_SPRIGATITO_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_FLORAGATO_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15194,6 +15199,11 @@ static const union AnimCmd *const sAnims_SPRIGATITO[] ={
     sAnim_SPRIGATITO_1,
 };
 
+static const union AnimCmd *const sAnims_FLORAGATO[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FLORAGATO_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -16996,6 +17006,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(BASCULEGION),    ANIM_CMD(ALAKAZAM_MEGA),
     ANIM_CMD(SPRIGATITO),
     ANIM_CMD(SLOWBRO_MEGA),
+    ANIM_CMD(FLORAGATO),
     ANIM_CMD(GENGAR_MEGA),
     ANIM_CMD(KANGASKHAN_MEGA),
     ANIM_CMD(PINSIR_MEGA),

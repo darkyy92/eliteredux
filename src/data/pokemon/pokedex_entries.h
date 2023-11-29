@@ -10872,6 +10872,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_FLORAGATO] =
+    {
+        .categoryName = _("Floragato"),
+        .height = 9,
+        .weight = 122,
+        .description = gFloragatoPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

@@ -20385,6 +20385,24 @@ static const struct LevelUpMove sSprigatitoLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sFloragatoLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
+    LEVEL_UP_MOVE( 1, MOVE_TAIL_WHIP),
+    LEVEL_UP_MOVE( 1, MOVE_LEAFAGE),
+    LEVEL_UP_MOVE( 7, MOVE_BITE),
+    LEVEL_UP_MOVE(10, MOVE_HONE_CLAWS),
+    LEVEL_UP_MOVE(13, MOVE_MAGICAL_LEAF),
+    LEVEL_UP_MOVE(15, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE(20, MOVE_SEED_BOMB),
+    LEVEL_UP_MOVE(24, MOVE_U_TURN),
+    LEVEL_UP_MOVE(28, MOVE_WORRY_SEED),
+    LEVEL_UP_MOVE(33, MOVE_SLASH),
+    LEVEL_UP_MOVE(38, MOVE_ENERGY_BALL),
+    LEVEL_UP_MOVE(42, MOVE_PLAY_ROUGH),
+    LEVEL_UP_MOVE(46, MOVE_LEAF_STORM),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE( 1, MOVE_PHANTOM_FORCE),
