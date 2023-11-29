@@ -9496,6 +9496,11 @@ static const union AnimCmd sAnim_ENAMORUS_1[] =
     ANIMCMD_END,
 };
 static const union AnimCmd sAnim_VENUSAUR_MEGA_1[] =
+static const union AnimCmd sAnim_BASCULEGION_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -15171,6 +15176,10 @@ static const union AnimCmd *const sAnims_ENAMORUS[] ={
     sAnim_ENAMORUS_1,
 };
 static const union AnimCmd *const sAnims_VENUSAUR_MEGA[] ={
+static const union AnimCmd *const sAnims_BASCULEGION[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BASCULEGION_1,
+};
     sAnim_GeneralFrame0,
     sAnim_VENUSAUR_MEGA_1,
 };
@@ -16964,7 +16973,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SNEASLER),    ANIM_CMD(BLASTOISE_MEGA),
     ANIM_CMD(OVERQWIL),    ANIM_CMD(BEEDRILL_MEGA),
     ANIM_CMD(ENAMORUS),    ANIM_CMD(PIDGEOT_MEGA),
-    ANIM_CMD(ALAKAZAM_MEGA),
+    ANIM_CMD(BASCULEGION),    ANIM_CMD(ALAKAZAM_MEGA),
     ANIM_CMD(SLOWBRO_MEGA),
     ANIM_CMD(GENGAR_MEGA),
     ANIM_CMD(KANGASKHAN_MEGA),

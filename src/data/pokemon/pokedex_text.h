@@ -5391,3 +5391,9 @@ const u8 gEnamorusPokedexText[] = _(
     "the bitter winter comes to an end.\n"
     "\n"
     "");
+
+const u8 gBasculegionPokedexText[] = _(
+    "Clads itself in the souls of comrades\n"
+    "that perished before fulfilling their\n"
+    "goals of journeying upstream.\n"
+    "");

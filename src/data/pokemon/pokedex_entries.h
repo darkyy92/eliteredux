@@ -10859,4 +10859,16 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 255,
         .trainerOffset = 0,
     },
+
+    [NATIONAL_DEX_BASCULEGION] =
+    {
+        .categoryName = _("Basculegion"),
+        .height = 30,
+        .weight = 1100,
+        .description = gBasculegionPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
 };

@@ -4512,6 +4512,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+	[SPECIES_BASCULEGION] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
 	 [SPECIES_SNEASLER] =
     {
         .size = 0,
