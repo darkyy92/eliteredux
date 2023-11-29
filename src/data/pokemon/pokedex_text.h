@@ -5399,10 +5399,16 @@ const u8 gSprigatitoPokedexText[] = _(
     "");
 
 const u8 gFloragatoPokedexText[] = _(
-    "The hardness of Floragato's\n"
-    "fur depends on the Pokémon's mood.\n"
-    "\n"
-    "");
+    "Floragato deftly wields the vine\n"
+    "hidden beneath its long fur, slamming\n"
+    "the hard flower bud against its\n"
+    "opponents.");
+
+const u8 gMeowscaradaPokedexText[] = _(
+    "This Pokémon uses the reflective\n"
+    "fur lining its cape to camouflage the\n"
+    "stem of its flower, creating the\n"
+    "illusion that the flower is floating.");
 
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"

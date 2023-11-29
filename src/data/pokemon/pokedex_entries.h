@@ -10884,6 +10884,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_MEOWSCARADA] =
+    {
+        .categoryName = _("Meowscarada"),
+        .height = 15,
+        .weight = 312,
+        .description = gMeowscaradaPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),
