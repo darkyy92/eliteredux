@@ -728,6 +728,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_OVERQWIL] = gMonFootprint_Overqwil,
     [SPECIES_ENAMORUS] = gMonFootprint_Enamorus,
     [SPECIES_BASCULEGION] = gMonFootprint_Basculegion,
+    [SPECIES_SPRIGATITO] = gMonFootprint_Sprigatito,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

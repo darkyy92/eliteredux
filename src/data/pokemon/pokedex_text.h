@@ -5392,6 +5392,12 @@ const u8 gEnamorusPokedexText[] = _(
     "\n"
     "");
 
+const u8 gSprigatitoPokedexText[] = _(
+    "The sweet scent its body gives off\n"
+    "mesmerizes those around it. The scent\n"
+    "grows stronger when this Pokémon is in the sun.\n"
+    "");
+
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
     "that perished before fulfilling their\n"

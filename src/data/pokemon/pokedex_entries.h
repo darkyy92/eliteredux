@@ -10860,6 +10860,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_SPRIGATITO] =
+    {
+        .categoryName = _("Sprigatito"),
+        .height = 4,
+        .weight = 41,
+        .description = gSprigatitoPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

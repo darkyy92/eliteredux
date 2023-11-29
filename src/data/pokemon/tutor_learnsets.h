@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_SPRIGATITO] = {
+	},
 	[SPECIES_BASCULEGION] = {
 		MOVE_AQUA_TAIL,
 		MOVE_CALM_MIND,
