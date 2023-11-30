@@ -4692,5 +4692,11 @@ const u16 gEggMoves[] = {
         MOVE_ENCORE,
         MOVE_SLACK_OFF),
 
+    egg_moves(QUAXLY,
+        MOVE_DETECT,
+        MOVE_LAST_RESORT,
+        MOVE_RAPID_SPIN,
+        MOVE_ROOST),
+
     EGG_MOVES_TERMINATOR
 };

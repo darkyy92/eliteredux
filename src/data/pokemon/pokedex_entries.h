@@ -10932,6 +10932,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_QUAXLY] =
+    {
+        .categoryName = _("Quaxly"),
+        .height = 5,
+        .weight = 61,
+        .description = gQuaxlyPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

@@ -20483,6 +20483,22 @@ static const struct LevelUpMove sSkeledirgeLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sQuaxlyLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_POUND),
+    LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 1, MOVE_WATER_GUN),
+    LEVEL_UP_MOVE( 7, MOVE_WORK_UP),
+    LEVEL_UP_MOVE(10, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE(13, MOVE_AQUA_JET),
+    LEVEL_UP_MOVE(17, MOVE_DOUBLE_HIT),
+    //LEVEL_UP_MOVE(21, MOVE_AQUA_CUTTER),
+    LEVEL_UP_MOVE(24, MOVE_AIR_SLASH),
+    LEVEL_UP_MOVE(28, MOVE_FOCUS_ENERGY),
+    LEVEL_UP_MOVE(31, MOVE_ACROBATICS),
+    LEVEL_UP_MOVE(35, MOVE_LIQUIDATION),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE( 1, MOVE_PHANTOM_FORCE),

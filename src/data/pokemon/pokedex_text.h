@@ -5416,6 +5416,12 @@ const u8 gFuecocoPokedexText[] = _(
     "burns its enemies to a crisp with\n"
     "flames of over 5,400 degrees Fahrenheit.");
 
+const u8 gQuaxlyPokedexText[] = _(
+   "Its strong legs let it easily swim\n"
+    "around in even fast-flowing rivers.\n"
+    "It likes to keep things tidy and is\n"
+    "prone to overthinking things.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"

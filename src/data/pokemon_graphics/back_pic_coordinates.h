@@ -4529,22 +4529,22 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_SPRIGATITO] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  7
     },
     [SPECIES_FLORAGATO] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  6
     },
     [SPECIES_MEOWSCARADA] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  2
     },
     [SPECIES_FUECOCO] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  4
     },
     [SPECIES_CROCALOR] =
     {
@@ -4555,6 +4555,11 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = 0,
         .y_offset =  0
+    },
+    [SPECIES_QUAXLY] =
+    {
+        .size = 0,
+        .y_offset =  7
     },
     [SPECIES_BASCULEGION] =
     {
