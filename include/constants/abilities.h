@@ -472,8 +472,8 @@
 #define ABILITY_FAE_HUNTER       (ABILITIES_COUNT_LATEST_GEN + 174) // Increases the damage dealt against Fairy-type Pokémon by 50%.
 #define ABILITY_GRAVITY_WELL     (ABILITIES_COUNT_LATEST_GEN + 175) // Sets Gravity on entry for 5 turns.
 #define ABILITY_EVAPORATE        (ABILITIES_COUNT_LATEST_GEN + 176) // Takes no damage and sets Mist if hit by water
-
-#define ABILITIES_COUNT_CUSTOM (ABILITY_EVAPORATE+ 1)
+#define ABILITY_LUMBERJACK       (ABILITIES_COUNT_LATEST_GEN + 177) // 1.5x damage against GRASS types.
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LUMBERJACK + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

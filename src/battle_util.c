@@ -15292,7 +15292,11 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             modifier = UQ_4_12(0.0);
         }
     }
-
+    if((GetBattlerAbility(battlerAtk) == ABILITY_LUMBERJACK || BattlerHasInnate(battlerAtk, ABILITY_LUMBERJACK)) 
+        && (gBattleMons[battlerDef].type1 == TYPE_GRASS || gBattleMons[battlerDef].type2 == TYPE_GRASS || gBattleMons[battlerDef].type3 == TYPE_GRASS))
+    {
+            modifier = UQ_4_12(1.5);
+    }
     if((GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) && (gBattleMoves[move].flags & FLAG_BONE_BASED)){
         if(moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef)){
             if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
