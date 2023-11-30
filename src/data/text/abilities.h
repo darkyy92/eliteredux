@@ -439,6 +439,7 @@ static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n5 turn
 
 // Nyaaaa's Custom Abilities
 static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
+static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -889,7 +890,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_FAE_HUNTER] = _("Fae Hunter"),
         [ABILITY_GRAVITY_WELL] = _("Gravity Well"),
         [ABILITY_EVAPORATE] = _("Evaporate"),
-};
+        [ABILITY_LUMBERJACK] = _("Lumberjack")};
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {
@@ -1338,4 +1339,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_FAE_HUNTER] = sFaeHunterDescription,
         [ABILITY_GRAVITY_WELL] = sGravityWellDescription,
         [ABILITY_EVAPORATE] = sEvaporateDescription,
+        [ABILITY_LUMBERJACK] = sLumberjackDescription,
 };
