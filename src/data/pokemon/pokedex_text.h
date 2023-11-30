@@ -5410,6 +5410,12 @@ const u8 gMeowscaradaPokedexText[] = _(
     "stem of its flower, creating the\n"
     "illusion that the flower is floating.");
 
+const u8 gFuecocoPokedexText[] = _(
+    "It lies on warm rocks and uses\n"
+    "the heat absorbed by its square-shaped\n"
+    "scales to create fire energy.\n"
+    "");
+
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
     "that perished before fulfilling their\n"

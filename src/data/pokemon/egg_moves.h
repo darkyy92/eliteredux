@@ -4681,5 +4681,11 @@ const u16 gEggMoves[] = {
         MOVE_PETAL_BLIZZARD,
         MOVE_SUCKER_PUNCH),
 
+    egg_moves(FUECOCO,
+        MOVE_BELCH,
+        MOVE_CURSE,
+        MOVE_ENCORE,
+        MOVE_SLACK_OFF),
+
     EGG_MOVES_TERMINATOR
 };

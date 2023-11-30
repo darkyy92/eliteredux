@@ -20427,6 +20427,22 @@ static const struct LevelUpMove sMeowscaradaLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sFuecocoLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 1, MOVE_EMBER),
+    LEVEL_UP_MOVE( 7, MOVE_ROUND),
+    LEVEL_UP_MOVE(12, MOVE_BITE),
+    LEVEL_UP_MOVE(15, MOVE_INCINERATE),
+    LEVEL_UP_MOVE(17, MOVE_YAWN),
+    LEVEL_UP_MOVE(21, MOVE_SNARL),
+    LEVEL_UP_MOVE(25, MOVE_ROAR),
+    LEVEL_UP_MOVE(28, MOVE_FLAMETHROWER),
+    LEVEL_UP_MOVE(32, MOVE_HYPER_VOICE),
+    LEVEL_UP_MOVE(36, MOVE_FIRE_BLAST),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE( 1, MOVE_PHANTOM_FORCE),

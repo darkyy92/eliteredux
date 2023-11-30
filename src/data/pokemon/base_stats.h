@@ -30079,6 +30079,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_FUECOCO] =
+    {
+        .baseHP        = 67,
+        .baseAttack    = 45,
+        .baseDefense   = 59,
+        .baseSpeed     = 36,
+        .baseSpAttack  = 63,
+        .baseSpDefense = 40,
+        .type1 = TYPE_FIRE,
+        .type2 = TYPE_FIRE,
+        .catchRate = 20,
+        .expYield = 62,
+        .evYield_HP        = 1,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_UNAWARE },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+    },
+
 [SPECIES_WEEZING_GALARIAN] =
     {
     .baseHP        = 65,

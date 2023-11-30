@@ -10896,6 +10896,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_FUECOCO] =
+    {
+        .categoryName = _("Fuecoco"),
+        .height = 4,
+        .weight = 98,
+        .description = gFuecocoPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

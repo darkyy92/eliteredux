@@ -9513,6 +9513,11 @@ static const union AnimCmd sAnim_MEOWSCARADA_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_FUECOCO_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15214,6 +15219,11 @@ static const union AnimCmd *const sAnims_MEOWSCARADA[] ={
     sAnim_MEOWSCARADA_1,
 };
 
+static const union AnimCmd *const sAnims_FUECOCO[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FUECOCO_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17020,6 +17030,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(GENGAR_MEGA),
     ANIM_CMD(MEOWSCARADA),
     ANIM_CMD(KANGASKHAN_MEGA),
+    ANIM_CMD(FUECOCO),
     ANIM_CMD(PINSIR_MEGA),
     ANIM_CMD(GYARADOS_MEGA),
     ANIM_CMD(AERODACTYL_MEGA),
