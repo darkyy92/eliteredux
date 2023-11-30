@@ -2077,6 +2077,11 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_FIRE:
+                if(gBattleMons[targetId].ability == ABILITY_WELL_BAKED_BODY || BattlerHasInnate(targetId, ABILITY_WELL_BAKED_BODY)){
+                    tempMod = UQ_4_12(0.5);
+                    MulModifier(&mod, tempMod);
+                }
+                    
                 if(gBattleMons[targetId].ability == ABILITY_FLASH_FIRE || BattlerHasInnate(targetId, ABILITY_FLASH_FIRE))
                     abilityNullifiesDamage = TRUE;
 
