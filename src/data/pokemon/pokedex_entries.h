@@ -10908,6 +10908,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_CROCALOR] =
+    {
+        .categoryName = _("Crocalor"),
+        .height = 10,
+        .weight = 307,
+        .description = gCrocalorPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

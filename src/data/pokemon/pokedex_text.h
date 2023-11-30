@@ -5416,6 +5416,12 @@ const u8 gFuecocoPokedexText[] = _(
     "scales to create fire energy.\n"
     "");
 
+const u8 gCrocalorPokedexText[] = _(
+    "The combination of Crocalor's fire\n"
+    "energy and overflowing vitality has\n"
+    "caused an egg-shaped fireball to\n"
+    "appear on the Pokémon's head.");
+
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
     "that perished before fulfilling their\n"

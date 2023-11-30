@@ -732,6 +732,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_FLORAGATO] = gMonFootprint_Floragato,
     [SPECIES_MEOWSCARADA] = gMonFootprint_Meowscarada,
     [SPECIES_FUECOCO] = gMonFootprint_Fuecoco,
+    [SPECIES_CROCALOR] = gMonFootprint_Crocalor,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
