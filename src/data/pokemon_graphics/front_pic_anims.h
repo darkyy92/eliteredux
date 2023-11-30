@@ -9523,6 +9523,11 @@ static const union AnimCmd sAnim_CROCALOR_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_SKELEDIRGE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15234,6 +15239,11 @@ static const union AnimCmd *const sAnims_CROCALOR[] ={
     sAnim_CROCALOR_1,
 };
 
+static const union AnimCmd *const sAnims_SKELEDIRGE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SKELEDIRGE_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17044,6 +17054,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(PINSIR_MEGA),
     ANIM_CMD(CROCALOR),
     ANIM_CMD(GYARADOS_MEGA),
+    ANIM_CMD(SKELEDIRGE),
     ANIM_CMD(AERODACTYL_MEGA),
     ANIM_CMD(MEWTWO_MEGA_X),
     ANIM_CMD(MEWTWO_MEGA_Y),

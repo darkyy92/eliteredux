@@ -4551,6 +4551,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_SKELEDIRGE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

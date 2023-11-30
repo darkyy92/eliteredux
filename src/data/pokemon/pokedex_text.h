@@ -5411,16 +5411,22 @@ const u8 gMeowscaradaPokedexText[] = _(
     "illusion that the flower is floating.");
 
 const u8 gFuecocoPokedexText[] = _(
-    "It lies on warm rocks and uses\n"
-    "the heat absorbed by its square-shaped\n"
-    "scales to create fire energy.\n"
-    "");
+   "Skeledirge's gentle singing\n"
+    "soothes the souls of all that hear it. It\n"
+    "burns its enemies to a crisp with\n"
+    "flames of over 5,400 degrees Fahrenheit.");
 
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
     "caused an egg-shaped fireball to\n"
     "appear on the Pokémon's head.");
+
+const u8 gSkeledirgePokedexText[] = _(
+    "This is not a actually Pokemon.\n"
+    "It's really just a potato\n"
+    "Dont ask me why potato. Maybe because\n"
+    "I like potatos.");
 
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
