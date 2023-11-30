@@ -473,8 +473,9 @@
 #define ABILITY_GRAVITY_WELL     (ABILITIES_COUNT_LATEST_GEN + 175) // Sets Gravity on entry for 5 turns.
 #define ABILITY_EVAPORATE        (ABILITIES_COUNT_LATEST_GEN + 176) // Takes no damage and sets Mist if hit by water
 #define ABILITY_LUMBERJACK       (ABILITIES_COUNT_LATEST_GEN + 177) // 1.5x damage against GRASS types.
-#define ABILITY_WELL_BAKED_BODY    (ABILITIES_COUNT_LATEST_GEN + 178) // Halves damage and +2 defense\n when hit by a FIRE type move.
-#define ABILITY_FURNACE          (ABILITIES_COUNT_LATEST_GEN + 179) // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed 
+#define ABILITY_WELL_BAKED_BODY  (ABILITIES_COUNT_LATEST_GEN + 178) // Halves damage and +2 defense\n when hit by a FIRE type move.
+#define ABILITY_FURNACE          (ABILITIES_COUNT_LATEST_GEN + 179) // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed
+
 #define ABILITIES_COUNT_CUSTOM   (ABILITY_FURNACE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM

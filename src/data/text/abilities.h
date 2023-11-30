@@ -436,8 +436,6 @@ static const u8 sPrismaticFurDescription[] = _("Color Change + Protean,\nFur Coa
 static const u8 sShockingJawsDescription[] = _("Biting moves have 50% chance\nto paralyze the target.");
 static const u8 sFaeHunterDescription[] = _("Does 50% more damage to\nFairy-types.");
 static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n5 turns.");
-
-// Nyaaaa's Custom Abilities
 static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
 static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
 static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
@@ -895,7 +893,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_LUMBERJACK] = _("Lumberjack"),
         [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body"),
         [ABILITY_FURNACE] = _("Furnace"),
-        };
+        [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body")
+};
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {
