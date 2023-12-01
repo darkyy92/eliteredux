@@ -5428,6 +5428,11 @@ const u8 gQuaxwellPokedexText[] = _(
     "regions and incorporates their\n"
     "movements into its own dance routines.");
 
+const u8 gQuaquavalPokedexText[] = _(
+   "A single kick from a Quaquaval can\n"
+    "send a truck rolling. This Pokémon\n"
+    "uses its powerful legs to perform\n"
+    "striking dances from far-off lands.");
 
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"

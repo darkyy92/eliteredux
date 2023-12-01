@@ -4566,6 +4566,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  3
     },
+    [SPECIES_QUAQUAVAL] =
+    {
+        .size = 0,
+        .y_offset =  1
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

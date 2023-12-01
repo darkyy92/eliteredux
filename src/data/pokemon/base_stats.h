@@ -30239,6 +30239,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_QUAQUAVAL] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 120,
+        .baseDefense   = 80,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_FIGHTING,
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 3,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_FLYING,
+        .eggGroup2 = EGG_GROUP_WATER_1,
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_MOXIE },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+    },
+
 [SPECIES_WEEZING_GALARIAN] =
     {
     .baseHP        = 65,
