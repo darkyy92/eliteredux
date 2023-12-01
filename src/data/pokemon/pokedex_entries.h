@@ -10968,6 +10968,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_LECHONK] =
+    {
+        .categoryName = _("Lechonk"),
+        .height = 5,
+        .weight = 102,
+        .description = gLechonkPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

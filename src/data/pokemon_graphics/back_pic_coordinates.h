@@ -4571,6 +4571,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  1
     },
+    [SPECIES_LECHONK] =
+    {
+        .size = 0,
+        .y_offset =  11
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

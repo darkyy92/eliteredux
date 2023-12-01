@@ -4698,5 +4698,12 @@ const u16 gEggMoves[] = {
         MOVE_RAPID_SPIN,
         MOVE_ROOST),
 
+    egg_moves(LECHONK,
+        MOVE_ENDEAVOR,
+        MOVE_SPIT_UP,
+        MOVE_STOCKPILE,
+        MOVE_STUFF_CHEEKS,
+        MOVE_SWALLOW),
+
     EGG_MOVES_TERMINATOR
 };

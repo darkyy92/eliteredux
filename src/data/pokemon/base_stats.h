@@ -30271,6 +30271,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_LECHONK] =
+    {
+        .baseHP        = 54,
+        .baseAttack    = 45,
+        .baseDefense   = 40,
+        .baseSpeed     = 35,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 45,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 255,
+        .expYield = 51,
+        .evYield_HP        = 1,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = { ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+    },
+
 [SPECIES_WEEZING_GALARIAN] =
     {
     .baseHP        = 65,

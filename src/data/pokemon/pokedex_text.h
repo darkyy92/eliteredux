@@ -5434,6 +5434,12 @@ const u8 gQuaquavalPokedexText[] = _(
     "uses its powerful legs to perform\n"
     "striking dances from far-off lands.");
 
+const u8 gLechonkPokedexText[] = _(
+     "It searches for food all day. It\n"
+    "possesses a keen sense of smell but\n"
+    "doesn't use it for anything other\n"
+    "than foraging.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"

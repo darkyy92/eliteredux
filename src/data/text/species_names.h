@@ -913,6 +913,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_QUAXLY] = _("Quaxly"),
 [SPECIES_QUAXWELL] = _("Quaxwell"),
 [SPECIES_QUAQUAVAL] = _("Quaquaval"),
+[SPECIES_LECHONK] = _("Lechonk"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas
