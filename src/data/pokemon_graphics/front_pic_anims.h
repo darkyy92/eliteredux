@@ -9533,6 +9533,11 @@ static const union AnimCmd sAnim_QUAXLY_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_QUAXWELL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15254,6 +15259,11 @@ static const union AnimCmd *const sAnims_QUAXLY[] ={
     sAnim_QUAXLY_1,
 };
 
+static const union AnimCmd *const sAnims_QUAXWELL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_QUAXWELL_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17068,6 +17078,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(AERODACTYL_MEGA),
     ANIM_CMD(QUAXLY),
     ANIM_CMD(MEWTWO_MEGA_X),
+    ANIM_CMD(QUAXWELL),
     ANIM_CMD(MEWTWO_MEGA_Y),
     ANIM_CMD(AMPHAROS_MEGA),
     ANIM_CMD(STEELIX_MEGA),

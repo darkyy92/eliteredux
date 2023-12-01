@@ -4567,6 +4567,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_QUAXWELL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

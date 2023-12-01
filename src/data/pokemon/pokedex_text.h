@@ -5422,6 +5422,13 @@ const u8 gQuaxlyPokedexText[] = _(
     "It likes to keep things tidy and is\n"
     "prone to overthinking things.");
 
+const u8 gQuaxwellPokedexText[] = _(
+    "The hardworking Quaxwell observes\n"
+    "people and Pokémon from various\n"
+    "regions and incorporates their\n"
+    "movements into its own dance routines.");
+
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
