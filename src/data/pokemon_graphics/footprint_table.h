@@ -741,6 +741,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_OINKOLOGNE] = gMonFootprint_Oinkologne,
     [SPECIES_TAROUNTULA] = gMonFootprint_Tarountula,
     [SPECIES_SPIDOPS] = gMonFootprint_Spidops,
+    [SPECIES_NYMBLE] = gMonFootprint_Nymble,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

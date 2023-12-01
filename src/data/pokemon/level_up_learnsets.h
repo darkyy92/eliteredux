@@ -20614,6 +20614,23 @@ static const struct LevelUpMove sSpidopsLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sNymbleLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 4, MOVE_STRUGGLE_BUG),
+    LEVEL_UP_MOVE( 6, MOVE_ASTONISH),
+    LEVEL_UP_MOVE( 9, MOVE_ASSURANCE),
+    LEVEL_UP_MOVE(11, MOVE_DOUBLE_KICK),
+    LEVEL_UP_MOVE(14, MOVE_SCREECH),
+    LEVEL_UP_MOVE(18, MOVE_ENDURE),
+    LEVEL_UP_MOVE(22, MOVE_BUG_BITE),
+    LEVEL_UP_MOVE(26, MOVE_FEINT),
+    LEVEL_UP_MOVE(30, MOVE_AGILITY),
+    LEVEL_UP_MOVE(38, MOVE_SUCKER_PUNCH),
+    LEVEL_UP_MOVE(41, MOVE_FIRST_IMPRESSION),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE( 1, MOVE_PHANTOM_FORCE),

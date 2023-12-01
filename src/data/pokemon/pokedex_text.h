@@ -5457,6 +5457,12 @@ const u8 gSpidopsPokedexText[] = _(
     "a sound. It takes out its prey\n"
     "before the prey even notices it.");
 
+const u8 gNymblePokedexText[] = _(
+    "It has its third set of legs folded\n"
+    "up. When it's in a tough spot, this\n"
+    "Pokémon jumps over 30 feet using the\n"
+    "strength of its legs.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"

@@ -917,6 +917,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_OINKOLOGNE] = _("Oinkologne"),
 [SPECIES_TAROUNTULA] = _("Tarountula"),
 [SPECIES_SPIDOPS] = _("Spidops"),
+[SPECIES_NYMBLE] = _("Nymble"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas
