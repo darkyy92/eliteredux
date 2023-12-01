@@ -9558,6 +9558,11 @@ static const union AnimCmd sAnim_TAROUNTULA_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_SPIDOPS_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15304,6 +15309,11 @@ static const union AnimCmd *const sAnims_TAROUNTULA[] ={
     sAnim_TAROUNTULA_1,
 };
 
+static const union AnimCmd *const sAnims_SPIDOPS[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SPIDOPS_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17128,6 +17138,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SCIZOR_MEGA),
     ANIM_CMD(TAROUNTULA),
     ANIM_CMD(HERACROSS_MEGA),
+    ANIM_CMD(SPIDOPS),
     ANIM_CMD(HOUNDOOM_MEGA),
     ANIM_CMD(TYRANITAR_MEGA),
     ANIM_CMD(SCEPTILE_MEGA),

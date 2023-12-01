@@ -5451,6 +5451,12 @@ const u8 gTarountulaPokedexText[] = _(
     "behind the thread's strength is the\n"
     "topic of ongoing research.");
 
+const u8 gSpidopsPokedexText[] = _(
+     "It clings to branches and ceilings\n"
+    "using its threads and moves without\n"
+    "a sound. It takes out its prey\n"
+    "before the prey even notices it.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
