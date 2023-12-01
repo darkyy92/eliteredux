@@ -745,6 +745,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_LOKIX] = gMonFootprint_Lokix,
     [SPECIES_PAWMI] = gMonFootprint_Pawmi,
     [SPECIES_PAWMO] = gMonFootprint_Pawmo,
+    [SPECIES_PAWMOT] = gMonFootprint_Pawmot,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

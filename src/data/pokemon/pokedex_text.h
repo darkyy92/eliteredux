@@ -5481,6 +5481,12 @@ const u8 gPawmoPokedexText[] = _(
     "defeating enemies with a fighting\n"
     "technique that utilizes electric shocks.");
 
+const u8 gPawmotPokedexText[] = _(
+     "This Pokémon normally is slow to\n"
+    "react, but once it enters battle, it\n"
+    "will strike down its enemies with\n"
+    "lightning-fast movements.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
