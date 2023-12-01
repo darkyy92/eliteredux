@@ -920,6 +920,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_NYMBLE] = _("Nymble"),
 [SPECIES_LOKIX] = _("Lokix"),
 [SPECIES_PAWMI] = _("Pawmi"),
+[SPECIES_PAWMO] = _("Pawmo"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

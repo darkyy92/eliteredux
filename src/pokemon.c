@@ -1244,6 +1244,7 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     SPECIES_TO_NATIONAL(NYMBLE),
     SPECIES_TO_NATIONAL(LOKIX),
     SPECIES_TO_NATIONAL(PAWMI),
+    SPECIES_TO_NATIONAL(PAWMO),
     SPECIES_TO_NATIONAL(BASCULEGION),
 
     // Megas
@@ -2874,6 +2875,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_NYMBLE - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_LOKIX - 1]         = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PAWMI - 1]         = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_PAWMO - 1]         = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_BASCULEGION - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
 
     //Gen 4 Forms

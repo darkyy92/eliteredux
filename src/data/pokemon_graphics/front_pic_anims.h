@@ -9578,6 +9578,11 @@ static const union AnimCmd sAnim_PAWMI_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_PAWMO_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15344,6 +15349,11 @@ static const union AnimCmd *const sAnims_PAWMI[] ={
     sAnim_PAWMI_1,
 };
 
+static const union AnimCmd *const sAnims_PAWMO[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PAWMO_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17176,6 +17186,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SCEPTILE_MEGA),
     ANIM_CMD(PAWMI),
     ANIM_CMD(BLAZIKEN_MEGA),
+    ANIM_CMD(PAWMO),
     ANIM_CMD(SWAMPERT_MEGA),
     ANIM_CMD(GARDEVOIR_MEGA),
     ANIM_CMD(SABLEYE_MEGA),

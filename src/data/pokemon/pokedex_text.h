@@ -5475,6 +5475,12 @@ const u8 gPawmiPokedexText[] = _(
     "electricity from its forepaws while\n"
     "standing unsteadily on its hind legs.");
 
+const u8 gPawmoPokedexText[] = _(
+    "When its group is attacked, Pawmo\n"
+    "is the first to leap into battle,\n"
+    "defeating enemies with a fighting\n"
+    "technique that utilizes electric shocks.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
