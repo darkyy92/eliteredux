@@ -30463,6 +30463,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_PAWMI] =
+    {
+        .baseHP        = 45,
+        .baseAttack    = 50,
+        .baseDefense   = 20,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 25,
+        .type1 = TYPE_ELECTRIC,
+        .type2 = TYPE_ELECTRIC,
+        .catchRate = 190,
+        .expYield = 48,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 1,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 50,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = { ABILITY_STATIC, ABILITY_NATURAL_CURE, ABILITY_IRON_FIST },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .noFlip = FALSE,
+    },
+
 [SPECIES_WEEZING_GALARIAN] =
     {
     .baseHP        = 65,

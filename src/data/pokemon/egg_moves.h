@@ -4715,5 +4715,11 @@ const u16 gEggMoves[] = {
         MOVE_COUNTER,
         MOVE_SKITTER_SMACK),
 
+    egg_moves(PAWMI,
+        MOVE_FAKE_OUT,
+        MOVE_MACH_PUNCH,
+        MOVE_SWEET_KISS,
+        MOVE_WISH),
+
     EGG_MOVES_TERMINATOR
 };

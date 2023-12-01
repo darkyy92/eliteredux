@@ -11040,6 +11040,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_PAWMI] =
+    {
+        .categoryName = _("Pawmi"),
+        .height = 3,
+        .weight = 25,
+        .description = gPawmiPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),
