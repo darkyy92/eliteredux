@@ -9553,6 +9553,11 @@ static const union AnimCmd sAnim_OINKOLOGNE_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_TAROUNTULA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15294,6 +15299,11 @@ static const union AnimCmd *const sAnims_OINKOLOGNE[] ={
     sAnim_OINKOLOGNE_1,
 };
 
+static const union AnimCmd *const sAnims_TAROUNTULA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TAROUNTULA_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17116,6 +17126,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(STEELIX_MEGA),
     ANIM_CMD(OINKOLOGNE),
     ANIM_CMD(SCIZOR_MEGA),
+    ANIM_CMD(TAROUNTULA),
     ANIM_CMD(HERACROSS_MEGA),
     ANIM_CMD(HOUNDOOM_MEGA),
     ANIM_CMD(TYRANITAR_MEGA),

@@ -4705,5 +4705,11 @@ const u16 gEggMoves[] = {
         MOVE_STUFF_CHEEKS,
         MOVE_SWALLOW),
 
+    egg_moves(TAROUNTULA,
+        MOVE_FIRST_IMPRESSION,
+        MOVE_LUNGE,
+        MOVE_MEMENTO,
+        MOVE_SUCKER_PUNCH),
+
     EGG_MOVES_TERMINATOR
 };

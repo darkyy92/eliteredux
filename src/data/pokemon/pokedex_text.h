@@ -5445,6 +5445,12 @@ const u8 gOinkolognePokedexText[] = _(
     "glossy skin. It emits a concentrated\n"
     "scent from the tip of its tail.");
 
+const u8 gTarountulaPokedexText[] = _(
+    "The thread it secretes from its\n"
+    "rear is as strong as wire. The secret\n"
+    "behind the thread's strength is the\n"
+    "topic of ongoing research.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
