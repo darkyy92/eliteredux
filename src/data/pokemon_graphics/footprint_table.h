@@ -738,6 +738,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_QUAXWELL] = gMonFootprint_Quaxwell,
     [SPECIES_QUAQUAVAL] = gMonFootprint_Quaquaval,
     [SPECIES_LECHONK] = gMonFootprint_Lechonk,
+    [SPECIES_OINKOLOGNE] = gMonFootprint_Oinkologne,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

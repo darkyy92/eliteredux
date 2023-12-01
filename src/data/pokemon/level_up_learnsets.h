@@ -20558,6 +20558,25 @@ static const struct LevelUpMove sLechonkLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sOinkologneLevelUpLearnset[] = {
+      LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 1, MOVE_TAIL_WHIP),
+    LEVEL_UP_MOVE( 5, MOVE_DISARMING_VOICE),
+    LEVEL_UP_MOVE( 8, MOVE_ECHOED_VOICE),
+    LEVEL_UP_MOVE(12, MOVE_MUD_SHOT),
+    LEVEL_UP_MOVE(15, MOVE_COVET),
+    LEVEL_UP_MOVE(17, MOVE_DIG),
+    LEVEL_UP_MOVE(23, MOVE_HEADBUTT),
+    LEVEL_UP_MOVE(26, MOVE_TAKE_DOWN),
+    LEVEL_UP_MOVE(27, MOVE_YAWN),
+    LEVEL_UP_MOVE(34, MOVE_WORK_UP),
+    LEVEL_UP_MOVE(38, MOVE_UPROAR),
+    LEVEL_UP_MOVE(42, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(48, MOVE_EARTH_POWER),
+    LEVEL_UP_MOVE(54, MOVE_BELCH),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_BALL),
     LEVEL_UP_MOVE( 1, MOVE_PHANTOM_FORCE),

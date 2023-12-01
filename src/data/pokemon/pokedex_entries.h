@@ -10980,6 +10980,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_OINKOLOGNE] =
+    {
+        .categoryName = _("Oinkologne"),
+        .height = 10,
+        .weight = 1200,
+        .description = gOinkolognePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

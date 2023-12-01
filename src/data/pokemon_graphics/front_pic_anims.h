@@ -9548,6 +9548,11 @@ static const union AnimCmd sAnim_LECHONK_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_OINKOLOGNE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15284,6 +15289,11 @@ static const union AnimCmd *const sAnims_LECHONK[] ={
     sAnim_LECHONK_1,
 };
 
+static const union AnimCmd *const sAnims_OINKOLOGNE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OINKOLOGNE_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17104,6 +17114,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(AMPHAROS_MEGA),
     ANIM_CMD(LECHONK),
     ANIM_CMD(STEELIX_MEGA),
+    ANIM_CMD(OINKOLOGNE),
     ANIM_CMD(SCIZOR_MEGA),
     ANIM_CMD(HERACROSS_MEGA),
     ANIM_CMD(HOUNDOOM_MEGA),
