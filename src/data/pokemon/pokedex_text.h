@@ -5463,6 +5463,12 @@ const u8 gNymblePokedexText[] = _(
     "Pokémon jumps over 30 feet using the\n"
     "strength of its legs.");
 
+const u8 gLokixPokedexText[] = _(
+    "When it decides to fight all out, it\n"
+    "stands on its previously folded\n"
+    "legs to enter Showdown Mode. It\n"
+    "neutralizes its enemies in short order.");
+
 const u8 gCrocalorPokedexText[] = _(
     "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
