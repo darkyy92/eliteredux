@@ -892,7 +892,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_GRAVITY_WELL] = _("Gravity Well"),
         [ABILITY_EVAPORATE] = _("Evaporate"),
         [ABILITY_LUMBERJACK] = _("Lumberjack"),
-        [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body")};
+        [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body"),
+        };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {
