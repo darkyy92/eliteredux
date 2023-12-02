@@ -11076,6 +11076,114 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_TANDEMAUS] =
+    {
+        .categoryName = _("Tandemaus"),
+        .height = 3,
+        .weight = 18,
+        .description = gTandemausPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_MAUSHOLD] =
+    {
+        .categoryName = _("Maushold"),
+        .height = 3,
+        .weight = 23,
+        .description = gMausholdPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_FIDOUGH] =
+    {
+        .categoryName = _("Fidough"),
+        .height = 3,
+        .weight = 109,
+        .description = gFidoughPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_DACHSBUN] =
+    {
+        .categoryName = _("Dachsbun"),
+        .height = 5,
+        .weight = 149,
+        .description = gDachsbunPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_SMOLIV] =
+    {
+        .categoryName = _("Smoliv"),
+        .height = 3,
+        .weight = 65,
+        .description = gSmolivPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_DOLLIV] =
+    {
+        .categoryName = _("Dolliv"),
+        .height = 6,
+        .weight = 119,
+        .description = gDollivPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_ARBOLIVA] =
+    {
+        .categoryName = _("Arboliva"),
+        .height = 14,
+        .weight = 482,
+        .description = gArbolivaPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_SQUAWKABILLY] =
+    {
+        .categoryName = _("Squawkabilly"),
+        .height = 6,
+        .weight = 24,
+        .description = gSquawkabillyPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_NACLI] =
+    {
+        .categoryName = _("Nacli"),
+        .height = 4,
+        .weight = 160,
+        .description = gNacliPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

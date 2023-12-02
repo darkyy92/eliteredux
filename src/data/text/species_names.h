@@ -922,6 +922,15 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_PAWMI] = _("Pawmi"),
 [SPECIES_PAWMO] = _("Pawmo"),
 [SPECIES_PAWMOT] = _("Pawmot"),
+[SPECIES_TANDEMAUS] = _("Tandemaus"),
+[SPECIES_MAUSHOLD] = _("Maushold"),
+[SPECIES_FIDOUGH] = _("Fidough"),
+[SPECIES_DACHSBUN] = _("Dachsbun"),
+[SPECIES_SMOLIV] = _("Smoliv"),
+[SPECIES_DOLLIV] = _("Dolliv"),
+[SPECIES_ARBOLIVA] = _("Arboliva"),
+[SPECIES_SQUAWKABILLY] = _("Squawkabilly"),
+[SPECIES_NACLI] = _("Nacli"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

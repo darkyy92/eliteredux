@@ -4622,6 +4622,51 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_TANDEMAUS] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_MAUSHOLD] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_FIDOUGH] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DACHSBUN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SMOLIV] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DOLLIV] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ARBOLIVA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SQUAWKABILLY] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_NACLI] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

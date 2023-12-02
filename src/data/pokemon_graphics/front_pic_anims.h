@@ -9588,6 +9588,51 @@ static const union AnimCmd sAnim_PAWMOT_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_TANDEMAUS_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MAUSHOLD_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_FIDOUGH_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_DACHSBUN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SMOLIV_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_DOLLIV_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ARBOLIVA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SQUAWKABILLY_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_NACLI_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15364,6 +15409,51 @@ static const union AnimCmd *const sAnims_PAWMOT[] ={
     sAnim_PAWMOT_1,
 };
 
+static const union AnimCmd *const sAnims_TANDEMAUS[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TANDEMAUS_1,
+};
+
+static const union AnimCmd *const sAnims_MAUSHOLD[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MAUSHOLD_1,
+};
+
+static const union AnimCmd *const sAnims_FIDOUGH[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FIDOUGH_1,
+};
+
+static const union AnimCmd *const sAnims_DACHSBUN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DACHSBUN_1,
+};
+
+static const union AnimCmd *const sAnims_SMOLIV[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SMOLIV_1,
+};
+
+static const union AnimCmd *const sAnims_DOLLIV[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DOLLIV_1,
+};
+
+static const union AnimCmd *const sAnims_ARBOLIVA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ARBOLIVA_1,
+};
+
+static const union AnimCmd *const sAnims_SQUAWKABILLY[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SQUAWKABILLY_1,
+};
+
+static const union AnimCmd *const sAnims_NACLI[] ={
+    sAnim_GeneralFrame0,
+    sAnim_NACLI_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17200,14 +17290,23 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SWAMPERT_MEGA),
     ANIM_CMD(PAWMOT),
     ANIM_CMD(GARDEVOIR_MEGA),
+    ANIM_CMD(TANDEMAUS),
     ANIM_CMD(SABLEYE_MEGA),
+    ANIM_CMD(MAUSHOLD),
     ANIM_CMD(MAWILE_MEGA),
+    ANIM_CMD(FIDOUGH),
     ANIM_CMD(AGGRON_MEGA),
+    ANIM_CMD(DACHSBUN),
     ANIM_CMD(MEDICHAM_MEGA),
+    ANIM_CMD(SMOLIV),
     ANIM_CMD(MANECTRIC_MEGA),
+    ANIM_CMD(DOLLIV),
     ANIM_CMD(SHARPEDO_MEGA),
+    ANIM_CMD(ARBOLIVA),
     ANIM_CMD(CAMERUPT_MEGA),
+    ANIM_CMD(SQUAWKABILLY),
     ANIM_CMD(ALTARIA_MEGA),
+    ANIM_CMD(NACLI),
     ANIM_CMD(BANETTE_MEGA),
     ANIM_CMD(ABSOL_MEGA),
     ANIM_CMD(GLALIE_MEGA),

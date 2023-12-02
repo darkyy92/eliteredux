@@ -153,6 +153,24 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_NACLI] = {
+	},
+	[SPECIES_SQUAWKABILLY] = {
+	},
+	[SPECIES_ARBOLIVA] = {
+	},
+	[SPECIES_DOLLIV] = {
+	},
+	[SPECIES_SMOLIV] = {
+	},
+	[SPECIES_DACHSBUN] = {
+	},
+	[SPECIES_FIDOUGH] = {
+	},
+	[SPECIES_MAUSHOLD] = {
+	},
+	[SPECIES_TANDEMAUS] = {
+	},
 	[SPECIES_PAWMOT] = {
 	},
 	[SPECIES_PAWMO] = {

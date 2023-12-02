@@ -4721,5 +4721,37 @@ const u16 gEggMoves[] = {
         MOVE_SWEET_KISS,
         MOVE_WISH),
 
+    egg_moves(TANDEMAUS,
+        MOVE_AFTER_YOU,
+        MOVE_BATON_PASS,
+        MOVE_BITE,
+        MOVE_FEINT,
+        MOVE_SWITCHEROO,
+        MOVE_TICKLE),
+
+    egg_moves(FIDOUGH,
+        MOVE_COPYCAT,
+        MOVE_HOWL,
+        MOVE_SWEET_SCENT,
+        MOVE_WISH,
+        MOVE_YAWN),
+
+    egg_moves(SMOLIV,
+        MOVE_MEMENTO,
+        MOVE_STRENGTH_SAP,
+        MOVE_SYNTHESIS,
+        MOVE_WEATHER_BALL),
+
+    egg_moves(SQUAWKABILLY,
+        MOVE_DOUBLE_EDGE,
+        MOVE_FINAL_GAMBIT,
+        MOVE_FLATTER,
+        MOVE_PARTING_SHOT),
+    egg_moves(NACLI,
+        MOVE_ANCIENT_POWER,
+        MOVE_CURSE,
+        MOVE_FISSURE,
+        MOVE_POWER_GEM),
+
     EGG_MOVES_TERMINATOR
 };

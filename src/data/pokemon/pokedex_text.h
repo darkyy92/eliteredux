@@ -5487,17 +5487,70 @@ const u8 gPawmotPokedexText[] = _(
     "will strike down its enemies with\n"
     "lightning-fast movements.");
 
+const u8 gTandemausPokedexText[] = _(
+     "use their incisors to cut pieces out\n"
+    "of any material that might be useful\n"
+    "for a nest, then make off with them.");
+
+const u8 gMausholdPokedexText[] = _(
+    "The larger pair protects the little\n"
+    "ones during battles. When facing\n"
+    "strong opponents, the whole group\n"
+    "will join the fight.");
+
+const u8 gFidoughPokedexText[] = _(
+     "This Pokémon is smooth and moist\n"
+    "to the touch. Yeast in Fidough's\n"
+    "breath induces fermentation in the\n"
+    "Pokémon's vicinity.");
+
+const u8 gDachsbunPokedexText[] = _(
+   "The pleasant aroma that emanates\n"
+    "from this Pokémon's body helps\n"
+    "wheat grow, so Dachsbun has been\n"
+    "treasured by farming villages.");
+
+const u8 gSmolivPokedexText[] = _(
+   "This Pokémon converts nutrients\n"
+    "into oil, which it stores in the fruit\n"
+    "on its head. It can easily go a whole\n"
+    "week without eating or drinking.");
+
+const u8 gDollivPokedexText[] = _(
+    "Dolliv shares its tasty, fresh-\n"
+    "scented oil with others. This species\n"
+    "has coexisted with humans since\n"
+    "times long gone.");
+
+const u8 gArbolivaPokedexText[] = _(
+      "This Pokémon drives back enemies\n"
+    "by launching its rich, aromatic oil at\n"
+    "them with enough force to smash a\n"
+    "boulder.");
+
+const u8 gSquawkabillyPokedexText[] = _(
+     "Green-feathered flocks hold the\n"
+    "most sway. When they're out\n"
+    "searching for food in the mornings and\n"
+    "evenings, it gets very noisy.");
+
+const u8 gNacliPokedexText[] = _(
+   "The ground scrapes its body as it\n"
+    "travels, causing it to leave salt\n"
+    "behind. Salt is constantly being created\n"
+    "and replenished inside Nacli's body.");
+
 const u8 gCrocalorPokedexText[] = _(
-    "The combination of Crocalor's fire\n"
-    "energy and overflowing vitality has\n"
-    "caused an egg-shaped fireball to\n"
-    "appear on the Pokémon's head.");
+   "The ground scrapes its body as it\n"
+    "travels, causing it to leave salt\n"
+    "behind. Salt is constantly being created\n"
+    "and replenished inside Nacli's body.");
 
 const u8 gSkeledirgePokedexText[] = _(
-    "This is not a actually Pokemon.\n"
-    "It's really just a potato\n"
-    "Dont ask me why potato. Maybe because\n"
-    "I like potatos.");
+     "It compresses rock salt inside its\n"
+    "body and shoots out hardened salt\n"
+    "pellets with enough force to\n"
+    "perforate an iron sheet.");
 
 const u8 gBasculegionPokedexText[] = _(
     "Clads itself in the souls of comrades\n"
