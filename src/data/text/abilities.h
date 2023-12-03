@@ -441,6 +441,7 @@ static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n5 turn
 static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
 static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
 static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
+static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -893,6 +894,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_EVAPORATE] = _("Evaporate"),
         [ABILITY_LUMBERJACK] = _("Lumberjack"),
         [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body"),
+        [ABILITY_FURNACE] = _("Furnace"),
         };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1344,4 +1346,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_EVAPORATE] = sEvaporateDescription,
         [ABILITY_LUMBERJACK] = sLumberjackDescription,
         [ABILITY_WELL_BAKED_BODY] = sWellBakedBodyDescription,
+        [ABILITY_FURNACE] = sFurnaceDescription,
 };
