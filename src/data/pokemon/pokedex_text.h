@@ -5540,6 +5540,24 @@ const u8 gNacliPokedexText[] = _(
     "behind. Salt is constantly being created\n"
     "and replenished inside Nacli's body.");
 
+const u8 gNaclstackPokedexText[] = _(
+    "It compresses rock salt inside its\n"
+    "body and shoots out hardened salt\n"
+    "pellets with enough force to\n"
+    "perforate an iron sheet.");
+
+const u8 gGarganaclPokedexText[] = _(
+     "Garganacl will rub its fingertips\n"
+    "together and sprinkle injured\n"
+    "Pokémon with salt. Even severe wounds will\n"
+    "promptly heal afterward.");
+
+const u8 gCharcadetPokedexText[] = _(
+   "Burnt charcoal came to life and\n"
+    "became a Pokémon. Possessing a fiery\n"
+    "fighting spirit, Charcadet will\n"
+    "battle even tough opponents.");
+
 const u8 gCrocalorPokedexText[] = _(
    "The ground scrapes its body as it\n"
     "travels, causing it to leave salt\n"

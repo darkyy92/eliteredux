@@ -4753,5 +4753,10 @@ const u16 gEggMoves[] = {
         MOVE_FISSURE,
         MOVE_POWER_GEM),
 
+    egg_moves(CHARCADET,
+        MOVE_DESTINY_BOND,
+        MOVE_DISABLE,
+        MOVE_SPITE),
+
     EGG_MOVES_TERMINATOR
 };

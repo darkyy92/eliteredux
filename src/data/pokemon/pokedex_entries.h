@@ -11184,6 +11184,42 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_NACLSTACK] =
+    {
+        .categoryName = _("Naclstack"),
+        .height = 6,
+        .weight = 105,
+        .description = gNaclstackPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GARGANACL] =
+    {
+        .categoryName = _("Garganacl"),
+        .height = 23,
+        .weight = 2400,
+        .description = gGarganaclPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_CHARCADET] =
+    {
+        .categoryName = _("Charcadet"),
+        .height = 6,
+        .weight = 105,
+        .description = gCharcadetPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

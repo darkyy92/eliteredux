@@ -153,6 +153,12 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_CHARCADET] = {
+	},
+	[SPECIES_GARGANACL] = {
+	},
+	[SPECIES_NACLSTACK] = {
+	},
 	[SPECIES_NACLI] = {
 	},
 	[SPECIES_SQUAWKABILLY] = {

@@ -755,6 +755,9 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_ARBOLIVA] = gMonFootprint_Arboliva,
     [SPECIES_SQUAWKABILLY] = gMonFootprint_Squawkabilly,
     [SPECIES_NACLI] = gMonFootprint_Nacli,
+    [SPECIES_NACLSTACK] = gMonFootprint_Naclstack,
+    [SPECIES_GARGANACL] = gMonFootprint_Garganacl,
+    [SPECIES_CHARCADET] = gMonFootprint_Charcadet,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

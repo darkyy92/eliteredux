@@ -9633,6 +9633,21 @@ static const union AnimCmd sAnim_NACLI_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_NACLSTACK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GARGANACL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CHARCADET_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15454,6 +15469,21 @@ static const union AnimCmd *const sAnims_NACLI[] ={
     sAnim_NACLI_1,
 };
 
+static const union AnimCmd *const sAnims_NACLSTACK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_NACLSTACK_1,
+};
+
+static const union AnimCmd *const sAnims_GARGANACL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GARGANACL_1,
+};
+
+static const union AnimCmd *const sAnims_CHARCADET[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CHARCADET_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17308,8 +17338,11 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(ALTARIA_MEGA),
     ANIM_CMD(NACLI),
     ANIM_CMD(BANETTE_MEGA),
+    ANIM_CMD(NACLSTACK),
     ANIM_CMD(ABSOL_MEGA),
+    ANIM_CMD(GARGANACL),
     ANIM_CMD(GLALIE_MEGA),
+    ANIM_CMD(CHARCADET),
     ANIM_CMD(SALAMENCE_MEGA),
     ANIM_CMD(METAGROSS_MEGA),
     ANIM_CMD(LATIAS_MEGA),

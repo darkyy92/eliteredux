@@ -4667,6 +4667,21 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_NACLSTACK] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GARGANACL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_CHARCADET] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,
