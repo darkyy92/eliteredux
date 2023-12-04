@@ -9658,6 +9658,36 @@ static const union AnimCmd sAnim_CERULEDGE_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_TADBULB_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BELLIBOLT_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_WATTREL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_KILOWATTREL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MASCHIFF_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MABOSSTIFF_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15504,6 +15534,36 @@ static const union AnimCmd *const sAnims_CERULEDGE[] ={
     sAnim_CERULEDGE_1,
 };
 
+static const union AnimCmd *const sAnims_TADBULB[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TADBULB_1,
+};
+
+static const union AnimCmd *const sAnims_BELLIBOLT[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BELLIBOLT_1,
+};
+
+static const union AnimCmd *const sAnims_WATTREL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_WATTREL_1,
+};
+
+static const union AnimCmd *const sAnims_KILOWATTREL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_KILOWATTREL_1,
+};
+
+static const union AnimCmd *const sAnims_MASCHIFF[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MASCHIFF_1,
+};
+
+static const union AnimCmd *const sAnims_MABOSSTIFF[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MABOSSTIFF_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17368,11 +17428,17 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(METAGROSS_MEGA),
     ANIM_CMD(CERULEDGE),
     ANIM_CMD(LATIAS_MEGA),
+    ANIM_CMD(TADBULB),
     ANIM_CMD(LATIOS_MEGA),
+    ANIM_CMD(BELLIBOLT),
     ANIM_CMD(LOPUNNY_MEGA),
+    ANIM_CMD(WATTREL),
     ANIM_CMD(GARCHOMP_MEGA),
+    ANIM_CMD(KILOWATTREL),
     ANIM_CMD(LUCARIO_MEGA),
+    ANIM_CMD(MASCHIFF),
     ANIM_CMD(ABOMASNOW_MEGA),
+    ANIM_CMD(MABOSSTIFF),
     ANIM_CMD(GALLADE_MEGA),
     ANIM_CMD(AUDINO_MEGA),
     ANIM_CMD(DIANCIE_MEGA),

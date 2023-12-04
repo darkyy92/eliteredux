@@ -11244,6 +11244,78 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_TADBULB] =
+    {
+        .categoryName = _("Tadbulb"),
+        .height = 3,
+        .weight = 4,
+        .description = gTadbulbPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_BELLIBOLT] =
+    {
+        .categoryName = _("Bellibolt"),
+        .height = 12,
+        .weight = 1130,
+        .description = gBelliboltPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_WATTREL] =
+    {
+        .categoryName = _("Wattrel"),
+        .height = 4,
+        .weight = 26,
+        .description = gWattrelPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_KILOWATTREL] =
+    {
+        .categoryName = _("Kilowattrel"),
+        .height = 14,
+        .weight = 386,
+        .description = gKilowattrelPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_MASCHIFF] =
+    {
+        .categoryName = _("Maschiff"),
+        .height = 5,
+        .weight = 160,
+        .description = gMaschiffPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_MABOSSTIFF] =
+    {
+        .categoryName = _("Mabosstiff"),
+        .height = 11,
+        .weight = 61,
+        .description = gMabosstiffPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

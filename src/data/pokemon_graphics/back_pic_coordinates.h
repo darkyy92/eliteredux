@@ -4686,6 +4686,36 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  5
     },
+    [SPECIES_TADBULB] =
+    {
+        .size = 0,
+        .y_offset =  8
+    },
+    [SPECIES_BELLIBOLT] =
+    {
+        .size = 0,
+        .y_offset =  10
+    },
+    [SPECIES_WATTREL] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_KILOWATTREL] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_MASCHIFF] =
+    {
+        .size = 0,
+        .y_offset =  10
+    },
+    [SPECIES_MABOSSTIFF] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

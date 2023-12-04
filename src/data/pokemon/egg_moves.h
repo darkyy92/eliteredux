@@ -4758,5 +4758,24 @@ const u16 gEggMoves[] = {
         MOVE_DISABLE,
         MOVE_SPITE),
 
+    egg_moves(TADBULB,
+        MOVE_MUDDY_WATER,
+        MOVE_PARABOLIC_CHARGE,
+        MOVE_SOAK),
+
+    egg_moves(WATTREL,
+        MOVE_ENDEAVOR,
+        MOVE_FEATHER_DANCE,
+        MOVE_SPIT_UP,
+        MOVE_STOCKPILE,
+        MOVE_SWALLOW,
+        MOVE_WEATHER_BALL),
+
+    egg_moves(MASCHIFF,
+        MOVE_DESTINY_BOND,
+        MOVE_ENDEAVOR,
+        MOVE_PLAY_ROUGH,
+        MOVE_RETALIATE),
+
     EGG_MOVES_TERMINATOR
 };

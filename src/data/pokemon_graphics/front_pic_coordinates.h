@@ -4692,6 +4692,36 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_TADBULB] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BELLIBOLT] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_WATTREL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_KILOWATTREL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_MASCHIFF] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_MABOSSTIFF] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

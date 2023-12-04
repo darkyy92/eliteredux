@@ -936,6 +936,12 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_CHARCADET] = _("Charcadet"),
 [SPECIES_ARMAROUGE] = _("Armarouge"),
 [SPECIES_CERULEDGE] = _("Ceruledge"),
+[SPECIES_TADBULB] = _("Tadbulb"),
+[SPECIES_BELLIBOLT] = _("Bellibolt"),
+[SPECIES_WATTREL] = _("Wattrel"),
+[SPECIES_KILOWATTREL] = _("Kilowattrel"),
+[SPECIES_MASCHIFF] = _("Maschiff"),
+[SPECIES_MABOSSTIFF] = _("Mabosstiff"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

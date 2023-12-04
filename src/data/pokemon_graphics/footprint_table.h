@@ -760,6 +760,12 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_CHARCADET] = gMonFootprint_Charcadet,
     [SPECIES_ARMAROUGE] = gMonFootprint_Armarouge,
     [SPECIES_CERULEDGE] = gMonFootprint_Ceruledge,
+    [SPECIES_TADBULB] = gMonFootprint_Tadbulb,
+    [SPECIES_BELLIBOLT] = gMonFootprint_Bellibolt,
+    [SPECIES_WATTREL] = gMonFootprint_Wattrel,
+    [SPECIES_KILOWATTREL] = gMonFootprint_Kilowattrel,
+    [SPECIES_MASCHIFF] = gMonFootprint_Maschiff,
+    [SPECIES_MABOSSTIFF] = gMonFootprint_Mabosstiff,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
