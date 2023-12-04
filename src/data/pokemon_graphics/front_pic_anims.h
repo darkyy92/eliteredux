@@ -9648,6 +9648,16 @@ static const union AnimCmd sAnim_CHARCADET_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_ARMAROUGE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CERULEDGE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15484,6 +15494,16 @@ static const union AnimCmd *const sAnims_CHARCADET[] ={
     sAnim_CHARCADET_1,
 };
 
+static const union AnimCmd *const sAnims_ARMAROUGE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ARMAROUGE_1,
+};
+
+static const union AnimCmd *const sAnims_CERULEDGE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CERULEDGE_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17344,7 +17364,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(GLALIE_MEGA),
     ANIM_CMD(CHARCADET),
     ANIM_CMD(SALAMENCE_MEGA),
+    ANIM_CMD(ARMAROUGE),
     ANIM_CMD(METAGROSS_MEGA),
+    ANIM_CMD(CERULEDGE),
     ANIM_CMD(LATIAS_MEGA),
     ANIM_CMD(LATIOS_MEGA),
     ANIM_CMD(LOPUNNY_MEGA),

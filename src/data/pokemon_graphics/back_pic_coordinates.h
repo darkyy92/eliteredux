@@ -4676,6 +4676,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  3
     },
+    [SPECIES_ARMAROUGE] =
+    {
+        .size = 0,
+        .y_offset =  3
+    },
+    [SPECIES_CERULEDGE] =
+    {
+        .size = 0,
+        .y_offset =  5
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

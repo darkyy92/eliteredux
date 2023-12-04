@@ -758,6 +758,8 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_NACLSTACK] = gMonFootprint_Naclstack,
     [SPECIES_GARGANACL] = gMonFootprint_Garganacl,
     [SPECIES_CHARCADET] = gMonFootprint_Charcadet,
+    [SPECIES_ARMAROUGE] = gMonFootprint_Armarouge,
+    [SPECIES_CERULEDGE] = gMonFootprint_Ceruledge,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

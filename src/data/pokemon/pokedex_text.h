@@ -5558,6 +5558,18 @@ const u8 gCharcadetPokedexText[] = _(
     "fighting spirit, Charcadet will\n"
     "battle even tough opponents.");
 
+const u8 gArmarougePokedexText[] = _(
+   "Armarouge evolved through the use\n"
+    "of a set of armor that belonged to\n"
+    "a distinguished warrior. This\n"
+    "Pokémon is incredibly loyal.");
+
+const u8 gCeruledgePokedexText[] = _(
+   "The fiery blades on its arms burn\n"
+    "fiercely with the lingering\n"
+    "resentment of a sword wielder who fell\n"
+    "before accomplishing their goal.");
+
 const u8 gCrocalorPokedexText[] = _(
    "The ground scrapes its body as it\n"
     "travels, causing it to leave salt\n"
