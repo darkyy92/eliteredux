@@ -4777,5 +4777,53 @@ const u16 gEggMoves[] = {
         MOVE_PLAY_ROUGH,
         MOVE_RETALIATE),
 
+    egg_moves(SHROODLE,
+        MOVE_COPYCAT,
+        MOVE_CROSS_POISON,
+        MOVE_PARTING_SHOT,
+        MOVE_SUPER_FANG,
+        MOVE_SWAGGER,
+        MOVE_TOXIC),
+
+    egg_moves(BRAMBLIN,
+        MOVE_BEAT_UP,
+        MOVE_BLOCK,
+        MOVE_LEECH_SEED,
+        MOVE_SHADOW_SNEAK,
+        MOVE_STRENGTH_SAP),
+
+    egg_moves(TOEDSCOOL,
+        MOVE_ACUPRESSURE,
+        MOVE_KNOCK_OFF,
+        MOVE_LEECH_SEED,
+        MOVE_MIRROR_COAT,
+        MOVE_RAGE_POWDER,
+        MOVE_RAPID_SPIN,
+        MOVE_TICKLE,
+        MOVE_TOXIC),
+
+    egg_moves(KLAWF,
+        MOVE_ANCIENT_POWER,
+        MOVE_CRABHAMMER,
+        MOVE_ENDEAVOR,
+        MOVE_KNOCK_OFF),
+    egg_moves(CAPSAKID,
+        MOVE_INGRAIN,
+        MOVE_LEECH_SEED,
+        MOVE_RAGE_POWDER,
+        MOVE_ROLLOUT,
+        MOVE_WORRY_SEED),
+
+    egg_moves(RELLOR,
+        MOVE_COSMIC_POWER,
+        MOVE_MEMENTO,
+        MOVE_RECOVER,
+        MOVE_WEATHER_BALL),
+
+    egg_moves(FLITTLE,
+        MOVE_ALLY_SWITCH,
+        MOVE_HYPNOSIS,
+        MOVE_ROOST),
+
     EGG_MOVES_TERMINATOR
 };

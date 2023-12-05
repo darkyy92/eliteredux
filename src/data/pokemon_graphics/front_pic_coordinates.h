@@ -4722,6 +4722,66 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_SHROODLE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GRAFAIAI] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BRAMBLIN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BRAMBLEGHAST] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TOEDSCOOL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TOEDSCRUEL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_KLAWF] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_CAPSAKID] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SCOVILLAIN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_RELLOR] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_RABSCA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_FLITTLE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

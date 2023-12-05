@@ -153,6 +153,30 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_FLITTLE] = {
+	},
+	[SPECIES_RABSCA] = {
+	},
+	[SPECIES_RELLOR] = {
+	},
+	[SPECIES_SCOVILLAIN] = {
+	},
+	[SPECIES_CAPSAKID] = {
+	},
+	[SPECIES_KLAWF] = {
+	},
+	[SPECIES_TOEDSCRUEL] = {
+	},
+	[SPECIES_TOEDSCOOL] = {
+	},
+	[SPECIES_BRAMBLEGHAST] = {
+	},
+	[SPECIES_BRAMBLIN] = {
+	},
+	[SPECIES_GRAFAIAI] = {
+	},
+	[SPECIES_SHROODLE] = {
+	},
 	[SPECIES_MABOSSTIFF] = {
 	},
 	[SPECIES_MASCHIFF] = {

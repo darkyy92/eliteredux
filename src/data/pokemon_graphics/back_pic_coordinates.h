@@ -4716,6 +4716,66 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  14
     },
+    [SPECIES_SHROODLE] =
+    {
+        .size = 0,
+        .y_offset =  16
+    },
+    [SPECIES_GRAFAIAI] =
+    {
+        .size = 0,
+        .y_offset =  12
+    },
+    [SPECIES_BRAMBLIN] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_BRAMBLEGHAST] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_TOEDSCOOL] =
+    {
+        .size = 0,
+        .y_offset =  8
+    },
+    [SPECIES_TOEDSCRUEL] =
+    {
+        .size = 0,
+        .y_offset =  11
+    },
+    [SPECIES_KLAWF] =
+    {
+        .size = 0,
+        .y_offset =  20
+    },
+    [SPECIES_CAPSAKID] =
+    {
+        .size = 0,
+        .y_offset =  12
+    },
+    [SPECIES_SCOVILLAIN] =
+    {
+        .size = 0,
+        .y_offset =  8
+    },
+    [SPECIES_RELLOR] =
+    {
+        .size = 0,
+        .y_offset =  15
+    },
+    [SPECIES_RABSCA] =
+    {
+        .size = 0,
+        .y_offset =  9
+    },
+    [SPECIES_FLITTLE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

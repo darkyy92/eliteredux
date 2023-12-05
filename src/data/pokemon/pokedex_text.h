@@ -5607,6 +5607,78 @@ const u8 gMabosstiffPokedexText[] = _(
     "takes on an intimidating look when\n"
     "protecting its family.");
 
+const u8 gShroodlePokedexText[] = _(
+    "To keep enemies away from its\n"
+    "territory, it paints markings around its\n"
+    "nest using a poisonous liquid that\n"
+    "has an acrid odor.");
+
+const u8 gGrafaiaiPokedexText[] = _(
+     "Each Grafaiai paints its own\n"
+    "individual pattern, and it will paint that\n"
+    "same pattern over and over again\n"
+    "throughout its life.");
+
+const u8 gBramblinPokedexText[] = _(
+   "A soul unable to move on to the\n"
+    "afterlife was blown around by the wind\n"
+    "until it got tangled up with dried\n"
+    "grass and became a Pokémon.");
+
+const u8 gBrambleghastPokedexText[] = _(
+   "It will open the branches of its\n"
+    "head to envelop its prey. Once it\n"
+    "absorbs all the life energy it needs, it\n"
+    "expels the prey and discards it.");
+
+const u8 gToedscoolPokedexText[] = _(
+     "Though it looks like Tentacool,\n"
+    "Toedscool is a completely different\n"
+    "species. Its legs may be thin, but it\n"
+    "can run at a speed of 30 mph.");
+
+const u8 gToedscruelPokedexText[] = _(
+     "These Pokémon gather into groups\n"
+    "and form colonies deep within\n"
+    "forests. They absolutely hate it when\n"
+    "strangers approach.");
+
+const u8 gKlawfPokedexText[] = _(
+    "Klawf hangs upside-down from\n"
+    "cliffs, waiting for prey. But Klawf can't\n"
+    "remain in this position for long\n"
+    "because its blood rushes to its head.");
+
+const u8 gCapsakidPokedexText[] = _(
+        "The more sunlight this Pokémon\n"
+    "bathes in, the more spicy chemicals are\n"
+    "produced by its body, and thus the\n"
+    "spicier its moves become.");
+
+const u8 gScovillainPokedexText[] = _(
+    "The green head has turned vicious\n"
+    "due to the spicy chemicals\n"
+    "stimulating its brain. Once it goes on a\n"
+    "rampage, there is no stopping it.");
+
+const u8 gRellorPokedexText[] = _(
+ "This Pokémon creates a mud ball by\n"
+    "mixing sand and dirt with psychic\n"
+    "energy. It treasures its mud ball more\n"
+    "than its own life.");
+
+const u8 gRabscaPokedexText[] = _(
+ "The body that supports the ball\n"
+    "barely moves. Therefore, it is thought\n"
+    "that the true body of this Pokémon\n"
+    "is actually inside the ball.");
+
+const u8 gFlittlePokedexText[] = _(
+    "Flittle's toes levitate about half\n"
+    "an inch above the ground because of\n"
+    "the psychic power emitted from the\n"
+    "frills on the Pokémon's belly.");
+
 const u8 gCrocalorPokedexText[] = _(
    "The ground scrapes its body as it\n"
     "travels, causing it to leave salt\n"

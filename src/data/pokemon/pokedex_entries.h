@@ -11316,6 +11316,150 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_SHROODLE] =
+    {
+        .categoryName = _("Shroodle"),
+        .height = 2,
+        .weight = 7,
+        .description = gShroodlePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GRAFAIAI] =
+    {
+        .categoryName = _("Grafaiai"),
+        .height = 7,
+        .weight = 272,
+        .description = gGrafaiaiPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_BRAMBLIN] =
+    {
+        .categoryName = _("Bramblin"),
+        .height = 6,
+        .weight = 6,
+        .description = gBramblinPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_BRAMBLEGHAST] =
+    {
+        .categoryName = _("Brambleghast"),
+        .height = 12,
+        .weight = 60,
+        .description = gBrambleghastPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TOEDSCOOL] =
+    {
+        .categoryName = _("Toedscool"),
+        .height = 9,
+        .weight = 330,
+        .description = gToedscoolPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TOEDSCRUEL] =
+    {
+        .categoryName = _("Toedscruel"),
+        .height = 190,
+        .weight = 580,
+        .description = gToedscruelPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_KLAWF] =
+    {
+        .categoryName = _("Klawf"),
+        .height = 13,
+        .weight = 790,
+        .description = gKlawfPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_CAPSAKID] =
+    {
+        .categoryName = _("Capsakid"),
+        .height = 10,
+        .weight = 30,
+        .description = gCapsakidPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_SCOVILLAIN] =
+    {
+        .categoryName = _("Scovillain"),
+        .height = 9,
+        .weight = 150,
+        .description = gScovillainPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_RELLOR] =
+    {
+        .categoryName = _("Rellor"),
+        .height = 2,
+        .weight = 10,
+        .description = gRellorPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_RABSCA] =
+    {
+        .categoryName = _("Rabsca"),
+        .height = 3,
+        .weight = 35,
+        .description = gRabscaPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_FLITTLE] =
+    {
+        .categoryName = _("Flittle"),
+        .height = 2,
+        .weight = 15,
+        .description = gFlittlePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

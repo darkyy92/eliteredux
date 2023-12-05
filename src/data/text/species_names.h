@@ -942,6 +942,18 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_KILOWATTREL] = _("Kilowattrel"),
 [SPECIES_MASCHIFF] = _("Maschiff"),
 [SPECIES_MABOSSTIFF] = _("Mabosstiff"),
+[SPECIES_SHROODLE] = _("Shroodle"),
+[SPECIES_GRAFAIAI] = _("Grafaiai"),
+[SPECIES_BRAMBLIN] = _("Bramblin"),
+[SPECIES_BRAMBLEGHAST] = _("Brambleghast"),
+[SPECIES_TOEDSCOOL] = _("Toedscool"),
+[SPECIES_TOEDSCRUEL] = _("Toedscruel"),
+[SPECIES_KLAWF] = _("Klawf"),
+[SPECIES_CAPSAKID] = _("Capsakid"),
+[SPECIES_SCOVILLAIN] = _("Scovillain"),
+[SPECIES_RELLOR] = _("Rellor"),
+[SPECIES_RABSCA] = _("Rabsca"),
+[SPECIES_FLITTLE] = _("Flittle"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

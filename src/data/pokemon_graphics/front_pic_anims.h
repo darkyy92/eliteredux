@@ -9688,6 +9688,66 @@ static const union AnimCmd sAnim_MABOSSTIFF_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_SHROODLE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GRAFAIAI_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BRAMBLIN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BRAMBLEGHAST_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TOEDSCOOL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TOEDSCRUEL_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_KLAWF_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CAPSAKID_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SCOVILLAIN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_RELLOR_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_RABSCA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_FLITTLE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15564,6 +15624,66 @@ static const union AnimCmd *const sAnims_MABOSSTIFF[] ={
     sAnim_MABOSSTIFF_1,
 };
 
+static const union AnimCmd *const sAnims_SHROODLE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SHROODLE_1,
+};
+
+static const union AnimCmd *const sAnims_GRAFAIAI[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GRAFAIAI_1,
+};
+
+static const union AnimCmd *const sAnims_BRAMBLIN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BRAMBLIN_1,
+};
+
+static const union AnimCmd *const sAnims_BRAMBLEGHAST[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BRAMBLEGHAST_1,
+};
+
+static const union AnimCmd *const sAnims_TOEDSCOOL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TOEDSCOOL_1,
+};
+
+static const union AnimCmd *const sAnims_TOEDSCRUEL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TOEDSCRUEL_1,
+};
+
+static const union AnimCmd *const sAnims_KLAWF[] ={
+    sAnim_GeneralFrame0,
+    sAnim_KLAWF_1,
+};
+
+static const union AnimCmd *const sAnims_CAPSAKID[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CAPSAKID_1,
+};
+
+static const union AnimCmd *const sAnims_SCOVILLAIN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SCOVILLAIN_1,
+};
+
+static const union AnimCmd *const sAnims_RELLOR[] ={
+    sAnim_GeneralFrame0,
+    sAnim_RELLOR_1,
+};
+
+static const union AnimCmd *const sAnims_RABSCA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_RABSCA_1,
+};
+
+static const union AnimCmd *const sAnims_FLITTLE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FLITTLE_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17440,17 +17560,29 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(ABOMASNOW_MEGA),
     ANIM_CMD(MABOSSTIFF),
     ANIM_CMD(GALLADE_MEGA),
+    ANIM_CMD(SHROODLE),
     ANIM_CMD(AUDINO_MEGA),
+    ANIM_CMD(GRAFAIAI),
     ANIM_CMD(DIANCIE_MEGA),
+    ANIM_CMD(BRAMBLIN),
     ANIM_CMD(MILOTIC_MEGA),
+    ANIM_CMD(BRAMBLEGHAST),
     ANIM_CMD(BUTTERFREE_MEGA),
+    ANIM_CMD(TOEDSCOOL),
     ANIM_CMD(MACHAMP_MEGA),
+    ANIM_CMD(TOEDSCRUEL),
     ANIM_CMD(KINGLER_MEGA),
+    ANIM_CMD(KLAWF),
     ANIM_CMD(LAPRAS_MEGA),
+    ANIM_CMD(CAPSAKID),
     ANIM_CMD(FLYGON_MEGA),
+    ANIM_CMD(SCOVILLAIN),
     ANIM_CMD(KINGDRA_MEGA),
+    ANIM_CMD(RELLOR),
     ANIM_CMD(DEWGONG_MEGA),
+    ANIM_CMD(RABSCA),
     ANIM_CMD(HITMONCHAN_MEGA),
+    ANIM_CMD(FLITTLE),
     ANIM_CMD(HITMONLEE_MEGA),
     ANIM_CMD(HITMONTOP_MEGA),
     ANIM_CMD(CROBAT_MEGA),
