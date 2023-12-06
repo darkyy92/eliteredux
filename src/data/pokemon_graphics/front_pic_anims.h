@@ -9748,6 +9748,41 @@ static const union AnimCmd sAnim_FLITTLE_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_ESPATHRA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TINKATINK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TINKATUFF_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TINKATON_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_WIGLETT_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_WUGTRIO_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BOMBIRDIER_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15684,6 +15719,41 @@ static const union AnimCmd *const sAnims_FLITTLE[] ={
     sAnim_FLITTLE_1,
 };
 
+static const union AnimCmd *const sAnims_ESPATHRA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ESPATHRA_1,
+};
+
+static const union AnimCmd *const sAnims_TINKATINK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TINKATINK_1,
+};
+
+static const union AnimCmd *const sAnims_TINKATUFF[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TINKATUFF_1,
+};
+
+static const union AnimCmd *const sAnims_TINKATON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TINKATON_1,
+};
+
+static const union AnimCmd *const sAnims_WIGLETT[] ={
+    sAnim_GeneralFrame0,
+    sAnim_WIGLETT_1,
+};
+
+static const union AnimCmd *const sAnims_WUGTRIO[] ={
+    sAnim_GeneralFrame0,
+    sAnim_WUGTRIO_1,
+};
+
+static const union AnimCmd *const sAnims_BOMBIRDIER[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BOMBIRDIER_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17584,12 +17654,19 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(HITMONCHAN_MEGA),
     ANIM_CMD(FLITTLE),
     ANIM_CMD(HITMONLEE_MEGA),
+    ANIM_CMD(ESPATHRA),
     ANIM_CMD(HITMONTOP_MEGA),
+    ANIM_CMD(TINKATINK),
     ANIM_CMD(CROBAT_MEGA),
+    ANIM_CMD(TINKATUFF),
     ANIM_CMD(SKARMORY_MEGA),
+    ANIM_CMD(TINKATON),
     ANIM_CMD(BRUXISH_MEGA),
+    ANIM_CMD(WIGLETT),
     ANIM_CMD(TORTERRA_MEGA),
+    ANIM_CMD(WUGTRIO),
     ANIM_CMD(INFERNAPE_MEGA),
+    ANIM_CMD(BOMBIRDIER),
     ANIM_CMD(EMPOLEON_MEGA),
     ANIM_CMD(SHUCKLE_MEGA),
     ANIM_CMD(RELICANTH_MEGA),

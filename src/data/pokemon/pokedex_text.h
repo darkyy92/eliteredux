@@ -5679,6 +5679,46 @@ const u8 gFlittlePokedexText[] = _(
     "the psychic power emitted from the\n"
     "frills on the Pokémon's belly.");
 
+const u8 gEspathraPokedexText[] = _(
+   "It immobilizes opponents by\n"
+    "bathing them in psychic power from its\n"
+    "large eyes. Despite its appearance, it\n"
+    "has a vicious temperament.");
+
+const u8 gTinkatinkPokedexText[] = _(
+    "This Pokémon pounds iron scraps\n"
+    "together to make a hammer. It will\n"
+    "remake the hammer again and again until\n"
+    "it's satisfied with the result.");
+
+const u8 gTinkatuffPokedexText[] = _(
+    "These Pokémon make their homes in\n"
+    "piles of scrap metal. They test the\n"
+    "strength of each other's hammers by\n"
+    "smashing them together.");
+
+const u8 gTinkatonPokedexText[] = _(
+    "The hammer tops 220 pounds, yet it\n"
+    "gets swung around easily by\n"
+    "Tinkaton as it steals whatever it pleases\n"
+    "and carries its plunder back home.");
+
+const u8 gWiglettPokedexText[] = _(
+     "This Pokémon can pick up the scent\n"
+    "of a Veluza just over 65 feet away\n"
+    "and will hide itself in the sand.");
+
+const u8 gWugtrioPokedexText[] = _(
+    "A variety of fish Pokémon, Wugtrio\n"
+    "was once considered to be a\n"
+    "regional form of Dugtrio.");
+
+const u8 gBombirdierPokedexText[] = _(
+    "Bombirdier uses the apron on its\n"
+    "chest to bundle up food, which it\n"
+    "carries back to its nest. It enjoys\n"
+    "dropping things that make loud noises.");
+
 const u8 gCrocalorPokedexText[] = _(
    "The ground scrapes its body as it\n"
     "travels, causing it to leave salt\n"

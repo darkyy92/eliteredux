@@ -4825,5 +4825,21 @@ const u16 gEggMoves[] = {
         MOVE_HYPNOSIS,
         MOVE_ROOST),
 
+    egg_moves(TINKATINK,
+        MOVE_FEINT,
+        MOVE_ICE_HAMMER,
+        MOVE_QUASH),
+
+    egg_moves(WIGLETT,
+        MOVE_FINAL_GAMBIT,
+        MOVE_MEMENTO),
+
+    egg_moves(BOMBIRDIER,
+        MOVE_FEATHER_DANCE,
+        MOVE_POWER_TRIP,
+        MOVE_ROOST,
+        MOVE_SKY_ATTACK,
+        MOVE_SUCKER_PUNCH),
+
     EGG_MOVES_TERMINATOR
 };

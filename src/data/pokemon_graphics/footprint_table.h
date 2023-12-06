@@ -778,6 +778,13 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_RELLOR] = gMonFootprint_Rellor,
     [SPECIES_RABSCA] = gMonFootprint_Rabsca,
     [SPECIES_FLITTLE] = gMonFootprint_Flittle,
+    [SPECIES_ESPATHRA] = gMonFootprint_Espathra,
+    [SPECIES_TINKATINK] = gMonFootprint_Tinkatink,
+    [SPECIES_TINKATUFF] = gMonFootprint_Tinkatuff,
+    [SPECIES_TINKATON] = gMonFootprint_Tinkaton,
+    [SPECIES_WIGLETT] = gMonFootprint_Wiglett,
+    [SPECIES_WUGTRIO] = gMonFootprint_Wugtrio,
+    [SPECIES_BOMBIRDIER] = gMonFootprint_Bombirdier,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

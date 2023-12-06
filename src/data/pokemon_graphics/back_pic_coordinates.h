@@ -4776,6 +4776,41 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_ESPATHRA] =
+    {
+        .size = 0,
+        .y_offset =  11
+    },
+    [SPECIES_TINKATINK] =
+    {
+        .size = 0,
+        .y_offset =  12
+    },
+    [SPECIES_TINKATUFF] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_TINKATON] =
+    {
+        .size = 0,
+        .y_offset =  15
+    },
+    [SPECIES_WIGLETT] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_WUGTRIO] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_BOMBIRDIER] =
+    {
+        .size = 0,
+        .y_offset =  4
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,

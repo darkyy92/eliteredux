@@ -153,6 +153,20 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_BOMBIRDIER] = {
+	},
+	[SPECIES_WUGTRIO] = {
+	},
+	[SPECIES_WIGLETT] = {
+	},
+	[SPECIES_TINKATON] = {
+	},
+	[SPECIES_TINKATUFF] = {
+	},
+	[SPECIES_TINKATINK] = {
+	},
+	[SPECIES_ESPATHRA] = {
+	},
 	[SPECIES_FLITTLE] = {
 	},
 	[SPECIES_RABSCA] = {

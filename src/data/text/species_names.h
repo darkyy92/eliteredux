@@ -954,6 +954,13 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_RELLOR] = _("Rellor"),
 [SPECIES_RABSCA] = _("Rabsca"),
 [SPECIES_FLITTLE] = _("Flittle"),
+[SPECIES_ESPATHRA] = _("Espathra"),
+[SPECIES_TINKATINK] = _("Tinkatink"),
+[SPECIES_TINKATUFF] = _("Tinkatuff"),
+[SPECIES_TINKATON] = _("Tinkaton"),
+[SPECIES_WIGLETT] = _("Wiglett"),
+[SPECIES_WUGTRIO] = _("Wugtrio"),
+[SPECIES_BOMBIRDIER] = _("Bombirdier"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

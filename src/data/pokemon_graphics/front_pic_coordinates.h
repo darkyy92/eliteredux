@@ -4725,7 +4725,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_SHROODLE] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  17
     },
     [SPECIES_GRAFAIAI] =
     {
@@ -4778,6 +4778,41 @@ const struct MonCoords gMonFrontPicCoords[] =
         .y_offset =  0
     },
     [SPECIES_FLITTLE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ESPATHRA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TINKATINK] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TINKATUFF] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TINKATON] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_WIGLETT] =
+    {
+        .size = 0,
+        .y_offset =  19
+    },
+    [SPECIES_WUGTRIO] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BOMBIRDIER] =
     {
         .size = 0,
         .y_offset =  0

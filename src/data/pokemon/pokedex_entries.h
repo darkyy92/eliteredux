@@ -11460,6 +11460,90 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_ESPATHRA] =
+    {
+        .categoryName = _("Espathra"),
+        .height = 19,
+        .weight = 900,
+        .description = gEspathraPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TINKATINK] =
+    {
+        .categoryName = _("Tinkatink"),
+        .height = 4,
+        .weight = 89,
+        .description = gTinkatinkPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TINKATUFF] =
+    {
+        .categoryName = _("Tinkatuff"),
+        .height = 7,
+        .weight = 591,
+        .description = gTinkatuffPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TINKATON] =
+    {
+        .categoryName = _("Tinkaton"),
+        .height = 7,
+        .weight = 1128,
+        .description = gTinkatonPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_WIGLETT] =
+    {
+        .categoryName = _("Wiglett"),
+        .height = 12,
+        .weight = 18,
+        .description = gWiglettPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_WUGTRIO] =
+    {
+        .categoryName = _("Wugtrio"),
+        .height = 12,
+        .weight = 54,
+        .description = gWugtrioPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_BOMBIRDIER] =
+    {
+        .categoryName = _("Bombirdier"),
+        .height = 15,
+        .weight = 429,
+        .description = gBombirdierPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),
