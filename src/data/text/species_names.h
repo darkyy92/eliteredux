@@ -898,6 +898,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
+    [SPECIES_RIBOMBEE_MEGA] = _("Ribombee"),
 
     // Megas
     [SPECIES_VENUSAUR_MEGA] = _("Venusaur"),
@@ -993,10 +994,10 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_LANTURN_MEGA]       = _("Lanturn"),
     [SPECIES_DEWLEON]            = _("Dewleon"),
     [SPECIES_LAPRAS_MEGA_X]      = _("Lapras"),
-    [SPECIES_CLAWITZER_REDUX] = _("Clawitzer"),
+    [SPECIES_CLAWITZER_REDUX]    = _("Clawitzer"),
     // Special Mega + Primals
-    [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),
-    [SPECIES_KYOGRE_PRIMAL] = _("Kyogre"),
+    [SPECIES_RAYQUAZA_MEGA]  = _("Rayquaza"),
+    [SPECIES_KYOGRE_PRIMAL]  = _("Kyogre"),
     [SPECIES_GROUDON_PRIMAL] = _("Groudon"),
 
     
@@ -1007,7 +1008,6 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_TEMP8_REDUX]  = _("Placeholder"),
     [SPECIES_TEMP9_REDUX]  = _("Placeholder"),
     [SPECIES_TEMP10_REDUX] = _("Placeholder"),
-    [SPECIES_TEMP_MEGA7]   = _("Placeholder"),
     [SPECIES_TEMP_MEGA8]   = _("Placeholder"),
     [SPECIES_TEMP_MEGA9]   = _("Placeholder"),
     [SPECIES_TEMP_MEGA10]  = _("Placeholder"),

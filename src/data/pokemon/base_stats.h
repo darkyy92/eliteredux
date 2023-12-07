@@ -29778,6 +29778,32 @@ const struct BaseStats gBaseStats[] =
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
+
+[SPECIES_RIBOMBEE_MEGA] =
+    {
+    .baseHP        = 60,
+    .baseAttack    = 55,
+    .baseDefense   = 60,
+    .baseSpeed     = 124,
+    .baseSpAttack  = 95,
+    .baseSpDefense = 70,
+    .type1 = TYPE_BUG,
+    .type2 = TYPE_FAIRY,
+    .catchRate = 255,
+    .expYield = 162,
+    .evYield_Speed     = 2,
+    .item2 = ITEM_HONEY,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_BUG,
+    .eggGroup2 = EGG_GROUP_FAIRY,
+    .abilities = {ABILITY_COMPOUND_EYES, ABILITY_CUTE_CHARM, ABILITY_SWEET_VEIL},
+    .innates = {ABILITY_LEVITATE, ABILITY_SHIELD_DUST, ABILITY_EFFECT_SPORE},
+    .bodyColor = BODY_COLOR_YELLOW,
+    .noFlip = FALSE,
+    },
     
     /* Unfinished in RH-Hideout
 [SPECIES_WYRDEER] =

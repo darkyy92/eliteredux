@@ -1404,7 +1404,7 @@
 #define SPECIES_LANTURN_MEGA                FORMS_START + 363
 #define SPECIES_LAPRAS_MEGA_X               FORMS_START + 364
 #define SPECIES_SLOWKING_MEGA               FORMS_START + 365
-#define SPECIES_TEMP_MEGA7                  FORMS_START + 366
+#define SPECIES_RIBOMBEE_MEGA               FORMS_START + 366
 #define SPECIES_TEMP_MEGA8                  FORMS_START + 367
 #define SPECIES_TEMP_MEGA9                  FORMS_START + 368
 #define SPECIES_TEMP_MEGA10                 FORMS_START + 369
