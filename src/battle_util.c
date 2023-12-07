@@ -7524,16 +7524,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_MOVE_END: // Think contact abilities.
         switch (gLastUsedAbility)
         {
-        case ABILITY_WELL_BAKED_BODY:
-            if(IsBattlerAlive(battler)
-                && (moveType == TYPE_FIRE)
-                && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-            {
-                SET_STATCHANGER(STAT_DEF, 2, FALSE);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
-                effect++;
-            }
         case ABILITY_EVAPORATE:
             if (IsBattlerAlive(battler)
              && (moveType == TYPE_WATER))
@@ -8152,6 +8142,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
         //Furnace
         if(BattlerHasInnate(battler, ABILITY_FURNACE)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -8166,8 +8157,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
         //Well Baked Body
-        if(BattlerHasInnate(battler, ABILITY_WELL_BAKED_BODY)){
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_WELL_BAKED_BODY)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -15479,9 +15471,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     }
 
-    if ((GetBattlerAbility(battlerDef) == ABILITY_EVAPORATE || 
-         BattlerHasInnate(battlerDef, ABILITY_EVAPORATE))   && 
-         (moveType == TYPE_WATER ))
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_EVAPORATE) && moveType == TYPE_WATER)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -15493,12 +15483,12 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             RecordAbilityBattle(battlerDef, ABILITY_EVAPORATE);
         }
     }
-    if ((GetBattlerAbility(battlerDef) == ABILITY_WELL_BAKED_BODY || 
-         BattlerHasInnate(battlerDef, ABILITY_WELL_BAKED_BODY))   && 
-         (moveType == TYPE_FIRE))
+
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_WELL_BAKED_BODY) && moveType == TYPE_FIRE)
     {
         modifier = UQ_4_12(0.5);
     }
+    
     if (((GetBattlerAbility(battlerDef) == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
         || (GetBattlerAbility(battlerDef) == ABILITY_TELEPATHY && battlerDef == BATTLE_PARTNER(battlerAtk)))
         && gBattleMoves[move].power)
