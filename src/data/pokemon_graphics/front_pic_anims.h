@@ -9462,6 +9462,11 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_HONEDGE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_RIBOMBEE_MEGA_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15117,6 +15122,11 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_HONEDGE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_HONEDGE_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_RIBOMBEE_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_RIBOMBEE_MEGA_1,
@@ -16911,6 +16921,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(HONEDGE_REDUX),
     ANIM_CMD(RIBOMBEE_MEGA),
     ANIM_CMD(CHARIZARD_MEGA_X),
     ANIM_CMD(CHARIZARD_MEGA_Y),

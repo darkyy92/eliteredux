@@ -898,6 +898,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
+[SPECIES_HONEDGE_REDUX] = _("Honedge"),
     [SPECIES_RIBOMBEE_MEGA] = _("Ribombee"),
 
     // Megas
@@ -1002,10 +1003,6 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 
     
     //Temporary
-    [SPECIES_TEMP5_REDUX]  = _("Placeholder"),
-    [SPECIES_TEMP6_REDUX]  = _("Placeholder"),
-    [SPECIES_TEMP7_REDUX]  = _("Placeholder"),
-    [SPECIES_TEMP8_REDUX]  = _("Placeholder"),
     [SPECIES_TEMP9_REDUX]  = _("Placeholder"),
     [SPECIES_TEMP10_REDUX] = _("Placeholder"),
     [SPECIES_TEMP_MEGA8]   = _("Placeholder"),

@@ -1171,3 +1171,8 @@ static const u16 sRibombeeFormSpeciesIdTable[] = {
     SPECIES_RIBOMBEE_MEGA,
     FORM_SPECIES_END,
 };
+static const u16 sHonedgeFormSpeciesIdTable[] = {
+    SPECIES_HONEDGE,
+    SPECIES_HONEDGE_REDUX,
+    FORM_SPECIES_END,
+};

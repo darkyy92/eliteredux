@@ -29779,6 +29779,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+    [SPECIES_HONEDGE_REDUX] =
+    {
+    .baseHP        = 45,
+    .baseAttack    = 80,
+    .baseDefense   = 100,
+    .baseSpeed     = 28,
+    .baseSpAttack  = 35,
+    .baseSpDefense = 37,
+    .type1 = TYPE_STEEL,
+    .type2 = TYPE_GHOST,
+    .catchRate = 180,
+    .expYield = 65,
+    .evYield_Defense   = 1,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_MINERAL,
+    .eggGroup2 = EGG_GROUP_MINERAL,
+    .abilities = {ABILITY_NO_GUARD, ABILITY_NONE, ABILITY_NONE},
+    .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_SOUL_EATER},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_RIBOMBEE_MEGA] =
     {
     .baseHP        = 60,

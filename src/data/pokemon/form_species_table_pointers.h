@@ -590,4 +590,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_CLAWITZER]          = sClawitzerFormSpeciesIdTable,
     [SPECIES_RIBOMBEE_MEGA] = sRibombeeFormSpeciesIdTable,
 
+    [SPECIES_HONEDGE_REDUX] = sHonedgeFormSpeciesIdTable,
+
 };

@@ -926,6 +926,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_GLASTRIER] = gMonIcon_Glastrier,
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
+    [SPECIES_HONEDGE_REDUX] = gMonIcon_Honedge_Redux,
     [SPECIES_RIBOMBEE_MEGA] = gMonIcon_Ribombee_Mega,
     [SPECIES_VENUSAUR_MEGA] = gMonIcon_VenusaurMega,
     [SPECIES_CHARIZARD_MEGA_X] = gMonIcon_CharizardMegaX,
@@ -1288,10 +1289,6 @@ const u8 *const gMonIconTable[] =
     [SPECIES_INFERNAPE_REDUX] = gMonIcon_InfernapeRedux,
     [SPECIES_LUXRAY_REDUX] = gMonIcon_LuxrayRedux,
 
-    [SPECIES_TEMP5_REDUX]  = gMonIcon_QuestionMark,
-    [SPECIES_TEMP6_REDUX]  = gMonIcon_QuestionMark,
-    [SPECIES_TEMP7_REDUX]  = gMonIcon_QuestionMark,
-    [SPECIES_TEMP8_REDUX]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP9_REDUX]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP10_REDUX] = gMonIcon_QuestionMark,
 
@@ -2214,6 +2211,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GLASTRIER] = 0,
     [SPECIES_SPECTRIER] = 0,
     [SPECIES_CALYREX] = 0,
+    [SPECIES_HONEDGE_REDUX] = 2,
     [SPECIES_RIBOMBEE_MEGA] = 2,
     [SPECIES_VENUSAUR_MEGA] = 1,
     [SPECIES_CHARIZARD_MEGA_X] = 0,
@@ -2298,10 +2296,6 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_INFERNAPE_REDUX] = 0,
     [SPECIES_LUXRAY_REDUX] = 0,
 
-    [SPECIES_TEMP5_REDUX] = 0,
-    [SPECIES_TEMP6_REDUX] = 0,
-    [SPECIES_TEMP7_REDUX] = 0,
-    [SPECIES_TEMP8_REDUX] = 0,
     [SPECIES_TEMP9_REDUX] = 0,
     [SPECIES_TEMP10_REDUX] = 0,
 
