@@ -2160,9 +2160,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     MulModifier(&mod, tempMod);
                 }
 
-                if((gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || BattlerHasInnate(targetId, ABILITY_MOUNTAINEER)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum)){
-                    //Has mountaineer
-                    abilityNullifiesDamage = FALSE;
+                if((gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || BattlerHasInnate(targetId, ABILITY_MOUNTAINEER) || (gBattleMons[targetId].ability == ABILITY_FURNACE || BattlerHasInnate(targetId, ABILITY_FURNACE))) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum)){
+                    //Has mountaineer or furnace
+                    abilityNullifiesDamage = TRUE;
                 }
             break;
             case TYPE_NORMAL:
