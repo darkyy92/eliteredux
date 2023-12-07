@@ -29830,6 +29830,32 @@ const struct BaseStats gBaseStats[] =
     .flags = F_TWO_HEADED,
     },
 
+[SPECIES_AEGISLASH_REDUX] =
+    {
+    .baseHP        = 60,
+    .baseAttack    = 50,
+    .baseDefense   = 140,
+    .baseSpeed     = 60,
+    .baseSpAttack  = 50,
+    .baseSpDefense = 140,
+    .type1 = TYPE_STEEL,
+    .type2 = TYPE_GHOST,
+    .catchRate = 255,
+    .expYield = 234,
+    .evYield_Defense   = 2,
+    .evYield_SpDefense = 1,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_MINERAL,
+    .eggGroup2 = EGG_GROUP_MINERAL,
+    .abilities = {ABILITY_SHADOW_SHIELD, ABILITY_DRAGONSLAYER, ABILITY_SOUL_EATER},
+    .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_STANCE_CHANGE},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_RIBOMBEE_MEGA] =
     {
     .baseHP        = 60,
