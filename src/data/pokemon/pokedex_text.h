@@ -5778,6 +5778,72 @@ const u8 gHoundstonePokedexText[] = _(
     "the dog Pokémon, this one is most\n"
     "loyal to its master.");
 
+const u8 gFlamigoPokedexText[] = _(
+    "Thanks to a behavior of theirs\n"
+    "known as “synchronizing,” an entire\n"
+    "flock of these Pokémon can attack\n"
+    "simultaneously in perfect harmony.");
+
+const u8 gCetoddlePokedexText[] = _(
+    "This species left the ocean and\n"
+    "began living on land a very long time\n"
+    "ago. It seems to be closely related\n"
+    "to Wailmer.");
+
+const u8 gCetitanPokedexText[] = _(
+    "Ice energy builds up in the horn on\n"
+    "its upper jaw, causing the horn to\n"
+    "reach cryogenic temperatures that\n"
+    "freeze its surroundings.");
+
+const u8 gVeluzaPokedexText[] = _(
+    "Veluza has excellent regenerative\n"
+    "capabilities. It sheds spare flesh\n"
+    "from its body to boost its agility,\n"
+    "then charges at its prey.");
+	
+const u8 gDondozoPokedexText[] = _(
+    "It treats Tatsugiri like its boss\n"
+    "and follows it loyally. Though\n"
+    "powerful, Dondozo is apparently not very\n"
+    "smart.");
+	
+const u8 gTatsugiriPokedexText[] = _(
+    "This is a small dragon Pokémon. It\n"
+    "lives inside the mouth of Dondozo to\n"
+    "protect itself from enemies on the\n"
+    "outside.");
+	
+const u8 gAnnihilapePokedexText[] = _(
+    "When its anger rose beyond a\n"
+    "critical point, this Pokémon gained power\n"
+    "that is unfettered by the limits of\n"
+    "its physical body.");
+	
+const u8 gClodsirePokedexText[] = _(
+    "When attacked, this Pokémon will\n"
+    "retaliate by sticking thick spines out\n"
+    "from its body. It's a risky move\n"
+    "that puts everything on the line.");
+
+const u8 gFarigirafPokedexText[] = _(
+    "Now that the brain waves from the\n"
+    "head and tail are synced up, the\n"
+    "psychic power of this Pokémon is 10\n"
+    "times stronger than Girafarig's.");
+
+const u8 gDudunsparcePokedexText[] = _(
+    "This Pokémon uses its hard tail to\n"
+    "make its nest by boring holes into\n"
+    "bedrock deep underground. The nest\n"
+    "can reach lengths of over six miles.");
+
+const u8 gKingambitPokedexText[] = _(
+    "Though it commands a massive army\n"
+    "in battle, it's not skilled at\n"
+    "devising complex strategies. It just uses\n"
+    "brute strength to keep pushing.");
+
 const u8 gCrocalorPokedexText[] = _(
    "Houndstone spends most of its\n"
     "time sleeping in graveyards. Among all\n"

@@ -11664,6 +11664,138 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_FLAMIGO] =
+    {
+        .categoryName = _("Flamigo"),
+        .height = 16,
+        .weight = 370,
+        .description = gFlamigoPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_CETODDLE] =
+    {
+        .categoryName = _("Cetoddle"),
+        .height = 12,
+        .weight = 150,
+        .description = gCetoddlePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_CETITAN] =
+    {
+        .categoryName = _("Cetitan"),
+        .height = 45,
+        .weight = 7000,
+        .description = gCetitanPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_VELUZA] =
+    {
+        .categoryName = _("Veluza"),
+        .height = 25,
+        .weight = 90,
+        .description = gVeluzaPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_DONDOZO] =
+    {
+        .categoryName = _("Dondozo"),
+        .height = 120,
+        .weight = 2200,
+        .description = gDondozoPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_TATSUGIRI] =
+    {
+        .categoryName = _("Tatsugiri"),
+        .height = 3,
+        .weight = 80,
+        .description = gTatsugiriPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_ANNIHILAPE] =
+    {
+        .categoryName = _("Annihilape"),
+        .height = 12,
+        .weight = 560,
+        .description = gAnnihilapePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_CLODSIRE] =
+    {
+        .categoryName = _("Clodsire"),
+        .height = 18,
+        .weight = 2230,
+        .description = gClodsirePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_FARIGIRAF] =
+    {
+        .categoryName = _("Farigiraf"),
+        .height = 32,
+        .weight = 1600,
+        .description = gFarigirafPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_DUDUNSPARCE] =
+    {
+        .categoryName = _("Dudunsparce"),
+        .height = 36,
+        .weight = 392,
+        .description = gDudunsparcePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_KINGAMBIT] =
+    {
+        .categoryName = _("Kingambit"),
+        .height = 20,
+        .weight = 1200,
+        .description = gKingambitPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BASCULEGION] =
     {
         .categoryName = _("Basculegion"),

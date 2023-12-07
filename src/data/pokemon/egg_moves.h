@@ -4877,5 +4877,29 @@ const u16 gEggMoves[] = {
         MOVE_SHADOW_SNEAK,
         MOVE_YAWN),
 
+    egg_moves(FLAMIGO,
+        MOVE_DOUBLE_TEAM,
+        MOVE_QUICK_GUARD,
+        MOVE_SKY_ATTACK),
+    egg_moves(CETODDLE,
+        MOVE_BELLY_DRUM,
+        MOVE_ENTRAINMENT,
+        MOVE_ICICLE_CRASH,
+        MOVE_SUPERPOWER,
+        MOVE_YAWN),
+
+    egg_moves(VELUZA,
+        MOVE_RECOVER,
+        MOVE_THRASH),
+    egg_moves(DONDOZO,
+        MOVE_CURSE,
+        MOVE_FISSURE,
+        MOVE_THRASH,
+        MOVE_YAWN),
+    egg_moves(TATSUGIRI,
+        MOVE_BATON_PASS,
+        MOVE_COUNTER,
+        MOVE_RAPID_SPIN),
+
     EGG_MOVES_TERMINATOR
 };

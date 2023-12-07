@@ -971,6 +971,17 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_GLIMMORA] = _("Glimmora"),
 [SPECIES_GREAVARD] = _("Greavard"),
 [SPECIES_HOUNDSTONE] = _("Houndstone"),
+[SPECIES_FLAMIGO] = _("Flamigo"),
+[SPECIES_CETODDLE] = _("Cetoddle"),
+[SPECIES_CETITAN] = _("Cetitan"),
+[SPECIES_VELUZA] = _("Veluza"),
+[SPECIES_DONDOZO] = _("Dondozo"),
+[SPECIES_TATSUGIRI] = _("Tatsugiri"),
+[SPECIES_ANNIHILAPE] = _("Annihilape"),
+[SPECIES_CLODSIRE] = _("Clodsire"),
+[SPECIES_FARIGIRAF] = _("Farigiraf"),
+[SPECIES_DUDUNSPARCE] = _("Dudunsparce"),
+[SPECIES_KINGAMBIT] = _("Kingambit"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

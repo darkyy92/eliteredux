@@ -153,6 +153,28 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_KINGAMBIT] = {
+	},
+	[SPECIES_DUDUNSPARCE] = {
+	},
+	[SPECIES_FARIGIRAF] = {
+	},
+	[SPECIES_CLODSIRE] = {
+	},
+	[SPECIES_ANNIHILAPE] = {
+	},
+	[SPECIES_TATSUGIRI] = {
+	},
+	[SPECIES_DONDOZO] = {
+	},
+	[SPECIES_VELUZA] = {
+	},
+	[SPECIES_CETITAN] = {
+	},
+	[SPECIES_CETODDLE] = {
+	},
+	[SPECIES_FLAMIGO] = {
+	},
 	[SPECIES_HOUNDSTONE] = {
 	},
 	[SPECIES_GREAVARD] = {
