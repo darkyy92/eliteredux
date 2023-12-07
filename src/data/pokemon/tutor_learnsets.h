@@ -153,6 +153,26 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_HOUNDSTONE] = {
+	},
+	[SPECIES_GREAVARD] = {
+	},
+	[SPECIES_GLIMMORA] = {
+	},
+	[SPECIES_GLIMMET] = {
+	},
+	[SPECIES_ORTHWORM] = {
+	},
+	[SPECIES_CYCLIZAR] = {
+	},
+	[SPECIES_REVAVROOM] = {
+	},
+	[SPECIES_VAROOM] = {
+	},
+	[SPECIES_PALAFIN] = {
+	},
+	[SPECIES_FINIZEN] = {
+	},
 	[SPECIES_BOMBIRDIER] = {
 	},
 	[SPECIES_WUGTRIO] = {

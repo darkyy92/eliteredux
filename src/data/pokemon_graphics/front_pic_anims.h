@@ -9783,6 +9783,56 @@ static const union AnimCmd sAnim_BOMBIRDIER_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_FINIZEN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_PALAFIN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_VAROOM_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_REVAVROOM_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CYCLIZAR_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ORTHWORM_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GLIMMET_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GLIMMORA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GREAVARD_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_HOUNDSTONE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -15754,6 +15804,56 @@ static const union AnimCmd *const sAnims_BOMBIRDIER[] ={
     sAnim_BOMBIRDIER_1,
 };
 
+static const union AnimCmd *const sAnims_FINIZEN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FINIZEN_1,
+};
+
+static const union AnimCmd *const sAnims_PALAFIN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PALAFIN_1,
+};
+
+static const union AnimCmd *const sAnims_VAROOM[] ={
+    sAnim_GeneralFrame0,
+    sAnim_VAROOM_1,
+};
+
+static const union AnimCmd *const sAnims_REVAVROOM[] ={
+    sAnim_GeneralFrame0,
+    sAnim_REVAVROOM_1,
+};
+
+static const union AnimCmd *const sAnims_CYCLIZAR[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CYCLIZAR_1,
+};
+
+static const union AnimCmd *const sAnims_ORTHWORM[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ORTHWORM_1,
+};
+
+static const union AnimCmd *const sAnims_GLIMMET[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GLIMMET_1,
+};
+
+static const union AnimCmd *const sAnims_GLIMMORA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GLIMMORA_1,
+};
+
+static const union AnimCmd *const sAnims_GREAVARD[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GREAVARD_1,
+};
+
+static const union AnimCmd *const sAnims_HOUNDSTONE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_HOUNDSTONE_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -17668,15 +17768,25 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(INFERNAPE_MEGA),
     ANIM_CMD(BOMBIRDIER),
     ANIM_CMD(EMPOLEON_MEGA),
+    ANIM_CMD(FINIZEN),
     ANIM_CMD(SHUCKLE_MEGA),
+    ANIM_CMD(PALAFIN),
     ANIM_CMD(RELICANTH_MEGA),
+    ANIM_CMD(VAROOM),
     ANIM_CMD(QUAGSIRE_MEGA),
+    ANIM_CMD(REVAVROOM),
     ANIM_CMD(JELLICENT_MEGA),
+    ANIM_CMD(CYCLIZAR),
     ANIM_CMD(TOUCANNON_MEGA),
+    ANIM_CMD(ORTHWORM),
     ANIM_CMD(DRAGONITE_MEGA),
+    ANIM_CMD(GLIMMET),
     ANIM_CMD(BRELOOM_MEGA),
+    ANIM_CMD(GLIMMORA),
     ANIM_CMD(SLAKING_MEGA),
+    ANIM_CMD(GREAVARD),
     ANIM_CMD(INFERNAPE_REDUX),
+    ANIM_CMD(HOUNDSTONE),
     ANIM_CMD(NOIBAT_REDUX),
     ANIM_CMD(NOIVERN_REDUX),
     ANIM_CMD(LUXRAY_REDUX),

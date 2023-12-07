@@ -961,6 +961,16 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_WIGLETT] = _("Wiglett"),
 [SPECIES_WUGTRIO] = _("Wugtrio"),
 [SPECIES_BOMBIRDIER] = _("Bombirdier"),
+[SPECIES_FINIZEN] = _("Finizen"),
+[SPECIES_PALAFIN] = _("Palafin"),
+[SPECIES_VAROOM] = _("Varoom"),
+[SPECIES_REVAVROOM] = _("Revavroom"),
+[SPECIES_CYCLIZAR] = _("Cyclizar"),
+[SPECIES_ORTHWORM] = _("Orthworm"),
+[SPECIES_GLIMMET] = _("Glimmet"),
+[SPECIES_GLIMMORA] = _("Glimmora"),
+[SPECIES_GREAVARD] = _("Greavard"),
+[SPECIES_HOUNDSTONE] = _("Houndstone"),
 [SPECIES_BASCULEGION] = _("Basculegion"),
 
     // Megas

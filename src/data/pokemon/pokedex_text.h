@@ -5719,11 +5719,70 @@ const u8 gBombirdierPokedexText[] = _(
     "carries back to its nest. It enjoys\n"
     "dropping things that make loud noises.");
 
+const u8 gFinizenPokedexText[] = _(
+    "Its water ring is made from\n"
+    "seawater mixed with a sticky fluid that\n"
+    "Finizen secretes from its blowhole.");
+
+const u8 gPalafinPokedexText[] = _(
+    "This Pokémon changes its\n"
+    "appearance if it hears its allies calling for\n"
+    "help. Palafin will never show\n"
+    "anybody its moment of transformation.");
+
+const u8 gVaroomPokedexText[] = _(
+    "The steel section is Varoom's\n"
+    "actual body. This Pokémon clings to\n"
+    "rocks and converts the minerals within\n"
+    "into energy to fuel its activities.");
+
+const u8 gRevavroomPokedexText[] = _(
+    "It creates a gas out of poison and\n"
+    "minerals from rocks. It then\n"
+    "detonates the gas in its cylinders- now\n"
+    "numbering eight-to generate energy.");
+
+const u8 gCyclizarPokedexText[] = _(
+    "It can sprint at over 70 mph while\n"
+    "carrying a human. The rider's body\n"
+    "heat warms Cyclizar's back and lifts\n"
+    "the Pokémon's spirit.");
+
+const u8 gOrthwormPokedexText[] = _(
+    "When attacked, this Pokémon will\n"
+    "wield the tendrils on its body like\n"
+    "fists and pelt the opponent with a\n"
+    "storm of punches.");
+
+const u8 gGlimmetPokedexText[] = _(
+    "Glimmet's toxic mineral crystals\n"
+    "look just like flower petals. This\n"
+    "Pokémon scatters poisonous powder like\n"
+    "pollen to protect itself.");
+
+const u8 gGlimmoraPokedexText[] = _(
+    "Glimmora's petals are made of\n"
+    "crystallized poison energy. It has\n"
+    "recently become evident that these\n"
+    "petals resemble Tera Jewels.");
+
+const u8 gGreavardPokedexText[] = _(
+    "Glimmora's petals are made of\n"
+    "crystallized poison energy. It has\n"
+    "recently become evident that these\n"
+    "petals resemble Tera Jewels.");
+
+const u8 gHoundstonePokedexText[] = _(
+    "Houndstone spends most of its\n"
+    "time sleeping in graveyards. Among all\n"
+    "the dog Pokémon, this one is most\n"
+    "loyal to its master.");
+
 const u8 gCrocalorPokedexText[] = _(
-   "The ground scrapes its body as it\n"
-    "travels, causing it to leave salt\n"
-    "behind. Salt is constantly being created\n"
-    "and replenished inside Nacli's body.");
+   "Houndstone spends most of its\n"
+    "time sleeping in graveyards. Among all\n"
+    "the dog Pokémon, this one is most\n"
+    "loyal to its master.");
 
 const u8 gSkeledirgePokedexText[] = _(
      "It compresses rock salt inside its\n"

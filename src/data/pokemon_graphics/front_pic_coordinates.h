@@ -4710,12 +4710,12 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_KILOWATTREL] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  6
     },
     [SPECIES_MASCHIFF] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  8
     },
     [SPECIES_MABOSSTIFF] =
     {
@@ -4730,7 +4730,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_GRAFAIAI] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  9
     },
     [SPECIES_BRAMBLIN] =
     {
@@ -4755,12 +4755,12 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_KLAWF] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  14
     },
     [SPECIES_CAPSAKID] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  13
     },
     [SPECIES_SCOVILLAIN] =
     {
@@ -4770,7 +4770,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_RELLOR] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  11
     },
     [SPECIES_RABSCA] =
     {
@@ -4780,7 +4780,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_FLITTLE] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  12
     },
     [SPECIES_ESPATHRA] =
     {
@@ -4790,7 +4790,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_TINKATINK] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  10
     },
     [SPECIES_TINKATUFF] =
     {
@@ -4810,12 +4810,62 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_WUGTRIO] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  2
     },
     [SPECIES_BOMBIRDIER] =
     {
         .size = 0,
         .y_offset =  0
+    },
+    [SPECIES_FINIZEN] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_PALAFIN] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_VAROOM] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_REVAVROOM] =
+    {
+        .size = 0,
+        .y_offset =  8
+    },
+    [SPECIES_CYCLIZAR] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ORTHWORM] =
+    {
+        .size = 0,
+        .y_offset =  3
+    },
+    [SPECIES_GLIMMET] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GLIMMORA] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_GREAVARD] =
+    {
+        .size = 0,
+        .y_offset =  6
+    },
+    [SPECIES_HOUNDSTONE] =
+    {
+        .size = 0,
+        .y_offset =  1
     },
     [SPECIES_VENUSAUR_MEGA] =
     {

@@ -4811,6 +4811,56 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  4
     },
+    [SPECIES_FINIZEN] =
+    {
+        .size = 0,
+        .y_offset =  15
+    },
+    [SPECIES_PALAFIN] =
+    {
+        .size = 0,
+        .y_offset =  15
+    },
+    [SPECIES_VAROOM] =
+    {
+        .size = 0,
+        .y_offset =  13
+    },
+    [SPECIES_REVAVROOM] =
+    {
+        .size = 0,
+        .y_offset =  16
+    },
+    [SPECIES_CYCLIZAR] =
+    {
+        .size = 0,
+        .y_offset =  6
+    },
+    [SPECIES_ORTHWORM] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GLIMMET] =
+    {
+        .size = 0,
+        .y_offset =  14
+    },
+    [SPECIES_GLIMMORA] =
+    {
+        .size = 0,
+        .y_offset =  11
+    },
+    [SPECIES_GREAVARD] =
+    {
+        .size = 0,
+        .y_offset =  4
+    },
+    [SPECIES_HOUNDSTONE] =
+    {
+        .size = 0,
+        .y_offset =  4
+    },
     [SPECIES_BASCULEGION] =
     {
         .size = 0,
