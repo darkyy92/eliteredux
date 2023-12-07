@@ -29779,7 +29779,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-    [SPECIES_HONEDGE_REDUX] =
+[SPECIES_HONEDGE_REDUX] =
     {
     .baseHP        = 45,
     .baseAttack    = 80,
@@ -29802,6 +29802,32 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_SOUL_EATER},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
+    },
+    
+[SPECIES_DOUBLADE_REDUX] =
+    {
+    .baseHP        = 59,
+    .baseAttack    = 110,
+    .baseDefense   = 150,
+    .baseSpeed     = 35,
+    .baseSpAttack  = 45,
+    .baseSpDefense = 49,
+    .type1 = TYPE_STEEL,
+    .type2 = TYPE_GHOST,
+    .catchRate = 255,
+    .expYield = 157,
+    .evYield_Defense   = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_MINERAL,
+    .eggGroup2 = EGG_GROUP_MINERAL,
+    .abilities = {ABILITY_NO_GUARD, ABILITY_NONE, ABILITY_NONE},
+    .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_MULTI_HEADED},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    .flags = F_TWO_HEADED,
     },
 
 [SPECIES_RIBOMBEE_MEGA] =

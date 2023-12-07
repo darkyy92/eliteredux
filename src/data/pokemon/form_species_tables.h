@@ -1176,3 +1176,8 @@ static const u16 sHonedgeFormSpeciesIdTable[] = {
     SPECIES_HONEDGE_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sDoubladeFormSpeciesIdTable[] = {
+    SPECIES_DOUBLADE,
+    SPECIES_DOUBLADE_REDUX,
+    FORM_SPECIES_END,
+};

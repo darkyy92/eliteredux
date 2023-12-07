@@ -592,4 +592,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_HONEDGE_REDUX] = sHonedgeFormSpeciesIdTable,
 
+    [SPECIES_DOUBLADE_REDUX] = sDoubladeFormSpeciesIdTable,
+
 };
