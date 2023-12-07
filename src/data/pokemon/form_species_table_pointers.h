@@ -594,4 +594,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_DOUBLADE_REDUX] = sDoubladeFormSpeciesIdTable,
 
+    [SPECIES_AEGISLASH_BLADE_REDUX] = sAegislashFormSpeciesIdTable,
+
 };

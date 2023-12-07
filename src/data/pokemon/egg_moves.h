@@ -4681,22 +4681,10 @@ const u16 gEggMoves[] = {
         MOVE_THUNDER_PUNCH),
 
     egg_moves(HONEDGE_REDUX,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(DOUBLADE_REDUX,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(AEGISLASH_REDUX,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
+        MOVE_METAL_SOUND,
+        MOVE_SHADOW_SNEAK,
+        MOVE_DESTINY_BOND,
+        MOVE_WIDE_GUARD),
 
     EGG_MOVES_TERMINATOR
 };

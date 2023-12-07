@@ -4496,6 +4496,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x68,
         .y_offset = 2,
     },
+    [SPECIES_AEGISLASH_BLADE_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_AEGISLASH_REDUX] =
     {
         .size = 0,

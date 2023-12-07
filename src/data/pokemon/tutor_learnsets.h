@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_AEGISLASH_BLADE_REDUX] = {
+	},
 	[SPECIES_AEGISLASH_REDUX] = {
 	},
 	[SPECIES_DOUBLADE_REDUX] = {

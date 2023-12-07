@@ -1416,6 +1416,22 @@ static bool32 TryAegiFormChange(void)
         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH;
         break;
+    case SPECIES_AEGISLASH_BLADE_REDUX: // Special -> Physical
+        if (gBattleMoves[gCurrentMove].split == SPLIT_PHYSICAL){
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
+            gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_REDUX;
+        }
+        else
+            return FALSE;
+        break;
+    case SPECIES_AEGISLASH_REDUX: // Physical -> Special
+        if (gBattleMoves[gCurrentMove].split == SPLIT_SPECIAL){
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
+            gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE_REDUX;
+        }
+        else
+            return FALSE;
+    break;
     }
 
     BattleScriptPushCursor();
