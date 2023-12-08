@@ -4495,6 +4495,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 10,
     },
+    [SPECIES_ABRA_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_AEGISLASH_BLADE_REDUX] =
     {
         .size = 0,

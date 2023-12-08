@@ -1183,3 +1183,8 @@ static const u16 sDoubladeFormSpeciesIdTable[] = {
     SPECIES_DOUBLADE_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sAbraFormSpeciesIdTable[] = {
+    SPECIES_ABRA,
+    SPECIES_ABRA_REDUX,
+    FORM_SPECIES_END,
+};

@@ -903,6 +903,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_DOUBLADE_REDUX] = sDoublade_ReduxLevelUpLearnset,
     [SPECIES_AEGISLASH_REDUX] = sAegislash_ReduxLevelUpLearnset,
     [SPECIES_AEGISLASH_BLADE_REDUX] = sAegislash_ReduxLevelUpLearnset,
+    [SPECIES_ABRA_REDUX] = sAbra_ReduxLevelUpLearnset,
     [SPECIES_CALYREX] = sCalyrexLevelUpLearnset,
     // Megas
     [SPECIES_VENUSAUR_MEGA] = sVenusaurLevelUpLearnset,

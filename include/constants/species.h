@@ -1409,7 +1409,14 @@
 #define SPECIES_TEMP_MEGA9                  FORMS_START + 368
 #define SPECIES_TEMP_MEGA10                 FORMS_START + 369
 
-#define SPECIES_EGG SPECIES_TEMP_MEGA10 + 1
+#define SPECIES_ABRA_REDUX                  FORMS_START + 370
+#define SPECIES_KADABRA_REDUX               FORMS_START + 371
+#define SPECIES_ALAKAZAM_REDUX              FORMS_START + 372
+#define SPECIES_ALAKAZAM_MEGA_REDUX         FORMS_START + 373
+
+#define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
+
+#define SPECIES_EGG LAST_REDUX_FORM + 1
 #define NUM_SPECIES SPECIES_EGG + 1
 
 // National Dex Index Defines

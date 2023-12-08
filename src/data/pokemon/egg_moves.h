@@ -4686,5 +4686,21 @@ const u16 gEggMoves[] = {
         MOVE_DESTINY_BOND,
         MOVE_WIDE_GUARD),
 
+    egg_moves(ABRA_REDUX,
+        MOVE_ENCORE,
+        MOVE_BARRIER,
+        MOVE_KNOCK_OFF,
+        MOVE_FIRE_PUNCH,
+        MOVE_THUNDER_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_HYPNOSIS,
+        MOVE_POWER_TRICK,
+        MOVE_GUARD_SWAP,
+        MOVE_SKILL_SWAP,
+        MOVE_GUARD_SPLIT,
+        MOVE_PSYCHO_SHIFT,
+        MOVE_ALLY_SWITCH,
+        MOVE_PSYCHIC_TERRAIN),
+
     EGG_MOVES_TERMINATOR
 };

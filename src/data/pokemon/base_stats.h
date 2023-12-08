@@ -29779,6 +29779,32 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+    [SPECIES_ABRA_REDUX] =
+    {
+    .baseHP        = 25,
+    .baseAttack    = 20,
+    .baseDefense   = 15,
+    .baseSpeed     = 90,
+    .baseSpAttack  = 105,
+    .baseSpDefense = 55,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_PSYCHIC,
+    .catchRate = 200,
+    .expYield = 62,
+    .evYield_SpAttack  = 1,
+    .item2 = ITEM_TWISTED_SPOON,
+    .genderRatio = PERCENT_FEMALE(25),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_SLOW,
+    .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
+    .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
+    .abilities = {ABILITY_MYSTIC_POWER, ABILITY_TRACE, ABILITY_EXPLOIT_WEAKNESS},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_HYPNOTIST, ABILITY_MAGIC_GUARD},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_HONEDGE_REDUX] =
     {
     .baseHP        = 45,
