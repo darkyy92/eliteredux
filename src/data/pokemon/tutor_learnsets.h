@@ -153,6 +153,40 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_GHOLDENGO] = {
+	},
+	[SPECIES_GIMMIGHOUL] = {
+	},
+	[SPECIES_BAXCALIBUR] = {
+	},
+	[SPECIES_ARCTIBAX] = {
+	},
+	[SPECIES_FRIGIBAX] = {
+	},
+	[SPECIES_IRON_THORNS] = {
+	},
+	[SPECIES_IRON_MOTH] = {
+	},
+	[SPECIES_IRON_JUGULIS] = {
+	},
+	[SPECIES_IRON_HANDS] = {
+	},
+	[SPECIES_IRON_BUNDLE] = {
+	},
+	[SPECIES_IRON_TREADS] = {
+	},
+	[SPECIES_SANDY_SHOCKS] = {
+	},
+	[SPECIES_SLITHER_WING] = {
+	},
+	[SPECIES_FLUTTER_MANE] = {
+	},
+	[SPECIES_BRUTE_BONNET] = {
+	},
+	[SPECIES_SCREAM_TAIL] = {
+	},
+	[SPECIES_GREAT_TUSK] = {
+	},
 	[SPECIES_KINGAMBIT] = {
 	},
 	[SPECIES_DUDUNSPARCE] = {

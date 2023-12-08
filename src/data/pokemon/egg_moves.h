@@ -4901,5 +4901,11 @@ const u16 gEggMoves[] = {
         MOVE_COUNTER,
         MOVE_RAPID_SPIN),
 
+    egg_moves(FRIGIBAX,
+        MOVE_AQUA_TAIL,
+        MOVE_DRAGON_RUSH,
+        MOVE_FREEZE_DRY,
+        MOVE_ICICLE_SPEAR),
+
     EGG_MOVES_TERMINATOR
 };

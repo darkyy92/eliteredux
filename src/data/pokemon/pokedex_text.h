@@ -5844,11 +5844,112 @@ const u8 gKingambitPokedexText[] = _(
     "devising complex strategies. It just uses\n"
     "brute strength to keep pushing.");
 
+const u8 gGreat_TuskPokedexText[] = _(
+    "Sightings of this Pokémon have\n"
+    "occurred in recent years. The name\n"
+    "Great Tusk was taken from a creature\n"
+    "listed in a certain book.");
+
+const u8 gScream_TailPokedexText[] = _(
+    "There has been only one reported\n"
+    "sighting of this Pokémon. It\n"
+    "resembles a mysterious creature depicted\n"
+    "in an old expedition journal.");
+
+const u8 gBrute_BonnetPokedexText[] = _(
+    "It bears a slight resemblance to a\n"
+    "Pokémon described in a dubious\n"
+    "magazine as a cross between a dinosaur\n"
+    "and a mushroom.");
+
+const u8 gFlutter_ManePokedexText[] = _(
+    "It has similar features to a\n"
+    "ghostly pterosaur that was covered in a\n"
+    "paranormal magazine, but the two\n"
+    "have little else in common.");
+
+const u8 gSlither_WingPokedexText[] = _(
+    "This mysterious Pokémon has some\n"
+    "similarities to a creature that an\n"
+    "old book introduced as Slither Wing.");
+
+const u8 gSandy_ShocksPokedexText[] = _(
+    "It slightly resembles a Magneton\n"
+    "that lived for 10,000 years and was\n"
+    "featured in an article in a\n"
+    "paranormal magazine.");
+
+const u8 gIron_TreadsPokedexText[] = _(
+    "Sightings of this Pokémon have\n"
+    "occurred in recent years. It resembles\n"
+    "a mysterious object described in an\n"
+    "old expedition journal.");
+
+const u8 gIron_BundlePokedexText[] = _(
+    "Its shape is similar to a robot\n"
+    "featured in a paranormal magazine\n"
+    "article. The robot was said to have been\n"
+    "created by an ancient civilization.");
+
+const u8 gIron_HandsPokedexText[] = _(
+    "It is very similar to a cyborg\n"
+    "covered exclusively by a paranormal\n"
+    "magazine. The cyborg was said to be the\n"
+    "modified form of a certain athlete.");
+
+const u8 gIron_JugulisPokedexText[] = _(
+    "It resembles a certain Pokémon\n"
+    "introduced in a paranormal magazine,\n"
+    "described as the offspring of a\n"
+    "Hydreigon that fell in love with a robot.");
+
+const u8 gIron_MothPokedexText[] = _(
+    "No records exist of this species\n"
+    "being caught. Data is lacking, but\n"
+    "the Pokémon's traits match up with an\n"
+    "object described in an old book.");
+
+const u8 gIron_ThornsPokedexText[] = _(
+    "It has some similarities to a\n"
+    "Pokémon introduced in a dubious magazine\n"
+    "as a Tyranitar from one billion\n"
+    "years into the future.");
+
+const u8 gFrigibaxPokedexText[] = _(
+    "This Pokémon lives in forests and\n"
+    "craggy areas. Using the power of its\n"
+    "dorsal fin, it cools the inside of its\n"
+    "nest like a refrigerator.");
+
+const u8 gArctibaxPokedexText[] = _(
+    "Arctibax freezes the air around it,\n"
+    "protecting its face with an ice\n"
+    "mask and turning its dorsal fin into a\n"
+    "blade of ice.");
+
+const u8 gBaxcaliburPokedexText[] = _(
+    "It launches itself into battle by\n"
+    "flipping upside down and spewing\n"
+    "frigid air from its mouth. It finishes\n"
+    "opponents off with its dorsal blade.");
+
+const u8 gGimmighoulPokedexText[] = _(
+    "It lives inside an old treasure\n"
+    "chest. Sometimes it gets left in shop\n"
+    "corners since no one realizes it's\n"
+    "actually a Pokémon.");
+
+const u8 gGholdengoPokedexText[] = _(
+    "It has a sturdy body made up of\n"
+    "stacked coins. Gholdengo overwhelms\n"
+    "its enemies by firing coin after coin\n"
+    "at them in quick succession.");
+
 const u8 gCrocalorPokedexText[] = _(
-   "Houndstone spends most of its\n"
-    "time sleeping in graveyards. Among all\n"
-    "the dog Pokémon, this one is most\n"
-    "loyal to its master.");
+   "The combination of Crocalor's fire\n"
+    "energy and overflowing vitality has\n"
+    "caused an egg-shaped fireball to\n"
+    "appear on the Pokémon's head.");
 
 const u8 gSkeledirgePokedexText[] = _(
      "It compresses rock salt inside its\n"

@@ -4922,6 +4922,91 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_GREAT_TUSK] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SCREAM_TAIL] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_BRUTE_BONNET] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_FLUTTER_MANE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SLITHER_WING] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SANDY_SHOCKS] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_IRON_TREADS] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_IRON_BUNDLE] =
+    {
+        .size = 0,
+        .y_offset =  4
+    },
+    [SPECIES_IRON_HANDS] =
+    {
+        .size = 0,
+        .y_offset =  3
+    },
+    [SPECIES_IRON_JUGULIS] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_IRON_MOTH] =
+    {
+        .size = 0,
+        .y_offset =  7
+    },
+    [SPECIES_IRON_THORNS] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_FRIGIBAX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ARCTIBAX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BAXCALIBUR] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GIMMIGHOUL] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_GHOLDENGO] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,
