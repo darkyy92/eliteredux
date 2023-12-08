@@ -4495,6 +4495,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 10,
     },
+    [SPECIES_ALAKAZAM_MEGA_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ALAKAZAM_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_KADABRA_REDUX] =
     {
         .size = 0,

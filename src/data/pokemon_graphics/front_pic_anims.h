@@ -9462,6 +9462,16 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_ALAKAZAM_MEGA_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ALAKAZAM_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_KADABRA_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15147,6 +15157,16 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_ALAKAZAM_MEGA_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ALAKAZAM_MEGA_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_ALAKAZAM_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ALAKAZAM_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_KADABRA_REDUX[] ={
     sAnim_GeneralFrame0,
     sAnim_KADABRA_REDUX_1,
@@ -16971,6 +16991,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(ALAKAZAM_MEGA_REDUX),
+    ANIM_CMD(ALAKAZAM_REDUX),
     ANIM_CMD(KADABRA_REDUX),
     ANIM_CMD(ABRA_REDUX),
     ANIM_CMD(AEGISLASH_BLADE_REDUX),

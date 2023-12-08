@@ -120,6 +120,8 @@ static const u16 sPersianFormSpeciesIdTable[] = {
 
 static const u16 sAlakazamFormSpeciesIdTable[] = {
     SPECIES_ALAKAZAM,
+    SPECIES_ALAKAZAM_MEGA_REDUX,
+    SPECIES_ALAKAZAM_REDUX,
     SPECIES_ALAKAZAM_MEGA,
     FORM_SPECIES_END,
 };

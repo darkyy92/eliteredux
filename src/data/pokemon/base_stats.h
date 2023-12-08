@@ -29778,7 +29778,7 @@ const struct BaseStats gBaseStats[] =
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
-
+    
 [SPECIES_HONEDGE_REDUX] =
     {
     .baseHP        = 45,
@@ -29882,7 +29882,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-    [SPECIES_ABRA_REDUX] =
+[SPECIES_ABRA_REDUX] =
     {
     .baseHP        = 25,
     .baseAttack    = 20,
@@ -29908,7 +29908,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-    [SPECIES_KADABRA_REDUX] =
+[SPECIES_KADABRA_REDUX] =
     {
     .baseHP        = 40,
     .baseAttack    = 35,
@@ -29932,6 +29932,58 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_PSYCHIC_MIND, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = TRUE,
+    },
+
+[SPECIES_ALAKAZAM_REDUX] =
+    {
+    .baseHP        = 55,
+    .baseAttack    = 50,
+    .baseDefense   = 45,
+    .baseSpeed     = 120,
+    .baseSpAttack  = 135,
+    .baseSpDefense = 95,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_PSYCHIC,
+    .catchRate = 255,
+    .expYield = 225,
+    .evYield_SpAttack  = 3,
+    .item2 = ITEM_TWISTED_SPOON,
+    .genderRatio = PERCENT_FEMALE(25),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_SLOW,
+    .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
+    .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
+    .abilities = {ABILITY_MYSTIC_POWER, ABILITY_TRACE, ABILITY_EXPLOIT_WEAKNESS},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
+[SPECIES_ALAKAZAM_MEGA_REDUX] =
+    {
+    .baseHP        = 55,
+    .baseAttack    = 50,
+    .baseDefense   = 65,
+    .baseSpeed     = 150,
+    .baseSpAttack  = 175,
+    .baseSpDefense = 105,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_PSYCHIC,
+    .catchRate = 255,
+    .expYield = 270,
+    .evYield_SpAttack  = 3,
+    .item2 = ITEM_TWISTED_SPOON,
+    .genderRatio = PERCENT_FEMALE(25),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_SLOW,
+    .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
+    .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
+    .abilities = {ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
     },
 
 [SPECIES_RIBOMBEE_MEGA] =

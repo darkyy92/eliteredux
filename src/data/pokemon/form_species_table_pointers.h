@@ -17,7 +17,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DUGTRIO] = sDugtrioFormSpeciesIdTable,
     [SPECIES_MEOWTH] = sMeowthFormSpeciesIdTable,
     [SPECIES_PERSIAN] = sPersianFormSpeciesIdTable,
-    [SPECIES_ALAKAZAM] = sAlakazamFormSpeciesIdTable,
+    [SPECIES_ALAKAZAM_REDUX] = sAlakazamFormSpeciesIdTable,
     [SPECIES_GEODUDE] = sGeodudeFormSpeciesIdTable,
     [SPECIES_GRAVELER] = sGravelerFormSpeciesIdTable,
     [SPECIES_GOLEM] = sGolemFormSpeciesIdTable,
@@ -599,5 +599,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ABRA_REDUX] = sAbraFormSpeciesIdTable,
 
     [SPECIES_KADABRA_REDUX] = sKadabraFormSpeciesIdTable,
+
+    [SPECIES_ALAKAZAM_MEGA_REDUX] = sAlakazamFormSpeciesIdTable,
 
 };
