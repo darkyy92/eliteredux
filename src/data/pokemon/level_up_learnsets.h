@@ -20253,11 +20253,6 @@ static const struct LevelUpMove sCalyrexLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sAbra_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sHonedge_ReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_SWORDS_DANCE),
@@ -20322,6 +20317,30 @@ static const struct LevelUpMove sAegislash_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE(61, MOVE_PSYCHO_CUT), // new
     LEVEL_UP_MOVE(65, MOVE_EXCALIBUR), // new
     LEVEL_UP_MOVE(69, MOVE_STEEL_BEAM), // new
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sAbra_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sKadabra_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_KINESIS),
+    LEVEL_UP_MOVE( 0, MOVE_CONFUSION),
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
+    LEVEL_UP_MOVE(18, MOVE_DISABLE),
+    LEVEL_UP_MOVE(21, MOVE_PSYBEAM),
+    LEVEL_UP_MOVE(23, MOVE_MIRACLE_EYE),
+    LEVEL_UP_MOVE(26, MOVE_REFLECT),
+    LEVEL_UP_MOVE(28, MOVE_PSYCHO_CUT),
+    LEVEL_UP_MOVE(31, MOVE_RECOVER),
+    LEVEL_UP_MOVE(33, MOVE_TELEKINESIS),
+    LEVEL_UP_MOVE(36, MOVE_ALLY_SWITCH),
+    LEVEL_UP_MOVE(38, MOVE_PSYCHIC),
+    LEVEL_UP_MOVE(41, MOVE_ROLE_PLAY),
+    LEVEL_UP_MOVE(43, MOVE_FUTURE_SIGHT),
+    LEVEL_UP_MOVE(46, MOVE_TRICK),
     LEVEL_UP_END
 };
 

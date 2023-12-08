@@ -598,4 +598,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ABRA_REDUX] = sAbraFormSpeciesIdTable,
 
+    [SPECIES_KADABRA_REDUX] = sKadabraFormSpeciesIdTable,
+
 };

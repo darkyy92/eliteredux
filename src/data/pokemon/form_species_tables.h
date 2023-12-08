@@ -1188,3 +1188,8 @@ static const u16 sAbraFormSpeciesIdTable[] = {
     SPECIES_ABRA_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sKadabraFormSpeciesIdTable[] = {
+    SPECIES_KADABRA,
+    SPECIES_KADABRA_REDUX,
+    FORM_SPECIES_END,
+};
