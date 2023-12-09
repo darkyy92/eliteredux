@@ -8231,6 +8231,14 @@ BattleScript_AirBlowerActivated::
 	waitmessage B_WAIT_TIME_LONG
 	sethword sABILITY_OVERWRITE, 0
 	end3
+
+BattleScript_ElectromorphosisActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
+	waitmessage B_WAIT_TIME_LONG
+	sethword sABILITY_OVERWRITE, 0
+	return
 	
 BattleScript_NorthWindActivated::
 	copybyte gBattlerAbility, gBattlerAttacker

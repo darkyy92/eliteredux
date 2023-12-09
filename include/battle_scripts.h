@@ -442,6 +442,7 @@ extern const u8 BattleScript_AttackerBecameTheType[];
 extern const u8 BattleScript_SelfSufficientActivates[];
 extern const u8 BattleScript_BattlerEnvelopedItselfInAVeil[];
 extern const u8 BattleScript_AirBlowerActivated[];
+extern const u8 BattleScript_ElectromorphosisActivates[];
 extern const u8 BattleScript_AttackerRoughSkinActivates[];
 extern const u8 BattleScript_ScareActivates[];
 extern const u8 BattleScript_ScareActivates[];

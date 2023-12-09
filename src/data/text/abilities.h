@@ -893,6 +893,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_LUMBERJACK] = _("Lumberjack"),
         [ABILITY_WELL_BAKED_BODY] = _("Well Baked Body"),
         [ABILITY_FURNACE] = _("Furnace"),
+        [ABILITY_ELECTROMORPHOSIS] = _("Electromorphosis"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1345,4 +1346,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_LUMBERJACK] = sLumberjackDescription,
         [ABILITY_WELL_BAKED_BODY] = sWellBakedBodyDescription,
         [ABILITY_FURNACE] = sFurnaceDescription,
+        [ABILITY_ELECTROMORPHOSIS] = sAbilityTestDescription, //sElectromorphosisDescription,
 };

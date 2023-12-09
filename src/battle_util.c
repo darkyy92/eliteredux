@@ -7922,9 +7922,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_EFFECT_SPORE:
-            goto EFFECT_SPORE;
-            break;
         case ABILITY_POISON_POINT:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -8193,7 +8190,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-
         // Innates
         // Loose Rocks
         if (BATTLER_HAS_ABILITY(battler, ABILITY_LOOSE_ROCKS)) {
@@ -8205,6 +8201,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)) {
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
+                effect++;
+            }
+        }
+
+        //Electromorphosis
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_ELECTROMORPHOSIS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0 
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && !(gStatuses3[gBattlerTarget] & STATUS3_CHARGED_UP)){
+                gStatuses3[gBattlerTarget] |= STATUS3_CHARGED_UP; 
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ElectromorphosisActivates;
                 effect++;
             }
         }
@@ -8221,6 +8231,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
+                SKIP_ROUGH_SKIN:
                 gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
 				gLastUsedAbility = ABILITY_ROUGH_SKIN;
 
@@ -8438,7 +8449,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Effect Spore
-		if(BattlerHasInnate(battler, ABILITY_EFFECT_SPORE)){
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_EFFECT_SPORE)){
             EFFECT_SPORE:
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
