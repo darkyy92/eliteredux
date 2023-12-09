@@ -898,6 +898,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
+[SPECIES_BEEDRILL_REDUX] = _("Beedrill"),
 [SPECIES_KAKUNA_REDUX] = _("Kakuna"),
 [SPECIES_WEEDLE_REDUX] = _("Weedle"),
 [SPECIES_ALAKAZAM_MEGA_REDUX] = _("Alakazam"),

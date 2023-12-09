@@ -29829,6 +29829,33 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
     
+[SPECIES_BEEDRILL_REDUX] =
+    {
+    .baseHP        = 65,
+    .baseAttack    = 110,
+    .baseDefense   = 40,
+    .baseSpeed     = 135,
+    .baseSpAttack  = 45,
+    .baseSpDefense = 80,
+    .type1 = TYPE_BUG,
+    .type2 = TYPE_POISON,
+    .catchRate = 255,
+    .expYield = 178,
+    .evYield_Attack    = 2,
+    .evYield_SpDefense = 1,
+    .item2 = ITEM_POISON_BARB,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_BUG,
+    .eggGroup2 = EGG_GROUP_BUG,
+    .abilities = {ABILITY_POISON_TOUCH, ABILITY_SNIPER, ABILITY_SPEED_FORCE},
+    .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_MERCILESS, ABILITY_LEVITATE},
+    .bodyColor = BODY_COLOR_YELLOW,
+    .noFlip = FALSE,
+    },
+    
 [SPECIES_HONEDGE_REDUX] =
     {
     .baseHP        = 45,
