@@ -604,4 +604,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_WEEDLE_REDUX] = sWeedleFormSpeciesIdTable,
 
+    [SPECIES_KAKUNA_REDUX] = sKakunaFormSpeciesIdTable,
+
 };

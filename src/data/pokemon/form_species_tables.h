@@ -1200,3 +1200,8 @@ static const u16 sWeedleFormSpeciesIdTable[] = {
     SPECIES_WEEDLE_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sKakunaFormSpeciesIdTable[] = {
+    SPECIES_KAKUNA,
+    SPECIES_KAKUNA_REDUX,
+    FORM_SPECIES_END,
+};

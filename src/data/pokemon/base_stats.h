@@ -29803,6 +29803,31 @@ const struct BaseStats gBaseStats[] =
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
+
+[SPECIES_KAKUNA_REDUX] =
+    {
+    .baseHP        = 45,
+    .baseAttack    = 25,
+    .baseDefense   = 50,
+    .baseSpeed     = 35,
+    .baseSpAttack  = 25,
+    .baseSpDefense = 25,
+    .type1 = TYPE_BUG,
+    .type2 = TYPE_POISON,
+    .catchRate = 120,
+    .expYield = 72,
+    .evYield_Defense   = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_BUG,
+    .eggGroup2 = EGG_GROUP_BUG,
+    .abilities = {ABILITY_SHED_SKIN, ABILITY_SHELL_ARMOR, ABILITY_NONE},
+    .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_OVERCOAT},
+    .bodyColor = BODY_COLOR_YELLOW,
+    .noFlip = FALSE,
+    },
     
 [SPECIES_HONEDGE_REDUX] =
     {

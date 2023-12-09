@@ -20260,6 +20260,12 @@ static const struct LevelUpMove sWeedle_ReduxLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sKakuna_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_HARDEN),
+    LEVEL_UP_MOVE( 1, MOVE_HARDEN),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sHonedge_ReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_SWORDS_DANCE),
