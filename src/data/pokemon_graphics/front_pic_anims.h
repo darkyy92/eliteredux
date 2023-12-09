@@ -9973,6 +9973,91 @@ static const union AnimCmd sAnim_GHOLDENGO_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_WO_CHIEN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CHIEN_PAO_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TING_LU_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_CHI_YU_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROARING_MOON_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_IRON_VALIANT_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_KORAIDON_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MIRAIDON_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_WALKING_WAKE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_IRON_LEAVES_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_DIPPLIN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_POLTCHAGEIST_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SINISTCHA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_OKIDOGI_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MUNKIDORI_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_FEZANDIPITI_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_OGERPON_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -16134,6 +16219,91 @@ static const union AnimCmd *const sAnims_GHOLDENGO[] ={
     sAnim_GHOLDENGO_1,
 };
 
+static const union AnimCmd *const sAnims_WO_CHIEN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_WO_CHIEN_1,
+};
+
+static const union AnimCmd *const sAnims_CHIEN_PAO[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CHIEN_PAO_1,
+};
+
+static const union AnimCmd *const sAnims_TING_LU[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TING_LU_1,
+};
+
+static const union AnimCmd *const sAnims_CHI_YU[] ={
+    sAnim_GeneralFrame0,
+    sAnim_CHI_YU_1,
+};
+
+static const union AnimCmd *const sAnims_ROARING_MOON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROARING_MOON_1,
+};
+
+static const union AnimCmd *const sAnims_IRON_VALIANT[] ={
+    sAnim_GeneralFrame0,
+    sAnim_IRON_VALIANT_1,
+};
+
+static const union AnimCmd *const sAnims_KORAIDON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_KORAIDON_1,
+};
+
+static const union AnimCmd *const sAnims_MIRAIDON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MIRAIDON_1,
+};
+
+static const union AnimCmd *const sAnims_WALKING_WAKE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_WALKING_WAKE_1,
+};
+
+static const union AnimCmd *const sAnims_IRON_LEAVES[] ={
+    sAnim_GeneralFrame0,
+    sAnim_IRON_LEAVES_1,
+};
+
+static const union AnimCmd *const sAnims_DIPPLIN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DIPPLIN_1,
+};
+
+static const union AnimCmd *const sAnims_POLTCHAGEIST[] ={
+    sAnim_GeneralFrame0,
+    sAnim_POLTCHAGEIST_1,
+};
+
+static const union AnimCmd *const sAnims_SINISTCHA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SINISTCHA_1,
+};
+
+static const union AnimCmd *const sAnims_OKIDOGI[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OKIDOGI_1,
+};
+
+static const union AnimCmd *const sAnims_MUNKIDORI[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MUNKIDORI_1,
+};
+
+static const union AnimCmd *const sAnims_FEZANDIPITI[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FEZANDIPITI_1,
+};
+
+static const union AnimCmd *const sAnims_OGERPON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OGERPON_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -18124,22 +18294,39 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(GROUDON_PRIMAL),
     ANIM_CMD(GHOLDENGO),
     ANIM_CMD(RATTATA_ALOLAN),
+    ANIM_CMD(WO_CHIEN),
     ANIM_CMD(RATICATE_ALOLAN),
+    ANIM_CMD(CHIEN_PAO),
     ANIM_CMD(RAICHU_ALOLAN),
+    ANIM_CMD(TING_LU),
     ANIM_CMD(SANDSHREW_ALOLAN),
+    ANIM_CMD(CHI_YU),
     ANIM_CMD(SANDSLASH_ALOLAN),
+    ANIM_CMD(ROARING_MOON),
     ANIM_CMD(VULPIX_ALOLAN),
+    ANIM_CMD(IRON_VALIANT),
     ANIM_CMD(NINETALES_ALOLAN),
+    ANIM_CMD(KORAIDON),
     ANIM_CMD(DIGLETT_ALOLAN),
+    ANIM_CMD(MIRAIDON),
     ANIM_CMD(DUGTRIO_ALOLAN),
+    ANIM_CMD(WALKING_WAKE),
     ANIM_CMD(MEOWTH_ALOLAN),
+    ANIM_CMD(IRON_LEAVES),
     ANIM_CMD(PERSIAN_ALOLAN),
+    ANIM_CMD(DIPPLIN),
     ANIM_CMD(GEODUDE_ALOLAN),
+    ANIM_CMD(POLTCHAGEIST),
     ANIM_CMD(GRAVELER_ALOLAN),
+    ANIM_CMD(SINISTCHA),
     ANIM_CMD(GOLEM_ALOLAN),
+    ANIM_CMD(OKIDOGI),
     ANIM_CMD(GRIMER_ALOLAN),
+    ANIM_CMD(MUNKIDORI),
     ANIM_CMD(MUK_ALOLAN),
+    ANIM_CMD(FEZANDIPITI),
     ANIM_CMD(EXEGGUTOR_ALOLAN),
+    ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
     ANIM_CMD(MEOWTH_GALARIAN),
     ANIM_CMD(PONYTA_GALARIAN),

@@ -5007,6 +5007,91 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_WO_CHIEN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_CHIEN_PAO] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_TING_LU] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_CHI_YU] =
+    {
+        .size = 0,
+        .y_offset = 10
+    },
+    [SPECIES_ROARING_MOON] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_IRON_VALIANT] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_KORAIDON] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_MIRAIDON] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_WALKING_WAKE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_IRON_LEAVES] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DIPPLIN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_POLTCHAGEIST] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SINISTCHA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_OKIDOGI] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_MUNKIDORI] =
+    {
+        .size = 0,
+        .y_offset =  5
+    },
+    [SPECIES_FEZANDIPITI] =
+    {
+        .size = 0,
+        .y_offset =  2
+    },
+    [SPECIES_OGERPON] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_VENUSAUR_MEGA] =
     {
         .size = 0,

@@ -153,6 +153,40 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_OGERPON] = {
+	},
+	[SPECIES_FEZANDIPITI] = {
+	},
+	[SPECIES_MUNKIDORI] = {
+	},
+	[SPECIES_OKIDOGI] = {
+	},
+	[SPECIES_SINISTCHA] = {
+	},
+	[SPECIES_POLTCHAGEIST] = {
+	},
+	[SPECIES_DIPPLIN] = {
+	},
+	[SPECIES_IRON_LEAVES] = {
+	},
+	[SPECIES_WALKING_WAKE] = {
+	},
+	[SPECIES_MIRAIDON] = {
+	},
+	[SPECIES_KORAIDON] = {
+	},
+	[SPECIES_IRON_VALIANT] = {
+	},
+	[SPECIES_ROARING_MOON] = {
+	},
+	[SPECIES_CHI_YU] = {
+	},
+	[SPECIES_TING_LU] = {
+	},
+	[SPECIES_CHIEN_PAO] = {
+	},
+	[SPECIES_WO_CHIEN] = {
+	},
 	[SPECIES_GHOLDENGO] = {
 	},
 	[SPECIES_GIMMIGHOUL] = {

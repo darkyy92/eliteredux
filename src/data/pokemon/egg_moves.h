@@ -4907,5 +4907,11 @@ const u16 gEggMoves[] = {
         MOVE_FREEZE_DRY,
         MOVE_ICICLE_SPEAR),
 
+    egg_moves(DIPPLIN,
+        MOVE_DEFENSE_CURL,
+        MOVE_RECYCLE,
+        MOVE_ROLLOUT,
+        MOVE_SUCKER_PUNCH),
+
     EGG_MOVES_TERMINATOR
 };

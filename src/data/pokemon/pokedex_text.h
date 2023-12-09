@@ -5945,6 +5945,100 @@ const u8 gGholdengoPokedexText[] = _(
     "its enemies by firing coin after coin\n"
     "at them in quick succession.");
 
+const u8 gWo_ChienPokedexText[] = _(
+    "The grudge of a person punished\n"
+    "for writing the king's evil deeds upon\n"
+    "wooden tablets has clad itself in\n"
+    "dead leaves to become a Pokémon.");
+
+const u8 gChien_PaoPokedexText[] = _(
+    "This Pokémon can control 100 tons\n"
+    "of fallen snow. It plays around\n"
+    "innocently by leaping in and out of\n"
+    "avalanches it has caused.");
+
+const u8 gTing_LuPokedexText[] = _(
+    "It slowly brings its exceedingly\n"
+    "heavy head down upon the ground,\n"
+    "splitting the earth open with huge\n"
+    "fissures that run over 160 feet deep.");
+
+const u8 gChi_YuPokedexText[] = _(
+    "It controls flames burning at over\n"
+    "5,400 degrees Fahrenheit. It\n"
+    "casually swims through the sea of lava it\n"
+    "creates by melting rock and sand.");
+
+const u8 gRoaring_MoonPokedexText[] = _(
+    "According to an article in a\n"
+    "dubious magazine, this Pokémon has some\n"
+    "connection to Mega Evolution that\n"
+    "occurs in Hoenn.");
+
+const u8 gIron_ValiantPokedexText[] = _(
+    "It has some similarities to a mad\n"
+    "scientist's invention covered in a\n"
+    "paranormal magazine.");
+
+const u8 gKoraidonPokedexText[] = _(
+    "This Pokémon resembles Cyclizar,\n"
+    "but it is far burlier and more\n"
+    "ferocious. Nothing is known about its\n"
+    "ecology or other features.");
+
+const u8 gMiraidonPokedexText[] = _(
+    "This seems to be the Iron Serpent\n"
+    "mentioned in an Violet Book. The\n"
+    "Iron Serpent is said to have turned the\n"
+    "land to ash with its lightning.");
+
+const u8 gWalking_WakePokedexText[] = _(
+    "Ecology under research.");
+
+const u8 gIron_LeavesPokedexText[] = _(
+    "Ecology under analysis.");
+
+const u8 gDipplinPokedexText[] = _(
+    "Dipplin is two creatures in one Pokémon.\n"
+    "Its evolution was triggered by a special\n"
+    "apple grown only in one place.");
+
+const u8 gPoltchageistPokedexText[] = _(
+    "Supposedly, the regrets of a tea\n"
+    "ceremony master who died before\n"
+    "perfecting his craft lingered in some\n"
+    "matcha and became a Pokémon.");
+
+const u8 gSinistchaPokedexText[] = _(
+    "It pretends to be tea, trying to fool\n"
+    "people into drinking it so it can\n"
+    "drain their life-force. Its ruse is\n"
+    "generally unsuccessful.");
+
+const u8 gOkidogiPokedexText[] = _(
+    "After all its muscles were stimulated\n"
+    "by the toxic chain around its neck,\n"
+    "Okidogi transformed and gained\n"
+    "a powerful physique.");
+
+const u8 gMunkidoriPokedexText[] = _(
+    "The chain is made from toxins that\n"
+    "enhance capabilities. It stimulated\n"
+    "Munkidori's brain and caused the\n"
+    "Pokémon's psychic powers to bloom.");
+
+const u8 gFezandipitiPokedexText[] = _(
+    "Fezandipiti owes its beautiful looks and\n"
+    "lovely voice to the toxic stimulants\n"
+    "emanating from the chain wrapped around\n"
+    "its body.");
+
+const u8 gOgerponPokedexText[] = _(
+    "This Pokémon's type changes based on\n"
+    "which mask it's wearing. It confounds\n"
+    "its enemies with nimble movements\n"
+    "and kicks.");
+
 const u8 gCrocalorPokedexText[] = _(
    "The combination of Crocalor's fire\n"
     "energy and overflowing vitality has\n"
