@@ -477,7 +477,9 @@
 #define ABILITY_FURNACE          (ABILITIES_COUNT_LATEST_GEN + 179) // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed
 #define ABILITY_ELECTROMORPHOSIS (ABILITIES_COUNT_LATEST_GEN + 180) // The Pokémon becomes charged when it takes damage, boosting the power of the next Electric-type move the Pokémon uses.
 #define ABILITY_ROCKY_PAYLOAD    (ABILITIES_COUNT_LATEST_GEN + 181) // Powers up Rock-type moves.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_ROCKY_PAYLOAD + 1)
+#define ABILITY_EARTH_EATER      (ABILITIES_COUNT_LATEST_GEN + 182) // If hit by a Ground-type move, the Pokémon has its HP restored instead of taking damage.
+#define ABILITY_LINGERING_AROMA  (ABILITIES_COUNT_LATEST_GEN + 183) // Contact with the Pokémon changes the attacker's Ability to Lingering Aroma.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_LINGERING_AROMA + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
