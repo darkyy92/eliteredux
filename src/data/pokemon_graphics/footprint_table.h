@@ -730,6 +730,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_KADABRA_REDUX] = gMonFootprint_Kadabra_Redux,
     [SPECIES_ALAKAZAM_REDUX] = gMonFootprint_Alakazam_Redux,
     [SPECIES_ALAKAZAM_MEGA_REDUX] = gMonFootprint_Alakazam_Redux_Mega,
+    [SPECIES_WEEDLE_REDUX] = gMonFootprint_Weedle_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

@@ -29778,6 +29778,31 @@ const struct BaseStats gBaseStats[] =
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
+
+[SPECIES_WEEDLE_REDUX] =
+    {
+    .baseHP        = 40,
+    .baseAttack    = 35,
+    .baseDefense   = 30,
+    .baseSpeed     = 50,
+    .baseSpAttack  = 20,
+    .baseSpDefense = 20,
+    .type1 = TYPE_BUG,
+    .type2 = TYPE_POISON,
+    .catchRate = 255,
+    .expYield = 39,
+    .evYield_Speed     = 1,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_BUG,
+    .eggGroup2 = EGG_GROUP_BUG,
+    .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_NONE},
+    .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_NONE},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
     
 [SPECIES_HONEDGE_REDUX] =
     {

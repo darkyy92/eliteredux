@@ -602,4 +602,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ALAKAZAM_MEGA_REDUX] = sAlakazamFormSpeciesIdTable,
 
+    [SPECIES_WEEDLE_REDUX] = sWeedleFormSpeciesIdTable,
+
 };

@@ -29889,6 +29889,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
+    [SPECIES_WEEDLE_REDUX]   = TMHM_LEARNSET (0, 0),
     [SPECIES_ABRA_REDUX]   = TMHM_LEARNSET (TMHM1(TM01_FOCUS_PUNCH)
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM08_BULK_UP)
