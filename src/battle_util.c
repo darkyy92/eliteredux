@@ -8231,7 +8231,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                SKIP_ROUGH_SKIN:
                 gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
 				gLastUsedAbility = ABILITY_ROUGH_SKIN;
 
