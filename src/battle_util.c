@@ -14461,6 +14461,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
+	// Rocky Payload
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ROCKY_PAYLOAD)){
+		if (moveType == TYPE_ROCK)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+	}
 	// Vengeance
 	if(BattlerHasInnate(battlerAtk, ABILITY_VENGEANCE)){
 		if (moveType == TYPE_GHOST)
