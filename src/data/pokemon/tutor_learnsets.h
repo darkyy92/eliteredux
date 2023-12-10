@@ -153,6 +153,15 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_BEEDRILL_REDUX] = {
+		//MOVE_SPLASH,
+	},
+	[SPECIES_KAKUNA_REDUX] = {
+		//MOVE_SPLASH,
+	},
+	[SPECIES_WEEDLE_REDUX] = {
+		//MOVE_SPLASH,
+	},
 	[SPECIES_ALAKAZAM_REDUX] = {
 		//MOVE_SPLASH,
 	},

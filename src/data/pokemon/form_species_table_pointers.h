@@ -3,7 +3,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_VENUSAUR] = sVenusaurFormSpeciesIdTable,
     [SPECIES_CHARIZARD] = sCharizardFormSpeciesIdTable,
     [SPECIES_BLASTOISE] = sBlastoiseFormSpeciesIdTable,
-    [SPECIES_BEEDRILL] = sBeedrillFormSpeciesIdTable,
+    [SPECIES_BEEDRILL_REDUX] = sBeedrillFormSpeciesIdTable,
     [SPECIES_PIDGEOT] = sPidgeotFormSpeciesIdTable,
     [SPECIES_RATTATA] = sRattataFormSpeciesIdTable,
     [SPECIES_RATICATE] = sRaticateFormSpeciesIdTable,
@@ -601,5 +601,9 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_KADABRA_REDUX] = sKadabraFormSpeciesIdTable,
 
     [SPECIES_ALAKAZAM_MEGA_REDUX] = sAlakazamFormSpeciesIdTable,
+
+    [SPECIES_WEEDLE_REDUX] = sWeedleFormSpeciesIdTable,
+
+    [SPECIES_KAKUNA_REDUX] = sKakunaFormSpeciesIdTable,
 
 };

@@ -7389,6 +7389,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 1;
 				}
 			}
+
+            // Earth Eater
+			if(BATTLER_HAS_ABILITY(battler, ABILITY_EARTH_EATER)){
+				if (move != MOVE_NONE && moveType == TYPE_GROUND){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EARTH_EATER;
+                    effect = 1;
+				}
+			}
 			
 			// Water Absorb
 			if(BattlerHasInnate(battler, ABILITY_WATER_ABSORB)){
@@ -7745,6 +7753,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 switch (gBattleMons[gBattlerAttacker].ability)
                 {
+                case ABILITY_LINGERING_AROMA:
                 case ABILITY_MUMMY:
                 case ABILITY_BATTLE_BOND:
                 case ABILITY_COMATOSE:
@@ -7758,6 +7767,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_MummyActivates;
+                    effect++;
+                    break;
+                }
+            }
+            break;
+        case ABILITY_LINGERING_AROMA:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && IsBattlerAlive(gBattlerAttacker)
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                switch (gBattleMons[gBattlerAttacker].ability)
+                {
+                case ABILITY_LINGERING_AROMA:
+                case ABILITY_MUMMY:
+                case ABILITY_BATTLE_BOND:
+                case ABILITY_COMATOSE:
+                case ABILITY_DISGUISE:
+                case ABILITY_MULTITYPE:
+                case ABILITY_POWER_CONSTRUCT:
+                case ABILITY_RKS_SYSTEM:
+                case ABILITY_SCHOOLING:
+                case ABILITY_SHIELDS_DOWN:
+                case ABILITY_STANCE_CHANGE:
+                    break;
+                default:
+                    gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MummyActivates;
                     effect++;

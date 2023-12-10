@@ -1414,6 +1414,11 @@
 #define SPECIES_ALAKAZAM_REDUX              FORMS_START + 372
 #define SPECIES_ALAKAZAM_MEGA_REDUX         FORMS_START + 373
 
+#define SPECIES_WEEDLE_REDUX                FORMS_START + 374
+#define SPECIES_KAKUNA_REDUX                FORMS_START + 375
+#define SPECIES_BEEDRILL_REDUX              FORMS_START + 376
+#define SPECIES_BEEDRILL_MEGA_REDUX         FORMS_START + 377
+
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
 #define SPECIES_EGG LAST_REDUX_FORM + 1

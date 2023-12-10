@@ -20253,6 +20253,39 @@ static const struct LevelUpMove sCalyrexLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sWeedle_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_POISON_STING),
+    LEVEL_UP_MOVE( 1, MOVE_STRING_SHOT),
+    LEVEL_UP_MOVE( 6, MOVE_BUG_BITE),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sKakuna_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_HARDEN),
+    LEVEL_UP_MOVE( 1, MOVE_HARDEN),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sBeedrill_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_TWINEEDLE),
+    LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_FURY_ATTACK),
+    LEVEL_UP_MOVE(11, MOVE_FURY_ATTACK),
+    LEVEL_UP_MOVE(14, MOVE_RAGE),
+    LEVEL_UP_MOVE(17, MOVE_PURSUIT),
+    LEVEL_UP_MOVE(20, MOVE_TOXIC_THREAD),
+    LEVEL_UP_MOVE(23, MOVE_PIN_MISSILE),
+    LEVEL_UP_MOVE(26, MOVE_ASSURANCE),
+    LEVEL_UP_MOVE(29, MOVE_TOXIC_SPIKES),
+    LEVEL_UP_MOVE(32, MOVE_DRILL_PECK),
+    LEVEL_UP_MOVE(35, MOVE_POISON_JAB),
+    LEVEL_UP_MOVE(38, MOVE_AGILITY),
+    LEVEL_UP_MOVE(41, MOVE_ENDEAVOR),
+    LEVEL_UP_MOVE(44, MOVE_FELL_STINGER),
+	LEVEL_UP_MOVE(50, MOVE_MEGAHORN),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sHonedge_ReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_SWORDS_DANCE),

@@ -21,6 +21,7 @@ static const u16 sBlastoiseFormSpeciesIdTable[] = {
 
 static const u16 sBeedrillFormSpeciesIdTable[] = {
     SPECIES_BEEDRILL,
+    SPECIES_BEEDRILL_REDUX,
     SPECIES_BEEDRILL_MEGA,
     FORM_SPECIES_END,
 };
@@ -1193,5 +1194,15 @@ static const u16 sAbraFormSpeciesIdTable[] = {
 static const u16 sKadabraFormSpeciesIdTable[] = {
     SPECIES_KADABRA,
     SPECIES_KADABRA_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sWeedleFormSpeciesIdTable[] = {
+    SPECIES_WEEDLE,
+    SPECIES_WEEDLE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sKakunaFormSpeciesIdTable[] = {
+    SPECIES_KAKUNA,
+    SPECIES_KAKUNA_REDUX,
     FORM_SPECIES_END,
 };
