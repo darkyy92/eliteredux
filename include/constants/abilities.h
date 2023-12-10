@@ -477,7 +477,8 @@
 #define ABILITY_FURNACE          (ABILITIES_COUNT_LATEST_GEN + 179) // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed
 #define ABILITY_ELECTROMORPHOSIS (ABILITIES_COUNT_LATEST_GEN + 180) // The Pokémon becomes charged when it takes damage, boosting the power of the next Electric-type move the Pokémon uses.
 #define ABILITY_ROCKY_PAYLOAD    (ABILITIES_COUNT_LATEST_GEN + 181) // Powers up Rock-type moves.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_ROCKY_PAYLOAD + 1)
+#define ABILITY_FAIRY_TALE       (ABILITIES_COUNT_LATEST_GEN + 182) // Adds Fairy type.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_FAIRY_TALE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

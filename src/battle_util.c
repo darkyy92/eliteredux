@@ -5098,6 +5098,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+        case ABILITY_FAIRY_TALE:
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_FAIRY))
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_FAIRY_TALE;
+				gLastUsedAbility = ABILITY_FAIRY_TALE;
+				gBattleMons[battler].type3 = TYPE_FAIRY;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;    
 		case ABILITY_ICE_AGE:
             if (!gSpecialStatuses[battler].switchInAbilityDone && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
@@ -6189,6 +6203,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_GROUNDED)] = TRUE;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GROUNDED;
                     gBattleMons[battler].type3 = TYPE_GROUND;
+                    PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+                    effect++;
+                }
+            }
+
+            // Fairy Tale
+            if(BattlerHasInnate(battler, ABILITY_FAIRY_TALE)){
+                if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FAIRY_TALE)] && 
+                    !IS_BATTLER_OF_TYPE(battler, TYPE_FAIRY))
+                {
+                    gBattlerAttacker = battler;
+                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FAIRY_TALE)] = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FAIRY_TALE;
+                    gBattleMons[battler].type3 = TYPE_FAIRY;
                     PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
                     effect++;
