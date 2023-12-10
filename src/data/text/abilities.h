@@ -441,9 +441,9 @@ static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
 static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
 static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
 static const u8 sRockyPayloadDescription[] = _("Powers up Rock-type moves");
+static const u8 sFairyTaleDescription[] = _("Adds fairy type");
 static const u8 sEarthEaterDescription[] = _("Changes ground into HP.");
 static const u8 sLingeringAromaDescription[] = _("Spreads with contact.");
-
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -898,6 +898,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_FURNACE] = _("Furnace"),
         [ABILITY_ELECTROMORPHOSIS] = _("Electromorphosis"),
         [ABILITY_ROCKY_PAYLOAD] = _("Rocky Payload"),
+        [ABILITY_FAIRY_TALE] = _("Fairy Tale"),
         [ABILITY_EARTH_EATER] = _("Earth Eater"),
         [ABILITY_LINGERING_AROMA] = _("Lingering Aroma"),
 };
@@ -1354,6 +1355,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_FURNACE] = sFurnaceDescription,
         [ABILITY_ELECTROMORPHOSIS] = sAbilityTestDescription, //sElectromorphosisDescription,
         [ABILITY_ROCKY_PAYLOAD] = sRockyPayloadDescription,
+        [ABILITY_FAIRY_TALE] = sFairyTaleDescription,
         [ABILITY_EARTH_EATER] = sEarthEaterDescription,
         [ABILITY_LINGERING_AROMA] = sLingeringAromaDescription,
 };
