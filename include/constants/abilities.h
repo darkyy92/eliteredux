@@ -479,7 +479,8 @@
 #define ABILITY_ROCKY_PAYLOAD    (ABILITIES_COUNT_LATEST_GEN + 181) // Powers up Rock-type moves.
 #define ABILITY_EARTH_EATER      (ABILITIES_COUNT_LATEST_GEN + 182) // If hit by a Ground-type move, the Pokémon has its HP restored instead of taking damage.
 #define ABILITY_LINGERING_AROMA  (ABILITIES_COUNT_LATEST_GEN + 183) // Contact with the Pokémon changes the attacker's Ability to Lingering Aroma.
-#define ABILITY_ARCHMAGE         (ABILITIES_COUNT_LATEST_GEN + 184) // Every move has a 30% chance of a type related effect depending on their type
+#define ABILITY_FAIRY_TALE       (ABILITIES_COUNT_LATEST_GEN + 184) // Adds Fairy type.
+#define ABILITY_ARCHMAGE         (ABILITIES_COUNT_LATEST_GEN + 185) // Every move has a 30% chance of a type related effect depending on their type
 #define ABILITIES_COUNT_CUSTOM   (ABILITY_ARCHMAGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
