@@ -3884,6 +3884,12 @@ static void Cmd_seteffectwithchance(void)
              && moveEffect == EFFECT_BURN_HIT)
         percentChance = percentChance * 5;
 
+    //Cryomancy boost
+    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_CRYOMANCY || BattlerHasInnate(gBattlerAttacker, ABILITY_CRYOMANCY))
+             && moveType == TYPE_ICE
+             && moveEffect == EFFECT_FROSTBITE_HIT)
+        percentChance = percentChance * 5;
+
     //Shocking Jaws boost - not in use this way
     //if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_SHOCKING_JAWS || BattlerHasInnate(gBattlerAttacker, ABILITY_SHOCKING_JAWS))
              //&& (gBattleMoves[gCurrentMove].flags & FLAG_STRONG_JAW_BOOST)

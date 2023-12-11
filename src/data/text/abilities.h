@@ -445,10 +445,11 @@ static const u8 sFairyTaleDescription[] = _("Adds fairy type");
 static const u8 sEarthEaterDescription[] = _("Changes ground into HP.");
 static const u8 sLingeringAromaDescription[] = _("Spreads with contact.");
 static const u8 sArchmageDescription[] = _("Every move has a 30% chance\nof a type related effect depending\non their type.");
-
-static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 static const u8 sAbilityRagingMoth [] = _("Fire moves hits twice,\nboth hits at %75 power.");
 static const u8 sAbilityAdrenalineRush [] = _("KOs raise speed by +1.");
+static const u8 sAbilityCryomancy [] = _("Ice moves inflict frostbite\n5x more often.");
+static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
+
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     {
@@ -908,6 +909,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_RAGING_MOTH] = _("Raging Moth"),
         [ABILITY_ADRENALINE_RUSH] = _("Adrenaline Rush"),
         [ABILITY_ARCHMAGE] = _("Archmage"),
+        [ABILITY_CRYOMANCY] = _("Cryomancy"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1367,5 +1369,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_LINGERING_AROMA] = sLingeringAromaDescription,
         [ABILITY_RAGING_MOTH] = sAbilityRagingMoth,
         [ABILITY_ADRENALINE_RUSH] = sAbilityAdrenalineRush,
-        [ABILITY_ARCHMAGE] = sArchmageDescription, 
+        [ABILITY_ARCHMAGE] = sArchmageDescription,
+        [ABILITY_CRYOMANCY] = sAbilityCryomancy,
 };
