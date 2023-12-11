@@ -9573,6 +9573,217 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
+        //Archmage
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ARCHMAGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_ARCHMAGE; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && gBattleMoves[move].split != SPLIT_STATUS){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                //If the ability is an innate overwrite the popout
+                switch(gBattleMoves[move].type){
+                    case TYPE_POISON: // 30% chance to badly poison.
+                        if(CanBePoisoned(gBattlerAttacker, gBattlerTarget)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_ICE: // 30% chance to inflict frostbite.
+                        if(CanGetFrostbite(gBattlerTarget)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattleScripting.moveEffect = MOVE_EFFECT_FROSTBITE;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_WATER: // 30% chance to confuse.
+                        if(CanBeConfused(gBattlerTarget)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattleScripting.moveEffect = MOVE_EFFECT_CONFUSION;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_FIRE: // 30% chance to burn.
+                        if(CanBeBurned(gBattlerTarget)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_ELECTRIC: // 30% chance to set up Electric Terrain.
+                        if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Electric;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_PSYCHIC: // 30% chance to set up Psychic Terrain.
+                        if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Psychic;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_FAIRY: // 30% chance to set up Misty Terrain.
+                        if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Fairy;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_GRASS: // 30% chance to set up Grassy Terrain.
+                        if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Grass;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_NORMAL: // 30% chance to encore.
+                    if (gDisableStructs[gBattlerTarget].encoreTimer  == 0)
+                    {
+                        u8 i;
+                        for (i = 0; i < MAX_MON_MOVES; i++)
+                        {
+                            if (gBattleMons[gBattlerTarget].moves[i] == gLastMoves[gBattlerTarget])
+                                break;
+                        }
+
+                        if (gLastMoves[gBattlerTarget] == MOVE_STRUGGLE
+                            || gLastMoves[gBattlerTarget] == MOVE_ENCORE
+                            || gLastMoves[gBattlerTarget] == MOVE_MIRROR_MOVE)
+                        {
+                            i = 4;
+                        }
+
+                        if (gDisableStructs[gBattlerTarget].encoredMove == 0
+                            && i != 4 && gBattleMons[gBattlerTarget].pp[i] != 0)
+                        {
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            
+                            gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
+                            gDisableStructs[gBattlerTarget].encoredMovePos = i;
+                            gDisableStructs[gBattlerTarget].encoreTimer = 3;
+                            gDisableStructs[gBattlerTarget].encoreTimerStartValue = gDisableStructs[gBattlerTarget].encoreTimer;
+
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Normal;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    }
+                    break;
+                    case TYPE_ROCK: // 30% chance to set up Stealth Rock.
+                        if(!(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Rock;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    break;
+                    case TYPE_GHOST: // 30% chance to disable.
+                    if (gDisableStructs[gBattlerTarget].disabledMove == 0)
+                    {
+                        u8 i;
+                        for (i = 0; i < MAX_MON_MOVES; i++)
+                        {
+                            if (gBattleMons[gBattlerTarget].moves[i] == gLastMoves[gBattlerTarget])
+                                break;
+                        }
+
+                        if (gDisableStructs[gBattlerTarget].disabledMove == 0
+                            && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
+                        {
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            
+                            PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].moves[i])
+
+                            gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
+                            if (B_DISABLE_TURNS == GEN_3)
+                                gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 2;
+                            else if (B_DISABLE_TURNS == GEN_4)
+                                gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 4;
+                            else
+                                gDisableStructs[gBattlerTarget].disableTimer = 4;
+
+                            gDisableStructs[gBattlerTarget].disableTimerStartValue = gDisableStructs[gBattlerTarget].disableTimer; // used to save the random amount of turns?
+
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Ghost;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    }
+                    break;
+                    case TYPE_DARK: // 30% chance to inflict bleed.
+
+                    break;
+                    case TYPE_FIGHTING: // 30% chance to boost the users Special Attack by 1.
+                    {
+                        u8 stat = STAT_SPATK;
+                        if(CompareStat(battler, stat, MAX_STAT_STAGE, CMP_LESS_THAN)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                            gBattleMons[battler].statStages[stat]++;
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
+
+                            gBattleScripting.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1;
+
+                            gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Fighting;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
+                    }  
+                    break;
+                    case TYPE_FLYING: // 30% chance to raise the users Speed by 1.
+
+                    break;
+                    case TYPE_BUG: // 30% chance to set Sticky Web.
+
+                    break;
+                    case TYPE_DRAGON: // 30% chance to lower the opponents attacking stats by 1.
+
+                    break;
+                    case TYPE_GROUND: // 30% chance to trap.
+
+                    break;
+                    case TYPE_STEEL: // 30% chance to increase both of the users defenses.
+
+                    break;
+                }
+            }
+        }
+
 		//Solenoglyphs
 		if (BattlerHasInnate(battler, ABILITY_SOLENOGLYPHS)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)

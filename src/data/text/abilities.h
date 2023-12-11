@@ -443,6 +443,7 @@ static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or sw
 static const u8 sRockyPayloadDescription[] = _("Powers up Rock-type moves");
 static const u8 sEarthEaterDescription[] = _("Changes ground into HP.");
 static const u8 sLingeringAromaDescription[] = _("Spreads with contact.");
+static const u8 sArchmageDescription[] = _("Every move has a 30% chance\nof a type related effect depending\non their type.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -900,6 +901,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_ROCKY_PAYLOAD] = _("Rocky Payload"),
         [ABILITY_EARTH_EATER] = _("Earth Eater"),
         [ABILITY_LINGERING_AROMA] = _("Lingering Aroma"),
+        [ABILITY_ARCHMAGE] = _("Archmage"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1356,4 +1358,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_ROCKY_PAYLOAD] = sRockyPayloadDescription,
         [ABILITY_EARTH_EATER] = sEarthEaterDescription,
         [ABILITY_LINGERING_AROMA] = sLingeringAromaDescription,
+        [ABILITY_ARCHMAGE] = sArchmageDescription,
 };
