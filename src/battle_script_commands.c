@@ -1527,6 +1527,17 @@ static void Cmd_attackcanceler(void)
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
+    //Raging Moth
+    if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
+	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAGING_MOTH || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_MOTH)) // Includes Innate
+	&& (gBattleMoves[gCurrentMove].type == TYPE_FIRE)
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
     // Primal Maw
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
 	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)) // Includes Innate
@@ -8703,29 +8714,37 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_MOXIE:    // and chilling neigh + as one ice rider
-        if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE
-		 || BattlerHasInnate(gActiveBattler, ABILITY_MOXIE)
-         || GetBattlerAbility(gActiveBattler) == ABILITY_CHILLING_NEIGH
-         || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER)
-          && HasAttackerFaintedTarget()
-          && !NoAliveMonsForEitherParty()
-          && CompareStat(gBattlerAttacker, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-        {
-            gBattleMons[gBattlerAttacker].statStages[STAT_ATK]++;
-            SET_STATCHANGER(STAT_ATK, 1, FALSE);
-            PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
-            BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
-            if(GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE || 
-               BattlerHasInnate(gActiveBattler, ABILITY_MOXIE)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOXIE;
+        (
+            u8 stat = STAT_ATK;
+            if (GetBattlerAbility(gActiveBattler) == ABILITY_ADRENALINE_RUSH
+            || BattlerHasInnate(gActiveBattler, ABILITY_ADRENALINE_RUSH))
+               stat = STAT_SPEED;
+            if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE
+            || BattlerHasInnate(gActiveBattler, ABILITY_MOXIE)
+            || GetBattlerAbility(gActiveBattler) == ABILITY_ADRENALINE_RUSH
+            || BattlerHasInnate(gActiveBattler, ABILITY_ADRENALINE_RUSH)
+            || GetBattlerAbility(gActiveBattler) == ABILITY_CHILLING_NEIGH
+            || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER)
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty()
+            && CompareStat(gBattlerAttacker, stat, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                gBattleMons[gBattlerAttacker].statStages[stat]++;
+                SET_STATCHANGER(stat, 1, FALSE);
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
+                BattleScriptPush(gBattlescriptCurrInstr + 3);
+                gLastUsedAbility = GetBattlerAbility(gActiveBattler);
+                if(GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE || 
+                BattlerHasInnate(gActiveBattler, ABILITY_MOXIE)){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOXIE;
+                }
+                else if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHILLING_NEIGH;
+                }
+                gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
+                return;
             }
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHILLING_NEIGH;
-            }
-            gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
-            return;
-        }
+        )
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
         if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_JAWS_OF_CARNAGE) ||
