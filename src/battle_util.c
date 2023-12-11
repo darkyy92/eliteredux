@@ -14980,6 +14980,11 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 		MulModifier(&finalModifier, UQ_4_12(0.75));
 	}
 
+    //Raging Moth
+    if(abilityAtk == ABILITY_RAGING_MOTH || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_MOTH)){
+		MulModifier(&finalModifier, UQ_4_12(0.75));
+	}
+
     // Primal Maw
 	if(abilityAtk == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)

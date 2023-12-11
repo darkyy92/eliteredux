@@ -445,6 +445,7 @@ static const u8 sFairyTaleDescription[] = _("Adds fairy type");
 static const u8 sEarthEaterDescription[] = _("Changes ground into HP.");
 static const u8 sLingeringAromaDescription[] = _("Spreads with contact.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sAbilityRagingMoth [] = _("Fire moves hits twice,\nboth hits at %75 power.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     {
@@ -901,6 +902,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_FAIRY_TALE] = _("Fairy Tale"),
         [ABILITY_EARTH_EATER] = _("Earth Eater"),
         [ABILITY_LINGERING_AROMA] = _("Lingering Aroma"),
+        [ABILITY_RAGING_MOTH] = _("Raging Moth"), 
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1358,4 +1360,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_FAIRY_TALE] = sFairyTaleDescription,
         [ABILITY_EARTH_EATER] = sEarthEaterDescription,
         [ABILITY_LINGERING_AROMA] = sLingeringAromaDescription,
+        [ABILITY_RAGING_MOTH] = sAbilityRagingMoth,
 };
