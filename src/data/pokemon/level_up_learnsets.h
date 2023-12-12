@@ -20253,6 +20253,132 @@ static const struct LevelUpMove sCalyrexLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sMachamp_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sMachoke_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sMachop_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sUxie_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sMesprit_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sAzelf_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sFloatzel_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sBuizel_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sMagcargo_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sSlugma_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sSimisear_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sPansear_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sSimisage_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sPansage_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sSimipour_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sPanpour_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sBewear_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sStufful_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sWeedle_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_POISON_STING),
     LEVEL_UP_MOVE( 1, MOVE_STRING_SHOT),

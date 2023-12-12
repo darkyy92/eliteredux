@@ -606,4 +606,40 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_KAKUNA_REDUX] = sKakunaFormSpeciesIdTable,
 
+    [SPECIES_STUFFUL_REDUX] = sStuffulFormSpeciesIdTable,
+
+    [SPECIES_BEWEAR_REDUX] = sBewearFormSpeciesIdTable,
+
+    [SPECIES_PANPOUR_REDUX] = sPanpourFormSpeciesIdTable,
+
+    [SPECIES_SIMIPOUR_REDUX] = sSimipourFormSpeciesIdTable,
+
+    [SPECIES_PANSAGE_REDUX] = sPansageFormSpeciesIdTable,
+
+    [SPECIES_SIMISAGE_REDUX] = sSimisageFormSpeciesIdTable,
+
+    [SPECIES_PANSEAR_REDUX] = sPansearFormSpeciesIdTable,
+
+    [SPECIES_SIMISEAR_REDUX] = sSimisearFormSpeciesIdTable,
+
+    [SPECIES_SLUGMA_REDUX] = sSlugmaFormSpeciesIdTable,
+
+    [SPECIES_MAGCARGO_REDUX] = sMagcargoFormSpeciesIdTable,
+
+    [SPECIES_BUIZEL_REDUX] = sBuizelFormSpeciesIdTable,
+
+    [SPECIES_FLOATZEL_REDUX] = sFloatzelFormSpeciesIdTable,
+
+    [SPECIES_AZELF_REDUX] = sAzelfFormSpeciesIdTable,
+
+    [SPECIES_MESPRIT_REDUX] = sMespritFormSpeciesIdTable,
+
+    [SPECIES_UXIE_REDUX] = sUxieFormSpeciesIdTable,
+
+    [SPECIES_MACHOP_REDUX] = sMachopFormSpeciesIdTable,
+
+    [SPECIES_MACHOKE_REDUX] = sMachokeFormSpeciesIdTable,
+
+    [SPECIES_MACHAMP_REDUX] = sMachampFormSpeciesIdTable,
+
 };

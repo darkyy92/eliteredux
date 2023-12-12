@@ -1206,3 +1206,93 @@ static const u16 sKakunaFormSpeciesIdTable[] = {
     SPECIES_KAKUNA_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sStuffulFormSpeciesIdTable[] = {
+    SPECIES_STUFFUL,
+    SPECIES_STUFFUL_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sBewearFormSpeciesIdTable[] = {
+    SPECIES_BEWEAR,
+    SPECIES_BEWEAR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sPanpourFormSpeciesIdTable[] = {
+    SPECIES_PANPOUR,
+    SPECIES_PANPOUR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sSimipourFormSpeciesIdTable[] = {
+    SPECIES_SIMIPOUR,
+    SPECIES_SIMIPOUR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sPansageFormSpeciesIdTable[] = {
+    SPECIES_PANSAGE,
+    SPECIES_PANSAGE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sSimisageFormSpeciesIdTable[] = {
+    SPECIES_SIMISAGE,
+    SPECIES_SIMISAGE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sPansearFormSpeciesIdTable[] = {
+    SPECIES_PANSEAR,
+    SPECIES_PANSEAR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sSimisearFormSpeciesIdTable[] = {
+    SPECIES_SIMISEAR,
+    SPECIES_SIMISEAR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sSlugmaFormSpeciesIdTable[] = {
+    SPECIES_SLUGMA,
+    SPECIES_SLUGMA_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sMagcargoFormSpeciesIdTable[] = {
+    SPECIES_MAGCARGO,
+    SPECIES_MAGCARGO_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sBuizelFormSpeciesIdTable[] = {
+    SPECIES_BUIZEL,
+    SPECIES_BUIZEL_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sFloatzelFormSpeciesIdTable[] = {
+    SPECIES_FLOATZEL,
+    SPECIES_FLOATZEL_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sAzelfFormSpeciesIdTable[] = {
+    SPECIES_AZELF,
+    SPECIES_AZELF_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sMespritFormSpeciesIdTable[] = {
+    SPECIES_MESPRIT,
+    SPECIES_MESPRIT_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sUxieFormSpeciesIdTable[] = {
+    SPECIES_UXIE,
+    SPECIES_UXIE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sMachopFormSpeciesIdTable[] = {
+    SPECIES_MACHOP,
+    SPECIES_MACHOP_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sMachokeFormSpeciesIdTable[] = {
+    SPECIES_MACHOKE,
+    SPECIES_MACHOKE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sMachampFormSpeciesIdTable[] = {
+    SPECIES_MACHAMP,
+    SPECIES_MACHAMP_REDUX,
+    FORM_SPECIES_END,
+};

@@ -4702,5 +4702,113 @@ const u16 gEggMoves[] = {
         MOVE_ALLY_SWITCH,
         MOVE_PSYCHIC_TERRAIN),
 
+    egg_moves(STUFFUL_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(BEWEAR_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(PANPOUR_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(SIMIPOUR_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(PANSAGE_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(SIMISAGE_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(PANSEAR_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(SIMISEAR_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(SLUGMA_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(MAGCARGO_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(BUIZEL_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(FLOATZEL_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(AZELF_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(MESPRIT_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(UXIE_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(MACHOP_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(MACHOKE_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(MACHAMP_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
     EGG_MOVES_TERMINATOR
 };

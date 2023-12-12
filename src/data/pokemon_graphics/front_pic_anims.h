@@ -9462,6 +9462,96 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_MACHAMP_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MACHOKE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MACHOP_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_UXIE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MESPRIT_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_AZELF_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_FLOATZEL_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BUIZEL_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_MAGCARGO_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SLUGMA_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SIMISEAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_PANSEAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SIMISAGE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_PANSAGE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SIMIPOUR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_PANPOUR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_BEWEAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_STUFFUL_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_BEEDRILL_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15172,6 +15262,96 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_MACHAMP_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MACHAMP_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_MACHOKE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MACHOKE_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_MACHOP_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MACHOP_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_UXIE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UXIE_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_MESPRIT_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MESPRIT_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_AZELF_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_AZELF_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_FLOATZEL_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FLOATZEL_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_BUIZEL_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BUIZEL_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_MAGCARGO_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_MAGCARGO_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_SLUGMA_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SLUGMA_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_SIMISEAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SIMISEAR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_PANSEAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PANSEAR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_SIMISAGE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SIMISAGE_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_PANSAGE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PANSAGE_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_SIMIPOUR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SIMIPOUR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_PANPOUR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PANPOUR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_BEWEAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_BEWEAR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_STUFFUL_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_STUFFUL_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_BEEDRILL_REDUX[] ={
     sAnim_GeneralFrame0,
     sAnim_BEEDRILL_REDUX_1,
@@ -17021,6 +17201,24 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(MACHAMP_REDUX),
+    ANIM_CMD(MACHOKE_REDUX),
+    ANIM_CMD(MACHOP_REDUX),
+    ANIM_CMD(UXIE_REDUX),
+    ANIM_CMD(MESPRIT_REDUX),
+    ANIM_CMD(AZELF_REDUX),
+    ANIM_CMD(FLOATZEL_REDUX),
+    ANIM_CMD(BUIZEL_REDUX),
+    ANIM_CMD(MAGCARGO_REDUX),
+    ANIM_CMD(SLUGMA_REDUX),
+    ANIM_CMD(SIMISEAR_REDUX),
+    ANIM_CMD(PANSEAR_REDUX),
+    ANIM_CMD(SIMISAGE_REDUX),
+    ANIM_CMD(PANSAGE_REDUX),
+    ANIM_CMD(SIMIPOUR_REDUX),
+    ANIM_CMD(PANPOUR_REDUX),
+    ANIM_CMD(BEWEAR_REDUX),
+    ANIM_CMD(STUFFUL_REDUX),
     ANIM_CMD(BEEDRILL_REDUX),
     ANIM_CMD(KAKUNA_REDUX),
     ANIM_CMD(WEEDLE_REDUX),

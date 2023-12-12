@@ -29889,6 +29889,78 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
+    [SPECIES_MACHAMP_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_MACHOKE_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_MACHOP_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_UXIE_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_MESPRIT_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_AZELF_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_FLOATZEL_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_BUIZEL_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_MAGCARGO_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SLUGMA_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SIMISEAR_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_PANSEAR_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SIMISAGE_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_PANSAGE_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SIMIPOUR_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_PANPOUR_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_BEWEAR_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_STUFFUL_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
     [SPECIES_KAKUNA_REDUX]   = TMHM_LEARNSET (0, 0),
     [SPECIES_WEEDLE_REDUX]   = TMHM_LEARNSET (0, 0),
     [SPECIES_BEEDRILL_REDUX]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)

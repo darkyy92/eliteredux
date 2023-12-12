@@ -1418,6 +1418,26 @@
 #define SPECIES_KAKUNA_REDUX                FORMS_START + 375
 #define SPECIES_BEEDRILL_REDUX              FORMS_START + 376
 #define SPECIES_BEEDRILL_MEGA_REDUX         FORMS_START + 377
+#define SPECIES_STUFFUL_REDUX               FORMS_START + 378
+#define SPECIES_BEWEAR_REDUX                FORMS_START + 379
+#define SPECIES_PANPOUR_REDUX               FORMS_START + 380
+#define SPECIES_SIMIPOUR_REDUX              FORMS_START + 381
+#define SPECIES_PANSAGE_REDUX               FORMS_START + 382
+#define SPECIES_SIMISAGE_REDUX              FORMS_START + 383
+#define SPECIES_PANSAGE_REDUX               FORMS_START + 384
+#define SPECIES_SIMISAGE_REDUX              FORMS_START + 385
+#define SPECIES_PANSEAR_REDUX               FORMS_START + 386
+#define SPECIES_SIMISEAR_REDUX              FORMS_START + 387
+#define SPECIES_SLUGMA_REDUX                FORMS_START + 388
+#define SPECIES_MAGCARGO_REDUX              FORMS_START + 389
+#define SPECIES_BUIZEL_REDUX                FORMS_START + 390
+#define SPECIES_FLOATZEL_REDUX              FORMS_START + 391
+#define SPECIES_AZELF_REDUX                 FORMS_START + 392
+#define SPECIES_MESPRIT_REDUX               FORMS_START + 393
+#define SPECIES_UXIE_REDUX                  FORMS_START + 394
+#define SPECIES_MACHOP_REDUX                FORMS_START + 395
+#define SPECIES_MACHOKE_REDUX               FORMS_START + 396
+#define SPECIES_MACHAMP_REDUX               FORMS_START + 397
 
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
