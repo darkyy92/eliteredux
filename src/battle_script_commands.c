@@ -8723,32 +8723,42 @@ static void Cmd_various(void)
         {
             u8 statToChange = NUM_BATTLE_STATS;
             u16 abilityToCheck = ABILITY_NONE;
+            bool8 checkMoxieVariants = HasAttackerFaintedTarget();
+            bool8 activateMoxieVariant = FALSE;
+
+            if(!checkMoxieVariants)
+                break;
 
             //Moxie
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MOXIE)){
                 statToChange = STAT_ATK;
                 abilityToCheck = ABILITY_MOXIE;
+                activateMoxieVariant = TRUE;
             }
 
             //Chilling Neigh
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)){
                 statToChange = STAT_ATK;
                 abilityToCheck = ABILITY_CHILLING_NEIGH;
+                activateMoxieVariant = TRUE;
             }
 
             //As One Ice Rider
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
                 statToChange = STAT_ATK;
                 abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
+                activateMoxieVariant = TRUE;
             }
 
             //Adrenaline Rush
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_ADRENALINE_RUSH)){
                 statToChange = STAT_SPEED;
                 abilityToCheck = ABILITY_ADRENALINE_RUSH;
+                activateMoxieVariant = TRUE;
             }
 
-            if (HasAttackerFaintedTarget()
+            if (checkMoxieVariants
+            && activateMoxieVariant
             && !NoAliveMonsForEitherParty()
             && statToChange != NUM_BATTLE_STATS
             && CompareStat(gBattlerAttacker, statToChange, MAX_STAT_STAGE, CMP_LESS_THAN))
