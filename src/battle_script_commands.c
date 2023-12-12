@@ -8756,8 +8756,8 @@ static void Cmd_various(void)
                 gBattleMons[gBattlerAttacker].statStages[statToChange]++;
                 SET_STATCHANGER(statToChange, 1, FALSE);
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statToChange);
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                 BattleScriptPush(gBattlescriptCurrInstr + 3);
-                gLastUsedAbility = GetBattlerAbility(gActiveBattler);
                 gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
                 return;
             }
