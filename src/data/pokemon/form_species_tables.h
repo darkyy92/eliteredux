@@ -1051,6 +1051,7 @@ static const u16 sHitmonchanFormSpeciesIdTable[] = {
 
 static const u16 sSkarmoryFormSpeciesIdTable[] = {
     SPECIES_SKARMORY,
+    SPECIES_SKARMORY_REDUX,
     SPECIES_SKARMORY_MEGA,
     FORM_SPECIES_END,
 };
@@ -1296,9 +1297,17 @@ static const u16 sMachampFormSpeciesIdTable[] = {
     SPECIES_MACHAMP_MEGA_REDUX,
     SPECIES_MACHAMP_REDUX,
     FORM_SPECIES_END,
+<<<<<<< Updated upstream
+=======
 };
 static const u16 sSolosisFormSpeciesIdTable[] = {
     SPECIES_SOLOSIS,
     SPECIES_SOLOSIS_REDUX,
     FORM_SPECIES_END,
+};
+static const u16 sReuniclusFormSpeciesIdTable[] = {
+    SPECIES_REUNICLUS,
+    SPECIES_REUNICLUS_REDUX,
+    FORM_SPECIES_END,
+>>>>>>> Stashed changes
 };

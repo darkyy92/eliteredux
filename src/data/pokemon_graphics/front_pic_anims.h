@@ -9462,12 +9462,7 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
-static const union AnimCmd sAnim_REUNICLUS_REDUX_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_SOLOSIS_REDUX_1[] =
+static const union AnimCmd sAnim_SKARMORY_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -15277,14 +15272,9 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
-static const union AnimCmd *const sAnims_REUNICLUS_REDUX[] ={
+static const union AnimCmd *const sAnims_SKARMORY_REDUX[] ={
     sAnim_GeneralFrame0,
-    sAnim_REUNICLUS_REDUX_1,
-};
-
-static const union AnimCmd *const sAnims_SOLOSIS_REDUX[] ={
-    sAnim_GeneralFrame0,
-    sAnim_SOLOSIS_REDUX_1,
+    sAnim_SKARMORY_REDUX_1,
 };
 
 static const union AnimCmd *const sAnims_MACHAMP_MEGA_REDUX[] ={
@@ -17231,8 +17221,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
-    ANIM_CMD(REUNICLUS_REDUX),
-    ANIM_CMD(SOLOSIS_REDUX),
+    ANIM_CMD(SKARMORY_REDUX),
     ANIM_CMD(MACHAMP_MEGA_REDUX),
     ANIM_CMD(MACHAMP_REDUX),
     ANIM_CMD(MACHOKE_REDUX),

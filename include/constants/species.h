@@ -1440,6 +1440,8 @@
 #define SPECIES_MACHAMP_REDUX               FORMS_START + 397
 #define SPECIES_MACHAMP_MEGA_REDUX          FORMS_START + 398
 #define SPECIES_SOLOSIS_REDUX               FORMS_START + 399
+#define SPECIES_REUNICLUS_REDUX             FORMS_START + 400
+
 
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 

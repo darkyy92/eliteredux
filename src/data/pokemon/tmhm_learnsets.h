@@ -29889,10 +29889,21 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
+    [SPECIES_SKARMORY_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+<<<<<<< Updated upstream
+=======
+    [SPECIES_REUNICLUS_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
     [SPECIES_SOLOSIS_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
+>>>>>>> Stashed changes
     [SPECIES_MACHAMP_MEGA_REDUX]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)

@@ -527,7 +527,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_HITMONCHAN] = sHitmonchanFormSpeciesIdTable,
     [SPECIES_HITMONCHAN_MEGA] = sHitmonchanFormSpeciesIdTable,
 
-    [SPECIES_SKARMORY] = sSkarmoryFormSpeciesIdTable,
+    [SPECIES_SKARMORY_REDUX] = sSkarmoryFormSpeciesIdTable,
     [SPECIES_SKARMORY_MEGA] = sSkarmoryFormSpeciesIdTable,
 
     [SPECIES_SLAKING] = sSlakingFormSpeciesIdTable,
@@ -644,6 +644,11 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MACHAMP_MEGA_REDUX] = sMachampFormSpeciesIdTable,
 
+<<<<<<< Updated upstream
+=======
     [SPECIES_SOLOSIS_REDUX] = sSolosisFormSpeciesIdTable,
 
+    [SPECIES_REUNICLUS_REDUX] = sReuniclusFormSpeciesIdTable,
+
+>>>>>>> Stashed changes
 };

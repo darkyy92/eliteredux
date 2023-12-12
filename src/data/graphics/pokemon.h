@@ -1,4 +1,9 @@
+const u8 gMonFootprint_Skarmory_Redux[] = INCBIN_U8("graphics/pokemon/skarmory/redux/footprint.1bpp");
+<<<<<<< Updated upstream
+=======
+const u8 gMonFootprint_Reuniclus_Redux[] = INCBIN_U8("graphics/pokemon/reuniclus/redux/footprint.1bpp");
 const u8 gMonFootprint_Solosis_Redux[] = INCBIN_U8("graphics/pokemon/solosis/redux/footprint.1bpp");
+>>>>>>> Stashed changes
 const u8 gMonFootprint_Machamp_Mega_Redux[] = INCBIN_U8("graphics/pokemon/machamp/mega_redux/footprint.1bpp");
 const u8 gMonFootprint_Machamp_Redux[] = INCBIN_U8("graphics/pokemon/machamp/redux/footprint.1bpp");
 const u8 gMonFootprint_Machoke_Redux[] = INCBIN_U8("graphics/pokemon/machoke/redux/footprint.1bpp");
@@ -937,7 +942,12 @@ const u32 gMonFrontPic_Regidrago[] = INCBIN_U32("graphics/pokemon/regidrago/fron
 const u32 gMonFrontPic_Glastrier[] = INCBIN_U32("graphics/pokemon/glastrier/front.4bpp.lz");
 const u32 gMonFrontPic_Spectrier[] = INCBIN_U32("graphics/pokemon/spectrier/front.4bpp.lz");
 const u32 gMonFrontPic_Calyrex[] = INCBIN_U32("graphics/pokemon/calyrex/front.4bpp.lz");
+const u32 gMonFrontPic_Skarmory_Redux[] = INCBIN_U32("graphics/pokemon/skarmory/redux/front.4bpp.lz");
+<<<<<<< Updated upstream
+=======
+const u32 gMonFrontPic_Reuniclus_Redux[] = INCBIN_U32("graphics/pokemon/reuniclus/redux/front.4bpp.lz");
 const u32 gMonFrontPic_Solosis_Redux[] = INCBIN_U32("graphics/pokemon/solosis/redux/front.4bpp.lz");
+>>>>>>> Stashed changes
 const u32 gMonFrontPic_Machamp_Mega_Redux[] = INCBIN_U32("graphics/pokemon/machamp/mega_redux/front.4bpp.lz");
 const u32 gMonFrontPic_Machamp_Redux[] = INCBIN_U32("graphics/pokemon/machamp/redux/front.4bpp.lz");
 const u32 gMonFrontPic_Machoke_Redux[] = INCBIN_U32("graphics/pokemon/machoke/redux/front.4bpp.lz");
@@ -2140,7 +2150,12 @@ const u32 gMonBackPic_Regidrago[] = INCBIN_U32("graphics/pokemon/regidrago/back.
 const u32 gMonBackPic_Glastrier[] = INCBIN_U32("graphics/pokemon/glastrier/back.4bpp.lz");
 const u32 gMonBackPic_Spectrier[] = INCBIN_U32("graphics/pokemon/spectrier/back.4bpp.lz");
 const u32 gMonBackPic_Calyrex[] = INCBIN_U32("graphics/pokemon/calyrex/back.4bpp.lz");
+const u32 gMonBackPic_Skarmory_Redux[] = INCBIN_U32("graphics/pokemon/skarmory/redux/back.4bpp.lz");
+<<<<<<< Updated upstream
+=======
+const u32 gMonBackPic_Reuniclus_Redux[] = INCBIN_U32("graphics/pokemon/reuniclus/redux/back.4bpp.lz");
 const u32 gMonBackPic_Solosis_Redux[] = INCBIN_U32("graphics/pokemon/solosis/redux/back.4bpp.lz");
+>>>>>>> Stashed changes
 const u32 gMonBackPic_Machamp_Mega_Redux[] = INCBIN_U32("graphics/pokemon/machamp/mega_redux/back.4bpp.lz");
 const u32 gMonBackPic_Machamp_Redux[] = INCBIN_U32("graphics/pokemon/machamp/redux/back.4bpp.lz");
 const u32 gMonBackPic_Machoke_Redux[] = INCBIN_U32("graphics/pokemon/machoke/redux/back.4bpp.lz");
@@ -3341,7 +3356,12 @@ const u32 gMonPalette_Regidrago[] = INCBIN_U32("graphics/pokemon/regidrago/norma
 const u32 gMonPalette_Glastrier[] = INCBIN_U32("graphics/pokemon/glastrier/normal.gbapal.lz");
 const u32 gMonPalette_Spectrier[] = INCBIN_U32("graphics/pokemon/spectrier/normal.gbapal.lz");
 const u32 gMonPalette_Calyrex[] = INCBIN_U32("graphics/pokemon/calyrex/normal.gbapal.lz");
+const u32 gMonPalette_Skarmory_Redux[] = INCBIN_U32("graphics/pokemon/skarmory/redux/normal.gbapal.lz");
+<<<<<<< Updated upstream
+=======
+const u32 gMonPalette_Reuniclus_Redux[] = INCBIN_U32("graphics/pokemon/reuniclus/redux/normal.gbapal.lz");
 const u32 gMonPalette_Solosis_Redux[] = INCBIN_U32("graphics/pokemon/solosis/redux/normal.gbapal.lz");
+>>>>>>> Stashed changes
 const u32 gMonPalette_Machamp_Mega_Redux[] = INCBIN_U32("graphics/pokemon/machamp/mega_redux/normal.gbapal.lz");
 const u32 gMonPalette_Machamp_Redux[] = INCBIN_U32("graphics/pokemon/machamp/redux/normal.gbapal.lz");
 const u32 gMonPalette_Machoke_Redux[] = INCBIN_U32("graphics/pokemon/machoke/redux/normal.gbapal.lz");
@@ -4569,7 +4589,12 @@ const u32 gMonShinyPalette_Regidrago[] = INCBIN_U32("graphics/pokemon/regidrago/
 const u32 gMonShinyPalette_Glastrier[] = INCBIN_U32("graphics/pokemon/glastrier/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Spectrier[] = INCBIN_U32("graphics/pokemon/spectrier/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Calyrex[] = INCBIN_U32("graphics/pokemon/calyrex/shiny.gbapal.lz");
+const u32 gMonShinyPalette_Skarmory_Redux[] = INCBIN_U32("graphics/pokemon/skarmory/redux/shiny.gbapal.lz");
+<<<<<<< Updated upstream
+=======
+const u32 gMonShinyPalette_Reuniclus_Redux[] = INCBIN_U32("graphics/pokemon/reuniclus/redux/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Solosis_Redux[] = INCBIN_U32("graphics/pokemon/solosis/redux/shiny.gbapal.lz");
+>>>>>>> Stashed changes
 const u32 gMonShinyPalette_Machamp_Mega_Redux[] = INCBIN_U32("graphics/pokemon/machamp/mega_redux/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Machamp_Redux[] = INCBIN_U32("graphics/pokemon/machamp/redux/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Machoke_Redux[] = INCBIN_U32("graphics/pokemon/machoke/redux/shiny.gbapal.lz");
@@ -5787,7 +5812,12 @@ const u8 gMonIcon_Regidrago[] = INCBIN_U8("graphics/pokemon/regidrago/icon.4bpp"
 const u8 gMonIcon_Glastrier[] = INCBIN_U8("graphics/pokemon/glastrier/icon.4bpp");
 const u8 gMonIcon_Spectrier[] = INCBIN_U8("graphics/pokemon/spectrier/icon.4bpp");
 const u8 gMonIcon_Calyrex[] = INCBIN_U8("graphics/pokemon/calyrex/icon.4bpp");
+const u8 gMonIcon_Skarmory_Redux[] = INCBIN_U8("graphics/pokemon/skarmory/redux/icon.4bpp");
+<<<<<<< Updated upstream
+=======
+const u8 gMonIcon_Reuniclus_Redux[] = INCBIN_U8("graphics/pokemon/reuniclus/redux/icon.4bpp");
 const u8 gMonIcon_Solosis_Redux[] = INCBIN_U8("graphics/pokemon/solosis/redux/icon.4bpp");
+>>>>>>> Stashed changes
 const u8 gMonIcon_Machamp_Mega_Redux[] = INCBIN_U8("graphics/pokemon/machamp/mega_redux/icon.4bpp");
 const u8 gMonIcon_Machamp_Redux[] = INCBIN_U8("graphics/pokemon/machamp/redux/icon.4bpp");
 const u8 gMonIcon_Machoke_Redux[] = INCBIN_U8("graphics/pokemon/machoke/redux/icon.4bpp");
