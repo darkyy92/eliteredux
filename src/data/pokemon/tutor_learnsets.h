@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_MACHAMP_MEGA_REDUX] = {
+	},
 	[SPECIES_MACHAMP_REDUX] = {
 	},
 	[SPECIES_MACHOKE_REDUX] = {

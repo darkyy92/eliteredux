@@ -642,4 +642,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MACHAMP_REDUX] = sMachampFormSpeciesIdTable,
 
+    [SPECIES_MACHAMP_MEGA_REDUX] = sMachampFormSpeciesIdTable,
+
 };

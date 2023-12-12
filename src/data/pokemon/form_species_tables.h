@@ -1293,6 +1293,7 @@ static const u16 sMachokeFormSpeciesIdTable[] = {
 };
 static const u16 sMachampFormSpeciesIdTable[] = {
     SPECIES_MACHAMP,
+    SPECIES_MACHAMP_MEGA_REDUX,
     SPECIES_MACHAMP_REDUX,
     FORM_SPECIES_END,
 };
