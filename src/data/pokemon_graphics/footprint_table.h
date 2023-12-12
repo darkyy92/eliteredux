@@ -752,6 +752,8 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_MACHOKE_REDUX] = gMonFootprint_Machoke_Redux,
     [SPECIES_MACHAMP_REDUX] = gMonFootprint_Machamp_Redux,
     [SPECIES_MACHAMP_MEGA_REDUX] = gMonFootprint_Machamp_Mega_Redux,
+    [SPECIES_SOLOSIS_REDUX] = gMonFootprint_Solosis_Redux,
+    [SPECIES_REUNICLUS_REDUX] = gMonFootprint_Reuniclus_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

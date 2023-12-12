@@ -1297,3 +1297,8 @@ static const u16 sMachampFormSpeciesIdTable[] = {
     SPECIES_MACHAMP_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sSolosisFormSpeciesIdTable[] = {
+    SPECIES_SOLOSIS,
+    SPECIES_SOLOSIS_REDUX,
+    FORM_SPECIES_END,
+};

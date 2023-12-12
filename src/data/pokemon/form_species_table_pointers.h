@@ -644,4 +644,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MACHAMP_MEGA_REDUX] = sMachampFormSpeciesIdTable,
 
+    [SPECIES_SOLOSIS_REDUX] = sSolosisFormSpeciesIdTable,
+
 };
