@@ -1310,3 +1310,8 @@ static const u16 sReuniclusFormSpeciesIdTable[] = {
     SPECIES_REUNICLUS_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sDuosionFormSpeciesIdTable[] = {
+    SPECIES_DUOSION,
+    SPECIES_DUOSION_REDUX,
+    FORM_SPECIES_END,
+};

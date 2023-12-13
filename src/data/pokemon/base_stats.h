@@ -29830,6 +29830,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = TRUE,
     },
 
+[SPECIES_DUOSION_REDUX] =
+    {
+    .baseHP        = 65,
+    .baseAttack    = 40,
+    .baseDefense   = 50,
+    .baseSpeed     = 30,
+    .baseSpAttack  = 125,
+    .baseSpDefense = 60,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_PSYCHIC,
+    .catchRate = 100,
+    .expYield = 130,
+    .evYield_SpAttack  = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_SLOW,
+    .eggGroup1 = EGG_GROUP_AMORPHOUS,
+    .eggGroup2 = EGG_GROUP_AMORPHOUS,
+    .abilities = {ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
+    .innates = {ABILITY_REGENERATOR, ABILITY_LIQUIFIED, ABILITY_MAGIC_GUARD},
+    .bodyColor = BODY_COLOR_GREEN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_REUNICLUS_REDUX] =
     {
     .baseHP        = 110,

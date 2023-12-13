@@ -629,4 +629,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SOLOSIS]               = sSolosisFormSpeciesIdTable,
     [SPECIES_REUNICLUS_REDUX]       = sReuniclusFormSpeciesIdTable,
     [SPECIES_REUNICLUS]             = sReuniclusFormSpeciesIdTable,
+    [SPECIES_DUOSION_REDUX]         = sDuosionFormSpeciesIdTable,
+    [SPECIES_DUOSION]               = sDuosionFormSpeciesIdTable,
+
 };

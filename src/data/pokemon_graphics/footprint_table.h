@@ -753,6 +753,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_MACHAMP_REDUX] = gMonFootprint_Machamp_Redux,
     [SPECIES_MACHAMP_MEGA_REDUX] = gMonFootprint_Machamp_Mega_Redux,
     [SPECIES_SKARMORY_REDUX] = gMonFootprint_Skarmory_Redux,
+    [SPECIES_DUOSION_REDUX] = gMonFootprint_Duosion_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
