@@ -1378,7 +1378,6 @@
 #define SPECIES_HAXORUS_MEGA                FORMS_START + 339
 #define SPECIES_KINGDRA_MEGA_Y              FORMS_START + 340
 #define SPECIES_MEGANIUM_MEGA               FORMS_START + 341
-
 #define SPECIES_INFERNAPE_REDUX             FORMS_START + 342
 #define SPECIES_NOIBAT_REDUX                FORMS_START + 343
 #define SPECIES_NOIVERN_REDUX               FORMS_START + 344
@@ -1391,7 +1390,6 @@
 #define SPECIES_AEGISLASH_BLADE_REDUX       FORMS_START + 351
 #define SPECIES_TEMP9_REDUX                 FORMS_START + 352
 #define SPECIES_TEMP10_REDUX                FORMS_START + 353
-
 #define SPECIES_LUXRAY_MEGA                 FORMS_START + 354
 #define SPECIES_NIDOKING_MEGA               FORMS_START + 355
 #define SPECIES_NIDOQUEEN_MEGA              FORMS_START + 356
@@ -1408,12 +1406,10 @@
 #define SPECIES_TEMP_MEGA8                  FORMS_START + 367
 #define SPECIES_TEMP_MEGA9                  FORMS_START + 368
 #define SPECIES_TEMP_MEGA10                 FORMS_START + 369
-
 #define SPECIES_ABRA_REDUX                  FORMS_START + 370
 #define SPECIES_KADABRA_REDUX               FORMS_START + 371
 #define SPECIES_ALAKAZAM_REDUX              FORMS_START + 372
 #define SPECIES_ALAKAZAM_MEGA_REDUX         FORMS_START + 373
-
 #define SPECIES_WEEDLE_REDUX                FORMS_START + 374
 #define SPECIES_KAKUNA_REDUX                FORMS_START + 375
 #define SPECIES_BEEDRILL_REDUX              FORMS_START + 376
@@ -1441,8 +1437,7 @@
 #define SPECIES_MACHAMP_MEGA_REDUX          FORMS_START + 398
 #define SPECIES_SOLOSIS_REDUX               FORMS_START + 399
 #define SPECIES_REUNICLUS_REDUX             FORMS_START + 400
-
-
+ 
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
 #define SPECIES_EGG LAST_REDUX_FORM + 1

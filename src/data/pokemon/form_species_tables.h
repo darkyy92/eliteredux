@@ -1295,10 +1295,10 @@ static const u16 sMachokeFormSpeciesIdTable[] = {
 static const u16 sMachampFormSpeciesIdTable[] = {
     SPECIES_MACHAMP,
     SPECIES_MACHAMP_MEGA_REDUX,
+    SPECIES_MACHAMP_MEGA,
+
     SPECIES_MACHAMP_REDUX,
     FORM_SPECIES_END,
-<<<<<<< Updated upstream
-=======
 };
 static const u16 sSolosisFormSpeciesIdTable[] = {
     SPECIES_SOLOSIS,
@@ -1309,5 +1309,4 @@ static const u16 sReuniclusFormSpeciesIdTable[] = {
     SPECIES_REUNICLUS,
     SPECIES_REUNICLUS_REDUX,
     FORM_SPECIES_END,
->>>>>>> Stashed changes
 };
