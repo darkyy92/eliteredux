@@ -1051,6 +1051,7 @@ static const u16 sHitmonchanFormSpeciesIdTable[] = {
 
 static const u16 sSkarmoryFormSpeciesIdTable[] = {
     SPECIES_SKARMORY,
+    SPECIES_SKARMORY_MEGA_REDUX,
     SPECIES_SKARMORY_REDUX,
     SPECIES_SKARMORY_MEGA,
     FORM_SPECIES_END,
