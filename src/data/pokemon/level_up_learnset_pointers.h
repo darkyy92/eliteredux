@@ -910,6 +910,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_WEEDLE_REDUX] = sWeedle_ReduxLevelUpLearnset,
     [SPECIES_KAKUNA_REDUX] = sKakuna_ReduxLevelUpLearnset,
     [SPECIES_BEEDRILL_REDUX] = sBeedrill_ReduxLevelUpLearnset,
+    [SPECIES_BEEDRILL_MEGA_REDUX] = sBeedrill_ReduxLevelUpLearnset,
     [SPECIES_STUFFUL_REDUX] = sStufful_ReduxLevelUpLearnset,
     [SPECIES_BEWEAR_REDUX] = sBewear_ReduxLevelUpLearnset,
     [SPECIES_PANPOUR_REDUX] = sPanpour_ReduxLevelUpLearnset,

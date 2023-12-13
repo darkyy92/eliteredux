@@ -29805,6 +29805,32 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_SKARMORY_MEGA_REDUX] =
+    {
+    .baseHP        = 65,
+    .baseAttack    = 110,
+    .baseDefense   = 170,
+    .baseSpeed     = 90,
+    .baseSpAttack  = 40,
+    .baseSpDefense = 90,
+    .type1 = TYPE_STEEL,
+    .type2 = TYPE_FLYING,
+    .catchRate = 255,
+    .expYield = 163,
+    .evYield_Defense   = 2,
+    .item2 = ITEM_METAL_COAT,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 25,
+    .friendship = 70,
+    .growthRate = GROWTH_SLOW,
+    .eggGroup1 = EGG_GROUP_FLYING,
+    .eggGroup2 = EGG_GROUP_FLYING,
+    .abilities = {ABILITY_SCRAPYARD, ABILITY_SCRAPYARD, ABILITY_SCRAPYARD},
+    .innates = {ABILITY_MOTOR_DRIVE, ABILITY_POWER_CORE, ABILITY_SELF_REPAIR},
+    .bodyColor = BODY_COLOR_GRAY,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_SOLOSIS_REDUX] =
     {
     .baseHP        = 45,
