@@ -632,4 +632,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DUOSION_REDUX]         = sDuosionFormSpeciesIdTable,
     [SPECIES_DUOSION]               = sDuosionFormSpeciesIdTable,
 
+    [SPECIES_GROWLITHE_REDUX] = sGrowlitheFormSpeciesIdTable,
+
+    [SPECIES_ARCANINE_REDUX] = sArcanineFormSpeciesIdTable,
+
 };

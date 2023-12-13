@@ -153,6 +153,10 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_ARCANINE_REDUX] = {
+	},
+	[SPECIES_GROWLITHE_REDUX] = {
+	},
 	[SPECIES_SKARMORY_MEGA_REDUX] = {
 	},
 	[SPECIES_SKARMORY_REDUX] = {

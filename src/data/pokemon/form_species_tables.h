@@ -1316,3 +1316,14 @@ static const u16 sDuosionFormSpeciesIdTable[] = {
     SPECIES_DUOSION_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sGrowlitheFormSpeciesIdTable[] = {
+    SPECIES_GROWLITHE,
+    SPECIES_GROWLITHE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sArcanineFormSpeciesIdTable[] = {
+    SPECIES_ARCANINE,
+	SPECIES_ARCANINE_REDUX,
+    SPECIES_ARCANINE_MEGA_REDUX,
+    FORM_SPECIES_END,
+};

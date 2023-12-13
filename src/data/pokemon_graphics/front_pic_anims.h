@@ -9462,6 +9462,16 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_ARCANINE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GROWLITHE_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_SKARMORY_MEGA_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15282,6 +15292,16 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_ARCANINE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ARCANINE_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_GROWLITHE_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GROWLITHE_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_SKARMORY_MEGA_REDUX[] ={
     sAnim_GeneralFrame0,
     sAnim_SKARMORY_MEGA_REDUX_1,
@@ -17241,6 +17261,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(ARCANINE_REDUX),
+    ANIM_CMD(GROWLITHE_REDUX),
     ANIM_CMD(SKARMORY_MEGA_REDUX),
     ANIM_CMD(DUOSION_REDUX),
     ANIM_CMD(SKARMORY_REDUX),
