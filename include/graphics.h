@@ -1,9 +1,6 @@
 extern const u8 gMonFootprint_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u8 gMonFootprint_Reuniclus_Redux[];
 extern const u8 gMonFootprint_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u8 gMonFootprint_Machamp_Mega_Redux[];
 extern const u8 gMonFootprint_Machamp_Redux[];
 extern const u8 gMonFootprint_Machoke_Redux[];
@@ -1012,11 +1009,8 @@ extern const u32 gMonFrontPic_Glastrier[];
 extern const u32 gMonFrontPic_Spectrier[];
 extern const u32 gMonFrontPic_Calyrex[];
 extern const u32 gMonFrontPic_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u32 gMonFrontPic_Reuniclus_Redux[];
 extern const u32 gMonFrontPic_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u32 gMonFrontPic_Machamp_Mega_Redux[];
 extern const u32 gMonFrontPic_Machamp_Redux[];
 extern const u32 gMonFrontPic_Machoke_Redux[];
@@ -2218,11 +2212,8 @@ extern const u32 gMonBackPic_Glastrier[];
 extern const u32 gMonBackPic_Spectrier[];
 extern const u32 gMonBackPic_Calyrex[];
 extern const u32 gMonBackPic_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u32 gMonBackPic_Reuniclus_Redux[];
 extern const u32 gMonBackPic_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u32 gMonBackPic_Machamp_Mega_Redux[];
 extern const u32 gMonBackPic_Machamp_Redux[];
 extern const u32 gMonBackPic_Machoke_Redux[];
@@ -3424,11 +3415,8 @@ extern const u32 gMonPalette_Glastrier[];
 extern const u32 gMonPalette_Spectrier[];
 extern const u32 gMonPalette_Calyrex[];
 extern const u32 gMonPalette_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u32 gMonPalette_Reuniclus_Redux[];
 extern const u32 gMonPalette_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u32 gMonPalette_Machamp_Mega_Redux[];
 extern const u32 gMonPalette_Machamp_Redux[];
 extern const u32 gMonPalette_Machoke_Redux[];
@@ -4657,11 +4645,8 @@ extern const u32 gMonShinyPalette_Glastrier[];
 extern const u32 gMonShinyPalette_Spectrier[];
 extern const u32 gMonShinyPalette_Calyrex[];
 extern const u32 gMonShinyPalette_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u32 gMonShinyPalette_Reuniclus_Redux[];
 extern const u32 gMonShinyPalette_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u32 gMonShinyPalette_Machamp_Mega_Redux[];
 extern const u32 gMonShinyPalette_Machamp_Redux[];
 extern const u32 gMonShinyPalette_Machoke_Redux[];
@@ -5880,11 +5865,8 @@ extern const u8 gMonIcon_Glastrier[];
 extern const u8 gMonIcon_Spectrier[];
 extern const u8 gMonIcon_Calyrex[];
 extern const u8 gMonIcon_Skarmory_Redux[];
-<<<<<<< Updated upstream
-=======
 extern const u8 gMonIcon_Reuniclus_Redux[];
 extern const u8 gMonIcon_Solosis_Redux[];
->>>>>>> Stashed changes
 extern const u8 gMonIcon_Machamp_Mega_Redux[];
 extern const u8 gMonIcon_Machamp_Redux[];
 extern const u8 gMonIcon_Machoke_Redux[];

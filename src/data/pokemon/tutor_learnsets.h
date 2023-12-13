@@ -154,15 +154,13 @@ const u16 gTutorMoves[] =
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
 	[SPECIES_SKARMORY_REDUX] = {
+		//MOVE_SPLASH,
 	},
-<<<<<<< Updated upstream
-=======
 	[SPECIES_REUNICLUS_REDUX] = {
+		//MOVE_SPLASH,
 	},
 	[SPECIES_SOLOSIS_REDUX] = {
-	},
->>>>>>> Stashed changes
-	[SPECIES_MACHAMP_MEGA_REDUX] = {
+		//MOVE_SPLASH,
 	},
 	[SPECIES_MACHAMP_REDUX] = {
 		//MOVE_SPLASH,
