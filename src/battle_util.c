@@ -9077,11 +9077,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-				gBattleMons[battler].statStages[STAT_ATK]++;
-                gBattleScripting.animArg1 = 14 + STAT_ATK;
-                gBattleScripting.animArg2 = 0;
-                BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
-                gBattleScripting.battler = battler;
+				SET_STATCHANGER(STAT_ATK, 1, FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
                 effect++;
             }
             break;
