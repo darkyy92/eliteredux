@@ -1323,6 +1323,7 @@ static const u16 sGrowlitheFormSpeciesIdTable[] = {
 };
 static const u16 sArcanineFormSpeciesIdTable[] = {
     SPECIES_ARCANINE,
+    SPECIES_ARCANINE_MEGA_REDUX,
 	SPECIES_ARCANINE_REDUX,
     SPECIES_ARCANINE_MEGA_REDUX,
     FORM_SPECIES_END,

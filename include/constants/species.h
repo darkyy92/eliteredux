@@ -1439,7 +1439,7 @@
 #define SPECIES_SKARMORY_REDUX              FORMS_START + 400
 #define SPECIES_SKARMORY_MEGA_REDUX         FORMS_START + 401
 #define SPECIES_GROWLITHE_REDUX             FORMS_START + 402
-#define SPECIES_ARCANINE_REDUX         FORMS_START + 403
+#define SPECIES_ARCANINE_REDUX              FORMS_START + 403
 #define SPECIES_ARCANINE_MEGA_REDUX         FORMS_START + 404
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future

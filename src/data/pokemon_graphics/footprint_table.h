@@ -757,6 +757,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_SKARMORY_MEGA_REDUX] = gMonFootprint_Skarmory_Mega_Redux,
     [SPECIES_GROWLITHE_REDUX] = gMonFootprint_Growlithe_Redux,
     [SPECIES_ARCANINE_REDUX] = gMonFootprint_Arcanine_Redux,
+    [SPECIES_ARCANINE_MEGA_REDUX] = gMonFootprint_Arcanine_Mega_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
