@@ -21,6 +21,7 @@ static const u16 sBlastoiseFormSpeciesIdTable[] = {
 
 static const u16 sBeedrillFormSpeciesIdTable[] = {
     SPECIES_BEEDRILL,
+    SPECIES_BEEDRILL_MEGA_REDUX,
     SPECIES_BEEDRILL_REDUX,
     SPECIES_BEEDRILL_MEGA,
     FORM_SPECIES_END,
@@ -1054,6 +1055,7 @@ static const u16 sSkarmoryFormSpeciesIdTable[] = {
     SPECIES_SKARMORY_MEGA_REDUX,
     SPECIES_SKARMORY_REDUX,
     SPECIES_SKARMORY_MEGA,
+    SPECIES_SKARMORY_MEGA_REDUX,
     FORM_SPECIES_END,
 };
 

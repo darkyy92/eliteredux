@@ -930,6 +930,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ARCANINE_REDUX] = gMonIcon_Arcanine_Redux,
     [SPECIES_GROWLITHE_REDUX] = gMonIcon_Growlithe_Redux,
     [SPECIES_SKARMORY_MEGA_REDUX] = gMonIcon_Skarmory_Mega_Redux,
+    [SPECIES_BEEDRILL_MEGA_REDUX] = gMonIcon_Beedrill_Mega_Redux,
     [SPECIES_DUOSION_REDUX] = gMonIcon_Duosion_Redux,
     [SPECIES_MACHAMP_REDUX] = gMonIcon_Machamp_Redux,
     [SPECIES_MACHOKE_REDUX] = gMonIcon_Machoke_Redux,
@@ -2614,6 +2615,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_WEEDLE_REDUX]   = 0,
     [SPECIES_KAKUNA_REDUX]   = 0,
     [SPECIES_BEEDRILL_REDUX] = 0,
+    [SPECIES_BEEDRILL_MEGA_REDUX] = 0,
 
     [SPECIES_ABRA_REDUX]          = 2,
     [SPECIES_KADABRA_REDUX]       = 2,
@@ -2624,6 +2626,13 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_DOUBLADE_REDUX]        = 2,
     [SPECIES_AEGISLASH_REDUX]       = 2,
     [SPECIES_AEGISLASH_BLADE_REDUX] = 2,
+    
+    [SPECIES_SOLOSIS_REDUX]   = 0,
+    [SPECIES_DUOSION_REDUX]   = 0,
+    [SPECIES_REUNICLUS_REDUX] = 0,
+
+    [SPECIES_SKARMORY_REDUX]        = 0,
+    [SPECIES_SKARMORY_MEGA_REDUX]   = 0,
 
     [SPECIES_RIBOMBEE_MEGA] = 2,
 

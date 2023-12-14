@@ -4516,6 +4516,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_BEEDRILL_MEGA_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_DUOSION_REDUX] =
     {
         .size = 0,
