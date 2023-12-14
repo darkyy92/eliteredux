@@ -524,7 +524,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DEWGONG_MEGA]          = sDewgongFormSpeciesIdTable,
     [SPECIES_HITMONCHAN]            = sHitmonchanFormSpeciesIdTable,
     [SPECIES_HITMONCHAN_MEGA]       = sHitmonchanFormSpeciesIdTable,
-    [SPECIES_SKARMORY_MEGA_REDUX] = sSkarmoryFormSpeciesIdTable,
     [SPECIES_SKARMORY_MEGA]         = sSkarmoryFormSpeciesIdTable,
     [SPECIES_SKARMORY_REDUX]        = sSkarmoryFormSpeciesIdTable,
     [SPECIES_SKARMORY_MEGA_REDUX]   = sSkarmoryFormSpeciesIdTable,
