@@ -1376,3 +1376,8 @@ static const u16 sPawniardFormSpeciesIdTable[] = {
     SPECIES_PAWNIARD_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sBisharpFormSpeciesIdTable[] = {
+    SPECIES_BISHARP,
+    SPECIES_BISHARP_REDUX,
+    FORM_SPECIES_END,
+};

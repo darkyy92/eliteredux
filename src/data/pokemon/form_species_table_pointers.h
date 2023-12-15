@@ -659,4 +659,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_PAWNIARD_REDUX] = sPawniardFormSpeciesIdTable,
 
+    [SPECIES_BISHARP_REDUX] = sBisharpFormSpeciesIdTable,
+
 };
