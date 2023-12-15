@@ -661,4 +661,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_BISHARP_REDUX] = sBisharpFormSpeciesIdTable,
 
+    [SPECIES_MAWILE_MEGA_REDUX] = sMawileFormSpeciesIdTable,
+
 };

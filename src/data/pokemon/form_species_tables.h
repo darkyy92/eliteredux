@@ -400,6 +400,7 @@ static const u16 sSableyeFormSpeciesIdTable[] = {
 
 static const u16 sMawileFormSpeciesIdTable[] = {
     SPECIES_MAWILE,
+    SPECIES_MAWILE_MEGA_REDUX,
     SPECIES_MAWILE_REDUX,
     SPECIES_MAWILE_MEGA,
     FORM_SPECIES_END,
