@@ -899,6 +899,8 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(GLASTRIER, gMonShinyPalette_Glastrier),
     SPECIES_SHINY_PAL(SPECTRIER, gMonShinyPalette_Spectrier),
     SPECIES_SHINY_PAL(CALYREX, gMonShinyPalette_Calyrex),
+    SPECIES_SHINY_PAL(MAWILE_REDUX, gMonShinyPalette_Mawile_Redux),
+    SPECIES_SHINY_PAL(BISHARP_REDUX, gMonShinyPalette_Bisharp_Redux),
     SPECIES_SHINY_PAL(PAWNIARD_REDUX, gMonShinyPalette_Pawniard_Redux),
     SPECIES_SHINY_PAL(HYDREIGON_REDUX, gMonShinyPalette_Hydreigon_Redux),
     SPECIES_SHINY_PAL(ZWEILOUS_REDUX, gMonShinyPalette_Zweilous_Redux),

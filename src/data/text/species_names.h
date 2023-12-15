@@ -904,6 +904,9 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_HYDREIGON_REDUX] = _("Hydreigon"),
 
     [SPECIES_PAWNIARD_REDUX] = _("Pawniard"),
+    [SPECIES_BISHARP_REDUX] = _("Bisharp"),
+
+    [SPECIES_MAWILE_REDUX] = _("Mawile"),
 
     [SPECIES_GIBLE_REDUX] = _("Gible"),
     [SPECIES_GABITE_REDUX] = _("Gabite"),

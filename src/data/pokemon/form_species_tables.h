@@ -400,6 +400,7 @@ static const u16 sSableyeFormSpeciesIdTable[] = {
 
 static const u16 sMawileFormSpeciesIdTable[] = {
     SPECIES_MAWILE,
+    SPECIES_MAWILE_REDUX,
     SPECIES_MAWILE_MEGA,
     FORM_SPECIES_END,
 };
@@ -1374,5 +1375,10 @@ static const u16 sHydreigonFormSpeciesIdTable[] = {
 static const u16 sPawniardFormSpeciesIdTable[] = {
     SPECIES_PAWNIARD,
     SPECIES_PAWNIARD_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sBisharpFormSpeciesIdTable[] = {
+    SPECIES_BISHARP,
+    SPECIES_BISHARP_REDUX,
     FORM_SPECIES_END,
 };

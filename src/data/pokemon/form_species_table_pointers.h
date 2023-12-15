@@ -58,7 +58,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LINOONE] = sLinooneFormSpeciesIdTable,
     [SPECIES_GARDEVOIR] = sGardevoirFormSpeciesIdTable,
     [SPECIES_SABLEYE] = sSableyeFormSpeciesIdTable,
-    [SPECIES_MAWILE] = sMawileFormSpeciesIdTable,
+    [SPECIES_MAWILE_REDUX] = sMawileFormSpeciesIdTable,
     [SPECIES_AGGRON] = sAggronFormSpeciesIdTable,
     [SPECIES_MEDICHAM] = sMedichamFormSpeciesIdTable,
     [SPECIES_MANECTRIC] = sManectricFormSpeciesIdTable,
@@ -658,5 +658,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_HYDREIGON_REDUX] = sHydreigonFormSpeciesIdTable,
 
     [SPECIES_PAWNIARD_REDUX] = sPawniardFormSpeciesIdTable,
+
+    [SPECIES_BISHARP_REDUX] = sBisharpFormSpeciesIdTable,
 
 };

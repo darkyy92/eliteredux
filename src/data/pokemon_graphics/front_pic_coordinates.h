@@ -4496,6 +4496,16 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x68,
         .y_offset = 2,
     },
+    [SPECIES_MAWILE_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BISHARP_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_PAWNIARD_REDUX] =
     {
         .size = 0,

@@ -932,6 +932,9 @@ const u8 *const gMonIconTable[] =
     [SPECIES_HYDREIGON_REDUX] = gMonIcon_Hydreigon_Redux,
 
     [SPECIES_PAWNIARD_REDUX] = gMonIcon_Pawniard_Redux,
+    [SPECIES_BISHARP_REDUX] = gMonIcon_Bisharp_Redux,
+    
+    [SPECIES_MAWILE_REDUX] = gMonIcon_Mawile_Redux,
 
     [SPECIES_GIBLE_REDUX] = gMonIcon_Gible_Redux,
     [SPECIES_GABITE_REDUX] = gMonIcon_Gabite_Redux,
@@ -2286,6 +2289,9 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_HYDREIGON_REDUX] = 0,
 
     [SPECIES_PAWNIARD_REDUX] = 0,
+    [SPECIES_BISHARP_REDUX] = 0,
+
+    [SPECIES_MAWILE_REDUX] = 2,
 
     [SPECIES_VENUSAUR_MEGA] = 1,
     [SPECIES_CHARIZARD_MEGA_X] = 0,
