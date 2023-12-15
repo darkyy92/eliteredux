@@ -4495,6 +4495,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 10,
     },
+    [SPECIES_HYDREIGON_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ZWEILOUS_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_DEINO_REDUX] =
     {
         .size = 0,

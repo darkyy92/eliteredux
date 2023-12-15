@@ -1361,3 +1361,13 @@ static const u16 sDeinoFormSpeciesIdTable[] = {
     SPECIES_DEINO_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sZweilousFormSpeciesIdTable[] = {
+    SPECIES_ZWEILOUS,
+    SPECIES_ZWEILOUS_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sHydreigonFormSpeciesIdTable[] = {
+    SPECIES_HYDREIGON,
+    SPECIES_HYDREIGON_REDUX,
+    FORM_SPECIES_END,
+};
