@@ -9527,7 +9527,17 @@ static const union AnimCmd sAnim_BEEDRILL_MEGA_REDUX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_SOLOSIS_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_DUOSION_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_REUNICLUS_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -15406,9 +15416,19 @@ static const union AnimCmd *const sAnims_BEEDRILL_MEGA_REDUX[] ={
     sAnim_BEEDRILL_MEGA_REDUX_1,
 };
 
+static const union AnimCmd *const sAnims_SOLOSIS_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SOLOSIS_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_DUOSION_REDUX[] ={
     sAnim_GeneralFrame0,
     sAnim_DUOSION_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_REUNICLUS_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_REUNICLUS_REDUX_1,
 };
 
 static const union AnimCmd *const sAnims_SKARMORY_REDUX[] ={
@@ -17373,7 +17393,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(GROWLITHE_REDUX),
     ANIM_CMD(SKARMORY_MEGA_REDUX),
     ANIM_CMD(BEEDRILL_MEGA_REDUX),
+    ANIM_CMD(SOLOSIS_REDUX),
     ANIM_CMD(DUOSION_REDUX),
+    ANIM_CMD(REUNICLUS_REDUX),
     ANIM_CMD(SKARMORY_REDUX),
     ANIM_CMD(MACHAMP_MEGA_REDUX),
     ANIM_CMD(MACHAMP_REDUX),
