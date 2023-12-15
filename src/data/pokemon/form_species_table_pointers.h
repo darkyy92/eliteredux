@@ -653,4 +653,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_DEINO_REDUX] = sDeinoFormSpeciesIdTable,
 
+    [SPECIES_ZWEILOUS_REDUX] = sZweilousFormSpeciesIdTable,
+
+    [SPECIES_HYDREIGON_REDUX] = sHydreigonFormSpeciesIdTable,
+
+    [SPECIES_PAWNIARD_REDUX] = sPawniardFormSpeciesIdTable,
+
 };

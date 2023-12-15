@@ -9462,6 +9462,21 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_PAWNIARD_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_HYDREIGON_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ZWEILOUS_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_DEINO_REDUX_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15352,6 +15367,21 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_PAWNIARD_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PAWNIARD_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_HYDREIGON_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_HYDREIGON_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_ZWEILOUS_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ZWEILOUS_REDUX_1,
+};
+
 static const union AnimCmd *const sAnims_DEINO_REDUX[] ={
     sAnim_GeneralFrame0,
     sAnim_DEINO_REDUX_1,
@@ -17380,6 +17410,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(PAWNIARD_REDUX),
+    ANIM_CMD(HYDREIGON_REDUX),
+    ANIM_CMD(ZWEILOUS_REDUX),
     ANIM_CMD(DEINO_REDUX),
     ANIM_CMD(GARCHOMP_MEGA_REDUX),
     ANIM_CMD(GARCHOMP_REDUX),

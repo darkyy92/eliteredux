@@ -1449,6 +1449,9 @@
 #define SPECIES_GARCHOMP_REDUX              FORMS_START + 410
 #define SPECIES_GARCHOMP_MEGA_REDUX         FORMS_START + 411
 #define SPECIES_DEINO_REDUX                 FORMS_START + 412
+#define SPECIES_ZWEILOUS_REDUX              FORMS_START + 413
+#define SPECIES_HYDREIGON_REDUX             FORMS_START + 414
+#define SPECIES_PAWNIARD_REDUX              FORMS_START + 415
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
