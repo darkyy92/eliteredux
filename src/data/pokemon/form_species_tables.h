@@ -1334,3 +1334,13 @@ static const u16 sWhismurFormSpeciesIdTable[] = {
     SPECIES_WHISMUR_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sLoudredFormSpeciesIdTable[] = {
+    SPECIES_LOUDRED,
+    SPECIES_LOUDRED_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sExploudFormSpeciesIdTable[] = {
+    SPECIES_EXPLOUD,
+    SPECIES_EXPLOUD_REDUX,
+    FORM_SPECIES_END,
+};

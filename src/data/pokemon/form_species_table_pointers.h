@@ -641,4 +641,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_WHISMUR_REDUX] = sWhismurFormSpeciesIdTable,
 
+    [SPECIES_LOUDRED_REDUX] = sLoudredFormSpeciesIdTable,
+
+    [SPECIES_EXPLOUD_REDUX] = sExploudFormSpeciesIdTable,
+
 };

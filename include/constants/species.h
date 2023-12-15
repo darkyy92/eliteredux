@@ -1442,6 +1442,8 @@
 #define SPECIES_ARCANINE_REDUX              FORMS_START + 403
 #define SPECIES_ARCANINE_MEGA_REDUX         FORMS_START + 404
 #define SPECIES_WHISMUR_REDUX               FORMS_START + 405
+#define SPECIES_LOUDRED_REDUX               FORMS_START + 406
+#define SPECIES_EXPLOUD_REDUX               FORMS_START + 407
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 

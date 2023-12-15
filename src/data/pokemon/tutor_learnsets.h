@@ -153,6 +153,10 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_EXPLOUD_REDUX] = {
+	},
+	[SPECIES_LOUDRED_REDUX] = {
+	},
 	[SPECIES_WHISMUR_REDUX] = {
 	},
 	[SPECIES_ARCANINE_MEGA_REDUX] = {
