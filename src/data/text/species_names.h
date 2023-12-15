@@ -898,10 +898,15 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
-[SPECIES_MAWILE_MEGA_REDUX] = _("Mawile"),
-[SPECIES_MAWILE_REDUX] = _("Mawile"),
-[SPECIES_BISHARP_REDUX] = _("Bisharp"),
-[SPECIES_PAWNIARD_REDUX] = _("Pawniard"),
+
+    [SPECIES_DEINO_REDUX] = _("Deino"),
+    [SPECIES_ZWEILOUS_REDUX] = _("Zweilous"),
+    [SPECIES_HYDREIGON_REDUX] = _("Hydreigon"),
+
+    [SPECIES_PAWNIARD_REDUX] = _("Pawniard"),
+    [SPECIES_BISHARP_REDUX] = _("Bisharp"),
+
+    [SPECIES_MAWILE_REDUX] = _("Mawile"),
 
     [SPECIES_GIBLE_REDUX] = _("Gible"),
     [SPECIES_GABITE_REDUX] = _("Gabite"),
