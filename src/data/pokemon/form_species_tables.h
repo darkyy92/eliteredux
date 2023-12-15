@@ -1356,3 +1356,8 @@ static const u16 sGabiteFormSpeciesIdTable[] = {
     SPECIES_GABITE_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sDeinoFormSpeciesIdTable[] = {
+    SPECIES_DEINO,
+    SPECIES_DEINO_REDUX,
+    FORM_SPECIES_END,
+};

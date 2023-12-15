@@ -651,4 +651,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_GARCHOMP_MEGA_REDUX] = sGarchompFormSpeciesIdTable,
 
+    [SPECIES_DEINO_REDUX] = sDeinoFormSpeciesIdTable,
+
 };

@@ -766,6 +766,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_GABITE_REDUX] = gMonFootprint_Gabite_Redux,
     [SPECIES_GARCHOMP_REDUX] = gMonFootprint_Garchomp_Redux,
     [SPECIES_GARCHOMP_MEGA_REDUX] = gMonFootprint_Garchomp_Mega_Redux,
+    [SPECIES_DEINO_REDUX] = gMonFootprint_Deino_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
