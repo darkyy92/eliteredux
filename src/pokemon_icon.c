@@ -926,52 +926,71 @@ const u8 *const gMonIconTable[] =
     [SPECIES_GLASTRIER] = gMonIcon_Glastrier,
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
-    [SPECIES_HYDREIGON_REDUX] = gMonIcon_Hydreigon_Redux,
-    [SPECIES_ZWEILOUS_REDUX] = gMonIcon_Zweilous_Redux,
-    [SPECIES_DEINO_REDUX] = gMonIcon_Deino_Redux,
-    [SPECIES_GARCHOMP_MEGA_REDUX] = gMonIcon_Garchomp_Mega_Redux,
-    [SPECIES_GARCHOMP_REDUX] = gMonIcon_Garchomp_Redux,
-    [SPECIES_GABITE_REDUX] = gMonIcon_Gabite_Redux,
+
     [SPECIES_GIBLE_REDUX] = gMonIcon_Gible_Redux,
-    [SPECIES_EXPLOUD_REDUX] = gMonIcon_Exploud_Redux,
-    [SPECIES_LOUDRED_REDUX] = gMonIcon_Loudred_Redux,
+    [SPECIES_GABITE_REDUX] = gMonIcon_Gabite_Redux,
+    [SPECIES_GARCHOMP_REDUX] = gMonIcon_Garchomp_Redux,
+    [SPECIES_GARCHOMP_MEGA_REDUX] = gMonIcon_Garchomp_Mega_Redux,
+
     [SPECIES_WHISMUR_REDUX] = gMonIcon_Whismur_Redux,
-    [SPECIES_ARCANINE_MEGA_REDUX] = gMonIcon_Arcanine_Mega_Redux,
-    [SPECIES_ARCANINE_REDUX] = gMonIcon_Arcanine_Redux,
+    [SPECIES_LOUDRED_REDUX] = gMonIcon_Loudred_Redux,
+    [SPECIES_EXPLOUD_REDUX] = gMonIcon_Exploud_Redux,
+
     [SPECIES_GROWLITHE_REDUX] = gMonIcon_Growlithe_Redux,
+    [SPECIES_ARCANINE_REDUX] = gMonIcon_Arcanine_Redux,
+    [SPECIES_ARCANINE_MEGA_REDUX] = gMonIcon_Arcanine_Mega_Redux,
+
+    [SPECIES_SKARMORY_REDUX] = gMonIcon_Skarmory_Redux,
     [SPECIES_SKARMORY_MEGA_REDUX] = gMonIcon_Skarmory_Mega_Redux,
-    [SPECIES_BEEDRILL_MEGA_REDUX] = gMonIcon_Beedrill_Mega_Redux,
+
+    [SPECIES_SOLOSIS_REDUX] = gMonIcon_Solosis_Redux,
     [SPECIES_DUOSION_REDUX] = gMonIcon_Duosion_Redux,
-    [SPECIES_MACHAMP_REDUX] = gMonIcon_Machamp_Redux,
-    [SPECIES_MACHOKE_REDUX] = gMonIcon_Machoke_Redux,
+    [SPECIES_REUNICLUS_REDUX] = gMonIcon_Reuniclus_Redux,
+
     [SPECIES_MACHOP_REDUX] = gMonIcon_Machop_Redux,
+    [SPECIES_MACHOKE_REDUX] = gMonIcon_Machoke_Redux,
+    [SPECIES_MACHAMP_REDUX] = gMonIcon_Machamp_Redux,
+    [SPECIES_MACHAMP_MEGA_REDUX] = gMonIcon_Machamp_Mega_Redux,
+
     [SPECIES_UXIE_REDUX] = gMonIcon_Uxie_Redux,
     [SPECIES_MESPRIT_REDUX] = gMonIcon_Mesprit_Redux,
     [SPECIES_AZELF_REDUX] = gMonIcon_Azelf_Redux,
-    [SPECIES_FLOATZEL_REDUX] = gMonIcon_Floatzel_Redux,
+
     [SPECIES_BUIZEL_REDUX] = gMonIcon_Buizel_Redux,
-    [SPECIES_MAGCARGO_REDUX] = gMonIcon_Magcargo_Redux,
+    [SPECIES_FLOATZEL_REDUX] = gMonIcon_Floatzel_Redux,
+
     [SPECIES_SLUGMA_REDUX] = gMonIcon_Slugma_Redux,
-    [SPECIES_SIMISEAR_REDUX] = gMonIcon_Simisear_Redux,
+    [SPECIES_MAGCARGO_REDUX] = gMonIcon_Magcargo_Redux,
+
     [SPECIES_PANSEAR_REDUX] = gMonIcon_Pansear_Redux,
-    [SPECIES_SIMISAGE_REDUX] = gMonIcon_Simisage_Redux,
+    [SPECIES_SIMISEAR_REDUX] = gMonIcon_Simisear_Redux,
+
     [SPECIES_PANSAGE_REDUX] = gMonIcon_Pansage_Redux,
-    [SPECIES_SIMIPOUR_REDUX] = gMonIcon_Simipour_Redux,
+    [SPECIES_SIMISAGE_REDUX] = gMonIcon_Simisage_Redux,
+
     [SPECIES_PANPOUR_REDUX] = gMonIcon_Panpour_Redux,
-    [SPECIES_BEWEAR_REDUX] = gMonIcon_Bewear_Redux,
+    [SPECIES_SIMIPOUR_REDUX] = gMonIcon_Simipour_Redux,
+
     [SPECIES_STUFFUL_REDUX] = gMonIcon_Stufful_Redux,
-    [SPECIES_BEEDRILL_REDUX] = gMonIcon_Beedrill_Redux,
-    [SPECIES_KAKUNA_REDUX] = gMonIcon_Kakuna_Redux,
+    [SPECIES_BEWEAR_REDUX] = gMonIcon_Bewear_Redux,
+    
     [SPECIES_WEEDLE_REDUX] = gMonIcon_Weedle_Redux,
-    [SPECIES_ALAKAZAM_MEGA_REDUX] = gMonIcon_Alakazam_Redux_Mega,
-    [SPECIES_ALAKAZAM_REDUX] = gMonIcon_Alakazam_Redux,
-    [SPECIES_KADABRA_REDUX] = gMonIcon_Kadabra_Redux,
+    [SPECIES_KAKUNA_REDUX] = gMonIcon_Kakuna_Redux,
+    [SPECIES_BEEDRILL_REDUX] = gMonIcon_Beedrill_Redux,
+    [SPECIES_BEEDRILL_MEGA_REDUX] = gMonIcon_Beedrill_Mega_Redux,
+
     [SPECIES_ABRA_REDUX] = gMonIcon_Abra_Redux,
-    [SPECIES_AEGISLASH_BLADE_REDUX] = gMonIcon_Aegislash_Blade_Redux,
-    [SPECIES_AEGISLASH_REDUX] = gMonIcon_Aegislash_Redux,
-    [SPECIES_DOUBLADE_REDUX] = gMonIcon_Doublade_Redux,
+    [SPECIES_KADABRA_REDUX] = gMonIcon_Kadabra_Redux,
+    [SPECIES_ALAKAZAM_REDUX] = gMonIcon_Alakazam_Redux,
+    [SPECIES_ALAKAZAM_MEGA_REDUX] = gMonIcon_Alakazam_Redux_Mega,
+
     [SPECIES_HONEDGE_REDUX] = gMonIcon_Honedge_Redux,
+    [SPECIES_DOUBLADE_REDUX] = gMonIcon_Doublade_Redux,
+    [SPECIES_AEGISLASH_REDUX] = gMonIcon_Aegislash_Redux,
+    [SPECIES_AEGISLASH_BLADE_REDUX] = gMonIcon_Aegislash_Blade_Redux,
+
     [SPECIES_RIBOMBEE_MEGA] = gMonIcon_Ribombee_Mega,
+
     [SPECIES_VENUSAUR_MEGA] = gMonIcon_VenusaurMega,
     [SPECIES_CHARIZARD_MEGA_X] = gMonIcon_CharizardMegaX,
     [SPECIES_CHARIZARD_MEGA_Y] = gMonIcon_CharizardMegaY,
@@ -2255,19 +2274,6 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GLASTRIER] = 0,
     [SPECIES_SPECTRIER] = 0,
     [SPECIES_CALYREX] = 0,
-    [SPECIES_HYDREIGON_REDUX] = 2,
-    [SPECIES_ZWEILOUS_REDUX] = 2,
-    [SPECIES_DEINO_REDUX] = 2,
-    [SPECIES_GARCHOMP_MEGA_REDUX] = 2,
-    [SPECIES_GARCHOMP_REDUX] = 2,
-    [SPECIES_GABITE_REDUX] = 2,
-    [SPECIES_GIBLE_REDUX] = 2,
-    [SPECIES_EXPLOUD_REDUX] = 2,
-    [SPECIES_LOUDRED_REDUX] = 2,
-    [SPECIES_WHISMUR_REDUX] = 2,
-    [SPECIES_ARCANINE_MEGA_REDUX] = 2,
-    [SPECIES_ARCANINE_REDUX] = 2,
-    [SPECIES_GROWLITHE_REDUX] = 2,
     [SPECIES_VENUSAUR_MEGA] = 1,
     [SPECIES_CHARIZARD_MEGA_X] = 0,
     [SPECIES_CHARIZARD_MEGA_Y] = 0,
@@ -2607,6 +2613,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_MACHOP_REDUX]  = 2,
     [SPECIES_MACHOKE_REDUX] = 2,
     [SPECIES_MACHAMP_REDUX] = 2,
+    [SPECIES_MACHAMP_MEGA_REDUX] = 2,
 
     [SPECIES_AZELF_REDUX]   = 0,
     [SPECIES_MESPRIT_REDUX] = 0,
@@ -2653,6 +2660,19 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_SKARMORY_MEGA_REDUX]   = 0,
 
     [SPECIES_RIBOMBEE_MEGA] = 2,
+
+    [SPECIES_GIBLE_REDUX] = 0,
+    [SPECIES_GABITE_REDUX] = 0,
+    [SPECIES_GARCHOMP_REDUX] = 0,
+    [SPECIES_GARCHOMP_MEGA_REDUX] = 0,
+
+    [SPECIES_WHISMUR_REDUX] = 0,
+    [SPECIES_LOUDRED_REDUX] = 0,
+    [SPECIES_EXPLOUD_REDUX] = 0,
+
+    [SPECIES_GROWLITHE_REDUX] = 3,
+    [SPECIES_ARCANINE_REDUX] = 3,
+    [SPECIES_ARCANINE_MEGA_REDUX] = 3,
 
     [SPECIES_EGG] = 1,
 };
