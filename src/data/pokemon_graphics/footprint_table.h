@@ -762,6 +762,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_WHISMUR_REDUX] = gMonFootprint_Whismur_Redux,
     [SPECIES_LOUDRED_REDUX] = gMonFootprint_Loudred_Redux,
     [SPECIES_EXPLOUD_REDUX] = gMonFootprint_Exploud_Redux,
+    [SPECIES_GIBLE_REDUX] = gMonFootprint_Gible_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

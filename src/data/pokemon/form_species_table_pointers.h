@@ -645,4 +645,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_EXPLOUD_REDUX] = sExploudFormSpeciesIdTable,
 
+    [SPECIES_GIBLE_REDUX] = sGibleFormSpeciesIdTable,
+
 };

@@ -1344,3 +1344,8 @@ static const u16 sExploudFormSpeciesIdTable[] = {
     SPECIES_EXPLOUD_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sGibleFormSpeciesIdTable[] = {
+    SPECIES_GIBLE,
+    SPECIES_GIBLE_REDUX,
+    FORM_SPECIES_END,
+};
