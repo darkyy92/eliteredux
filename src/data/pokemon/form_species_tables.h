@@ -1371,3 +1371,8 @@ static const u16 sHydreigonFormSpeciesIdTable[] = {
     SPECIES_HYDREIGON_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sPawniardFormSpeciesIdTable[] = {
+    SPECIES_PAWNIARD,
+    SPECIES_PAWNIARD_REDUX,
+    FORM_SPECIES_END,
+};

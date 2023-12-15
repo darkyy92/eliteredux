@@ -769,6 +769,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_DEINO_REDUX] = gMonFootprint_Deino_Redux,
     [SPECIES_ZWEILOUS_REDUX] = gMonFootprint_Zweilous_Redux,
     [SPECIES_HYDREIGON_REDUX] = gMonFootprint_Hydreigon_Redux,
+    [SPECIES_PAWNIARD_REDUX] = gMonFootprint_Pawniard_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
