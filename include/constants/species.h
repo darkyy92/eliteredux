@@ -1445,6 +1445,9 @@
 #define SPECIES_LOUDRED_REDUX               FORMS_START + 406
 #define SPECIES_EXPLOUD_REDUX               FORMS_START + 407
 #define SPECIES_GIBLE_REDUX                 FORMS_START + 408
+#define SPECIES_GABITE_REDUX                FORMS_START + 409
+#define SPECIES_GARCHOMP_REDUX              FORMS_START + 410
+#define SPECIES_GARCHOMP_MEGA_REDUX         FORMS_START + 411
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 

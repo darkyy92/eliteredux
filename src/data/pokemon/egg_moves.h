@@ -4879,5 +4879,23 @@ const u16 gEggMoves[] = {
         MOVE_ICE_PUNCH,
         MOVE_THUNDER_PUNCH),
 
+    egg_moves(GABITE_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(GARCHOMP_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
+    egg_moves(GARCHOMP_MEGA_REDUX,
+        MOVE_SPLASH,
+        MOVE_FIRE_PUNCH,
+        MOVE_ICE_PUNCH,
+        MOVE_THUNDER_PUNCH),
+
     EGG_MOVES_TERMINATOR
 };
