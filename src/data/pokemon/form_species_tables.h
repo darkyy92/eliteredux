@@ -556,6 +556,8 @@ static const u16 sLopunnyFormSpeciesIdTable[] = {
 
 static const u16 sGarchompFormSpeciesIdTable[] = {
     SPECIES_GARCHOMP,
+    SPECIES_GARCHOMP_MEGA_REDUX,
+    SPECIES_GARCHOMP_REDUX,
     SPECIES_GARCHOMP_MEGA,
     FORM_SPECIES_END,
 };
@@ -1347,5 +1349,10 @@ static const u16 sExploudFormSpeciesIdTable[] = {
 static const u16 sGibleFormSpeciesIdTable[] = {
     SPECIES_GIBLE,
     SPECIES_GIBLE_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sGabiteFormSpeciesIdTable[] = {
+    SPECIES_GABITE,
+    SPECIES_GABITE_REDUX,
     FORM_SPECIES_END,
 };

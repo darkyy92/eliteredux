@@ -83,7 +83,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SHELLOS] = sShellosFormSpeciesIdTable,
     [SPECIES_GASTRODON] = sGastrodonFormSpeciesIdTable,
     [SPECIES_LOPUNNY] = sLopunnyFormSpeciesIdTable,
-    [SPECIES_GARCHOMP] = sGarchompFormSpeciesIdTable,
+    [SPECIES_GARCHOMP_REDUX] = sGarchompFormSpeciesIdTable,
     [SPECIES_LUCARIO] = sLucarioFormSpeciesIdTable,
     [SPECIES_ABOMASNOW] = sAbomasnowFormSpeciesIdTable,
     [SPECIES_GALLADE] = sGalladeFormSpeciesIdTable,
@@ -646,5 +646,9 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_EXPLOUD_REDUX] = sExploudFormSpeciesIdTable,
 
     [SPECIES_GIBLE_REDUX] = sGibleFormSpeciesIdTable,
+
+    [SPECIES_GABITE_REDUX] = sGabiteFormSpeciesIdTable,
+
+    [SPECIES_GARCHOMP_MEGA_REDUX] = sGarchompFormSpeciesIdTable,
 
 };
