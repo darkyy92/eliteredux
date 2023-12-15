@@ -771,6 +771,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_HYDREIGON_REDUX] = gMonFootprint_Hydreigon_Redux,
     [SPECIES_PAWNIARD_REDUX] = gMonFootprint_Pawniard_Redux,
     [SPECIES_BISHARP_REDUX] = gMonFootprint_Bisharp_Redux,
+    [SPECIES_MAWILE_REDUX] = gMonFootprint_Mawile_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

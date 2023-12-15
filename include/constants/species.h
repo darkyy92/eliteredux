@@ -1453,6 +1453,7 @@
 #define SPECIES_HYDREIGON_REDUX             FORMS_START + 414
 #define SPECIES_PAWNIARD_REDUX              FORMS_START + 415
 #define SPECIES_BISHARP_REDUX               FORMS_START + 416
+#define SPECIES_MAWILE_REDUX                FORMS_START + 417
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
