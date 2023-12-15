@@ -759,6 +759,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_ARCANINE_REDUX] = gMonFootprint_Arcanine_Redux,
     [SPECIES_ARCANINE_MEGA_REDUX] = gMonFootprint_Arcanine_Mega_Redux,
     [SPECIES_BEEDRILL_MEGA_REDUX] = gMonFootprint_Beedrill_Mega_Redux,
+    [SPECIES_WHISMUR_REDUX] = gMonFootprint_Whismur_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

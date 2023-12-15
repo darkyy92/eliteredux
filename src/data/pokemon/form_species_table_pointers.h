@@ -639,4 +639,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ARCANINE_MEGA_REDUX] = sArcanineFormSpeciesIdTable,
 
+    [SPECIES_WHISMUR_REDUX] = sWhismurFormSpeciesIdTable,
+
 };

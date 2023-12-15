@@ -1329,3 +1329,8 @@ static const u16 sArcanineFormSpeciesIdTable[] = {
     SPECIES_ARCANINE_MEGA_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sWhismurFormSpeciesIdTable[] = {
+    SPECIES_WHISMUR,
+    SPECIES_WHISMUR_REDUX,
+    FORM_SPECIES_END,
+};
