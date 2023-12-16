@@ -927,6 +927,13 @@ const u8 *const gMonIconTable[] =
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
 
+    [SPECIES_DODRIO_REDUX] = gMonIcon_Dodrio_Redux,
+    [SPECIES_DODUO_REDUX] = gMonIcon_Doduo_Redux,
+    
+    [SPECIES_SCRAFTY_MEGA] = gMonIcon_Scrafty_Mega,
+
+    [SPECIES_FROSLASS_MEGA] = gMonIcon_Froslass_Mega,
+
     [SPECIES_HOUNDOUR_REDUX] = gMonIcon_Houndour_Redux,
     [SPECIES_HOUNDOOM_REDUX] = gMonIcon_Houndoom_Redux,
     [SPECIES_HOUNDOOM_MEGA_REDUX] = gMonIcon_Houndoom_Mega_Redux,
@@ -2291,6 +2298,10 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GLASTRIER] = 0,
     [SPECIES_SPECTRIER] = 0,
     [SPECIES_CALYREX] = 0,
+    [SPECIES_DODRIO_REDUX] = 2,
+    [SPECIES_DODUO_REDUX] = 2,
+    [SPECIES_SCRAFTY_MEGA] = 2,
+    [SPECIES_FROSLASS_MEGA] = 2,
     [SPECIES_HOUNDOOM_MEGA_REDUX] = 2,
     [SPECIES_HOUNDOOM_REDUX] = 2,
     [SPECIES_HOUNDOUR_REDUX] = 2,

@@ -669,4 +669,12 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_HOUNDOOM_MEGA_REDUX] = sHoundoomFormSpeciesIdTable,
 
+    [SPECIES_FROSLASS_MEGA] = sFroslassFormSpeciesIdTable,
+
+    [SPECIES_SCRAFTY_MEGA] = sScraftyFormSpeciesIdTable,
+
+    [SPECIES_DODUO_REDUX] = sDoduoFormSpeciesIdTable,
+
+    [SPECIES_DODRIO_REDUX] = sDodrioFormSpeciesIdTable,
+
 };

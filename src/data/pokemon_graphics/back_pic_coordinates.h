@@ -4495,6 +4495,26 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 10,
     },
+    [SPECIES_DODRIO_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DODUO_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SCRAFTY_MEGA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_FROSLASS_MEGA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_HOUNDOOM_MEGA_REDUX] =
     {
         .size = 0,
