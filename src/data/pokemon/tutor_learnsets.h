@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_DODRIO_REDUX] = {
+	},
 	[SPECIES_DODUO_REDUX] = {
 	},
 	[SPECIES_SCRAFTY_MEGA] = {

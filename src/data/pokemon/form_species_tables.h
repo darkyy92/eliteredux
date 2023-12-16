@@ -1407,3 +1407,8 @@ static const u16 sDoduoFormSpeciesIdTable[] = {
     SPECIES_DODUO_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sDodrioFormSpeciesIdTable[] = {
+    SPECIES_DODRIO,
+    SPECIES_DODRIO_REDUX,
+    FORM_SPECIES_END,
+};
