@@ -1455,6 +1455,8 @@
 #define SPECIES_BISHARP_REDUX               FORMS_START + 416
 #define SPECIES_MAWILE_REDUX                FORMS_START + 417
 #define SPECIES_MAWILE_MEGA_REDUX           FORMS_START + 418
+#define SPECIES_SABLEYE_REDUX               FORMS_START + 419
+#define SPECIES_SABLEYE_MEGA_REDUX          FORMS_START + 420
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 
