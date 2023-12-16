@@ -1397,3 +1397,8 @@ static const u16 sFroslassFormSpeciesIdTable[] = {
     SPECIES_FROSLASS_MEGA,
     FORM_SPECIES_END,
 };
+static const u16 sScraftyFormSpeciesIdTable[] = {
+    SPECIES_SCRAFTY,
+    SPECIES_SCRAFTY_MEGA,
+    FORM_SPECIES_END,
+};

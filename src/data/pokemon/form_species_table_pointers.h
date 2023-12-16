@@ -671,4 +671,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_FROSLASS_MEGA] = sFroslassFormSpeciesIdTable,
 
+    [SPECIES_SCRAFTY_MEGA] = sScraftyFormSpeciesIdTable,
+
 };
