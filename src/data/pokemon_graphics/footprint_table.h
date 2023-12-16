@@ -781,6 +781,9 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_HOUNDOOM_REDUX] = gMonFootprint_Houndoom_Redux,
     [SPECIES_HOUNDOOM_MEGA_REDUX] = gMonFootprint_Houndoom_Mega_Redux,
     [SPECIES_FROSLASS_MEGA] = gMonFootprint_Froslass_Mega,
+    [SPECIES_SCRAFTY_MEGA] = gMonFootprint_Scrafty_Mega,
+    [SPECIES_DODUO_REDUX] = gMonFootprint_Doduo_Redux,
+    [SPECIES_DODRIO_REDUX] = gMonFootprint_Dodrio_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

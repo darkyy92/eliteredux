@@ -9462,6 +9462,21 @@ static const union AnimCmd sAnim_CALYREX_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_DODRIO_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_DODUO_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_SCRAFTY_MEGA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_FROSLASS_MEGA_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15412,6 +15427,21 @@ static const union AnimCmd *const sAnims_CALYREX[] ={
     sAnim_CALYREX_1,
 };
 
+static const union AnimCmd *const sAnims_DODRIO_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DODRIO_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_DODUO_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DODUO_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_SCRAFTY_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SCRAFTY_MEGA_1,
+};
+
 static const union AnimCmd *const sAnims_FROSLASS_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_FROSLASS_MEGA_1,
@@ -17500,6 +17530,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
     ANIM_CMD(VENUSAUR_MEGA),
+    ANIM_CMD(DODRIO_REDUX),
+    ANIM_CMD(DODUO_REDUX),
+    ANIM_CMD(SCRAFTY_MEGA),
     ANIM_CMD(FROSLASS_MEGA),
     ANIM_CMD(HOUNDOOM_MEGA_REDUX),
     ANIM_CMD(HOUNDOOM_REDUX),

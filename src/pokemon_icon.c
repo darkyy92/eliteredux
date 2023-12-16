@@ -926,12 +926,20 @@ const u8 *const gMonIconTable[] =
     [SPECIES_GLASTRIER] = gMonIcon_Glastrier,
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
+
+    [SPECIES_DODRIO_REDUX] = gMonIcon_Dodrio_Redux,
+    [SPECIES_DODUO_REDUX] = gMonIcon_Doduo_Redux,
+    
+    [SPECIES_SCRAFTY_MEGA] = gMonIcon_Scrafty_Mega,
+
     [SPECIES_FROSLASS_MEGA] = gMonIcon_Froslass_Mega,
-    [SPECIES_HOUNDOOM_MEGA_REDUX] = gMonIcon_Houndoom_Mega_Redux,
-    [SPECIES_HOUNDOOM_REDUX] = gMonIcon_Houndoom_Redux,
+
     [SPECIES_HOUNDOUR_REDUX] = gMonIcon_Houndour_Redux,
-    [SPECIES_SABLEYE_MEGA_REDUX] = gMonIcon_Sableye_Mega_Redux,
+    [SPECIES_HOUNDOOM_REDUX] = gMonIcon_Houndoom_Redux,
+    [SPECIES_HOUNDOOM_MEGA_REDUX] = gMonIcon_Houndoom_Mega_Redux,
+
     [SPECIES_SABLEYE_REDUX] = gMonIcon_Sableye_Redux,
+    [SPECIES_SABLEYE_MEGA_REDUX] = gMonIcon_Sableye_Mega_Redux,
 
     [SPECIES_DEINO_REDUX] = gMonIcon_Deino_Redux,
     [SPECIES_ZWEILOUS_REDUX] = gMonIcon_Zweilous_Redux,
@@ -941,6 +949,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_BISHARP_REDUX] = gMonIcon_Bisharp_Redux,
     
     [SPECIES_MAWILE_REDUX] = gMonIcon_Mawile_Redux,
+    [SPECIES_MAWILE_MEGA_REDUX] = gMonIcon_Mawile_Mega_Redux,
 
     [SPECIES_GIBLE_REDUX] = gMonIcon_Gible_Redux,
     [SPECIES_GABITE_REDUX] = gMonIcon_Gabite_Redux,
@@ -2289,6 +2298,9 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GLASTRIER] = 0,
     [SPECIES_SPECTRIER] = 0,
     [SPECIES_CALYREX] = 0,
+    [SPECIES_DODRIO_REDUX] = 2,
+    [SPECIES_DODUO_REDUX] = 2,
+    [SPECIES_SCRAFTY_MEGA] = 2,
     [SPECIES_FROSLASS_MEGA] = 2,
     [SPECIES_HOUNDOOM_MEGA_REDUX] = 2,
     [SPECIES_HOUNDOOM_REDUX] = 2,
@@ -2304,6 +2316,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_BISHARP_REDUX] = 0,
 
     [SPECIES_MAWILE_REDUX] = 2,
+    [SPECIES_MAWILE_MEGA_REDUX] = 2,
 
     [SPECIES_VENUSAUR_MEGA] = 1,
     [SPECIES_CHARIZARD_MEGA_X] = 0,
