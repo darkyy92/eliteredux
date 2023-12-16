@@ -3873,6 +3873,11 @@ u8 AtkCanceller_UnableToUseMove(void)
                 {
                     gMultiHitCounter = 5;
                 }
+                else if (ability == ABILITY_KUNOICHI_BLADE || 
+                    BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE))
+                {
+                    gMultiHitCounter = 5;
+                } 
                 else if (ability == ABILITY_BATTLE_BOND
                 && gCurrentMove == MOVE_WATER_SHURIKEN
                 && gBattleMons[gBattlerAttacker].species == SPECIES_GRENINJA_ASH)
@@ -13411,6 +13416,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	// Pixilate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
+    
+    //Emanate
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EMANATE) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 
     // Pollinate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POLLINATE) && moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
@@ -13588,7 +13597,11 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
         MulModifier(&modifier, UQ_4_12(1.4));
 	
 	// Technician
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TECHNICIAN) && basePower <= 60)
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TECHNICIAN) && basePower <= 60 )
+        MulModifier(&modifier, UQ_4_12(1.5));
+
+    // Kunoichi's Blade
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KUNOICHI_BLADE) && basePower <= 60 )
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Water Bubble
@@ -14206,6 +14219,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
+    case ABILITY_PURGATORY:
+        if (moveType == TYPE_GHOST)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+        break;
 	case ABILITY_SHORT_CIRCUIT:
         if (moveType == TYPE_ELECTRIC)
         {
@@ -14727,7 +14749,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
-	// Overgrow
+	// Overgrow 
 	if(BattlerHasInnate(battlerAtk, ABILITY_OVERGROW)){
 		if (moveType == TYPE_GRASS)
         {
@@ -14752,6 +14774,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.5));
             else
                 MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+    // Purgatory
+	if(BattlerHasInnate(battlerAtk, ABILITY_PURGATORY)){
+		if (moveType == TYPE_GHOST)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
         }
 	}
 	// Short Circuit
@@ -15524,6 +15556,20 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
+    }
+    else if (moveType == TYPE_GHOST && defType == TYPE_NORMAL && (GetBattlerAbility(battlerAtk) == ABILITY_PHANTOM_PAIN || BattlerHasInnate(battlerAtk, ABILITY_PHANTOM_PAIN)) )
+    {   
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Dolor fantasma", gActiveBattler);
+            MgbaClose();
+        }
+        #endif
+ 
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_PHANTOM_PAIN);
     }
 	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
     {

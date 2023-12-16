@@ -2044,9 +2044,13 @@ static void Cmd_accuracycheck(void)
             gBattlescriptCurrInstr += 7;
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1
-		|| (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
+        || (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
+        || BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE)
+		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_KUNOICHI_BLADE
 		|| BattlerHasInnate(gBattlerAttacker, ABILITY_SKILL_LINK)
-		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK)))
+		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK)
+        )
+        )
     {
         // No acc checks for second hit of Parental Bond or multi hit moves
         gBattlescriptCurrInstr += 7;

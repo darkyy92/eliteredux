@@ -1729,6 +1729,10 @@ u32 calculateTotalMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 
+    // Emanate
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EMANATE) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
+
     // Pollinate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POLLINATE) && moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
@@ -1906,6 +1910,10 @@ u32 calculateTotalMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType
 	
 	// Technician
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TECHNICIAN) && movePower <= 60)
+        MulModifier(&modifier, UQ_4_12(1.5));
+    
+    // ABILITY_KUNOICHI_BLADE
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KUNOICHI_BLADE) && movePower <= 60)
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Water Bubble

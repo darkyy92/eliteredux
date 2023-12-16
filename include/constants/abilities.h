@@ -484,7 +484,11 @@
 #define ABILITY_ADRENALINE_RUSH  (ABILITIES_COUNT_LATEST_GEN + 186) // KOs raise speed by +1.
 #define ABILITY_ARCHMAGE         (ABILITIES_COUNT_LATEST_GEN + 187) // Every move has a 30% chance of a type related effect depending on their type
 #define ABILITY_CRYOMANCY        (ABILITIES_COUNT_LATEST_GEN + 188) // Ice moves inflict frostbite 5x more often.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_CRYOMANCY + 1)
+#define ABILITY_PHANTOM_PAIN     (ABILITIES_COUNT_LATEST_GEN + 189) // Ghost type moves can hit normal type pokemon for neutral damage.
+#define ABILITY_PURGATORY        (ABILITIES_COUNT_LATEST_GEN + 190) // Ups GHOST moves by 30%, 80% when at 1/3 HP.
+#define ABILITY_EMANATE          (ABILITIES_COUNT_LATEST_GEN + 191) // Normal moves become PSYCHIC and get a 10% boost.
+#define ABILITY_KUNOICHI_BLADE   (ABILITIES_COUNT_LATEST_GEN + 192) // Technician + Skill Link.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_KUNOICHI_BLADE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
