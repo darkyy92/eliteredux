@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_HOUNDOOM_MEGA_REDUX] = {
+	},
 	[SPECIES_HOUNDOOM_REDUX] = {
 	},
 	[SPECIES_HOUNDOUR_REDUX] = {

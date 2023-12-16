@@ -346,6 +346,7 @@ static const u16 sCorsolaFormSpeciesIdTable[] = {
 
 static const u16 sHoundoomFormSpeciesIdTable[] = {
     SPECIES_HOUNDOOM,
+    SPECIES_HOUNDOOM_MEGA_REDUX,
     SPECIES_HOUNDOOM_REDUX,
     SPECIES_HOUNDOOM_MEGA,
     FORM_SPECIES_END,

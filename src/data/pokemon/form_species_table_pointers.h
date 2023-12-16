@@ -667,4 +667,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_HOUNDOUR_REDUX] = sHoundourFormSpeciesIdTable,
 
+    [SPECIES_HOUNDOOM_MEGA_REDUX] = sHoundoomFormSpeciesIdTable,
+
 };
