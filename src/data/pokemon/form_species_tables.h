@@ -1402,3 +1402,8 @@ static const u16 sScraftyFormSpeciesIdTable[] = {
     SPECIES_SCRAFTY_MEGA,
     FORM_SPECIES_END,
 };
+static const u16 sDoduoFormSpeciesIdTable[] = {
+    SPECIES_DODUO,
+    SPECIES_DODUO_REDUX,
+    FORM_SPECIES_END,
+};

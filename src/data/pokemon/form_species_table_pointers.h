@@ -673,4 +673,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SCRAFTY_MEGA] = sScraftyFormSpeciesIdTable,
 
+    [SPECIES_DODUO_REDUX] = sDoduoFormSpeciesIdTable,
+
 };
