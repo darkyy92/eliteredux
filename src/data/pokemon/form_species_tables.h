@@ -1392,3 +1392,8 @@ static const u16 sHoundourFormSpeciesIdTable[] = {
     SPECIES_HOUNDOUR_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sFroslassFormSpeciesIdTable[] = {
+    SPECIES_FROSLASS,
+    SPECIES_FROSLASS_MEGA,
+    FORM_SPECIES_END,
+};

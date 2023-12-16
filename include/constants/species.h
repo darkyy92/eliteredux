@@ -1460,6 +1460,7 @@
 #define SPECIES_HOUNDOUR_REDUX              FORMS_START + 421
 #define SPECIES_HOUNDOOM_REDUX              FORMS_START + 422
 #define SPECIES_HOUNDOOM_MEGA_REDUX         FORMS_START + 423
+#define SPECIES_FROSLASS_MEGA               FORMS_START + 424
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 

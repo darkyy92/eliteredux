@@ -780,6 +780,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_HOUNDOUR_REDUX] = gMonFootprint_Houndour_Redux,
     [SPECIES_HOUNDOOM_REDUX] = gMonFootprint_Houndoom_Redux,
     [SPECIES_HOUNDOOM_MEGA_REDUX] = gMonFootprint_Houndoom_Mega_Redux,
+    [SPECIES_FROSLASS_MEGA] = gMonFootprint_Froslass_Mega,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
