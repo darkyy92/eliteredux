@@ -4495,11 +4495,6 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 10,
     },
-    [SPECIES_SABLEYE_REDUX] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
     [SPECIES_MAWILE_MEGA_REDUX] =
     {
         .size = 0,
