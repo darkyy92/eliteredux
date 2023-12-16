@@ -346,6 +346,7 @@ static const u16 sCorsolaFormSpeciesIdTable[] = {
 
 static const u16 sHoundoomFormSpeciesIdTable[] = {
     SPECIES_HOUNDOOM,
+    SPECIES_HOUNDOOM_REDUX,
     SPECIES_HOUNDOOM_MEGA,
     FORM_SPECIES_END,
 };
@@ -1383,5 +1384,10 @@ static const u16 sPawniardFormSpeciesIdTable[] = {
 static const u16 sBisharpFormSpeciesIdTable[] = {
     SPECIES_BISHARP,
     SPECIES_BISHARP_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sHoundourFormSpeciesIdTable[] = {
+    SPECIES_HOUNDOUR,
+    SPECIES_HOUNDOUR_REDUX,
     FORM_SPECIES_END,
 };

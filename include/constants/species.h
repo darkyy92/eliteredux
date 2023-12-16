@@ -1457,6 +1457,9 @@
 #define SPECIES_MAWILE_MEGA_REDUX           FORMS_START + 418
 #define SPECIES_SABLEYE_REDUX               FORMS_START + 419
 #define SPECIES_SABLEYE_MEGA_REDUX          FORMS_START + 420
+#define SPECIES_HOUNDOUR_REDUX              FORMS_START + 421
+#define SPECIES_HOUNDOOM_REDUX              FORMS_START + 422
+#define SPECIES_HOUNDOOM_MEGA_REDUX         FORMS_START + 423
  
 #define LAST_REDUX_FORM                     FORMS_START + 800 // To make temporary space for anything we need to add in the future
 

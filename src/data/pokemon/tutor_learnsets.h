@@ -153,6 +153,10 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_HOUNDOOM_REDUX] = {
+	},
+	[SPECIES_HOUNDOUR_REDUX] = {
+	},
 	[SPECIES_SABLEYE_MEGA_REDUX] = {
 	},
 	[SPECIES_SABLEYE_REDUX] = {

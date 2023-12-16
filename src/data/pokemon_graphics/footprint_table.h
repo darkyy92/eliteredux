@@ -777,6 +777,8 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_MAWILE_MEGA_REDUX] = gMonFootprint_Mawile_Mega_Redux,
     [SPECIES_SABLEYE_REDUX] = gMonFootprint_Sableye_Redux,
     [SPECIES_SABLEYE_MEGA_REDUX] = gMonFootprint_Sableye_Mega_Redux,
+    [SPECIES_HOUNDOUR_REDUX] = gMonFootprint_Houndour_Redux,
+    [SPECIES_HOUNDOOM_REDUX] = gMonFootprint_Houndoom_Redux,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };
