@@ -898,11 +898,13 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_GLASTRIER] = _("Glastrier"),
     [SPECIES_SPECTRIER] = _("Spectrier"),
     [SPECIES_CALYREX] = _("Calyrex"),
-[SPECIES_HOUNDOOM_MEGA_REDUX] = _("Houndoom"),
-[SPECIES_HOUNDOOM_REDUX] = _("Houndoom"),
-[SPECIES_HOUNDOUR_REDUX] = _("Houndour"),
-[SPECIES_SABLEYE_MEGA_REDUX] = _("Sableye"),
-[SPECIES_SABLEYE_REDUX] = _("Sableye"),
+
+    [SPECIES_HOUNDOUR_REDUX] = _("Houndour"),
+    [SPECIES_HOUNDOOM_REDUX] = _("Houndoom"),
+    [SPECIES_HOUNDOOM_MEGA_REDUX] = _("Houndoom"),
+
+    [SPECIES_SABLEYE_MEGA_REDUX] = _("Sableye"),
+    [SPECIES_SABLEYE_REDUX] = _("Sableye"),
 
     [SPECIES_DEINO_REDUX] = _("Deino"),
     [SPECIES_ZWEILOUS_REDUX] = _("Zweilous"),
@@ -912,6 +914,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_BISHARP_REDUX] = _("Bisharp"),
 
     [SPECIES_MAWILE_REDUX] = _("Mawile"),
+    [SPECIES_MAWILE_MEGA_REDUX] = _("Mawile"),
 
     [SPECIES_GIBLE_REDUX] = _("Gible"),
     [SPECIES_GABITE_REDUX] = _("Gabite"),

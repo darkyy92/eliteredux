@@ -20253,13 +20253,6 @@ static const struct LevelUpMove sCalyrexLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sHoundoom_Mega_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sHoundoom_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
@@ -20274,21 +20267,7 @@ static const struct LevelUpMove sHoundour_ReduxLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sSableye_Mega_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sSableye_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sMawile_Mega_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
     LEVEL_UP_MOVE(10, MOVE_EMBER),
@@ -20337,13 +20316,6 @@ static const struct LevelUpMove sDeino_ReduxLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sGarchomp_Mega_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sGarchomp_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
@@ -20386,13 +20358,6 @@ static const struct LevelUpMove sWhismur_ReduxLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sArcanine_Mega_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sArcanine_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
@@ -20401,13 +20366,6 @@ static const struct LevelUpMove sArcanine_ReduxLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGrowlithe_ReduxLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sSkarmory_Mega_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
     LEVEL_UP_MOVE(10, MOVE_EMBER),
