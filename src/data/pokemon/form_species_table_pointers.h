@@ -663,4 +663,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MAWILE_MEGA_REDUX] = sMawileFormSpeciesIdTable,
 
+    [SPECIES_SABLEYE_MEGA_REDUX] = sSableyeFormSpeciesIdTable,
+
 };

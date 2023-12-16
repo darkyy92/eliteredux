@@ -394,6 +394,7 @@ static const u16 sGardevoirFormSpeciesIdTable[] = {
 
 static const u16 sSableyeFormSpeciesIdTable[] = {
     SPECIES_SABLEYE,
+    SPECIES_SABLEYE_MEGA_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_SABLEYE_MEGA,
     FORM_SPECIES_END,

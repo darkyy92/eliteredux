@@ -926,6 +926,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_GLASTRIER] = gMonIcon_Glastrier,
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
+    [SPECIES_SABLEYE_MEGA_REDUX] = gMonIcon_Sableye_Mega_Redux,
     [SPECIES_SABLEYE_REDUX] = gMonIcon_Sableye_Redux,
 
     [SPECIES_DEINO_REDUX] = gMonIcon_Deino_Redux,
@@ -2284,6 +2285,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GLASTRIER] = 0,
     [SPECIES_SPECTRIER] = 0,
     [SPECIES_CALYREX] = 0,
+    [SPECIES_SABLEYE_MEGA_REDUX] = 2,
     [SPECIES_SABLEYE_REDUX] = 2,
 
     [SPECIES_DEINO_REDUX] = 0,
