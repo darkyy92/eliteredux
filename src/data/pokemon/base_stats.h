@@ -29885,6 +29885,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_HOUNDOUR_REDUX] =
+    {
+    .baseHP        = 45,
+    .baseAttack    = 60,
+    .baseDefense   = 30,
+    .baseSpeed     = 65,
+    .baseSpAttack  = 80,
+    .baseSpDefense = 50,
+    .type1 = TYPE_DARK,
+    .type2 = TYPE_FIRE,
+    .catchRate = 120,
+    .expYield = 66,
+    .evYield_SpAttack  = 1,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 35,
+    .growthRate = GROWTH_SLOW,
+    .eggGroup1 = EGG_GROUP_FIELD,
+    .eggGroup2 = EGG_GROUP_FIELD,
+    .abilities = {ABILITY_FLAME_BODY, ABILITY_PYROMANCY, ABILITY_NONE},
+    .innates = {ABILITY_NOCTURNAL, ABILITY_FAE_HUNTER, ABILITY_EQUINOX},
+    .bodyColor = BODY_COLOR_BLACK,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_HOUNDOOM_REDUX] =
     {
     .baseHP        = 75,
