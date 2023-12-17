@@ -888,7 +888,7 @@ static bool8 StartMenuDebugCallback(void)
 
 static bool8 StartMenuIntroOptionMenuCallback(void)
 {
-    CreateTask(Task_OpenBattleMenuFromStartMenu, 0);
+    CreateTask(Task_OpenIntroOptionMenuFromStartMenu, 0);
     return TRUE;
 }
 
