@@ -1222,3 +1222,8 @@ static const u16 sSliggooFormSpeciesIdTable[] = {
     SPECIES_SLIGGOO_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sGoodraFormSpeciesIdTable[] = {
+    SPECIES_GOODRA,
+    SPECIES_GOODRA_HISUIAN,
+    FORM_SPECIES_END,
+};
