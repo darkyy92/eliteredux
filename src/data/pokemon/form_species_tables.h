@@ -1181,3 +1181,8 @@ static const u16 sArcanineFormSpeciesIdTable[] = {
     SPECIES_ARCANINE_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sVoltorbFormSpeciesIdTable[] = {
+    SPECIES_VOLTORB,
+    SPECIES_VOLTORB_HISUIAN,
+    FORM_SPECIES_END,
+};

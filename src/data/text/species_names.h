@@ -1016,6 +1016,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_MUNKIDORI] = _("Munkidori"),
 [SPECIES_FEZANDIPITI] = _("Fezandipiti"),
 [SPECIES_OGERPON] = _("Ogerpon"),
+[SPECIES_VOLTORB_HISUIAN] = _("Voltorb"),
 [SPECIES_ARCANINE_HISUIAN] = _("Arcanine"),
 [SPECIES_GROWLITHE_HISUIAN] = _("Growlithe"),
 [SPECIES_QWILFISH_HISUIAN] = _("Qwilfish"),
