@@ -11676,12 +11676,6 @@ static void Cmd_battlemacros(void)
             u16 ability = VarGet(VAR_SAVED_ABILITY);
             u8 statToLower = getStatToLowerFromIntimidateClone(ability);
 
-            #ifdef DEBUG_BUILD
-                MgbaOpen();
-                MgbaPrintf(MGBA_LOG_WARN, "ACTIVATE_INTIMIDATE_1 Abiltity: %d Stat: %d", ability, statToLower);
-                MgbaClose();
-            #endif
-
             if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
                 ability != ABILITY_NONE){
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
@@ -11696,12 +11690,6 @@ static void Cmd_battlemacros(void)
                 u8 opposingBattler = BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker));
                 u16 ability = VarGet(VAR_SAVED_ABILITY);
                 u8 statToLower = getStatToLowerFromIntimidateClone(ability);
-
-                #ifdef DEBUG_BUILD
-                    MgbaOpen();
-                    MgbaPrintf(MGBA_LOG_WARN, "ACTIVATE_INTIMIDATE_1 Abiltity: %d Stat: %d", ability, statToLower);
-                    MgbaClose();
-                #endif
 
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && 
                    ability != ABILITY_NONE){
@@ -11718,13 +11706,6 @@ static void Cmd_battlemacros(void)
     }
 
     if (tryjump){
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "tryjump");
-            MgbaClose();
-        }
-        #endif
         gBattlescriptCurrInstr = jumpPtr;
     }
     else{
@@ -14342,14 +14323,6 @@ static void Cmd_tryrecycleitem(void)
 
     gActiveBattler = gBattlerAttacker;
     usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
-
-    #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Cmd_tryrecycleitem gActiveBattler: %d, usedHeldItem: %d", gActiveBattler, usedHeldItem);
-            MgbaClose();
-        }
-    #endif
 
     if (*usedHeldItem != 0 && gBattleMons[gActiveBattler].item == 0)
     {

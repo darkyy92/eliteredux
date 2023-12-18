@@ -15583,14 +15583,6 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     }
     else if (moveType == TYPE_GHOST && defType == TYPE_NORMAL && (GetBattlerAbility(battlerAtk) == ABILITY_PHANTOM_PAIN || BattlerHasInnate(battlerAtk, ABILITY_PHANTOM_PAIN)) )
     {   
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Dolor fantasma", gActiveBattler);
-            MgbaClose();
-        }
-        #endif
- 
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_PHANTOM_PAIN);
