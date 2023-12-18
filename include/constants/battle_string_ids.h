@@ -692,8 +692,9 @@
 #define STRINGID_SLEEPCLAUSEDISABLESMOVE              721
 #define STRINGID_ELECTROMORPHOSIS_ACTIVATES           722
 #define STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE      723
+#define STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE    724
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

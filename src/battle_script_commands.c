@@ -11611,9 +11611,11 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     bool8 checkOblivious = FALSE;
     //Check if the opposing battler is immune to stat lowering in general or if the mon is not alive
     if(gBattleMons[battler].hp == 0                          ||
+       gDisableStructs[battler].substituteHP != 0            ||
        BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)      ||
        BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
        BATTLER_HAS_ABILITY(battler, ABILITY_FULL_METAL_BODY) ||
+       BATTLER_HAS_ABILITY(battler, ABILITY_MIRROR_ARMOR)    ||
        gBattleMons[battler].statStages[stat] == MIN_STAT_STAGE)
         return TRUE;
 
@@ -11624,6 +11626,7 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPPY)      || 
                BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
                BATTLER_HAS_ABILITY(battler, ABILITY_VITAL_SPIRIT) ||
+               BATTLER_HAS_ABILITY(battler, ABILITY_DISCIPLINE)   ||
                BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS))
                 return TRUE;
 
@@ -11632,8 +11635,13 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     }
 
     //For specific abilities like intimidate
-    if(checkOblivious && BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS))
-        return TRUE;
+    if(checkOblivious){
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS) ||
+           BATTLER_HAS_ABILITY(battler, ABILITY_OWN_TEMPO) ||
+           BATTLER_HAS_ABILITY(battler, ABILITY_UNAWARE)   ||
+           BATTLER_HAS_ABILITY(battler, ABILITY_OVERWHELM))
+            return TRUE;
+    }
 
     switch(stat){
         case STAT_ATK:
@@ -11680,7 +11688,10 @@ static void Cmd_battlemacros(void)
                 ability != ABILITY_NONE){
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
                 gBattlerTarget = opposingBattler;
-                gBattleMons[opposingBattler].statStages[statToLower]--;
+                if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
+                    gBattleMons[opposingBattler].statStages[statToLower]++;
+                else
+                    gBattleMons[opposingBattler].statStages[statToLower]--;
                 tryjump = TRUE;
             }
         }
@@ -11695,7 +11706,10 @@ static void Cmd_battlemacros(void)
                    ability != ABILITY_NONE){
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
                     gBattlerTarget = opposingBattler;
-                    gBattleMons[opposingBattler].statStages[statToLower]--;
+                    if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
+                        gBattleMons[opposingBattler].statStages[statToLower]++;
+                    else
+                        gBattleMons[opposingBattler].statStages[statToLower]--;
                     tryjump = TRUE;
                 }
             }
