@@ -592,4 +592,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_GROWLITHE_HISUIAN] = sGrowlitheFormSpeciesIdTable,
 
+    [SPECIES_ARCANINE_HISUIAN] = sArcanineFormSpeciesIdTable,
+
 };
