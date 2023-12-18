@@ -5092,6 +5092,16 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_SLIGGOO_HISUIAN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_BRAVIARY_HISUIAN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_ZORUA_HISUIAN] =
     {
         .size = 0,
