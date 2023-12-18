@@ -845,6 +845,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_ARCANINE_HISUIAN] = gMonFootprint_Arcanine_Hisuian,
     [SPECIES_VOLTORB_HISUIAN] = gMonFootprint_Voltorb_Hisuian,
     [SPECIES_ELECTRODE_HISUIAN] = gMonFootprint_Electrode_Hisuian,
+    [SPECIES_TYPHLOSION_HISUIAN] = gMonFootprint_Typhlosion_Hisuian,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

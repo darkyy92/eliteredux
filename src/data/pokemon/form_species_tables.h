@@ -1107,6 +1107,7 @@ static const u16 sNidoqueenFormSpeciesIdTable[] = {
 
 static const u16 sTyphlosionFormSpeciesIdTable[] = {
     SPECIES_TYPHLOSION,
+    SPECIES_TYPHLOSION_HISUIAN,
     SPECIES_TYPHLOSION_MEGA,
     FORM_SPECIES_END,
 };

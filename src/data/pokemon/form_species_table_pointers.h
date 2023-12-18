@@ -565,7 +565,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SANDSLASH_MEGA] = sSandslashFormSpeciesIdTable,
 
-    [SPECIES_TYPHLOSION] = sTyphlosionFormSpeciesIdTable,
+    [SPECIES_TYPHLOSION_HISUIAN] = sTyphlosionFormSpeciesIdTable,
     [SPECIES_TYPHLOSION_MEGA] = sTyphlosionFormSpeciesIdTable,
 
     [SPECIES_MEGANIUM] = sMeganiumFormSpeciesIdTable,
