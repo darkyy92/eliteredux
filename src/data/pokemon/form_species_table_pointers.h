@@ -602,4 +602,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SAMUROTT_HISUIAN] = sSamurottFormSpeciesIdTable,
 
+    [SPECIES_LILLIGANT_HISUIAN] = sLilligantFormSpeciesIdTable,
+
 };

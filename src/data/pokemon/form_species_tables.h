@@ -1202,3 +1202,8 @@ static const u16 sSamurottFormSpeciesIdTable[] = {
     SPECIES_SAMUROTT_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sLilligantFormSpeciesIdTable[] = {
+    SPECIES_LILLIGANT,
+    SPECIES_LILLIGANT_HISUIAN,
+    FORM_SPECIES_END,
+};
