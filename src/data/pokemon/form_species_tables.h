@@ -1192,3 +1192,8 @@ static const u16 sElectrodeFormSpeciesIdTable[] = {
     SPECIES_ELECTRODE_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sSneaselFormSpeciesIdTable[] = {
+    SPECIES_SNEASEL,
+    SPECIES_SNEASEL_HISUIAN,
+    FORM_SPECIES_END,
+};

@@ -5092,6 +5092,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_SNEASEL_HISUIAN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_TYPHLOSION_HISUIAN] =
     {
         .size = 0,

@@ -10058,6 +10058,11 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_SNEASEL_HISUIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_TYPHLOSION_HISUIAN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -16334,6 +16339,11 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_SNEASEL_HISUIAN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SNEASEL_HISUIAN_1,
+};
+
 static const union AnimCmd *const sAnims_TYPHLOSION_HISUIAN[] ={
     sAnim_GeneralFrame0,
     sAnim_TYPHLOSION_HISUIAN_1,
@@ -18388,6 +18398,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(SNEASEL_HISUIAN),
     ANIM_CMD(TYPHLOSION_HISUIAN),
     ANIM_CMD(ELECTRODE_HISUIAN),
     ANIM_CMD(VOLTORB_HISUIAN),

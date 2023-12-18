@@ -905,6 +905,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_VOLTORB_HISUIAN] = sVoltorb_HisuianLevelUpLearnset,
     [SPECIES_ELECTRODE_HISUIAN] = sElectrode_HisuianLevelUpLearnset,
     [SPECIES_TYPHLOSION_HISUIAN] = sTyphlosion_HisuianLevelUpLearnset,
+    [SPECIES_SNEASEL_HISUIAN] = sSneasel_HisuianLevelUpLearnset,
     [SPECIES_OGERPON] = sOgerponLevelUpLearnset,
     [SPECIES_FEZANDIPITI] = sFezandipitiLevelUpLearnset,
     [SPECIES_MUNKIDORI] = sMunkidoriLevelUpLearnset,
