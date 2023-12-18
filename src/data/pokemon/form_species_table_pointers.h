@@ -600,4 +600,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SNEASEL_HISUIAN] = sSneaselFormSpeciesIdTable,
 
+    [SPECIES_SAMUROTT_HISUIAN] = sSamurottFormSpeciesIdTable,
+
 };
