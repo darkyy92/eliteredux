@@ -612,4 +612,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_GOODRA_HISUIAN] = sGoodraFormSpeciesIdTable,
 
+    [SPECIES_AVALUGG_HISUIAN] = sAvaluggFormSpeciesIdTable,
+
 };
