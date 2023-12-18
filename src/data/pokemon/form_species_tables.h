@@ -1186,3 +1186,8 @@ static const u16 sVoltorbFormSpeciesIdTable[] = {
     SPECIES_VOLTORB_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sElectrodeFormSpeciesIdTable[] = {
+    SPECIES_ELECTRODE,
+    SPECIES_ELECTRODE_HISUIAN,
+    FORM_SPECIES_END,
+};

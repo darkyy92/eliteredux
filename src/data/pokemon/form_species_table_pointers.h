@@ -596,4 +596,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_VOLTORB_HISUIAN] = sVoltorbFormSpeciesIdTable,
 
+    [SPECIES_ELECTRODE_HISUIAN] = sElectrodeFormSpeciesIdTable,
+
 };
