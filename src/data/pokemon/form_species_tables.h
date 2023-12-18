@@ -1171,3 +1171,8 @@ static const u16 sQwilfishFormSpeciesIdTable[] = {
     SPECIES_QWILFISH_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sGrowlitheFormSpeciesIdTable[] = {
+    SPECIES_GROWLITHE,
+    SPECIES_GROWLITHE_HISUIAN,
+    FORM_SPECIES_END,
+};

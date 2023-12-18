@@ -590,4 +590,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_CLAWITZER]          = sClawitzerFormSpeciesIdTable,
     [SPECIES_QWILFISH_HISUIAN] = sQwilfishFormSpeciesIdTable,
 
+    [SPECIES_GROWLITHE_HISUIAN] = sGrowlitheFormSpeciesIdTable,
+
 };

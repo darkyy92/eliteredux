@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_GROWLITHE_HISUIAN] = {
+	},
 	[SPECIES_QWILFISH_HISUIAN] = {
 		MOVE_IRON_HEAD,
 		MOVE_HIGH_HORSEPOWER,
