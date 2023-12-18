@@ -8222,6 +8222,188 @@ BattleScript_BattlerEnvelopedItselfInAVeil::
 	printstring STRINGID_BATTLERENVELOPEDITSELFINAVEIL
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_IntimidateActivatedNew::
+	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	end3
+
+BattleScript_ScareActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_SCARE
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	end3
+
+BattleScript_MonkeyBusinessActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_MONKEY_BUSINESS
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	end3
+
+BattleScript_IntimidateCloneActivated_Target_1:
+	playstatchangeanimation BS_TARGET, BIT_ATK, STAT_CHANGE_NEGATIVE
+	waitanimation
+	printstring STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_Intimidate_DefiantClonesCheck_Target1:
+	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_1
+	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_1
+	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_1
+	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_1
+	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_1
+	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_IntimidateCloneActivated_KingsWrath_1
+BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck::
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	end3
+
+BattleScript_IntimidateCloneActivated_Target_2:
+	playstatchangeanimation BS_TARGET, BIT_ATK, STAT_CHANGE_NEGATIVE
+	waitanimation
+	printstring STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_Intimidate_DefiantClonesCheck_Target2:
+	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_2
+	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_2
+	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_2
+	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_2
+	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_2
+	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_IntimidateCloneActivated_KingsWrath_2
+BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck:
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	end3
+
+BattleScript_IntimidateCloneActivated_DefiantActivates:
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+//Target 1
+BattleScript_IntimidateCloneActivated_Competitive_1:
+	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
+	setstatchanger STAT_SPATK, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_Defiant_1:
+	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
+	setstatchanger STAT_ATK, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_FortKnox_1:
+	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
+	setstatchanger STAT_DEF, 3, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_RunAway_1:
+	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
+	setstatchanger STAT_SPEED, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_KingsWrath_1:
+	savetarget
+	copybyte gBattlerTarget, gBattlerAbility
+	sethword sABILITY_OVERWRITE, ABILITY_KINGS_WRATH
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_1:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_1
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_1:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_End_1
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_IntimidateCloneActivated_KingsWrath_End_1:
+	restoretarget
+	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
+	end3
+
+//Target 2
+BattleScript_IntimidateCloneActivated_Competitive_2:
+	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
+	setstatchanger STAT_SPATK, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_Defiant_2:
+	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
+	setstatchanger STAT_ATK, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_FortKnox_2:
+	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
+	setstatchanger STAT_DEF, 3, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_RunAway_2:
+	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
+	setstatchanger STAT_SPEED, 2, FALSE
+	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
+	end3
+
+BattleScript_IntimidateCloneActivated_KingsWrath_2:
+	savetarget
+	copybyte gBattlerTarget, gBattlerAbility
+	sethword sABILITY_OVERWRITE, ABILITY_KINGS_WRATH
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_2:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_2
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_2:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_End_2
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_IntimidateCloneActivated_KingsWrath_End_2:
+	restoretarget
+	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
+	end3
 	
 BattleScript_AirBlowerActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -8231,6 +8413,7 @@ BattleScript_AirBlowerActivated::
 	waitmessage B_WAIT_TIME_LONG
 	sethword sABILITY_OVERWRITE, 0
 	end3
+
 
 BattleScript_ElectromorphosisActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
@@ -8271,7 +8454,7 @@ BattleScript_ExtraHitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_ExtraHitFromAtkString::
 BattleScript_ExtraHitFromCritCalc::
-	battlemacros MACROS_RESET_MULTIHIT_HITS
+	battlemacros MACROS_RESET_MULTIHIT_HITS, BattleScript_Nothing
 	critcalc
 	damagecalc
 	adjustdamage
@@ -8305,8 +8488,8 @@ BattleScript_ExtraHitFromAccCheckOnSwitchIn::
 BattleScript_ExtraHitFromAtkStringOnSwitchIn::
 BattleScript_ExtraHitFromCritCalcOnSwitchIn::
 	critcalc
-	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT
-	battlemacros MACROS_RESET_MULTIHIT_HITS
+	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, BattleScript_Nothing
+	battlemacros MACROS_RESET_MULTIHIT_HITS, BattleScript_Nothing
 	damagecalc
 	adjustdamage
 BattleScript_ExtraHitFromAtkAnimationOnSwitchIn::
@@ -10577,7 +10760,7 @@ BattleScript_HandleSoulEaterEffect_NothingToHeal:
 BattleScript_HandleJawsOfCarnageEffect::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_GET_DOUBLE_HEALTH
+	battlemacros MACROS_GET_DOUBLE_HEALTH, BattleScript_Nothing
 	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleJawsOfCarnageEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
@@ -10913,3 +11096,5 @@ BattleScript_WildTotemMegaEvolution::
 	switchinabilities BS_ATTACKER
 	end2
 	
+BattleScript_Nothing::
+	return

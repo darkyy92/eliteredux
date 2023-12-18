@@ -822,9 +822,11 @@ static const u8 sText_AngelsWrath_BugBiteEffect[]     = _("{B_DEF_NAME_WITH_PREF
 static const u8 sText_AngelsWrath_ProtectEffect[]     = _("All of {B_DEF_NAME_WITH_PREFIX}'s\nstats were lowered!");
 static const u8 sText_PkmnsDisciplineLockEnds[]       = _("{B_ATK_NAME_WITH_PREFIX} is no longer\nlocked into only using one move!");
 static const u8 sText_ElectromorphosisActivates[]     = _("{B_DEF_NAME_WITH_PREFIX} became fully\ncharged!");
+static const u8 sText_PkmnCutsStatWith[]              = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\ncuts {B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE - 12] = sText_PkmnCutsStatWith,
     [STRINGID_ELECTROMORPHOSIS_ACTIVATES - 12] = sText_ElectromorphosisActivates,
     [STRINGID_DISCIPLINE_LOCK_ENDS - 12] = sText_PkmnsDisciplineLockEnds,
     [STRINGID_ANGELS_WRATH_PROTECT_EFFECT - 12] = sText_AngelsWrath_ProtectEffect,

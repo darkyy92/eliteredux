@@ -451,10 +451,9 @@ static const u8 sAbilityCryomancy [] = _("Ice moves inflict frostbite\n5x more o
 static const u8 sAbilityPhantomPain [] = _("Ghost type moves can hit normal \ntype pokemon for neutral damage.");
 static const u8 sAbilityPurgatoryDescription[] = _("Ups GHOST moves by 30%, \n80% when at 1/3 HP.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sAbilityEmanateDescription[] = _("Normal moves become PSYCHIC \nand get a 10% boost.");
+static const u8 sAbilityEmanateDescription[] = _("Normal moves become Psychic\nand get a 10% boost.");
 static const u8 sAbilityKunoichiBladeDescription[] = _("Boost weaker moves and increases \nthe frequency of multi-hit moves");
-
-
+static const u8 sAbilityMonkeyBusinessDescription[] = _("Uses Tickle on-entry.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     {
@@ -919,6 +918,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PURGATORY] = _("Purgatory"),
         [ABILITY_EMANATE] = _("Emanate"),
         [ABILITY_KUNOICHI_BLADE] = _("Kunoichi's Blade"),
+        [ABILITY_MONKEY_BUSINESS] = _("Monkey Business"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1384,4 +1384,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PURGATORY] = sAbilityPurgatoryDescription,
         [ABILITY_EMANATE] = sAbilityEmanateDescription,
         [ABILITY_KUNOICHI_BLADE] = sAbilityKunoichiBladeDescription,
+        [ABILITY_MONKEY_BUSINESS] = sAbilityMonkeyBusinessDescription,
 };

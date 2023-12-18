@@ -526,6 +526,9 @@ extern const u8 BattleScript_AngelsWrath_Effect_Electroweb[];
 extern const u8 BattleScript_AngelsWrath_Effect_Bug_Bite[];
 extern const u8 BattleScript_AngelsWrath_Effect_Bug_Bite_2[];
 extern const u8 BattleScript_AngelsWrathProtectEffect[];
+extern const u8 BattleScript_IntimidateActivatedNew[];
+extern const u8 BattleScript_ScareActivated[];
+extern const u8 BattleScript_MonkeyBusinessActivated[];
 
 extern const u8 BattleScript_Archmage_Effect_Type_Electric[];
 extern const u8 BattleScript_Archmage_Effect_Type_Fairy[];

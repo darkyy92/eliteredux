@@ -11590,9 +11590,66 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
+bool8 getStatToLowerFromIntimidateClone(u16 ability){
+    switch(ability){
+        case ABILITY_INTIMIDATE:
+            return STAT_ATK;
+        break;
+        case ABILITY_SCARE:
+            return STAT_SPATK;
+        break;
+        case ABILITY_MONKEY_BUSINESS:
+            return STAT_DEF;
+        break;
+        default:
+            return STAT_HP;
+        break;
+    }
+}
+
+bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ability){
+    bool8 checkOblivious = FALSE;
+    //Check if the opposing battler is immune to stat lowering in general or if the mon is not alive
+    if(gBattleMons[battler].hp == 0                          ||
+       BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)      ||
+       BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
+       BATTLER_HAS_ABILITY(battler, ABILITY_FULL_METAL_BODY) ||
+       gBattleMons[battler].statStages[stat] == MIN_STAT_STAGE)
+        return TRUE;
+
+    switch(ability){
+        case ABILITY_INTIMIDATE:
+        case ABILITY_SCARE:
+            //Abilities that are immune to this effect
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPPY)      || 
+               BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
+               BATTLER_HAS_ABILITY(battler, ABILITY_VITAL_SPIRIT) ||
+               BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS))
+                return TRUE;
+
+            checkOblivious = TRUE;
+        break;
+    }
+
+    //For specific abilities like intimidate
+    if(checkOblivious && BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS))
+        return TRUE;
+
+    switch(stat){
+        case STAT_ATK:
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_HYPER_CUTTER))
+                return TRUE;
+        break;
+    }
+
+    return FALSE;
+}
+
 static void Cmd_battlemacros(void)
 {
     u16 type = T1_READ_16(gBattlescriptCurrInstr + 1);
+    const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    bool8 tryjump = FALSE;
 
     switch(type){
         case MACROS_PRINT_MGBA_MESSAGE:
@@ -11613,13 +11670,70 @@ static void Cmd_battlemacros(void)
         case MACROS_GET_DOUBLE_HEALTH:
             gBattleScripting.doublehealthRestore = TRUE;
         break;
+        case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1:
+        {
+            u8 opposingBattler = BATTLE_OPPOSITE(gBattlerAttacker);
+            u16 ability = VarGet(VAR_SAVED_ABILITY);
+            u8 statToLower = getStatToLowerFromIntimidateClone(ability);
+
+            #ifdef DEBUG_BUILD
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "ACTIVATE_INTIMIDATE_1 Abiltity: %d Stat: %d", ability, statToLower);
+                MgbaClose();
+            #endif
+
+            if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
+                ability != ABILITY_NONE){
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+                gBattlerTarget = opposingBattler;
+                gBattleMons[opposingBattler].statStages[statToLower]--;
+                tryjump = TRUE;
+            }
+        }
+        break;
+        case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2:
+            if(IsDoubleBattle()){
+                u8 opposingBattler = BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker));
+                u16 ability = VarGet(VAR_SAVED_ABILITY);
+                u8 statToLower = getStatToLowerFromIntimidateClone(ability);
+
+                #ifdef DEBUG_BUILD
+                    MgbaOpen();
+                    MgbaPrintf(MGBA_LOG_WARN, "ACTIVATE_INTIMIDATE_1 Abiltity: %d Stat: %d", ability, statToLower);
+                    MgbaClose();
+                #endif
+
+                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && 
+                   ability != ABILITY_NONE){
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+                    gBattlerTarget = opposingBattler;
+                    gBattleMons[opposingBattler].statStages[statToLower]--;
+                    tryjump = TRUE;
+                }
+            }
+        break;
+        case MACROS_SAVE_ABILITY_TO_VARIABLE:
+            VarSet(VAR_SAVED_ABILITY, gBattleScripting.abilityPopupOverwrite);
+        break;
     }
-    gBattlescriptCurrInstr += 3;
+
+    if (tryjump){
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "tryjump");
+            MgbaClose();
+        }
+        #endif
+        gBattlescriptCurrInstr = jumpPtr;
+    }
+    else{
+        gBattlescriptCurrInstr += 7;
+    }
 }
 
 static void Cmd_jumpifabilityonside(void) // King's wrath + intimidate
 {
-    
     u32 battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     bool32 hasAbility = FALSE;
     u32 ability = T2_READ_16(gBattlescriptCurrInstr + 2);
