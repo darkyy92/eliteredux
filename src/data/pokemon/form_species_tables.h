@@ -1207,3 +1207,8 @@ static const u16 sLilligantFormSpeciesIdTable[] = {
     SPECIES_LILLIGANT_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sZoruaFormSpeciesIdTable[] = {
+    SPECIES_ZORUA,
+    SPECIES_ZORUA_HISUIAN,
+    FORM_SPECIES_END,
+};

@@ -604,4 +604,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_LILLIGANT_HISUIAN] = sLilligantFormSpeciesIdTable,
 
+    [SPECIES_ZORUA_HISUIAN] = sZoruaFormSpeciesIdTable,
+
 };

@@ -5086,6 +5086,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset = 16
     },
+    [SPECIES_ZORUA_HISUIAN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_LILLIGANT_HISUIAN] =
     {
         .size = 0,
