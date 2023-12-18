@@ -1527,8 +1527,9 @@
 #define SPECIES_TEMP_MEGA8                  FORMS_START + 367
 #define SPECIES_TEMP_MEGA9                  FORMS_START + 368
 #define SPECIES_TEMP_MEGA10                 FORMS_START + 369
+#define SPECIES_QWILFISH_HISUIAN            FORMS_START + 370
 
-#define SPECIES_EGG SPECIES_TEMP_MEGA10 + 1
+#define SPECIES_EGG SPECIES_QWILFISH_HISUIAN + 1
 #define NUM_SPECIES SPECIES_EGG + 1
 
 // National Dex Index Defines

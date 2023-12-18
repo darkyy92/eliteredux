@@ -840,6 +840,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_MUNKIDORI] = gMonFootprint_Munkidori,
     [SPECIES_FEZANDIPITI] = gMonFootprint_Fezandipiti,
     [SPECIES_OGERPON] = gMonFootprint_Ogerpon,
+    [SPECIES_QWILFISH_HISUIAN] = gMonFootprint_Qwilfish_Hisuian,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

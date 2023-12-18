@@ -588,4 +588,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LAPRAS_MEGA]        = sLaprasFormSpeciesIdTable,
     [SPECIES_CLAWITZER_REDUX] = sClawitzerFormSpeciesIdTable,
     [SPECIES_CLAWITZER]          = sClawitzerFormSpeciesIdTable,
+    [SPECIES_QWILFISH_HISUIAN] = sQwilfishFormSpeciesIdTable,
+
 };

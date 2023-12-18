@@ -1166,3 +1166,8 @@ static const u16 sClawitzerFormSpeciesIdTable[] = {
     SPECIES_CLAWITZER_REDUX,
     FORM_SPECIES_END,
 };
+static const u16 sQwilfishFormSpeciesIdTable[] = {
+    SPECIES_QWILFISH,
+    SPECIES_QWILFISH_HISUIAN,
+    FORM_SPECIES_END,
+};

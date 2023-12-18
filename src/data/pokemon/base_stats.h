@@ -33567,6 +33567,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_QWILFISH_HISUIAN] =
+    {
+        .baseHP        = 50,
+        .baseAttack    = 60,
+        .baseDefense   = 70,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 90,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_GROUND,
+        .catchRate = 255,
+        .expYield = 600,
+        .evYield_HP        = 3,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_ORAN_BERRY,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 255,
+        .friendship = 100,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_WATER_2,
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_RIPEN },
+        .innates = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PINK,
+        .noFlip = FALSE,
+    },
+
 [SPECIES_WEEZING_GALARIAN] =
     {
     .baseHP        = 65,

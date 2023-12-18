@@ -10058,6 +10058,11 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_QWILFISH_HISUIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_BASCULEGION_1[] =
 {
@@ -16304,6 +16309,11 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_QWILFISH_HISUIAN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_QWILFISH_HISUIAN_1,
+};
+
 static const union AnimCmd *const sAnims_BASCULEGION[] ={
     sAnim_GeneralFrame0,
     sAnim_BASCULEGION_1,
@@ -18328,6 +18338,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(QWILFISH_HISUIAN),
     ANIM_CMD(MEOWTH_GALARIAN),
     ANIM_CMD(PONYTA_GALARIAN),
     ANIM_CMD(RAPIDASH_GALARIAN),
