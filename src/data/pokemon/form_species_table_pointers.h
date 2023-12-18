@@ -614,4 +614,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_AVALUGG_HISUIAN] = sAvaluggFormSpeciesIdTable,
 
+    [SPECIES_DECIDUEYE_HISUIAN] = sDecidueyeFormSpeciesIdTable,
+
 };

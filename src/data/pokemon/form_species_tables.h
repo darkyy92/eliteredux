@@ -1232,3 +1232,8 @@ static const u16 sAvaluggFormSpeciesIdTable[] = {
     SPECIES_AVALUGG_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sDecidueyeFormSpeciesIdTable[] = {
+    SPECIES_DECIDUEYE,
+    SPECIES_DECIDUEYE_HISUIAN,
+    FORM_SPECIES_END,
+};
