@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_TAUROS_PALDEAN_AQUA_BREED] = {
+	},
 	[SPECIES_DECIDUEYE_HISUIAN] = {
 	},
 	[SPECIES_AVALUGG_HISUIAN] = {

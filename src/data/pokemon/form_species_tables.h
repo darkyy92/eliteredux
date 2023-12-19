@@ -1237,3 +1237,8 @@ static const u16 sDecidueyeFormSpeciesIdTable[] = {
     SPECIES_DECIDUEYE_HISUIAN,
     FORM_SPECIES_END,
 };
+static const u16 sTaurosFormSpeciesIdTable[] = {
+    SPECIES_TAUROS,
+    SPECIES_TAUROS_PALDEAN_AQUA_BREED,
+    FORM_SPECIES_END,
+};

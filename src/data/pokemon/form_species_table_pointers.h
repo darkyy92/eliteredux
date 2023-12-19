@@ -616,4 +616,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_DECIDUEYE_HISUIAN] = sDecidueyeFormSpeciesIdTable,
 
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = sTaurosFormSpeciesIdTable,
+
 };

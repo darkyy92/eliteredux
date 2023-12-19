@@ -855,6 +855,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_GOODRA_HISUIAN] = gMonFootprint_Goodra_Hisuian,
     [SPECIES_AVALUGG_HISUIAN] = gMonFootprint_Avalugg_Hisuian,
     [SPECIES_DECIDUEYE_HISUIAN] = gMonFootprint_Decidueye_Hisuian,
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = gMonFootprint_Tauros_Paldean_Aqua_Breed,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

@@ -5086,6 +5086,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset = 16
     },
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
         .size = 0,
