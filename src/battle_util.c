@@ -1539,6 +1539,9 @@ bool8 WasUnableToUseMove(u8 battler)
 
 void PrepareStringBattle(u16 stringId, u8 battler)
 {
+    bool8 hasContrary = BATTLER_HAS_ABILITY(battler, ABILITY_CONTRARY);
+    bool8 targetHasContrary = BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_CONTRARY);
+
     // Support for Contrary ability.
     // If a move attempted to raise stat - print "won't increase".
     // If a move attempted to lower stat - print "won't decrease".
@@ -1546,10 +1549,12 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTINCREASE;
     else if (stringId == STRINGID_STATSWONTINCREASE && gBattleScripting.statChanger & STAT_BUFF_NEGATIVE)
         stringId = STRINGID_STATSWONTDECREASE;
-    else if (stringId == STRINGID_STATSWONTDECREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
+    else if (stringId == STRINGID_STATSWONTDECREASE2 && hasContrary)
         stringId = STRINGID_STATSWONTINCREASE2;
-    else if (stringId == STRINGID_STATSWONTINCREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
+    else if (stringId == STRINGID_STATSWONTINCREASE2 && hasContrary)
         stringId = STRINGID_STATSWONTDECREASE2;
+    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE && targetHasContrary)
+        stringId = STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE;
     else if((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNCUTSSPATTACKWITH) &&
             (GetBattlerAbility(gBattlerTarget) == ABILITY_KINGS_WRATH                 || BattlerHasInnate(gBattlerTarget, ABILITY_KINGS_WRATH) || 
              GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_KINGS_WRATH || BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_KINGS_WRATH)) &&
@@ -4924,88 +4929,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_INTIMIDATE:
-            /*if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE){
-                    //Double Battle
-                    if(GetBattlerSide(battler) == B_SIDE_PLAYER){
-                        //Enemy Team
-                        //Opponent 1
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                        //Opponent 2
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                    }
-                    else{
-                        //Player Team
-                        //Player Mon 1
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                        //Player Mon 2
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                    }
-                }
-                else{
-                    //Single Battle
-                    if(GetBattlerSide(battler) == B_SIDE_PLAYER){
-                        //Enemy Team
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                    }
-                    else{
-                        //Player Team
-                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
-                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
-                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
-                            effect++;
-                        }
-                    }
-                }
-            }*/
-            if (!(gSpecialStatuses[battler].intimidatedMon))
-            {
-                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
-                gSpecialStatuses[battler].intimidatedMon = TRUE;
-            }
-            break;
-        case ABILITY_SCARE:
-            if (!(gSpecialStatuses[battler].scaredMon))
-            {
-                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
-                gSpecialStatuses[battler].scaredMon = TRUE;
-            }
-            break;
         case ABILITY_TRACE:
             if (!(gSpecialStatuses[battler].traced))
             {
@@ -5977,29 +5900,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
                 }
             }
-            
-            // Intimidate
-            if(BattlerHasInnate(battler, ABILITY_INTIMIDATE)){
-                if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_INTIMIDATE)] && 
-                    !(gSpecialStatuses[battler].intimidatedMon))
-                {
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_INTIMIDATE)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTIMIDATE;
-                    gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
-                    gSpecialStatuses[battler].intimidatedMon = TRUE;
-                }
-            }
-
-            //Scare
-            if(BattlerHasInnate(battler, ABILITY_SCARE)){
-                if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SCARE)] && !(gSpecialStatuses[battler].scaredMon))
-                {
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SCARE)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCARE;
-                    gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
-                    gSpecialStatuses[battler].scaredMon = TRUE;
-                }
-            }
 
             // Pickup
             if(BATTLER_HAS_ABILITY(battler, ABILITY_PICKUP)){
@@ -6156,6 +6056,135 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                     gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
+                    effect++;
+                }
+            }
+
+            // Intimidate
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_INTIMIDATE)){
+                u16 abilityToCheck = ABILITY_INTIMIDATE; //For easier copypaste
+                bool8 activateAbilty = FALSE;
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u8 statToLower = getStatToLowerFromIntimidateClone(abilityToCheck);
+                bool8 checksPassed = FALSE;
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                if(activateAbilty){
+                    //Target 1
+                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                        checksPassed = TRUE;
+
+                    //Target 2
+                    if(IsDoubleBattle() && !checksPassed){
+                        opposingBattler = BATTLE_PARTNER(opposingBattler);
+                        if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                            checksPassed = TRUE;
+                    }
+                }
+
+                if(checksPassed){ //Ability effect can be triggered
+                    BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatedNew);
+                    effect++;
+                }
+            }
+            
+            // Scare
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SCARE)){
+                u16 abilityToCheck = ABILITY_SCARE; //For easier copypaste
+                bool8 activateAbilty = FALSE;
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u8 statToLower = getStatToLowerFromIntimidateClone(abilityToCheck);
+                bool8 checksPassed = FALSE;
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                if(activateAbilty){
+                    //Target 1
+                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                        checksPassed = TRUE;
+
+                    //Target 2
+                    if(IsDoubleBattle() && !checksPassed){
+                        opposingBattler = BATTLE_PARTNER(opposingBattler);
+                        if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                            checksPassed = TRUE;
+                    }
+                }
+
+                if(checksPassed){ //Ability effect can be triggered
+                    BattleScriptPushCursorAndCallback(BattleScript_ScareActivated);
+                    effect++;
+                }
+            }
+
+            // Monkey Business
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_MONKEY_BUSINESS)){
+                u16 abilityToCheck = ABILITY_MONKEY_BUSINESS; //For easier copypaste
+                bool8 activateAbilty = FALSE;
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u8 statToLower = getStatToLowerFromIntimidateClone(abilityToCheck);
+                bool8 checksPassed = FALSE;
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                if(activateAbilty){
+                    //Target 1
+                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                        checksPassed = TRUE;
+
+                    //Target 2
+                    if(IsDoubleBattle() && !checksPassed){
+                        opposingBattler = BATTLE_PARTNER(opposingBattler);
+                        if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, abilityToCheck))
+                            checksPassed = TRUE;
+                    }
+                }
+
+                if(checksPassed){ //Ability effect can be triggered
+                    BattleScriptPushCursorAndCallback(BattleScript_MonkeyBusinessActivated);
                     effect++;
                 }
             }
@@ -15574,14 +15603,6 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     }
     else if (moveType == TYPE_GHOST && defType == TYPE_NORMAL && (GetBattlerAbility(battlerAtk) == ABILITY_PHANTOM_PAIN || BattlerHasInnate(battlerAtk, ABILITY_PHANTOM_PAIN)) )
     {   
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Dolor fantasma", gActiveBattler);
-            MgbaClose();
-        }
-        #endif
- 
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_PHANTOM_PAIN);

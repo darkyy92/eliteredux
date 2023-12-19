@@ -455,7 +455,10 @@ static const u8 sAbilityKunoichiBladeDescription[] = _("Boost weaker moves and i
 static const u8 sAbilityCombatSpecialistDescription[] = _("Boosts punching and kicking\nmoves by 30%.");
 static const u8 sAbilityJunglesGuardDescription[] = _("Ally Grass types and Itself are protected\nfrom status conditions and lowering stats.");
 static const u8 sAbilityHuntersHornDescription[] = _("Boost Horn moves and Heals \n1/4 HP when defeating an enemy.");
+static const u8 sAbilityMonkeyBusinessDescription[] = _("Uses Tickle on-entry.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
+
+
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     {
@@ -923,6 +926,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_COMBAT_SPECIALIST] = _("Combat Specialist"),
         [ABILITY_JUNGLES_GUARD] = _("Jungle's Guard"),
         [ABILITY_HUNTERS_HORN] = _("Hunter's Horn"),
+        [ABILITY_MONKEY_BUSINESS] = _("Monkey Business"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1391,4 +1395,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_COMBAT_SPECIALIST] = sAbilityCombatSpecialistDescription,
         [ABILITY_JUNGLES_GUARD] = sAbilityJunglesGuardDescription,
         [ABILITY_HUNTERS_HORN] = sAbilityHuntersHornDescription,
+        [ABILITY_MONKEY_BUSINESS] = sAbilityMonkeyBusinessDescription,
+        
 };

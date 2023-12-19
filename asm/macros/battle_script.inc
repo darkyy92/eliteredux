@@ -795,9 +795,10 @@
 	.byte 0x92
 	.endm
 
-	.macro battlemacros type:req
+	.macro battlemacros type:req, param0:req
 	.byte 0x93
 	.2byte \type
+	.4byte \param0
 	.endm
 
 	.macro jumpifabilityonside param0:req, ability:req, ptr:req

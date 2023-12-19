@@ -142,9 +142,12 @@
 #define SAVEBLOCK_ENABLE_LEGENDARY  3
 
 //In Battle Debug Stuff
-#define MACROS_PRINT_MGBA_MESSAGE       0
-#define MACROS_FORCE_FALSE_SWIPE_EFFECT 1
-#define MACROS_RESET_MULTIHIT_HITS      2
-#define MACROS_GET_DOUBLE_HEALTH        3
+#define MACROS_PRINT_MGBA_MESSAGE                          0
+#define MACROS_FORCE_FALSE_SWIPE_EFFECT                    1
+#define MACROS_RESET_MULTIHIT_HITS                         2
+#define MACROS_GET_DOUBLE_HEALTH                           3
+#define MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1   4
+#define MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2   5
+#define MACROS_SAVE_ABILITY_TO_VARIABLE                    6
 
 #endif // GUARD_CONSTANTS_GLOBAL_H

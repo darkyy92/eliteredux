@@ -128,7 +128,7 @@
 #define VAR_TEMP_MOVEEFFECT                  0x406D // Extra Move
 #define VAR_TEMP_MOVEEFECT_CHANCE            0x406E // Extra Move
 #define VAR_ROUTE116_STATE                   0x406F
-#define VAR_FORCE_END2                       0x4070 // Unused Var
+#define VAR_SAVED_ABILITY                    0x4070
 #define VAR_ROUTE118_STATE                   0x4071
 #define VAR_ROUTE119_STATE                   0x4072
 #define VAR_TOTEM_MESSAGE                    0x4073

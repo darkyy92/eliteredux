@@ -41235,9 +41235,9 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_PERSIAN_ALOLAN,
+    .species = SPECIES_JIGGLYPUFF,
     .heldItem = ITEM_NUGGET,
-    .ability = 0, // 
+    .ability = 1, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
@@ -41245,9 +41245,9 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     },
     {
     .lvl = 0,
-    .species = SPECIES_MASQUERAIN,
+    .species = SPECIES_GIRAFARIG,
     .heldItem = ITEM_NUGGET,
-    .ability = 0, // 
+    .ability = 1, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
