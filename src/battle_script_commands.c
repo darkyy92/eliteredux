@@ -8135,9 +8135,15 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
 }
 
 u32 IsFlowerVeilProtected(u32 battler)
-{
+{   
+    bool8 isFlowerVeilProtected = FALSE;
+    if (IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL))
+        isFlowerVeilProtected = TRUE;
+    else if ( IsAbilityOnSide(battler, ABILITY_JUNGLES_GUARD))
+        isFlowerVeilProtected = TRUE;
+
     if (IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
-        return IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL);
+        return isFlowerVeilProtected;
     else
         return FALSE;
 }
@@ -8147,7 +8153,9 @@ u32 IsLeafGuardProtected(u32 battler)
     if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) && (GetBattlerAbility(battler) == ABILITY_LEAF_GUARD || 
         BattlerHasInnate(battler, ABILITY_LEAF_GUARD) || 
         GetBattlerAbility(battler) == ABILITY_BIG_LEAVES || 
-        BattlerHasInnate(battler, ABILITY_BIG_LEAVES)))
+        BattlerHasInnate(battler, ABILITY_BIG_LEAVES) ||
+        GetBattlerAbility(battler) == ABILITY_JUNGLES_GUARD || 
+        BattlerHasInnate(battler, ABILITY_JUNGLES_GUARD)))
         return TRUE;
     else
         return FALSE;
@@ -8782,8 +8790,10 @@ static void Cmd_various(void)
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUL_EATER)      ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER)       ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PREDATOR)        ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUNTERS_HORN)    ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER)) {
             bool8 curehalfhealth = FALSE;
+            bool8 cureHorn = FALSE;
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             
@@ -8801,6 +8811,8 @@ static void Cmd_various(void)
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCAVENGER;
             else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PREDATOR))
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PREDATOR;
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUNTERS_HORN))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HUNTERS_HORN;
             else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER))
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOTER;
 

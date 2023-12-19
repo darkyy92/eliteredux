@@ -450,11 +450,12 @@ static const u8 sAbilityAdrenalineRush [] = _("KOs raise speed by +1.");
 static const u8 sAbilityCryomancy [] = _("Ice moves inflict frostbite\n5x more often.");
 static const u8 sAbilityPhantomPain [] = _("Ghost type moves can hit normal \ntype pokemon for neutral damage.");
 static const u8 sAbilityPurgatoryDescription[] = _("Ups GHOST moves by 30%, \n80% when at 1/3 HP.");
-static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 static const u8 sAbilityEmanateDescription[] = _("Normal moves become PSYCHIC \nand get a 10% boost.");
-static const u8 sAbilityKunoichiBladeDescription[] = _("Boost weaker moves and increases \nthe frequency of multi-hit moves");
-
-
+static const u8 sAbilityKunoichiBladeDescription[] = _("Boost weaker moves and increases\nthe frequency of multi-hit moves");
+static const u8 sAbilityCombatSpecialistDescription[] = _("Boosts punching and kicking\nmoves by 30%.");
+static const u8 sAbilityJunglesGuardDescription[] = _("Ally Grass types and Itself are protected\nfrom status conditions and lowering stats.");
+static const u8 sAbilityHuntersHornDescription[] = _("Boost Horn moves and Heals \n1/4 HP when defeating an enemy.");
+static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     {
@@ -919,6 +920,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PURGATORY] = _("Purgatory"),
         [ABILITY_EMANATE] = _("Emanate"),
         [ABILITY_KUNOICHI_BLADE] = _("Kunoichi's Blade"),
+        [ABILITY_COMBAT_SPECIALIST] = _("Combat Specialist"),
+        [ABILITY_JUNGLES_GUARD] = _("Jungle's Guard"),
+        [ABILITY_HUNTERS_HORN] = _("Hunter's Horn"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1384,4 +1388,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PURGATORY] = sAbilityPurgatoryDescription,
         [ABILITY_EMANATE] = sAbilityEmanateDescription,
         [ABILITY_KUNOICHI_BLADE] = sAbilityKunoichiBladeDescription,
+        [ABILITY_COMBAT_SPECIALIST] = sAbilityCombatSpecialistDescription,
+        [ABILITY_JUNGLES_GUARD] = sAbilityJunglesGuardDescription,
+        [ABILITY_HUNTERS_HORN] = sAbilityHuntersHornDescription,
 };

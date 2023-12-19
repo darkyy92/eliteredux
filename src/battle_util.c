@@ -1091,6 +1091,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
+    [ABILITY_JUNGLES_GUARD] = 1,
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -13372,8 +13373,22 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 
+    //CombatSpecialist 
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COMBAT_SPECIALIST)){
+		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+        if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+
 	// Mighty Horn
 	if(BattlerHasInnate(battlerAtk, ABILITY_MIGHTY_HORN)){
+		if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+    
+    // Mighty Horn 2
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUNTERS_HORN)){
 		if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
