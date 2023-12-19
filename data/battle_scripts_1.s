@@ -8225,29 +8225,38 @@ BattleScript_BattlerEnvelopedItselfInAVeil::
 
 BattleScript_IntimidateActivatedNew::
 	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
 	end3
 
 BattleScript_ScareActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_SCARE
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
 	end3
 
 BattleScript_MonkeyBusinessActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_MONKEY_BUSINESS
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
+	end3
+
+BattleScript_FearMongerActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_FEARMONGER
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
 	end3
 
 BattleScript_IntimidateCloneActivated_Target_1:
@@ -8263,8 +8272,9 @@ BattleScript_Intimidate_DefiantClonesCheck_Target1:
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_1
 	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_IntimidateCloneActivated_KingsWrath_1
 BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck::
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, BattleScript_IntimidateCloneActivated_Target_2
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
+	battlemacros MACROS_CLEAN_OVERWRITEN_STRINGS, 0, NULL
 	end3
 
 BattleScript_IntimidateCloneActivated_Target_2:
@@ -8280,7 +8290,8 @@ BattleScript_Intimidate_DefiantClonesCheck_Target2:
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_2
 	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_IntimidateCloneActivated_KingsWrath_2
 BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck:
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, BattleScript_Nothing
+	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
+	battlemacros MACROS_CLEAN_OVERWRITEN_STRINGS, 0, NULL
 	end3
 
 BattleScript_IntimidateCloneActivated_DefiantActivates:
@@ -8454,7 +8465,7 @@ BattleScript_ExtraHitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_ExtraHitFromAtkString::
 BattleScript_ExtraHitFromCritCalc::
-	battlemacros MACROS_RESET_MULTIHIT_HITS, BattleScript_Nothing
+	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
 	critcalc
 	damagecalc
 	adjustdamage
@@ -8488,8 +8499,8 @@ BattleScript_ExtraHitFromAccCheckOnSwitchIn::
 BattleScript_ExtraHitFromAtkStringOnSwitchIn::
 BattleScript_ExtraHitFromCritCalcOnSwitchIn::
 	critcalc
-	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, BattleScript_Nothing
-	battlemacros MACROS_RESET_MULTIHIT_HITS, BattleScript_Nothing
+	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
+	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
 	damagecalc
 	adjustdamage
 BattleScript_ExtraHitFromAtkAnimationOnSwitchIn::
@@ -10760,7 +10771,7 @@ BattleScript_HandleSoulEaterEffect_NothingToHeal:
 BattleScript_HandleJawsOfCarnageEffect::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_GET_DOUBLE_HEALTH, BattleScript_Nothing
+	battlemacros MACROS_GET_DOUBLE_HEALTH, 0, NULL
 	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleJawsOfCarnageEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
@@ -11095,6 +11106,3 @@ BattleScript_WildTotemMegaEvolution::
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
 	end2
-	
-BattleScript_Nothing::
-	return

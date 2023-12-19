@@ -824,9 +824,17 @@ static const u8 sText_PkmnsDisciplineLockEnds[]       = _("{B_ATK_NAME_WITH_PREF
 static const u8 sText_ElectromorphosisActivates[]     = _("{B_DEF_NAME_WITH_PREFIX} became fully\ncharged!");
 static const u8 sText_PkmnCutsStatWith[]              = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\ncuts {B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnRaisesStatWith[]            = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraises {B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
+static const u8 sText_PkmnCutsStatWith2[]             = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability cuts\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1} and {B_BUFF2}!");
+static const u8 sText_PkmnRaisesStatWith2[]           = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability raises\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1} and {B_BUFF2}!");
+static const u8 sText_PkmnCutsStatWith3[]             = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability cuts\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}, {B_BUFF2}\land {B_BUFF3}!");
+static const u8 sText_PkmnRaisesStatWith3[]           = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability raises\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}, {B_BUFF2}\land {B_BUFF3}!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3 - 12] = sText_PkmnRaisesStatWith3,
+    [STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3 - 12] = sText_PkmnCutsStatWith3,
+    [STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE2 - 12] = sText_PkmnRaisesStatWith2,
+    [STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2 - 12] = sText_PkmnCutsStatWith2,
     [STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE - 12] = sText_PkmnRaisesStatWith,
     [STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE - 12] = sText_PkmnCutsStatWith,
     [STRINGID_ELECTROMORPHOSIS_ACTIVATES - 12] = sText_ElectromorphosisActivates,

@@ -723,7 +723,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_tryconversiontypechange,                 //0x90
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
-    Cmd_battlemacros,                              //0x93
+    Cmd_battlemacros,                            //0x93
     Cmd_jumpifabilityonside,                     //0x94
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
@@ -11602,7 +11602,7 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
-bool8 getStatToLowerFromIntimidateClone(u16 ability){
+bool8 getStatToLowerFromIntimidateClone(u16 ability, u8 num){
     switch(ability){
         case ABILITY_INTIMIDATE:
             return STAT_ATK;
@@ -11611,10 +11611,36 @@ bool8 getStatToLowerFromIntimidateClone(u16 ability){
             return STAT_SPATK;
         break;
         case ABILITY_MONKEY_BUSINESS:
-            return STAT_DEF;
+            if(num == 0)
+                return STAT_ATK;
+            else
+                return STAT_DEF;
+        break;
+        case ABILITY_FEARMONGER:
+            if(num == 0)
+                return STAT_ATK;
+            else
+                return STAT_SPATK;
         break;
         default:
             return STAT_HP;
+        break;
+    }
+}
+
+u8 getNumStatsToChangeFromIntimidateClone(u16 ability, u8 target){
+    switch(ability){
+        case ABILITY_FEARMONGER:
+            return 2;
+        break;
+        case ABILITY_MONKEY_BUSINESS:
+            if(target == 0) //Has a single Target
+                return 2;
+            else
+                return 0;
+        break;
+        default:
+            return 1;
         break;
     }
 }
@@ -11665,10 +11691,12 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     return FALSE;
 }
 
+#define BATTLEMACROS_SIZE 9
 static void Cmd_battlemacros(void)
 {
-    u16 type = T1_READ_16(gBattlescriptCurrInstr + 1);
-    const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    u8 type = T1_READ_8(gBattlescriptCurrInstr + 1); //+1
+    u16 num = T1_READ_16(gBattlescriptCurrInstr + 2); //+2
+    const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 4);//+4
     bool8 tryjump = FALSE;
 
     switch(type){
@@ -11692,42 +11720,119 @@ static void Cmd_battlemacros(void)
         break;
         case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1:
         {
+            u8 i;
             u8 opposingBattler = BATTLE_OPPOSITE(gBattlerAttacker);
             u16 ability = VarGet(VAR_SAVED_ABILITY);
-            u8 statToLower = getStatToLowerFromIntimidateClone(ability);
+            u16 numStats = getNumStatsToChangeFromIntimidateClone(ability, VarGet(VAR_INTIMIDATED_TARGETS));
+            u8 statToLower;
+            u8 statslowered = 0;
+            bool8 abilityActivated = FALSE;
 
-            if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
-                ability != ABILITY_NONE){
-                PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
-                gBattlerTarget = opposingBattler;
-                if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
-                    gBattleMons[opposingBattler].statStages[statToLower]++;
-                else
-                    gBattleMons[opposingBattler].statStages[statToLower]--;
-                tryjump = TRUE;
-            }
-        }
-        break;
-        case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2:
-            if(IsDoubleBattle()){
-                u8 opposingBattler = BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker));
-                u16 ability = VarGet(VAR_SAVED_ABILITY);
-                u8 statToLower = getStatToLowerFromIntimidateClone(ability);
-
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && 
-                   ability != ABILITY_NONE){
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+            for(i = 0; i < numStats; i++){
+                statToLower = getStatToLowerFromIntimidateClone(ability, i);
+                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
+                    ability != ABILITY_NONE){
+                    statslowered++;
+                    //For Abilities with multiple stats to lower
+                    if(statslowered == 1){
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+                    }
+                    else if(statslowered == 2){
+                        PREPARE_STAT_BUFFER(gBattleTextBuff2, statToLower);
+                    }
+                    else if(statslowered == 3){
+                        PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
+                    }
+                    
                     gBattlerTarget = opposingBattler;
                     if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
                         gBattleMons[opposingBattler].statStages[statToLower]++;
                     else
                         gBattleMons[opposingBattler].statStages[statToLower]--;
+                    
+                    abilityActivated = TRUE;
+
+                    if(statslowered == 2)
+                        VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
+                    else if(statslowered == 3)
+                        VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3);
+                }
+
+                if(abilityActivated){
+                    u8 targetnum = VarGet(VAR_INTIMIDATED_TARGETS);
+                    targetnum++;
+                    VarSet(VAR_INTIMIDATED_TARGETS, targetnum);
                     tryjump = TRUE;
                 }
+            }
+        }
+        break;
+        case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2:
+            if(IsDoubleBattle()){
+                u8 i;
+                u8 opposingBattler = BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker));
+                u16 ability = VarGet(VAR_SAVED_ABILITY);
+                u16 numStats = getNumStatsToChangeFromIntimidateClone(ability, VarGet(VAR_INTIMIDATED_TARGETS));
+                u8 statToLower;
+                u8 statslowered = 0;
+                bool8 abilityActivated = FALSE;
+                for(i = 0; i < numStats; i++){
+                    statToLower = getStatToLowerFromIntimidateClone(ability, i);
+                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
+                        statslowered++;
+                        //For Abilities with multiple stats to lower
+                        if(statslowered == 1){
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+                        }
+                        else if(statslowered == 2){
+                            PREPARE_STAT_BUFFER(gBattleTextBuff2, statToLower);
+                        }
+                        else if(statslowered == 3){
+                            PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
+                        }
+
+                        gBattlerTarget = opposingBattler;
+                        if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
+                            gBattleMons[opposingBattler].statStages[statToLower]++;
+                        else
+                            gBattleMons[opposingBattler].statStages[statToLower]--;
+                        
+                        if(statslowered == 2)
+                            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
+                        else if(statslowered == 3)
+                            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3);
+
+                        tryjump = TRUE;
+                    }
+                }
+
+                //Reset the number of targets
+                VarSet(VAR_INTIMIDATED_TARGETS, 0);
             }
         break;
         case MACROS_SAVE_ABILITY_TO_VARIABLE:
             VarSet(VAR_SAVED_ABILITY, gBattleScripting.abilityPopupOverwrite);
+        break;
+        case MACROS_OVERWRITE_NEXT_STRING:
+        {
+            if(VarGet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1) == 0)
+                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, num);
+            else if(VarGet(VAR_TEMP_BATTLE_STRING_OVERWRITE_2) == 0)
+                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_2, num);
+            else if(VarGet(VAR_TEMP_BATTLE_STRING_OVERWRITE_3) == 0)
+                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_3, num);
+            else if(VarGet(VAR_TEMP_BATTLE_STRING_OVERWRITE_4) == 0)
+                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_4, num);
+        }
+        break;
+        case MACROS_CLEAN_OVERWRITEN_STRINGS:
+        {
+            u16 newValue = 0;
+            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, newValue);
+            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_2, newValue);
+            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_3, newValue);
+            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_4, newValue);
+        }
         break;
     }
 
@@ -11735,7 +11840,7 @@ static void Cmd_battlemacros(void)
         gBattlescriptCurrInstr = jumpPtr;
     }
     else{
-        gBattlescriptCurrInstr += 7;
+        gBattlescriptCurrInstr += 8;
     }
 }
 

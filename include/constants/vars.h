@@ -120,7 +120,7 @@
 #define VAR_CANDY_BOX_NUM_LEVELS             0x4065 // New Var
 #define VAR_DAMAGE_DONE                      0x4066 // New Var
 #define VAR_BATTLE_CONTROLLER_PLAYER_F       0x4067 // New Var
-#define VAR_RANDOMIZED_SEED                  0x4068 //Randomizer
+#define VAR_RANDOMIZED_SEED                  0x4068 // Randomizer
 #define VAR_ROUTE110_STATE                   0x4069
 #define VAR_SAVE_VERSION                     0x406A // New Var
 #define VAR_UPDATED_TIMES                    0x406B // New Var
@@ -141,11 +141,11 @@
 #define VAR_TOTEM_POKEMON_ACCURACY_BOOST     0x407A // Accuracy Boost
 #define VAR_ROUTE128_STATE                   0x407B
 #define VAR_TOTEM_POKEMON_EVASION_BOOST      0x407C // Evasion Boost
-#define VAR_ROUTE130_STATE                   0x407D // Unused Var
-#define VAR_ROUTE131_STATE                   0x407E // Unused Var
-#define VAR_ROUTE132_STATE                   0x407F // Unused Var
-#define VAR_ROUTE133_STATE                   0x4080 // Unused Var
-#define VAR_ROUTE134_STATE                   0x4081 // Unused Var
+#define VAR_TEMP_BATTLE_STRING_OVERWRITE_1   0x407D
+#define VAR_TEMP_BATTLE_STRING_OVERWRITE_2   0x407E
+#define VAR_TEMP_BATTLE_STRING_OVERWRITE_3   0x407F
+#define VAR_TEMP_BATTLE_STRING_OVERWRITE_4   0x4080
+#define VAR_INTIMIDATED_TARGETS              0x4081 // Unused Var
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY      0x4082
 #define VAR_STARTER_GEN                      0x4083 // Used to track which set of starters the player chose from
 #define VAR_BIRCH_LAB_STATE                  0x4084
