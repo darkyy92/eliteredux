@@ -1239,6 +1239,8 @@ static const u16 sDecidueyeFormSpeciesIdTable[] = {
 };
 static const u16 sTaurosFormSpeciesIdTable[] = {
     SPECIES_TAUROS,
+    SPECIES_TAUROS_PALDEAN_COMBAT_BREED,
+    SPECIES_TAUROS_PALDEAN_BLAZE_BREED,
     SPECIES_TAUROS_PALDEAN_AQUA_BREED,
     FORM_SPECIES_END,
 };

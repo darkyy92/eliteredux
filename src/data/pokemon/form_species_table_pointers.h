@@ -618,4 +618,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = sTaurosFormSpeciesIdTable,
 
+    [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] = sTaurosFormSpeciesIdTable,
+
+    [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = sTaurosFormSpeciesIdTable,
+
 };
