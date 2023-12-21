@@ -1986,8 +1986,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_VICTORY_STAR, atkAbility) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_VICTORY_STAR))
         calc = (calc * 120) / 100; // 1.2 victory star boost
 	
-    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ILLUMINATE, atkAbility))
+    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ILLUMINATE, atkAbility) || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PLASMA_LAMP, atkAbility))
         calc = (calc * 120) / 100; // 1.2 illuminate boost
+    
+    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXIE_POWER, atkAbility))
+        calc = (calc * 120) / 100; // 1.2 Pixie boost
 
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_KEEN_EYE, atkAbility))
         calc = (calc * 120) / 100; // 1.2 keen eye boost
@@ -8791,6 +8794,7 @@ static void Cmd_various(void)
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER)       ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PREDATOR)        ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUNTERS_HORN)    ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MAGMA_EATER)     ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER)) {
             bool8 curehalfhealth = FALSE;
             bool8 cureHorn = FALSE;
@@ -8813,6 +8817,8 @@ static void Cmd_various(void)
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PREDATOR;
             else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUNTERS_HORN))
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HUNTERS_HORN;
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MAGMA_EATER))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGMA_EATER;
             else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER))
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOTER;
 

@@ -4888,6 +4888,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_PIXIE_POWER:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FAIRYAURA;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+            break;
         case ABILITY_AURA_BREAK:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -13689,7 +13698,8 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	
     // Field Abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
-        || (IsAbilityOnField(ABILITY_FAIRY_AURA) && moveType == TYPE_FAIRY))
+        || (IsAbilityOnField(ABILITY_FAIRY_AURA) && moveType == TYPE_FAIRY)
+        || (IsAbilityOnField(ABILITY_PIXIE_POWER) && moveType == TYPE_FAIRY))
     {
         if (IsAbilityOnField(ABILITY_AURA_BREAK))
             MulModifier(&modifier, UQ_4_12(0.75));
@@ -14299,6 +14309,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.3));
         }
         break;
+    case ABILITY_PLASMA_LAMP:
+        if (moveType == TYPE_FIRE || moveType == TYPE_ELECTRIC){
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }   
+        break;
 	case ABILITY_SHORT_CIRCUIT:
         if (moveType == TYPE_ELECTRIC)
         {
@@ -14856,6 +14871,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             else
                 MulModifier(&modifier, UQ_4_12(1.3));
         }
+	}
+    // Plasma Lamp
+	if(BattlerHasInnate(battlerAtk, ABILITY_PLASMA_LAMP)){
+		if(moveType == TYPE_FIRE || moveType == TYPE_ELECTRIC) {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }        
 	}
 	// Short Circuit
 	if(BattlerHasInnate(battlerAtk, ABILITY_SHORT_CIRCUIT)){
@@ -15655,6 +15676,14 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(2.0); // super-effective
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_MOLTEN_DOWN);
+    }
+    // Magma Eater
+    else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MAGMA_EATER || BattlerHasInnate(battlerAtk, ABILITY_MAGMA_EATER)))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(2.0); // super-effective
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_MAGMA_EATER);
     }
 	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || BattlerHasInnate(battlerAtk, ABILITY_CORROSION)) && mod == UQ_4_12(0.0))
     {
