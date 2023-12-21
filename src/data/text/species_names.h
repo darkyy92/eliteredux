@@ -1016,6 +1016,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_MUNKIDORI] = _("Munkidori"),
 [SPECIES_FEZANDIPITI] = _("Fezandipiti"),
 [SPECIES_OGERPON] = _("Ogerpon"),
+[SPECIES_TATSUGIRI_DROOPY] = _("Tatsugiri"),
 [SPECIES_TATSUGIRI_STRETCHY] = _("Tatsugiri"),
 [SPECIES_TATSUGIRI_CURLY] = _("Tatsugiri"),
 [SPECIES_MAUSHOLD_FOUR] = _("Maushold"),

@@ -632,4 +632,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_TATSUGIRI_STRETCHY] = sTatsugiri_CurlyFormSpeciesIdTable,
 
+    [SPECIES_TATSUGIRI_DROOPY] = sTatsugiri_CurlyFormSpeciesIdTable,
+
 };

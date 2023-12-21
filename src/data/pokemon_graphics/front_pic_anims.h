@@ -10058,6 +10058,11 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_TATSUGIRI_DROOPY_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_TATSUGIRI_STRETCHY_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -16424,6 +16429,11 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_TATSUGIRI_DROOPY[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TATSUGIRI_DROOPY_1,
+};
+
 static const union AnimCmd *const sAnims_TATSUGIRI_STRETCHY[] ={
     sAnim_GeneralFrame0,
     sAnim_TATSUGIRI_STRETCHY_1,
@@ -18568,6 +18578,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(TATSUGIRI_DROOPY),
     ANIM_CMD(TATSUGIRI_STRETCHY),
     ANIM_CMD(TATSUGIRI_CURLY),
     ANIM_CMD(MAUSHOLD_FOUR),

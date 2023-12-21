@@ -923,6 +923,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_MAUSHOLD_FOUR] = sMaushold_FourLevelUpLearnset,
     [SPECIES_TATSUGIRI_CURLY] = sTatsugiri_CurlyLevelUpLearnset,
     [SPECIES_TATSUGIRI_STRETCHY] = sTatsugiri_StretchyLevelUpLearnset,
+    [SPECIES_TATSUGIRI_DROOPY] = sTatsugiri_DroopyLevelUpLearnset,
     [SPECIES_OGERPON] = sOgerponLevelUpLearnset,
     [SPECIES_FEZANDIPITI] = sFezandipitiLevelUpLearnset,
     [SPECIES_MUNKIDORI] = sMunkidoriLevelUpLearnset,
