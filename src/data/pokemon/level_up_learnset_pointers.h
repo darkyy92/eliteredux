@@ -919,6 +919,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = sTauros_Paldean_Combat_BreedLevelUpLearnset,
     [SPECIES_URSALUNA_MOONBLOOD] = sUrsaluna_MoonbloodLevelUpLearnset,
     [SPECIES_PALAFIN_HERO] = sPalafin_HeroLevelUpLearnset,
+    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = sDudunsparce_Three_SegmentLevelUpLearnset,
     [SPECIES_OGERPON] = sOgerponLevelUpLearnset,
     [SPECIES_FEZANDIPITI] = sFezandipitiLevelUpLearnset,
     [SPECIES_MUNKIDORI] = sMunkidoriLevelUpLearnset,

@@ -860,6 +860,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = gMonFootprint_Tauros_Paldean_Combat_Breed,
     [SPECIES_URSALUNA_MOONBLOOD] = gMonFootprint_Ursaluna_Moonblood,
     [SPECIES_PALAFIN_HERO] = gMonFootprint_Palafin_Hero,
+    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = gMonFootprint_Dudunsparce_Three_Segment,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

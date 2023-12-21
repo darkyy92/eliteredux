@@ -1254,3 +1254,8 @@ static const u16 sPalafinFormSpeciesIdTable[] = {
     SPECIES_PALAFIN_HERO,
     FORM_SPECIES_END,
 };
+static const u16 sDudunsparceFormSpeciesIdTable[] = {
+    SPECIES_DUDUNSPARCE,
+    SPECIES_DUDUNSPARCE_THREE_SEGMENT,
+    FORM_SPECIES_END,
+};

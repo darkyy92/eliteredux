@@ -5092,6 +5092,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_PALAFIN_HERO] =
     {
         .size = 0,

@@ -626,4 +626,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_PALAFIN_HERO] = sPalafinFormSpeciesIdTable,
 
+    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = sDudunsparceFormSpeciesIdTable,
+
 };
