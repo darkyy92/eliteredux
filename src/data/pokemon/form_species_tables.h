@@ -1244,3 +1244,8 @@ static const u16 sTaurosFormSpeciesIdTable[] = {
     SPECIES_TAUROS_PALDEAN_AQUA_BREED,
     FORM_SPECIES_END,
 };
+static const u16 sUrsalunaFormSpeciesIdTable[] = {
+    SPECIES_URSALUNA,
+    SPECIES_URSALUNA_MOONBLOOD,
+    FORM_SPECIES_END,
+};

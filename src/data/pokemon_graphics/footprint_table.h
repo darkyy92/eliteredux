@@ -858,6 +858,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = gMonFootprint_Tauros_Paldean_Aqua_Breed,
     [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] = gMonFootprint_Tauros_Paldean_Blaze_Breed,
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = gMonFootprint_Tauros_Paldean_Combat_Breed,
+    [SPECIES_URSALUNA_MOONBLOOD] = gMonFootprint_Ursaluna_Moonblood,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

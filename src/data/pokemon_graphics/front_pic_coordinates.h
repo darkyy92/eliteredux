@@ -5092,6 +5092,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_URSALUNA_MOONBLOOD] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
         .size = 0,
