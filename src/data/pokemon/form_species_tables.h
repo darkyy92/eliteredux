@@ -1259,3 +1259,8 @@ static const u16 sDudunsparceFormSpeciesIdTable[] = {
     SPECIES_DUDUNSPARCE_THREE_SEGMENT,
     FORM_SPECIES_END,
 };
+static const u16 sMausholdFormSpeciesIdTable[] = {
+    SPECIES_MAUSHOLD,
+    SPECIES_MAUSHOLD_FOUR,
+    FORM_SPECIES_END,
+};

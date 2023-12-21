@@ -5086,6 +5086,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset = 16
     },
+    [SPECIES_MAUSHOLD_FOUR] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] =
     {
         .size = 0,

@@ -628,4 +628,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = sDudunsparceFormSpeciesIdTable,
 
+    [SPECIES_MAUSHOLD_FOUR] = sMausholdFormSpeciesIdTable,
+
 };
