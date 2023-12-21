@@ -11,6 +11,24 @@ struct StatFractions
     u8 dividend;
     u8 divisor;
 };
+
+//Intimidate Clone Data
+enum{
+    I_CLONE_INTIMIDATE,
+    I_CLONE_SCARE,
+    I_CLONE_FEARMONGER,
+    I_CLONE_MONKEY_BUSSINESS,
+    NUM_INTIMIDATE_CLONES
+};
+
+struct IntimidateCloneData
+{
+    u16 ability;
+    u8 numStatsLowered; //1 - 3
+    u8 statsLowered[3]; //atk, def, speed
+    bool8 targetBoth;
+};
+
 void CheckForBadEggs(void);
 s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility);
 s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move);

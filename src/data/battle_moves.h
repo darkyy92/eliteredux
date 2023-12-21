@@ -11950,3 +11950,30 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .argument = STATUS1_PARALYSIS,
     },
 };
+
+const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
+    [I_CLONE_INTIMIDATE] = {
+        .ability = ABILITY_INTIMIDATE,
+        .numStatsLowered = 1,
+        .statsLowered = {STAT_ATK, 0, 0},
+        .targetBoth = TRUE,
+    },
+    [I_CLONE_SCARE] = {
+        .ability = ABILITY_SCARE,
+        .numStatsLowered = 1,
+        .statsLowered = {STAT_SPATK, 0, 0},
+        .targetBoth = TRUE,
+    },
+    [I_CLONE_FEARMONGER] = {
+        .ability = ABILITY_FEARMONGER,
+        .numStatsLowered = 2,
+        .statsLowered = {STAT_ATK, STAT_SPATK, 0},
+        .targetBoth = TRUE,
+    },
+    [I_CLONE_MONKEY_BUSSINESS] = {
+        .ability = ABILITY_MONKEY_BUSINESS,
+        .numStatsLowered = 2,
+        .statsLowered = {STAT_ATK, STAT_DEF, 0},
+        .targetBoth = FALSE,
+    },
+};

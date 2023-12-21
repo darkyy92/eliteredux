@@ -11608,53 +11608,11 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
-bool8 getStatToLowerFromIntimidateClone(u16 ability, u8 num){
-    switch(ability){
-        case ABILITY_INTIMIDATE:
-            return STAT_ATK;
-        break;
-        case ABILITY_SCARE:
-            return STAT_SPATK;
-        break;
-        case ABILITY_MONKEY_BUSINESS:
-            if(num == 0)
-                return STAT_ATK;
-            else
-                return STAT_DEF;
-        break;
-        case ABILITY_FEARMONGER:
-            if(num == 0)
-                return STAT_ATK;
-            else
-                return STAT_SPATK;
-        break;
-        default:
-            return STAT_HP;
-        break;
-    }
-}
-
-u8 getNumStatsToChangeFromIntimidateClone(u16 ability, u8 target){
-    switch(ability){
-        case ABILITY_FEARMONGER:
-            return 2;
-        break;
-        case ABILITY_MONKEY_BUSINESS:
-            if(target == 0) //Has a single Target
-                return 2;
-            else
-                return 0;
-        break;
-        default:
-            return 1;
-        break;
-    }
-}
-
 bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ability){
     bool8 checkOblivious = FALSE;
     //Check if the opposing battler is immune to stat lowering in general or if the mon is not alive
     if(gBattleMons[battler].hp == 0                          ||
+       stat == STAT_HP                                       ||
        gDisableStructs[battler].substituteHP != 0            ||
        BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)      ||
        BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
@@ -11729,13 +11687,22 @@ static void Cmd_battlemacros(void)
             u8 i;
             u8 opposingBattler = BATTLE_OPPOSITE(gBattlerAttacker);
             u16 ability = VarGet(VAR_SAVED_ABILITY);
-            u16 numStats = getNumStatsToChangeFromIntimidateClone(ability, VarGet(VAR_INTIMIDATED_TARGETS));
+            u16 numStats;
             u8 statToLower;
             u8 statslowered = 0;
             bool8 abilityActivated = FALSE;
+            u8 numAbility = 0;
+
+            for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
+                if(gIntimidateCloneData[i].ability == ability)
+                    break;
+            }
+
+            numAbility = i;
+            numStats = gIntimidateCloneData[numAbility].numStatsLowered;
 
             for(i = 0; i < numStats; i++){
-                statToLower = getStatToLowerFromIntimidateClone(ability, i);
+                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
                     ability != ABILITY_NONE){
                     statslowered++;
@@ -11778,37 +11745,50 @@ static void Cmd_battlemacros(void)
                 u8 i;
                 u8 opposingBattler = BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker));
                 u16 ability = VarGet(VAR_SAVED_ABILITY);
-                u16 numStats = getNumStatsToChangeFromIntimidateClone(ability, VarGet(VAR_INTIMIDATED_TARGETS));
+                u16 numStats;
                 u8 statToLower;
                 u8 statslowered = 0;
                 bool8 abilityActivated = FALSE;
-                for(i = 0; i < numStats; i++){
-                    statToLower = getStatToLowerFromIntimidateClone(ability, i);
-                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
-                        statslowered++;
-                        //For Abilities with multiple stats to lower
-                        if(statslowered == 1){
-                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
-                        }
-                        else if(statslowered == 2){
-                            PREPARE_STAT_BUFFER(gBattleTextBuff2, statToLower);
-                        }
-                        else if(statslowered == 3){
-                            PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
-                        }
+                u8 targetNum = VarGet(VAR_INTIMIDATED_TARGETS);
+                u8 numAbility = 0;
 
-                        gBattlerTarget = opposingBattler;
-                        if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
-                            gBattleMons[opposingBattler].statStages[statToLower]++;
-                        else
-                            gBattleMons[opposingBattler].statStages[statToLower]--;
-                        
-                        if(statslowered == 2)
-                            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
-                        else if(statslowered == 3)
-                            VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3);
+                for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
+                    if(gIntimidateCloneData[i].ability == ability)
+                        break;
+                }
 
-                        tryjump = TRUE;
+                numAbility = i;
+                numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+
+                if(gIntimidateCloneData[numAbility].targetBoth || targetNum == 0){
+                    for(i = 0; i < numStats; i++){
+                        statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
+                        if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
+                            statslowered++;
+                            //For Abilities with multiple stats to lower
+                            if(statslowered == 1){
+                                PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
+                            }
+                            else if(statslowered == 2){
+                                PREPARE_STAT_BUFFER(gBattleTextBuff2, statToLower);
+                            }
+                            else if(statslowered == 3){
+                                PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
+                            }
+
+                            gBattlerTarget = opposingBattler;
+                            if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
+                                gBattleMons[opposingBattler].statStages[statToLower]++;
+                            else
+                                gBattleMons[opposingBattler].statStages[statToLower]--;
+                            
+                            if(statslowered == 2)
+                                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
+                            else if(statslowered == 3)
+                                VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3);
+
+                            tryjump = TRUE;
+                        }
                     }
                 }
 
