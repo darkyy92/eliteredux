@@ -863,6 +863,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = gMonFootprint_Dudunsparce_Three_Segment,
     [SPECIES_MAUSHOLD_FOUR] = gMonFootprint_Maushold_Four,
     [SPECIES_TATSUGIRI_CURLY] = gMonFootprint_Tatsugiri_Curly,
+    [SPECIES_TATSUGIRI_STRETCHY] = gMonFootprint_Tatsugiri_Stretchy,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

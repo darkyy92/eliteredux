@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_TATSUGIRI_STRETCHY] = {
+	},
 	[SPECIES_TATSUGIRI_CURLY] = {
 	},
 	[SPECIES_MAUSHOLD_FOUR] = {

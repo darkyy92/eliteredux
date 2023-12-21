@@ -1266,7 +1266,8 @@ static const u16 sMausholdFormSpeciesIdTable[] = {
 };
 static const u16 sTatsugiri_CurlyFormSpeciesIdTable[] = {
     SPECIES_TATSUGIRI_CURLY,
-    SPECIES_TATSUGIRI_STRECHY,
+    SPECIES_TATSUGIRI_STRETCHY,
+    SPECIES_TATSUGIRI_STRETCHY,
     SPECIES_TATSUGIRI_DROOPY,
     FORM_SPECIES_END,
 };

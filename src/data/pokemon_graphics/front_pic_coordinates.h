@@ -5092,6 +5092,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_TATSUGIRI_STRETCHY] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_TATSUGIRI_CURLY] =
     {
         .size = 0,
