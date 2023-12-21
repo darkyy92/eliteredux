@@ -862,6 +862,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_PALAFIN_HERO] = gMonFootprint_Palafin_Hero,
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = gMonFootprint_Dudunsparce_Three_Segment,
     [SPECIES_MAUSHOLD_FOUR] = gMonFootprint_Maushold_Four,
+    [SPECIES_TATSUGIRI_CURLY] = gMonFootprint_Tatsugiri_Curly,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

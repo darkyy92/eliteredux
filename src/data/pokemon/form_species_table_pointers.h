@@ -630,4 +630,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MAUSHOLD_FOUR] = sMausholdFormSpeciesIdTable,
 
+    [SPECIES_TATSUGIRI_CURLY] = sTatsugiri_CurlyFormSpeciesIdTable,
+
 };
