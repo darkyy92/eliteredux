@@ -1721,17 +1721,59 @@ void UpdateSentPokesToOpponentValue(u8 battler)
 
 void BattleScriptPush(const u8 *bsPtr)
 {
+    //u16 ability = gBattleScripting.abilityPopupOverwrite;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
+    /*if(ability != ABILITY_NONE){
+        //Ability Overwrite
+        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
+        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
+
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
+            MgbaClose();
+        }
+        #endif
+    }*/
 }
 
 void BattleScriptPushCursor(void)
 {
+    //u16 ability = gBattleScripting.abilityPopupOverwrite;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
+    /*if(ability != ABILITY_NONE){
+        //Ability Overwrite
+        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
+        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
+
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
+            MgbaClose();
+        }
+        #endif
+    }*/
 }
 
 void BattleScriptPop(void)
 {
+    //u16 ability = gBattleScripting.abilityPopupOverwrite;
     gBattlescriptCurrInstr = gBattleResources->battleScriptsStack->ptr[--gBattleResources->battleScriptsStack->size];
+    /*if(ability != ABILITY_NONE){
+        //Ability Overwrite
+        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
+        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
+
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
+            MgbaClose();
+        }
+        #endif
+    }*/
 }
 
 bool32 IsGravityPreventingMove(u32 move)
@@ -4924,17 +4966,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_LETS_ROLL:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gBattlerAttacker = battler;
-				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                SET_STATCHANGER(STAT_DEF, 1, FALSE);
-				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
-                effect++;
-            }
-            break;
         //Toxic Spill
         case ABILITY_TOXIC_SPILL:
             if(gDisableStructs[battler].noDamageHits == 0 && 
@@ -5625,12 +5656,31 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             
             // Lets Roll
-            if(BattlerHasInnate(battler, ABILITY_LETS_ROLL)){
-                if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETS_ROLL)])
-                {
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_LETS_ROLL)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_LETS_ROLL; //For easier copypaste
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)]){
+                            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)] = TRUE;
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LETS_ROLL;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
+                            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
                     gBattlerAttacker = battler;
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETS_ROLL)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LETS_ROLL;
                     SET_STATCHANGER(STAT_DEF, 1, FALSE);
                     gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
@@ -6067,7 +6117,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                             activateAbilty = TRUE;
                         }
@@ -6125,7 +6174,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                             activateAbilty = TRUE;
                         }
@@ -6183,7 +6231,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                             activateAbilty = TRUE;
                         }
@@ -6241,7 +6288,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                             activateAbilty = TRUE;
                         }
@@ -6789,7 +6835,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         //abilityEffect End
         }
-
         break;
     case ABILITYEFFECT_ENDTURN: // 1
         if (gBattleMons[battler].hp != 0)

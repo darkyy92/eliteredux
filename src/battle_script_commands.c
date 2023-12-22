@@ -11703,10 +11703,9 @@ static void Cmd_battlemacros(void)
 
             for(i = 0; i < numStats; i++){
                 statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) &&
-                    ability != ABILITY_NONE){
+                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
                     statslowered++;
-                    //For Abilities with multiple stats to lower
+                    //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                     if(statslowered == 1){
                         PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
                     }
@@ -11765,7 +11764,7 @@ static void Cmd_battlemacros(void)
                         statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                         if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
                             statslowered++;
-                            //For Abilities with multiple stats to lower
+                            //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                             if(statslowered == 1){
                                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statToLower);
                             }
@@ -11796,8 +11795,9 @@ static void Cmd_battlemacros(void)
                 VarSet(VAR_INTIMIDATED_TARGETS, 0);
             }
         break;
-        case MACROS_SAVE_ABILITY_TO_VARIABLE:
+        case MACROS_SAVE_ABILITY_TO_VARIABLE:{
             VarSet(VAR_SAVED_ABILITY, gBattleScripting.abilityPopupOverwrite);
+        }
         break;
         case MACROS_OVERWRITE_NEXT_STRING:
         {

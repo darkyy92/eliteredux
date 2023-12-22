@@ -3358,12 +3358,26 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
 {
     const s16 (*coords)[2];
     u8 spriteId1, spriteId2, battlerPosition, taskId;
+    //u8 size = gBattleResources->battleScriptsStack->abilityOverwriteNum;
+    //u16 newAbility = gBattleResources->battleScriptsStack->abilityoverwrite[size];
 
     if (!B_ABILITY_POP_UP)
         return;
-
     if (gBattleScripting.abilityPopupOverwrite != 0)
         ability = gBattleScripting.abilityPopupOverwrite;
+    /*else if (newAbility != 0){
+        //if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            #ifdef DEBUG_BUILD
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "CreateAbilityPopUp abilityoverwrite[%d] = %d", size, newAbility);
+            MgbaClose();
+            #endif
+        //}
+
+        ability = newAbility;   
+        gBattleResources->battleScriptsStack->abilityoverwrite[size] = 0;
+        gBattleResources->battleScriptsStack->abilityOverwriteNum--;
+    } */
 
     if(gBattleScripting.battlerPopupOverwrite != MAX_BATTLERS_COUNT){
         battlerId = gBattleScripting.battlerPopupOverwrite;

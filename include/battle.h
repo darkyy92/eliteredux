@@ -311,10 +311,14 @@ struct BattleHistory
     u8 itemsNo;
 };
 
+//#define MAX_SCRIPT_STACK_COUNT 20
 struct BattleScriptsStack
 {
     const u8 *ptr[8];
     u8 size;
+    //u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
+    //u8 currentAbilityStack; // current index to use in the ability pop up
+    //u8 abilityOverwriteNum; // number of abilities to overwrite
 };
 
 struct BattleCallbacksStack
