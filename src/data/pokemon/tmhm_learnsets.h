@@ -30361,6 +30361,22 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
     [SPECIES_TATSUGIRI_DROOPY]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)

@@ -5092,6 +5092,26 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_TATSUGIRI_DROOPY] =
     {
         .size = 0,

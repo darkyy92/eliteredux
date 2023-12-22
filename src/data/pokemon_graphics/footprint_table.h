@@ -865,6 +865,10 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_TATSUGIRI_CURLY] = gMonFootprint_Tatsugiri_Curly,
     [SPECIES_TATSUGIRI_STRETCHY] = gMonFootprint_Tatsugiri_Stretchy,
     [SPECIES_TATSUGIRI_DROOPY] = gMonFootprint_Tatsugiri_Droopy,
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] = gMonFootprint_Squawkabilly_Green_Plumage,
+    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] = gMonFootprint_Squawkabilly_Blue_Plumage,
+    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] = gMonFootprint_Squawkabilly_Yellow_Plumage,
+    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] = gMonFootprint_Squawkabilly_White_Plumage,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

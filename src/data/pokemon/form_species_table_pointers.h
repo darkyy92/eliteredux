@@ -634,4 +634,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_TATSUGIRI_DROOPY] = sTatsugiri_CurlyFormSpeciesIdTable,
 
+    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] = sSquawkabilly_Green_PlumageFormSpeciesIdTable,
+
+    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] = sSquawkabilly_Green_PlumageFormSpeciesIdTable,
+
+    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] = sSquawkabilly_Green_PlumageFormSpeciesIdTable,
+
 };
