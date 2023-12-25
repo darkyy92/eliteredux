@@ -869,6 +869,9 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] = gMonFootprint_Squawkabilly_Blue_Plumage,
     [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] = gMonFootprint_Squawkabilly_Yellow_Plumage,
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] = gMonFootprint_Squawkabilly_White_Plumage,
+    [SPECIES_OGERPON_WELLSPRING_MASK] = gMonFootprint_Ogerpon_Wellspring_Mask,
+    [SPECIES_OGERPON_CORNERSTONE_MASK] = gMonFootprint_Ogerpon_Cornerstone_Mask,
+    [SPECIES_OGERPON_HEARTHFLAME_MASK] = gMonFootprint_Ogerpon_Hearthflame_Mask,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

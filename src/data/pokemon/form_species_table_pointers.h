@@ -640,4 +640,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] = sSquawkabilly_Green_PlumageFormSpeciesIdTable,
 
+    [SPECIES_OGERPON_WELLSPRING_MASK] = sOgerponFormSpeciesIdTable,
+
+    [SPECIES_OGERPON_CORNERSTONE_MASK] = sOgerponFormSpeciesIdTable,
+
+    [SPECIES_OGERPON_HEARTHFLAME_MASK] = sOgerponFormSpeciesIdTable,
+
 };

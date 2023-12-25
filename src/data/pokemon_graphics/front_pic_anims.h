@@ -10058,6 +10058,21 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_OGERPON_HEARTHFLAME_MASK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_OGERPON_CORNERSTONE_MASK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_OGERPON_WELLSPRING_MASK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_SQUAWKABILLY_WHITE_PLUMAGE_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -16449,6 +16464,21 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_OGERPON_HEARTHFLAME_MASK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OGERPON_HEARTHFLAME_MASK_1,
+};
+
+static const union AnimCmd *const sAnims_OGERPON_CORNERSTONE_MASK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OGERPON_CORNERSTONE_MASK_1,
+};
+
+static const union AnimCmd *const sAnims_OGERPON_WELLSPRING_MASK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_OGERPON_WELLSPRING_MASK_1,
+};
+
 static const union AnimCmd *const sAnims_SQUAWKABILLY_WHITE_PLUMAGE[] ={
     sAnim_GeneralFrame0,
     sAnim_SQUAWKABILLY_WHITE_PLUMAGE_1,
@@ -18618,6 +18648,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(OGERPON_HEARTHFLAME_MASK),
+    ANIM_CMD(OGERPON_CORNERSTONE_MASK),
+    ANIM_CMD(OGERPON_WELLSPRING_MASK),
     ANIM_CMD(SQUAWKABILLY_WHITE_PLUMAGE),
     ANIM_CMD(SQUAWKABILLY_YELLOW_PLUMAGE),
     ANIM_CMD(SQUAWKABILLY_BLUE_PLUMAGE),

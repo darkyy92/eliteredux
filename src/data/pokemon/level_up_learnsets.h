@@ -22512,6 +22512,27 @@ static const struct LevelUpMove sOgerponLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sOgerpon_Hearthflame_MaskLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sOgerpon_Cornerstone_MaskLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
+static const struct LevelUpMove sOgerpon_Wellspring_MaskLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 5, MOVE_GROWL),
+    LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sSquawkabilly_White_PlumageLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),

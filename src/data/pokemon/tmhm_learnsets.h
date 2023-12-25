@@ -30361,6 +30361,18 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_OGERPON_HEARTHFLAME_MASK]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_OGERPON_CORNERSTONE_MASK]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
+    [SPECIES_OGERPON_WELLSPRING_MASK]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+                                        | TMHM1(TM25_THUNDER),
+                                          TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH)),
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
