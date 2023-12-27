@@ -1857,14 +1857,6 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerAttacker, ABILITY_GRIP_PINCER);
         return TRUE;
     }
-	
-	if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_FATAL_PRECISION || BattlerHasInnate(gBattlerAttacker, ABILITY_FATAL_PRECISION)) &&
-	     CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, gBattlerAttacker, gBattlerTarget, TRUE) >= UQ_4_12(2.0))
-    {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerTarget, ABILITY_FATAL_PRECISION);
-        return TRUE;
-    }
 
     if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
         || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
@@ -1935,7 +1927,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     moveAcc = gBattleMoves[move].accuracy;
 	
     if(move == MOVE_HYPNOSIS && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LUNAR_ECLIPSE, atkAbility) || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYPNOTIST, atkAbility)))
-		moveAcc = 100;
+		moveAcc = 90;
     else if(move == MOVE_FOCUS_BLAST && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INNER_FOCUS, atkAbility)))
 		moveAcc = 90;
 
@@ -1949,29 +1941,31 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         moveAcc = 50;
 
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SIGHTING_SYSTEM, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_STRIKER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ROUNDHOUSE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IRON_BARRAGE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ARTILLERY, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SWEEPING_EDGE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DEADEYE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (IS_MOVE_STATUS(move) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GIFTED_MIND, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if(BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ANGELS_WRATH, atkAbility)){
         switch(move){
             case MOVE_TACKLE:
             case MOVE_POISON_STING:
             case MOVE_ELECTROWEB:
             case MOVE_BUG_BITE:
-                moveAcc = 100;
+                return 100;
             break;
         }
     }
+	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility) && CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
+        return 100;
 
     // Check Wonder Skin.
     if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WONDER_SKIN, defAbility) && IS_MOVE_STATUS(move))
@@ -1995,13 +1989,13 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_KEEN_EYE, atkAbility))
         calc = (calc * 120) / 100; // 1.2 keen eye boost
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SAND_VEIL, atkAbility) && gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAS_EFFECT)
+    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_SAND_VEIL, defAbility) && gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAS_EFFECT)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SNOW_CLOAK, atkAbility) && gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAIL_ANY)
+    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_SNOW_CLOAK, defAbility) && gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAIL_ANY)
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_TANGLED_FEET, atkAbility) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_TANGLED_FEET, defAbility) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HUSTLE, atkAbility))
@@ -5537,6 +5531,12 @@ static void Cmd_moveend(void)
                    BattlerHasInnate(gBattlerAttacker, ABILITY_LIMBER))
 					gBattleMoveDamage = gBattleMoveDamage * 0.5;
             }
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_ABILITIES_AFTER_RECOIL:
+            gHpDealt = gBattleScripting.savedDmg;
+            if (AbilityBattleEffects(ABILITYEFFECT_AFTER_RECOIL, gBattlerAttacker, 0, 0, 0))
+                effect = TRUE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_SYNCHRONIZE_TARGET: // target synchronize

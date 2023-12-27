@@ -9393,9 +9393,9 @@ BattleScript_PsychicSurgeActivates::
 BattleScript_BadDreamsActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_BAD_DREAMS
 	setbyte gBattlerTarget, 0
-	call BattleScript_AbilityPopUp
 BattleScript_BadDreamsLoop:
 	trygetbaddreamstarget BattleScript_BadDreamsEnd, BattleScript_BadDreamsPrevented
+	call BattleScript_AbilityPopUp
 	dmg_1_4_targethp
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	printstring STRINGID_BADDREAMSDMG
@@ -9407,6 +9407,7 @@ BattleScript_BadDreamsLoop:
 	atk24 BattleScript_BadDreamsIncrement
 	goto BattleScript_BadDreamsIncrement
 BattleScript_BadDreamsPrevented:
+	call BattleScript_AbilityPopUp
 	pause 60
 	sethword sABILITY_OVERWRITE, ABILITY_SWEET_DREAMS
 	showabilitypopup BS_TARGET

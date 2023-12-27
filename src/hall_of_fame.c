@@ -36,6 +36,7 @@
 #include "constants/rgb.h"
 #include "constants/items.h"
 #include "constants/species.h"
+#include "constants/abilities.h"
 
 #define HALL_OF_FAME_MAX_TEAMS 30
 #define TAG_CONFETTI 1001
@@ -812,6 +813,12 @@ u16 getHallofFameSpecies(u8 num){
                     return SPECIES_RAYQUAZA_MEGA;
             }
         break;
+        case SPECIES_DARMANITAN_GALARIAN:
+        case SPECIES_DARMANITAN:
+            if(GetAbilityBySpecies(species, GetMonData(&gPlayerParty[num], MON_DATA_ABILITY_NUM)) == ABILITY_ZEN_MODE ||
+               SpeciesHasInnate(species, ABILITY_ZEN_MODE, GetMonData(&gPlayerParty[num], MON_DATA_LEVEL), GetMonData(&gPlayerParty[num], MON_DATA_PERSONALITY), FALSE, FALSE))
+               return species == SPECIES_DARMANITAN ? SPECIES_DARMANITAN_ZEN_MODE : SPECIES_DARMANITAN_ZEN_MODE_GALARIAN;
+            break;
     }
 
     return species;
