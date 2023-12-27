@@ -798,28 +798,6 @@ static void HandleInput(bool8 showContest)
     switch (itemId)
     {
     case LIST_NOTHING_CHOSEN:
-        if (!(JOY_NEW(DPAD_LEFT | DPAD_RIGHT)) && !GetLRKeysPressed())
-        {
-            break;
-        }
-
-        PlaySE(SE_SELECT);
-
-        if (showContest == FALSE)
-        {
-            PutWindowTilemap(1);
-            sMoveRelearnerStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
-            sMoveRelearnerMenuSate.showContestInfo = TRUE;
-        }
-        else
-        {
-            PutWindowTilemap(0);
-            sMoveRelearnerStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
-            sMoveRelearnerMenuSate.showContestInfo = FALSE;
-        }
-
-        ScheduleBgCopyTilemapToVram(1);
-        MoveRelearnerShowHideHearts(GetCurrentSelectedMove());
         break;
     case LIST_CANCEL:
         PlaySE(SE_SELECT);
@@ -867,33 +845,14 @@ static void CreateUISprites(void)
     sMoveRelearnerStruct->moveDisplayArrowTask = TASK_NONE;
     sMoveRelearnerStruct->moveListScrollArrowTask = TASK_NONE;
     AddScrollArrows();
-
-    // These are the appeal hearts.
-    for (i = 0; i < 8; i++)
-    {
-        sMoveRelearnerStruct->heartSpriteIds[i] = CreateSprite(&sConstestMoveHeartSprite, (i - (i / 4) * 4) * 8 + 104, (i / 4) * 8 + 36, 0);
-    }
-
-    // These are the jam harts.
-    // The animation is used to toggle between full/empty heart sprites.
-    for (i = 0; i < 8; i++)
-    {
-        sMoveRelearnerStruct->heartSpriteIds[i + 8] = CreateSprite(&sConstestMoveHeartSprite, (i - (i / 4) * 4) * 8 + 104, (i / 4) * 8 + 52, 0);
-        StartSpriteAnim(&gSprites[sMoveRelearnerStruct->heartSpriteIds[i + 8]], 2);
-    }
-
-    for (i = 0; i < 16; i++)
-    {
-        gSprites[sMoveRelearnerStruct->heartSpriteIds[i]].invisible = TRUE;
-    }
 }
 
 static void AddScrollArrows(void)
 {
-    if (sMoveRelearnerStruct->moveDisplayArrowTask == TASK_NONE)
-    {
-        sMoveRelearnerStruct->moveDisplayArrowTask = AddScrollIndicatorArrowPair(&sDisplayModeArrowsTemplate, &sMoveRelearnerStruct->scrollOffset);
-    }
+    // if (sMoveRelearnerStruct->moveDisplayArrowTask == TASK_NONE)
+    // {
+    //     sMoveRelearnerStruct->moveDisplayArrowTask = AddScrollIndicatorArrowPair(&sDisplayModeArrowsTemplate, &sMoveRelearnerStruct->scrollOffset);
+    // }
 
     if (sMoveRelearnerStruct->moveListScrollArrowTask == TASK_NONE)
     {

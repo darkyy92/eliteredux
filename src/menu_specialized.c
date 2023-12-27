@@ -25,6 +25,7 @@
 #include "window.h"
 #include "constants/songs.h"
 #include "gba/io_reg.h"
+#include "mgba_printf/mgba.h"
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 
@@ -730,33 +731,39 @@ u8 LoadMoveRelearnerMovesList(const struct ListMenuItem *items, u16 numChoices)
     return gMultiuseListMenuTemplate.maxShowed;
 }
 
-static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
+static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove, bool8 onInit)
 {
     s32 x;
     const struct BattleMove *move;
     u8 buffer[0x20];
     const u8 *str;
 
-    FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    str = gText_MoveRelearnerBattleMoves;
-    x = GetStringCenterAlignXOffset(1, str, 0x80);
-    AddTextPrinterParameterized(0, 1, str, x, 1, TEXT_SPEED_FF, NULL);
+    if (onInit) {
+        FillWindowPixelBuffer(1, PIXEL_FILL(1));
+        str = gText_MoveRelearnerBattleMoves;
+        x = GetStringCenterAlignXOffset(1, str, 0x80);
+        AddTextPrinterParameterized(1, 1, str, x, 1, TEXT_SPEED_FF, NULL);
 
-    str = gText_MoveRelearnerPP;
-    AddTextPrinterParameterized(0, 1, str, 4, 0x29, TEXT_SPEED_FF, NULL);
+        str = gText_MoveRelearnerPP;
+        AddTextPrinterParameterized(1, 1, str, 4, 0x29, TEXT_SPEED_FF, NULL);
 
-    str = gText_MoveRelearnerPower;
-    x = GetStringRightAlignXOffset(1, str, 0x6A);
-    AddTextPrinterParameterized(0, 1, str, x, 0x19, TEXT_SPEED_FF, NULL);
+        str = gText_MoveRelearnerPower;
+        x = GetStringRightAlignXOffset(1, str, 0x6A);
+        AddTextPrinterParameterized(1, 1, str, x, 0x19, TEXT_SPEED_FF, NULL);
 
-    str = gText_MoveRelearnerAccuracy;
-    x = GetStringRightAlignXOffset(1, str, 0x6A);
-    AddTextPrinterParameterized(0, 1, str, x, 0x29, TEXT_SPEED_FF, NULL);
+        str = gText_MoveRelearnerAccuracy;
+        x = GetStringRightAlignXOffset(1, str, 0x6A);
+        AddTextPrinterParameterized(1, 1, str, x, 0x29, 0, NULL);
+    }
+
+    CopyWindowToWindow(1, 0);
+
     if (chosenMove == LIST_CANCEL)
     {
         CopyWindowToVram(0, 2);
         return;
     }
+
     move = &gBattleMoves[chosenMove];
     str = gTypeNames[move->type];
     AddTextPrinterParameterized(0, 1, str, 4, 0x19, TEXT_SPEED_FF, NULL);
@@ -791,48 +798,11 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     AddTextPrinterParameterized(0, 7, str, 0, 0x41, 0, NULL);
 }
 
-static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
-{
-    s32 x;
-    const u8 *str;
-    const struct ContestMove *move;
-
-    MoveRelearnerShowHideHearts(chosenMove);
-    FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    str = gText_MoveRelearnerContestMovesTitle;
-    x = GetStringCenterAlignXOffset(1, str, 0x80);
-    AddTextPrinterParameterized(1, 1, str, x, 1, TEXT_SPEED_FF, NULL);
-
-    str = gText_MoveRelearnerAppeal;
-    x = GetStringRightAlignXOffset(1, str, 0x5C);
-    AddTextPrinterParameterized(1, 1, str, x, 0x19, TEXT_SPEED_FF, NULL);
-
-    str = gText_MoveRelearnerJam;
-    x = GetStringRightAlignXOffset(1, str, 0x5C);
-    AddTextPrinterParameterized(1, 1, str, x, 0x29, TEXT_SPEED_FF, NULL);
-
-    if (chosenMove == MENU_NOTHING_CHOSEN)
-    {
-        CopyWindowToVram(1, 2);
-        return;
-    }
-
-    move = &gContestMoves[chosenMove];
-    str = gContestMoveTypeTextPointers[move->contestCategory];
-    AddTextPrinterParameterized(1, 1, str, 4, 0x19, TEXT_SPEED_FF, NULL);
-
-    str = gContestEffectDescriptionPointers[move->effect];
-    AddTextPrinterParameterized(1, 7, str, 0, 0x41, TEXT_SPEED_FF, NULL);
-
-    CopyWindowToVram(1, 2);
-}
-
 static void MoveRelearnerCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
     if (onInit != TRUE)
         PlaySE(SE_SELECT);
-    MoveRelearnerLoadBattleMoveDescription(itemIndex);
-    MoveRelearnerMenuLoadContestMoveDescription(itemIndex);
+    MoveRelearnerLoadBattleMoveDescription(itemIndex, onInit);
 }
 
 void MoveRelearnerPrintText(u8 *str)
