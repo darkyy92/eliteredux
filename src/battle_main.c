@@ -5975,7 +5975,9 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     {
         if (WEATHER_HAS_EFFECT)
         {
-            if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+            if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_CHLOROPLAST) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_LEAVES))
+                return TYPE_FIRE;
+            else if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
                 return TYPE_WATER;
             else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
                 return TYPE_ROCK;
@@ -6101,7 +6103,9 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         if (WEATHER_HAS_EFFECT)
         {
-            if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+            if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_CHLOROPLAST) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_LEAVES))
+                gBattleStruct->dynamicMoveType = TYPE_FIRE | 0x80;
+            else if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
                 gBattleStruct->dynamicMoveType = TYPE_WATER | 0x80;
             else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
                 gBattleStruct->dynamicMoveType = TYPE_ROCK | 0x80;
