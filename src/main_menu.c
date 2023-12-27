@@ -706,12 +706,14 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
     s16* data = gTasks[taskId].data;
 	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
 
-    if(VarGet(VAR_SAVE_VERSION) < 1017){
-        //updating version
-        FlagClear(FLAG_GOT_TM24_FROM_WATTSON);
-        if(FlagGet(FLAG_BADGE05_GET) == TRUE){
-            FlagSet(FLAG_GOT_TM24_FROM_WATTSON);
+    if(VarGet(VAR_SAVE_VERSION) <= 1033){
+        if(FlagGet(FLAG_GOT_TM24_FROM_WATTSON) && VarGet(VAR_NEW_MAUVILLE_STATE) != 6) {
+            FlagClear(FLAG_GOT_TM24_FROM_WATTSON);
+        }
+
+        if(!FlagGet(FLAG_GOT_TM24_FROM_WATTSON) && FlagGet(FLAG_BADGE05_GET) && FlagGet(FLAG_HIDE_MAUVILLE_CITY_WATTSON)) {
             FlagClear(FLAG_HIDE_MAUVILLE_CITY_WATTSON);
+            FlagSet(FLAG_HIDE_MAUVILLE_GYM_WATTSON);
             FlagClear(FLAG_WATTSON_REMATCH_AVAILABLE);
         }
     }
