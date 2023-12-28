@@ -14010,12 +14010,9 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
             RecordAbilityBattle(battlerDef, ability);
         break;
     case ABILITY_PARRY:
-		if (IsMoveMakingContact(move, battlerAtk))
-        {
-            MulModifier(&modifier, UQ_4_12(0.8));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
+        MulModifier(&modifier, UQ_4_12(0.8));
+        if (updateFlags)
+            RecordAbilityBattle(battlerDef, ability);
         break;
 	case ABILITY_IMMUNITY:
         if (moveType == TYPE_POISON)
@@ -14101,10 +14098,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     }
     // Parry
 	if(BattlerHasInnate(battlerDef, ABILITY_PARRY)){
-		if (IsMoveMakingContact(move, battlerAtk))
-        {
-		    MulModifier(&modifier, UQ_4_12(0.8));
-        }
+		MulModifier(&modifier, UQ_4_12(0.8));
     }
 	// Fossilized
 	if(BattlerHasInnate(battlerDef, ABILITY_FOSSILIZED)){
