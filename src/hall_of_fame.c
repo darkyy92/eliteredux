@@ -819,6 +819,8 @@ u16 getHallofFameSpecies(u8 num){
                SpeciesHasInnate(species, ABILITY_ZEN_MODE, GetMonData(&gPlayerParty[num], MON_DATA_LEVEL), GetMonData(&gPlayerParty[num], MON_DATA_PERSONALITY), FALSE, FALSE))
                return species == SPECIES_DARMANITAN ? SPECIES_DARMANITAN_ZEN_MODE : SPECIES_DARMANITAN_ZEN_MODE_GALARIAN;
             break;
+        case SPECIES_GRENINJA_BATTLE_BOND:
+            return SPECIES_GRENINJA_ASH;
     }
 
     return species;
