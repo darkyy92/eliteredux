@@ -2041,6 +2041,9 @@ static void Cmd_accuracycheck(void)
             gBattlescriptCurrInstr += 7;
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1
+        || (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2
+            && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_MULTI_HEADED)
+            && gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED)
         || (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
         || BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE)
 		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_KUNOICHI_BLADE
