@@ -459,6 +459,7 @@ static const u8 sAbilityMonkeyBusinessDescription[] = _("Uses Tickle on-entry.")
 static const u8 sAbilityPixiePowerDescription[] = _("Boosts Fairy moves by 33% \nand 1.2x accuracy.");
 static const u8 sAbilityPlasmaLampDescription[] = _("Boost accuracy and Fire &\nElectric type moves by 1.2x");
 static const u8 sAbilityMagmaEaterDescription[] = _("Predator + Molten Down.");
+static const u8 sAbilitySuperHotGooDescription[] = _("Inflicts burn and lower\nthe speed on contact.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -931,6 +932,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PIXIE_POWER] = _("Pixie Power"),
         [ABILITY_PLASMA_LAMP] = _("Plasma Lamp"),
         [ABILITY_MAGMA_EATER] = _("Magma Eater"),
+        [ABILITY_SUPER_HOT_GOO] = _("Super Hot Goo"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1403,5 +1405,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PIXIE_POWER] = sAbilityPixiePowerDescription,
         [ABILITY_PLASMA_LAMP] = sAbilityPlasmaLampDescription,
         [ABILITY_MAGMA_EATER] = sAbilityMagmaEaterDescription,
+        [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription,
         
 };
