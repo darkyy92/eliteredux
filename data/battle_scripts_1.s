@@ -8530,6 +8530,7 @@ BattleScript_DefenderUsedAnExtraMove::
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget
 	copybyte gBattlerTarget, sSAVED_BATTLER
+	setbyte gRetaliationInProgress, TRUE
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_LONG
@@ -8560,10 +8561,10 @@ BattleScript_DefenderExtraHitFromAtkAnimation::
 	tryfaintmon BS_TARGET, FALSE, NULL
 BattleScript_DefenderExtraRestoreBattlers::
 	copybyte gBattlerAttacker, sSAVED_BATTLER
+	setbyte gRetaliationInProgress, FALSE
 	restoretarget
 BattleScript_DefenderExtraMoveEnd::
-	moveendall
-	end
+	end3
 
 BattleScript_PickUpActivate::
 	copybyte gBattlerAbility, gBattlerAttacker

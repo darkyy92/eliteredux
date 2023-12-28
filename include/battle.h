@@ -207,6 +207,7 @@ struct SpecialStatus
     u8 physicalBattlerId;
     u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
+    u16 parentalBondTrigger; // Ability that triggered parental bond
 };
 
 struct SideTimer
@@ -883,6 +884,8 @@ extern u8 gPotentialItemEffectBattler;
 extern u8 gAbsentBattlerFlags;
 extern u8 gIsCriticalHit;
 extern u8 gMultiHitCounter;
+extern u8 gSavedMultiHitCounter;
+extern bool8 gRetaliationInProgress;
 extern const u8 *gBattlescriptCurrInstr;
 extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
 extern const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT];
@@ -919,6 +922,7 @@ extern u8 gSentPokesToOpponent[2];
 extern u16 gExpShareExp;
 extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];
 extern struct BattleScripting gBattleScripting;
+extern struct BattleScripting gSavedBattleScripting;
 extern struct BattleStruct *gBattleStruct;
 extern u8 *gLinkBattleSendBuffer;
 extern u8 *gLinkBattleRecvBuffer;

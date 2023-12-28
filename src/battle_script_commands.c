@@ -1367,6 +1367,16 @@ static const u8 sBattlePalaceNatureToFlavorTextId[NUM_NATURES] =
     [NATURE_QUIRKY]  = B_MSG_EAGER_FOR_MORE,
 };
 
+#define IS_THREE_HEADED(battlerAttacker) (gBaseStats[gBattleMons[battlerAttacker].species].flags & F_THREE_HEADED)
+
+static u8 ParentalBondInitialCount(u8 battlerAttacker) {
+    if (!gSpecialStatuses[battlerAttacker].parentalBondOn) return 0;
+    if (gSpecialStatuses[battlerAttacker].parentalBondTrigger == ABILITY_MULTI_HEADED
+        && IS_THREE_HEADED(battlerAttacker))
+        return 3;
+    return 2;
+}
+
 static bool32 NoTargetPresent(u32 move)
 {
     if (!IsBattlerAlive(gBattlerTarget))
@@ -1495,6 +1505,10 @@ static void Cmd_attackcanceler(void)
     #endif
     if (AtkCanceller_UnableToUseMove())
         return;
+
+    if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn)
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_NONE;
+
 	// Parental Bond
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND)) // Includes Innate
@@ -1502,6 +1516,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_PARENTAL_BOND;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1513,6 +1528,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_RAGING_BOXER;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1524,6 +1540,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_DUAL_WIELD;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1535,6 +1552,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_RAGING_MOTH;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1546,6 +1564,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_PRIMAL_MAW;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1560,6 +1579,8 @@ static void Cmd_attackcanceler(void)
 			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
 		else
 			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 3;
+
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_MULTI_HEADED;
 		
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1571,6 +1592,7 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_HYPER_AGGRESSIVE;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -2040,10 +2062,7 @@ static void Cmd_accuracycheck(void)
         else if (!JumpIfMoveAffectedByProtect(0))
             gBattlescriptCurrInstr += 7;
     }
-    else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1
-        || (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2
-            && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_MULTI_HEADED)
-            && gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED)
+    else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn < ParentalBondInitialCount(gBattlerAttacker)
         || (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
         || BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE)
 		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_KUNOICHI_BLADE
@@ -2136,7 +2155,8 @@ static void Cmd_ppreduce(void)
         if (gCurrentMove == gLastResultingMoves[gBattlerAttacker]
             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             && !WasUnableToUseMove(gBattlerAttacker)
-            && gSpecialStatuses[gBattlerAttacker].parentalBondOn != 2) // Don't increment counter on first hit
+            && (gSpecialStatuses[gBattlerAttacker].parentalBondOn > 0
+                && gSpecialStatuses[gBattlerAttacker].parentalBondOn != ParentalBondInitialCount(gBattlerAttacker))) // Don't increment counter on first hit
                 gBattleStruct->sameMoveTurns[gBattlerAttacker]++;
         else
             gBattleStruct->sameMoveTurns[gBattlerAttacker] = 0;
@@ -2456,7 +2476,7 @@ static void Cmd_attackanimation(void)
     }
     else
     {
-        if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1) // No animation on second hit
+        if (gSpecialStatuses[gBattlerAttacker].parentalBondOn < ParentalBondInitialCount(gBattlerAttacker)) // No animation on second hit
         {
 			gBattlescriptCurrInstr++;
 			return;
@@ -3558,7 +3578,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_STEAL_ITEM:
                 // Don't steal on first strike of Parental Bond, unless it KO'ed the target
-                if (!(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2 && gBattleMons[gBattlerTarget].hp != 0))
+                if (!(gSpecialStatuses[gBattlerAttacker].parentalBondOn >= 2 && gBattleMons[gBattlerTarget].hp != 0))
                 { 
                     if (!CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item))
                     {
@@ -8704,9 +8724,13 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SAVE_TARGET:
         gBattleStruct->savedBattlerTarget = gBattlerTarget;
+        gSavedBattleScripting = gBattleScripting;
+        gSavedMultiHitCounter = gMultiHitCounter;
         break;
     case VARIOUS_RESTORE_TARGET:
         gBattlerTarget = gBattleStruct->savedBattlerTarget;
+        gBattleScripting = gSavedBattleScripting;
+        gMultiHitCounter = gSavedMultiHitCounter;
         break;
     case VARIOUS_INSTANT_HP_DROP:
         BtlController_EmitHealthBarUpdate(0, INSTANT_HP_BAR_DROP);
@@ -12217,25 +12241,41 @@ static void Cmd_calculatesetdamage(void)
     if (baseDamage == 0)
         baseDamage = 1;
 
+    gBattleMoveDamage = baseDamage;
+
     //Multiplies depending on the ability and the hit number
     if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)){
-        if(gBattleMons[gBattlerAttacker].ability == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND))
-            gBattleMoveDamage = baseDamage / 4;
-        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER))
-            gBattleMoveDamage = baseDamage / 2;
-        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW))
-            gBattleMoveDamage = baseDamage / 2;
-        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED))
-                gBattleMoveDamage = baseDamage / 5;
-        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_HYPER_AGGRESSIVE || BattlerHasInnate(gBattlerAttacker, ABILITY_HYPER_AGGRESSIVE))
-            gBattleMoveDamage = baseDamage / 4;
+        switch (gSpecialStatuses[gBattlerAttacker].parentalBondTrigger) {
+            case ABILITY_PARENTAL_BOND:
+            case ABILITY_HYPER_AGGRESSIVE:
+                gBattleMoveDamage = baseDamage / 4;
+                break;
+            case ABILITY_RAGING_BOXER:
+            case ABILITY_PRIMAL_MAW:
+                gBattleMoveDamage = baseDamage / 2;
+                break;
+        }
     }
-    else if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2) && (gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)))
-        gBattleMoveDamage = baseDamage * 0.15;
-    else if(gBattleMons[gBattlerAttacker].ability == ABILITY_DUAL_WIELD || BattlerHasInnate(gBattlerAttacker, ABILITY_DUAL_WIELD))
-        gBattleMoveDamage = baseDamage * 0.75; 
-    else
-        gBattleMoveDamage = baseDamage;
+
+    if (gSpecialStatuses[gBattlerAttacker].parentalBondTrigger == ABILITY_MULTI_HEADED) {
+        if (IS_THREE_HEADED(gBattlerAttacker)) {
+            switch (gSpecialStatuses[gBattlerAttacker].parentalBondOn) {
+                case 2:
+                    gBattleMoveDamage = baseDamage / 5; // .2
+                    break;
+                case 1:
+                    gBattleMoveDamage = baseDamage * 3 / 20; // .15
+                    break;
+            }
+        } else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1) {
+            gBattleMoveDamage = baseDamage / 4;
+        }
+    }
+    else if(gSpecialStatuses[gBattlerAttacker].parentalBondTrigger == ABILITY_DUAL_WIELD)
+        gBattleMoveDamage = baseDamage * 3 / 4; // .75
+    else if(gSpecialStatuses[gBattlerAttacker].parentalBondTrigger == ABILITY_RAGING_MOTH)
+        gBattleMoveDamage = baseDamage * 3 / 4; // .75
+
     gBattlescriptCurrInstr++;
 }
 
@@ -12930,7 +12970,8 @@ static void Cmd_handlefurycutter(void)
     else
     {
         if (gDisableStructs[gBattlerAttacker].furyCutterCounter != 5
-            && gSpecialStatuses[gBattlerAttacker].parentalBondOn != 2) // Don't increment counter on first hit
+            && (ParentalBondInitialCount(gBattlerAttacker) > 0
+                && gSpecialStatuses[gBattlerAttacker].parentalBondOn < ParentalBondInitialCount(gBattlerAttacker))) // Don't increment counter on first hit
             gDisableStructs[gBattlerAttacker].furyCutterCounter++;
 
         gBattlescriptCurrInstr++;

@@ -9018,6 +9018,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)       &&
+                !gRetaliationInProgress                          &&
                 canUseExtraMove(battler, gBattlerAttacker)       && //gBattlerAttacer is the target in this instance
                 (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) &&
                 TARGET_TURN_DAMAGED){
@@ -9043,7 +9044,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(BattlerHasInnate(battler, abilityToCheck))
                     gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
                 effect++;
             }
         }
@@ -9057,6 +9058,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                !gRetaliationInProgress                     &&
                 canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
                 IsMoveMakingContact(move, gBattlerAttacker) &&
                 TARGET_TURN_DAMAGED){
@@ -9082,7 +9084,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(BattlerHasInnate(battler, abilityToCheck))
                     gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
                 effect++;
             }
         }
@@ -9096,6 +9098,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                !gRetaliationInProgress                     &&
                 canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
                 IsMoveMakingContact(move, gBattlerAttacker) &&
                 TARGET_TURN_DAMAGED){
@@ -9121,7 +9124,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(BattlerHasInnate(battler, abilityToCheck))
                     gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
                 effect++;
             }
         }
@@ -9271,6 +9274,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BATTLER_HAS_ABILITY(i, ABILITY_RETRIBUTION_BLOW)){
                 if (IsBattlerAlive(i)
                 && DoesMoveBoostStats(gCurrentMove)
+                && !gRetaliationInProgress
                 && !gProtectStructs[i].extraMoveUsed
                 && !(gBattleMons[i].status1 & STATUS1_SLEEP)
                 && gBattlerAttacker != i
@@ -9293,7 +9297,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattlerTarget = battler = i;
                     gProtectStructs[i].extraMoveUsed = TRUE;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_RETRIBUTION_BLOW;
-                    gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                    BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
                     effect++;
                 }
             }
@@ -14006,9 +14010,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
             RecordAbilityBattle(battlerDef, ability);
         break;
     case ABILITY_PARRY:
-        MulModifier(&modifier, UQ_4_12(0.8));
-        if (updateFlags)
-            RecordAbilityBattle(battlerDef, ability);
+		if (IsMoveMakingContact(move, battlerAtk))
+        {
+            MulModifier(&modifier, UQ_4_12(0.8));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
         break;
 	case ABILITY_IMMUNITY:
         if (moveType == TYPE_POISON)
@@ -14094,7 +14101,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     }
     // Parry
 	if(BattlerHasInnate(battlerDef, ABILITY_PARRY)){
-		MulModifier(&modifier, UQ_4_12(0.8));
+		if (IsMoveMakingContact(move, battlerAtk))
+        {
+		    MulModifier(&modifier, UQ_4_12(0.8));
+        }
     }
 	// Fossilized
 	if(BattlerHasInnate(battlerDef, ABILITY_FOSSILIZED)){
@@ -15476,68 +15486,34 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         else
             MulModifier(&finalModifier, UQ_4_12(0.5));
     }
-
-    // Parental Bond Second Strike
-	if(abilityAtk == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND)){
-		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
-		{
-			if (B_PARENTAL_BOND_DAMAGE < GEN_7)
-				MulModifier(&finalModifier, UQ_4_12(0.5));
-			else
-				MulModifier(&finalModifier, UQ_4_12(0.25));
-		}
-	}
-	
-	// Raging Boxer
-	if(abilityAtk == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER)){
-		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
-		{
-			MulModifier(&finalModifier, UQ_4_12(0.5));
-		}
-	}
-
-    // Dual Wield
-	if(abilityAtk == ABILITY_DUAL_WIELD || BattlerHasInnate(gBattlerAttacker, ABILITY_DUAL_WIELD)){
-		MulModifier(&finalModifier, UQ_4_12(0.75));
-	}
-
-    //Raging Moth
-    if(abilityAtk == ABILITY_RAGING_MOTH || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_MOTH)){
-		MulModifier(&finalModifier, UQ_4_12(0.75));
-	}
-
-    // Primal Maw
-	if(abilityAtk == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)){
-		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
-		{
-			MulModifier(&finalModifier, UQ_4_12(0.5));
-		}
-	}
-	
-	// Multi Headed
-	if(abilityAtk == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)){
-        if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED){
-            if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
-			MulModifier(&finalModifier, UQ_4_12(0.15));
+    
+    switch (gSpecialStatuses[gBattlerAttacker].parentalBondTrigger) {
+        case ABILITY_HYPER_AGGRESSIVE:
+        case ABILITY_PARENTAL_BOND:
+            if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+                MulModifier(&finalModifier, UQ_4_12(0.25));
+            break;
+        case ABILITY_MULTI_HEADED:
+            if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
+                if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+                    MulModifier(&finalModifier, UQ_4_12(0.25));
+            } else {
+                if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2)
+                    MulModifier(&finalModifier, UQ_4_12(0.2));
+                else if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+                    MulModifier(&finalModifier, UQ_4_12(0.15));
             }
-            else if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2){
-                MulModifier(&finalModifier, UQ_4_12(0.2));
-            }
-        }
-        else if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
-            if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
-			MulModifier(&finalModifier, UQ_4_12(0.25));
-            }
-        }
-	}
-	
-	// Hyper Aggressive
-	if(abilityAtk == ABILITY_HYPER_AGGRESSIVE || BattlerHasInnate(gBattlerAttacker, ABILITY_HYPER_AGGRESSIVE)){
-		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
-		{
-			MulModifier(&finalModifier, UQ_4_12(0.25));
-		}
-	}
+            break;
+        case ABILITY_PRIMAL_MAW:
+        case ABILITY_RAGING_BOXER:
+            if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+                MulModifier(&finalModifier, UQ_4_12(0.5));
+            break;
+        case ABILITY_DUAL_WIELD:
+        case ABILITY_RAGING_MOTH:
+		    MulModifier(&finalModifier, UQ_4_12(0.75));
+            break;
+    }
 
     // attacker's abilities
     switch (abilityAtk)
