@@ -1553,7 +1553,7 @@ static void Cmd_attackcanceler(void)
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_MULTI_HEADED)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
+	&& (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & (F_TWO_HEADED | F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED)
