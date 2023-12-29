@@ -9402,6 +9402,7 @@ BattleScript_BadDreamsLoop:
 	printstring STRINGID_BADDREAMSDMG
 	waitmessage B_WAIT_TIME_LONG
 	jumpifability BS_TARGET, ABILITY_MAGIC_GUARD, BattleScript_BadDreamsIncrement
+	jumpifability BS_TARGET, ABILITY_IMPENETRABLE, BattleScript_BadDreamsIncrement
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	tryfaintmon BS_TARGET, FALSE, NULL
