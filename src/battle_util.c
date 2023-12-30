@@ -13833,6 +13833,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // Marine Apex
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MARINE_APEX) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
         MulModifier(&modifier, UQ_4_12(1.5));
+
+    // Lumberjack
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LUMBERJACK) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Huge Power & Pure Power
 	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUGE_POWER)  ||
@@ -16028,12 +16032,6 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) && modifier == UQ_4_12(0))
     {
         modifier = UQ_4_12(1.0);
-    }
-
-    if((GetBattlerAbility(battlerAtk) == ABILITY_LUMBERJACK || BattlerHasInnate(battlerAtk, ABILITY_LUMBERJACK)) 
-        && (gBattleMons[battlerDef].type1 == TYPE_GRASS || gBattleMons[battlerDef].type2 == TYPE_GRASS || gBattleMons[battlerDef].type3 == TYPE_GRASS))
-    {
-        MulModifier(&modifier, UQ_4_12(1.5));
     }
     
     if (((BATTLER_HAS_ABILITY(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0))
