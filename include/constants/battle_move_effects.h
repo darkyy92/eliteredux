@@ -397,7 +397,8 @@
 #define EFFECT_HOWL            390
 #define EFFECT_ATTRACT_HIT     391
 #define EFFECT_CURSE_HIT       392
+#define EFFECT_BLEED_HIT       393
 
-#define NUM_BATTLE_MOVE_EFFECTS 393 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 394 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

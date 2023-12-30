@@ -417,6 +417,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAttackUpUserAlly		  @ EFFECT_HOWL
 	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
 	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
+	.4byte BattleScript_EffectBleedHit				  @ EFFECT_BLEED_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -508,6 +509,15 @@ BattleScript_EffectFrostbiteHit::
 
 BattleScript_FrostbiteTurnDmg::
 	printstring STRINGID_PKMNHURTBYFROSTBITE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoStatusTurnDmg
+
+BattleScript_EffectBleedHit::
+	setmoveeffect MOVE_EFFECT_BLEED
+	goto BattleScript_EffectHit
+
+BattleScript_BleedTurnDmg::
+	printstring STRINGID_PKMNHURTBYBLEED
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_DoStatusTurnDmg
 

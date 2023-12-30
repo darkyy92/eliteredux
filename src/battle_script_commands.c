@@ -860,6 +860,7 @@ static const u32 sStatusFlagsForMoveEffects[NUM_MOVE_EFFECTS] =
     [MOVE_EFFECT_PARALYSIS]      = STATUS1_PARALYSIS,
     [MOVE_EFFECT_TOXIC]          = STATUS1_TOXIC_POISON,
     [MOVE_EFFECT_FROSTBITE]      = STATUS1_FROSTBITE,
+    [MOVE_EFFECT_BLEED]          = STATUS1_BLEED,
     [MOVE_EFFECT_CONFUSION]      = STATUS2_CONFUSION,
     [MOVE_EFFECT_FLINCH]         = STATUS2_FLINCHED,
     [MOVE_EFFECT_UPROAR]         = STATUS2_UPROAR,
@@ -886,6 +887,7 @@ static const u8* const sMoveEffectBS_Ptrs[] =
     [MOVE_EFFECT_PAYDAY]           = BattleScript_MoveEffectPayDay,
     [MOVE_EFFECT_WRAP]             = BattleScript_MoveEffectWrap,
     [MOVE_EFFECT_FROSTBITE]        = BattleScript_MoveEffectFrostbite,
+    [MOVE_EFFECT_BLEED]            = BattleScript_MoveEffectBleed,
     [MOVE_EFFECT_ATTRACT]          = BattleScript_MoveEffectAttract,
     [MOVE_EFFECT_CURSE]            = BattleScript_MoveEffectCurse,
 };
@@ -3305,6 +3307,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
 
             statusChanged = TRUE;
             break;
+        case STATUS1_BLEED:
+            if (!CanBleed(gEffectBattler))
+                break;
+            
+            statusChanged = TRUE;
         }
         if (statusChanged == TRUE)
         {
@@ -9315,6 +9322,9 @@ static void Cmd_various(void)
         case STATUS1_FROSTBITE:
             gBattleScripting.moveEffect = MOVE_EFFECT_FROSTBITE;
             break;
+        case STATUS1_BLEED:
+            gBattleScripting.moveEffect = MOVE_EFFECT_BLEED;
+            break;
         default:
             gBattleScripting.moveEffect = 0;
             break;
@@ -9525,6 +9535,9 @@ static void Cmd_various(void)
         }
         else if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_FROSTBITE) && CanBeFrozen(gBattlerTarget)){
             gBattleCommunication[MULTISTRING_CHOOSER] = 5;
+        }
+        else if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_BLEED) && CanBleed(gBattlerTarget)){
+            gBattleCommunication[MULTISTRING_CHOOSER] = 6;
         }
         if (i == TRUE)
         {
@@ -13527,7 +13540,7 @@ u16 GetNaturePowerMove(void)
 
 static void Cmd_cureifburnedparalysedorpoisoned(void) // refresh
 {
-    if (gBattleMons[gBattlerAttacker].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON| STATUS1_FROSTBITE))
+    if (gBattleMons[gBattlerAttacker].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE | STATUS1_BLEED))
     {
         gBattleMons[gBattlerAttacker].status1 = 0;
         gBattlescriptCurrInstr += 5;
@@ -14864,7 +14877,7 @@ static void Cmd_handleballthrow(void)
 
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
             odds *= 2;
-        if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON| STATUS1_FROSTBITE))
+        if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE | STATUS1_BLEED))
             odds = (odds * 15) / 10;
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)

@@ -110,7 +110,10 @@
 #define STATUS1_TOXIC_TURN(num)  ((num) << 8)
 #define STATUS1_FROSTBITE        (1 << 12)
 #define STATUS1_PSN_ANY          (STATUS1_POISON | STATUS1_TOXIC_POISON)
-#define STATUS1_ANY              (STATUS1_SLEEP | STATUS1_POISON | STATUS1_BURN | STATUS1_FREEZE | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE)
+#define STATUS1_BLEED            (1 << 13)
+#define STATUS1_ANY              (STATUS1_SLEEP | STATUS1_POISON | STATUS1_BURN | STATUS1_FREEZE | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE | STATUS1_BLEED)
+
+#define BLEED_DAMAGE(hp) (hp * 6 / 100)
 
 // Volatile status ailments
 // These are removed after exiting the battle or switching out
@@ -367,7 +370,8 @@
 #define MOVE_EFFECT_SPD_PLUS_1_DEF_MINUS_1 71
 #define MOVE_EFFECT_ATTRACT                72
 #define MOVE_EFFECT_CURSE                  73
-#define NUM_MOVE_EFFECTS                   74
+#define MOVE_EFFECT_BLEED                  74
+#define NUM_MOVE_EFFECTS                   75
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

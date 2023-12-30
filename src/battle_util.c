@@ -2732,6 +2732,7 @@ enum
     ENDTURN_BAD_POISON,
     ENDTURN_BURN,
     ENDTURN_FROSTBITE,
+    ENDTURN_BLEED,
     ENDTURN_NIGHTMARES,
     ENDTURN_CURSE,
     ENDTURN_WRAP,
@@ -3010,6 +3011,19 @@ u8 DoBattlerEndTurnEffects(void)
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_FrostbiteTurnDmg);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_BLEED: // bleed
+            if ((gBattleMons[gActiveBattler].status1 & STATUS1_BLEED)
+                && gBattleMons[gActiveBattler].hp != 0)
+            {
+                MAGIC_GUARD_CHECK;
+                gBattleMoveDamage = BLEED_DAMAGE(gBattleMons[gActiveBattler].maxHP);
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BattleScriptExecute(BattleScript_BleedTurnDmg);
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
@@ -10001,7 +10015,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
                     break;
                     case TYPE_DARK: // 30% chance to inflict bleed.
-
+                        if(CanBleed(gBattlerTarget)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+                            gBattleScripting.moveEffect = MOVE_EFFECT_BLEED;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
                     break;
                     case TYPE_FIGHTING: // 30% chance to boost the users Special Attack by 1.
                     {
@@ -11301,13 +11322,24 @@ bool32 CanGetFrostbite(u8 battlerId)
     u16 ability = GetBattlerAbility(battlerId);
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || ability == ABILITY_MAGMA_ARMOR
-	  || BattlerHasInnate(battlerId, ABILITY_MAGMA_ARMOR)
       || ability == ABILITY_COMATOSE
 	  || BattlerHasInnate(battlerId, ABILITY_COMATOSE)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+        return FALSE;
+    return TRUE;
+}
+
+bool32 CanBleed(u8 battlerId)
+{
+    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
+        || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST)
+        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+        || gBattleMons[battlerId].status1 & STATUS1_ANY
+        || IsAbilityStatusProtected(battlerId)
+        || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN)
+        || BATTLER_HAS_ABILITY(battlerId, ABILITY_COMATOSE))
         return FALSE;
     return TRUE;
 }

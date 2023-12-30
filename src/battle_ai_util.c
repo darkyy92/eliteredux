@@ -2403,6 +2403,20 @@ static u32 GetPoisonDamage(u8 battlerId)
     return damage;
 }
 
+static u32 GetBleedDamage(u8 battlerId)
+{
+    u32 damage = 0;
+    
+    if (gBattleMons[battlerId].status1 & STATUS1_BLEED)
+    {
+        damage = BLEED_DAMAGE(gBattleMons[battlerId].maxHP);
+        if (damage == 0)
+            damage = 1;
+    }
+    
+    return damage;
+}
+
 static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
 {
     if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)

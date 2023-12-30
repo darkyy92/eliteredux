@@ -104,6 +104,8 @@ static const u8 sText_PkmnBadlyPoisoned[] = _("{B_EFF_NAME_WITH_PREFIX} is badly
 static const u8 sText_PkmnEnergyDrained[] = _("{B_DEF_NAME_WITH_PREFIX} had its\nenergy drained!");
 static const u8 sText_PkmnWasBurned[] = _("{B_EFF_NAME_WITH_PREFIX} was burned!");
 static const u8 sText_PkmnGotFrostbite[] = _("{B_EFF_NAME_WITH_PREFIX} got frostbite!");
+static const u8 sText_PkmnStartBleed[] = _("{B_EFF_NAME_WITH_PREFIX} started\nbleeding!");
+static const u8 sText_PkmnStartBleed[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its bleeding!");
 static const u8 sText_PkmnBurnedBy[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nburned {B_EFF_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnHurtByBurn[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its burn!");
 static const u8 sText_PkmnHurtByFrostbite[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its frostbite!");
@@ -887,6 +889,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNFROSTBITEHEALED - 12] = sText_PkmnFrostbiteHealed,
     [STRINGID_PKMNFROSTBITEHEALED2 - 12] = sText_PkmnFrostbiteHealed2,
     [STRINGID_PKMNFROSTBITEHEALEDBY - 12] = sText_PkmnFrostbiteHealedBy,
+    [STRINGID_PKMNSTARTBLEED - 12] = sText_PkmnStartBleed,
+    [STRINGID_PKMNHURTBYBLEED - 12] = sText_PkmnHurtByBleed,
     [STRINGID_HEATUPBEAK - 12] = sText_HeatingUpBeak,
     [STRINGID_GRIPPINCERACTIVATED - 12] = sText_BattlerGripPincerActivated,
 	[STRINGID_NORTHWINDACTIVATED - 12] = sText_BattlerAbilitySetUpAuroraVeil,
@@ -1974,7 +1978,13 @@ const u16 gRoomsStringIds[] =
 
 const u16 gStatusConditionsStringIds[] =
 {
-    STRINGID_PKMNWASPOISONED, STRINGID_PKMNBADLYPOISONED, STRINGID_PKMNWASBURNED, STRINGID_PKMNWASPARALYZED, STRINGID_PKMNFELLASLEEP, STRINGID_PKMNGOTFROSTBITE
+    STRINGID_PKMNWASPOISONED,
+    STRINGID_PKMNBADLYPOISONED,
+    STRINGID_PKMNWASBURNED,
+    STRINGID_PKMNWASPARALYZED,
+    STRINGID_PKMNFELLASLEEP,
+    STRINGID_PKMNGOTFROSTBITE,
+    STRINGID_PKMNSTARTBLEED,
 };
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");
