@@ -84,7 +84,7 @@ void UpdateShoalTideFlag(void)
     if (IsMapTypeOutdoors(GetLastUsedWarpMapType()))
     {
         RtcCalcLocalTime();
-        if (tide[gLocalTime.hours])
+        if (tide[gLocalTime.hours] ^ FlagGet(FLAG_IS_DAYNIGHT_INVERTED))
             FlagSet(FLAG_SYS_SHOAL_TIDE);
         else
             FlagClear(FLAG_SYS_SHOAL_TIDE);
