@@ -3008,7 +3008,7 @@ u8 GetBattlerTurnOrderNum(u8 battlerId)
 
 static void CheckSetUnburden(u8 battlerId)
 {
-    if (GetBattlerAbility(battlerId) == ABILITY_UNBURDEN)
+    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_UNBURDEN))
     {
         gBattleResources->flags->flags[battlerId] |= RESOURCE_FLAG_UNBURDEN;
         RecordAbilityBattle(battlerId, ABILITY_UNBURDEN);
@@ -13703,7 +13703,7 @@ static void Cmd_tryswapitems(void) // trick
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ITEM_SWAP_BOTH;  // attacker's item -> <- target's item
             else if (oldItemAtk == 0 && *newItemAtk != 0)
                 {
-                    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNBURDEN && gBattleResources->flags->flags[gBattlerAttacker] & RESOURCE_FLAG_UNBURDEN)
+                    if (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_UNBURDEN) && gBattleResources->flags->flags[gBattlerAttacker] & RESOURCE_FLAG_UNBURDEN)
                         gBattleResources->flags->flags[gBattlerAttacker] &= ~(RESOURCE_FLAG_UNBURDEN);
 
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ITEM_SWAP_TAKEN; // nothing -> <- target's item
