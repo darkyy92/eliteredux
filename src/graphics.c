@@ -683,6 +683,7 @@ const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpb
                                                   "graphics/battle_interface/status_frz.4bpp",
                                                   "graphics/battle_interface/status_brn.4bpp",
                                                   "graphics/battle_interface/status_frb.4bpp",
+                                                  "graphics/battle_interface/status_bld.4bpp",
                                                   "graphics/battle_interface/misc.4bpp",
                                                   "graphics/battle_interface/hpbar_anim.4bpp",
                                                   "graphics/battle_interface/misc_frameend.4bpp");
