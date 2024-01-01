@@ -896,9 +896,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNFROSTBITEHEALEDBY - 12] = sText_PkmnFrostbiteHealedBy,
     [STRINGID_PKMNSTARTBLEED - 12] = sText_PkmnStartBleed,
     [STRINGID_PKMNHURTBYBLEED - 12] = sText_PkmnHurtByBleed,
-    [STRINGID_PKMNFROSTBITEHEALED - 12] = sText_PkmnBleedHealed,
-    [STRINGID_PKMNFROSTBITEHEALED2 - 12] = sText_PkmnBleedHealed2,
-    [STRINGID_PKMNFROSTBITEHEALEDBY - 12] = sText_PkmnBleedHealedBy,
+    [STRINGID_PKMNBLEEDHEALED - 12] = sText_PkmnBleedHealed,
+    [STRINGID_PKMNBLEEDHEALED2 - 12] = sText_PkmnBleedHealed2,
+    [STRINGID_PKMNBLEEDHEALEDBY - 12] = sText_PkmnBleedHealedBy,
     [STRINGID_HEATUPBEAK - 12] = sText_HeatingUpBeak,
     [STRINGID_GRIPPINCERACTIVATED - 12] = sText_BattlerGripPincerActivated,
 	[STRINGID_NORTHWINDACTIVATED - 12] = sText_BattlerAbilitySetUpAuroraVeil,
@@ -1825,7 +1825,7 @@ const u16 gBleedHealedStringIds[] =
 {
     [B_MSG_BLEED_HEALED]         = STRINGID_PKMNBLEEDHEALED2,
     [B_MSG_BLEED_HEALED_BY_MOVE] = STRINGID_PKMNBLEEDHEALEDBY
-}
+};
 
 const u16 gGotFrozenStringIds[] =
 {
