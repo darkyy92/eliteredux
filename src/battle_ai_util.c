@@ -3093,7 +3093,7 @@ bool32 ShouldAbsorb(u8 battlerAtk, u8 battlerDef, u16 move, s32 damage)
         u8 healPercent = (gBattleMoves[move].argument == 0) ? 50 : gBattleMoves[move].argument;
         s32 healDmg = (healPercent * damage) / 100;
         
-        if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+        if (BATTLER_HEALING_BLOCKED(battlerAtk))
             healDmg = 0;
         
         if (CanTargetFaintAi(battlerDef, battlerAtk)
@@ -3119,7 +3119,7 @@ bool32 ShouldRecover(u8 battlerAtk, u8 battlerDef, u16 move, u8 healPercent)
         // using item or user going first
         s32 damage = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
         s32 healAmount = (healPercent * damage) / 100;
-        if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+        if (BATTLER_HEALING_BLOCKED(battlerAtk))
             healAmount = 0;
 
         if (CanTargetFaintAi(battlerDef, battlerAtk)

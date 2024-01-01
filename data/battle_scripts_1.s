@@ -554,8 +554,9 @@ BattleScript_BleedTurnDmg::
 BattleScript_MoveUsedBleedHeal::
 	printfromtable gBleedHealedStringIds
 	waitmessage B_WAIT_TIME_LONG
+	removeattackerstatus1
 	updatestatusicon BS_ATTACKER
-	return
+	goto BattleScript_MoveEnd
 
 BattleScript_MoveEffectBleed::
 	statusanimation BS_EFFECT_BATTLER
@@ -2423,6 +2424,7 @@ BattleScript_EffectHealPulse:
 	tryhealpulse BS_TARGET, BattleScript_AlreadyAtFullHp
 	attackanimation
 	waitanimation
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -5304,6 +5306,7 @@ BattleScript_PresentHealTarget::
 	attackanimation
 	waitanimation
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -6709,6 +6712,7 @@ BattleScript_LeechSeedTurnDrain::
 	jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
 	setbyte cMULTISTRING_CHOOSER, B_MSG_LEECH_SEED_DRAIN
 	jumpifstatus3 BS_TARGET, STATUS3_HEAL_BLOCK, BattleScript_LeechSeedHealBlock
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_LeechSeedHealBlock
 	manipulatedamage DMG_BIG_ROOT
 	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
 BattleScript_LeechSeedTurnPrintLiquidOoze::
@@ -7409,6 +7413,7 @@ BattleScript_WishComesTrue::
 	printstring STRINGID_PKMNWISHCAMETRUE
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -10790,6 +10795,7 @@ BattleScript_SelfRepairExits::
 
 BattleScript_RegeneratorExits::
 	clearstatus BS_ATTACKER
+	jumpifstatus BS_ATTACKER, STATUS1_BLEED, BattleScript_RegeneratorExits_NothingToHeal
 	tryhealquarterhealth BS_ATTACKER, BattleScript_RegeneratorExits_NothingToHeal
 BattleScript_RegeneratorExits_NothingToHeal:
 	return

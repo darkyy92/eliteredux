@@ -7606,7 +7606,7 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
 {
     if (ItemId_GetPocket(itemId) == POCKET_BERRIES
         && GetBattlerAbility(battlerId) == ABILITY_CHEEK_POUCH
-        && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK)
+        && !BATTLER_HEALING_BLOCKED(battlerId)
         && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
         && !BATTLER_MAX_HP(battlerId))
     {
@@ -9031,7 +9031,12 @@ static void Cmd_various(void)
         gLastUsedAbility = gBattleMons[gActiveBattler].ability;
         break;
     case VARIOUS_TRY_HEAL_PULSE:
-        if (BATTLER_MAX_HP(gActiveBattler))
+        if (gBattleMons[gBattlerTarget].status1 & STATUS1_BLEED)
+        {
+            gBattleMoveDamage = 0;
+            gBattlescriptCurrInstr += 7;
+        }
+        else if (BATTLER_MAX_HP(gActiveBattler))
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         }
@@ -10398,6 +10403,12 @@ static void Cmd_tryhealhalfhealth(void)
     if (gBattlescriptCurrInstr[5] == BS_ATTACKER)
         gBattlerTarget = gBattlerAttacker;
 
+    if (gBattlerMons[gBattlerTarget].status1 & STATUS1_BLEED) {
+        gBattleMoveDamage = 0;
+        gBattlescriptCurrInstr += 6;
+        return;
+    }
+
     gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
@@ -10776,7 +10787,15 @@ static void Cmd_stockpiletohpheal(void)
     }
     else
     {
-        if (gBattleMons[gBattlerAttacker].maxHP == gBattleMons[gBattlerAttacker].hp)
+        if (gBattleMons[gBattlerAttacker].status1 & STATUS1_BLEED)
+        {
+            gBattleMoveDamage = 0;
+            gBattleScripting.animTurn = gDisableStructs[gBattlerAttacker].stockpileCounter;
+            gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
+            gBattlescriptCurrInstr += 5;
+            gBattlerTarget = gBattlerAttacker;
+        }
+        else if (gBattleMons[gBattlerAttacker].maxHP == gBattleMons[gBattlerAttacker].hp)
         {
             gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
             gBattlescriptCurrInstr = jumpPtr;
@@ -11945,7 +11964,7 @@ static void Cmd_weatherdamage(void)
             if ((ability == ABILITY_ICE_BODY || BattlerHasInnate(gBattlerAttacker, ABILITY_ICE_BODY))
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && !BATTLER_MAX_HP(gBattlerAttacker)
-                && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
+                && !BATTLER_HEALING_BLOCKED(gBattlerAttacker))
             {
                 gBattlerAbility = gBattlerAttacker;
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
@@ -13282,12 +13301,17 @@ static void Cmd_setdefensecurlbit(void)
 static void Cmd_recoverbasedonsunlight(void)
 {
     gBattlerTarget = gBattlerAttacker;
-    if (gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP)
+    if (gBattleMons[gBattlerAttacker].status1 & STATUS1_BLEED)
+    {
+        gBattleMoveDamage = 0;
+        gBattlescriptCurrInstr += 5;
+    }
+    else if (gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP)
     {
         if (gCurrentMove == MOVE_SHORE_UP)
         {
             if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
-                gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
+                gBattleMoveDamage = 2 * gBattleMons[gBattlerAttacker].maxHP / 3;
             else
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
         }
@@ -13305,7 +13329,7 @@ static void Cmd_recoverbasedonsunlight(void)
                     GetBattlerAbility(gBattlerAttacker) == ABILITY_SOLAR_FLARE || BattlerHasInnate(gBattlerAttacker, ABILITY_SOLAR_FLARE) ||
                     GetBattlerAbility(gBattlerAttacker) == ABILITY_BIG_LEAVES  || BattlerHasInnate(gBattlerAttacker, ABILITY_BIG_LEAVES)  ||
                     GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || BattlerHasInnate(gBattlerAttacker, ABILITY_CHLOROPLAST))
-                gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
+                gBattleMoveDamage = 2 * gBattleMons[gBattlerAttacker].maxHP / 3;
             else if (!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT)
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
             else // not sunny weather
@@ -13767,6 +13791,13 @@ static void Cmd_trywish(void)
         break;
     case 1: // heal effect
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerTarget, gWishFutureKnock.wishPartyId[gBattlerTarget])
+
+        if (gBattleMons[gBattlerTarget].status1 & STATUS1_BLEED) {
+            gBattleMoveDamage = 0;
+            gBattlescriptCurrInstr += 6;
+            return;
+        }
+
         #if B_WISH_HP_SOURCE >= GEN_5
             if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER)
                 gBattleMoveDamage = max(1, GetMonData(&gPlayerParty[gWishFutureKnock.wishPartyId[gBattlerTarget]], MON_DATA_MAX_HP) / 2);
