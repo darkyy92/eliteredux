@@ -512,15 +512,6 @@ BattleScript_FrostbiteTurnDmg::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_DoStatusTurnDmg
 
-BattleScript_EffectBleedHit::
-	setmoveeffect MOVE_EFFECT_BLEED
-	goto BattleScript_EffectHit
-
-BattleScript_BleedTurnDmg::
-	printstring STRINGID_PKMNHURTBYBLEED
-	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_DoStatusTurnDmg
-
 BattleScript_MoveUsedUnfrostbite::
 	printfromtable gFrostbiteHealedStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -546,6 +537,39 @@ BattleScript_BerryCureFsbEnd2::
 BattleScript_BerryCureFsbRet::
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, NULL
 	printstring STRINGID_PKMNSITEMHEALEDFROSTBITE
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_SCRIPTING
+	removeitem BS_SCRIPTING
+	return
+
+BattleScript_EffectBleedHit::
+	setmoveeffect MOVE_EFFECT_BLEED
+	goto BattleScript_EffectHit
+
+BattleScript_BleedTurnDmg::
+	printstring STRINGID_PKMNHURTBYBLEED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoStatusTurnDmg
+
+BattleScript_MoveUsedBleedHeal::
+	printfromtable gBleedHealedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ATTACKER
+	return
+
+BattleScript_MoveEffectBleed::
+	statusanimation BS_EFFECT_BATTLER
+	printfromtable gBleedStartedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_UpdateEffectStatusIconRet
+
+BattleScript_BerryCureBldEnd2::
+	call BattleScript_BerryCureBldRet
+	end2
+
+BattleScript_BerryCureBldRet::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, NULL
+	printstring STRINGID_PKMNSITEMHEALEDBLEED
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_SCRIPTING
 	removeitem BS_SCRIPTING

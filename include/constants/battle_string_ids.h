@@ -699,8 +699,12 @@
 #define STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3   728
 #define STRINGID_PKMNSTARTBLEED                       729
 #define STRINGID_PKMNHURTBYBLEED                      730
+#define STRINGID_PKMNBLEEDHEALED                      731
+#define STRINGID_PKMNBLEEDHEALED2                     732
+#define STRINGID_PKMNBLEEDHEALEDBY                    733
+#define STRINGID_PKMNSITEMHEALEDBLEED                 734
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3 + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNSITEMHEALEDBLEED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -905,6 +909,10 @@
 // gFrostbiteHealedStringIds
 #define B_MSG_FROSTBITE_HEALED         0
 #define B_MSG_FROSTBITE_HEALED_BY_MOVE 1
+
+// gBleedHealedStringIds
+#define B_MSG_BLEED_HEALED         0
+#define B_MSG_BLEED_HEALED_BY_MOVE 1
 
 // gBattlePalaceFlavorTextTable
 #define B_MSG_GLINT_IN_EYE   0

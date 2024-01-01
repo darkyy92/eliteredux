@@ -105,7 +105,10 @@ static const u8 sText_PkmnEnergyDrained[] = _("{B_DEF_NAME_WITH_PREFIX} had its\
 static const u8 sText_PkmnWasBurned[] = _("{B_EFF_NAME_WITH_PREFIX} was burned!");
 static const u8 sText_PkmnGotFrostbite[] = _("{B_EFF_NAME_WITH_PREFIX} got frostbite!");
 static const u8 sText_PkmnStartBleed[] = _("{B_EFF_NAME_WITH_PREFIX} started\nbleeding!");
-static const u8 sText_PkmnStartBleed[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its bleeding!");
+static const u8 sText_PkmnHurtByBleed[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its bleeding!");
+static const u8 sText_PkmnBleedHealed[] = _("{B_DEF_NAME_WITH_PREFIX}'s\nbleeding was healed!");
+static const u8 sText_PkmnBleedHealed2[] = _("{B_ATK_NAME_WITH_PREFIX}'s\nbleeding was healed!");
+static const u8 sText_PkmnBleedHealedBy[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE}\nstopped its bleeding!");
 static const u8 sText_PkmnBurnedBy[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nburned {B_EFF_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnHurtByBurn[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its burn!");
 static const u8 sText_PkmnHurtByFrostbite[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt\nby its frostbite!");
@@ -500,6 +503,7 @@ static const u8 sText_PkmnsItemCuredParalysis[] = _("{B_SCR_ACTIVE_NAME_WITH_PRE
 static const u8 sText_PkmnsItemCuredPoison[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\ncured poison!");
 static const u8 sText_PkmnsItemHealedBurn[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nhealed its burn!");
 static const u8 sText_PkmnsItemHealedFrostbite[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nhealed its frostbite!");
+static const u8 sText_PkmnsItemHealedBleed[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nstopped its bleeding!");
 static const u8 sText_PkmnsItemDefrostedIt[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\ndefrosted it!");
 static const u8 sText_PkmnsItemWokeIt[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nwoke it from its sleep!");
 static const u8 sText_PkmnsItemSnappedOut[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nsnapped it out of confusion!");
@@ -782,7 +786,7 @@ static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX}
 static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF4} Damage!");
 static const u8 sText_HeatingUpBeak[] = _("{B_ATK_NAME_WITH_PREFIX} started\nheating up its beak!");
 static const u8 sText_AbilityLetItUseMove[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability let it use\n{B_CURRENT_MOVE}!");
-static const u8 sText_LethargyEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has it's full energy!");
+static const u8 sText_LethargyEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has its full energy!");
 static const u8 sText_LethargyEnd[] = _("{B_ATK_NAME_WITH_PREFIX} it's out\nof energy!");
 static const u8 sText_PickupActivated[] = _("{B_ATK_NAME_WITH_PREFIX} removed hazards\non its field side!");
 static const u8 sText_BattlerHasNoDamageHits[] = _("{B_ATK_NAME_WITH_PREFIX} can endure\n{B_BUFF4} hits without taking damage!");
@@ -815,12 +819,12 @@ static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PRE
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
 
-static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got it's move disabled!");
+static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
 static const u8 sText_AngelsWrath_HardenEffect[]      = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
 static const u8 sText_AngelsWrath_IronDefenseEffect[] = _("{B_ATK_NAME_WITH_PREFIX} protected itself!");
 static const u8 sText_AngelsWrath_ElectrowebEffect[]  = _("{B_DEF_NAME_WITH_PREFIX} got trapped\nand became really slow!");
-static const u8 sText_AngelsWrath_BugBiteEffect[]     = _("{B_DEF_NAME_WITH_PREFIX}'s got it's item eaten!");
+static const u8 sText_AngelsWrath_BugBiteEffect[]     = _("{B_DEF_NAME_WITH_PREFIX}'s got its item eaten!");
 static const u8 sText_AngelsWrath_ProtectEffect[]     = _("All of {B_DEF_NAME_WITH_PREFIX}'s\nstats were lowered!");
 static const u8 sText_PkmnsDisciplineLockEnds[]       = _("{B_ATK_NAME_WITH_PREFIX} is no longer\nlocked into only using one move!");
 static const u8 sText_ElectromorphosisActivates[]     = _("{B_DEF_NAME_WITH_PREFIX} became fully\ncharged!");
@@ -885,12 +889,16 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNHURTBYFROSTBITE - 12] = sText_PkmnHurtByFrostbite,
     [STRINGID_PKMNGOTFROSTBITE - 12] = sText_PkmnGotFrostbite,
     [STRINGID_PKMNSITEMHEALEDFROSTBITE - 12] = sText_PkmnsItemHealedFrostbite,
+    [STRINGID_PKMNSITEMHEALEDBLEED - 12] = sText_PkmnsItemHealedBleed,
     [STRINGID_ATTACKERHEALEDITSFROSTBITE - 12] = sText_AttackerHealedItsFrostbite,
     [STRINGID_PKMNFROSTBITEHEALED - 12] = sText_PkmnFrostbiteHealed,
     [STRINGID_PKMNFROSTBITEHEALED2 - 12] = sText_PkmnFrostbiteHealed2,
     [STRINGID_PKMNFROSTBITEHEALEDBY - 12] = sText_PkmnFrostbiteHealedBy,
     [STRINGID_PKMNSTARTBLEED - 12] = sText_PkmnStartBleed,
     [STRINGID_PKMNHURTBYBLEED - 12] = sText_PkmnHurtByBleed,
+    [STRINGID_PKMNFROSTBITEHEALED - 12] = sText_PkmnBleedHealed,
+    [STRINGID_PKMNFROSTBITEHEALED2 - 12] = sText_PkmnBleedHealed2,
+    [STRINGID_PKMNFROSTBITEHEALEDBY - 12] = sText_PkmnBleedHealedBy,
     [STRINGID_HEATUPBEAK - 12] = sText_HeatingUpBeak,
     [STRINGID_GRIPPINCERACTIVATED - 12] = sText_BattlerGripPincerActivated,
 	[STRINGID_NORTHWINDACTIVATED - 12] = sText_BattlerAbilitySetUpAuroraVeil,
@@ -1808,6 +1816,17 @@ const u16 gFrostbiteHealedStringIds[] =
     [B_MSG_FROSTBITE_HEALED_BY_MOVE] = STRINGID_PKMNFROSTBITEHEALEDBY
 };
 
+const u16 gBleedStartedStringIds[] =
+{
+    [B_MSG_STATUSED]            = STRINGID_PKMNSTARTBLEED
+};
+
+const u16 gBleedHealedStringIds[] = 
+{
+    [B_MSG_BLEED_HEALED]         = STRINGID_PKMNBLEEDHEALED2,
+    [B_MSG_BLEED_HEALED_BY_MOVE] = STRINGID_PKMNBLEEDHEALEDBY
+}
+
 const u16 gGotFrozenStringIds[] =
 {
     [B_MSG_STATUSED]            = STRINGID_PKMNWASFROZEN,
@@ -2026,6 +2045,7 @@ const u8 gText_Paralysis[] = _("paralysis");
 const u8 gText_Ice[] = _("ice");
 const u8 gText_Confusion[] = _("confusion");
 const u8 gText_Love[] = _("love");
+const u8 gText_Bleed[] = _("bleeding");
 const u8 gText_SpaceAndSpace[] = _(" and ");
 const u8 gText_CommaSpace[] = _(", ");
 const u8 gText_Space2[] = _(" ");

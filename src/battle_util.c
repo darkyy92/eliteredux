@@ -6948,6 +6948,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
                     if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
                         StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_BLEED)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
 
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
                     gBattleMons[battler].status1 = 0;
@@ -7141,6 +7143,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
                     if (gBattleMons[battler].status1 & STATUS1_FREEZE)
                         StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_BLEED)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
 
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
                     gBattleMons[battler].status1 = 0;
@@ -11839,6 +11843,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
                         i++;
                     }
+                    if (gBattleMons[battlerId].status1 & STATUS1_BLEED)
+                    {
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
+                        i++;
+                    }
                     if (!(i > 1))
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
                     else
@@ -12168,6 +12177,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
                         i++;
                     }
+                    if (gBattleMons[battlerId].status1 & STATUS1_BLEED)
+                    {
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
+                        i++;
+                    }
                     if (!(i > 1))
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
                     else
@@ -12368,6 +12382,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     if (gBattleMons[battlerId].status2 & STATUS2_CONFUSION)
                     {
                         StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+                    }
+                    if (gBattleMons[battlerId].status1 & STATUS1_BLEED)
+                    {
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
                     }
                     gBattleMons[battlerId].status1 = 0;
                     gBattleMons[battlerId].status2 &= ~(STATUS2_CONFUSION);

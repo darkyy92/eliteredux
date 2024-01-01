@@ -446,6 +446,23 @@ static const u16 sOtherMoveCallingMoves[] =
     MOVE_SLEEP_TALK,
 };
 
+#define HEALING_ABILITY_COUNT 12
+static const u16 sHealingAbilties[HEALING_ABILITY_COUNT] = 
+{
+    ABILITY_SELF_SUFFICIENT,
+    ABILITY_SELF_REPAIR,
+    ABILITY_ABSORBANT,
+    ABILITY_LOOTER,
+    ABILITY_PREDATOR,
+    ABILITY_SCAVENGER,
+    ABILITY_CHEEK_POUCH,
+    ABILITY_REGENERATOR,
+    ABILITY_ICE_BODY,
+    ABILITY_POISON_HEAL,
+    ABILITY_RAIN_DISH,
+    ABILITY_WATER_VEIL,
+};
+
 // Functions
 u16 GetAIChosenMove(u8 battlerId)
 {
@@ -2060,6 +2077,7 @@ bool32 IsHealingMoveEffect(u16 effect)
 {
     switch (effect)
     {
+    case EFFECT_ABSORB:
     case EFFECT_RESTORE_HP:
     case EFFECT_MORNING_SUN:
     case EFFECT_SYNTHESIS:
@@ -2085,6 +2103,38 @@ bool32 HasHealingEffect(u32 battlerId)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && IsHealingMoveEffect(gBattleMoves[moves[i]].effect))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool32 HasHealingItem(u32 battlerId)
+{
+    s32 i;
+    u32 heldItemEffect = GetBattlerHoldEffect(battlerId, TRUE);
+
+    switch (heldItemEffect)
+    {
+    case HOLD_EFFECT_BIG_ROOT:
+    case HOLD_EFFECT_BLACK_SLUDGE:
+    case HOLD_EFFECT_SHELL_BELL:
+    case HOLD_EFFECT_LEFTOVERS:
+    case HOLD_EFFECT_RESTORE_PCT_HP:
+    case HOLD_EFFECT_RESTORE_HP:
+        return TRUE;
+    
+    default:
+        return FALSE;
+    }
+}
+
+bool32 HasHealingAbility(u32 battlerId)
+{
+    s32 i;
+
+    for (i = 0; i < HEALING_ABILITY_COUNT; i++) {
+        if (BATTLER_HAS_ABILITY(battlerId, sHealingAbilties[i]))
             return TRUE;
     }
 
@@ -2845,6 +2895,11 @@ bool32 AI_CanGetFrostbite(u8 battler, u16 ability)
     return CanGetFrostbite(battler);
 }
 
+bool32 AI_CanBleed(u8 battler, u16 ability)
+{
+    return CanBleed(battler);
+}
+
 bool32 ShouldBurnSelf(u8 battler)
 {
     if (CanBeBurned(battler) && 
@@ -2871,6 +2926,18 @@ bool32 AI_CanBurn(u8 battlerAtk, u8 battlerDef, u16 partnerMove)
 bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove)
 {
     if (!CanGetFrostbite(battlerDef)
+      || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
+      || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
+      || PartnerMoveEffectIsStatusSameTarget(battlerAtkPartner, battlerDef, partnerMove))
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+bool32 AI_CanCauseBleed(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove)
+{
+    if (!CanBleed(battlerDef)
       || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(battlerAtkPartner, battlerDef, partnerMove))
@@ -3710,6 +3777,23 @@ void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
             if (CanTargetFaintAi(battlerDef, battlerAtk))
                 *score += 2; // frostbiting the target to stay alive is cool
         }
+
+        if (HasMoveEffect(battlerAtk, EFFECT_HEX) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_HEX))
+            (*score)++;
+    }
+}
+
+void IncreaseBleedScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
+{
+    if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+        return;
+
+    if (AI_CanCauseBleed(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+    {
+        (*score)++; // bleed is good
+
+        if (HasHealingEffect(battlerDef) || HasHealingItem(battlerDef) || HasHealingAbility(battlerDef))
+            *score += 2; // Try to block healing moves
 
         if (HasMoveEffect(battlerAtk, EFFECT_HEX) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_HEX))
             (*score)++;

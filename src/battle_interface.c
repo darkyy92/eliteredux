@@ -154,8 +154,8 @@ enum
     HEALTHBOX_GFX_120,
     HEALTHBOX_GFX_121,
     HEALTHBOX_GFX_STATUS_BLD_BATTLER2,  //status bld
-    HEALTHBOX_GFX_127,
     HEALTHBOX_GFX_128,
+    HEALTHBOX_GFX_129,
     HEALTHBOX_GFX_STATUS_PSN_BATTLER3, //status4 "PSN"
     HEALTHBOX_GFX_102,
     HEALTHBOX_GFX_103,
@@ -175,8 +175,8 @@ enum
     HEALTHBOX_GFX_122,
     HEALTHBOX_GFX_123,
     HEALTHBOX_GFX_STATUS_BLD_BATTLER3,  //status bld
-    HEALTHBOX_GFX_128,
-    HEALTHBOX_GFX_129,
+    HEALTHBOX_GFX_130,
+    HEALTHBOX_GFX_131,
     HEALTHBOX_GFX_FRAME_END,
     HEALTHBOX_GFX_FRAME_END_BAR
 };
@@ -619,7 +619,8 @@ enum
     PAL_STATUS_SLP,
     PAL_STATUS_FRZ,
     PAL_STATUS_BRN,
-    PAL_STATUS_FRB
+    PAL_STATUS_FRB,
+    PAL_STATUS_BLD,
 };
 
 static const u16 sStatusIconColors[] =
@@ -630,6 +631,7 @@ static const u16 sStatusIconColors[] =
     [PAL_STATUS_FRZ] = RGB(17, 22, 28),
     [PAL_STATUS_BRN] = RGB(28, 14, 10),
     [PAL_STATUS_FRB] = RGB(17, 22, 28),
+    [PAL_STATUS_BLD] = RGB(18, 5, 5),
 };
 
 static const struct WindowTemplate sHealthboxWindowTemplate = {
@@ -2488,6 +2490,11 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
         statusGfxPtr = GetHealthboxElementGfxPtr(GetStatusIconForBattlerId(HEALTHBOX_GFX_STATUS_PRZ_BATTLER0, battlerId));
         statusPalId = PAL_STATUS_PAR;
     }
+    else if (status & STATUS1_BLEED)
+    {
+        statusGfxPtr = GetHealthboxElementGfxPtr(GetStatusIconForBattlerId(HEALTHBOX_GFX_STATUS_BLD_BATTLER0, battlerId));
+        statusPalId = PAL_STATUS_PAR;
+    }
     else
     {
         statusGfxPtr = GetHealthboxElementGfxPtr(HEALTHBOX_GFX_39);
@@ -2584,6 +2591,16 @@ static u8 GetStatusIconForBattlerId(u8 statusElementId, u8 battlerId)
             ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER2;
         else
             ret = HEALTHBOX_GFX_STATUS_BRN_BATTLER3;
+        break;
+    case HEALTHBOX_GFX_STATUS_BLD_BATTLER0:
+        if (battlerId == 0)
+            ret = HEALTHBOX_GFX_STATUS_BLD_BATTLER0;
+        else if (battlerId == 1)
+            ret = HEALTHBOX_GFX_STATUS_BLD_BATTLER1;
+        else if (battlerId == 2)
+            ret = HEALTHBOX_GFX_STATUS_BLD_BATTLER2;
+        else
+            ret = HEALTHBOX_GFX_STATUS_BLD_BATTLER3;
         break;
     }
     return ret;

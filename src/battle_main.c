@@ -520,6 +520,7 @@ const u8 gStatusConditionString_BurnJpn[8] = _("やけど$$$$");
 const u8 gStatusConditionString_IceJpn[8] = _("こおり$$$$");
 const u8 gStatusConditionString_ConfusionJpn[8] = _("こんらん$$$");
 const u8 gStatusConditionString_LoveJpn[8] = _("メロメロ$$$");
+const u8 gStatusConditionString_BleedJpn[8] = _("わからん$$$");
 
 const u8 * const gStatusConditionStringsTable[7][2] =
 {
@@ -530,6 +531,7 @@ const u8 * const gStatusConditionStringsTable[7][2] =
     {gStatusConditionString_IceJpn, gText_Ice},
     {gStatusConditionString_ConfusionJpn, gText_Confusion},
     {gStatusConditionString_LoveJpn, gText_Love}
+    {gStatusConditionString_BleedJpn, gText_Bleed}
 };
 
 // code

@@ -10,6 +10,7 @@
 #define AILMENT_PKRS  6
 #define AILMENT_FNT   7
 #define AILMENT_FSB   8
+#define AILMENT_BLD   9
 
 #define PARTY_CHOOSE_MON        0
 #define PARTY_MUST_CHOOSE_MON   1

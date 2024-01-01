@@ -209,6 +209,7 @@ bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanBeFrozen(u8 battlerId);
 bool32 CanGetFrostbite(u8 battlerId);
 bool32 CanBeConfused(u8 battlerId);
+bool32 CanBleed(u8 battlerId);
 bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag);
 
 // Move checks
