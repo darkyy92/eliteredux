@@ -496,7 +496,8 @@
 #define ABILITY_PLASMA_LAMP      (ABILITIES_COUNT_LATEST_GEN + 198) // Illuminate + 1.2x Boost to Fire & Electric type Moves.
 #define ABILITY_MAGMA_EATER      (ABILITIES_COUNT_LATEST_GEN + 199) // Predator + Molten Down
 #define ABILITY_SUPER_HOT_GOO    (ABILITIES_COUNT_LATEST_GEN + 200) // Flame Body + Gooey
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_SUPER_HOT_GOO + 1) 
+#define ABILITY_NIKA             (ABILITIES_COUNT_LATEST_GEN + 201) // Iron fist + Water moves function normally under sun.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_NIKA + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
