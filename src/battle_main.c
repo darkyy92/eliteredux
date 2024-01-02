@@ -4992,15 +4992,13 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     }
 
     // Sighting System
-	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || BattlerHasInnate(battlerId, ABILITY_SIGHTING_SYSTEM))
-        && gBattleMoves[move].accuracy <= 75)
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_SIGHTING_SYSTEM) && gBattleMoves[move].accuracy && gBattleMoves[move].accuracy <= 75)
     { 
         priority = priority - 3;
     }
 
     // Iron Barrage
-	if ((GetBattlerAbility(battlerId) == ABILITY_IRON_BARRAGE  || BattlerHasInnate(battlerId, ABILITY_IRON_BARRAGE))
-        && gBattleMoves[move].accuracy <= 75)
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_IRON_BARRAGE) && gBattleMoves[move].accuracy && gBattleMoves[move].accuracy <= 75)
     { 
         priority = priority - 3;
     }
