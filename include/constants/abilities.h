@@ -497,7 +497,8 @@
 #define ABILITY_MAGMA_EATER      (ABILITIES_COUNT_LATEST_GEN + 199) // Predator + Molten Down
 #define ABILITY_SUPER_HOT_GOO    (ABILITIES_COUNT_LATEST_GEN + 200) // Flame Body + Gooey
 #define ABILITY_NIKA             (ABILITIES_COUNT_LATEST_GEN + 201) // Iron fist + Water moves function normally under sun.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_NIKA + 1) 
+#define ABILITY_COLD_PLASMA      (ABILITIES_COUNT_LATEST_GEN + 203) // Electric type moves now inflict burn instead of paralysis
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_COLD_PLASMA + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

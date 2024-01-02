@@ -1661,7 +1661,9 @@ u32 calculateTotalMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType
     }
 
     //Iron Fist/Power Fist
-    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS)){
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)   || 
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) ||
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA)){
         if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
