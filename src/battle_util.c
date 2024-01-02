@@ -13589,11 +13589,6 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
         if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
         break;
-    case ABILITY_IRON_FIST:
-    case ABILITY_POWER_FISTS:
-        if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
 	case ABILITY_STRIKER:
         if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -13648,8 +13643,9 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     }
 	
 	// Iron Fist / Power Fists
-	if(BattlerHasInnate(battlerAtk, ABILITY_IRON_FIST) || 
-       BattlerHasInnate(battlerAtk, ABILITY_POWER_FISTS)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)  || 
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) ||
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA)){
 		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
@@ -13862,6 +13858,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 
     // Marine Apex
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MARINE_APEX) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
+        MulModifier(&modifier, UQ_4_12(1.5));
+
+    // Lumberjack
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LUMBERJACK) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Huge Power & Pure Power
@@ -15468,14 +15468,14 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     {
         if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
-        else if (moveType == TYPE_WATER)
+        else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_TEMPORARY))
     {
         if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
-        else if (moveType == TYPE_WATER)
+        else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
 
@@ -15955,21 +15955,27 @@ static void UpdateMoveResultFlags(u16 modifier)
 static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities, u16 modifier)
 {
     u32 illusionSpecies;
-    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type1, battlerAtk, recordAbilities);
+    u16 modifier1, modifier2, modifier3, modifierInitial;
+    modifierInitial = modifier;
+    modifier1 = modifier2 = modifier3 = UQ_4_12(1.0);
+    MulByTypeEffectiveness(&modifier1, move, moveType, battlerDef, gBattleMons[battlerDef].type1, battlerAtk, recordAbilities);
     if (gBattleMons[battlerDef].type2 != gBattleMons[battlerDef].type1)
-        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type2, battlerAtk, recordAbilities);
+        MulByTypeEffectiveness(&modifier2, move, moveType, battlerDef, gBattleMons[battlerDef].type2, battlerAtk, recordAbilities);
     if (gBattleMons[battlerDef].type3 != TYPE_MYSTERY && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type2
         && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type1)
-        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type3, battlerAtk, recordAbilities);
+        MulByTypeEffectiveness(&modifier3, move, moveType, battlerDef, gBattleMons[battlerDef].type3, battlerAtk, recordAbilities);
+
+    MulModifier(&modifier, modifier1);
+    MulModifier(&modifier, modifier2);
+    MulModifier(&modifier, modifier3);
 
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
     if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) &&
-       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING) && // Moves that ignore ground immunity 
-       !((gBattleMoves[move].flags & FLAG_BONE_BASED) && (BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE) || GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE))) //Bone Zone Check
+       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity
     {
-        if(GetBattlerAbility(battlerDef) == ABILITY_LEVITATE){ //Defender has Levitate as Ability
+        if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEVITATE) || BATTLER_HAS_ABILITY(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Levitate as Ability
             modifier = UQ_4_12(0.0);
             gLastUsedAbility = ABILITY_LEVITATE;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -15977,99 +15983,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
         }
-        else if(BattlerHasInnate(battlerDef, ABILITY_LEVITATE)){ //Defender has Levitate as Innate
-            if(!DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)){ //Mold Breaker Check
-                modifier = UQ_4_12(0.0);
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LEVITATE;
-                gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-                gLastLandedMoves[battlerDef] = 0;
-                gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
-                RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
-            }
-        }
-        else if(GetBattlerAbility(battlerDef) == ABILITY_DRAGONFLY){ //Defender has Dragonfly as Ability
-            modifier = UQ_4_12(0.0);
-            gLastUsedAbility = ABILITY_DRAGONFLY;
-            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-            gLastLandedMoves[battlerDef] = 0;
-            gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
-            RecordAbilityBattle(battlerDef, ABILITY_DRAGONFLY);
-        }
-        else if(BattlerHasInnate(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Dragonfly as Innate
-            if(!DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)){ //Mold Breaker Check
-                modifier = UQ_4_12(0.0);
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRAGONFLY;
-                gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-                gLastLandedMoves[battlerDef] = 0;
-                gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
-                RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
-            }
-        }
-        else // Everything Else
-        {
-            modifier = UQ_4_12(0.0);
-        }
-    }
-    if((GetBattlerAbility(battlerAtk) == ABILITY_LUMBERJACK || BattlerHasInnate(battlerAtk, ABILITY_LUMBERJACK)) 
-        && (gBattleMons[battlerDef].type1 == TYPE_GRASS || gBattleMons[battlerDef].type2 == TYPE_GRASS || gBattleMons[battlerDef].type3 == TYPE_GRASS))
-    {
-            modifier = UQ_4_12(1.5);
-    }
-    if((GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) && (gBattleMoves[move].flags & FLAG_BONE_BASED)){
-        if(moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef)){
-            if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
-                //Removes First Type Effectiveness and recalculates it
-                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
-            }
-            else if(gBattleMons[battlerDef].type2 == TYPE_FLYING && gBattleMons[battlerDef].type1 != TYPE_FLYING){
-                //Removes Second Type Effectiveness and recalculates it
-                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
-            }
-            else if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 == TYPE_FLYING){
-                //Has the same type twice
-                modifier = UQ_4_12(1.0);
-            }
-            else{
-                //Does not have the Flying type
-                if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC) ||
-                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)     ||
-                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON)   ||
-                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)     ||
-                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)){
-                    modifier = UQ_4_12(2.0);
-                }
-                else{
-                    modifier = UQ_4_12(1.0);
-                }
-            }
-        }
-        else if(moveType == TYPE_GHOST && IS_BATTLER_OF_TYPE(battlerDef, TYPE_NORMAL)){
-            if(gBattleMons[battlerDef].type1 == TYPE_NORMAL && gBattleMons[battlerDef].type2 != TYPE_NORMAL){
-                //Removes First Type Effectiveness and recalculates it
-                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
-            }
-            else if(gBattleMons[battlerDef].type2 == TYPE_NORMAL && gBattleMons[battlerDef].type1 != TYPE_NORMAL){
-                //Removes Second Type Effectiveness and recalculates it
-                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
-            }
-            else{ //if(gBattleMons[battlerDef].type1 == TYPE_NORMAL && gBattleMons[battlerDef].type2 == TYPE_NORMAL){
-                //Has the same type twice
-                modifier = UQ_4_12(1.0); 
-            }
-        }
-    }
-
-    // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
-        && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
-    {
-        modifier = UQ_4_12(1.0);
-    }
-	
-	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER ||
-         BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER))   &&
-         !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk)  &&
-         moveType == TYPE_ROCK)
+    } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_MOUNTAINEER) && moveType == TYPE_ROCK)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -16080,12 +15994,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, ABILITY_MOUNTAINEER);
         }
-    }
-
-    if ((GetBattlerAbility(battlerDef) == ABILITY_GIFTED_MIND ||
-         BattlerHasInnate(battlerDef, ABILITY_GIFTED_MIND))   &&
-         !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk)  &&
-         (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
+    } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_GIFTED_MIND) && (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -16096,11 +16005,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, ABILITY_GIFTED_MIND);
         }
-    }
-	
-	if ((GetBattlerAbility(battlerDef) == ABILITY_WEATHER_CONTROL || 
-         BattlerHasInnate(battlerDef, ABILITY_WEATHER_CONTROL))   && 
-         (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
+    } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_WEATHER_CONTROL) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -16111,9 +16016,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, ABILITY_WEATHER_CONTROL);
         }
-    }
-
-    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_EVAPORATE) && moveType == TYPE_WATER)
+    } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_EVAPORATE) && moveType == TYPE_WATER)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -16128,11 +16031,35 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_WELL_BAKED_BODY) && moveType == TYPE_FIRE)
     {
-        modifier = UQ_4_12(0.5);
+        MulModifier(&modifier, UQ_4_12(0.5));
+    }
+
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BONE_ZONE) && (gBattleMoves[move].flags & FLAG_BONE_BASED) && modifier < UQ_4_12(1.0)){
+        modifier = UQ_4_12(1.0);
+        if (modifier1 != UQ_4_12(1.0)) {
+            MulModifier(&modifier, modifier1);
+        }
+        if (modifier2 != UQ_4_12(1.0)) {
+            MulModifier(&modifier, modifier2);
+        }
+        if (modifier3 != UQ_4_12(1.0)) {
+            MulModifier(&modifier, modifier3);
+        }
+        if (modifier < UQ_4_12(1.0)) {
+            MulModifier(&modifier, UQ_4_12(2.0));
+        }
+        MulModifier(&modifier, modifierInitial);
+    }
+
+    // Thousand Arrows ignores type modifiers for flying mons
+    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+        && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) && modifier == UQ_4_12(0))
+    {
+        modifier = UQ_4_12(1.0);
     }
     
-    if (((GetBattlerAbility(battlerDef) == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
-        || (GetBattlerAbility(battlerDef) == ABILITY_TELEPATHY && battlerDef == BATTLE_PARTNER(battlerAtk)))
+    if (((BATTLER_HAS_ABILITY(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0))
+        || (BATTLER_HAS_ABILITY(battlerDef, ABILITY_TELEPATHY) && battlerDef == BATTLE_PARTNER(battlerAtk)))
         && gBattleMoves[move].power)
     {
         modifier = UQ_4_12(0.0);

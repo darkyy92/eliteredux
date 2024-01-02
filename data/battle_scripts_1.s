@@ -3158,6 +3158,7 @@ BattleScript_EffectFreezeHit::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectParalyzeHit::
+	jumpifability BS_ATTACKER, ABILITY_COLD_PLASMA, BattleScript_EffectBurnHit
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
 
@@ -8021,6 +8022,7 @@ BattleScript_MoveEffectFreeze::
 	goto BattleScript_UpdateEffectStatusIconRet
 
 BattleScript_MoveEffectParalysis::
+	jumpifability BS_ATTACKER, ABILITY_COLD_PLASMA, BattleScript_MoveEffectBurn
 	statusanimation BS_EFFECT_BATTLER
 	printfromtable gGotParalyzedStringIds
 	waitmessage B_WAIT_TIME_LONG
