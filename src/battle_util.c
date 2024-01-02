@@ -1659,44 +1659,31 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_QueensMourningActivated;
     }
-    // Check Defiant and Competitive stat raise whenever a stat is lowered.
-    else if ((stringId == STRINGID_DEFENDERSSTATFELL)
-              && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT       || BattlerHasInnate(gBattlerTarget, ABILITY_DEFIANT))
-		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-                 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || BattlerHasInnate(gBattlerTarget, ABILITY_COMPETITIVE))
-				    && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX   || BattlerHasInnate(gBattlerTarget, ABILITY_FORT_KNOX))
-				     && CompareStat(gBattlerTarget, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY    || BattlerHasInnate(gBattlerTarget, ABILITY_RUN_AWAY))
-				     && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)))
-              && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
-              && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)
+    else if (stringId == STRINGID_DEFENDERSSTATFELL && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_DEFIANT))
     {
         gBattlerAbility = gBattlerTarget;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_DefiantActivates;
-        if (GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || BattlerHasInnate(gBattlerTarget, ABILITY_DEFIANT)){
-			gBattleScripting.abilityPopupOverwrite = ABILITY_DEFIANT;
-			gLastUsedAbility = ABILITY_DEFIANT;
-            SET_STATCHANGER(STAT_ATK, 2, FALSE);
-		}
-		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || BattlerHasInnate(gBattlerTarget, ABILITY_FORT_KNOX)){
-			gBattleScripting.abilityPopupOverwrite = ABILITY_FORT_KNOX;
-			gLastUsedAbility = ABILITY_FORT_KNOX;
-            SET_STATCHANGER(STAT_DEF, 3, FALSE);
-		}
-		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || BattlerHasInnate(gBattlerTarget, ABILITY_RUN_AWAY)){
-			gBattleScripting.abilityPopupOverwrite = ABILITY_RUN_AWAY;
-			gLastUsedAbility = ABILITY_RUN_AWAY;
-            SET_STATCHANGER(STAT_SPEED, 2, FALSE);
-		}
-        else{ // if(GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || BattlerHasInnate(gBattlerTarget, ABILITY_COMPETITIVE)) <- this is not necessary but just in case you want to see how it works
-            gBattleScripting.abilityPopupOverwrite = ABILITY_COMPETITIVE;
-			gLastUsedAbility = ABILITY_COMPETITIVE;
-			SET_STATCHANGER(STAT_SPATK, 2, FALSE);
-		}
     }
-
+    else if (stringId == STRINGID_DEFENDERSSTATFELL && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_COMPETITIVE))
+    {
+        gBattlerAbility = gBattlerTarget;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_CompetitiveActivates;
+    }
+    else if (stringId == STRINGID_DEFENDERSSTATFELL && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_FORT_KNOX))
+    {
+        gBattlerAbility = gBattlerTarget;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_FortKnoxActivates;
+    }
+    else if (stringId == STRINGID_DEFENDERSSTATFELL && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_RUN_AWAY))
+    {
+        gBattlerAbility = gBattlerTarget;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_RunAwayActivates;
+    }
+    
     gActiveBattler = battler;
     BtlController_EmitPrintString(0, stringId);
     MarkBattlerForControllerExec(gActiveBattler);
