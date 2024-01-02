@@ -13559,11 +13559,6 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
         if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
         break;
-    case ABILITY_IRON_FIST:
-    case ABILITY_POWER_FISTS:
-        if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
 	case ABILITY_STRIKER:
         if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -13618,8 +13613,9 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     }
 	
 	// Iron Fist / Power Fists
-	if(BattlerHasInnate(battlerAtk, ABILITY_IRON_FIST) || 
-       BattlerHasInnate(battlerAtk, ABILITY_POWER_FISTS)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)  || 
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) ||
+       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA)){
 		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
@@ -15444,14 +15440,14 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     {
         if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
-        else if (moveType == TYPE_WATER)
+        else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_TEMPORARY))
     {
         if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
-        else if (moveType == TYPE_WATER)
+        else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
 

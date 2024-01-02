@@ -460,6 +460,8 @@ static const u8 sAbilityPixiePowerDescription[] = _("Boosts Fairy moves by 33% \
 static const u8 sAbilityPlasmaLampDescription[] = _("Boost accuracy and Fire &\nElectric type moves by 1.2x");
 static const u8 sAbilityMagmaEaterDescription[] = _("Predator + Molten Down.");
 static const u8 sAbilitySuperHotGooDescription[] = _("Inflicts burn and lower\nthe speed on contact.");
+static const u8 sAbilityNikaDescription[] = _("Iron fist + Water moves\nfunction normally under sun.");
+static const u8 sAbilityColdPlasmaDescription[] = _("Electric type moves now\ninflict burn instead of paralysis.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -933,6 +935,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PLASMA_LAMP] = _("Plasma Lamp"),
         [ABILITY_MAGMA_EATER] = _("Magma Eater"),
         [ABILITY_SUPER_HOT_GOO] = _("Super Hot Goo"),
+        [ABILITY_NIKA] = _("Nika"),
+        [ABILITY_COLD_PLASMA] = _("Cold Plasma"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1406,5 +1410,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PLASMA_LAMP] = sAbilityPlasmaLampDescription,
         [ABILITY_MAGMA_EATER] = sAbilityMagmaEaterDescription,
         [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription,
-        
+        [ABILITY_NIKA] = sAbilityNikaDescription,
+        [ABILITY_COLD_PLASMA] = sAbilityColdPlasmaDescription,
 };
