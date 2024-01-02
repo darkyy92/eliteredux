@@ -1090,7 +1090,6 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_PUNK_ROCK] = 1,
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
-    [ABILITY_PASTEL_VEIL] = 1,
 
     // New abilities
     [ABILITY_DUNE_TERROR] = 1,
@@ -2913,8 +2912,21 @@ u8 DoBattlerEndTurnEffects(void)
                     BattleScriptExecute(BattleScript_ToxicWasteTurnDmg);
                     effect++;
                 }
+            
             }
             gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_BLOOD_PRICE_DAMAGE:
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BLOOD_PRICE)) {
+                gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                    BattleScriptExecute(BattleScript_ToxicWasteTurnDmg);
+                    effect++;
+            } 
+            else {
+                effect++;
+            }
             break;
         case ENDTURN_POISON:  // poison
             if ((gBattleMons[gActiveBattler].status1 & STATUS1_POISON)
@@ -4730,16 +4742,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_PASTEL_VEIL:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gBattlerTarget = battler;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
-                BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivates);
-                effect++;
-                gSpecialStatuses[battler].switchInAbilityDone = 1;
-            }
-            break;
         case ABILITY_ANTICIPATION:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5259,6 +5261,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+        case ABILITY_PASTEL_VEIL:
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+                !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD))
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PASTEL_VEIL;
+                gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_SAFEGUARD;
+                gSideTimers[GetBattlerSide(battler)].safeguardBattlerId = gBattlerAttacker;
+                gSideTimers[GetBattlerSide(battler)].safeguardTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+				effect++;
+			}
+            break;
 		case ABILITY_SPIDER_LAIR:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
@@ -6569,6 +6585,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            // Pastel Veil Rework
+            if(BattlerHasInnate(battler, ABILITY_PASTEL_VEIL) &&
+            !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)){
+                if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_PASTEL_VEIL)])
+                {
+                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_PASTEL_VEIL)] = TRUE;
+                    gActiveBattler = gBattlerAttacker = battler;
+                    gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_SAFEGUARD;
+                    gSideTimers[GetBattlerSide(battler)].safeguardBattlerId = gBattlerAttacker;
+                    gSideTimers[GetBattlerSide(battler)].safeguardTimer = 5;
+                    BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+                    effect++;
+                }
+            }
+
             // Phantom
             if(BattlerHasInnate(battler, ABILITY_PHANTOM)){
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_PHANTOM)] &&
@@ -6601,7 +6632,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
-            // Spider Lair
+            // Spider Lair 
             if(BattlerHasInnate(battler, ABILITY_SPIDER_LAIR)){
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SPIDER_LAIR)] &&
                     !(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
@@ -11238,7 +11269,6 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 	 || BattlerHasInnate(battlerTarget, ABILITY_IMMUNITY)
      || ability == ABILITY_COMATOSE
 	 || BattlerHasInnate(battlerTarget, ABILITY_COMATOSE)
-     || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || IsAbilityStatusProtected(battlerTarget)
      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -15000,13 +15030,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
 		}
 	}
-	
 	// Flash Fire
 	if(BattlerHasInnate(battlerAtk, ABILITY_FLASH_FIRE)){
 		if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
-	
 	// Torrent
 	if(BattlerHasInnate(battlerAtk, ABILITY_TORRENT)){
 		if (moveType == TYPE_WATER)

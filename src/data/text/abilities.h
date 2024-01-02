@@ -244,7 +244,7 @@ static const u8 sPerishBodyDescription[] = _("Foe faints in 3 turns if hit.");
 static const u8 sWanderingSpiritDescription[] = _("Trade abilities on contact.");
 static const u8 sGorillaTacticsDescription[] = _("Ups Attack by 50%\nand locks move.");
 static const u8 sNeutralizingGasDescription[] = _("All Abilities are nullified.\nInnates still work.");
-static const u8 sPastelVeilDescription[] = _("Protects team from poison.");
+static const u8 sPastelVeilDescription[] = _("Sets up safeguard upon entry \nfor 5 turns.");
 static const u8 sHungerSwitchDescription[] = _("Changes form each turn.");
 ;
 static const u8 sQuickDrawDescription[] = _("Moves first occasionally.");
@@ -1406,5 +1406,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PLASMA_LAMP] = sAbilityPlasmaLampDescription,
         [ABILITY_MAGMA_EATER] = sAbilityMagmaEaterDescription,
         [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription,
-        
+        [ABILITY_COLD_PLASMA] = sAbilityDescriptionColdPlasma, 
+        [ABILITY_ITCHY_DEFENSE] = sAbilityDescriptionItchyDefense,
+        [ABILITY_COLONY_CONTROLLER] = sAbilityDescriptionColonyController,
+        [ABILITY_BLOOD_PRICE] = sAbilityDescriptionBloodPrice,
 };
