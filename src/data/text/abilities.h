@@ -1410,9 +1410,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PLASMA_LAMP] = sAbilityPlasmaLampDescription,
         [ABILITY_MAGMA_EATER] = sAbilityMagmaEaterDescription,
         [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription, 
-        [ABILITY_ITCHY_DEFENSE] = sAbilityDescriptionItchyDefense,
-        [ABILITY_COLONY_CONTROLLER] = sAbilityDescriptionColonyController,
-        [ABILITY_BLOOD_PRICE] = sAbilityDescriptionBloodPrice,
         [ABILITY_NIKA] = sAbilityNikaDescription,
         [ABILITY_COLD_PLASMA] = sAbilityColdPlasmaDescription,
 };
