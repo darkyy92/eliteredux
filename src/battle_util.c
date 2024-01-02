@@ -2916,18 +2916,6 @@ u8 DoBattlerEndTurnEffects(void)
             }
             gBattleStruct->turnEffectsTracker++;
             break;
-        case ENDTURN_BLOOD_PRICE_DAMAGE:
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BLOOD_PRICE)) {
-                gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
-                if (gBattleMoveDamage == 0)
-                    gBattleMoveDamage = 1;
-                    BattleScriptExecute(BattleScript_ToxicWasteTurnDmg);
-                    effect++;
-            } 
-            else {
-                effect++;
-            }
-            break;
         case ENDTURN_POISON:  // poison
             if ((gBattleMons[gActiveBattler].status1 & STATUS1_POISON)
                 && gBattleMons[gActiveBattler].hp != 0)
