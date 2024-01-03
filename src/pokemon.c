@@ -9152,23 +9152,25 @@ u16 RandomizeMoves(u16 moves, u16 species, u32 personality){
 
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
     if(gSaveBlock2Ptr->innaterandomizedMode == 1 && 
-       innate != ABILITY_NONE              &&
-       innate != ABILITY_ZEN_MODE          &&
-       innate != ABILITY_WONDER_GUARD      &&
-       innate != ABILITY_POWER_CONSTRUCT   &&
-       innate != ABILITY_SCHOOLING         &&
-       innate != ABILITY_MULTITYPE         &&
-       innate != ABILITY_FORECAST          &&
-       innate != ABILITY_STANCE_CHANGE     &&
-       innate != ABILITY_RKS_SYSTEM        &&
-       innate != ABILITY_BATTLE_BOND       &&
-       innate != ABILITY_POWER_CONSTRUCT   &&
-       innate != ABILITY_ICE_FACE          &&
-       innate != ABILITY_GULP_MISSILE      &&
-       innate != ABILITY_DISGUISE          &&
-       innate != ABILITY_FLOWER_GIFT       &&
+       innate != ABILITY_NONE                   &&
+       innate != ABILITY_ZEN_MODE               &&
+       innate != ABILITY_WONDER_GUARD           &&
+       innate != ABILITY_POWER_CONSTRUCT        &&
+       innate != ABILITY_SCHOOLING              &&
+       innate != ABILITY_MULTITYPE              &&
+       innate != ABILITY_FORECAST               &&
+       innate != ABILITY_STANCE_CHANGE          &&
+       innate != ABILITY_RKS_SYSTEM             &&
+       innate != ABILITY_BATTLE_BOND            &&
+       innate != ABILITY_POWER_CONSTRUCT        &&
+       innate != ABILITY_ICE_FACE               &&
+       innate != ABILITY_GULP_MISSILE           &&
+       innate != ABILITY_DISGUISE               &&
+       innate != ABILITY_FLOWER_GIFT            &&
+       innate != ABILITY_AS_ONE_ICE_RIDER       &&
+       innate != ABILITY_AS_ONE_SHADOW_RIDER    &&
        #ifdef BALANCE_RANDOMIZER_ABILITIES
-       innate != ABILITY_ANGELS_WRATH      &&
+       innate != ABILITY_ANGELS_WRATH           &&
        #endif
        innate != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Innate Randomized Mode Enabled
@@ -9178,28 +9180,30 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
             randomizedInnate++;
             randomizedInnate = randomizedInnate % ABILITIES_COUNT;
         }
-        while(randomizedInnate == ABILITY_NONE            ||
-              randomizedInnate == ABILITY_HUNGER_SWITCH   ||
-              randomizedInnate == ABILITY_ZEN_MODE        ||
-              randomizedInnate == ABILITY_WONDER_GUARD    ||
-              randomizedInnate == ABILITY_POWER_CONSTRUCT ||
-              randomizedInnate == ABILITY_SCHOOLING       ||
-              randomizedInnate == ABILITY_TRACE           ||
-              randomizedInnate == ABILITY_MULTITYPE       ||
-              randomizedInnate == ABILITY_FORECAST        ||
-              randomizedInnate == ABILITY_DISGUISE        ||
-              randomizedInnate == ABILITY_STANCE_CHANGE   ||
-              randomizedInnate == ABILITY_RKS_SYSTEM      ||
-              randomizedInnate == ABILITY_BATTLE_BOND     ||
-              randomizedInnate == ABILITY_FLOWER_GIFT     ||
-              randomizedInnate == ABILITY_ICE_FACE        ||
+        while(randomizedInnate == ABILITY_NONE                  ||
+              randomizedInnate == ABILITY_HUNGER_SWITCH         ||
+              randomizedInnate == ABILITY_ZEN_MODE              ||
+              randomizedInnate == ABILITY_WONDER_GUARD          ||
+              randomizedInnate == ABILITY_POWER_CONSTRUCT       ||
+              randomizedInnate == ABILITY_SCHOOLING             ||
+              randomizedInnate == ABILITY_TRACE                 ||
+              randomizedInnate == ABILITY_MULTITYPE             ||
+              randomizedInnate == ABILITY_FORECAST              ||
+              randomizedInnate == ABILITY_DISGUISE              ||
+              randomizedInnate == ABILITY_STANCE_CHANGE         ||
+              randomizedInnate == ABILITY_RKS_SYSTEM            ||
+              randomizedInnate == ABILITY_BATTLE_BOND           ||
+              randomizedInnate == ABILITY_FLOWER_GIFT           ||
+              randomizedInnate == ABILITY_ICE_FACE              ||
+              randomizedInnate == ABILITY_AS_ONE_ICE_RIDER      ||
+              randomizedInnate == ABILITY_AS_ONE_SHADOW_RIDER   ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
-              randomizedInnate == ABILITY_COMATOSE        ||
-              randomizedInnate == ABILITY_TRUANT          ||
-              randomizedInnate == ABILITY_ANGELS_WRATH    ||
-              randomizedInnate == ABILITY_HUGE_POWER      ||
-              randomizedInnate == ABILITY_PURE_POWER      ||
-              randomizedInnate == ABILITY_FELINE_PROWESS  ||
+              randomizedInnate == ABILITY_COMATOSE              ||
+              randomizedInnate == ABILITY_TRUANT                ||
+              randomizedInnate == ABILITY_ANGELS_WRATH          ||
+              randomizedInnate == ABILITY_HUGE_POWER            ||
+              randomizedInnate == ABILITY_PURE_POWER            ||
+              randomizedInnate == ABILITY_FELINE_PROWESS        ||
               #endif
               randomizedInnate == ABILITY_GULP_MISSILE);
         return randomizedInnate;
@@ -9238,28 +9242,30 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
             randomizedAbility++;
             randomizedAbility = randomizedAbility % ABILITIES_COUNT;
         }
-        while(randomizedAbility == ABILITY_NONE            ||
-              randomizedAbility == ABILITY_HUNGER_SWITCH   ||
-              randomizedAbility == ABILITY_ZEN_MODE        ||
-              randomizedAbility == ABILITY_POWER_CONSTRUCT ||
-              randomizedAbility == ABILITY_SCHOOLING       ||
-              randomizedAbility == ABILITY_TRACE           ||
-              randomizedAbility == ABILITY_MULTITYPE       ||
-              randomizedAbility == ABILITY_FORECAST        ||
-              randomizedAbility == ABILITY_DISGUISE        ||
-              randomizedAbility == ABILITY_STANCE_CHANGE   ||
-              randomizedAbility == ABILITY_RKS_SYSTEM      ||
-              randomizedAbility == ABILITY_BATTLE_BOND     ||
-              randomizedAbility == ABILITY_FLOWER_GIFT     ||
-              randomizedAbility == ABILITY_ICE_FACE        ||
+        while(randomizedAbility == ABILITY_NONE                 ||
+              randomizedAbility == ABILITY_HUNGER_SWITCH        ||
+              randomizedAbility == ABILITY_ZEN_MODE             ||
+              randomizedAbility == ABILITY_POWER_CONSTRUCT      ||
+              randomizedAbility == ABILITY_SCHOOLING            ||
+              randomizedAbility == ABILITY_TRACE                ||
+              randomizedAbility == ABILITY_MULTITYPE            ||
+              randomizedAbility == ABILITY_FORECAST             ||
+              randomizedAbility == ABILITY_DISGUISE             ||
+              randomizedAbility == ABILITY_STANCE_CHANGE        ||
+              randomizedAbility == ABILITY_RKS_SYSTEM           ||
+              randomizedAbility == ABILITY_BATTLE_BOND          ||
+              randomizedAbility == ABILITY_FLOWER_GIFT          ||
+              randomizedAbility == ABILITY_ICE_FACE             ||
+              randomizedAbility == ABILITY_AS_ONE_ICE_RIDER     ||
+              randomizedAbility == ABILITY_AS_ONE_SHADOW_RIDER  ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
-              randomizedAbility == ABILITY_COMATOSE        ||
-              randomizedAbility == ABILITY_WONDER_GUARD    ||
-              randomizedAbility == ABILITY_TRUANT          ||
-              randomizedAbility == ABILITY_ANGELS_WRATH    ||
-              randomizedAbility == ABILITY_HUGE_POWER      ||
-              randomizedAbility == ABILITY_PURE_POWER      ||
-              randomizedAbility == ABILITY_FELINE_PROWESS  ||
+              randomizedAbility == ABILITY_COMATOSE             ||
+              randomizedAbility == ABILITY_WONDER_GUARD         ||
+              randomizedAbility == ABILITY_TRUANT               ||
+              randomizedAbility == ABILITY_ANGELS_WRATH         ||
+              randomizedAbility == ABILITY_HUGE_POWER           ||
+              randomizedAbility == ABILITY_PURE_POWER           ||
+              randomizedAbility == ABILITY_FELINE_PROWESS       ||
               #endif
               randomizedAbility == ABILITY_GULP_MISSILE);
         return randomizedAbility;
