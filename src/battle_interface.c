@@ -2493,7 +2493,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     else if (status & STATUS1_BLEED)
     {
         statusGfxPtr = GetHealthboxElementGfxPtr(GetStatusIconForBattlerId(HEALTHBOX_GFX_STATUS_BLD_BATTLER0, battlerId));
-        statusPalId = PAL_STATUS_PAR;
+        statusPalId = PAL_STATUS_BLD;
     }
     else
     {

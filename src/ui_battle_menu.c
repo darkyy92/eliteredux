@@ -2523,7 +2523,7 @@ static void PrintStatusTab(void){
                     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 }
                 else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_BLEED){
-                    //Paralysis
+                    //Bleed
                     StringCopy(gStringVar1, sText_Title_Status_Bleed);
                     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
@@ -4265,6 +4265,7 @@ static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
     sSpriteAnim_StatusBurn,
     sSpriteAnim_StatusPokerus,
     sSpriteAnim_StatusFaint,
+    sSpriteAnim_StatusFrostbite,
     sSpriteAnim_StatusBleed,
 };
 static const struct OamData sOamData_StatusCondition =
