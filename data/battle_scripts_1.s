@@ -6952,12 +6952,6 @@ BattleScript_StickyWebOnSwitchInPrintStatMsg:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_StickyWebOnSwitchInEnd:
 	restoretarget
-	jumpifability       BS_TARGET, ABILITY_COMPETITIVE,     BattleScript_CompetitiveActivates
-	jumpifability       BS_TARGET, ABILITY_DEFIANT,         BattleScript_DefiantActivates
-	jumpifability       BS_TARGET, ABILITY_FORT_KNOX,       BattleScript_FortKnoxActivates
-	jumpifability       BS_TARGET, ABILITY_RUN_AWAY,        BattleScript_RunAwayActivates
-	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_StickyWebOnSwitch_KingsWrath
-	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_StickyWebOnSwitch_QueensMourning
 	return
 
 BattleScript_StickyWebOnSwitch_KingsWrath:
