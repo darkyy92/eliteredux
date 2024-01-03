@@ -3650,6 +3650,7 @@ BattleScript_EffectRestoreHp::
 	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_ATTACKER
 	attackanimation
 	waitanimation
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 BattleScript_RestoreHp:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
