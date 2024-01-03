@@ -10995,6 +10995,10 @@ bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
     u32 personality = gBattleMons[sBattlerAttacker].personality;
     bool8 isEnemyMon = GetBattlerSide(sBattlerAttacker) == B_SIDE_OPPONENT;
 
+    //Don't ignore own ability
+    if (sBattlerAttacker == sBattlerTarget)
+        return FALSE;
+
     //Check that the battler is currently attacking the target
     if(gBattlerByTurnOrder[gCurrentTurnActionNumber] != sBattlerAttacker                ||
         gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] != B_ACTION_USE_MOVE ||
@@ -13081,13 +13085,9 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
-    else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
+    else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_LEVITATE))
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)) //Levitate Innate Effect
-        return FALSE;
-	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY) //Dragonfly
-        return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker))    //Dragonfly Innate Effect
+	else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_DRAGONFLY)) //Dragonfly
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
