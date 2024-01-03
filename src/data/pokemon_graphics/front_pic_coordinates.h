@@ -5092,6 +5092,41 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_PALKIA_ORIGIN_FORME] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DIALGA_ORIGIN_FORME] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ROTOM_WASH_MODE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ROTOM_FAN_MODE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ROTOM_HEAT_MODE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ROTOM_FROST_MODE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_ROTOM_MOW_MODE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_OGERPON_HEARTHFLAME_MASK] =
     {
         .size = 0,

@@ -872,6 +872,13 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_OGERPON_WELLSPRING_MASK] = gMonFootprint_Ogerpon_Wellspring_Mask,
     [SPECIES_OGERPON_CORNERSTONE_MASK] = gMonFootprint_Ogerpon_Cornerstone_Mask,
     [SPECIES_OGERPON_HEARTHFLAME_MASK] = gMonFootprint_Ogerpon_Hearthflame_Mask,
+    [SPECIES_ROTOM_MOW_MODE] = gMonFootprint_Rotom_Mow_Mode,
+    [SPECIES_ROTOM_FROST_MODE] = gMonFootprint_Rotom_Frost_Mode,
+    [SPECIES_ROTOM_HEAT_MODE] = gMonFootprint_Rotom_Heat_Mode,
+    [SPECIES_ROTOM_FAN_MODE] = gMonFootprint_Rotom_Fan_Mode,
+    [SPECIES_ROTOM_WASH_MODE] = gMonFootprint_Rotom_Wash_Mode,
+    [SPECIES_DIALGA_ORIGIN_FORME] = gMonFootprint_Dialga_Origin_Forme,
+    [SPECIES_PALKIA_ORIGIN_FORME] = gMonFootprint_Palkia_Origin_Forme,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

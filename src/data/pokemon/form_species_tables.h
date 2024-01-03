@@ -576,6 +576,11 @@ static const u16 sGalladeFormSpeciesIdTable[] = {
 
 static const u16 sRotomFormSpeciesIdTable[] = {
     SPECIES_ROTOM,
+    SPECIES_ROTOM_WASH_MODE,
+    SPECIES_ROTOM_FAN_MODE,
+    SPECIES_ROTOM_HEAT_MODE,
+    SPECIES_ROTOM_FROST_MODE,
+    SPECIES_ROTOM_MOW_MODE,
     SPECIES_ROTOM_HEAT,
     SPECIES_ROTOM_WASH,
     SPECIES_ROTOM_FROST,
@@ -1288,5 +1293,15 @@ static const u16 sOgerponFormSpeciesIdTable[] = {
     SPECIES_OGERPON_CORNERSTONE_MASK,
     SPECIES_OGERPON_CORNERSTONE_MASK,
     SPECIES_OGERPON_WELLSPRING_MASK,
+    FORM_SPECIES_END,
+};
+static const u16 sDialgaFormSpeciesIdTable[] = {
+    SPECIES_DIALGA,
+    SPECIES_DIALGA_ORIGIN_FORME,
+    FORM_SPECIES_END,
+};
+static const u16 sPalkiaFormSpeciesIdTable[] = {
+    SPECIES_PALKIA,
+    SPECIES_PALKIA_ORIGIN_FORME,
     FORM_SPECIES_END,
 };

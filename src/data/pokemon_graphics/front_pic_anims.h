@@ -10058,6 +10058,41 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_PALKIA_ORIGIN_FORME_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_DIALGA_ORIGIN_FORME_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROTOM_WASH_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROTOM_FAN_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROTOM_HEAT_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROTOM_FROST_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_ROTOM_MOW_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_OGERPON_HEARTHFLAME_MASK_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -16464,6 +16499,41 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_PALKIA_ORIGIN_FORME[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PALKIA_ORIGIN_FORME_1,
+};
+
+static const union AnimCmd *const sAnims_DIALGA_ORIGIN_FORME[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DIALGA_ORIGIN_FORME_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_WASH_MODE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROTOM_WASH_MODE_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_FAN_MODE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROTOM_FAN_MODE_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_HEAT_MODE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROTOM_HEAT_MODE_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_FROST_MODE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROTOM_FROST_MODE_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_MOW_MODE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ROTOM_MOW_MODE_1,
+};
+
 static const union AnimCmd *const sAnims_OGERPON_HEARTHFLAME_MASK[] ={
     sAnim_GeneralFrame0,
     sAnim_OGERPON_HEARTHFLAME_MASK_1,
@@ -18648,6 +18718,13 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(PALKIA_ORIGIN_FORME),
+    ANIM_CMD(DIALGA_ORIGIN_FORME),
+    ANIM_CMD(ROTOM_WASH_MODE),
+    ANIM_CMD(ROTOM_FAN_MODE),
+    ANIM_CMD(ROTOM_HEAT_MODE),
+    ANIM_CMD(ROTOM_FROST_MODE),
+    ANIM_CMD(ROTOM_MOW_MODE),
     ANIM_CMD(OGERPON_HEARTHFLAME_MASK),
     ANIM_CMD(OGERPON_CORNERSTONE_MASK),
     ANIM_CMD(OGERPON_WELLSPRING_MASK),

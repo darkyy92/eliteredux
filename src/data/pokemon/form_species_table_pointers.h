@@ -87,7 +87,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LUCARIO] = sLucarioFormSpeciesIdTable,
     [SPECIES_ABOMASNOW] = sAbomasnowFormSpeciesIdTable,
     [SPECIES_GALLADE] = sGalladeFormSpeciesIdTable,
-    [SPECIES_ROTOM] = sRotomFormSpeciesIdTable,
+    [SPECIES_ROTOM_MOW_MODE] = sRotomFormSpeciesIdTable,
     [SPECIES_GIRATINA] = sGiratinaFormSpeciesIdTable,
     [SPECIES_SHAYMIN] = sShayminFormSpeciesIdTable,
     [SPECIES_ARCEUS] = sArceusFormSpeciesIdTable,
@@ -645,5 +645,17 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_OGERPON_CORNERSTONE_MASK] = sOgerponFormSpeciesIdTable,
 
     [SPECIES_OGERPON_HEARTHFLAME_MASK] = sOgerponFormSpeciesIdTable,
+
+    [SPECIES_ROTOM_FROST_MODE] = sRotomFormSpeciesIdTable,
+
+    [SPECIES_ROTOM_HEAT_MODE] = sRotomFormSpeciesIdTable,
+
+    [SPECIES_ROTOM_FAN_MODE] = sRotomFormSpeciesIdTable,
+
+    [SPECIES_ROTOM_WASH_MODE] = sRotomFormSpeciesIdTable,
+
+    [SPECIES_DIALGA_ORIGIN_FORME] = sDialgaFormSpeciesIdTable,
+
+    [SPECIES_PALKIA_ORIGIN_FORME] = sPalkiaFormSpeciesIdTable,
 
 };
