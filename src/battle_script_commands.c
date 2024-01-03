@@ -10403,7 +10403,7 @@ static void Cmd_tryhealhalfhealth(void)
     if (gBattlescriptCurrInstr[5] == BS_ATTACKER)
         gBattlerTarget = gBattlerAttacker;
 
-    if (gBattlerMons[gBattlerTarget].status1 & STATUS1_BLEED) {
+    if (gBattleMons[gBattlerTarget].status1 & STATUS1_BLEED) {
         gBattleMoveDamage = 0;
         gBattlescriptCurrInstr += 6;
         return;

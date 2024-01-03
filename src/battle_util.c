@@ -1831,9 +1831,9 @@ bool32 IsGravityPreventingMove(u32 move)
     }
 }
 
-bool32 IsHealBlockPreventingMove(u32 battler, u32 move)
+bool32 IsHealBlockPreventingMove(u8 battler, u32 move)
 {
-    if (!(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK))
+    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
         return FALSE;
     
     switch (gBattleMoves[move].effect)
