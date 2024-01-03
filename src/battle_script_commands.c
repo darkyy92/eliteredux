@@ -2072,7 +2072,7 @@ static void Cmd_accuracycheck(void)
         )
     {
         // No acc checks for second hit of Parental Bond or multi hit moves
-        gBattlescriptCurrInstr += 7;
+        JumpIfMoveFailed(7, move);
     }
     else
     {
