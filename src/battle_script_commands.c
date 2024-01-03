@@ -2355,12 +2355,6 @@ static void Cmd_adjustdamage(void)
     // Handle reducing the dmg to 1 hp.
     gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
 
-    if(gBattleMoveDamage == 0 && gBattleMons[gBattlerTarget].maxHP != 1){
-        gBattleMoveDamage = 1;
-        gSpecialStatuses[gBattlerTarget].focusBanded = FALSE;
-        gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
-    }
-
     if (gProtectStructs[gBattlerTarget].endured)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
@@ -2829,7 +2823,8 @@ static void Cmd_resultmessage(void)
             stringId = STRINGID_ITDOESNTAFFECT;
             break;
         case MOVE_RESULT_FOE_ENDURED:
-            stringId = STRINGID_PKMNENDUREDHIT;
+            if (!gMultiHitCounter)
+                stringId = STRINGID_PKMNENDUREDHIT;
             break;
         case MOVE_RESULT_FAILED:
             stringId = STRINGID_BUTITFAILED;
@@ -2863,7 +2858,7 @@ static void Cmd_resultmessage(void)
                 gBattlescriptCurrInstr = BattleScript_SturdiedMsg;
                 return;
             }
-            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED)
+            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED && !gMultiHitCounter)
             {
                 gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
