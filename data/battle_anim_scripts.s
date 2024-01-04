@@ -793,6 +793,8 @@ gBattleAnims_Moves::
 	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
 	.4byte Move_PLASMA_PULSE
+	.4byte Move_PRIMAL_BEAM
+	.4byte Move_DRACONIC_FANGS
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3894,6 +3896,12 @@ Move_BUG_BITE:
 	clearmonbg ANIM_TARGET
 	blendoff
 	end
+
+Move_PRIMAL_BEAM:
+	goto Move_HYPER_BEAM
+
+Move_DRACONIC_FANGS:
+    goto Move_BITE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

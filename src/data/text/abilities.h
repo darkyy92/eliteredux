@@ -467,6 +467,7 @@ static const u8 sAbilitySuperSlammerDescription[] = _("Boosts Hammer and Slam\nm
 static const u8 sAbilityInverseRoomDescription[] = _("Sets up the Inverse field\ncondition for 3 turns upon entry");
 static const u8 sAbilityAccelerateDescription[] = _("2 turn based moves are\nnow used instantly");
 static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after\nusing a Fire-type move.");
+static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -948,6 +949,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_INVERSE_ROOM] = _("Inverse Room"),
         [ABILITY_ACCELERATE] = _("Accelerate"),
         [ABILITY_FROST_BURN] = _("Frost Burn"),
+        [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1428,4 +1430,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_INVERSE_ROOM] = sAbilityInverseRoomDescription,
         [ABILITY_ACCELERATE] = sAbilityAccelerateDescription,
         [ABILITY_FROST_BURN] = sAbilityFrostBurnDescription,
+        [ABILITY_ITCHY_DEFENSE] = sAbilityItchyDefenseDescription,
 };

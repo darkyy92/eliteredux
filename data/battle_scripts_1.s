@@ -8223,6 +8223,12 @@ BattleScript_DefenderBecameTheTypeFull::
 	printstring STRINGID_DEFENDERTYPECHANGEDTO
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_AttackerBecameInfested::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERBECAMEINFECTED
+	waitmessage B_WAIT_TIME_LONG
+	return
 	
 BattleScript_SelfSufficientActivates::
 	copybyte gBattlerAbility, gBattlerAttacker

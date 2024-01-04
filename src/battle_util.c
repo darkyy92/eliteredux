@@ -3456,8 +3456,6 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
                 SetTypeBeforeUsingMove(gCurrentMove, gActiveBattler);
                 BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
-                //gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[gCurrentMove].power;
-
                 if (gWishFutureKnock.futureSightCounter[gActiveBattler] == 0
                  && gWishFutureKnock.futureSightCounter[gActiveBattler ^ BIT_FLANK] == 0)
                 {
@@ -9133,6 +9131,38 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_BURN;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
+        //Itchy Defense
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ITCHY_DEFENSE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_ITCHY_DEFENSE; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+            && gBattleMons[gBattlerAttacker].hp != 0
+            && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+            && IsMoveMakingContact(move, battler)
+            && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_WRAPPED)
+            && battler != gBattlerAttacker
+            && TARGET_TURN_DAMAGED)
+            {
+                u16 extraMove = MOVE_INFESTATION;
+                gBattleMons[gBattlerAttacker].status2 |= STATUS2_WRAPPED;
+                if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_GRIP_CLAW)
+                    gDisableStructs[gBattlerAttacker].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                else
+                    gDisableStructs[gBattlerAttacker].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+                gBattleStruct->wrappedMove[gBattlerAttacker] = extraMove;
+                gBattleStruct->wrappedBy[gBattlerAttacker] = battler;
+                    
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerBecameInfested;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
                 effect++;
             }

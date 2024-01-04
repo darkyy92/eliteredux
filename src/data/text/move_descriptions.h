@@ -1509,6 +1509,10 @@ static const u8 sPLUCKDescription[] = _(
     "Eats the foe's held Berry\n"
     "gaining its effect.");
 
+static const u8 sDRACONIC_FANGSDescription[] = _(
+    "Bites with draconic fangs.\n"
+    "May cause flinching.");
+
 static const u8 sTAILWINDDescription[] = _(
     "Whips up a turbulent breeze\n"
     "that raises Speed.");
@@ -1834,6 +1838,10 @@ static const u8 sJUDGMENTDescription[] = _(
 static const u8 sCHARGE_BEAMDescription[] = _(
     "Fires a beam of electricity.\n"
     "Raises Sp. Atk by one stage.");
+
+static const u8 sPRIMAL_BEAMDescription[] = _(
+    "An strange beam that uses\n"
+    "the user's Attack, may rise it.");
 
 static const u8 sWOOD_HAMMERDescription[] = _(
     "Slams the body into a foe\n"
@@ -3529,7 +3537,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_CHATTER - 1] = sCHATTERDescription,
     [MOVE_JUDGMENT - 1] = sJUDGMENTDescription,
     [MOVE_BUG_BITE - 1] = sPLUCKDescription,
+    [MOVE_DRACONIC_FANGS - 1] = sDRACONIC_FANGSDescription,
     [MOVE_CHARGE_BEAM - 1] = sCHARGE_BEAMDescription,
+    [MOVE_PRIMAL_BEAM - 1] = sPRIMAL_BEAMDescription,
     [MOVE_WOOD_HAMMER - 1] = sWOOD_HAMMERDescription,
     [MOVE_AQUA_JET - 1] = sAQUA_JETDescription,
     [MOVE_ATTACK_ORDER - 1] = sATTACK_ORDERDescription,
@@ -3909,6 +3919,7 @@ static const u8 sMoveFourLineDescription_Twineedle[] = _("The foe is stabbed\ntw
 static const u8 sMoveFourLineDescription_PinMissile[] = _("Sharp pins are shot\nat the foe and hit\ntwo to five times\nat once.");
 static const u8 sMoveFourLineDescription_Leer[] = _("The foe is given an\nintimidating look\nthat lowers its\nDefense stat.");
 static const u8 sMoveFourLineDescription_Bite[] = _("The user bites with\nvicious fangs.\n30% flinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_DragonFang[] = _("The user bites with\ndraconic fangs.\n30% flinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_Growl[] = _("The user growls in\na cute way, making\nthe foe lower its\nAttack stat.");
 static const u8 sMoveFourLineDescription_Roar[] = _("The foe is made to\nswitch out with an\nally. In the wild,\nthe battle ends.");
 static const u8 sMoveFourLineDescription_Sing[] = _("A soothing song\nin a calming voice\nlulls the foe into\na deep slumber.");
@@ -4334,6 +4345,7 @@ static const u8 sMoveFourLineDescription_Chatter[] = _("The foe is left\nconfuse
 static const u8 sMoveFourLineDescription_Judgment[] = _("The type of this\nmove varies with\nthe kind of Plate\nthe user is holding.");
 static const u8 sMoveFourLineDescription_BugBite[] = _("If the foe has a\nBerry, user gains\ngains its effect.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ChargeBeam[] = _("Attacks with an\nelectric charge.\nRaises own SpAtk.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_PrimalBeam[] = _("An strange beam\nthat uses the user's\nAttack, may\nrise own Atk.");
 static const u8 sMoveFourLineDescription_WoodHammer[] = _("The user slams its\nrugged body into\nthe foe. 33%\nrecoil damage.");
 static const u8 sMoveFourLineDescription_AquaJet[] = _("The user lunges at\nthe foe at a fast\nspeed. This has\n+1 priority."); // new
 static const u8 sMoveFourLineDescription_AttackOrder[] = _("Underlings pummel\nthe foe. Critical\nhits land more\neasily.");
@@ -5119,7 +5131,9 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_CHATTER           - 1] = sMoveFourLineDescription_Chatter,
     [MOVE_JUDGMENT          - 1] = sMoveFourLineDescription_Judgment,
     [MOVE_BUG_BITE          - 1] = sMoveFourLineDescription_BugBite,
+    [MOVE_DRACONIC_FANGS    - 1] = sMoveFourLineDescription_DragonFang,
     [MOVE_CHARGE_BEAM       - 1] = sMoveFourLineDescription_ChargeBeam,
+    [MOVE_PRIMAL_BEAM       - 1] = sMoveFourLineDescription_PrimalBeam,
     [MOVE_WOOD_HAMMER       - 1] = sMoveFourLineDescription_WoodHammer,
     [MOVE_AQUA_JET          - 1] = sMoveFourLineDescription_AquaJet,
     [MOVE_ATTACK_ORDER      - 1] = sMoveFourLineDescription_AttackOrder,
