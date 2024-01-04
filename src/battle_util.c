@@ -12778,8 +12778,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             targetBattler = SetRandomTarget(gBattlerAttacker);
             if (gBattleMoves[move].type == TYPE_ELECTRIC
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_LIGHTNING_ROD)
-                && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD
-                && !BattlerHasInnate(targetBattler, ABILITY_LIGHTNING_ROD))
+                && !BATTLER_HAS_ABILITY(targetBattler, ABILITY_LIGHTNING_ROD))
             {
                 targetBattler ^= BIT_FLANK;
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
@@ -12787,8 +12786,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             }
             else if (gBattleMoves[move].type == TYPE_WATER
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_STORM_DRAIN)
-                && !BattlerHasInnate(targetBattler, ABILITY_STORM_DRAIN)
-                && GetBattlerAbility(targetBattler) != ABILITY_STORM_DRAIN)
+                && !BATTLER_HAS_ABILITY(targetBattler, ABILITY_STORM_DRAIN))
             {
                 targetBattler ^= BIT_FLANK;
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
@@ -13003,7 +13001,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
         else
             return FALSE;
     }
-    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH || BattlerHasInnate(battlerAtk, ABILITY_LONG_REACH))
+    else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LONG_REACH))
     {
         return FALSE;
     }
@@ -13126,13 +13124,13 @@ u32 GetBattlerWeight(u8 battlerId)
     u32 ability = GetBattlerAbility(battlerId);
     u32 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
 
-    if (ability == ABILITY_HEAVY_METAL || BattlerHasInnate(battlerId, ABILITY_HEAVY_METAL))
+    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_HEAVY_METAL))
         weight *= 2;
 	
-    if (ability == ABILITY_LIGHT_METAL || BattlerHasInnate(battlerId, ABILITY_LIGHT_METAL))
+    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_LIGHT_METAL))
         weight /= 2;
 	
-	if (ability == ABILITY_LEAD_COAT || BattlerHasInnate(battlerId, ABILITY_LEAD_COAT))
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_LEAD_COAT))
         weight *= 3;
 
     if (holdEffect == HOLD_EFFECT_FLOAT_STONE)
@@ -13576,63 +13574,17 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
         if ((gBattleMons[i].status1 & STATUS1_SLEEP) && IsBattlerAlive(i))
             numsleepmons++;
     }
-
-    // attacker's abilities]
-    switch (GetBattlerAbility(battlerAtk))
-    {
-    case ABILITY_RECKLESS:
-        if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.2));
-        break;
-	case ABILITY_STRIKER:
-        if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-	case ABILITY_MIGHTY_HORN:
-        if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-	case ABILITY_FIELD_EXPLORER:
-        if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
-           MulModifier(&modifier, UQ_4_12(1.25));
-        break;
-    case ABILITY_GIANT_WINGS:
-        if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
-           MulModifier(&modifier, UQ_4_12(1.25));
-        break;
-    case ABILITY_KEEN_EDGE:
-        if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_SHEER_FORCE:
-        if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_SAND_FORCE:
-        if ((moveType == TYPE_STEEL || moveType == TYPE_ROCK || moveType == TYPE_GROUND)
-            && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_ANALYTIC:
-        if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_STEELWORKER:
-        if (moveType == TYPE_STEEL)
-           MulModifier(&modifier, UQ_4_12(1.3)); // was 1.5
-        break;
-    }
 	
-	// Attacker Innates
+	// Attacker Abilities and Innates
 	
 	// Reckless
-	if(BattlerHasInnate(battlerAtk, ABILITY_RECKLESS)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_RECKLESS)){
 		if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
     }
 
     // Keen Edge
-	if(BattlerHasInnate(battlerAtk, ABILITY_KEEN_EDGE)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KEEN_EDGE)){
 		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
@@ -13646,12 +13598,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     }
 	
 	// Striker
-	if(BattlerHasInnate(battlerAtk, ABILITY_STRIKER)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRIKER)){
 		if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 
-    //CombatSpecialist 
+    //Combat Specialist 
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COMBAT_SPECIALIST)){
 		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -13659,45 +13611,51 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 
-	// Mighty Horn
-	if(BattlerHasInnate(battlerAtk, ABILITY_MIGHTY_HORN)){
+	// Mighty Horn & Hunter's Horn
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MIGHTY_HORN) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUNTERS_HORN)){
 		if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
     
-    // Mighty Horn 2
-    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUNTERS_HORN)){
-		if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
+    // Super Slammer
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SUPER_SLAMMER)){
+		if (gBattleMoves[move].flags2 & FLAG_HAMMER_BASED)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+    
+    // Archer
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ARCHER)){
+		if (gBattleMoves[move].flags2 & FLAG_ARROW_BASED)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Field Explorer
-	if(BattlerHasInnate(battlerAtk, ABILITY_FIELD_EXPLORER)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FIELD_EXPLORER)){
 		if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
     }
 
     // Giant Wings
-	if(BattlerHasInnate(battlerAtk, ABILITY_GIANT_WINGS)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GIANT_WINGS)){
         if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
     }
 	
 	// Sheer Force
-	if(BattlerHasInnate(battlerAtk, ABILITY_SHEER_FORCE)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SHEER_FORCE)){
 		if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Sand Force
-	if(BattlerHasInnate(battlerAtk, ABILITY_SAND_FORCE)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAND_FORCE)){
 		if ((moveType == TYPE_STEEL || moveType == TYPE_ROCK || moveType == TYPE_GROUND)
             && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Analytic
-	if(BattlerHasInnate(battlerAtk, ABILITY_ANALYTIC)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANALYTIC)){
 		if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
@@ -13822,13 +13780,15 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LONG_REACH) && IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
         MulModifier(&modifier, UQ_4_12(1.2));
 	
-	// Tough Claws & Big Pecks
-	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TOUGH_CLAWS) ||
-        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_PECKS))  && 
-        IsMoveMakingContact(move, battlerAtk))
-           MulModifier(&modifier, UQ_4_12(1.3));
+	// Tough Claws
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TOUGH_CLAWS) && IsMoveMakingContact(move, battlerAtk))
+        MulModifier(&modifier, UQ_4_12(1.3));
+    
+	// Big Pecks
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_PECKS) && IsMoveMakingContact(move, battlerAtk))
+        MulModifier(&modifier, UQ_4_12(1.3));
 	
-	//DreamCatcher
+	//Dream Catcher
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DREAMCATCHER) && numsleepmons > 0) //It used to be depending on the number of sleeping mons, but the sleep clause made it useless
 		MulModifier(&modifier, UQ_4_12(2.0));
 
@@ -13927,7 +13887,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // Pretty Princess
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PRETTY_PRINCESS)){
         if(!BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE) &&
-           !BattlerHasInnate(battlerDef, ABILITY_UNAWARE) &&
+           !BATTLER_HAS_ABILITY(battlerDef, ABILITY_UNAWARE) &&
            HasAnyLoweredStat(battlerDef))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
@@ -13935,134 +13895,40 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // Attacker Partner's Abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
     {
-        switch (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)))
-        {
-        case ABILITY_BATTERY:
-            if (IS_MOVE_SPECIAL(move))
-                MulModifier(&modifier, UQ_4_12(1.3));
-            break;
-        case ABILITY_POWER_SPOT:
-            MulModifier(&modifier, UQ_4_12(1.3));
-            break;
-        case ABILITY_STEELY_SPIRIT:
-            if (moveType == TYPE_STEEL)
-                MulModifier(&modifier, UQ_4_12(1.5));
-            break;
-        }
-		
-		// Attacker Partner's Innates
+		// Attacker Partner's Abilities and Innates
 		
 		// Battery
-		if(BattlerHasInnate(BATTLE_PARTNER(battlerAtk), ABILITY_BATTERY)){
+		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_BATTERY)){
 			if (IS_MOVE_SPECIAL(move))
                 MulModifier(&modifier, UQ_4_12(1.3));
 		}
 		
 		// Power Spot
-		if(BattlerHasInnate(BATTLE_PARTNER(battlerAtk), ABILITY_POWER_SPOT)){
+		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_POWER_SPOT)){
 			MulModifier(&modifier, UQ_4_12(1.3));
 		}
 		
 		// Steely Spirit
-		if(BattlerHasInnate(BATTLE_PARTNER(battlerAtk), ABILITY_STEELY_SPIRIT)){
+		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_STEELY_SPIRIT)){
 			if (moveType == TYPE_STEEL)
                 MulModifier(&modifier, UQ_4_12(1.5));
 		}
     }
-
-    // Target's Abilities
-    ability = GetBattlerAbility(battlerDef);
-    switch (ability)
-    {
-    case ABILITY_HEATPROOF:
-    case ABILITY_WATER_BUBBLE:
-        if (moveType == TYPE_FIRE)
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        break;
-    case ABILITY_DRY_SKIN:
-        if (moveType == TYPE_FIRE)
-            MulModifier(&modifier, UQ_4_12(1.25));
-        break;
-    case ABILITY_FLUFFY:
-        if (IsMoveMakingContact(move, battlerAtk))
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        if (moveType == TYPE_FIRE)
-            MulModifier(&modifier, UQ_4_12(2.0));
-        break;
-	case ABILITY_LIQUIFIED:
-        if (IsMoveMakingContact(move, battlerAtk))
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        if (moveType == TYPE_WATER)
-            MulModifier(&modifier, UQ_4_12(2.0));
-        break;
-	case ABILITY_CHRISTMAS_SPIRIT:
-        if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        break;
-    case ABILITY_DUNE_TERROR:
-        if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
-        {
-            MulModifier(&modifier, UQ_4_12(0.65));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        break;
-	case ABILITY_SHELL_ARMOR:
-	case ABILITY_BATTLE_ARMOR:
-        MulModifier(&modifier, UQ_4_12(0.8));
-        if (updateFlags)
-            RecordAbilityBattle(battlerDef, ability);
-        break;
-	case ABILITY_LEAD_COAT:
-        MulModifier(&modifier, UQ_4_12(0.6));
-        if (updateFlags)
-            RecordAbilityBattle(battlerDef, ability);
-        break;
-    case ABILITY_PARRY:
-        MulModifier(&modifier, UQ_4_12(0.8));
-        if (updateFlags)
-            RecordAbilityBattle(battlerDef, ability);
-        break;
-	case ABILITY_IMMUNITY:
-        if (moveType == TYPE_POISON)
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        break;
-	case ABILITY_FOSSILIZED:
-        if (moveType == TYPE_ROCK)
-        {
-            MulModifier(&modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, ability);
-        }
-        break;
-
-    }
 	
-	// Target's Innates
-	
+	// Target's Abilities and Innates
 	// Heatproof & Water Bubble
-	if(BattlerHasInnate(battlerDef, ABILITY_HEATPROOF) || 
-       BattlerHasInnate(battlerDef, ABILITY_WATER_BUBBLE)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_HEATPROOF)){
+        if (moveType == TYPE_FIRE)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+	}
+
+    
+	// Water Bubble
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_WATER_BUBBLE)){
         if (moveType == TYPE_FIRE)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -14072,13 +13938,13 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	}
 	
     // Dry Skin
-	if(BattlerHasInnate(battlerDef, ABILITY_DRY_SKIN)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_DRY_SKIN)){
 		if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(1.25));
 	}
 	
 	// Fluffy
-	if(BattlerHasInnate(battlerDef, ABILITY_FLUFFY)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_FLUFFY)){
 		if (IsMoveMakingContact(move, battlerAtk))
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -14090,7 +13956,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	}
 	
 	// Liquified
-	if(BattlerHasInnate(battlerDef, ABILITY_LIQUIFIED)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LIQUIFIED)){
 		if (IsMoveMakingContact(move, battlerAtk))
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -14100,39 +13966,45 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
         if (moveType == TYPE_WATER)
             MulModifier(&modifier, UQ_4_12(2.0));
 	}
+
 	// Christmas Spirit
-	if(BattlerHasInnate(battlerDef, ABILITY_CHRISTMAS_SPIRIT)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
 			MulModifier(&modifier, UQ_4_12(0.5));
 		}
     }
+
     // Dune Terror
-	if(BattlerHasInnate(battlerDef, ABILITY_DUNE_TERROR)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_DUNE_TERROR)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY){
 			MulModifier(&modifier, UQ_4_12(0.65));
 		}
     }
+
 	// Battle Armor
-	if(BattlerHasInnate(battlerDef, ABILITY_BATTLE_ARMOR) ||
-	   BattlerHasInnate(battlerDef, ABILITY_SHELL_ARMOR)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_BATTLE_ARMOR))
 		MulModifier(&modifier, UQ_4_12(0.8));
-    }
+
+	// Shell Armor
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_SHELL_ARMOR))
+		MulModifier(&modifier, UQ_4_12(0.8));
+
 	// Lead Coat
-	if(BattlerHasInnate(battlerDef, ABILITY_LEAD_COAT)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEAD_COAT))
 		MulModifier(&modifier, UQ_4_12(0.6));
-    }
+
     // Parry
-	if(BattlerHasInnate(battlerDef, ABILITY_PARRY)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_PARRY))
 		MulModifier(&modifier, UQ_4_12(0.8));
-    }
+
 	// Fossilized
-	if(BattlerHasInnate(battlerDef, ABILITY_FOSSILIZED)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_FOSSILIZED)){
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
 
 	// Immunity
-	if(BattlerHasInnate(battlerDef, ABILITY_IMMUNITY)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_IMMUNITY)){
 		if (moveType == TYPE_POISON)
             MulModifier(&modifier, UQ_4_12(0.8));
     }

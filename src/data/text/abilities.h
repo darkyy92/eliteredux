@@ -462,6 +462,9 @@ static const u8 sAbilityMagmaEaterDescription[] = _("Predator + Molten Down.");
 static const u8 sAbilitySuperHotGooDescription[] = _("Inflicts burn and lower\nthe speed on contact.");
 static const u8 sAbilityNikaDescription[] = _("Iron fist + Water moves\nfunction normally under sun.");
 static const u8 sAbilityColdPlasmaDescription[] = _("Electric type moves now\ninflict burn instead of paralysis.");
+static const u8 sAbilityArcherDescription[] = _("Boosts Arrow moves by 30%.");
+static const u8 sAbilitySuperSlammerDescription[] = _("Boosts Hammer and Slam\nmoves by 30%");
+
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -937,6 +940,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_SUPER_HOT_GOO] = _("Super Hot Goo"),
         [ABILITY_NIKA] = _("Nika"),
         [ABILITY_COLD_PLASMA] = _("Cold Plasma"),
+        [ABILITY_ARCHER] = _("Archer"),
+        [ABILITY_SUPER_SLAMMER] = _("Super Slammer"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1412,4 +1417,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription, 
         [ABILITY_NIKA] = sAbilityNikaDescription,
         [ABILITY_COLD_PLASMA] = sAbilityColdPlasmaDescription,
+        [ABILITY_ARCHER] = sAbilityArcherDescription,
+        [ABILITY_SUPER_SLAMMER] = sAbilitySuperSlammerDescription,
 };

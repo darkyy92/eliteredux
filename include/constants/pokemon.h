@@ -316,6 +316,8 @@
 #define FLAG_AIR_BASED                            (1 << 0) // For Giant Wings
 #define FLAG_HORN_BASED                           (1 << 1) // For Mighty Horn
 #define FLAG_ALWAYS_CRIT                          (1 << 2) // For the move Frost Breath
+#define FLAG_HAMMER_BASED                         (1 << 3) // For Super Slammer
+#define FLAG_ARROW_BASED                          (1 << 4) // For Archer
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
