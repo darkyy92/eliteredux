@@ -502,7 +502,8 @@
 #define ABILITY_SUPER_SLAMMER    (ABILITIES_COUNT_LATEST_GEN + 204) // Boosts Hammer/Slam moves by 30%
 #define ABILITY_INVERSE_ROOM     (ABILITIES_COUNT_LATEST_GEN + 205) // Sets up the Inverse field condition for 3 turns upon entry
 #define ABILITY_ACCELERATE       (ABILITIES_COUNT_LATEST_GEN + 206) // 2 turn based moves are now used instantly
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_ACCELERATE + 1) 
+#define ABILITY_FROST_BURN       (ABILITIES_COUNT_LATEST_GEN + 207) // When a user uses a fire move it follows it up with a 40 bp ice beam.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_FROST_BURN + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

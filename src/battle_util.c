@@ -9792,6 +9792,42 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Frost Burn
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_FROST_BURN)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_FROST_BURN; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+				u16 extraMove = MOVE_ICE_BEAM;    //The Extra Move to be used
+                u8 movePower = 40;                //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 10;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = MOVE_EFFECT_FROSTBITE;  //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+        }
+
         //Pryo Shells
         if(BATTLER_HAS_ABILITY(battler, ABILITY_PYRO_SHELLS)){
             bool8 activateAbilty = FALSE;
