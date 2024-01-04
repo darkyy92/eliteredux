@@ -465,7 +465,7 @@ void UI_Battle_Menu_Init(MainCallback callback)
                     isExtraInfoShown = TRUE;
             break;
             case FIELD_INFO_INVERSE_ROOM:
-                if(FlagGet(FLAG_SYS_INVERSE_BATTLE))
+                if(gFieldStatuses & STATUS_FIELD_INVERSE_ROOM)
                     isExtraInfoShown = TRUE;
             break;
             case FIELD_INFO_TRICK_ROOM:
@@ -3436,11 +3436,11 @@ static void PrintFieldTab(void)
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
                 //Turns Left
-                /*StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-                turnsLeft = gFieldTimers.gravityTimer;
+                turnsLeft = gFieldTimers.inverseRoomTimer ;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);*/
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Field_Inverse_Description);

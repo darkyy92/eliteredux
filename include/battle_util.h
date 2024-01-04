@@ -187,6 +187,7 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
 s32 GetCurrentTerrain(void);
 u8 BattlerHasInnateOrAbility(u8 battler, u16 ability);
 bool8 IsTrickRoomActive(void);
+bool8 IsInverseRoomActive(void);
 bool8 IsGravityActive(void);
 bool8 isMagicRoomActive(void);
 bool8 isWonderRoomActive(void);

@@ -2600,6 +2600,14 @@ u8 DoFieldEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_TrickRoomEnds);
                 effect++;
             }
+
+            if (gFieldStatuses & STATUS_FIELD_INVERSE_ROOM && --gFieldTimers.inverseRoomTimer == 0)
+            {
+                gFieldStatuses &= ~(STATUS_FIELD_INVERSE_ROOM);
+                BattleScriptExecute(BattleScript_InverseRoomEnds);
+                effect++;
+            }
+
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_WONDER_ROOM:
@@ -6751,6 +6759,48 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
                 }
             }
+
+            //Inverse Room
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_INVERSE_ROOM)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_INVERSE_ROOM; //For easier copypaste
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
+                    if(!(gFieldStatuses & STATUS_FIELD_INVERSE_ROOM)){
+                        //Enable Trick Room
+                        gFieldStatuses |= STATUS_FIELD_INVERSE_ROOM;
+                        gFieldTimers.inverseRoomTimer = 3;
+                        BattleScriptPushCursorAndCallback(BattleScript_InversedRoomActivated);
+                        effect++;
+                    }
+                    else{
+                        //Removes Trick Room
+                        gFieldTimers.inverseRoomTimer = 0;
+                        gFieldStatuses &= ~(STATUS_FIELD_INVERSE_ROOM);
+                        BattleScriptPushCursorAndCallback(BattleScript_InverseRoomRemoved);
+                        effect++;
+                    }
+                }
+            }
+
             if(BattlerHasInnate(battler, ABILITY_FURNACE)){
                 if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
                 && IsBattlerAlive(battler)
@@ -15992,10 +16042,18 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
 
 u16 GetTypeModifier(u8 atkType, u8 defType)
 {
-    if (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE))
-        return sInverseTypeEffectivenessTable[atkType][defType];
-    else
-        return sTypeEffectivenessTable[atkType][defType];
+    if(IsInverseRoomActive()){
+        if (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE))
+            return sTypeEffectivenessTable[atkType][defType];
+        else
+            return sInverseTypeEffectivenessTable[atkType][defType];
+    }
+    else{
+        if (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE))
+            return sInverseTypeEffectivenessTable[atkType][defType];
+        else
+            return sTypeEffectivenessTable[atkType][defType];
+    }
 }
 
 s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
@@ -17110,6 +17168,15 @@ bool8 IsTrickRoomActive(void){
     if(IsAbilityOnField(ABILITY_CLUELESS))
         return FALSE;
     else if(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 IsInverseRoomActive(void){
+    if(IsAbilityOnField(ABILITY_CLUELESS))
+        return FALSE;
+    else if(gFieldStatuses & STATUS_FIELD_INVERSE_ROOM)
         return TRUE;
     else
         return FALSE;

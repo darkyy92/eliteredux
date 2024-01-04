@@ -697,8 +697,10 @@
 #define STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE2   726
 #define STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3     727
 #define STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3   728
+#define STRINGID_INVERSEROOMENDS                      729
+#define STRINGID_INVERSEROOMACTIVATED                 730
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3 + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_INVERSEROOMACTIVATED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

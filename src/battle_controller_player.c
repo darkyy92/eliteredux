@@ -1812,6 +1812,10 @@ u8 TypeEffectiveness(struct ChooseMoveStruct *moveInfo, u8 targetId)
 {
 	bool8 isInverse = (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE)) ? TRUE : FALSE;
     u16 move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
+
+    if(IsInverseRoomActive()){
+        isInverse = !isInverse;
+    }
 	
 	if (gBattleMoves[move].power == 0)
 		return 10;
@@ -1894,6 +1898,11 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
     u16 tempMod;
     u8 moveType = GetTypeBeforeUsingMove(moveNum, userId);
     u16 illusionSpecies = GetIllusionMonSpecies(targetId);
+    bool8 isInverse = (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE)) ? TRUE : FALSE;
+
+    if(IsInverseRoomActive()){
+        isInverse = !isInverse;
+    }
 
     if(gBattleMoves[moveNum].split == SPLIT_STATUS)
         return GetMoveTypeEffectivenessStatus(moveNum, targetId, userId);
@@ -2354,14 +2363,26 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             break;
         }*/
 
-		if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
-			return MOVE_EFFECTIVENESS_NONE;
-		else if (mod <= UQ_4_12(0.5))
-			return MOVE_EFFECTIVENESS_HALF;
-		else if (mod >= UQ_4_12(2.0))
-			return MOVE_EFFECTIVENESS_DOUBLE;
-		else
-			return MOVE_EFFECTIVENESS_NORMAL;
+        if(!isInverse){
+            if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
+                return MOVE_EFFECTIVENESS_NONE;
+            else if (mod <= UQ_4_12(0.5))
+                return MOVE_EFFECTIVENESS_HALF;
+            else if (mod >= UQ_4_12(2.0))
+                return MOVE_EFFECTIVENESS_DOUBLE;
+            else
+                return MOVE_EFFECTIVENESS_NORMAL;
+        }
+        else{
+            if (abilityNullifiesDamage)
+                return MOVE_EFFECTIVENESS_NONE;
+            else if (mod >= UQ_4_12(2.0))
+                return MOVE_EFFECTIVENESS_HALF;
+            else if (mod <= UQ_4_12(0.5))
+                return MOVE_EFFECTIVENESS_DOUBLE;
+            else
+                return MOVE_EFFECTIVENESS_NORMAL;
+        }
 	}
 }
 

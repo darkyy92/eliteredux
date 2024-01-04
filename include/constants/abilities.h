@@ -500,8 +500,8 @@
 #define ABILITY_ARCHER           (ABILITIES_COUNT_LATEST_GEN + 202) // Boosts Arrow moves by 30%
 #define ABILITY_COLD_PLASMA      (ABILITIES_COUNT_LATEST_GEN + 203) // Electric type moves now inflict burn instead of paralysis
 #define ABILITY_SUPER_SLAMMER    (ABILITIES_COUNT_LATEST_GEN + 204) // Boosts Hammer/Slam moves by 30%
-
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_SUPER_SLAMMER + 1) 
+#define ABILITY_INVERSE_ROOM     (ABILITIES_COUNT_LATEST_GEN + 205) // Sets up the Inverse field condition for 3 turns upon entry
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_INVERSE_ROOM + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

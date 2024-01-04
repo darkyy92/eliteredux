@@ -6606,6 +6606,11 @@ BattleScript_TrickRoomEnds::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
+BattleScript_InverseRoomEnds::
+	printstring STRINGID_INVERSEROOMENDS
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 BattleScript_WonderRoomEnds::
 	printstring STRINGID_WONDERROOMENDS
 	waitmessage B_WAIT_TIME_LONG
@@ -10945,12 +10950,27 @@ BattleScript_TwistedDimensionActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_InversedRoomActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_INVERSEROOMACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 BattleScript_TwistedDimensionRemoved::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_TRICKROOMENDS
 	waitmessage B_WAIT_TIME_LONG
 	end3
+	
+BattleScript_InverseRoomRemoved::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_INVERSEROOMENDS
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 
 BattleScript_GripPincerActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER
