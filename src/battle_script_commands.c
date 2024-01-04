@@ -1994,7 +1994,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 
     // Bad Luck Ability lowers accuracy by 5%
     if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_BAD_LUCK, defAbility) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
-        moveAcc = (moveAcc * 95) / 100;
+        calc = (calc * 95) / 100;
 
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_COMPOUND_EYES, atkAbility))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
@@ -2284,6 +2284,13 @@ static void Cmd_damagecalc(void)
     if(isExtraMove){
         movePower = VarGet(VAR_EXTRA_MOVE_DAMAGE);
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
+    }
+
+    //to enable changing the power of a Future Sight
+    if(gCurrentMove == gWishFutureKnock.futureSightMove[gBattlerTarget] && 
+       gWishFutureKnock.futureSightCounter[gBattlerTarget] == 0){
+        movePower = gWishFutureKnock.futureSightPower[gBattlerTarget];
+        gWishFutureKnock.futureSightMove[gBattlerTarget] = MOVE_NONE;
     }
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
@@ -13345,6 +13352,7 @@ static void Cmd_trysetfutureattack(void)
     {
         gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
         gWishFutureKnock.futureSightMove[gBattlerTarget] = gCurrentMove;
+        gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[gCurrentMove].power;
         gWishFutureKnock.futureSightAttacker[gBattlerTarget] = gBattlerAttacker;
         gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
 
