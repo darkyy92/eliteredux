@@ -8206,9 +8206,15 @@ BattleScript_BattlerCoiledUp::
 	
 BattleScript_AttackerBecameTheType::
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_ATTACKERTYPECHANGEDTO
+	printstring STRINGID_ATTACKERGOTTHETYPE
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_AttackerBecameTheTypeFull::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERTYPECHANGEDTO
+	waitmessage B_WAIT_TIME_LONG
+	end2
 	
 BattleScript_SelfSufficientActivates::
 	copybyte gBattlerAbility, gBattlerAttacker

@@ -443,6 +443,7 @@ extern const u8 BattleScript_BattlerInnateStatRaiseOnSwitchIn[];
 extern const u8 BattleScript_BattlerAddedTheType[];
 extern const u8 BattleScript_BattlerCoiledUp[];
 extern const u8 BattleScript_AttackerBecameTheType[];
+extern const u8 BattleScript_AttackerBecameTheTypeFull[];
 extern const u8 BattleScript_SelfSufficientActivates[];
 extern const u8 BattleScript_BattlerEnvelopedItselfInAVeil[];
 extern const u8 BattleScript_AirBlowerActivated[];

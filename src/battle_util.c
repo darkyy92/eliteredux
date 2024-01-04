@@ -8316,22 +8316,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_MAGICAL_DUST:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && TARGET_TURN_DAMAGED
-			 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_PSYCHIC))
-            {
-				gBattleMons[gBattlerAttacker].type3 = TYPE_PSYCHIC;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
-				//BattleScriptPushCursorAndCallback(BattleScript_AttackerBecameTheType);
-				effect++;
-            }
-            break;
         case ABILITY_CUTE_CHARM:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -8932,7 +8916,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Magical Dust
-		if(BattlerHasInnate(battler, ABILITY_MAGICAL_DUST)){
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_MAGICAL_DUST)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8945,6 +8929,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
+				effect++;
+            }
+		}
+		
+		//Damp
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_DAMP)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED
+			 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_WATER))
+            {
+                u8 newtype = TYPE_WATER;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAMP;
+				gBattleMons[gBattlerAttacker].type1 = newtype;
+				gBattleMons[gBattlerAttacker].type2 = newtype;
+				gBattleMons[gBattlerAttacker].type3 = TYPE_MYSTERY;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, newtype);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerBecameTheTypeFull;
 				effect++;
             }
 		}
