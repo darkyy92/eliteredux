@@ -552,10 +552,10 @@ BattleScript_BleedTurnDmg::
 	goto BattleScript_DoStatusTurnDmg
 
 BattleScript_MoveUsedBleedHeal::
+	curestatus BS_TARGET
+	updatestatusicon BS_TARGET
 	printfromtable gBleedHealedStringIds
 	waitmessage B_WAIT_TIME_LONG
-	removeattackerstatus1
-	updatestatusicon BS_ATTACKER
 	goto BattleScript_MoveEnd
 
 BattleScript_MoveEffectBleed::
