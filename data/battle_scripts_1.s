@@ -8214,7 +8214,13 @@ BattleScript_AttackerBecameTheTypeFull::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ATTACKERTYPECHANGEDTO
 	waitmessage B_WAIT_TIME_LONG
-	end2
+	return
+
+BattleScript_DefenderBecameTheTypeFull::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_DEFENDERTYPECHANGEDTO
+	waitmessage B_WAIT_TIME_LONG
+	return
 	
 BattleScript_SelfSufficientActivates::
 	copybyte gBattlerAbility, gBattlerAttacker
