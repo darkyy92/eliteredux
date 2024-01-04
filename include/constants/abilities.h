@@ -501,7 +501,8 @@
 #define ABILITY_COLD_PLASMA      (ABILITIES_COUNT_LATEST_GEN + 203) // Electric type moves now inflict burn instead of paralysis
 #define ABILITY_SUPER_SLAMMER    (ABILITIES_COUNT_LATEST_GEN + 204) // Boosts Hammer/Slam moves by 30%
 #define ABILITY_INVERSE_ROOM     (ABILITIES_COUNT_LATEST_GEN + 205) // Sets up the Inverse field condition for 3 turns upon entry
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_INVERSE_ROOM + 1) 
+#define ABILITY_ACCELERATE       (ABILITIES_COUNT_LATEST_GEN + 206) // 2 turn based moves are now used instantly
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_ACCELERATE + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

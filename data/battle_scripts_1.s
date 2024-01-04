@@ -4096,6 +4096,7 @@ BattleScript_EffectTwoTurnsAttack::
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_RAZOR_WIND
 BattleScript_EffectTwoTurnsAttackContinue:
 	call BattleScriptFirstChargingTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 	goto BattleScript_TwoTurnMovesSecondTurn
@@ -5095,6 +5096,7 @@ BattleScript_EffectGust::
 
 BattleScript_EffectSolarbeam::
 	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_SolarbeamOnFirstTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_SolarbeamOnFirstTurn
 	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_SolarbeamOnFirstTurn
 	jumpifability BS_ATTACKER, ABILITY_SOLAR_FLARE, BattleScript_SolarbeamOnFirstTurn
 	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_SolarbeamOnFirstTurn

@@ -465,6 +465,7 @@ static const u8 sAbilityColdPlasmaDescription[] = _("Electric type moves now\nin
 static const u8 sAbilityArcherDescription[] = _("Boosts Arrow moves by 30%.");
 static const u8 sAbilitySuperSlammerDescription[] = _("Boosts Hammer and Slam\nmoves by 30%");
 static const u8 sAbilityInverseRoomDescription[] = _("Sets up the Inverse field\ncondition for 3 turns upon entry");
+static const u8 sAbilityAccelerateDescription[] = _("2 turn based moves are\nnow used instantly");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -944,6 +945,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_ARCHER] = _("Archer"),
         [ABILITY_SUPER_SLAMMER] = _("Super Slammer"),
         [ABILITY_INVERSE_ROOM] = _("Inverse Room"),
+        [ABILITY_ACCELERATE] = _("Accelerate"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1422,4 +1424,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_ARCHER] = sAbilityArcherDescription,
         [ABILITY_SUPER_SLAMMER] = sAbilitySuperSlammerDescription,
         [ABILITY_INVERSE_ROOM] = sAbilityInverseRoomDescription,
+        [ABILITY_ACCELERATE] = sAbilityAccelerateDescription,
 };
