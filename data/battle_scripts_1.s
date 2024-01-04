@@ -8565,6 +8565,14 @@ BattleScript_PickUpActivate::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_ForewarnReworkActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNFORESAWATTACK
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+
 BattleScript_BattlerHasNoDamageHits::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp

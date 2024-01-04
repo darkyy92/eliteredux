@@ -2286,6 +2286,13 @@ static void Cmd_damagecalc(void)
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
     }
 
+    //to enable changing the power of a Future Sight
+    if(gCurrentMove == gWishFutureKnock.futureSightMove[gBattlerTarget] && 
+       gWishFutureKnock.futureSightCounter[gBattlerTarget] == 0){
+        movePower = gWishFutureKnock.futureSightPower[gBattlerTarget];
+        gWishFutureKnock.futureSightMove[gBattlerTarget] = MOVE_NONE;
+    }
+
     GET_MOVE_TYPE(gCurrentMove, moveType);
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
 
@@ -13345,6 +13352,7 @@ static void Cmd_trysetfutureattack(void)
     {
         gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
         gWishFutureKnock.futureSightMove[gBattlerTarget] = gCurrentMove;
+        gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[gCurrentMove].power;
         gWishFutureKnock.futureSightAttacker[gBattlerTarget] = gBattlerAttacker;
         gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
 

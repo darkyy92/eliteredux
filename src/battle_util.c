@@ -3456,6 +3456,8 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
                 SetTypeBeforeUsingMove(gCurrentMove, gActiveBattler);
                 BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
+                //gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[gCurrentMove].power;
+
                 if (gWishFutureKnock.futureSightCounter[gActiveBattler] == 0
                  && gWishFutureKnock.futureSightCounter[gActiveBattler ^ BIT_FLANK] == 0)
                 {
@@ -4777,16 +4779,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             return effect; // Note: It returns effect as to not record the ability if Frisk does not activate.
-        case ABILITY_FOREWARN:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                ForewarnChooseMove(battler);
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
-            break;
         case ABILITY_DOWNLOAD:
             // Check if the switch-in ability has already been done
             if (!gSpecialStatuses[battler].switchInAbilityDone)
@@ -6018,6 +6010,62 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattlerAttacker = battler;
                     gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES | SIDE_STATUS_STICKY_WEB);
                     BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                    effect++;
+                }
+            }
+
+            // Forewarn
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_FOREWARN)){
+                bool8 activateAbilty = FALSE;
+                bool8 hasTarget      = FALSE;
+                u16 abilityToCheck = ABILITY_FOREWARN; //For easier copypaste
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                //Checks Target
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler) && gWishFutureKnock.futureSightCounter[gBattlerTarget] == 0)
+                    {
+                        gBattlerTarget = opposingBattler;
+                        hasTarget = TRUE;
+                    }
+                }
+
+                //This is the stuff that has to be changed for each ability
+                if(hasTarget && activateAbilty){
+                    u16 extraMove = MOVE_FUTURE_SIGHT; //The Extra Move to be used
+                    u8 movePower = 50; //The Move power, leave at 0 if you want it to be the same as the normal move
+                    u8 turns = 3; //The amount of turns the move will last
+
+                    gBattlerAttacker = battler;
+
+                    gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
+                    gWishFutureKnock.futureSightMove[gBattlerTarget] = extraMove;
+                    gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[extraMove].power;
+                    gWishFutureKnock.futureSightAttacker[gBattlerTarget] = gBattlerAttacker;
+                    gWishFutureKnock.futureSightCounter[gBattlerTarget] = turns;
+
+                    if(movePower != 0)
+                        gWishFutureKnock.futureSightPower[gBattlerTarget] = movePower;
+
+                    BattleScriptPushCursorAndCallback(BattleScript_ForewarnReworkActivates);
                     effect++;
                 }
             }

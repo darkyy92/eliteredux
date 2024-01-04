@@ -107,6 +107,7 @@ enum
     STATUS_INFO_PRIMARY,
     //Status 2
     STATUS_INFO_CONFUSION,
+    STATUS_INFO_FUTURE_SIGHT,
     //STATUS_INFO_FLINCHED,
     STATUS_INFO_UPROAR,
     STATUS_INFO_BIDE,
@@ -625,6 +626,9 @@ void UI_Battle_Menu_Init(MainCallback callback)
                     if(gBattleMons[j].status2 & STATUS2_CONFUSION)
                         isExtraInfoShown = TRUE;
                 break;
+                case STATUS_INFO_FUTURE_SIGHT:
+                    if(gWishFutureKnock.futureSightCounter[j] != 0)
+                        isExtraInfoShown = TRUE;
                 case STATUS_INFO_UPROAR:
                     if(gBattleMons[j].status2 & STATUS2_UPROAR)
                         isExtraInfoShown = TRUE;
@@ -1868,6 +1872,10 @@ const u8 sText_Title_Status_Confusion[]                    = _("Confused");
 const u8 sText_Title_Status_Confusion_Description[]        = _("Has a 33% chance to damage itself,\n"
                                                                "damage is calculated as if it were a\n"
                                                                "physical typeless move with a 40 BP.");
+const u8 sText_Title_Status_IncomingAttack[]               = _("Incoming Attack");
+const u8 sText_Title_Status_IncomingAttack_Description[]   = _("Will be hit by {STR_VAR_1}'s\n"
+                                                               "{STR_VAR_2} with a power of {STR_VAR_3}\n"
+                                                               "in some turns.");
 const u8 sText_Title_Status_Uproar[]                       = _("Causing an Uproar");
 const u8 sText_Title_Status_Uproar_Description[]           = _("Will use Uproar for some turns,\n"
                                                                "nobody can fall asleep while this\n"
@@ -2142,6 +2150,25 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Confusion_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_FUTURE_SIGHT:
+                StringCopy(gStringVar1, sText_Title_Status_IncomingAttack);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gWishFutureKnock.futureSightCounter[sMenuDataPtr->battlerId];
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, gSpeciesNames[gBattleMons[gWishFutureKnock.futureSightAttacker[sMenuDataPtr->battlerId]].species]);
+                StringCopy(gStringVar2, gMoveNames[gWishFutureKnock.futureSightMove[sMenuDataPtr->battlerId]]);
+                ConvertIntToDecimalStringN(gStringVar3, gWishFutureKnock.futureSightPower[sMenuDataPtr->battlerId], STR_CONV_MODE_LEFT_ALIGN, 4);
+                StringExpandPlaceholders(gStringVar4, sText_Title_Status_IncomingAttack_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar4);
                 printedInfo = TRUE;
             break;
             case STATUS_INFO_UPROAR:

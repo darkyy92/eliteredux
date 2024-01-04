@@ -479,6 +479,7 @@ extern const u8 BattleScript_DefenderSetsSpikeLayer_LooseQuills[];
 extern const u8 BattleScript_DefenderSetsSpikeLayer_Scrapyard[];
 extern const u8 BattleScript_DefenderSetsToxicSpikeLayer[];
 extern const u8 BattleScript_PickUpActivate[];
+extern const u8 BattleScript_ForewarnReworkActivates[];
 extern const u8 BattleScript_DefenderSetsStealthRock[];
 extern const u8 BattleScript_KingsWrathActivated[];
 extern const u8 BattleScript_QueensMourningActivated[];
