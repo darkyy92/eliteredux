@@ -2342,7 +2342,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         if(gBattleMoves[moveNum].effect == EFFECT_FREEZE_DRY && IS_BATTLER_OF_TYPE(targetId, TYPE_WATER)){
-            tempMod = UQ_4_12(2.0);
+            tempMod = UQ_4_12(4.0);
             MulModifier(&mod, tempMod);
         }
 
