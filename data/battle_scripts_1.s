@@ -8423,7 +8423,15 @@ BattleScript_AirBlowerActivated::
 	sethword sABILITY_OVERWRITE, 0
 	end3
 
-
+BattleScript_PastelVeilActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_PASTEL_VEIL
+	showabilitypopup BS_ABILITY_BATTLER
+	printstring STRINGID_PASTELVEILACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	sethword sABILITY_OVERWRITE, 0
+	end3
+	
 BattleScript_ElectromorphosisActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
 	call BattleScript_AbilityPopUp

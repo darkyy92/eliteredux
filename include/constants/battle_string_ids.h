@@ -702,8 +702,9 @@
 #define STRINGID_ATTACKERGOTTHETYPE  		      	  731
 #define STRINGID_DEFENDERTYPECHANGEDTO                732
 #define STRINGID_ATTACKERBECAMEINFECTED               733
+#define STRINGID_PASTELVEILACTIVATED                  734
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_ATTACKERBECAMEINFECTED + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PASTELVEILACTIVATED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

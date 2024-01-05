@@ -5258,7 +5258,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_SAFEGUARD;
                 gSideTimers[GetBattlerSide(battler)].safeguardBattlerId = gBattlerAttacker;
                 gSideTimers[GetBattlerSide(battler)].safeguardTimer = 5;
-				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+				BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivated);
 				effect++;
 			}
             break;
@@ -6638,7 +6638,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_SAFEGUARD;
                     gSideTimers[GetBattlerSide(battler)].safeguardBattlerId = gBattlerAttacker;
                     gSideTimers[GetBattlerSide(battler)].safeguardTimer = 5;
-                    BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+                    BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivated);
                     effect++;
                 }
             }
