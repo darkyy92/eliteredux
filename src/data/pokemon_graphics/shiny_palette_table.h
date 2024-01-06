@@ -1017,6 +1017,8 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(MUNKIDORI, gMonShinyPalette_Munkidori),
     SPECIES_SHINY_PAL(FEZANDIPITI, gMonShinyPalette_Fezandipiti),
     SPECIES_SHINY_PAL(OGERPON, gMonShinyPalette_Ogerpon),
+    SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_Enamorus_Therian),
+    SPECIES_SHINY_PAL(GIRATINA_ORIGIN_FORME, gMonShinyPalette_Giratina_Origin_Forme),
     SPECIES_SHINY_PAL(PALKIA_ORIGIN_FORME, gMonShinyPalette_Palkia_Origin_Forme),
     SPECIES_SHINY_PAL(DIALGA_ORIGIN_FORME, gMonShinyPalette_Dialga_Origin_Forme),
     SPECIES_SHINY_PAL(ROTOM_WASH_MODE, gMonShinyPalette_Rotom_Wash_Mode),

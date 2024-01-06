@@ -153,6 +153,10 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+	[SPECIES_ENAMORUS_THERIAN] = {
+	},
+	[SPECIES_GIRATINA_ORIGIN_FORME] = {
+	},
 	[SPECIES_PALKIA_ORIGIN_FORME] = {
 	},
 	[SPECIES_DIALGA_ORIGIN_FORME] = {

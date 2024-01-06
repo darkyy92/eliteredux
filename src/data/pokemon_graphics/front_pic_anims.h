@@ -10058,6 +10058,16 @@ static const union AnimCmd sAnim_OGERPON_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_ENAMORUS_THERIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_GIRATINA_ORIGIN_FORME_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_PALKIA_ORIGIN_FORME_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -16499,6 +16509,16 @@ static const union AnimCmd *const sAnims_OGERPON[] ={
     sAnim_OGERPON_1,
 };
 
+static const union AnimCmd *const sAnims_ENAMORUS_THERIAN[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ENAMORUS_THERIAN_1,
+};
+
+static const union AnimCmd *const sAnims_GIRATINA_ORIGIN_FORME[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GIRATINA_ORIGIN_FORME_1,
+};
+
 static const union AnimCmd *const sAnims_PALKIA_ORIGIN_FORME[] ={
     sAnim_GeneralFrame0,
     sAnim_PALKIA_ORIGIN_FORME_1,
@@ -18718,6 +18738,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(EXEGGUTOR_ALOLAN),
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(ENAMORUS_THERIAN),
+    ANIM_CMD(GIRATINA_ORIGIN_FORME),
     ANIM_CMD(PALKIA_ORIGIN_FORME),
     ANIM_CMD(DIALGA_ORIGIN_FORME),
     ANIM_CMD(ROTOM_WASH_MODE),

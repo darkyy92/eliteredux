@@ -88,7 +88,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ABOMASNOW] = sAbomasnowFormSpeciesIdTable,
     [SPECIES_GALLADE] = sGalladeFormSpeciesIdTable,
     [SPECIES_ROTOM_MOW_MODE] = sRotomFormSpeciesIdTable,
-    [SPECIES_GIRATINA] = sGiratinaFormSpeciesIdTable,
+    [SPECIES_GIRATINA_ORIGIN_FORME] = sGiratinaFormSpeciesIdTable,
     [SPECIES_SHAYMIN] = sShayminFormSpeciesIdTable,
     [SPECIES_ARCEUS] = sArceusFormSpeciesIdTable,
     [SPECIES_AUDINO] = sAudinoFormSpeciesIdTable,
@@ -657,5 +657,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DIALGA_ORIGIN_FORME] = sDialgaFormSpeciesIdTable,
 
     [SPECIES_PALKIA_ORIGIN_FORME] = sPalkiaFormSpeciesIdTable,
+
+    [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormSpeciesIdTable,
 
 };

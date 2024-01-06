@@ -5086,6 +5086,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset = 16
     },
+    [SPECIES_ENAMORUS_THERIAN] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_GIRATINA_ORIGIN_FORME] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_PALKIA_ORIGIN_FORME] =
     {
         .size = 0,

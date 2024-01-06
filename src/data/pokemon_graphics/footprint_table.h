@@ -879,6 +879,8 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_ROTOM_WASH_MODE] = gMonFootprint_Rotom_Wash_Mode,
     [SPECIES_DIALGA_ORIGIN_FORME] = gMonFootprint_Dialga_Origin_Forme,
     [SPECIES_PALKIA_ORIGIN_FORME] = gMonFootprint_Palkia_Origin_Forme,
+    [SPECIES_GIRATINA_ORIGIN_FORME] = gMonFootprint_Giratina_Origin_Forme,
+    [SPECIES_ENAMORUS_THERIAN] = gMonFootprint_Enamorus_Therian,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

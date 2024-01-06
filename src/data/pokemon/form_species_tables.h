@@ -591,6 +591,7 @@ static const u16 sRotomFormSpeciesIdTable[] = {
 
 static const u16 sGiratinaFormSpeciesIdTable[] = {
     SPECIES_GIRATINA,
+    SPECIES_GIRATINA_ORIGIN_FORME,
     SPECIES_GIRATINA_ORIGIN,
     FORM_SPECIES_END,
 };
@@ -1303,5 +1304,10 @@ static const u16 sDialgaFormSpeciesIdTable[] = {
 static const u16 sPalkiaFormSpeciesIdTable[] = {
     SPECIES_PALKIA,
     SPECIES_PALKIA_ORIGIN_FORME,
+    FORM_SPECIES_END,
+};
+static const u16 sEnamorusFormSpeciesIdTable[] = {
+    SPECIES_ENAMORUS,
+    SPECIES_ENAMORUS_THERIAN,
     FORM_SPECIES_END,
 };
