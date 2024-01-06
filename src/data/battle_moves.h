@@ -777,16 +777,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SONIC_BOOM] =
     {
-        .effect = EFFECT_SONICBOOM,
-        .power = 1,
+        .effect = EFFECT_SE_AGAINST_TYPE_HIT,
+        .power = 70,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STAT_STAGES_IGNORED,
         .split = SPLIT_SPECIAL,
+        .argument = TYPE_STEEL,
     },
 
     [MOVE_DISABLE] =
@@ -1313,16 +1314,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_RAGE] =
     {
-        .effect = EFFECT_DRAGON_RAGE,
-        .power = 1,
+        .effect = EFFECT_IGNORE_TYPE_IMMUNITY,
+        .power = 80,
         .type = TYPE_DRAGON,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
+        .argument = TYPE_FAIRY,
     },
 
     [MOVE_FIRE_SPIN] =

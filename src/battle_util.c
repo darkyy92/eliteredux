@@ -15872,7 +15872,7 @@ s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, 
     return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE, *typeEffectivenessModifier);
 }
 
-static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities)
+void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities)
 {
     u16 mod = GetTypeModifier(moveType, defType);
 
@@ -15901,7 +15901,10 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
-        mod = UQ_4_12(0.5);
+        //If Hit it neutrally
+        mod = UQ_4_12(1.0);
+        //If Hit not very effective
+        //mod = UQ_4_12(0.5);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
     }
@@ -15955,6 +15958,10 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
+    if(gBattleMoves[move].effect == EFFECT_IGNORE_TYPE_IMMUNITY && defType == gBattleMoves[move].argument && mod == UQ_4_12(0.0))
+        mod = UQ_4_12(1.0);
+    if(gBattleMoves[move].effect == EFFECT_SE_AGAINST_TYPE_HIT && defType == gBattleMoves[move].argument)
+        mod = UQ_4_12(2.0); // super-effective
     if (gBattleMoves[move].effect == EFFECT_FREEZE_DRY && defType == TYPE_WATER)
         mod = UQ_4_12(2.0); // super-effective
     if (gBattleMoves[move].effect == EFFECT_EXCALIBUR && defType == TYPE_DRAGON)
