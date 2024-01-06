@@ -417,6 +417,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAttackUpUserAlly		  @ EFFECT_HOWL
 	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
 	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_25
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_50
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp

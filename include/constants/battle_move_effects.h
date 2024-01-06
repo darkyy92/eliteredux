@@ -390,14 +390,17 @@
 #define EFFECT_SCALE_SHOT 384
 #define EFFECT_BEAK_BLAST 385
 
-#define EFFECT_EXCALIBUR       386        // Custom Effect
-#define EFFECT_FROSTBITE_HIT   387
-#define EFFECT_EXPANDING_FORCE 388
-#define EFFECT_STEEL_BEAM      389
-#define EFFECT_HOWL            390
-#define EFFECT_ATTRACT_HIT     391
-#define EFFECT_CURSE_HIT       392
+// Custom Effect
+#define EFFECT_EXCALIBUR        386
+#define EFFECT_FROSTBITE_HIT    387
+#define EFFECT_EXPANDING_FORCE  388
+#define EFFECT_STEEL_BEAM       389
+#define EFFECT_HOWL             390
+#define EFFECT_ATTRACT_HIT      391
+#define EFFECT_CURSE_HIT        392
+#define EFFECT_FLINCH_RECOIL_25 393
+#define EFFECT_FLINCH_RECOIL_50 394
 
-#define NUM_BATTLE_MOVE_EFFECTS 393 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 395 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
