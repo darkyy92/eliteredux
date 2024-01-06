@@ -3081,6 +3081,14 @@ static const u8 sPLASMAPULSEDescription[] = _(
     "Double damage to foes\n"
     "with status problems.");
 
+static const u8 sPIXIE_BEAMDescription[] = _(
+    "A powerfull magic beam\n"
+    "30% chance to drop user SpAtk.");
+
+static const u8 sPIXIE_SLASHDescription[] = _(
+    "The foe is slashed with a\n"
+    "whimsical blade. High Crit ratio.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3861,6 +3869,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SCORCHED_EARTH - 1] = sSCORCHED_EARTHDescription,
     [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
     [MOVE_PLASMA_PULSE -1]     = sPLASMAPULSEDescription,
+    [MOVE_PIXIE_BEAM   -1]     = sPIXIE_BEAMDescription,
+    [MOVE_PIXIE_SLASH   -1]     = sPIXIE_SLASHDescription,
+
+    
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4065,7 +4077,7 @@ static const u8 sMoveFourLineDescription_Aeroblast[] = _("A vortex of air is\nsh
 static const u8 sMoveFourLineDescription_CottonSpore[] = _("Cotton-like spores\ncling to the foe,\nsharply reducing\nits Speed stat.");
 static const u8 sMoveFourLineDescription_Reversal[] = _("An all-out attack\nthat becomes more\npowerful the less\nHP the user has.");
 static const u8 sMoveFourLineDescription_Spite[] = _("A move that cuts\n2 to 5 PP from the\nmove last used by\nthe foe.");
-static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n10% chance to\nfrostbite the foe."); // new
+static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n30% chance to\nfrostbite the foe."); // new
 static const u8 sMoveFourLineDescription_Protect[] = _("Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.");
 static const u8 sMoveFourLineDescription_MachPunch[] = _("A punch thrown at\nblinding speed.\n+1 priority.\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_ScaryFace[] = _("Frightens the foe\nwith a scary face\nto sharply reduce\nits Speed.");
@@ -4679,6 +4691,8 @@ static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("Double damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_PixeBeam[] = _("The foe is hit with\nintense fairy magic.\nIt has a 30% chance\nto drop SpA."); // new
+static const u8 sMoveFourLineDescription_PixeSlash[] = _("The foe is slashed\nwith a whimsical\nblade. High Crit ratio.\nKeen Edge boost."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5455,4 +5469,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SCORCHED_EARTH - 1] = sMoveFourLineDescription_ScorchedEarth,
     [MOVE_RAGING_FURY    - 1] = sMoveFourLineDescription_RagingFury,
     [MOVE_PLASMA_PULSE   - 1] = sMoveFourLineDescription_PlasmaPulse,
+    [MOVE_PIXIE_BEAM     - 1] = sMoveFourLineDescription_PixeBeam,
+    [MOVE_PIXIE_SLASH    - 1] = sMoveFourLineDescription_PixeSlash,
+    
 };
