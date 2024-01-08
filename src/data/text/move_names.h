@@ -775,7 +775,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
     [MOVE_PLASMA_PULSE]   = _("Plasma Pulse"),
     [MOVE_PIXIE_BEAM]     = _("Pixie Beam"),
-    [MOVE_PIXIE_SLASH]     = _("PixieSlash"),
+    [MOVE_PIXIE_SLASH]    = _("PixieSlash"),
+    [MOVE_SEISMIC_BLADE]  = _("SeismicBlde"),
+    [MOVE_MOUNTAIN_CHUNK] = _("Mtn.Chunk"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1559,4 +1561,6 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_PLASMA_PULSE]    = _("Plasma Pulse"),
     [MOVE_PIXIE_BEAM]      = _("Pixie Beam"),
     [MOVE_PIXIE_SLASH]     = _("Pixie Slash"),
+    [MOVE_SEISMIC_BLADE]   = _("Seismic Blade"),
+    [MOVE_MOUNTAIN_CHUNK]  = _("Mountain Chunk"),
 };
