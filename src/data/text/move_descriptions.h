@@ -3105,6 +3105,14 @@ static const u8 sMOUNTAIN_CHUNKDescription[] =_(
     "Hurls a chunk of a mountain\n"
     "at the opponent. Can Flinch.");
 
+static const u8 sPSYCHOKINESISDescription[] = _(
+    "Lifts up nearby objects and hurls\n"
+    "them at the opponent. Can Confuse.");
+
+static const u8 sFERTILE_FANGSDescription[] = _(
+    "User inserts it's ingraining fangs,\n"
+    "10% chance to apply leech seed.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3892,7 +3900,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ARCHER_SHOT    - 1] = sARCHER_SHOTDescription,  
     [MOVE_FROST_BRAND    - 1] = sFROST_BRANDDescription,
     [MOVE_FROST_BOLT     - 1] = sFROST_BRANDDescription, //ToChange
-    [MOVE_GLACIER_CRASH  - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_GLACIER_CRASH  - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_PSYCHOKINESIS  - 1] = sPSYCHOKINESISDescription,
+    [MOVE_FERTILE_FANGS  - 1] = sFERTILE_FANGSDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4716,7 +4726,10 @@ static const u8 sMoveFourLineDescription_PixeSlash[] = _("The foe is slashed\nwi
 static const u8 sMoveFourLineDescription_ArcherShot[] = _("Shoots a dead center\narrow at the target.\nArcher boost."); // new
 static const u8 sMoveFourLineDescription_FrostBrand[] = _("The foe is slashed with\na cryo blade. 10% chance\nto inflict frostbite.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_SeismicBlade[] = _("The foe is slashed\nwith a tectonic\nblade. High Crit ratio.\nKeen Edge boost."); // new
-static const u8 sMoveFourLineDescription_MountainChunk[] = _("Hurls a chunk of a\nmountain at the\nopponent. 30% Flinch chance.\nMega Launcher Boosted."); // new
+static const u8 sMoveFourLineDescription_MountainChunk[] = _("Hurls a chunk of a\nmountain at the\nopponent. 30% Flinch chance.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_Psychokinesis[] = _("Lifts up objects\nand hurls them at the\nopponent.30% Confuse.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_FertileFangs[] = _("User inserts it's\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost."); // new
+//sMoveFourLineDescription_Psychokinesis
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5501,5 +5514,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_FROST_BRAND    - 1] = sMoveFourLineDescription_FrostBrand,
     [MOVE_FROST_BOLT     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_GLACIER_CRASH  - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_PSYCHOKINESIS  - 1] = sMoveFourLineDescription_Psychokinesis,
+    [MOVE_FERTILE_FANGS  - 1] = sMoveFourLineDescription_FertileFangs,
     
 };
