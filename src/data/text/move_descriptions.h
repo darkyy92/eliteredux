@@ -3089,6 +3089,14 @@ static const u8 sPIXIE_SLASHDescription[] = _(
     "The foe is slashed with a\n"
     "whimsical blade. High Crit ratio.");
 
+static const u8 sARCHER_SHOTDescription[] = _(
+    "Shoots a dead center arrow at the\n"
+    "target. Archer boost.");
+
+static const u8 sFROST_BRANDDescription[] = _(
+    "The foe is slashed with an icy blade.\n"
+    "10% chance to inflict frostbite.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3855,24 +3863,25 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
 
     // Darky's Custom Moves
-    [MOVE_DEATHROLL    - 1]   = sDEATHROLLDescription,
-    [MOVE_EXCALIBUR    - 1]   = sEXCALIBURDescription,
-    [MOVE_AQUA_FANG    - 1]   = sAQUA_FANGDescription,
-    [MOVE_WAVE_CRASH   - 1]   = sWAVE_CRASHDescription,
-    [MOVE_SMITE        - 1]   = sSMITEDescription,
-    [MOVE_OUTBURST     - 1]   = sOUTBURSTDescription,
-    [MOVE_SEISMIC_FIST - 1]   = sSEISMIC_FISTDescription,
-    [MOVE_IRON_FANGS - 1]     = sIRON_FANGSDescription,
-    [MOVE_SHADOW_FANGS - 1]   = sSHADOW_FANGSDescription,
-    [MOVE_LOVELY_BITE - 1]    = sLOVELY_BITEDescription,
-    [MOVE_JAGGED_FANGS - 1]   = sJAGGED_FANGSDescription,
+    [MOVE_DEATHROLL      - 1] = sDEATHROLLDescription,
+    [MOVE_EXCALIBUR      - 1] = sEXCALIBURDescription,
+    [MOVE_AQUA_FANG      - 1] = sAQUA_FANGDescription,
+    [MOVE_WAVE_CRASH     - 1] = sWAVE_CRASHDescription,
+    [MOVE_SMITE          - 1] = sSMITEDescription,
+    [MOVE_OUTBURST       - 1] = sOUTBURSTDescription,
+    [MOVE_SEISMIC_FIST   - 1] = sSEISMIC_FISTDescription,
+    [MOVE_IRON_FANGS     - 1] = sIRON_FANGSDescription,
+    [MOVE_SHADOW_FANGS   - 1] = sSHADOW_FANGSDescription,
+    [MOVE_LOVELY_BITE    - 1] = sLOVELY_BITEDescription,
+    [MOVE_JAGGED_FANGS   - 1] = sJAGGED_FANGSDescription,
     [MOVE_SCORCHED_EARTH - 1] = sSCORCHED_EARTHDescription,
-    [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
-    [MOVE_PLASMA_PULSE -1]     = sPLASMAPULSEDescription,
-    [MOVE_PIXIE_BEAM   -1]     = sPIXIE_BEAMDescription,
-    [MOVE_PIXIE_SLASH   -1]     = sPIXIE_SLASHDescription,
-
-    
+    [MOVE_RAGING_FURY    - 1] = sRAGINGFURYDescription,
+    [MOVE_PLASMA_PULSE   - 1] = sPLASMAPULSEDescription,
+    [MOVE_PIXIE_BEAM     - 1] = sPIXIE_BEAMDescription,
+    [MOVE_PIXIE_SLASH    - 1] = sPIXIE_SLASHDescription,
+    [MOVE_ARCHER_SHOT    - 1] = sARCHER_SHOTDescription,  
+    [MOVE_FROST_BRAND    - 1] = sFROST_BRANDDescription,
+    [MOVE_FROST_BOLT     - 1] = sFROST_BRANDDescription, //ToChange
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4693,6 +4702,8 @@ static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nab
 static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("Double damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_PixeBeam[] = _("The foe is hit with\nintense fairy magic.\nIt has a 30% chance\nto drop SpA."); // new
 static const u8 sMoveFourLineDescription_PixeSlash[] = _("The foe is slashed\nwith a whimsical\nblade. High Crit ratio.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_ArcherShot[] = _("Shoots a dead center\narrow at the target.\nArcher boost."); // new
+static const u8 sMoveFourLineDescription_FrostBrand[] = _("The foe is slashed with\na cryo blade. 10% chance\nto inflict frostbite.\nKeen Edge boost."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5471,5 +5482,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_PLASMA_PULSE   - 1] = sMoveFourLineDescription_PlasmaPulse,
     [MOVE_PIXIE_BEAM     - 1] = sMoveFourLineDescription_PixeBeam,
     [MOVE_PIXIE_SLASH    - 1] = sMoveFourLineDescription_PixeSlash,
-    
+    [MOVE_ARCHER_SHOT    - 1] = sMoveFourLineDescription_ArcherShot,
+    [MOVE_FROST_BRAND    - 1] = sMoveFourLineDescription_FrostBrand,
+    [MOVE_FROST_BOLT     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
 };

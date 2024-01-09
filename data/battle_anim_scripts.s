@@ -797,6 +797,9 @@ gBattleAnims_Moves::
 	.4byte Move_DRACONIC_FANGS
 	.4byte Move_PIXIE_BEAM
 	.4byte Move_PIXIE_SLASH
+	.4byte Move_ARCHER_SHOT
+	.4byte Move_FROST_BRAND
+	.4byte Move_FROST_BOLT
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3910,6 +3913,15 @@ Move_PIXIE_BEAM:
 
 Move_PIXIE_SLASH:
    goto Move_SACRED_SWORD
+
+Move_ARCHER_SHOT:
+   goto Move_THOUSAND_ARROWS
+
+Move_FROST_BRAND:
+   goto Move_CUT
+
+Move_FROST_BOLT:
+   goto Move_THOUSAND_ARROWS
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

@@ -3781,6 +3781,48 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_STATUS,
     },
 
+    [MOVE_ARCHER_SHOT] =
+    {
+        .effect = EFFECT_HIT,
+        .type = TYPE_NORMAL,
+        .power = 95,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_FROST_BOLT] =
+    {
+        .effect = EFFECT_FROSTBITE_HIT,
+        .type = TYPE_ICE,
+        .power = 80,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_ARROW_BASED | FLAG_HIGH_CRIT,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_FROST_BRAND] =
+    {
+        .effect = EFFECT_FROSTBITE_HIT,
+        .type = TYPE_ICE,
+        .power = 80,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 10,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
+
     [MOVE_HIDDEN_POWER] =
     {
         #if B_HIDDEN_POWER_DMG >= GEN_6
