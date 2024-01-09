@@ -809,6 +809,8 @@ gBattleAnims_Moves::
 	.4byte Move_SHOCKING_EDGE
 	.4byte Move_LIGHTING_SRIKE
 	.4byte Move_VOLT_BOLT
+	.4byte Move_PSYCHOKINESIS
+	.4byte Move_FERTILE_FANGS
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3958,6 +3960,12 @@ Move_LIGHTING_SRIKE:
 
 Move_VOLT_BOLT:
    goto Move_VOLT_TACKLE
+   
+Move_PSYCHOKINESIS:
+   goto Move_STRENGTH
+
+Move_FERTILE_FANGS:
+   goto Move_BUG_BITE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

@@ -815,8 +815,10 @@
 #define MOVE_SHOCKING_EDGE   782
 #define MOVE_LIGHTING_SRIKE  783
 #define MOVE_VOLT_BOLT       784 //Lmao at the name
+#define MOVE_PSYCHOKINESIS   785
+#define MOVE_FERTILE_FANGS   786
 
-#define MOVES_COUNT_DARKY   785
+#define MOVES_COUNT_DARKY    787
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
