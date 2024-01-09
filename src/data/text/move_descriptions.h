@@ -3096,7 +3096,7 @@ static const u8 sARCHER_SHOTDescription[] = _(
 static const u8 sFROST_BRANDDescription[] = _(
     "The foe is slashed with an icy blade.\n"
     "10% chance to inflict frostbite.");
-    
+
 static const u8 sSEISMIC_BLADEDescription[] = _(
     "The foe is slashed with a\n"
     "tectonic blade. High Crit ratio.");
@@ -3892,6 +3892,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ARCHER_SHOT    - 1] = sARCHER_SHOTDescription,  
     [MOVE_FROST_BRAND    - 1] = sFROST_BRANDDescription,
     [MOVE_FROST_BOLT     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_GLACIER_CRASH  - 1] = sFROST_BRANDDescription, //ToChange 
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5499,5 +5500,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_ARCHER_SHOT    - 1] = sMoveFourLineDescription_ArcherShot,
     [MOVE_FROST_BRAND    - 1] = sMoveFourLineDescription_FrostBrand,
     [MOVE_FROST_BOLT     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_GLACIER_CRASH  - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     
 };

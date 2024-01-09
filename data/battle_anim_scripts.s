@@ -802,6 +802,7 @@ gBattleAnims_Moves::
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
+	.4byte Move_GLACIER_CRASH
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3930,6 +3931,9 @@ Move_FROST_BRAND:
 
 Move_FROST_BOLT:
    goto Move_THOUSAND_ARROWS
+
+Move_GLACIER_CRASH:
+   goto Move_ICICLE_CRASH
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

@@ -781,6 +781,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_FROST_BOLT]     = _("Frost Bolt"),
     [MOVE_SEISMIC_BLADE]  = _("SeismicBlde"),
     [MOVE_MOUNTAIN_CHUNK] = _("Mtn.Chunk"),
+    [MOVE_GLACIER_CRASH]  = _("GlacierCrash"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1569,4 +1570,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_FROST_BOLT]      = _("Frost Bolt"),
     [MOVE_SEISMIC_BLADE]   = _("Seismic Blade"),
     [MOVE_MOUNTAIN_CHUNK]  = _("Mountain Chunk"),
+    [MOVE_GLACIER_CRASH]   = _("Glacier Crash"),
 };
