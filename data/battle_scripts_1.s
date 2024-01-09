@@ -421,6 +421,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_50
 	.4byte BattleScript_EffectHit                     @ EFFECT_IGNORE_TYPE_IMMUNITY
 	.4byte BattleScript_EffectHit                     @ EFFECT_SE_AGAINST_TYPE_HIT
+	.4byte BattleScript_EffectHit                     @ EFFECT_DOUBLE_DMG_IF_STATUS1
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp

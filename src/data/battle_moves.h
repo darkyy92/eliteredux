@@ -3791,7 +3791,97 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_ARROW_BASED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_ZEPHYR_RUSH] = 
+    {
+        .power = 100,
+        .pp = 10,
+        .effect = EFFECT_RECOIL_IF_MISS,
+        .type = TYPE_FIGHTING,
+        .accuracy = 95,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_RECKLESS_BOOST | FLAG_AIR_BASED | FLAG_MEGA_LAUNCHER_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_SHOCKING_JAB] = 
+    {
+        .effect = EFFECT_PARALYZE_HIT,
+        .type = TYPE_ELECTRIC,
+        .power = 80,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_HORN_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_SHOCKING_EDGE] = 
+    {
+        .effect = EFFECT_PARALYZE_HIT,
+        .type = TYPE_ELECTRIC,
+        .power = 80,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_LIGHTING_SRIKE] = 
+    {
+        .effect = EFFECT_DOUBLE_DMG_IF_STATUS1,
+        .type = TYPE_ELECTRIC,
+        .power = 70,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+        .argument = STATUS1_PARALYSIS,
+    },
+
+    [MOVE_VOLT_BOLT] = 
+    {
+        .effect = EFFECT_HIT,
+        .type = TYPE_ELECTRIC,
+        .power = 95,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_SUPERSONIC_SHOT] =
+    {
+        .effect = EFFECT_HIT,
+        .type = TYPE_FLYING,
+        .power = 60,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED | FLAG_ALWAYS_CRIT,
         .split = SPLIT_PHYSICAL,
     },
 
@@ -3819,7 +3909,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_ARROW_BASED | FLAG_HIGH_CRIT,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
+        .flags2 = FLAG_ARROW_BASED,
         .split = SPLIT_PHYSICAL,
     },
 

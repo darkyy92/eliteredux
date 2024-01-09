@@ -803,6 +803,12 @@ gBattleAnims_Moves::
 	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
 	.4byte Move_GLACIER_CRASH
+	.4byte Move_SUPERSONIC_SHOT
+	.4byte Move_ZEPHYR_RUSH
+	.4byte Move_SHOCKING_JAB
+	.4byte Move_SHOCKING_EDGE
+	.4byte Move_LIGHTING_SRIKE
+	.4byte Move_VOLT_BOLT
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3934,6 +3940,24 @@ Move_FROST_BOLT:
 
 Move_GLACIER_CRASH:
    goto Move_ICICLE_CRASH
+
+Move_SUPERSONIC_SHOT:
+   goto Move_SUPERSONIC
+
+Move_ZEPHYR_RUSH:
+   goto Move_JUMP_KICK
+
+Move_SHOCKING_JAB:
+   goto Move_POISON_JAB
+
+Move_SHOCKING_EDGE:
+   goto Move_ZING_ZAP
+
+Move_LIGHTING_SRIKE:
+   goto Move_THUNDER_SHOCK
+
+Move_VOLT_BOLT:
+   goto Move_VOLT_TACKLE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

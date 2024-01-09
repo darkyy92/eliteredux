@@ -14278,6 +14278,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // move effect
     switch (gBattleMoves[move].effect)
     {
+    case EFFECT_DOUBLE_DMG_IF_STATUS1:
+        if (gBattleMons[battlerDef].status1 & (gBattleMoves[move].argument))
+            MulModifier(&modifier, UQ_4_12(2.0));
+        break;
     case EFFECT_FACADE:
         if (gBattleMons[battlerAtk].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_PARALYSIS| STATUS1_FROSTBITE))
             MulModifier(&modifier, UQ_4_12(2.0));
