@@ -1988,33 +1988,6 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
-        /*switch(gBattleMoves[moveNum].effect){
-            case EFFECT_IGNORE_TYPE_IMMUNITY:
-                if(mod == UQ_4_12(0.0)){
-                    if(gBattleMons[targetId].type1 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type2 != gBattleMoves[moveNum].argument)      //Removes First Type Effectiveness and recalculates it
-                        mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
-                    else if(gBattleMons[targetId].type2 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type1 != gBattleMoves[moveNum].argument) //Removes Second Type Effectiveness and recalculates it
-                        mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
-                    else if(gBattleMons[targetId].type1 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type2 == gBattleMoves[moveNum].argument)
-                        mod = UQ_4_12(1.0);
-                }
-            break;
-            case EFFECT_SE_AGAINST_TYPE_HIT:
-                if(mod == UQ_4_12(0.0)){
-                    if(gBattleMons[targetId].type1 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type2 != gBattleMoves[moveNum].argument)      //Removes First Type Effectiveness and recalculates it
-                        mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
-                    else if(gBattleMons[targetId].type2 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type1 != gBattleMoves[moveNum].argument) //Removes Second Type Effectiveness and recalculates it
-                        mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
-                    else if(gBattleMons[targetId].type1 == gBattleMoves[moveNum].argument && gBattleMons[targetId].type2 == gBattleMoves[moveNum].argument)
-                        mod = UQ_4_12(1.0);
-                }
-                else{
-                    tempMod = UQ_4_12(2.0);
-                    MulModifier(&mod, tempMod);
-                }
-            break;
-        }*/
-
         switch(moveType){
             case TYPE_GROUND:
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_LEVITATE, moveNum))

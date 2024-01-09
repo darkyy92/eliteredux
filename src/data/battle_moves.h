@@ -4643,12 +4643,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SECRET_POWER] =
     {
-        .effect = EFFECT_SECRET_POWER,
+        .effect = EFFECT_HIDDEN_POWER,
         .power = 70,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 20,
-        .secondaryEffectChance = 30,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_FIELD_BASED,
