@@ -797,6 +797,8 @@ gBattleAnims_Moves::
 	.4byte Move_DRACONIC_FANGS
 	.4byte Move_PIXIE_BEAM
 	.4byte Move_PIXIE_SLASH
+	.4byte Move_SEISMIC_BLADE
+	.4byte Move_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
@@ -3909,10 +3911,16 @@ Move_DRACONIC_FANGS:
     goto Move_BITE
 
 Move_PIXIE_BEAM:
-   goto Move_FLEUR_CANNON
+    goto Move_FLEUR_CANNON
 
 Move_PIXIE_SLASH:
-   goto Move_SACRED_SWORD
+    goto Move_SACRED_SWORD
+
+Move_SEISMIC_BLADE:
+	goto Move_SACRED_SWORD
+
+Move_MOUNTAIN_CHUNK:
+    goto Move_ROCK_SLIDE
 
 Move_ARCHER_SHOT:
    goto Move_THOUSAND_ARROWS

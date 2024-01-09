@@ -3096,6 +3096,14 @@ static const u8 sARCHER_SHOTDescription[] = _(
 static const u8 sFROST_BRANDDescription[] = _(
     "The foe is slashed with an icy blade.\n"
     "10% chance to inflict frostbite.");
+    
+static const u8 sSEISMIC_BLADEDescription[] = _(
+    "The foe is slashed with a\n"
+    "tectonic blade. High Crit ratio.");
+
+static const u8 sMOUNTAIN_CHUNKDescription[] =_(
+    "Hurls a chunk of a mountain\n"
+    "at the opponent. Can Flinch.");
 
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3879,6 +3887,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PLASMA_PULSE   - 1] = sPLASMAPULSEDescription,
     [MOVE_PIXIE_BEAM     - 1] = sPIXIE_BEAMDescription,
     [MOVE_PIXIE_SLASH    - 1] = sPIXIE_SLASHDescription,
+    [MOVE_SEISMIC_BLADE  - 1] = sSEISMIC_BLADEDescription,
+    [MOVE_MOUNTAIN_CHUNK - 1] = sMOUNTAIN_CHUNKDescription,
     [MOVE_ARCHER_SHOT    - 1] = sARCHER_SHOTDescription,  
     [MOVE_FROST_BRAND    - 1] = sFROST_BRANDDescription,
     [MOVE_FROST_BOLT     - 1] = sFROST_BRANDDescription, //ToChange
@@ -4704,6 +4714,8 @@ static const u8 sMoveFourLineDescription_PixeBeam[] = _("The foe is hit with\nin
 static const u8 sMoveFourLineDescription_PixeSlash[] = _("The foe is slashed\nwith a whimsical\nblade. High Crit ratio.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_ArcherShot[] = _("Shoots a dead center\narrow at the target.\nArcher boost."); // new
 static const u8 sMoveFourLineDescription_FrostBrand[] = _("The foe is slashed with\na cryo blade. 10% chance\nto inflict frostbite.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_SeismicBlade[] = _("The foe is slashed\nwith a tectonic\nblade. High Crit ratio.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_MountainChunk[] = _("Hurls a chunk of a\nmountain at the\nopponent. 30% Flinch chance.\nMega Launcher Boosted."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5482,7 +5494,10 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_PLASMA_PULSE   - 1] = sMoveFourLineDescription_PlasmaPulse,
     [MOVE_PIXIE_BEAM     - 1] = sMoveFourLineDescription_PixeBeam,
     [MOVE_PIXIE_SLASH    - 1] = sMoveFourLineDescription_PixeSlash,
+    [MOVE_SEISMIC_BLADE  - 1] = sMoveFourLineDescription_SeismicBlade,
+    [MOVE_MOUNTAIN_CHUNK - 1] = sMoveFourLineDescription_MountainChunk,
     [MOVE_ARCHER_SHOT    - 1] = sMoveFourLineDescription_ArcherShot,
     [MOVE_FROST_BRAND    - 1] = sMoveFourLineDescription_FrostBrand,
     [MOVE_FROST_BOLT     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    
 };
