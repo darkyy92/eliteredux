@@ -9050,21 +9050,15 @@ static void Cmd_various(void)
         }
         else
         {
-            for (i = 0; i < gBattlersCount; i++)
-                data[i] = gBattlerByTurnOrder[i];
-            for (i = 0; i < gBattlersCount; i++)
+            // Shift battlers up to target position and move target battler to last.
+            u8 targetPosition = GetBattlerTurnOrderNum(gBattlerTarget);
+            for (i = targetPosition; i < gBattlersCount - 1; i++)
             {
-                if (data[i] == gBattlerTarget)
-                {
-                    for (j = i + 1; j < gBattlersCount; j++)
-                        data[i++] = data[j];
-                }
-                else
-                {
-                    gBattlerByTurnOrder[i] = data[i];
-                }
+                gBattlerByTurnOrder[i] = gBattlerByTurnOrder[i + 1];
             }
+            
             gBattlerByTurnOrder[gBattlersCount - 1] = gBattlerTarget;
+            gQuashedBattlers++;
             gBattlescriptCurrInstr += 7;
         }
         return;
@@ -9555,25 +9549,18 @@ static void Cmd_various(void)
         }
         else
         {
-            for (i = 0; i < gBattlersCount; i++)
-                data[i] = gBattlerByTurnOrder[i];
-            if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 2)
+            // Shift battlers down to target position and move target battler to next in line.
+            u8 targetPosition = GetBattlerTurnOrderNum(gBattlerTarget);
+            for (i = targetPosition; i > gCurrentTurnActionNumber + 1; i--)
             {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[3];
+                gBattlerByTurnOrder[i] = gBattlerByTurnOrder[i-1];
             }
-            else if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 3)
-            {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[2];
-            }
-            else
-            {
-                gBattlerByTurnOrder[2] = gBattlerTarget;
-                gBattlerByTurnOrder[3] = data[2];
-            }
+            
+            gBattlerByTurnOrder[gCurrentTurnActionNumber + 1] = gBattlerTarget;
+            gAfterYouBattlers++;
+            
+            if (targetPosition >= gBattlersCount - gQuashedBattlers)
+                gQuashedBattlers--;
             gBattlescriptCurrInstr += 7;
         }
         return;

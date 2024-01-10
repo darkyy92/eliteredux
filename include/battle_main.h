@@ -81,6 +81,7 @@ s32 GetHighestLevelInPlayerParty(void);
 u16 selectMoves (u16 species, u8 i, u16 atk, u16 spAtk);
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer);
 bool32 IsWildMonSmart(void);
+void RecalculateMoveOrder(u8 startingFrom, u8 processTo);
 
 extern struct UnknownPokemonStruct4 gMultiPartnerParty[MULTI_PARTY_SIZE];
 
