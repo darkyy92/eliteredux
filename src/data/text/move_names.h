@@ -788,8 +788,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_SHOCKING_EDGE]   = _("Shock Edge"),
     [MOVE_LIGHTING_SRIKE]  = _("Light Strike"),
     [MOVE_VOLT_BOLT]       = _("Volt Bolt"),
-    [MOVE_PSYCHOKINESIS]  = _("Psyckinesis"),
-    [MOVE_FERTILE_FANGS]  = _("FertileFangs"),
+    [MOVE_PSYCHOKINESIS]   = _("Psyckinesis"),
+    [MOVE_FERTILE_FANGS]   = _("FertileFangs"),
+    [MOVE_SCATTER_BLAST]   = _("ScatterBlast"),
+    [MOVE_JAGGED_PUNCH]    = _("Jagged Punc"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1587,4 +1589,6 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_VOLT_BOLT]       = _("Volt Bolt"),
     [MOVE_PSYCHOKINESIS]   = _("Psychokinesis"),
     [MOVE_FERTILE_FANGS]   = _("Fertile Fangs"),
+    [MOVE_SCATTER_BLAST]   = _("Scatter Blast"),
+    [MOVE_JAGGED_PUNCH]    = _("Jagged Punc"),
 };

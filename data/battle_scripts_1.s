@@ -422,6 +422,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_IGNORE_TYPE_IMMUNITY
 	.4byte BattleScript_EffectHit                     @ EFFECT_SE_AGAINST_TYPE_HIT
 	.4byte BattleScript_EffectHit                     @ EFFECT_DOUBLE_DMG_IF_STATUS1
+	.4byte BattleScript_EffectStealthRockHit          @ EFFECT_STEALTH_ROCK_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -3191,6 +3192,18 @@ BattleScript_MoveEffectCurse::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectStealthRockHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectStealthRockHit
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectStealthRockHit::
+	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
+	waitanimation
+	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 	
 BattleScript_EffectHit_Return::

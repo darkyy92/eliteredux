@@ -817,8 +817,10 @@
 #define MOVE_VOLT_BOLT       784 //Lmao at the name
 #define MOVE_PSYCHOKINESIS   785
 #define MOVE_FERTILE_FANGS   786
+#define MOVE_SCATTER_BLAST   787
+#define MOVE_JAGGED_PUNCH    788
 
-#define MOVES_COUNT_DARKY    787
+#define MOVES_COUNT_DARKY    789
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

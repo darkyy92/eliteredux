@@ -12332,6 +12332,18 @@ static void Cmd_trytoapplymoveeffect(void)
                 }
             }
         break;
+        case EFFECT_STEALTH_ROCK_HIT:
+            if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
+                && !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK))
+                {
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_STEALTH_ROCK;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
     }
 
     if (appliedEffect)

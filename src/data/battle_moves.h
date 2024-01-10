@@ -3923,8 +3923,36 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .priority = 10,
+        .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_SCATTER_BLAST] =
+    {
+        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .type = TYPE_GROUND,
+        .power = 80,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
+        .split = SPLIT_SPECIAL,
+    },
+
+    [MOVE_JAGGED_PUNCH] =
+    {
+        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .type = TYPE_ROCK,
+        .power = 75,
+        .accuracy = 90,
+        .pp = 10,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_IRON_FIST_BOOST,
         .split = SPLIT_PHYSICAL,
     },
 

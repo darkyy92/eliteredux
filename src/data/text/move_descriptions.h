@@ -3907,8 +3907,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SHOCKING_EDGE   - 1] = sFROST_BRANDDescription, //ToChange 
     [MOVE_LIGHTING_SRIKE  - 1] = sFROST_BRANDDescription, //ToChange 
     [MOVE_VOLT_BOLT       - 1] = sFROST_BRANDDescription, //ToChange 
-    [MOVE_PSYCHOKINESIS  - 1] = sPSYCHOKINESISDescription,
-    [MOVE_FERTILE_FANGS  - 1] = sFERTILE_FANGSDescription,
+    [MOVE_PSYCHOKINESIS   - 1] = sPSYCHOKINESISDescription,
+    [MOVE_FERTILE_FANGS   - 1] = sFERTILE_FANGSDescription,
+    [MOVE_SCATTER_BLAST   - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_JAGGED_PUNCH    - 1] = sFROST_BRANDDescription, //ToChange 
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5526,6 +5528,8 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SHOCKING_EDGE   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     [MOVE_LIGHTING_SRIKE  - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     [MOVE_VOLT_BOLT       - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
-    [MOVE_PSYCHOKINESIS  - 1] = sMoveFourLineDescription_Psychokinesis,
-    [MOVE_FERTILE_FANGS  - 1] = sMoveFourLineDescription_FertileFangs,
+    [MOVE_PSYCHOKINESIS   - 1] = sMoveFourLineDescription_Psychokinesis,
+    [MOVE_FERTILE_FANGS   - 1] = sMoveFourLineDescription_FertileFangs,
+    [MOVE_SCATTER_BLAST   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_JAGGED_PUNCH    - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
 };
