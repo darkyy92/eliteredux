@@ -12344,6 +12344,20 @@ static void Cmd_trytoapplymoveeffect(void)
                 }
             }
         break;
+        case EFFECT_LEECH_SEED_HIT:
+             if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gBattleMons[gBattlerTarget].hp != 0
+                && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+                && TARGET_TURN_DAMAGED 
+                && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+                {
+                    gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
     }
 
     if (appliedEffect)

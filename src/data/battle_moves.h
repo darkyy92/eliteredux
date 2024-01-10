@@ -9937,7 +9937,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FERTILE_FANGS] =
     {
-        .effect = EFFECT_LEECH_SEED,
+        .effect = EFFECT_LEECH_SEED_HIT,
         .power = 70,
         .type = TYPE_GRASS,
         .accuracy = 100,
