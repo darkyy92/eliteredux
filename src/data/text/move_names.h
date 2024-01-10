@@ -791,7 +791,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_PSYCHOKINESIS]   = _("Psyckinesis"),
     [MOVE_FERTILE_FANGS]   = _("FertileFangs"),
     [MOVE_SCATTER_BLAST]   = _("ScatterBlast"),
-    [MOVE_JAGGED_PUNCH]    = _("Jagged Punc"),
+    [MOVE_JAGGED_PUNCH]    = _("JaggedPunch"),
+    [MOVE_CUTSIE_SLAP]     = _("Cutsie Slap"),
+    [MOVE_FAIRY_SPHERES]   = _("FairySphere"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1590,5 +1592,7 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_PSYCHOKINESIS]   = _("Psychokinesis"),
     [MOVE_FERTILE_FANGS]   = _("Fertile Fangs"),
     [MOVE_SCATTER_BLAST]   = _("Scatter Blast"),
-    [MOVE_JAGGED_PUNCH]    = _("Jagged Punc"),
+    [MOVE_JAGGED_PUNCH]    = _("Jagged Punch"),
+    [MOVE_CUTSIE_SLAP]     = _("Cutsie Slap"),
+    [MOVE_FAIRY_SPHERES]   = _("Fairy Spheres"),
 };

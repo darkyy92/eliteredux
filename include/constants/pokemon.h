@@ -318,6 +318,8 @@
 #define FLAG_ALWAYS_CRIT                          (1 << 2) // For the move Frost Breath
 #define FLAG_HAMMER_BASED                         (1 << 3) // For Super Slammer
 #define FLAG_ARROW_BASED                          (1 << 4) // For Archer
+#define FLAG_HITS_SPDEF                           (1 << 5) // To Avoid making new Move Effects
+#define FLAG_HITS_PHYSICAL_DEF                    (1 << 6) // To Avoid making new Move Effects
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

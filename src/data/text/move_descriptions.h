@@ -3911,6 +3911,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_FERTILE_FANGS   - 1] = sFERTILE_FANGSDescription,
     [MOVE_SCATTER_BLAST   - 1] = sFROST_BRANDDescription, //ToChange 
     [MOVE_JAGGED_PUNCH    - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_CUTSIE_SLAP     - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_FAIRY_SPHERES   - 1] = sFROST_BRANDDescription, //ToChange 
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5532,4 +5534,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_FERTILE_FANGS   - 1] = sMoveFourLineDescription_FertileFangs,
     [MOVE_SCATTER_BLAST   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     [MOVE_JAGGED_PUNCH    - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_CUTSIE_SLAP     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_FAIRY_SPHERES   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
 };

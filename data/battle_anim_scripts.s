@@ -813,6 +813,8 @@ gBattleAnims_Moves::
 	.4byte Move_FERTILE_FANGS
 	.4byte Move_SCATTER_BLAST
 	.4byte Move_JAGGED_PUNCH
+	.4byte Move_CUTSIE_SLAP
+	.4byte Move_FAIRY_SPHERES
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3974,6 +3976,38 @@ Move_SCATTER_BLAST:
 
 Move_JAGGED_PUNCH:
    goto Move_MACH_PUNCH
+
+Move_CUTSIE_SLAP:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_PINK_HEART
+	monbg ANIM_TARGET
+	setalpha 12, 8
+CutsieSlapLeft:
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff00 0xffd6
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x80 0xfff2
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x1a0 0xffda
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff80 0xffea
+	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+CutsieSlapRight:
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff00 0xffd6
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x80 0xfff2
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x1a0 0xffda
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff80 0xffea
+	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_FAIRY_SPHERES:
+   goto Move_DOUBLE_SLAP
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2
