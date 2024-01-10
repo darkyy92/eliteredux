@@ -5526,6 +5526,7 @@ static void Cmd_moveend(void)
             {
                 switch (gBattleMoves[gCurrentMove].effect)
                 {
+                case EFFECT_FLINCH_RECOIL_25:
                 case EFFECT_RECOIL_25: // Take Down, 25% recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
                     BattleScriptPushCursor();
@@ -5538,6 +5539,7 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
+                case EFFECT_FLINCH_RECOIL_50:
                 case EFFECT_RECOIL_50: // Head Smash, 50 % recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 2);
                     BattleScriptPushCursor();
@@ -12301,7 +12303,7 @@ static void Cmd_trytoapplymoveeffect(void)
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
                     appliedEffect = TRUE;
                 }
-            };
+            }
         break;
         case EFFECT_CURSE_HIT:
             if(rand <= secondaryEffectChance){
@@ -12315,7 +12317,33 @@ static void Cmd_trytoapplymoveeffect(void)
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
                     appliedEffect = TRUE;
                 }
-            };
+            }
+        break;
+        case EFFECT_STEALTH_ROCK_HIT:
+            if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
+                && !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK))
+                {
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_STEALTH_ROCK;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
+        case EFFECT_LEECH_SEED_HIT:
+             if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gBattleMons[gBattlerTarget].hp != 0
+                && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+                && TARGET_TURN_DAMAGED 
+                && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+                {
+                    gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
+                    appliedEffect = TRUE;
+                }
+            }
         break;
     }
 

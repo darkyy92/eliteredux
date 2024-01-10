@@ -795,6 +795,24 @@ gBattleAnims_Moves::
 	.4byte Move_PLASMA_PULSE
 	.4byte Move_PRIMAL_BEAM
 	.4byte Move_DRACONIC_FANGS
+	.4byte Move_PIXIE_BEAM
+	.4byte Move_PIXIE_SLASH
+	.4byte Move_SEISMIC_BLADE
+	.4byte Move_MOUNTAIN_CHUNK
+	.4byte Move_ARCHER_SHOT
+	.4byte Move_FROST_BRAND
+	.4byte Move_FROST_BOLT
+	.4byte Move_GLACIER_CRASH
+	.4byte Move_SUPERSONIC_SHOT
+	.4byte Move_ZEPHYR_RUSH
+	.4byte Move_SHOCKING_JAB
+	.4byte Move_SHOCKING_EDGE
+	.4byte Move_LIGHTING_SRIKE
+	.4byte Move_VOLT_BOLT
+	.4byte Move_PSYCHOKINESIS
+	.4byte Move_FERTILE_FANGS
+	.4byte Move_SCATTER_BLAST
+	.4byte Move_JAGGED_PUNCH
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3902,6 +3920,60 @@ Move_PRIMAL_BEAM:
 
 Move_DRACONIC_FANGS:
     goto Move_BITE
+
+Move_PIXIE_BEAM:
+    goto Move_FLEUR_CANNON
+
+Move_PIXIE_SLASH:
+    goto Move_SACRED_SWORD
+
+Move_SEISMIC_BLADE:
+	goto Move_SACRED_SWORD
+
+Move_MOUNTAIN_CHUNK:
+    goto Move_ROCK_SLIDE
+
+Move_ARCHER_SHOT:
+   goto Move_THOUSAND_ARROWS
+
+Move_FROST_BRAND:
+   goto Move_CUT
+
+Move_FROST_BOLT:
+   goto Move_THOUSAND_ARROWS
+
+Move_GLACIER_CRASH:
+   goto Move_ICICLE_CRASH
+
+Move_SUPERSONIC_SHOT:
+   goto Move_SUPERSONIC
+
+Move_ZEPHYR_RUSH:
+   goto Move_JUMP_KICK
+
+Move_SHOCKING_JAB:
+   goto Move_POISON_JAB
+
+Move_SHOCKING_EDGE:
+   goto Move_ZING_ZAP
+
+Move_LIGHTING_SRIKE:
+   goto Move_THUNDER_SHOCK
+
+Move_VOLT_BOLT:
+   goto Move_VOLT_TACKLE
+
+Move_PSYCHOKINESIS:
+   goto Move_STRENGTH
+
+Move_FERTILE_FANGS:
+   goto Move_BUG_BITE
+
+Move_SCATTER_BLAST:
+   goto Move_ACCELEROCK
+
+Move_JAGGED_PUNCH:
+   goto Move_MACH_PUNCH
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

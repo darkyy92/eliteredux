@@ -417,6 +417,13 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAttackUpUserAlly		  @ EFFECT_HOWL
 	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
 	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_25
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_50
+	.4byte BattleScript_EffectHit                     @ EFFECT_IGNORE_TYPE_IMMUNITY
+	.4byte BattleScript_EffectHit                     @ EFFECT_SE_AGAINST_TYPE_HIT
+	.4byte BattleScript_EffectHit                     @ EFFECT_DOUBLE_DMG_IF_STATUS1
+	.4byte BattleScript_EffectStealthRockHit          @ EFFECT_STEALTH_ROCK_HIT
+	.4byte BattleScript_EffectLeechSeedHit            @ EFFECT_LEECH_SEED_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -3186,6 +3193,23 @@ BattleScript_MoveEffectCurse::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectStealthRockHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectStealthRockHit
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectStealthRockHit::
+	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
+	waitanimation
+	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectLeechSeedHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_EffectLeechSeed
 	goto BattleScript_MoveEnd
 	
 BattleScript_EffectHit_Return::
@@ -8423,7 +8447,15 @@ BattleScript_AirBlowerActivated::
 	sethword sABILITY_OVERWRITE, 0
 	end3
 
-
+BattleScript_PastelVeilActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_PASTEL_VEIL
+	showabilitypopup BS_ABILITY_BATTLER
+	printstring STRINGID_PASTELVEILACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	sethword sABILITY_OVERWRITE, 0
+	end3
+	
 BattleScript_ElectromorphosisActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
 	call BattleScript_AbilityPopUp
