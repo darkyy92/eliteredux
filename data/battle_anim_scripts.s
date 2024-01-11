@@ -819,6 +819,11 @@ gBattleAnims_Moves::
 	.4byte Move_ASTEROID_DOWNFALL
 	.4byte Move_AQUA_BASH
 	.4byte Move_TECTONIC_FANGS
+	.4byte Move_CUPID_SHOT
+	.4byte Move_CLAY_DART
+	.4byte Move_DIAMOND_ARROW
+	.4byte Move_DIAMOND_BLADE
+	.4byte Move_VENOM_BOLT
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4024,6 +4029,21 @@ Move_AQUA_BASH:
 
 Move_TECTONIC_FANGS:
    goto Move_BUG_BITE
+
+Move_CUPID_SHOT:
+   goto Move_THOUSAND_ARROWS
+
+Move_CLAY_DART:
+   goto Move_THOUSAND_ARROWS
+
+Move_DIAMOND_ARROW:
+   goto Move_THOUSAND_ARROWS
+
+Move_DIAMOND_BLADE:
+   goto Move_CUT
+
+Move_VENOM_BOLT:
+   goto Move_POISON_STING
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

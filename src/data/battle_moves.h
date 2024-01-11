@@ -71,6 +71,81 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
+    [MOVE_CUPID_SHOT] =
+    {
+        .effect = EFFECT_ATTRACT_HIT,
+        .power = 75,
+        .type = TYPE_FAIRY,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_CLAY_DART] =
+    {
+        .effect = EFFECT_SE_AGAINST_TYPE_HIT,
+        .power = 80,
+        .type = TYPE_GROUND,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+        .argument = TYPE_FLYING,
+    },
+
+    [MOVE_DIAMOND_ARROW] =
+    {
+        .effect = EFFECT_HIT,
+        .power = 85,
+        .type = TYPE_ROCK,
+        .accuracy = 100, //To Change
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STAT_STAGES_IGNORED,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_DIAMOND_BLADE] =
+    {
+        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .power = 80,
+        .type = TYPE_ROCK,
+        .accuracy = 100, //To Change
+        .pp = 10,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST | FLAG_MAKES_CONTACT,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_VENOM_BOLT] =
+    {
+        .effect = EFFECT_POISON_HIT,
+        .power = 75,
+        .type = TYPE_POISON,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
+        .flags2 = FLAG_ARROW_BASED,
+        .split = SPLIT_PHYSICAL,
+    },
+
     [MOVE_COMET_PUNCH] =
     {
         #ifdef REBALANCED_VERSION
