@@ -815,6 +815,10 @@ gBattleAnims_Moves::
 	.4byte Move_JAGGED_PUNCH
 	.4byte Move_CUTSIE_SLAP
 	.4byte Move_FAIRY_SPHERES
+	.4byte Move_BRAMBLE_BLAST
+	.4byte Move_ASTEROID_DOWNFALL
+	.4byte Move_AQUA_BASH
+	.4byte Move_TECTONIC_FANGS
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3969,7 +3973,10 @@ Move_PSYCHOKINESIS:
    goto Move_STRENGTH
 
 Move_FERTILE_FANGS:
-   goto Move_BUG_BITE
+   goto Move_LEECH_LIFE
+
+Move_BRAMBLE_BLAST:
+   goto Move_POISON_STING
 
 Move_SCATTER_BLAST:
    goto Move_ACCELEROCK
@@ -4008,6 +4015,15 @@ CutsieSlapRight:
 
 Move_FAIRY_SPHERES:
    goto Move_DOUBLE_SLAP
+
+Move_ASTEROID_DOWNFALL:
+   goto Move_SMACK_DOWN
+
+Move_AQUA_BASH:
+   goto Move_AQUA_TAIL
+
+Move_TECTONIC_FANGS:
+   goto Move_BUG_BITE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

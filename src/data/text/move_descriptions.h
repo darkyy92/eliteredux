@@ -3113,6 +3113,22 @@ static const u8 sFERTILE_FANGSDescription[] = _(
     "User inserts it's ingraining fangs,\n"
     "10% chance to apply leech seed.");
 
+static const u8 sBRAMBLE_BLASTDescription[] = _(
+    "20% chance to apply leech seed.\n"
+    "Archer boost.");
+
+static const u8 sASTEROID_DOWNFALLDescription[] = _(
+    "Launches a asteroid onto the target.\n"
+    "Cannot miss.");
+
+static const u8 sAQUA_BASHTDescription[] = _(
+    "A mystical jab strikes the foe.\n"
+    "20% flinch chance.");
+
+static const u8 sTECTONIC_FANGSDescription[] =_(
+    "User inserts it's ground shaking fangs.\n"
+    "10% chance to flinch.");
+    
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3912,7 +3928,12 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SCATTER_BLAST   - 1] = sFROST_BRANDDescription, //ToChange 
     [MOVE_JAGGED_PUNCH    - 1] = sFROST_BRANDDescription, //ToChange 
     [MOVE_CUTSIE_SLAP     - 1] = sFROST_BRANDDescription, //ToChange 
-    [MOVE_FAIRY_SPHERES   - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_FAIRY_SPHERES   - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BRAMBLE_BLAST   - 1] = sBRAMBLE_BLASTDescription,
+    [MOVE_ASTEROID_DOWNFALL -1] = sASTEROID_DOWNFALLDescription,
+    [MOVE_AQUA_BASH        - 1] = sAQUA_BASHTDescription,
+    [MOVE_TECTONIC_FANGS   - 1] = sTECTONIC_FANGSDescription,
+
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4739,7 +4760,10 @@ static const u8 sMoveFourLineDescription_SeismicBlade[] = _("The foe is slashed\
 static const u8 sMoveFourLineDescription_MountainChunk[] = _("Hurls a chunk of a\nmountain at the\nopponent. 30% Flinch chance.\nMega Launcher Boost."); // new
 static const u8 sMoveFourLineDescription_Psychokinesis[] = _("Lifts up objects\nand hurls them at the\nopponent.30% Confuse.\nMega Launcher Boost."); // new
 static const u8 sMoveFourLineDescription_FertileFangs[] = _("User inserts it's\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost."); // new
-//sMoveFourLineDescription_Psychokinesis
+static const u8 sMoveFourLineDescription_BrambleBast[] = _("20% chance to apply\nleech seed.\nArcher boost."); // new
+static const u8 sMoveFourLineDescription_AsteroidDownFall[] = _("Launches a small\nasteroid onto the\ntarget. Cannot miss.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_AquaBash[] = _("A mystical jab\nstrikes the foe.\n20% flinch chance.\nMighty Horn boost."); // new
+static const u8 sMoveFourLineDescription_TectonicFangs[] = _("User inserts it's\nground shaking fangs,\n10% chance to flinch.\nStrong Jaw boost."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5535,5 +5559,9 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SCATTER_BLAST   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     [MOVE_JAGGED_PUNCH    - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
     [MOVE_CUTSIE_SLAP     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
-    [MOVE_FAIRY_SPHERES   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_FAIRY_SPHERES   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BRAMBLE_BLAST   - 1] = sMoveFourLineDescription_BrambleBast,
+    [MOVE_ASTEROID_DOWNFALL -1] = sMoveFourLineDescription_AsteroidDownFall,
+    [MOVE_AQUA_BASH       - 1] = sMoveFourLineDescription_AquaBash,
+    [MOVE_TECTONIC_FANGS   -1] = sMoveFourLineDescription_TectonicFangs,
 };

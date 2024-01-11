@@ -794,6 +794,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_JAGGED_PUNCH]    = _("JaggedPunch"),
     [MOVE_CUTSIE_SLAP]     = _("Cutsie Slap"),
     [MOVE_FAIRY_SPHERES]   = _("FairySphere"),
+    [MOVE_BRAMBLE_BLAST]   = _("BrambleBlast"),
+    [MOVE_ASTEROID_DOWNFALL] = _("AsteroidShot"),
+    [MOVE_AQUA_BASH]       = _("Aqua Bash"),
+    [MOVE_TECTONIC_FANGS] = _("Tect.Fangs"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1595,4 +1599,9 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_JAGGED_PUNCH]    = _("Jagged Punch"),
     [MOVE_CUTSIE_SLAP]     = _("Cutsie Slap"),
     [MOVE_FAIRY_SPHERES]   = _("Fairy Spheres"),
+    [MOVE_BRAMBLE_BLAST]   = _("Bramble Blast"),
+    [MOVE_ASTEROID_DOWNFALL] = _("Asteroid Shot"),
+    [MOVE_AQUA_BASH]       = _("Aqua Bash"),
+    [MOVE_TECTONIC_FANGS] = _("Tectonic Fangs"),
+    
 };
