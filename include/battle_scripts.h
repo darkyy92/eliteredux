@@ -558,4 +558,10 @@ extern const u8 BattleScript_MoveEffectFrostbite[];
 extern const u8 BattleScript_BerryCureFsbEnd2[];
 extern const u8 BattleScript_BerryCureFsbRet[];
 
+extern const u8 BattleScript_BleedTurnDmg[];
+extern const u8 BattleScript_MoveUsedBleedHeal[];
+extern const u8 BattleScript_MoveEffectBleed[];
+extern const u8 BattleScript_BerryCureBldEnd2[];
+extern const u8 BattleScript_BerryCureBldRet[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

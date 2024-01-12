@@ -49,6 +49,8 @@
 #define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))
 #define BATTLER_HAS_ABILITY_FAST(battlerId, abilityToCheck, battlerAbility) ((battlerAbility == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster
 
+#define BATTLER_HEALING_BLOCKED(battlerId) (gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].status1 & STATUS1_BLEED)
+
 // for Natural Gift and Fling
 struct TypePower
 {
@@ -157,7 +159,7 @@ bool32 TestMoveFlags(u16 move, u32 flag);
 struct Pokemon *GetBattlerPartyData(u8 battlerId);
 bool32 CanFling(u8 battlerId);
 bool32 IsTelekinesisBannedSpecies(u16 species);
-bool32 IsHealBlockPreventingMove(u32 battler, u32 move);
+bool32 IsHealBlockPreventingMove(u8 battler, u32 move);
 bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId);
 void SortBattlersBySpeed(u8 *battlers, bool8 slowToFast);
 bool32 TestSheerForceFlag(u8 battler, u16 move);
@@ -210,6 +212,7 @@ bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanBeFrozen(u8 battlerId);
 bool32 CanGetFrostbite(u8 battlerId);
 bool32 CanBeConfused(u8 battlerId);
+bool32 CanBleed(u8 battlerId);
 bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag);
 
 // Move checks

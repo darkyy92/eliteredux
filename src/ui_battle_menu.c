@@ -1845,7 +1845,7 @@ const u8 sText_Title_Status_Paralysis_Description[]        = _("Reduces the spee
 const u8 sText_Title_Status_Burn[]                         = _("Burned");
 const u8 sText_Title_Status_Burn_Description[]             = _("Reduces the Physical Attack of this\n"
                                                                "Pokémon by 50% and will take 1/16 of\n"
-                                                               "it's max HP at the end of each turn.");
+                                                               "its max HP at the end of each turn.");
 const u8 sText_Title_Status_Sleep[]                        = _("Asleep");
 const u8 sText_Title_Status_Sleep_Description[]            = _("Prevents this Pokémon from making\n"
                                                                "a move, it is vulnerable to Dream\n"
@@ -1853,19 +1853,23 @@ const u8 sText_Title_Status_Sleep_Description[]            = _("Prevents this Po
 const u8 sText_Title_Status_Frostbite[]                    = _("Frostbiten");
 const u8 sText_Title_Status_Frostbite_Description[]        = _("Reduces the Special Attack of this\n"
                                                                "Pokémon by 50% and will take 1/16 of\n"
-                                                               "it's max HP at the end of each turn.");
+                                                               "its max HP at the end of each turn.");
 const u8 sText_Title_Status_Freeze[]                       = _("Frozen");
 const u8 sText_Title_Status_Freeze_Description[]           = _("Causes this pokemon to be unable to\n"
                                                                "move for some turns, can be thwated\n"
                                                                "if hit by some Fire-type moves.");
 const u8 sText_Title_Status_Poison[]                       = _("Poisoned");
-const u8 sText_Title_Status_Poison_Description[]           = _("Takes 1/8 of it's max HP every turn,\n"
+const u8 sText_Title_Status_Poison_Description[]           = _("Takes 1/8 of its max HP every turn,\n"
                                                                "takes double damage from Hex and\n"
                                                                "Venoshock.");
 const u8 sText_Title_Status_Bad_Poison[]                   = _("Badly Poisoned");
-const u8 sText_Title_Status_Bad_Poison_Description[]       = _("Takes 1/16 of it's max HP on the first,\n"
+const u8 sText_Title_Status_Bad_Poison_Description[]       = _("Takes 1/16 of its max HP on the first,\n"
                                                                "turn, after which damage increases by\n"
                                                                "1/16 each time it takes poison damage.");
+const u8 sText_Title_Status_Bleed[]                        = _("Bleeding");
+const u8 sText_Title_Status_Bleed_Description[]            = _("Prevents this pokemon from healing\n"
+                                                               "and will take 6% of its HP as damage.\n"
+                                                               "Cured by healing moves.");
 
 //Secondary Status
 const u8 sText_Title_Status_Confusion[]                    = _("Confused");
@@ -2130,6 +2134,15 @@ static void PrintStatusTab(void){
 
                     //Description
                     StringCopy(gStringVar1, sText_Title_Status_Frostbite_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_BLEED){
+                    //Bleed
+                    StringCopy(gStringVar1, sText_Title_Status_Bleed);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Bleed_Description);
                     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 }
                 else{
@@ -3873,6 +3886,10 @@ static const union AnimCmd sSpriteAnim_StatusFrostbite[] = {
     ANIMCMD_FRAME(28, 0, FALSE, FALSE),
     ANIMCMD_END
 };
+static const union AnimCmd sSpriteAnim_StatusBleed[] = {
+    ANIMCMD_FRAME(32, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
 static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
     sSpriteAnim_StatusPoison,
     sSpriteAnim_StatusParalyzed,
@@ -3882,6 +3899,7 @@ static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
     sSpriteAnim_StatusPokerus,
     sSpriteAnim_StatusFaint,
     sSpriteAnim_StatusFrostbite,
+    sSpriteAnim_StatusBleed,
 };
 static const struct OamData sOamData_StatusCondition =
 {

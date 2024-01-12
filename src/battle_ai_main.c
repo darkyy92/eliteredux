@@ -1168,7 +1168,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
         return 0; // Can't even select move at all
     // heal block check
-    if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
+    if (IsHealBlockPreventingMove(battlerAtk, move))
         return 0; // Can't even select heal blocked move
     // primal weather check
     if (WEATHER_HAS_EFFECT)
@@ -1970,7 +1970,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_REFRESH:
-            if (!(gBattleMons[battlerDef].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_PARALYSIS| STATUS1_FROSTBITE)))
+            if (!(gBattleMons[battlerDef].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_FROSTBITE | STATUS1_BLEED)))
                 score -= 10;
             break;
         case EFFECT_PSYCHO_SHIFT:
@@ -1979,11 +1979,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && !AI_CanBurn(battlerAtk, battlerDef, AI_DATA->partnerMove))
                 score -= 10;
             else if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && !AI_CanGiveFrostbite(battlerAtk, battlerDef,
-              AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+                        AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             else if (gBattleMons[battlerAtk].status1 & STATUS1_PARALYSIS && !AI_CanParalyze(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
                 score -= 10;
             else if (gBattleMons[battlerAtk].status1 & STATUS1_SLEEP && !AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
+                score -= 10;
+            else if (gBattleMons[battlerAtk].status1 & STATUS1_BLEED && !AI_CanCauseBleed(battlerAtk, battlerDef,
+                        AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             else
                 score -= 10;    // attacker has no status to transmit
@@ -4647,7 +4650,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_REFRESH:
-        if (gBattleMons[battlerAtk].status1 & STATUS1_ANY)
+        if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_FROSTBITE | STATUS1_BLEED))
             score += 2;
         break;
     case EFFECT_PSYCHO_SHIFT:
@@ -5057,7 +5060,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 2;
         break;
     case EFFECT_FACADE:
-        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON| STATUS1_FROSTBITE))
+        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE | STATUS1_BLEED))
             score++;
         break;
     case EFFECT_FOCUS_PUNCH:

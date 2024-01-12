@@ -389,7 +389,6 @@
 #define EFFECT_RISING_VOLTAGE 383
 #define EFFECT_SCALE_SHOT 384
 #define EFFECT_BEAK_BLAST 385
-
 // Custom Effect
 #define EFFECT_EXCALIBUR             386
 #define EFFECT_FROSTBITE_HIT         387
@@ -405,7 +404,8 @@
 #define EFFECT_DOUBLE_DMG_IF_STATUS1 397
 #define EFFECT_STEALTH_ROCK_HIT      398
 #define EFFECT_LEECH_SEED_HIT        399
+#define EFFECT_BLEED_HIT             400
 
-#define NUM_BATTLE_MOVE_EFFECTS 400 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 401 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

@@ -172,6 +172,7 @@ static const u8 sText_MaxHp[] = _("HP Max");
 static const u8 sText_CurrHp[] = _("HP Current");
 static const u8 sText_Freeze[] = _("Freeze");
 static const u8 sText_Frostbite[] = _("Frostbite");
+static const u8 sText_Bleed[] = _("Bleed");
 static const u8 sText_ToxicPoison[] = _("Toxic Poison");
 static const u8 sText_ToxicCounter[] = _("Toxic Counter");
 static const u8 sText_Flinch[] = _("Flinch");
@@ -249,6 +250,7 @@ static const struct BitfieldInfo sStatus1Bitfield[] =
     {/*Toxic Poison*/ 1, 7},
     {/*Toxic Counter*/ 4, 8},
     {/*Frostbite*/ 1, 12},
+    {/*Bleed*/ 1, 13},
 };
 
 static const struct BitfieldInfo sStatus2Bitfield[] =
@@ -387,6 +389,7 @@ static const struct ListMenuItem sStatus1ListItems[] =
     {sText_ToxicPoison, 5},
     {sText_ToxicCounter, 6},
     {sText_Frostbite, 7},
+    {sText_Bleed, 8}
 };
 
 static const struct ListMenuItem sStatus2ListItems[] =

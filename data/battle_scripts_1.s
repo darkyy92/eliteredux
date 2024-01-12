@@ -417,6 +417,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAttackUpUserAlly		  @ EFFECT_HOWL
 	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
 	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
+	.4byte BattleScript_EffectBleedHit				        @ EFFECT_BLEED_HIT
 	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_25
 	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_50
 	.4byte BattleScript_EffectHit                     @ EFFECT_IGNORE_TYPE_IMMUNITY
@@ -543,6 +544,40 @@ BattleScript_BerryCureFsbEnd2::
 BattleScript_BerryCureFsbRet::
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, NULL
 	printstring STRINGID_PKMNSITEMHEALEDFROSTBITE
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_SCRIPTING
+	removeitem BS_SCRIPTING
+	return
+
+BattleScript_EffectBleedHit::
+	setmoveeffect MOVE_EFFECT_BLEED
+	goto BattleScript_EffectHit
+
+BattleScript_BleedTurnDmg::
+	printstring STRINGID_PKMNHURTBYBLEED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoStatusTurnDmg
+
+BattleScript_MoveUsedBleedHeal::
+	curestatus BS_TARGET
+	updatestatusicon BS_TARGET
+	printfromtable gBleedHealedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectBleed::
+	statusanimation BS_EFFECT_BATTLER
+	printfromtable gBleedStartedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_UpdateEffectStatusIconRet
+
+BattleScript_BerryCureBldEnd2::
+	call BattleScript_BerryCureBldRet
+	end2
+
+BattleScript_BerryCureBldRet::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, NULL
+	printstring STRINGID_PKMNSITEMHEALEDBLEED
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_SCRIPTING
 	removeitem BS_SCRIPTING
@@ -2396,6 +2431,7 @@ BattleScript_EffectHealPulse:
 	tryhealpulse BS_TARGET, BattleScript_AlreadyAtFullHp
 	attackanimation
 	waitanimation
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -3639,6 +3675,7 @@ BattleScript_EffectRestoreHp::
 	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_ATTACKER
 	attackanimation
 	waitanimation
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 BattleScript_RestoreHp:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
@@ -5297,6 +5334,7 @@ BattleScript_PresentHealTarget::
 	attackanimation
 	waitanimation
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -6707,6 +6745,7 @@ BattleScript_LeechSeedTurnDrain::
 	jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
 	setbyte cMULTISTRING_CHOOSER, B_MSG_LEECH_SEED_DRAIN
 	jumpifstatus3 BS_TARGET, STATUS3_HEAL_BLOCK, BattleScript_LeechSeedHealBlock
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_LeechSeedHealBlock
 	manipulatedamage DMG_BIG_ROOT
 	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
 BattleScript_LeechSeedTurnPrintLiquidOoze::
@@ -7381,6 +7420,7 @@ BattleScript_WishComesTrue::
 	printstring STRINGID_PKMNWISHCAMETRUE
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	jumpifstatus BS_TARGET, STATUS1_BLEED, BattleScript_MoveUsedBleedHeal
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
@@ -10781,6 +10821,7 @@ BattleScript_SelfRepairExits::
 
 BattleScript_RegeneratorExits::
 	clearstatus BS_ATTACKER
+	jumpifstatus BS_ATTACKER, STATUS1_BLEED, BattleScript_RegeneratorExits_NothingToHeal
 	tryhealquarterhealth BS_ATTACKER, BattleScript_RegeneratorExits_NothingToHeal
 BattleScript_RegeneratorExits_NothingToHeal:
 	return

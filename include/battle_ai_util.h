@@ -112,6 +112,8 @@ bool32 ShouldSetSun(u8 battlerAtk, u16 atkAbility, u16 holdEffect);
 bool32 HasSleepMoveWithLowAccuracy(u8 battlerAtk, u8 battlerDef);
 bool32 IsHealingMoveEffect(u16 effect);
 bool32 HasHealingEffect(u32 battler);
+bool32 HasHealingItem(u32 battler);
+bool32 HasHealingAbility(u32 battler);
 bool32 IsTrappingMoveEffect(u16 effect);
 bool32 HasTrappingMoveEffect(u8 battler);
 bool32 ShouldFakeOut(u8 battlerAtk, u8 battlerDef, u16 move);
@@ -126,6 +128,8 @@ bool32 IsSemiInvulnerable(u8 battlerDef, u16 move);
 // status checks
 bool32 AI_CanGetFrostbite(u8 battler, u16 ability);
 bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
+bool32 AI_CanBleed(u8 battler, u16 ability);
+bool32 AI_CanCauseBleed(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 AI_CanSleep(u8 battler, u16 ability);
 bool32 IsBattlerIncapacitated(u8 battler, u16 ability);
 bool32 AI_CanPutToSleep(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
@@ -171,5 +175,6 @@ void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreasePoisonScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseBurnScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
+void IncreaseBleedScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 
 #endif //GUARD_BATTLE_AI_UTIL_H
