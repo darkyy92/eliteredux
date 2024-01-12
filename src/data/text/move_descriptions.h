@@ -3940,6 +3940,11 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_VENOM_BOLT        - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_FUMIGATION_BOMB   - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_BLACK_MAGIC       - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_FLAME_TONGUE      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BLAZING_ARROW     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_ROCKET_PUNCH      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_WEB_SHOT          - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_AURA_FORCE        - 1] = sFROST_BRANDDescription, //ToChange
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5577,4 +5582,9 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_VENOM_BOLT        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_FUMIGATION_BOMB   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_BLACK_MAGIC       - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_FLAME_TONGUE      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BLAZING_ARROW     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_ROCKET_PUNCH      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_WEB_SHOT          - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_AURA_FORCE        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
 };

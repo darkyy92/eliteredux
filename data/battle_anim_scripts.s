@@ -826,6 +826,11 @@ gBattleAnims_Moves::
 	.4byte Move_VENOM_BOLT
 	.4byte Move_FUMIGATION_BOMB
 	.4byte Move_BLACK_MAGIC
+	.4byte Move_FLAME_TONGUE
+	.4byte Move_BLAZING_ARROW
+	.4byte Move_ROCKET_PUNCH
+	.4byte Move_WEB_SHOT
+	.4byte Move_AURA_FORCE
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4052,6 +4057,21 @@ Move_FUMIGATION_BOMB:
 
 Move_BLACK_MAGIC:
 	goto Move_DARK_PULSE
+
+Move_FLAME_TONGUE:
+	goto Move_FIRE_LASH
+
+Move_BLAZING_ARROW:
+	goto Move_FIRE_LASH
+
+Move_ROCKET_PUNCH:
+	goto Move_COMET_PUNCH
+
+Move_WEB_SHOT:
+	goto Move_STICKY_WEB
+
+Move_AURA_FORCE:
+	goto Move_AURA_SPHERE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

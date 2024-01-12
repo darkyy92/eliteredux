@@ -832,8 +832,13 @@
 #define MOVE_VENOM_BOLT          799
 #define MOVE_FUMIGATION_BOMB     800
 #define MOVE_BLACK_MAGIC         801
+#define MOVE_FLAME_TONGUE        802
+#define MOVE_BLAZING_ARROW       803
+#define MOVE_ROCKET_PUNCH        804
+#define MOVE_WEB_SHOT            805
+#define MOVE_AURA_FORCE          806
 
-#define MOVES_COUNT_DARKY        802
+#define MOVES_COUNT_DARKY        807
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

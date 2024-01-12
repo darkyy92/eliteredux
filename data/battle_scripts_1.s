@@ -424,6 +424,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_DOUBLE_DMG_IF_STATUS1
 	.4byte BattleScript_EffectStealthRockHit          @ EFFECT_STEALTH_ROCK_HIT
 	.4byte BattleScript_EffectLeechSeedHit            @ EFFECT_LEECH_SEED_HIT
+	.4byte BattleScript_EffectStickyWebHit            @ EFFECT_STICKY_WEB_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -3204,6 +3205,16 @@ BattleScript_MoveEffectStealthRockHit::
 	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
 	waitanimation
 	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectStickyWebHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectSickyWebHit
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectSickyWebHit::
+	printstring STRINGID_STICKYWEBUSED
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 

@@ -12345,6 +12345,18 @@ static void Cmd_trytoapplymoveeffect(void)
                 }
             }
         break;
+        case EFFECT_STICKY_WEB_HIT:
+            if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
+                && !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STICKY_WEB))
+                {
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_STICKY_WEB;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
     }
 
     if (appliedEffect)
