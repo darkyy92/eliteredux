@@ -1948,6 +1948,8 @@ u8 GetAilmentFromStatus(u32 status)
         return AILMENT_BRN;
     if (status & STATUS1_FROSTBITE)
         return AILMENT_FSB;
+    if (status & STATUS1_BLEED)
+        return AILMENT_BLD;
     return AILMENT_NONE;
 }
 
@@ -4668,6 +4670,9 @@ static void GetMedicineItemEffectMessage(u16 item, u32 statusCured)
     case ITEM_EFFECT_CURE_INFATUATION:
         StringExpandPlaceholders(gStringVar4, gText_PkmnGotOverInfatuation);
         break;
+    case ITEM_EFFECT_CURE_BLEED:
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBleedHealed);
+        break;
     case ITEM_EFFECT_CURE_ALL_STATUS:
         StringExpandPlaceholders(gStringVar4, gText_PkmnBecameHealthy);
         break;
@@ -6405,6 +6410,8 @@ u8 GetItemEffectType(u16 item)
             return ITEM_EFFECT_CURE_PARALYSIS;
         else if (statusCure == ITEM3_CONFUSION)
             return ITEM_EFFECT_CURE_CONFUSION;
+        // else if (statusCure == ITEM3_BLEED)
+        //     return ITEM_EFFECT_CURE_BLEED;
         else if (itemEffect[0] >> 7 && !statusCure)
             return ITEM_EFFECT_CURE_INFATUATION;
         else

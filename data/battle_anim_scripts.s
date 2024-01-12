@@ -845,6 +845,7 @@ gBattleAnims_StatusConditions::
 	.4byte Status_Curse                     @ B_ANIM_STATUS_CURSED
 	.4byte Status_Nightmare                 @ B_ANIM_STATUS_NIGHTMARE
 	.4byte Status_Powder
+	.4byte Status_Bleed						@ B_ANIM_STATUS_BLEED
 
 	.align 2
 gBattleAnims_General::
@@ -24817,6 +24818,9 @@ Status_Nightmare:
 	end
 
 Status_Powder:
+	end
+
+Status_Bleed:
 	end
 
 General_CastformChange:
