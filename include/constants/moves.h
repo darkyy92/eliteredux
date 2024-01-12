@@ -830,8 +830,10 @@
 #define MOVE_DIAMOND_ARROW       797
 #define MOVE_DIAMOND_BLADE       798
 #define MOVE_VENOM_BOLT          799
+#define MOVE_FUMIGATION_BOMB     800
+#define MOVE_BLACK_MAGIC         801
 
-#define MOVES_COUNT_DARKY        800
+#define MOVES_COUNT_DARKY        802
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

@@ -824,6 +824,8 @@ gBattleAnims_Moves::
 	.4byte Move_DIAMOND_ARROW
 	.4byte Move_DIAMOND_BLADE
 	.4byte Move_VENOM_BOLT
+	.4byte Move_FUMIGATION_BOMB
+	.4byte Move_BLACK_MAGIC
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4044,6 +4046,12 @@ Move_DIAMOND_BLADE:
 
 Move_VENOM_BOLT:
    goto Move_POISON_STING
+
+Move_FUMIGATION_BOMB:
+	goto Move_ACID
+
+Move_BLACK_MAGIC:
+	goto Move_DARK_PULSE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

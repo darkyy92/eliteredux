@@ -803,6 +803,8 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_DIAMOND_ARROW]     = _("DiamondArrow"),
     [MOVE_DIAMOND_BLADE]     = _("DiamondBlade"),
     [MOVE_VENOM_BOLT]        = _("Venom Bolt"),
+    [MOVE_FUMIGATION_BOMB]   = _("Fumi.Bomb"),
+    [MOVE_BLACK_MAGIC]       = _("Black Magic"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1613,4 +1615,6 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_DIAMOND_ARROW]     = _("Diamond Arrow"),
     [MOVE_DIAMOND_BLADE]     = _("Diamond Blade"),
     [MOVE_VENOM_BOLT]        = _("Venom Bolt"),
+    [MOVE_FUMIGATION_BOMB]   = _("Fumigation Bomb"),
+    [MOVE_BLACK_MAGIC]       = _("Black Magic"),
 };
