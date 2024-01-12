@@ -454,6 +454,8 @@ static const u8 sText_InflatablePkmnRaisedDefenses[] = _("{B_SCR_ACTIVE_NAME_WIT
 static const u8 sText_AngerPointsPkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Anger Point\nraised its Attack!");
 static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} regained\nhealth!");
 
+static const u8 sText_AttackerBecameInfected[] = _("{B_ATK_NAME_WITH_PREFIX} became\ninfected!");
+
 const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
 {
     gText_HP3, gText_Attack, gText_Defense,
@@ -771,9 +773,12 @@ static const u8 sText_BattlerAddedTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} add
 static const u8 sText_BattlerCoiledUp[] = _("{B_ACTIVE_NAME_WITH_PREFIX} coiled up \nand is ready to bite!");
 static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
 static const u8 sText_AttackerTypeChangedTo[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s type\nchanged to {B_BUFF1}!");
+static const u8 sText_DefenderTypeChangedTo[] = _("{B_DEF_NAME_WITH_PREFIX}'s type\nchanged to {B_BUFF1}!");
+static const u8 sText_AttackerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} became\npart {B_BUFF1} type!");
 static const u8 sText_AbilityRestoredHPALittle[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s ability\nrestored its HP a little");
 static const u8 sText_BattlerEnvelopedItselfInAVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s enveloped itself in\na veil made of water.");
 static const u8 sText_BattlerAbilitySetUpTailwind[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Air Blower set up \nTailwind!");
+static const u8 sText_BattlerAbilitySetUpSafeGuard[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Pastel Veil set up \nSafeGuard!");
 static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hurt by\n{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnCutsSpecialAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\ncuts {B_DEF_NAME_WITH_PREFIX}'s Special Attack!");
 static const u8 sText_SweetDreamsHealHpUp[] = _("Sleeping healed {B_ATK_NAME_WITH_PREFIX}\na little bit!");
@@ -781,6 +786,7 @@ static const u8 sText_PkmnBecameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cu
 static const u8 sText_TargetyBecameCursed[] = _("{B_DEF_NAME_WITH_PREFIX} became Cursed!");
 static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Spider Lair\nset up a Sticky Web on the opposite side!");
 static const u8 sText_BattlerAbilitySetUpTrickRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Twisted Dimension\nset up Trick Room!");
+static const u8 sText_BattlerAbilitySetUpInverseRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Inverse Room\nset up Inverse Room!");
 static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s North Wind\nset up Aurora Veil!");
 static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX} was trapped by\n{B_ACTIVE_NAME_WITH_PREFIX}'s Grip Pincer!");
 static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF4} Damage!");
@@ -818,6 +824,7 @@ static const u8 sText_AttackerAccuracySharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX
 static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s Evasiveness\nsharply rose!");
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
+static const u8 sText_InverseRoomEnds[] = _("The inversed dimensions returned to\nnormal!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -837,6 +844,7 @@ static const u8 sText_PkmnRaisesStatWith3[]           = _("{B_SCR_ACTIVE_NAME_WI
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_INVERSEROOMENDS - 12] = sText_InverseRoomEnds,
     [STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3 - 12] = sText_PkmnRaisesStatWith3,
     [STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3 - 12] = sText_PkmnCutsStatWith3,
     [STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE2 - 12] = sText_PkmnRaisesStatWith2,
@@ -903,11 +911,13 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_GRIPPINCERACTIVATED - 12] = sText_BattlerGripPincerActivated,
 	[STRINGID_NORTHWINDACTIVATED - 12] = sText_BattlerAbilitySetUpAuroraVeil,
 	[STRINGID_TWISTEDDIMENSIONACTIVATED - 12] = sText_BattlerAbilitySetUpTrickRoom,
+    [STRINGID_INVERSEROOMACTIVATED - 12] = sText_BattlerAbilitySetUpInverseRoom,
 	[STRINGID_SPIDERLAIRACTIVATED - 12] = sText_BattlerAbilitySetUpStickyWeb,
 	[STRINGID_PKMNBECAMECURSED - 12] = sText_PkmnBecameCursed,
     [STRINGID_PKMNCUTSSPATTACKWITH - 12] = sText_PkmnCutsSpecialAttackWith,
 	[STRINGID_TARGETPKMNHURTSWITH - 12] = sText_TargetPkmnHurtsWith,
 	[STRINGID_AIRBLOWERACTIVATED - 12] = sText_BattlerAbilitySetUpTailwind,
+    [STRINGID_PASTELVEILACTIVATED - 12] = sText_BattlerAbilitySetUpSafeGuard,
 	[STRINGID_BATTLERENVELOPEDITSELFINAVEIL - 12] = sText_BattlerEnvelopedItselfInAVeil,
     [STRINGID_NEUTRALIZINGGASOVER - 12] = sText_NeutralizingGasOver,
     [STRINGID_REGENERATOR_EXITS - 12] = sText_RegeneratorExits,
@@ -1520,6 +1530,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
     [STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
     [STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
+    [STRINGID_DEFENDERTYPECHANGEDTO - 12] = sText_DefenderTypeChangedTo,
+    [STRINGID_ATTACKERGOTTHETYPE - 12] = sText_AttackerGotTheType,
     [STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
     [STRINGID_ATTACKERREGAINEDHEALTH - 12] = sText_AttackerRegainedHealth,
     [STRINGID_SWEETDREAMSHPUP - 12] = sText_SweetDreamsHealHpUp,
@@ -1527,6 +1539,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDDEFENSE - 12] = sText_PkmnRaisedDefense,
     [STRINGID_PKMNRAISEDSPECIALATTACK - 12] = sText_PkmnRaisedSpecialAttack,
     [STRINGID_PKMNRAISEDSPECIALDEFENSE - 12] = sText_PkmnRaisedSpecialDefense,
+    [STRINGID_ATTACKERBECAMEINFECTED - 12] = sText_AttackerBecameInfected,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

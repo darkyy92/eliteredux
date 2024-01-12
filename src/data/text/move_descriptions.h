@@ -1509,6 +1509,10 @@ static const u8 sPLUCKDescription[] = _(
     "Eats the foe's held Berry\n"
     "gaining its effect.");
 
+static const u8 sDRACONIC_FANGSDescription[] = _(
+    "Bites with draconic fangs.\n"
+    "May cause flinching.");
+
 static const u8 sTAILWINDDescription[] = _(
     "Whips up a turbulent breeze\n"
     "that raises Speed.");
@@ -1834,6 +1838,10 @@ static const u8 sJUDGMENTDescription[] = _(
 static const u8 sCHARGE_BEAMDescription[] = _(
     "Fires a beam of electricity.\n"
     "Raises Sp. Atk by one stage.");
+
+static const u8 sPRIMAL_BEAMDescription[] = _(
+    "An strange beam that uses\n"
+    "the user's Attack, may rise it.");
 
 static const u8 sWOOD_HAMMERDescription[] = _(
     "Slams the body into a foe\n"
@@ -3073,6 +3081,54 @@ static const u8 sPLASMAPULSEDescription[] = _(
     "Double damage to foes\n"
     "with status problems.");
 
+static const u8 sPIXIE_BEAMDescription[] = _(
+    "A powerfull magic beam\n"
+    "30% chance to drop user SpAtk.");
+
+static const u8 sPIXIE_SLASHDescription[] = _(
+    "The foe is slashed with a\n"
+    "whimsical blade. High Crit ratio.");
+
+static const u8 sARCHER_SHOTDescription[] = _(
+    "Shoots a dead center arrow at the\n"
+    "target. Archer boost.");
+
+static const u8 sFROST_BRANDDescription[] = _(
+    "The foe is slashed with an icy blade.\n"
+    "10% chance to inflict frostbite.");
+
+static const u8 sSEISMIC_BLADEDescription[] = _(
+    "The foe is slashed with a\n"
+    "tectonic blade. High Crit ratio.");
+
+static const u8 sMOUNTAIN_CHUNKDescription[] =_(
+    "Hurls a chunk of a mountain\n"
+    "at the opponent. Can Flinch.");
+
+static const u8 sPSYCHOKINESISDescription[] = _(
+    "Lifts up nearby objects and hurls\n"
+    "them at the opponent. Can Confuse.");
+
+static const u8 sFERTILE_FANGSDescription[] = _(
+    "User inserts it's ingraining fangs,\n"
+    "10% chance to apply leech seed.");
+
+static const u8 sBRAMBLE_BLASTDescription[] = _(
+    "20% chance to apply leech seed.\n"
+    "Archer boost.");
+
+static const u8 sASTEROID_DOWNFALLDescription[] = _(
+    "Launches a asteroid onto the target.\n"
+    "Cannot miss.");
+
+static const u8 sAQUA_BASHTDescription[] = _(
+    "A mystical jab strikes the foe.\n"
+    "20% flinch chance.");
+
+static const u8 sTECTONIC_FANGSDescription[] =_(
+    "User inserts it's ground shaking fangs.\n"
+    "10% chance to flinch.");
+    
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3529,7 +3585,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_CHATTER - 1] = sCHATTERDescription,
     [MOVE_JUDGMENT - 1] = sJUDGMENTDescription,
     [MOVE_BUG_BITE - 1] = sPLUCKDescription,
+    [MOVE_DRACONIC_FANGS - 1] = sDRACONIC_FANGSDescription,
     [MOVE_CHARGE_BEAM - 1] = sCHARGE_BEAMDescription,
+    [MOVE_PRIMAL_BEAM - 1] = sPRIMAL_BEAMDescription,
     [MOVE_WOOD_HAMMER - 1] = sWOOD_HAMMERDescription,
     [MOVE_AQUA_JET - 1] = sAQUA_JETDescription,
     [MOVE_ATTACK_ORDER - 1] = sATTACK_ORDERDescription,
@@ -3837,20 +3895,51 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
 
     // Darky's Custom Moves
-    [MOVE_DEATHROLL    - 1]   = sDEATHROLLDescription,
-    [MOVE_EXCALIBUR    - 1]   = sEXCALIBURDescription,
-    [MOVE_AQUA_FANG    - 1]   = sAQUA_FANGDescription,
-    [MOVE_WAVE_CRASH   - 1]   = sWAVE_CRASHDescription,
-    [MOVE_SMITE        - 1]   = sSMITEDescription,
-    [MOVE_OUTBURST     - 1]   = sOUTBURSTDescription,
-    [MOVE_SEISMIC_FIST - 1]   = sSEISMIC_FISTDescription,
-    [MOVE_IRON_FANGS - 1]     = sIRON_FANGSDescription,
-    [MOVE_SHADOW_FANGS - 1]   = sSHADOW_FANGSDescription,
-    [MOVE_LOVELY_BITE - 1]    = sLOVELY_BITEDescription,
-    [MOVE_JAGGED_FANGS - 1]   = sJAGGED_FANGSDescription,
-    [MOVE_SCORCHED_EARTH - 1] = sSCORCHED_EARTHDescription,
-    [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
-    [MOVE_PLASMA_PULSE -1]     = sPLASMAPULSEDescription,
+    [MOVE_DEATHROLL         - 1] = sDEATHROLLDescription,
+    [MOVE_EXCALIBUR         - 1] = sEXCALIBURDescription,
+    [MOVE_AQUA_FANG         - 1] = sAQUA_FANGDescription,
+    [MOVE_WAVE_CRASH        - 1] = sWAVE_CRASHDescription,
+    [MOVE_SMITE             - 1] = sSMITEDescription,
+    [MOVE_OUTBURST          - 1] = sOUTBURSTDescription,
+    [MOVE_SEISMIC_FIST      - 1] = sSEISMIC_FISTDescription,
+    [MOVE_IRON_FANGS        - 1] = sIRON_FANGSDescription,
+    [MOVE_SHADOW_FANGS      - 1] = sSHADOW_FANGSDescription,
+    [MOVE_LOVELY_BITE       - 1] = sLOVELY_BITEDescription,
+    [MOVE_JAGGED_FANGS      - 1] = sJAGGED_FANGSDescription,
+    [MOVE_SCORCHED_EARTH    - 1] = sSCORCHED_EARTHDescription,
+    [MOVE_RAGING_FURY       - 1] = sRAGINGFURYDescription,
+    [MOVE_PLASMA_PULSE      - 1] = sPLASMAPULSEDescription,
+    [MOVE_PIXIE_BEAM        - 1] = sPIXIE_BEAMDescription,
+    [MOVE_PIXIE_SLASH       - 1] = sPIXIE_SLASHDescription,
+    [MOVE_SEISMIC_BLADE     - 1] = sSEISMIC_BLADEDescription,
+    [MOVE_MOUNTAIN_CHUNK    - 1] = sMOUNTAIN_CHUNKDescription,
+    [MOVE_ARCHER_SHOT       - 1] = sARCHER_SHOTDescription,  
+    [MOVE_FROST_BRAND       - 1] = sFROST_BRANDDescription,
+    [MOVE_FROST_BOLT        - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_ZEPHYR_RUSH       - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_GLACIER_CRASH     - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_SUPERSONIC_SHOT   - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_SHOCKING_JAB      - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_SHOCKING_EDGE     - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_LIGHTING_SRIKE    - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_VOLT_BOLT         - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_PSYCHOKINESIS     - 1] = sPSYCHOKINESISDescription,
+    [MOVE_FERTILE_FANGS     - 1] = sFERTILE_FANGSDescription,
+    [MOVE_SCATTER_BLAST     - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_JAGGED_PUNCH      - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_CUTSIE_SLAP       - 1] = sFROST_BRANDDescription, //ToChange 
+    [MOVE_FAIRY_SPHERES     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BRAMBLE_BLAST     - 1] = sBRAMBLE_BLASTDescription,
+    [MOVE_ASTEROID_DOWNFALL - 1] = sASTEROID_DOWNFALLDescription,
+    [MOVE_AQUA_BASH         - 1] = sAQUA_BASHTDescription,
+    [MOVE_TECTONIC_FANGS    - 1] = sTECTONIC_FANGSDescription,
+    [MOVE_CUPID_SHOT        - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_CLAY_DART         - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_DIAMOND_ARROW     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_DIAMOND_BLADE     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_VENOM_BOLT        - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_FUMIGATION_BOMB   - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BLACK_MAGIC       - 1] = sFROST_BRANDDescription, //ToChange
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -3909,6 +3998,7 @@ static const u8 sMoveFourLineDescription_Twineedle[] = _("The foe is stabbed\ntw
 static const u8 sMoveFourLineDescription_PinMissile[] = _("Sharp pins are shot\nat the foe and hit\ntwo to five times\nat once.");
 static const u8 sMoveFourLineDescription_Leer[] = _("The foe is given an\nintimidating look\nthat lowers its\nDefense stat.");
 static const u8 sMoveFourLineDescription_Bite[] = _("The user bites with\nvicious fangs.\n30% flinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_DragonFang[] = _("The user bites with\ndraconic fangs.\n30% flinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_Growl[] = _("The user growls in\na cute way, making\nthe foe lower its\nAttack stat.");
 static const u8 sMoveFourLineDescription_Roar[] = _("The foe is made to\nswitch out with an\nally. In the wild,\nthe battle ends.");
 static const u8 sMoveFourLineDescription_Sing[] = _("A soothing song\nin a calming voice\nlulls the foe into\na deep slumber.");
@@ -4054,7 +4144,7 @@ static const u8 sMoveFourLineDescription_Aeroblast[] = _("A vortex of air is\nsh
 static const u8 sMoveFourLineDescription_CottonSpore[] = _("Cotton-like spores\ncling to the foe,\nsharply reducing\nits Speed stat.");
 static const u8 sMoveFourLineDescription_Reversal[] = _("An all-out attack\nthat becomes more\npowerful the less\nHP the user has.");
 static const u8 sMoveFourLineDescription_Spite[] = _("A move that cuts\n2 to 5 PP from the\nmove last used by\nthe foe.");
-static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n10% chance to\nfrostbite the foe."); // new
+static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n30% chance to\nfrostbite the foe."); // new
 static const u8 sMoveFourLineDescription_Protect[] = _("Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.");
 static const u8 sMoveFourLineDescription_MachPunch[] = _("A punch thrown at\nblinding speed.\n+1 priority.\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_ScaryFace[] = _("Frightens the foe\nwith a scary face\nto sharply reduce\nits Speed.");
@@ -4334,6 +4424,7 @@ static const u8 sMoveFourLineDescription_Chatter[] = _("The foe is left\nconfuse
 static const u8 sMoveFourLineDescription_Judgment[] = _("The type of this\nmove varies with\nthe kind of Plate\nthe user is holding.");
 static const u8 sMoveFourLineDescription_BugBite[] = _("If the foe has a\nBerry, user gains\ngains its effect.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ChargeBeam[] = _("Attacks with an\nelectric charge.\nRaises own SpAtk.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_PrimalBeam[] = _("An strange beam\nthat uses the user's\nAttack, may\nrise own Atk.");
 static const u8 sMoveFourLineDescription_WoodHammer[] = _("The user slams its\nrugged body into\nthe foe. 33%\nrecoil damage.");
 static const u8 sMoveFourLineDescription_AquaJet[] = _("The user lunges at\nthe foe at a fast\nspeed. This has\n+1 priority."); // new
 static const u8 sMoveFourLineDescription_AttackOrder[] = _("Underlings pummel\nthe foe. Critical\nhits land more\neasily.");
@@ -4667,6 +4758,18 @@ static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("Double damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_PixeBeam[] = _("The foe is hit with\nintense fairy magic.\nIt has a 30% chance\nto drop SpA."); // new
+static const u8 sMoveFourLineDescription_PixeSlash[] = _("The foe is slashed\nwith a whimsical\nblade. High Crit ratio.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_ArcherShot[] = _("Shoots a dead center\narrow at the target.\nArcher boost."); // new
+static const u8 sMoveFourLineDescription_FrostBrand[] = _("The foe is slashed with\na cryo blade. 10% chance\nto inflict frostbite.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_SeismicBlade[] = _("The foe is slashed\nwith a tectonic\nblade. High Crit ratio.\nKeen Edge boost."); // new
+static const u8 sMoveFourLineDescription_MountainChunk[] = _("Hurls a chunk of a\nmountain at the\nopponent. 30% Flinch chance.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_Psychokinesis[] = _("Lifts up objects\nand hurls them at the\nopponent.30% Confuse.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_FertileFangs[] = _("User inserts it's\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_BrambleBast[] = _("20% chance to apply\nleech seed.\nArcher boost."); // new
+static const u8 sMoveFourLineDescription_AsteroidDownFall[] = _("Launches a small\nasteroid onto the\ntarget. Cannot miss.\nMega Launcher Boost."); // new
+static const u8 sMoveFourLineDescription_AquaBash[] = _("A mystical jab\nstrikes the foe.\n20% flinch chance.\nMighty Horn boost."); // new
+static const u8 sMoveFourLineDescription_TectonicFangs[] = _("User inserts it's\nground shaking fangs,\n10% chance to flinch.\nStrong Jaw boost."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5119,7 +5222,9 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_CHATTER           - 1] = sMoveFourLineDescription_Chatter,
     [MOVE_JUDGMENT          - 1] = sMoveFourLineDescription_Judgment,
     [MOVE_BUG_BITE          - 1] = sMoveFourLineDescription_BugBite,
+    [MOVE_DRACONIC_FANGS    - 1] = sMoveFourLineDescription_DragonFang,
     [MOVE_CHARGE_BEAM       - 1] = sMoveFourLineDescription_ChargeBeam,
+    [MOVE_PRIMAL_BEAM       - 1] = sMoveFourLineDescription_PrimalBeam,
     [MOVE_WOOD_HAMMER       - 1] = sMoveFourLineDescription_WoodHammer,
     [MOVE_AQUA_JET          - 1] = sMoveFourLineDescription_AquaJet,
     [MOVE_ATTACK_ORDER      - 1] = sMoveFourLineDescription_AttackOrder,
@@ -5427,18 +5532,49 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_EERIE_SPELL       - 1] = sMoveFourLineDescription_EerieSpell,
 
     //Darky's Custom Moves
-    [MOVE_DEATHROLL      - 1] = sMoveFourLineDescription_Deathroll,
-    [MOVE_EXCALIBUR      - 1] = sMoveFourLineDescription_Excalibur,
-    [MOVE_AQUA_FANG      - 1] = sMoveFourLineDescription_AquaFang,
-    [MOVE_WAVE_CRASH     - 1] = sMoveFourLineDescription_WaveCrash,
-    [MOVE_SMITE          - 1] = sMoveFourLineDescription_Smite,
-    [MOVE_OUTBURST       - 1] = sMoveFourLineDescription_Outburst,
-    [MOVE_SEISMIC_FIST   - 1] = sMoveFourLineDescription_SeismicFist,
-    [MOVE_IRON_FANGS     - 1] = sMoveFourLineDescription_IronFangs,
-    [MOVE_SHADOW_FANGS   - 1] = sMoveFourLineDescription_ShadowFangs,
-    [MOVE_LOVELY_BITE    - 1] = sMoveFourLineDescription_LovelyBite,
-    [MOVE_JAGGED_FANGS   - 1] = sMoveFourLineDescription_JaggedFangs,
-    [MOVE_SCORCHED_EARTH - 1] = sMoveFourLineDescription_ScorchedEarth,
-    [MOVE_RAGING_FURY    - 1] = sMoveFourLineDescription_RagingFury,
-    [MOVE_PLASMA_PULSE   - 1] = sMoveFourLineDescription_PlasmaPulse,
+    [MOVE_DEATHROLL         - 1] = sMoveFourLineDescription_Deathroll,
+    [MOVE_EXCALIBUR         - 1] = sMoveFourLineDescription_Excalibur,
+    [MOVE_AQUA_FANG         - 1] = sMoveFourLineDescription_AquaFang,
+    [MOVE_WAVE_CRASH        - 1] = sMoveFourLineDescription_WaveCrash,
+    [MOVE_SMITE             - 1] = sMoveFourLineDescription_Smite,
+    [MOVE_OUTBURST          - 1] = sMoveFourLineDescription_Outburst,
+    [MOVE_SEISMIC_FIST      - 1] = sMoveFourLineDescription_SeismicFist,
+    [MOVE_IRON_FANGS        - 1] = sMoveFourLineDescription_IronFangs,
+    [MOVE_SHADOW_FANGS      - 1] = sMoveFourLineDescription_ShadowFangs,
+    [MOVE_LOVELY_BITE       - 1] = sMoveFourLineDescription_LovelyBite,
+    [MOVE_JAGGED_FANGS      - 1] = sMoveFourLineDescription_JaggedFangs,
+    [MOVE_SCORCHED_EARTH    - 1] = sMoveFourLineDescription_ScorchedEarth,
+    [MOVE_RAGING_FURY       - 1] = sMoveFourLineDescription_RagingFury,
+    [MOVE_PLASMA_PULSE      - 1] = sMoveFourLineDescription_PlasmaPulse,
+    [MOVE_PIXIE_BEAM        - 1] = sMoveFourLineDescription_PixeBeam,
+    [MOVE_PIXIE_SLASH       - 1] = sMoveFourLineDescription_PixeSlash,
+    [MOVE_SEISMIC_BLADE     - 1] = sMoveFourLineDescription_SeismicBlade,
+    [MOVE_MOUNTAIN_CHUNK    - 1] = sMoveFourLineDescription_MountainChunk,
+    [MOVE_ARCHER_SHOT       - 1] = sMoveFourLineDescription_ArcherShot,
+    [MOVE_FROST_BRAND       - 1] = sMoveFourLineDescription_FrostBrand,
+    [MOVE_FROST_BOLT        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_GLACIER_CRASH     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_ZEPHYR_RUSH       - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_SUPERSONIC_SHOT   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_SHOCKING_JAB      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_SHOCKING_EDGE     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_LIGHTING_SRIKE    - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_VOLT_BOLT         - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_PSYCHOKINESIS     - 1] = sMoveFourLineDescription_Psychokinesis,
+    [MOVE_FERTILE_FANGS     - 1] = sMoveFourLineDescription_FertileFangs,
+    [MOVE_SCATTER_BLAST     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_JAGGED_PUNCH      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_CUTSIE_SLAP       - 1] = sMoveFourLineDescription_FrostBrand, //ToChange 
+    [MOVE_FAIRY_SPHERES     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BRAMBLE_BLAST     - 1] = sMoveFourLineDescription_BrambleBast,
+    [MOVE_ASTEROID_DOWNFALL - 1] = sMoveFourLineDescription_AsteroidDownFall,
+    [MOVE_AQUA_BASH         - 1] = sMoveFourLineDescription_AquaBash,
+    [MOVE_TECTONIC_FANGS    - 1] = sMoveFourLineDescription_TectonicFangs,
+    [MOVE_CUPID_SHOT        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_CLAY_DART         - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_DIAMOND_ARROW     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_DIAMOND_BLADE     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_VENOM_BOLT        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_FUMIGATION_BOMB   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BLACK_MAGIC       - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
 };

@@ -244,7 +244,7 @@ static const u8 sPerishBodyDescription[] = _("Foe faints in 3 turns if hit.");
 static const u8 sWanderingSpiritDescription[] = _("Trade abilities on contact.");
 static const u8 sGorillaTacticsDescription[] = _("Ups Attack by 50%\nand locks move.");
 static const u8 sNeutralizingGasDescription[] = _("All Abilities are nullified.\nInnates still work.");
-static const u8 sPastelVeilDescription[] = _("Protects team from poison.");
+static const u8 sPastelVeilDescription[] = _("Sets up safeguard upon entry \nfor 5 turns.");
 static const u8 sHungerSwitchDescription[] = _("Changes form each turn.");
 ;
 static const u8 sQuickDrawDescription[] = _("Moves first occasionally.");
@@ -460,6 +460,15 @@ static const u8 sAbilityPixiePowerDescription[] = _("Boosts Fairy moves by 33% \
 static const u8 sAbilityPlasmaLampDescription[] = _("Boost accuracy and Fire &\nElectric type moves by 1.2x");
 static const u8 sAbilityMagmaEaterDescription[] = _("Predator + Molten Down.");
 static const u8 sAbilitySuperHotGooDescription[] = _("Inflicts burn and lower\nthe speed on contact.");
+static const u8 sAbilityNikaDescription[] = _("Iron fist + Water moves\nfunction normally under sun.");
+static const u8 sAbilityColdPlasmaDescription[] = _("Electric type moves now\ninflict burn instead of paralysis.");
+static const u8 sAbilityArcherDescription[] = _("Boosts Arrow moves by 30%.");
+static const u8 sAbilitySuperSlammerDescription[] = _("Boosts Hammer and Slam\nmoves by 30%");
+static const u8 sAbilityInverseRoomDescription[] = _("Sets up the Inverse field\ncondition for 3 turns upon entry");
+static const u8 sAbilityAccelerateDescription[] = _("2 turn based moves are\nnow used instantly");
+static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after\nusing a Fire-type move.");
+static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
+
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -933,6 +942,14 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PLASMA_LAMP] = _("Plasma Lamp"),
         [ABILITY_MAGMA_EATER] = _("Magma Eater"),
         [ABILITY_SUPER_HOT_GOO] = _("Super Hot Goo"),
+        [ABILITY_NIKA] = _("Nika"),
+        [ABILITY_COLD_PLASMA] = _("Cold Plasma"),
+        [ABILITY_ARCHER] = _("Archer"),
+        [ABILITY_SUPER_SLAMMER] = _("Super Slammer"),
+        [ABILITY_INVERSE_ROOM] = _("Inverse Room"),
+        [ABILITY_ACCELERATE] = _("Accelerate"),
+        [ABILITY_FROST_BURN] = _("Frost Burn"),
+        [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1405,6 +1422,13 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PIXIE_POWER] = sAbilityPixiePowerDescription,
         [ABILITY_PLASMA_LAMP] = sAbilityPlasmaLampDescription,
         [ABILITY_MAGMA_EATER] = sAbilityMagmaEaterDescription,
-        [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription,
-        
+        [ABILITY_SUPER_HOT_GOO] = sAbilitySuperHotGooDescription, 
+        [ABILITY_NIKA] = sAbilityNikaDescription,
+        [ABILITY_COLD_PLASMA] = sAbilityColdPlasmaDescription,
+        [ABILITY_ARCHER] = sAbilityArcherDescription,
+        [ABILITY_SUPER_SLAMMER] = sAbilitySuperSlammerDescription,
+        [ABILITY_INVERSE_ROOM] = sAbilityInverseRoomDescription,
+        [ABILITY_ACCELERATE] = sAbilityAccelerateDescription,
+        [ABILITY_FROST_BURN] = sAbilityFrostBurnDescription,
+        [ABILITY_ITCHY_DEFENSE] = sAbilityItchyDefenseDescription,
 };

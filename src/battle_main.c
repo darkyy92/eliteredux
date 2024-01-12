@@ -157,6 +157,8 @@ EWRAM_DATA u8 gActiveBattler = 0;
 EWRAM_DATA u32 gBattleControllerExecFlags = 0;
 EWRAM_DATA u8 gBattlersCount = 0;
 EWRAM_DATA u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u8 gQuashedBattlers = 0;
+EWRAM_DATA u8 gAfterYouBattlers = 0;
 EWRAM_DATA u8 gBattlerPositions[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gActionsByTurnOrder[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerByTurnOrder[MAX_BATTLERS_COUNT] = {0};
@@ -4994,15 +4996,13 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     }
 
     // Sighting System
-	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || BattlerHasInnate(battlerId, ABILITY_SIGHTING_SYSTEM))
-        && gBattleMoves[move].accuracy <= 75)
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_SIGHTING_SYSTEM) && gBattleMoves[move].accuracy && gBattleMoves[move].accuracy <= 75)
     { 
         priority = priority - 3;
     }
 
     // Iron Barrage
-	if ((GetBattlerAbility(battlerId) == ABILITY_IRON_BARRAGE  || BattlerHasInnate(battlerId, ABILITY_IRON_BARRAGE))
-        && gBattleMoves[move].accuracy <= 75)
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_IRON_BARRAGE) && gBattleMoves[move].accuracy && gBattleMoves[move].accuracy <= 75)
     { 
         priority = priority - 3;
     }
@@ -5164,6 +5164,8 @@ static void SetActionsAndBattlersTurnOrder(void)
 {
     s32 turnOrderId = 0;
     s32 i, j;
+
+    gAfterYouBattlers = gQuashedBattlers = 0;
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
     {
@@ -5354,23 +5356,28 @@ static void CheckMegaEvolutionBeforeTurn(void)
 // In gen7, priority and speed are recalculated during the turn in which a pokemon mega evolves
 static void TryChangeTurnOrder(void)
 {
-    s32 i, j;
-    for (i = 0; i < gBattlersCount - 1; i++)
-    {
-        for (j = i + 1; j < gBattlersCount; j++)
-        {
-            u8 battler1 = gBattlerByTurnOrder[i];
-            u8 battler2 = gBattlerByTurnOrder[j];
-            if (gActionsByTurnOrder[i] == B_ACTION_USE_MOVE
-                && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE)
-            {
-                if (GetWhoStrikesFirst(battler1, battler2, FALSE))
-                    SwapTurnOrder(i, j);
-            }
-        }
-    }
+    RecalculateMoveOrder(0, gBattlersCount);
     gBattleMainFunc = CheckFocusPunch_ClearVarsBeforeTurnStarts;
     gBattleStruct->focusPunchBattlerId = 0;
+}
+
+void RecalculateMoveOrder(u8 startingFrom, u8 processTo)
+{
+    s32 i, j;
+    for (i = startingFrom; i < processTo - 1; i++)
+    {
+        if (gActionsByTurnOrder[i] != B_ACTION_USE_MOVE)
+            continue;
+
+        for (j = i + 1; j < processTo; j++)
+        {
+            if (gActionsByTurnOrder[j] != B_ACTION_USE_MOVE)
+                continue;
+            
+            if (GetWhoStrikesFirst(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE))
+                SwapTurnOrder(i, j);
+        }
+    }
 }
 
 

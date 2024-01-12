@@ -1938,7 +1938,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_KEEN_EYE, atkAbility) || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_UNAWARE, atkAbility))
         evasionStage = 6;
 
-    if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
+    if ((gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT) || (gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED))
         buff = accStage;
     else
         buff = accStage + 6 - evasionStage;
@@ -1954,10 +1954,6 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 		moveAcc = 90;
     else if(move == MOVE_FOCUS_BLAST && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INNER_FOCUS, atkAbility)))
 		moveAcc = 90;
-
-    // Bad Luck Ability lowers accuracy by 5%
-    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_BAD_LUCK, defAbility) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
-        moveAcc = (moveAcc * 95) / 100;
 	
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY)
@@ -1998,6 +1994,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 
+    // Bad Luck Ability lowers accuracy by 5%
+    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_BAD_LUCK, defAbility) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK))
+        calc = (calc * 95) / 100;
+
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_COMPOUND_EYES, atkAbility))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
     
@@ -2030,7 +2030,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 
     if (atkHoldEffect == HOLD_EFFECT_WIDE_LENS)
         calc = (calc * (100 + atkParam)) / 100;
-    else if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef));
+    else if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef))
         calc = (calc * (100 + atkParam)) / 100;
 
     if (gProtectStructs[battlerAtk].usedMicleBerry)
@@ -2042,7 +2042,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
             calc = (calc * 120) / 100;  // 20% acc boost
     }
 
-    if (IsGravityActive())
+    if (IsGravityActive()) 
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
     return calc;
@@ -2074,7 +2074,7 @@ static void Cmd_accuracycheck(void)
         )
     {
         // No acc checks for second hit of Parental Bond or multi hit moves
-        gBattlescriptCurrInstr += 7;
+        JumpIfMoveFailed(7, move);
     }
     else
     {
@@ -2288,6 +2288,13 @@ static void Cmd_damagecalc(void)
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
     }
 
+    //to enable changing the power of a Future Sight
+    if(gCurrentMove == gWishFutureKnock.futureSightMove[gBattlerTarget] && 
+       gWishFutureKnock.futureSightCounter[gBattlerTarget] == 0){
+        movePower = gWishFutureKnock.futureSightPower[gBattlerTarget];
+        gWishFutureKnock.futureSightMove[gBattlerTarget] = MOVE_NONE;
+    }
+
     GET_MOVE_TYPE(gCurrentMove, moveType);
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
 
@@ -2356,12 +2363,6 @@ static void Cmd_adjustdamage(void)
 
     // Handle reducing the dmg to 1 hp.
     gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-
-    if(gBattleMoveDamage == 0 && gBattleMons[gBattlerTarget].maxHP != 1){
-        gBattleMoveDamage = 1;
-        gSpecialStatuses[gBattlerTarget].focusBanded = FALSE;
-        gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
-    }
 
     if (gProtectStructs[gBattlerTarget].endured)
     {
@@ -2831,7 +2832,8 @@ static void Cmd_resultmessage(void)
             stringId = STRINGID_ITDOESNTAFFECT;
             break;
         case MOVE_RESULT_FOE_ENDURED:
-            stringId = STRINGID_PKMNENDUREDHIT;
+            if (!gMultiHitCounter)
+                stringId = STRINGID_PKMNENDUREDHIT;
             break;
         case MOVE_RESULT_FAILED:
             stringId = STRINGID_BUTITFAILED;
@@ -2865,7 +2867,7 @@ static void Cmd_resultmessage(void)
                 gBattlescriptCurrInstr = BattleScript_SturdiedMsg;
                 return;
             }
-            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED)
+            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED && !gMultiHitCounter)
             {
                 gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
@@ -5531,6 +5533,7 @@ static void Cmd_moveend(void)
             {
                 switch (gBattleMoves[gCurrentMove].effect)
                 {
+                case EFFECT_FLINCH_RECOIL_25:
                 case EFFECT_RECOIL_25: // Take Down, 25% recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
                     BattleScriptPushCursor();
@@ -5543,6 +5546,7 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
+                case EFFECT_FLINCH_RECOIL_50:
                 case EFFECT_RECOIL_50: // Head Smash, 50 % recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 2);
                     BattleScriptPushCursor();
@@ -8900,6 +8904,7 @@ static void Cmd_various(void)
             case ABILITY_SCHOOLING:         case ABILITY_COMATOSE:
             case ABILITY_SHIELDS_DOWN:      case ABILITY_DISGUISE:
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
+            case ABILITY_AS_ONE_ICE_RIDER:  case ABILITY_AS_ONE_SHADOW_RIDER:
                 break;
             default:
                 gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[gActiveBattler].ability; // re-using the variable for trace
@@ -9043,7 +9048,7 @@ static void Cmd_various(void)
         else
         {
             if (GetBattlerAbility(gBattlerAttacker) == (ABILITY_MEGA_LAUNCHER || ABILITY_IRON_BARRAGE) && gBattleMoves[gCurrentMove].flags & FLAG_MEGA_LAUNCHER_BOOST)
-                gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP * 75 / 100);
+                gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP * 3 / 4);
             else
                 gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP / 2);
 
@@ -9059,21 +9064,15 @@ static void Cmd_various(void)
         }
         else
         {
-            for (i = 0; i < gBattlersCount; i++)
-                data[i] = gBattlerByTurnOrder[i];
-            for (i = 0; i < gBattlersCount; i++)
+            // Shift battlers up to target position and move target battler to last.
+            u8 targetPosition = GetBattlerTurnOrderNum(gBattlerTarget);
+            for (i = targetPosition; i < gBattlersCount - 1; i++)
             {
-                if (data[i] == gBattlerTarget)
-                {
-                    for (j = i + 1; j < gBattlersCount; j++)
-                        data[i++] = data[j];
-                }
-                else
-                {
-                    gBattlerByTurnOrder[i] = data[i];
-                }
+                gBattlerByTurnOrder[i] = gBattlerByTurnOrder[i + 1];
             }
+            
             gBattlerByTurnOrder[gBattlersCount - 1] = gBattlerTarget;
+            gQuashedBattlers++;
             gBattlescriptCurrInstr += 7;
         }
         return;
@@ -9570,25 +9569,18 @@ static void Cmd_various(void)
         }
         else
         {
-            for (i = 0; i < gBattlersCount; i++)
-                data[i] = gBattlerByTurnOrder[i];
-            if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 2)
+            // Shift battlers down to target position and move target battler to next in line.
+            u8 targetPosition = GetBattlerTurnOrderNum(gBattlerTarget);
+            for (i = targetPosition; i > gCurrentTurnActionNumber + 1; i--)
             {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[3];
+                gBattlerByTurnOrder[i] = gBattlerByTurnOrder[i-1];
             }
-            else if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 3)
-            {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[2];
-            }
-            else
-            {
-                gBattlerByTurnOrder[2] = gBattlerTarget;
-                gBattlerByTurnOrder[3] = data[2];
-            }
+            
+            gBattlerByTurnOrder[gCurrentTurnActionNumber + 1] = gBattlerTarget;
+            gAfterYouBattlers++;
+            
+            if (targetPosition >= gBattlersCount - gQuashedBattlers)
+                gQuashedBattlers--;
             gBattlescriptCurrInstr += 7;
         }
         return;
@@ -12343,7 +12335,7 @@ static void Cmd_trytoapplymoveeffect(void)
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
                     appliedEffect = TRUE;
                 }
-            };
+            }
         break;
         case EFFECT_CURSE_HIT:
             if(rand <= secondaryEffectChance){
@@ -12357,7 +12349,33 @@ static void Cmd_trytoapplymoveeffect(void)
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
                     appliedEffect = TRUE;
                 }
-            };
+            }
+        break;
+        case EFFECT_STEALTH_ROCK_HIT:
+            if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
+                && !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK))
+                {
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_STEALTH_ROCK;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
+        case EFFECT_LEECH_SEED_HIT:
+             if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gBattleMons[gBattlerTarget].hp != 0
+                && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+                && TARGET_TURN_DAMAGED 
+                && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+                {
+                    gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
+                    appliedEffect = TRUE;
+                }
+            }
         break;
     }
 
@@ -13386,6 +13404,7 @@ static void Cmd_trysetfutureattack(void)
     {
         gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
         gWishFutureKnock.futureSightMove[gBattlerTarget] = gCurrentMove;
+        gWishFutureKnock.futureSightPower[gBattlerTarget] = gBattleMoves[gCurrentMove].power;
         gWishFutureKnock.futureSightAttacker[gBattlerTarget] = gBattlerAttacker;
         gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
 

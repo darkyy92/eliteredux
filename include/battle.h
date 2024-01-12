@@ -244,6 +244,7 @@ struct FieldTimer
     u8 wonderRoomTimer;
     u8 magicRoomTimer;
     u8 trickRoomTimer;
+    u8 inverseRoomTimer;
     u8 terrainTimer;
     u8 gravityTimer;
     u8 fairyLockTimer;
@@ -254,6 +255,7 @@ struct WishFutureKnock
     u8 futureSightCounter[MAX_BATTLERS_COUNT];
     u8 futureSightAttacker[MAX_BATTLERS_COUNT];
     u16 futureSightMove[MAX_BATTLERS_COUNT];
+    u8 futureSightPower[MAX_BATTLERS_COUNT];
     u8 wishCounter[MAX_BATTLERS_COUNT];
     u8 wishPartyId[MAX_BATTLERS_COUNT];
     u8 weatherDuration;
@@ -858,6 +860,8 @@ extern u8 gActiveBattler;
 extern u32 gBattleControllerExecFlags;
 extern u8 gBattlersCount;
 extern u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT];
+extern u8 gQuashedBattlers;
+extern u8 gAfterYouBattlers;
 extern u8 gBattlerPositions[MAX_BATTLERS_COUNT];
 extern u8 gActionsByTurnOrder[MAX_BATTLERS_COUNT];
 extern u8 gBattlerByTurnOrder[MAX_BATTLERS_COUNT];

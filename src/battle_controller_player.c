@@ -1812,6 +1812,10 @@ u8 TypeEffectiveness(struct ChooseMoveStruct *moveInfo, u8 targetId)
 {
 	bool8 isInverse = (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE)) ? TRUE : FALSE;
     u16 move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
+
+    if(IsInverseRoomActive()){
+        isInverse = !isInverse;
+    }
 	
 	if (gBattleMoves[move].power == 0)
 		return 10;
@@ -1893,66 +1897,76 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
     bool8 abilityNullifiesDamage = FALSE;
     u16 tempMod;
     u8 moveType = GetTypeBeforeUsingMove(moveNum, userId);
+    u8 moveType2 = gBattleMoves[moveNum].type2;
     u16 illusionSpecies = GetIllusionMonSpecies(targetId);
+    bool8 isInverse = (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE)) ? TRUE : FALSE;
+    u16 mod = UQ_4_12(1.0);
+
+    if(IsInverseRoomActive()){
+        isInverse = !isInverse;
+    }
 
     if(gBattleMoves[moveNum].split == SPLIT_STATUS)
         return GetMoveTypeEffectivenessStatus(moveNum, targetId, userId);
-	else if (gBattleMoves[moveNum].power == 0 || 
+	else if (gBattleMoves[moveNum].power == 0            || 
         gBattleMoves[moveNum].effect == EFFECT_SONICBOOM ||
-        gBattleMoves[moveNum].effect == EFFECT_LEVEL_DAMAGE ||
-        gBattleMoves[moveNum].effect == EFFECT_DRAGON_RAGE)
+        gBattleMoves[moveNum].effect == EFFECT_LEVEL_DAMAGE)
 		return MOVE_EFFECTIVENESS_STATUS;
 	else
 	{
-        u16 mod;
+        //First Type
         if (illusionSpecies != SPECIES_NONE){
-            mod = sTypeEffectivenessTable[moveType][gBaseStats[illusionSpecies].type1];
+            MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBaseStats[illusionSpecies].type1, userId, FALSE);
 
             if (gBaseStats[illusionSpecies].type2 != gBaseStats[illusionSpecies].type1)
-            {
-                u16 mod2 = sTypeEffectivenessTable[moveType][gBaseStats[illusionSpecies].type2];
-                MulModifier(&mod, mod2);
-            }
+                MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBaseStats[illusionSpecies].type2, userId, FALSE);
 
             //Third Type
             if (gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type1 &&
                 gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type2 &&
                 gBattleMons[targetId].type3 != TYPE_MYSTERY)
-            {
-                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
-                MulModifier(&mod, mod2);
-            }
+                MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBattleMons[targetId].type3, userId, FALSE);
         }
         else{
-            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+            MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBattleMons[targetId].type1, userId, FALSE);
 
             if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-            {
-                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
-                MulModifier(&mod, mod2);
-            }
+                MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBattleMons[targetId].type2, userId, FALSE);
 
             //Third Type
             if (gBattleMons[targetId].type3 != gBattleMons[targetId].type1 &&
                 gBattleMons[targetId].type3 != gBattleMons[targetId].type2 &&
                 gBattleMons[targetId].type3 != TYPE_MYSTERY)
-            {
-                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
-                MulModifier(&mod, mod2);
-            }
+                MulByTypeEffectiveness(&mod, moveNum, moveType, targetId, gBattleMons[targetId].type3, userId, FALSE);
         }
 
-		if (gBattleMoves[moveNum].effect == EFFECT_TWO_TYPED_MOVE)
-		{
-			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[moveNum].argument][gBattleMons[targetId].type1];
-			MulModifier(&mod, mod3);
+        //Second Type
+        if(moveType2 != TYPE_NORMAL, moveType2 != TYPE_MYSTERY){
+            if (illusionSpecies != SPECIES_NONE){
+                MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBaseStats[illusionSpecies].type1, userId, FALSE);
 
-			if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-			{
-				u16 mod4 = sTypeEffectivenessTable[gBattleMoves[moveNum].argument][gBattleMons[targetId].type2];
-				MulModifier(&mod, mod4);
-			}
-		}
+                if (gBaseStats[illusionSpecies].type2 != gBaseStats[illusionSpecies].type1)
+                    MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBaseStats[illusionSpecies].type2, userId, FALSE);
+
+                //Third Type
+                if (gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type1 &&
+                    gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type2 &&
+                    gBattleMons[targetId].type3 != TYPE_MYSTERY)
+                    MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBattleMons[targetId].type3, userId, FALSE);
+            }
+            else{
+                MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBattleMons[targetId].type1, userId, FALSE);
+
+                if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
+                    MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBattleMons[targetId].type2, userId, FALSE);
+
+                //Third Type
+                if (gBattleMons[targetId].type3 != gBattleMons[targetId].type1 &&
+                    gBattleMons[targetId].type3 != gBattleMons[targetId].type2 &&
+                    gBattleMons[targetId].type3 != TYPE_MYSTERY)
+                    MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBattleMons[targetId].type3, userId, FALSE);
+            }
+        }
 
         if(gBattleMons[userId].ability == ABILITY_TINTED_LENS|| BattlerHasInnate(userId, ABILITY_TINTED_LENS)){
             if(mod <= UQ_4_12(0.5)){
@@ -2017,7 +2031,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
                 if(gBattleMons[userId].ability == ABILITY_OVERCHARGE|| BattlerHasInnate(userId, ABILITY_OVERCHARGE)){
                     if(gBattleMons[targetId].type1 == TYPE_ELECTRIC  || gBattleMons[targetId].type2 == TYPE_ELECTRIC){
-                        tempMod = UQ_4_12(2.0);
+                        tempMod = UQ_4_12(4.0);
                         MulModifier(&mod, tempMod);
                     }
                 }
@@ -2176,7 +2190,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_NORMAL:
-                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
+                /*if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
                     if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
                         if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
                             //Removes First Type Effectiveness and recalculates it
@@ -2191,10 +2205,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                             mod = UQ_4_12(1.0);
                         }
                     }
-                }
+                }*/
             break;
             case TYPE_FIGHTING:
-                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
+                /*if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
                     if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
                         if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
                             //Removes First Type Effectiveness and recalculates it
@@ -2209,9 +2223,25 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                             mod = UQ_4_12(1.0);
                         }
                     }
-                }
+                }*/
             break;
             case TYPE_DRAGON:
+                if(gBattleMoves[moveNum].effect == EFFECT_DRAGON_RAGE && IS_BATTLER_OF_TYPE(targetId, TYPE_FAIRY)){
+                    if(gBattleMons[targetId].type1 == TYPE_FAIRY  || gBattleMons[targetId].type2 == TYPE_FAIRY){
+                        if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 != TYPE_FAIRY){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_FAIRY && gBattleMons[targetId].type1 != TYPE_FAIRY){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 == TYPE_FAIRY){
+                            mod = UQ_4_12(1.0);
+                        }
+                    }
+                }
+
                 if(gBattleMons[userId].ability == ABILITY_OVERWHELM || BattlerHasInnate(userId, ABILITY_OVERWHELM)){
                     if(gBattleMons[targetId].type1 == TYPE_FAIRY  || gBattleMons[targetId].type2 == TYPE_FAIRY){
                         if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 != TYPE_FAIRY){
@@ -2333,7 +2363,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         if(gBattleMoves[moveNum].effect == EFFECT_FREEZE_DRY && IS_BATTLER_OF_TYPE(targetId, TYPE_WATER)){
-            tempMod = UQ_4_12(2.0);
+            tempMod = UQ_4_12(4.0);
             MulModifier(&mod, tempMod);
         }
 
@@ -2354,14 +2384,26 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             break;
         }*/
 
-		if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
-			return MOVE_EFFECTIVENESS_NONE;
-		else if (mod <= UQ_4_12(0.5))
-			return MOVE_EFFECTIVENESS_HALF;
-		else if (mod >= UQ_4_12(2.0))
-			return MOVE_EFFECTIVENESS_DOUBLE;
-		else
-			return MOVE_EFFECTIVENESS_NORMAL;
+        if(!isInverse){
+            if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
+                return MOVE_EFFECTIVENESS_NONE;
+            else if (mod <= UQ_4_12(0.5))
+                return MOVE_EFFECTIVENESS_HALF;
+            else if (mod >= UQ_4_12(2.0))
+                return MOVE_EFFECTIVENESS_DOUBLE;
+            else
+                return MOVE_EFFECTIVENESS_NORMAL;
+        }
+        else{
+            if (abilityNullifiesDamage)
+                return MOVE_EFFECTIVENESS_NONE;
+            else if (mod >= UQ_4_12(2.0))
+                return MOVE_EFFECTIVENESS_HALF;
+            else if (mod <= UQ_4_12(0.5))
+                return MOVE_EFFECTIVENESS_DOUBLE;
+            else
+                return MOVE_EFFECTIVENESS_NORMAL;
+        }
 	}
 }
 

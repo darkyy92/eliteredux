@@ -417,7 +417,14 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectAttackUpUserAlly		  @ EFFECT_HOWL
 	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
 	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
-	.4byte BattleScript_EffectBleedHit				  @ EFFECT_BLEED_HIT
+	.4byte BattleScript_EffectBleedHit				        @ EFFECT_BLEED_HIT
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_25
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_RECOIL_50
+	.4byte BattleScript_EffectHit                     @ EFFECT_IGNORE_TYPE_IMMUNITY
+	.4byte BattleScript_EffectHit                     @ EFFECT_SE_AGAINST_TYPE_HIT
+	.4byte BattleScript_EffectHit                     @ EFFECT_DOUBLE_DMG_IF_STATUS1
+	.4byte BattleScript_EffectStealthRockHit          @ EFFECT_STEALTH_ROCK_HIT
+	.4byte BattleScript_EffectLeechSeedHit            @ EFFECT_LEECH_SEED_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -3194,6 +3201,7 @@ BattleScript_EffectFreezeHit::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectParalyzeHit::
+	jumpifability BS_ATTACKER, ABILITY_COLD_PLASMA, BattleScript_EffectBurnHit
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
 
@@ -3221,6 +3229,23 @@ BattleScript_MoveEffectCurse::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectStealthRockHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectStealthRockHit
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectStealthRockHit::
+	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
+	waitanimation
+	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectLeechSeedHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_EffectLeechSeed
 	goto BattleScript_MoveEnd
 	
 BattleScript_EffectHit_Return::
@@ -4132,6 +4157,7 @@ BattleScript_EffectTwoTurnsAttack::
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_RAZOR_WIND
 BattleScript_EffectTwoTurnsAttackContinue:
 	call BattleScriptFirstChargingTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 	goto BattleScript_TwoTurnMovesSecondTurn
@@ -5131,6 +5157,7 @@ BattleScript_EffectGust::
 
 BattleScript_EffectSolarbeam::
 	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_SolarbeamOnFirstTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_SolarbeamOnFirstTurn
 	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_SolarbeamOnFirstTurn
 	jumpifability BS_ATTACKER, ABILITY_SOLAR_FLARE, BattleScript_SolarbeamOnFirstTurn
 	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_SolarbeamOnFirstTurn
@@ -6643,6 +6670,11 @@ BattleScript_TrickRoomEnds::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
+BattleScript_InverseRoomEnds::
+	printstring STRINGID_INVERSEROOMENDS
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 BattleScript_WonderRoomEnds::
 	printstring STRINGID_WONDERROOMENDS
 	waitmessage B_WAIT_TIME_LONG
@@ -6990,12 +7022,6 @@ BattleScript_StickyWebOnSwitchInPrintStatMsg:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_StickyWebOnSwitchInEnd:
 	restoretarget
-	jumpifability       BS_TARGET, ABILITY_COMPETITIVE,     BattleScript_StickyWebOnSwitch_Competitive
-	jumpifability       BS_TARGET, ABILITY_DEFIANT,         BattleScript_StickyWebOnSwitch_Defiant
-	jumpifability       BS_TARGET, ABILITY_FORT_KNOX,       BattleScript_StickyWebOnSwitch_FortKnox
-	jumpifability       BS_TARGET, ABILITY_RUN_AWAY,        BattleScript_StickyWebOnSwitch_RunAway
-	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_StickyWebOnSwitch_KingsWrath
-	jumpifabilityonside BS_TARGET, ABILITY_QUEENS_MOURNING, BattleScript_StickyWebOnSwitch_QueensMourning
 	return
 
 BattleScript_StickyWebOnSwitch_KingsWrath:
@@ -7049,26 +7075,6 @@ BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialDefense:
 BattleScript_StickyWebOnSwitch_QueensMourning_End:
 	restoretarget
 	return
-
-BattleScript_StickyWebOnSwitch_Competitive:
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
-	setstatchanger STAT_SPATK, 2, FALSE
-	goto BattleScript_DefiantActivates
-
-BattleScript_StickyWebOnSwitch_Defiant:
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
-	setstatchanger STAT_ATK, 2, FALSE
-	goto BattleScript_DefiantActivates
-
-BattleScript_StickyWebOnSwitch_FortKnox:
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
-	setstatchanger STAT_DEF, 3, FALSE
-	goto BattleScript_DefiantActivates
-
-BattleScript_StickyWebOnSwitch_RunAway:
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
-	setstatchanger STAT_SPEED, 2, FALSE
-	goto BattleScript_DefiantActivates
 
 BattleScript_PerishSongTakesLife::
 	printstring STRINGID_PKMNPERISHCOUNTFELL
@@ -8061,6 +8067,7 @@ BattleScript_MoveEffectFreeze::
 	goto BattleScript_UpdateEffectStatusIconRet
 
 BattleScript_MoveEffectParalysis::
+	jumpifability BS_ATTACKER, ABILITY_COLD_PLASMA, BattleScript_MoveEffectBurn
 	statusanimation BS_EFFECT_BATTLER
 	printfromtable gGotParalyzedStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -8160,7 +8167,29 @@ BattleScript_QueensMourning_Special_DefenseUpDoAnim::
 BattleScript_QueensMourning_End:
 	return
 
+BattleScript_FortKnoxActivates::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
+	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
+	setstatchanger STAT_DEF, 3, FALSE
+	goto BattleScript_DefiantActivates_Effect
+
+BattleScript_RunAwayActivates::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
+	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
+	setstatchanger STAT_SPEED, 2, FALSE
+	goto BattleScript_DefiantActivates_Effect
+
+BattleScript_CompetitiveActivates::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
+	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
+	setstatchanger STAT_SPATK, 2, FALSE
+	goto BattleScript_DefiantActivates_Effect
+	
 BattleScript_DefiantActivates::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
+	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
+	setstatchanger STAT_ATK, 2, FALSE
+BattleScript_DefiantActivates_Effect:
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
 	statbuffchange 0, NULL
@@ -8168,6 +8197,7 @@ BattleScript_DefiantActivates::
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefiantActivates_End:
 	return
 
 BattleScript_AbilityPopUp:
@@ -8242,7 +8272,25 @@ BattleScript_BattlerCoiledUp::
 	
 BattleScript_AttackerBecameTheType::
 	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERGOTTHETYPE
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_AttackerBecameTheTypeFull::
+	call BattleScript_AbilityPopUp
 	printstring STRINGID_ATTACKERTYPECHANGEDTO
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_DefenderBecameTheTypeFull::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_DEFENDERTYPECHANGEDTO
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_AttackerBecameInfested::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERBECAMEINFECTED
 	waitmessage B_WAIT_TIME_LONG
 	return
 	
@@ -8334,42 +8382,24 @@ BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck:
 	battlemacros MACROS_CLEAN_OVERWRITEN_STRINGS, 0, NULL
 	end3
 
-BattleScript_IntimidateCloneActivated_DefiantActivates:
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	statbuffchange 0, NULL
-	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printstring STRINGID_DEFENDERSSTATROSE
-	waitmessage B_WAIT_TIME_LONG
-	return
-
 //Target 1
 BattleScript_IntimidateCloneActivated_Competitive_1:
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
-	setstatchanger STAT_SPATK, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_CompetitiveActivates
 	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_Defiant_1:
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
-	setstatchanger STAT_ATK, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_DefiantActivates
 	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_FortKnox_1:
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
-	setstatchanger STAT_DEF, 3, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_FortKnoxActivates
 	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_RunAway_1:
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
-	setstatchanger STAT_SPEED, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_RunAwayActivates
 	goto BattleScript_IntimidateCloneActivated_Target_1_AfterDefiantCheck
 	end3
 
@@ -8402,30 +8432,22 @@ BattleScript_IntimidateCloneActivated_KingsWrath_End_1:
 
 //Target 2
 BattleScript_IntimidateCloneActivated_Competitive_2:
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
-	setstatchanger STAT_SPATK, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_CompetitiveActivates
 	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_Defiant_2:
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
-	setstatchanger STAT_ATK, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_DefiantActivates
 	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_FortKnox_2:
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
-	setstatchanger STAT_DEF, 3, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_FortKnoxActivates
 	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
 	end3
 
 BattleScript_IntimidateCloneActivated_RunAway_2:
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
-	setstatchanger STAT_SPEED, 2, FALSE
-	call BattleScript_IntimidateCloneActivated_DefiantActivates
+	call BattleScript_RunAwayActivates
 	goto BattleScript_IntimidateCloneActivated_Target_2_AfterDefiantCheck
 	end3
 
@@ -8465,7 +8487,15 @@ BattleScript_AirBlowerActivated::
 	sethword sABILITY_OVERWRITE, 0
 	end3
 
-
+BattleScript_PastelVeilActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_PASTEL_VEIL
+	showabilitypopup BS_ABILITY_BATTLER
+	printstring STRINGID_PASTELVEILACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	sethword sABILITY_OVERWRITE, 0
+	end3
+	
 BattleScript_ElectromorphosisActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
 	call BattleScript_AbilityPopUp
@@ -8612,6 +8642,14 @@ BattleScript_PickUpActivate::
 	printstring STRINGID_PICKUPACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_ForewarnReworkActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNFORESAWATTACK
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 
 BattleScript_BattlerHasNoDamageHits::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -9230,33 +9268,19 @@ BattleScript_ScarePrevented_Scrappy:
 	goto BattleScript_ScarePrevented
 
 BattleScript_Scare_Competitive:
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
-	setstatchanger STAT_SPATK, 2, FALSE
-	goto BattleScript_Scare_DefiantActivates
+	call BattleScript_CompetitiveActivates
+	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_Scare_Defiant:
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
-	setstatchanger STAT_ATK, 2, FALSE
-	goto BattleScript_Scare_DefiantActivates
+	call BattleScript_DefiantActivates
+	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_Scare_FortKnox:
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
-	setstatchanger STAT_DEF, 3, FALSE
-	goto BattleScript_Scare_DefiantActivates
+	call BattleScript_FortKnoxActivates
+	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_Scare_RunAway:
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
-	setstatchanger STAT_SPEED, 2, FALSE
-	goto BattleScript_Scare_DefiantActivates
-
-BattleScript_Scare_DefiantActivates:
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	statbuffchange 0, NULL
-	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printstring STRINGID_DEFENDERSSTATROSE
-	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_RunAwayActivates
 	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_Scare_KingsWrath:
@@ -9997,6 +10021,7 @@ BattleScript_GooeyActivates::
 	call BattleScript_AbilityPopUp
 	swapattackerwithtarget	@ for defiant, mirror armor
 	seteffectsecondary
+	swapattackerwithtarget
 	return
 
 BattleScript_AbilityStatusEffect::
@@ -11026,12 +11051,27 @@ BattleScript_TwistedDimensionActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_InversedRoomActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_INVERSEROOMACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 BattleScript_TwistedDimensionRemoved::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_TRICKROOMENDS
 	waitmessage B_WAIT_TIME_LONG
 	end3
+	
+BattleScript_InverseRoomRemoved::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_INVERSEROOMENDS
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 
 BattleScript_GripPincerActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER

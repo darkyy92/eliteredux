@@ -41241,17 +41241,17 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+	.moves = MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE
     },
     {
     .lvl = 0,
-    .species = SPECIES_GIRAFARIG,
+    .species = SPECIES_PERSIAN_ALOLAN,
     .heldItem = ITEM_NUGGET,
-    .ability = 1, // 
+    .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+	.moves = MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE
     },
     {
     .lvl = 0,

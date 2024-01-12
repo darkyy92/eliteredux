@@ -793,6 +793,39 @@ gBattleAnims_Moves::
 	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
 	.4byte Move_PLASMA_PULSE
+	.4byte Move_PRIMAL_BEAM
+	.4byte Move_DRACONIC_FANGS
+	.4byte Move_PIXIE_BEAM
+	.4byte Move_PIXIE_SLASH
+	.4byte Move_SEISMIC_BLADE
+	.4byte Move_MOUNTAIN_CHUNK
+	.4byte Move_ARCHER_SHOT
+	.4byte Move_FROST_BRAND
+	.4byte Move_FROST_BOLT
+	.4byte Move_GLACIER_CRASH
+	.4byte Move_SUPERSONIC_SHOT
+	.4byte Move_ZEPHYR_RUSH
+	.4byte Move_SHOCKING_JAB
+	.4byte Move_SHOCKING_EDGE
+	.4byte Move_LIGHTING_SRIKE
+	.4byte Move_VOLT_BOLT
+	.4byte Move_PSYCHOKINESIS
+	.4byte Move_FERTILE_FANGS
+	.4byte Move_SCATTER_BLAST
+	.4byte Move_JAGGED_PUNCH
+	.4byte Move_CUTSIE_SLAP
+	.4byte Move_FAIRY_SPHERES
+	.4byte Move_BRAMBLE_BLAST
+	.4byte Move_ASTEROID_DOWNFALL
+	.4byte Move_AQUA_BASH
+	.4byte Move_TECTONIC_FANGS
+	.4byte Move_CUPID_SHOT
+	.4byte Move_CLAY_DART
+	.4byte Move_DIAMOND_ARROW
+	.4byte Move_DIAMOND_BLADE
+	.4byte Move_VENOM_BOLT
+	.4byte Move_FUMIGATION_BOMB
+	.4byte Move_BLACK_MAGIC
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -3895,6 +3928,131 @@ Move_BUG_BITE:
 	clearmonbg ANIM_TARGET
 	blendoff
 	end
+
+Move_PRIMAL_BEAM:
+	goto Move_HYPER_BEAM
+
+Move_DRACONIC_FANGS:
+    goto Move_BITE
+
+Move_PIXIE_BEAM:
+    goto Move_FLEUR_CANNON
+
+Move_PIXIE_SLASH:
+    goto Move_SACRED_SWORD
+
+Move_SEISMIC_BLADE:
+	goto Move_SACRED_SWORD
+
+Move_MOUNTAIN_CHUNK:
+    goto Move_ROCK_SLIDE
+
+Move_ARCHER_SHOT:
+   goto Move_THOUSAND_ARROWS
+
+Move_FROST_BRAND:
+   goto Move_CUT
+
+Move_FROST_BOLT:
+   goto Move_THOUSAND_ARROWS
+
+Move_GLACIER_CRASH:
+   goto Move_ICICLE_CRASH
+
+Move_SUPERSONIC_SHOT:
+   goto Move_SUPERSONIC
+
+Move_ZEPHYR_RUSH:
+   goto Move_JUMP_KICK
+
+Move_SHOCKING_JAB:
+   goto Move_POISON_JAB
+
+Move_SHOCKING_EDGE:
+   goto Move_ZING_ZAP
+
+Move_LIGHTING_SRIKE:
+   goto Move_THUNDER_SHOCK
+
+Move_VOLT_BOLT:
+   goto Move_VOLT_TACKLE
+
+Move_PSYCHOKINESIS:
+   goto Move_STRENGTH
+
+Move_FERTILE_FANGS:
+   goto Move_LEECH_LIFE
+
+Move_BRAMBLE_BLAST:
+   goto Move_POISON_STING
+
+Move_SCATTER_BLAST:
+   goto Move_ACCELEROCK
+
+Move_JAGGED_PUNCH:
+   goto Move_MACH_PUNCH
+
+Move_CUTSIE_SLAP:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_PINK_HEART
+	monbg ANIM_TARGET
+	setalpha 12, 8
+CutsieSlapLeft:
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff00 0xffd6
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x80 0xfff2
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x1a0 0xffda
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff80 0xffea
+	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+CutsieSlapRight:
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff00 0xffd6
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x80 0xfff2
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0x1a0 0xffda
+	launchtemplate gPinkHeartSpriteTemplate 0x83 0x2 0xff80 0xffea
+	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_FAIRY_SPHERES:
+   goto Move_DOUBLE_SLAP
+
+Move_ASTEROID_DOWNFALL:
+   goto Move_SMACK_DOWN
+
+Move_AQUA_BASH:
+   goto Move_AQUA_TAIL
+
+Move_TECTONIC_FANGS:
+   goto Move_BUG_BITE
+
+Move_CUPID_SHOT:
+   goto Move_THOUSAND_ARROWS
+
+Move_CLAY_DART:
+   goto Move_THOUSAND_ARROWS
+
+Move_DIAMOND_ARROW:
+   goto Move_THOUSAND_ARROWS
+
+Move_DIAMOND_BLADE:
+   goto Move_CUT
+
+Move_VENOM_BOLT:
+   goto Move_POISON_STING
+
+Move_FUMIGATION_BOMB:
+	goto Move_ACID
+
+Move_BLACK_MAGIC:
+	goto Move_DARK_PULSE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

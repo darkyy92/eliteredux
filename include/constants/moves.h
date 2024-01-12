@@ -785,22 +785,55 @@
 #define MOVES_COUNT_GEN8 755
 
 // New Moves (Gen 9 + Custom Moves)
-#define MOVE_DEATHROLL      755
-#define MOVE_EXCALIBUR      756
-#define MOVE_AQUA_FANG      757
-#define MOVE_WAVE_CRASH     758
-#define MOVE_SMITE          759
-#define MOVE_OUTBURST       760
-#define MOVE_SEISMIC_FIST   761
-#define MOVE_IRON_FANGS     762
-#define MOVE_SHADOW_FANGS   763
-#define MOVE_LOVELY_BITE    764
-#define MOVE_JAGGED_FANGS   765
-#define MOVE_SCORCHED_EARTH 766
-#define MOVE_RAGING_FURY    767
-#define MOVE_PLASMA_PULSE   768
+#define MOVE_DEATHROLL           755
+#define MOVE_EXCALIBUR           756
+#define MOVE_AQUA_FANG           757
+#define MOVE_WAVE_CRASH          758
+#define MOVE_SMITE               759
+#define MOVE_OUTBURST            760
+#define MOVE_SEISMIC_FIST        761
+#define MOVE_IRON_FANGS          762
+#define MOVE_SHADOW_FANGS        763
+#define MOVE_LOVELY_BITE         764
+#define MOVE_JAGGED_FANGS        765
+#define MOVE_SCORCHED_EARTH      766
+#define MOVE_RAGING_FURY         767
+#define MOVE_PLASMA_PULSE        768
+#define MOVE_PRIMAL_BEAM         769
+#define MOVE_DRACONIC_FANGS      770
+#define MOVE_PIXIE_BEAM          771
+#define MOVE_PIXIE_SLASH         772
+#define MOVE_SEISMIC_BLADE       773
+#define MOVE_MOUNTAIN_CHUNK      774
+#define MOVE_ARCHER_SHOT         775
+#define MOVE_FROST_BRAND         776
+#define MOVE_FROST_BOLT          777
+#define MOVE_GLACIER_CRASH       778
+#define MOVE_SUPERSONIC_SHOT     779
+#define MOVE_ZEPHYR_RUSH         780
+#define MOVE_SHOCKING_JAB        781
+#define MOVE_SHOCKING_EDGE       782
+#define MOVE_LIGHTING_SRIKE      783
+#define MOVE_VOLT_BOLT           784 //Lmao at the name
+#define MOVE_PSYCHOKINESIS       785
+#define MOVE_FERTILE_FANGS       786
+#define MOVE_SCATTER_BLAST       787
+#define MOVE_JAGGED_PUNCH        788
+#define MOVE_CUTSIE_SLAP         789
+#define MOVE_FAIRY_SPHERES       790
+#define MOVE_BRAMBLE_BLAST       791
+#define MOVE_ASTEROID_DOWNFALL   792
+#define MOVE_AQUA_BASH           793
+#define MOVE_TECTONIC_FANGS      794
+#define MOVE_CUPID_SHOT          795
+#define MOVE_CLAY_DART           796
+#define MOVE_DIAMOND_ARROW       797
+#define MOVE_DIAMOND_BLADE       798
+#define MOVE_VENOM_BOLT          799
+#define MOVE_FUMIGATION_BOMB     800
+#define MOVE_BLACK_MAGIC         801
 
-#define MOVES_COUNT_DARKY 769
+#define MOVES_COUNT_DARKY        802
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
@@ -1569,5 +1602,10 @@
 #define MOVE_LONG_SEISMIC_FIST         MOVE_SEISMIC_FIST
 #define MOVE_LONG_IRON_FANGS           MOVE_IRON_FANGS
 #define MOVE_LONG_SHADOW_FANGS         MOVE_SHADOW_FANGS
+
+#define EFFECTIVENESS_NEUTRAL             1.0
+#define EFFECTIVENESS_NOT_VERY_EFFECTIVE  0.5
+#define EFFECTIVENESS_SUPER_EFFECTIVE     2.0
+#define EFFECTIVENESS_SUPER_FROM_NOT_VERY 4.0
 
 #endif  // GUARD_CONSTANTS_MOVES_H

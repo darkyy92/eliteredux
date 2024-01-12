@@ -496,7 +496,15 @@
 #define ABILITY_PLASMA_LAMP      (ABILITIES_COUNT_LATEST_GEN + 198) // Illuminate + 1.2x Boost to Fire & Electric type Moves.
 #define ABILITY_MAGMA_EATER      (ABILITIES_COUNT_LATEST_GEN + 199) // Predator + Molten Down
 #define ABILITY_SUPER_HOT_GOO    (ABILITIES_COUNT_LATEST_GEN + 200) // Flame Body + Gooey
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_SUPER_HOT_GOO + 1) 
+#define ABILITY_NIKA             (ABILITIES_COUNT_LATEST_GEN + 201) // Iron fist + Water moves function normally under sun.
+#define ABILITY_ARCHER           (ABILITIES_COUNT_LATEST_GEN + 202) // Boosts Arrow moves by 30%
+#define ABILITY_COLD_PLASMA      (ABILITIES_COUNT_LATEST_GEN + 203) // Electric type moves now inflict burn instead of paralysis
+#define ABILITY_SUPER_SLAMMER    (ABILITIES_COUNT_LATEST_GEN + 204) // Boosts Hammer/Slam moves by 30%
+#define ABILITY_INVERSE_ROOM     (ABILITIES_COUNT_LATEST_GEN + 205) // Sets up the Inverse field condition for 3 turns upon entry
+#define ABILITY_ACCELERATE       (ABILITIES_COUNT_LATEST_GEN + 206) // 2 turn based moves are now used instantly
+#define ABILITY_FROST_BURN       (ABILITIES_COUNT_LATEST_GEN + 207) // When a user uses a fire move it follows it up with a 40 bp ice beam.
+#define ABILITY_ITCHY_DEFENSE    (ABILITIES_COUNT_LATEST_GEN + 208) // Uses infestation upon getting hit by a contact move.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_ITCHY_DEFENSE + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
