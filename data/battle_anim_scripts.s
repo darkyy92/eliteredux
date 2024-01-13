@@ -836,6 +836,7 @@ gBattleAnims_Moves::
 	.4byte Move_JAGGED_HORNS
 	.4byte Move_BLOOD_SHOT
 	.4byte Move_FLASH_FREEZE
+	.4BYTE Move_PHANTOM_GLOVES
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4093,6 +4094,9 @@ Move_BLOOD_SHOT::
 
 Move_FLASH_FREEZE::
 	goto Move_FREEZE_DRY
+
+Move_PHANTOM_GLOVES::
+	goto Move_SHADOW_CLAW
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

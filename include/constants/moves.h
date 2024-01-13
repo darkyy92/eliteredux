@@ -842,8 +842,9 @@
 #define MOVE_JAGGED_HORNS        809
 #define MOVE_BLOOD_SHOT          810
 #define MOVE_FLASH_FREEZE        811
+#define MOVE_PHANTOM_GLOVES      812
 
-#define MOVES_COUNT_DARKY        812
+#define MOVES_COUNT_DARKY        813
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

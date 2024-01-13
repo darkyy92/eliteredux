@@ -815,6 +815,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
     [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
     [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
+    [MOVE_PHANTOM_GLOVES]    = _("PhantomGlove"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1637,4 +1638,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
     [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
     [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
+    [MOVE_PHANTOM_GLOVES]    = _("Phantom Gloves"),
 };
