@@ -837,8 +837,9 @@
 #define MOVE_ROCKET_PUNCH        804
 #define MOVE_WEB_SHOT            805
 #define MOVE_AURA_FORCE          806
+#define MOVE_DRAKE_MISSILE       807
 
-#define MOVES_COUNT_DARKY        807
+#define MOVES_COUNT_DARKY        808
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

@@ -831,6 +831,7 @@ gBattleAnims_Moves::
 	.4byte Move_ROCKET_PUNCH
 	.4byte Move_WEB_SHOT
 	.4byte Move_AURA_FORCE
+	.4byte Move_DRAKE_MISSILE
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4072,6 +4073,9 @@ Move_WEB_SHOT:
 	goto Move_STICKY_WEB
 
 Move_AURA_FORCE:
+	goto Move_AURA_SPHERE
+
+Move_DRAKE_MISSILE:
 	goto Move_AURA_SPHERE
 
 Move_CHARGE_BEAM:
