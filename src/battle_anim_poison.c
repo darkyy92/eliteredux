@@ -154,6 +154,17 @@ const struct SpriteTemplate gAcidPoisonDropletSpriteTemplate =
     .callback = AnimAcidPoisonDroplet,
 };
 
+const struct SpriteTemplate gBloodDropletSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_RED_PARTICLES,
+    .paletteTag = ANIM_TAG_RED_PARTICLES,
+    .oam = &gOamData_AffineDouble_ObjNormal_16x16,
+    .anims = gAnims_AcidPoisonDroplet,
+    .images = NULL,
+    .affineAnims = gAffineAnims_Droplet,
+    .callback = AnimAcidPoisonDroplet,
+};
+
 static const union AffineAnimCmd sAffineAnim_Bubble[] =
 {
     AFFINEANIMCMD_FRAME(0x9C, 0x9C, 0, 0),

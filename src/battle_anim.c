@@ -1461,7 +1461,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_Gem3, 0x0800, ANIM_TAG_GEM_3},
     {gBattleAnimSpriteGfx_SlamHit2, 0x1000, ANIM_TAG_SLAM_HIT_2},
     {gBattleAnimSpriteGfx_Recycle, 0x0800, ANIM_TAG_RECYCLE},
-    {gBattleAnimSpriteGfx_RedParticles, 0x00a0, ANIM_TAG_RED_PARTICLES},
+    {gBattleAnimSpriteGfx_RedParticles, 0x0180, ANIM_TAG_RED_PARTICLES},
     {gBattleAnimSpriteGfx_Protect, 0x0800, ANIM_TAG_PROTECT},
     {gBattleAnimSpriteGfx_DirtMound, 0x0200, ANIM_TAG_DIRT_MOUND},
     {gBattleAnimSpriteGfx_Shock3, 0x0600, ANIM_TAG_SHOCK_3},
