@@ -426,6 +426,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectLeechSeedHit            @ EFFECT_LEECH_SEED_HIT
 	.4byte BattleScript_EffectStickyWebHit            @ EFFECT_STICKY_WEB_HIT
 	.4byte BattleScript_EffectBleedHit                @ EFFECT_BLEED_HIT
+	.4byte BattleScript_EffectSleepHit                @ EFFECT_SLEEP_HIT
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -552,6 +553,10 @@ BattleScript_BerryCureFsbRet::
 
 BattleScript_EffectBleedHit::
 	setmoveeffect MOVE_EFFECT_BLEED
+	goto BattleScript_EffectHit
+
+BattleScript_EffectSleepHit::
+	setmoveeffect MOVE_EFFECT_SLEEP
 	goto BattleScript_EffectHit
 
 BattleScript_BleedTurnDmg::

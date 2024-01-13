@@ -406,7 +406,8 @@
 #define EFFECT_LEECH_SEED_HIT        399
 #define EFFECT_STICKY_WEB_HIT        400
 #define EFFECT_BLEED_HIT             401
+#define EFFECT_SLEEP_HIT             402
 
-#define NUM_BATTLE_MOVE_EFFECTS 402 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 403 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
