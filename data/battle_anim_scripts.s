@@ -834,6 +834,8 @@ gBattleAnims_Moves::
 	.4byte Move_DRAKE_MISSILE
 	.4byte Move_LOTUS_SHOWER
 	.4byte Move_JAGGED_HORNS
+	.4byte Move_BLOOD_SHOT
+	.4byte Move_FLASH_FREEZE
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4085,6 +4087,12 @@ Move_LOTUS_SHOWER::
 
 Move_JAGGED_HORNS::
 	goto Move_HORN_ATTACK
+
+Move_BLOOD_SHOT::
+	goto Move_ACID
+
+Move_FLASH_FREEZE::
+	goto Move_FREEZE_DRY
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2

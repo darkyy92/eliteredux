@@ -813,6 +813,8 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_DRAKE_MISSILE]     = _("DrakeMissile"),
     [MOVE_LOTUS_SHOWER]      = _("Lotus Shower"),
     [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
+    [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
+    [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1633,4 +1635,6 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_DRAKE_MISSILE]     = _("Drake Missile"),
     [MOVE_LOTUS_SHOWER]      = _("Lotus Shower"),
     [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
+    [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
+    [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
 };

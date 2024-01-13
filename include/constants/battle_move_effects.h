@@ -407,7 +407,10 @@
 #define EFFECT_STICKY_WEB_HIT        400
 #define EFFECT_BLEED_HIT             401
 #define EFFECT_SLEEP_HIT             402
+#define EFFECT_BLEED                 403
+#define EFFECT_FROSTBITE             404
+#define EFFECT_FREEZE                405
 
-#define NUM_BATTLE_MOVE_EFFECTS 403 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 406 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

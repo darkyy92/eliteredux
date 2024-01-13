@@ -840,8 +840,10 @@
 #define MOVE_DRAKE_MISSILE       807
 #define MOVE_LOTUS_SHOWER        808
 #define MOVE_JAGGED_HORNS        809
+#define MOVE_BLOOD_SHOT          810
+#define MOVE_FLASH_FREEZE        811
 
-#define MOVES_COUNT_DARKY        810
+#define MOVES_COUNT_DARKY        812
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
