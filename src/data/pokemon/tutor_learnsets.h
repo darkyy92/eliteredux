@@ -152,7 +152,7 @@ const u16 gTutorMoves[] =
 	[TUTOR_MOVE_TELEPORT] = MOVE_TELEPORT,
 };
 
-const u16 gNewTutorLearnsets[NUM_SPECIES][TUTOR_MOVE_COUNT] = {
+const u16 gNewTutorLearnsets[NUM_SPECIES][MAX_TUTOR_MOVE_COUNT] = {
 	[SPECIES_DODUO_REDUX] = {
 		//MOVE_SPLASH,
 	},
