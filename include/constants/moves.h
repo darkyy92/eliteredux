@@ -839,8 +839,9 @@
 #define MOVE_AURA_FORCE          806
 #define MOVE_DRAKE_MISSILE       807
 #define MOVE_LOTUS_SHOWER        808
+#define MOVE_JAGGED_HORNS        809
 
-#define MOVES_COUNT_DARKY        809
+#define MOVES_COUNT_DARKY        810
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
