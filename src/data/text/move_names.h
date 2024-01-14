@@ -816,6 +816,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
     [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
     [MOVE_PHANTOM_GLOVES]    = _("PhantomGlove"),
+    [MOVE_HOMING_FLETCH]     = _("HomingFletch"),
+    [MOVE_BITTER_MALICE]     = _("BitterMalice"),
+    [MOVE_INFERNAL_PARADE]   = _("Infer.Parade"),
+    [MOVE_DEVIOUS_SHOT]      = _("Devious Shot"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1639,4 +1643,8 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
     [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
     [MOVE_PHANTOM_GLOVES]    = _("Phantom Gloves"),
+    [MOVE_HOMING_FLETCH]     = _("Homing Fletch"),
+    [MOVE_BITTER_MALICE]     = _("Bitter Malice"),
+    [MOVE_INFERNAL_PARADE]   = _("Infernal Parade"),
+    [MOVE_DEVIOUS_SHOT]      = _("Devious Shot"),
 };

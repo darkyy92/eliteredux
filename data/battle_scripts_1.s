@@ -430,6 +430,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBleed                   @ EFFECT_BLEED
 	.4byte BattleScript_EffectFrostbite               @ EFFECT_FROSTBITE
 	.4byte BattleScript_EffectFreeze                  @ EFFECT_FREEZE
+	.4byte BattleScript_EffectBurnHit                 @ EFFECT_INFERNAL_PARADE
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp

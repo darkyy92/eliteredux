@@ -843,8 +843,12 @@
 #define MOVE_BLOOD_SHOT          810
 #define MOVE_FLASH_FREEZE        811
 #define MOVE_PHANTOM_GLOVES      812
+#define MOVE_HOMING_FLETCH       813
+#define MOVE_BITTER_MALICE       814
+#define MOVE_INFERNAL_PARADE     815
+#define MOVE_DEVIOUS_SHOT        816
 
-#define MOVES_COUNT_DARKY        813
+#define MOVES_COUNT_DARKY        817
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

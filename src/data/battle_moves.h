@@ -7325,6 +7325,64 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_MEGA_LAUNCHER_BOOST,
     },
 
+    [MOVE_HOMING_FLETCH] = 
+    {
+        .effect = EFFECT_HIT,
+        .power = 80,
+        .type = TYPE_STEEL,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_HIGH_CRIT | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_ARROW_BASED,
+    },
+
+    [MOVE_BITTER_MALICE] = 
+    {
+        .effect = EFFECT_ATTACK_DOWN_HIT,
+        .power = 75,
+        .type = TYPE_GHOST,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .split = SPLIT_SPECIAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_KINGS_ROCK_AFFECTED,
+    },
+
+    [MOVE_INFERNAL_PARADE] = 
+    {
+        .effect = EFFECT_INFERNAL_PARADE,
+        .power = 60,
+        .type = TYPE_GHOST,
+        .accuracy = 0,
+        .pp = 15,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .split = SPLIT_SPECIAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_KINGS_ROCK_AFFECTED,
+    },
+
+    [MOVE_DEVIOUS_SHOT] = 
+    {
+        .effect = EFFECT_BLEED_HIT,
+        .power = 80,
+        .type = TYPE_DARK,
+        .accuracy = 0,
+        .pp = 15,
+        .secondaryEffectChance = 50, //May need to nerf
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
+        .flags2 = FLAG_ARROW_BASED,
+    },
+
     [MOVE_ZEN_HEADBUTT] =
     {
         .effect = EFFECT_FLINCH_HIT,
