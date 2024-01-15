@@ -233,16 +233,16 @@ Route133_EventScript_LegendaryNPC_Text_1:
 Route133_EventScript_LegendaryNPC_Text_2:
 	.string "Yes, I had no doubts: you are worthy of\n"
 	.string "meeting the Ultra Beasts. I marked\l"
-	.string "their location on your DexNav: use it\l"
-	.string "to meet them.$"
+	.string "their location on your DexNav: use it to\l"
+	.string "meet them.$"
 
 Route133_EventScript_LegendaryNPC_Text_3:
 	.string "You remembered our little promise. Good.\n"
 	.string "Just one more thing before I show you\l"
 	.string "the Beasts' location: there's a couple\l"
 	.string "of trainers loose in this route. How\l"
-	.string "about you take them down and come\l"
-	.string "back to me, yeah?$"
+	.string "about you take them down and come back\l"
+	.string "to me, yeah?$"
 
 Route133_EventScript_LegendaryNPC_Text_4:
 	.string "Don't lean into calamity.$"

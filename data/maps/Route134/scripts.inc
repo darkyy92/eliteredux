@@ -141,9 +141,9 @@ Route134_EventScript_LegendaryNPC_Text_2:
 
 Route134_EventScript_LegendaryNPC_Text_3:
 	.string "Are you here looking for some of the\n"
-	.string "Ultra Beasts? I thought so. I'll tell\l"
-	.string "you where they hide, but first, defeat\l"
-	.string "all trainers in this route!$"
+	.string "Ultra Beasts? I thought so. I'll tell you\l"
+	.string "where they hide, but first, defeat all\l"
+	.string "trainers in this route!$"
 
 Route134_EventScript_LegendaryNPC_Text_4:
 	.string "While I can forget everything I wanna\n"

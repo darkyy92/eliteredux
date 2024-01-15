@@ -278,7 +278,7 @@ static const u8 sExploitWeaknessDescription[] = _("+25% damage against foes\nwit
 static const u8 sGroundShockDescription[] = _("Electric moves hit Ground\nnot very effective.");
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense\nStats respectively.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB for all moves.");
-static const u8 sPerfectionistDescription[] = _("+1 crit to moves <50 BP.\nAlso +1 prio to <25 BP.");
+static const u8 sPerfectionistDescription[] = _("+1 crit to moves <50 BP.\n+1 crit & +1 prio for <25 BP");
 static const u8 sGrowingToothDescription[] = _("Ups Attack by +1\nwhen using biting moves.");
 static const u8 sInflatableDescription[] = _("Ups both Defenses by +1\nwhen hit by Flying or Fire Moves.");
 static const u8 sAuroraBorealisDescription[] = _("Gains STAB for Ice Moves.");
@@ -391,7 +391,7 @@ static const u8 sIronBarrageDescription[] = _("Combines Mega Launcher\nwith Sigh
 static const u8 sSteelBarrelDescription[] = _("Prevents recoil damage.");
 static const u8 sPyroShellsDescription[] = _("Triggers 50 BP Outburst after\nusing a Mega Launcher move.");
 static const u8 sFungalInfectionDescription[] = _("Every attacking move inflicts\nLeech Seed on the target.");
-static const u8 sParryDescription[] = _("Takes 20% less damage.\nCounters contact with Mach Punch.");
+static const u8 sParryDescription[] = _("Takes 80% from Contact,\nthen counters with Mach Punch.");
 static const u8 sScrapyardDescription[] = _("Sets a layer of Spikes when hit\n(contact move).");
 static const u8 sLooseQuillsDescription[] = _("Sets a layer of Spikes when hit\n(contact move).");
 static const u8 sToxicDebrisDescription[] = _("Sets a layer of Toxic Spikes\nwhen hit by contact moves.");
@@ -468,6 +468,12 @@ static const u8 sAbilityInverseRoomDescription[] = _("Sets up the Inverse field\
 static const u8 sAbilityAccelerateDescription[] = _("2 turn based moves are\nnow used instantly");
 static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after\nusing a Fire-type move.");
 static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
+
+// Nyaaaa's Custom Abilities
+static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
+static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
+static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
+static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -951,6 +957,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_FROST_BURN] = _("Frost Burn"),
         [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
 };
+        };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {

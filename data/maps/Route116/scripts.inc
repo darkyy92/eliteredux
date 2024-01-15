@@ -715,8 +715,8 @@ Route116_EventScript_Gen8_NPC_Text_2:
 
 Route116_EventScript_MegaNidos_Battle_Text_0:
 	.string "Hah! Look at you. Hey, pleb. I'm bored, so\n"
-	.string "have a battle with me. I'll even give\l"
-	.string "you a reward if you do!$"
+	.string "have a battle with me. I'll even give you\l"
+	.string "a reward if you do!$"
 
 Route116_EventScript_MegaNidos_Battle_Text_1:
 	.string "Then let us begin.$"
@@ -738,8 +738,8 @@ Route116_EventScript_MegaNidos_Battle_Text_5:
 
 Route116_EventScript_MegaNidos_Battle_Text_6:
 	.string "You aren't worthy enough to talk to me.\n"
-	.string "A peasant like you who hasn't even\l"
-	.string "beat Winona has no business here.$"
+	.string "A peasant like you who hasn't even beat\l"
+	.string "Winona has no business here.$"
 
 Route116_EventScript_Text_Got_Aggron::
 	.string "{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!$"

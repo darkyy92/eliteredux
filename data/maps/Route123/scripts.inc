@@ -354,10 +354,10 @@ Route123_EventScript_LegendaryNPC_Text_2:
 Route123_EventScript_LegendaryNPC_Text_3:
 	.string "Seeker of balance, your efforts have\n"
 	.string "been noticed. The Tao dragons have\l"
-	.string "taken notice of your actions, but\l"
-	.string "would like one final confirmation.\l"
-	.string "Defeat every trainer on the route to\l"
-	.string "meet them!$"
+	.string "taken notice of your actions, but would\l"
+	.string "like one final confirmation. Defeat\l"
+	.string "every trainer on the route to meet\l"
+	.string "them!$"
 
 Route123_EventScript_LegendaryNPC_Text_4:
 	.string "Well then, I suppose we won't get along.$"
@@ -374,9 +374,9 @@ Route123_EventScript_Granbullite_Battle_Text_2:
 
 Route123_EventScript_Granbullite_Battle_Text_3:
 	.string "I'm so sorry! I didn't expect all 6 of\n"
-	.string "them to jump out of their Pokéballs\l"
-	.string "like that! They usually don't bite.\l"
-	.string "Please, take this as compensation.$"
+	.string "them to jump out of their Pokéballs like\l"
+	.string "that! They usually don't bite. Please,\l"
+	.string "take this as compensation.$"
 
 Route123_EventScript_Granbullite_Battle_Text_4:
 	.string "Aww, alright. I swear, they don't bite.$"
