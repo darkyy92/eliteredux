@@ -470,10 +470,10 @@ static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after
 static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
 
 // Nyaaaa's Custom Abilities
-static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
-static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
-static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
-static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
+//static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
+//static const u8 sLumberjackDescription[] = _("1.5x damage to GRASS types.");
+//static const u8 sWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
+//static const u8 sFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -957,7 +957,6 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_FROST_BURN] = _("Frost Burn"),
         [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
 };
-        };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {

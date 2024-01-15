@@ -588,11 +588,6 @@ static const u16 sGalladeFormSpeciesIdTable[] = {
 
 static const u16 sRotomFormSpeciesIdTable[] = {
     SPECIES_ROTOM,
-    SPECIES_ROTOM_WASH_MODE,
-    SPECIES_ROTOM_FAN_MODE,
-    SPECIES_ROTOM_HEAT_MODE,
-    SPECIES_ROTOM_FROST_MODE,
-    SPECIES_ROTOM_MOW_MODE,
     SPECIES_ROTOM_HEAT,
     SPECIES_ROTOM_WASH,
     SPECIES_ROTOM_FROST,
@@ -603,7 +598,6 @@ static const u16 sRotomFormSpeciesIdTable[] = {
 
 static const u16 sGiratinaFormSpeciesIdTable[] = {
     SPECIES_GIRATINA,
-    SPECIES_GIRATINA_ORIGIN_FORME,
     SPECIES_GIRATINA_ORIGIN,
     FORM_SPECIES_END,
 };
@@ -1330,6 +1324,8 @@ static const u16 sReuniclusFormSpeciesIdTable[] = {
 static const u16 sDuosionFormSpeciesIdTable[] = {
     SPECIES_DUOSION,
     SPECIES_DUOSION_REDUX,
+    FORM_SPECIES_END,
+};
 static const u16 sQwilfishFormSpeciesIdTable[] = {
     SPECIES_QWILFISH,
     SPECIES_QWILFISH_HISUIAN,
@@ -1534,12 +1530,12 @@ static const u16 sOgerponFormSpeciesIdTable[] = {
 };
 static const u16 sDialgaFormSpeciesIdTable[] = {
     SPECIES_DIALGA,
-    SPECIES_DIALGA_ORIGIN_FORME,
+    SPECIES_DIALGA_ORIGIN,
     FORM_SPECIES_END,
 };
 static const u16 sPalkiaFormSpeciesIdTable[] = {
     SPECIES_PALKIA,
-    SPECIES_PALKIA_ORIGIN_FORME,
+    SPECIES_PALKIA_ORIGIN,
     FORM_SPECIES_END,
 };
 static const u16 sEnamorusFormSpeciesIdTable[] = {

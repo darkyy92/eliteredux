@@ -21293,6 +21293,9 @@ static const struct LevelUpMove sAlakazam_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_FUTURE_SIGHT),
 	LEVEL_UP_MOVE(45, MOVE_AFTER_YOU), //new
     LEVEL_UP_MOVE(46, MOVE_TRICK),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sWyrdeerLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 3, MOVE_LEER),
@@ -23559,13 +23562,6 @@ static const struct LevelUpMove sEnamorus_TherianLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sGiratina_Origin_FormeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sPalkia_Origin_FormeLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
@@ -23574,41 +23570,6 @@ static const struct LevelUpMove sPalkia_Origin_FormeLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDialga_Origin_FormeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sRotom_Wash_ModeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sRotom_Fan_ModeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sRotom_Heat_ModeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sRotom_Frost_ModeLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sRotom_Mow_ModeLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),
     LEVEL_UP_MOVE(10, MOVE_EMBER),

@@ -4811,6 +4811,10 @@ const struct MonCoords gMonBackPicCoords[] =
         .y_offset =  0
     },
     [SPECIES_RIBOMBEE_MEGA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_KLEAVOR] =
     {
         .size = 0,
@@ -5402,42 +5406,12 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
-    [SPECIES_GIRATINA_ORIGIN_FORME] =
+    [SPECIES_PALKIA_ORIGIN] =
     {
         .size = 0,
         .y_offset =  0
     },
-    [SPECIES_PALKIA_ORIGIN_FORME] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_DIALGA_ORIGIN_FORME] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_ROTOM_WASH_MODE] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_ROTOM_FAN_MODE] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_ROTOM_HEAT_MODE] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_ROTOM_FROST_MODE] =
-    {
-        .size = 0,
-        .y_offset =  0
-    },
-    [SPECIES_ROTOM_MOW_MODE] =
+    [SPECIES_DIALGA_ORIGIN] =
     {
         .size = 0,
         .y_offset =  0

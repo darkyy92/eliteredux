@@ -16332,8 +16332,6 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         modifier = UQ_4_12(1.0);
     }
     
-    if (((BATTLER_HAS_ABILITY(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0))
-        || (BATTLER_HAS_ABILITY(battlerDef, ABILITY_TELEPATHY) && battlerDef == BATTLE_PARTNER(battlerAtk)))
     if ((GetBattlerAbility(battlerDef) == ABILITY_EVAPORATE || 
          BattlerHasInnate(battlerDef, ABILITY_EVAPORATE))   && 
          (moveType == TYPE_WATER ))

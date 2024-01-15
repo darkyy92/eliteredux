@@ -10378,42 +10378,12 @@ static const union AnimCmd sAnim_ENAMORUS_THERIAN_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
-static const union AnimCmd sAnim_GIRATINA_ORIGIN_FORME_1[] =
+static const union AnimCmd sAnim_DIALGA_ORIGIN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
-static const union AnimCmd sAnim_PALKIA_ORIGIN_FORME_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_DIALGA_ORIGIN_FORME_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_ROTOM_WASH_MODE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_ROTOM_FAN_MODE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_ROTOM_HEAT_MODE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_ROTOM_FROST_MODE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-static const union AnimCmd sAnim_ROTOM_MOW_MODE_1[] =
+static const union AnimCmd sAnim_PALKIA_ORIGIN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -16546,6 +16516,8 @@ static const union AnimCmd *const sAnims_HONEDGE_REDUX[] ={
 static const union AnimCmd *const sAnims_RIBOMBEE_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_RIBOMBEE_MEGA_1,
+};
+
 static const union AnimCmd *const sAnims_WYRDEER[] ={
     sAnim_GeneralFrame0,
     sAnim_WYRDEER_1,
@@ -17141,44 +17113,14 @@ static const union AnimCmd *const sAnims_ENAMORUS_THERIAN[] ={
     sAnim_ENAMORUS_THERIAN_1,
 };
 
-static const union AnimCmd *const sAnims_GIRATINA_ORIGIN_FORME[] ={
+static const union AnimCmd *const sAnims_PALKIA_ORIGIN[] ={
     sAnim_GeneralFrame0,
-    sAnim_GIRATINA_ORIGIN_FORME_1,
+    sAnim_PALKIA_ORIGIN_1,
 };
 
-static const union AnimCmd *const sAnims_PALKIA_ORIGIN_FORME[] ={
+static const union AnimCmd *const sAnims_DIALGA_ORIGIN[] ={
     sAnim_GeneralFrame0,
-    sAnim_PALKIA_ORIGIN_FORME_1,
-};
-
-static const union AnimCmd *const sAnims_DIALGA_ORIGIN_FORME[] ={
-    sAnim_GeneralFrame0,
-    sAnim_DIALGA_ORIGIN_FORME_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_WASH_MODE[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ROTOM_WASH_MODE_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_FAN_MODE[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ROTOM_FAN_MODE_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_HEAT_MODE[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ROTOM_HEAT_MODE_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_FROST_MODE[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ROTOM_FROST_MODE_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_MOW_MODE[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ROTOM_MOW_MODE_1,
+    sAnim_DIALGA_ORIGIN_1,
 };
 
 static const union AnimCmd *const sAnims_OGERPON_HEARTHFLAME_MASK[] ={
@@ -19134,7 +19076,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(GLASTRIER),
     ANIM_CMD(SPECTRIER),
     ANIM_CMD(CALYREX),
-    ANIM_CMD(VENUSAUR_MEGA),
     ANIM_CMD(DODRIO_REDUX),
     ANIM_CMD(DODUO_REDUX),
     ANIM_CMD(SCRAFTY_MEGA),
@@ -19437,14 +19378,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(OGERPON),
     ANIM_CMD(MAROWAK_ALOLAN),
     ANIM_CMD(ENAMORUS_THERIAN),
-    ANIM_CMD(GIRATINA_ORIGIN_FORME),
-    ANIM_CMD(PALKIA_ORIGIN_FORME),
-    ANIM_CMD(DIALGA_ORIGIN_FORME),
-    ANIM_CMD(ROTOM_WASH_MODE),
-    ANIM_CMD(ROTOM_FAN_MODE),
-    ANIM_CMD(ROTOM_HEAT_MODE),
-    ANIM_CMD(ROTOM_FROST_MODE),
-    ANIM_CMD(ROTOM_MOW_MODE),
+    ANIM_CMD(DIALGA_ORIGIN),
+    ANIM_CMD(PALKIA_ORIGIN),
     ANIM_CMD(OGERPON_HEARTHFLAME_MASK),
     ANIM_CMD(OGERPON_CORNERSTONE_MASK),
     ANIM_CMD(OGERPON_WELLSPRING_MASK),

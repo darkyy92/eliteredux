@@ -5385,59 +5385,5 @@ const u16 gEggMoves[] = {
         MOVE_ICE_PUNCH,
         MOVE_THUNDER_PUNCH),
 
-    egg_moves(ROTOM_MOW_MODE,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(ROTOM_FROST_MODE,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(ROTOM_HEAT_MODE,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(ROTOM_FAN_MODE,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(ROTOM_WASH_MODE,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(DIALGA_ORIGIN_FORME,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(PALKIA_ORIGIN_FORME,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(GIRATINA_ORIGIN_FORME,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
-    egg_moves(ENAMORUS_THERIAN,
-        MOVE_SPLASH,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH),
-
     EGG_MOVES_TERMINATOR
 };

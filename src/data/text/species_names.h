@@ -1017,14 +1017,8 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_FEZANDIPITI] = _("Fezandipiti"),
 [SPECIES_OGERPON] = _("Ogerpon"),
 [SPECIES_ENAMORUS_THERIAN] = _("Enamorus"),
-[SPECIES_GIRATINA_ORIGIN_FORME] = _("Giratina"),
-[SPECIES_PALKIA_ORIGIN_FORME] = _("Palkia"),
-[SPECIES_DIALGA_ORIGIN_FORME] = _("Dialga"),
-[SPECIES_ROTOM_WASH_MODE] = _("Rotom"),
-[SPECIES_ROTOM_FAN_MODE] = _("Rotom"),
-[SPECIES_ROTOM_HEAT_MODE] = _("Rotom"),
-[SPECIES_ROTOM_FROST_MODE] = _("Rotom"),
-[SPECIES_ROTOM_MOW_MODE] = _("Rotom"),
+[SPECIES_PALKIA_ORIGIN] = _("Palkia"),
+[SPECIES_DIALGA_ORIGIN] = _("Dialga"),
 [SPECIES_OGERPON_HEARTHFLAME_MASK] = _("Ogerpon"),
 [SPECIES_OGERPON_CORNERSTONE_MASK] = _("Ogerpon"),
 [SPECIES_OGERPON_WELLSPRING_MASK] = _("Ogerpon"),
@@ -1245,14 +1239,6 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_RAYQUAZA_MEGA]  = _("Rayquaza"),
     [SPECIES_KYOGRE_PRIMAL]  = _("Kyogre"),
     [SPECIES_GROUDON_PRIMAL] = _("Groudon"),
-
-    
-    //Temporary
-    [SPECIES_TEMP9_REDUX]  = _("Placeholder"),
-    [SPECIES_TEMP10_REDUX] = _("Placeholder"),
-    [SPECIES_TEMP_MEGA8]   = _("Placeholder"),
-    [SPECIES_TEMP_MEGA9]   = _("Placeholder"),
-    [SPECIES_TEMP_MEGA10]  = _("Placeholder"),
 
     // Alolan Forms
     [SPECIES_RATTATA_ALOLAN] = _("Rattata"),

@@ -31470,35 +31470,11 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_GIRATINA_ORIGIN_FORME]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+    [SPECIES_PALKIA_ORIGIN]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_PALKIA_ORIGIN_FORME]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_DIALGA_ORIGIN_FORME]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_ROTOM_WASH_MODE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_ROTOM_FAN_MODE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_ROTOM_HEAT_MODE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_ROTOM_FROST_MODE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
-                                        | TMHM1(TM25_THUNDER),
-                                          TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)),
-    [SPECIES_ROTOM_MOW_MODE]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
+    [SPECIES_DIALGA_ORIGIN]   = TMHM_LEARNSET (TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
