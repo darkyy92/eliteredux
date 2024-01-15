@@ -9996,3 +9996,24 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
     
 	return species;
 }
+
+bool8 isSpeciesPlaceholderMon(u16 species){
+    if(species == SPECIES_NONE)
+        return FALSE;
+    else if(species < SPECIES_OGERPON)
+        return FALSE;
+    else if(species <= FORMS_START)
+        return TRUE;
+    else if (species < SPECIES_ENAMORUS_THERIAN)
+        return FALSE;
+    else if (species <= CUSTOM_MEGA_START)
+        return TRUE;
+    else if (species < SPECIES_CASCOON_PRIMAL)
+        return FALSE;
+    else if (species <= REDUX_FORMS_START)
+        return TRUE;
+    else if (species < SPECIES_DODRIO_REDUX)
+        return FALSE;
+    else
+        return TRUE;
+}

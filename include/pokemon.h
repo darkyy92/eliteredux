@@ -490,5 +490,6 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies);
 bool8 isMonNicknamed(struct Pokemon *mon);
 bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon);
 bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot);
+bool8 isSpeciesPlaceholderMon(u16 species);
 
 #endif // GUARD_POKEMON_H
