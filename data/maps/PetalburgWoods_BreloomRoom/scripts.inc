@@ -97,8 +97,8 @@ PetalburgWoods_BreloomRoom_EventScript_Breloom_Join_5:
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_Text_0:
 	.string "The Breloom seems to acknowledge you.\n"
-	.string "It wishes to test you in battle, will you\l"
-	.string "battle it?$"
+	.string "It wishes to test you in battle, will\l"
+	.string "you battle it?$"
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_Text_1:
 	.string "Breloom: Loom!$"
@@ -116,7 +116,8 @@ PetalburgWoods_BreloomRoom_EventScript_Breloom_PreNorman_Text_0:
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_Join_Text_0:
 	.string "Breloom seems to want to join your\n"
-	.string "team, will you let this Breloom join you?$"
+	.string "team, will you let this Breloom join\l"
+	.string "you?$"
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_Join_Text_1:
 	.string "{PLAYER} received a Breloom!$"

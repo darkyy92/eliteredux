@@ -255,8 +255,8 @@ EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_2:
 EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_0:
 	.string "Guard: Do you want to enable Locked\n"
 	.string "Mode during the League? This prevents\l"
-	.string "you from changing your Pokémon, except\l"
-	.string "held items.$"
+	.string "you from changing your Pokémon,\l"
+	.string "except held items.$"
 
 EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_1:
 	.string "Guard: Locked Mode is now enabled.$"

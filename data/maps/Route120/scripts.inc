@@ -565,11 +565,11 @@ Route120_EventScript_LegendaryNPC_Text_1:
 	.string "thunderstorms have grazed this place,\l"
 	.string "yet.\p"
 	.string "Perhaps their master, Landorus, has\n"
-	.string "regained control of them? Nobody knows\l"
-	.string "for sure.\p"
+	.string "regained control of them? Nobody\l"
+	.string "knows for sure.\p"
 	.string "If you want to catch them, however, you\n"
-	.string "must first prove your worth by becoming\l"
-	.string "champion!$"
+	.string "must first prove your worth by\l"
+	.string "becoming champion!$"
 
 Route120_EventScript_LegendaryNPC_Text_2:
 	.string "Seek after the eye of the storm: the\n"

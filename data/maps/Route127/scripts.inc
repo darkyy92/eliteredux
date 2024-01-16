@@ -185,7 +185,8 @@ Route127_EventScript_LegendaryNPC_Text_1:
 Route127_EventScript_LegendaryNPC_Text_2:
 	.string "You have demonstrated the strength\n"
 	.string "and compassion necessary to form an\l"
-	.string "unbreakable bond with these creatures.\p"
+	.string "unbreakable bond with these\l"
+	.string "creatures.\p"
 	.string "I updated your DexNav with their\n"
 	.string "location. Go forth: they're waiting for\l"
 	.string "you.$"

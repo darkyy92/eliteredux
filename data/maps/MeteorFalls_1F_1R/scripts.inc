@@ -625,5 +625,6 @@ MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_0:
 MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_1:
 	.string "Hey, you can't come in here, kid! There's\n"
 	.string "a rampaging Pokémon on the loose! Only\l"
-	.string "trainers who are at least strong enough\l"
-	.string "to get 7 badges can help us here.$"
+	.string "trainers who are at least strong\l"
+	.string "enough to get 7 badges can help us\l"
+	.string "here.$"

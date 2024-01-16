@@ -53,8 +53,8 @@ DewfordManor_1F_EventScript_Crobatite_Battle_Text_2:
 DewfordManor_1F_EventScript_Crobatite_Battle_Text_3:
 	.string "You're quite mighty, especially for one\n"
 	.string "so young. Please, accept this from an\l"
-	.string "elderly maiden, grateful for a moment of\l"
-	.string "excitement.$"
+	.string "elderly maiden, grateful for a moment\l"
+	.string "of excitement.$"
 
 DewfordManor_1F_EventScript_Crobatite_Battle_Text_4:
 	.string "I see.$"
@@ -65,9 +65,9 @@ DewfordManor_1F_EventScript_Crobatite_Battle_Text_5:
 
 DewfordManor_1F_EventScript_Crobatite_Battle_Text_6:
 	.string "A traveler, eh? You look quite young to\n"
-	.string "be in a place like this. If you're looking\l"
-	.string "for Pokémon, there are quite a few here,\l"
-	.string "looking for new trainers. Have you\l"
-	.string "heard of those psychic twins in\l"
-	.string "Mossdeep? Once you defeat them, come\l"
-	.string "back here.$"
+	.string "be in a place like this. If you're\l"
+	.string "looking for Pokémon, there are quite a\l"
+	.string "few here, looking for new trainers.\l"
+	.string "Have you heard of those psychic twins\l"
+	.string "in Mossdeep? Once you defeat them,\l"
+	.string "come back here.$"

@@ -573,7 +573,7 @@ RusturfTunnel_EventScript_Gen8_NPC_Text_1:
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat this hiker over there, I\n"
-	.string "will give you a special Pokémon from the\l"
-	.string "Galar region. They're kind of a pest\l"
+	.string "will give you a special Pokémon from\l"
+	.string "the Galar region. They're kind of a pest\l"
 	.string "really... (shouldn't have said that!) but\l"
 	.string "I think you'll... like them. I guess.$"

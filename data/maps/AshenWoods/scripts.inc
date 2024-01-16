@@ -247,8 +247,8 @@ AshenWoods_EventScript_Typhlosionite_Battle_Text_3:
 	.string "Sheesh! This young, and you're already\n"
 	.string "giving someone like me a beating like\l"
 	.string "this! You got potential, kid. Take this\l"
-	.string "Typhlosionite, and make sure to burn all\l"
-	.string "who challenge you to ash!$"
+	.string "Typhlosionite, and make sure to burn\l"
+	.string "all who challenge you to ash!$"
 
 AshenWoods_EventScript_Typhlosionite_Battle_Text_4:
 	.string "Then you better come back here when\n"

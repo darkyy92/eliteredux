@@ -342,9 +342,9 @@ Route117_EventScript_Gen8_NPC_17:
 
 Route117_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: I chant the legend of Light,\n"
-	.string "Darkness and Justice, also known as the\l"
-	.string "Legend of the hundred-year struggle.\l"
-	.string "Will you listen to it?$"
+	.string "Darkness and Justice, also known as\l"
+	.string "the Legend of the hundred-year\l"
+	.string "struggle. Will you listen to it?$"
 
 Route117_EventScript_LegendaryNPC_Text_1:
 	.string "Once upon a time, Cresselia, soother of\n"
@@ -365,8 +365,8 @@ Route117_EventScript_LegendaryNPC_Text_1:
 	.string "domination and ending the century long\l"
 	.string "conflict.\p"
 	.string "And so, the order once lost was finally\n"
-	.string "restored. With Darkrai defeated and his\l"
-	.string "malevolent influence banished,\l"
+	.string "restored. With Darkrai defeated and\l"
+	.string "his malevolent influence banished,\l"
 	.string "Cresselia's soothing aura spread\l"
 	.string "across the world, mending the scars\l"
 	.string "left by the long-standing battle.\p"
@@ -390,10 +390,10 @@ Route117_EventScript_LegendaryNPC_Text_2:
 Route117_EventScript_LegendaryNPC_Text_3:
 	.string "I see a star on that trainer card... you\n"
 	.string "have become champion, haven't you?\l"
-	.string "Keldeo, Darkrai and Cresselia are almost\l"
-	.string "among us. Just defeat these last few\l"
-	.string "trainers and you'll be able to meet\l"
-	.string "them.$"
+	.string "Keldeo, Darkrai and Cresselia are\l"
+	.string "almost among us. Just defeat these\l"
+	.string "last few trainers and you'll be able to\l"
+	.string "meet them.$"
 
 Route117_EventScript_LegendaryNPC_Text_4:
 	.string "Ah, a wicked heart that shies away from\n"

@@ -202,8 +202,8 @@ Route132_EventScript_LegendaryNPC_Text_0:
 	.string "no mistake: despite still wearing the\l"
 	.string "battle scars inflicted upon them by\l"
 	.string "King Calyrex and the Tapus, they\l"
-	.string "possess an immense power, so tread with\l"
-	.string "caution in their presence.\p"
+	.string "possess an immense power, so tread\l"
+	.string "with caution in their presence.\p"
 	.string "Do you want to know how they got here?$"
 
 Route132_EventScript_LegendaryNPC_Text_1:
@@ -215,27 +215,27 @@ Route132_EventScript_LegendaryNPC_Text_1:
 	.string "roamed until they found a hospitable\l"
 	.string "place to live.\p"
 	.string "Those who didn't immediately flee were\n"
-	.string "either consumed or turned into soldiers\l"
-	.string "for Necrozma's galactic army. Many of\l"
-	.string "these\p"
+	.string "either consumed or turned into\l"
+	.string "soldiers for Necrozma's galactic army.\l"
+	.string "Many of these\p"
 	.string "Ultra Beasts perished in the war waged\n"
 	.string "on them by the Tapus and King Calyrex,\l"
 	.string "but it looks like some have survived by\l"
 	.string "hiding in these small islands.\p"
 	.string "These creatures suffered a lot in their\n"
-	.string "life, I think they deserve a guardian to\l"
-	.string "take care of them. Your heart seems in\l"
-	.string "the right place. Once you'll be worthy\l"
-	.string "of them, return to me.\p"
+	.string "life, I think they deserve a guardian\l"
+	.string "to take care of them. Your heart seems\l"
+	.string "in the right place. Once you'll be\l"
+	.string "worthy of them, return to me.\p"
 	.string "$"
 
 Route132_EventScript_LegendaryNPC_Text_2:
 	.string "Your heart is in the right place, and\n"
 	.string "your strength is the one of a great\l"
-	.string "trainer. I added the location of some of\l"
-	.string "the Ultra Beasts in your DexNav. There\l"
-	.string "might be more in other routes, too: try\l"
-	.string "to catch them all!$"
+	.string "trainer. I added the location of some\l"
+	.string "of the Ultra Beasts in your DexNav.\l"
+	.string "There might be more in other routes,\l"
+	.string "too: try to catch them all!$"
 
 Route132_EventScript_LegendaryNPC_Text_3:
 	.string "You have demonstrated great strenght\n"
@@ -266,8 +266,9 @@ Route132_EventScript_Gyarados_Text_3:
 Route132_EventScript_Gyarados_PreTateLiza_Text_0:
 	.string "Gyarados gazes past you, as though\n"
 	.string "you're invisible, suggesting that you\l"
-	.string "may want to come back when you possess\l"
-	.string "the strength to rival its presence.{PAUSE_UNTIL_PRESS}$"
+	.string "may want to come back when you\l"
+	.string "possess the strength to rival its\l"
+	.string "presence.{PAUSE_UNTIL_PRESS}$"
 
 Route132_EventScript_Gyarados_Join_Text_0:
 	.string "Gyarados seems to want to join your\n"

@@ -1174,8 +1174,8 @@ Route111North_EventScript_Gen8_NPC_Text_0:
 
 Route111North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a\n"
-	.string "gift for defeating the two Ace trainers\l"
-	.string "here!$"
+	.string "gift for defeating the two Ace\l"
+	.string "trainers here!$"
 
 Route111North_EventScript_Gen8_NPC_Text_2:
 	.string "If you ice those two guys, I'll show you\n"
@@ -1209,8 +1209,8 @@ Route111Desert_EventScript_LegendaryNPC_Text_0:
 Route111Desert_EventScript_LegendaryNPC_Text_1:
 	.string "At last, our paths converge in this\n"
 	.string "parched land, young trainer. The\l"
-	.string "Guardians of Harmony rest in this place,\l"
-	.string "awaiting for your arrival:\p"
+	.string "Guardians of Harmony rest in this\l"
+	.string "place, awaiting for your arrival:\p"
 	.string "Xerneas, The Burn that Cures, harbinger\n"
 	.string "of life and renewal. Yveltal, The Wicked\l"
 	.string "Heart, embodiment of darkness and\l"
@@ -1219,9 +1219,10 @@ Route111Desert_EventScript_LegendaryNPC_Text_1:
 	.string "Balance and Harmony, watchful sentry\l"
 	.string "over the fragile equilibrium of nature.\p"
 	.string "There's no doubt in my mind, you'll be\n"
-	.string "their trainer once you'll reach your full\l"
-	.string "potential. Defeat the Pokémon League,\l"
-	.string "become champion, and come back to me.\p"
+	.string "their trainer once you'll reach your\l"
+	.string "full potential. Defeat the Pokémon\l"
+	.string "League, become champion, and come back\l"
+	.string "to me.\p"
 	.string "$"
 
 Route111Desert_EventScript_LegendaryNPC_Text_2:

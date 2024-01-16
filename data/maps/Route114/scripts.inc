@@ -407,11 +407,11 @@ Route114_EventScript_LegendaryNPC_Text_2:
 Route114_EventScript_LegendaryNPC_Text_3:
 	.string "Ah, an interesting development indeed.\n"
 	.string "Your capabilities have surpassed my\l"
-	.string "initial expectations. While your journey\l"
-	.string "has not yet reached its climax, you\l"
-	.string "have shown remarkable potential. Your\l"
-	.string "destiny is calling: finish these last\l"
-	.string "few battles to finally greet the\l"
+	.string "initial expectations. While your\l"
+	.string "journey has not yet reached its climax,\l"
+	.string "you have shown remarkable potential.\l"
+	.string "Your destiny is calling: finish these\l"
+	.string "last few battles to finally greet the\l"
 	.string "Beasts.$"
 
 Route114_EventScript_LegendaryNPC_Text_4:
