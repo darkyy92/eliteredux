@@ -2713,6 +2713,7 @@ static void CreateJumpMonSprite(struct PokemonJumpGfx *jumpGfx, struct PokemonJu
     u8 *unusedBuffer;
     u8 subpriority;
     u8 spriteId;
+    bool8 isShiny = FALSE;
 
     spriteTemplate = sSpriteTemplate_JumpMon;
     buffer = Alloc(0x2000);
@@ -2735,12 +2736,9 @@ static void CreateJumpMonSprite(struct PokemonJumpGfx *jumpGfx, struct PokemonJu
         spriteSheet.size = MON_PIC_SIZE;
         LoadSpriteSheet(&spriteSheet);
 
-        spritePalette.data = GetMonSpritePalFromSpeciesAndPersonality(monInfo->species, monInfo->otId, monInfo->personality);
+        spritePalette.data = GetMonSpritePal(monInfo->species, monInfo->personality, isShiny);
         spritePalette.tag = multiplayerId;
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonSpritePalette(&spritePalette, monInfo->personality);
-        else
-            LoadCompressedSpritePalette(&spritePalette);
+        LoadHueShiftedMonSpritePalette(&spritePalette, monInfo->personality);
 
         Free(buffer);
         Free(unusedBuffer);

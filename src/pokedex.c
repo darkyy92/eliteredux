@@ -4415,6 +4415,8 @@ static void Task_ExitCaughtMonPage(u8 taskId)
         u8 paletteNum;
         const u32 *lzPaletteData;
         void *buffer;
+        bool8 isShiny = FALSE;
+        bool8 isAlpha = FALSE;
 
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
         FreeAllWindowBuffers();
@@ -4429,11 +4431,8 @@ static void Task_ExitCaughtMonPage(u8 taskId)
         otId = ((u16)gTasks[taskId].tOtIdHi << 16) | (u16)gTasks[taskId].tOtIdLo;
         personality = ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo;
         paletteNum = gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum;
-        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonPalette(lzPaletteData, 0x100 | paletteNum * 16, 32, personality);
-        else
-            LoadCompressedPalette(lzPaletteData, 0x100 | paletteNum * 16, 32);
+        lzPaletteData = GetMonSpritePal(species, personality, isShiny);
+        LoadHueShiftedMonPalette(lzPaletteData, 0x100 | paletteNum * 16, 32, personality, isAlpha);
         DestroyTask(taskId);
     }
 }

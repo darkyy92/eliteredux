@@ -2070,15 +2070,14 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     u8 spriteId;
     u16 sheet = LoadSpriteSheet(&sSpriteSheet_MoveEffectMons[id]);
     u16 palette = AllocSpritePalette(sSpriteTemplate_MoveEffectMons[id].paletteTag);
+    bool8 isShiny = FALSE;
+    bool8 isAlpha = FALSE;
 
     if (gMonSpritesGfxPtr != NULL && gMonSpritesGfxPtr->buffer == NULL)
         gMonSpritesGfxPtr->buffer = AllocZeroed(0x2000);
     if (!isBackpic)
     {
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20, personality);
-        else
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadHueShiftedMonPalette(GetMonSpritePal(species, personality, isShiny), (palette * 0x10) + 0x100, 0x20, personality, isAlpha);
         LoadSpecialPokePic(&gMonFrontPicTable[species],
                            gMonSpritesGfxPtr->buffer,
                            species,
@@ -2087,10 +2086,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     }
     else
     {
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20, personality);
-        else
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadHueShiftedMonPalette(GetMonSpritePal(species, personality, isShiny), (palette * 0x10) + 0x100, 0x20, personality, isAlpha);
         LoadSpecialPokePic(&gMonBackPicTable[species],
                            gMonSpritesGfxPtr->buffer,
                            species,

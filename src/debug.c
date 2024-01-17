@@ -1625,7 +1625,13 @@ static void DebugAction_Util_ResetParty(u8 taskId)
     u8 i, j;
     u16 species = SPECIES_BULBASAUR;
     u16 oldSpecies = SPECIES_NONE;
+    bool8 makeAlpha = TRUE;
 
+    //Make Aplha
+    SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
+    //SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeAlpha);
+
+/*
     // Party Mons
     for(i = 0; i < gPlayerPartyCount; i++)
     {
@@ -1645,7 +1651,7 @@ static void DebugAction_Util_ResetParty(u8 taskId)
                 ZeroBoxMonAt(i, j);
             }
         }
-    }
+    }*/
     
     PlaySE(SE_USE_ITEM);
     HealPlayerParty();

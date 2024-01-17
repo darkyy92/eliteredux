@@ -213,6 +213,7 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
     u32 trainerId, personality;
     const struct CompressedSpritePalette* pokePal;
     u8 ID;
+    bool8 isShiny, isAlpha;
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -259,14 +260,13 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
     currSpecies = GetMonData(mon, MON_DATA_SPECIES);
     trainerId = GetMonData(mon, MON_DATA_OT_ID);
     personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
+    isAlpha = GetMonData(mon, MON_DATA_IS_ALPHA);
     DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[1],
                                 currSpecies,
                                 personality);
-    pokePal = GetMonSpritePalStructFromOtIdPersonality(currSpecies, trainerId, personality);
-    if (gSaveBlock2Ptr->individualColors)
-        LoadHueShiftedMonPalette(pokePal->data, 0x110, 0x20, personality);
-    else
-        LoadCompressedPalette(pokePal->data, 0x110, 0x20);
+    pokePal = GetMonSpritePalStructFromOtIdPersonality(currSpecies, personality, isShiny);
+    LoadHueShiftedMonPalette(pokePal->data, 0x110, 0x20, personality, isAlpha);
 
     SetMultiuseSpriteTemplateToPokemon(currSpecies, 1);
     gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
@@ -280,11 +280,8 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
     DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[3],
                                 postEvoSpecies,
                                 personality);
-    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-    if (gSaveBlock2Ptr->individualColors)
-        LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
-    else
-        LoadCompressedPalette(pokePal->data, 0x120, 0x20);
+    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, personality, isShiny);
+    LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality, isAlpha);
 
     SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, 3);
     gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
@@ -321,10 +318,14 @@ static void CB2_EvolutionSceneLoadGraphics(void)
     u16 postEvoSpecies;
     u32 trainerId, personality;
     struct Pokemon* mon = &gPlayerParty[gTasks[sEvoStructPtr->evoTaskId].tPartyId];
+    bool8 isShiny;
+    bool8 isAlpha;
 
     postEvoSpecies = gTasks[sEvoStructPtr->evoTaskId].tPostEvoSpecies;
     trainerId = GetMonData(mon, MON_DATA_OT_ID);
     personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
+    isAlpha = GetMonData(mon, MON_DATA_IS_ALPHA);
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -360,12 +361,9 @@ static void CB2_EvolutionSceneLoadGraphics(void)
     DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[3],
                                 postEvoSpecies,
                                 personality);
-    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
+    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, personality, isShiny);
 
-    if (gSaveBlock2Ptr->individualColors)
-        LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
-    else
-        LoadCompressedPalette(pokePal->data, 0x120, 0x20);
+    LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality, isAlpha);
 
     SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, 3);
     gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
@@ -392,6 +390,8 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
 {
     struct Pokemon* mon = &gPlayerParty[gTasks[sEvoStructPtr->evoTaskId].tPartyId];
     u16 postEvoSpecies = gTasks[sEvoStructPtr->evoTaskId].tPostEvoSpecies;
+    bool8 isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
+    bool8 isAlpha = GetMonData(mon, MON_DATA_IS_ALPHA);
 
     switch (gMain.state)
     {
@@ -435,11 +435,8 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
             DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[3],
                                         postEvoSpecies,
                                         personality);
-            pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-            if (gSaveBlock2Ptr->individualColors)
-                LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
-            else
-                LoadCompressedPalette(pokePal->data, 0x120, 0x20);
+            pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, personality, isShiny);
+            LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality, isAlpha);
             gMain.state++;
         }
         break;
@@ -484,8 +481,11 @@ void TradeEvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, u8 preEvoSprit
     u32 trainerId, personality;
     const struct CompressedSpritePalette* pokePal;
     u8 ID;
+    bool8 isShiny, isAlpha;
 
     GetMonData(mon, MON_DATA_NICKNAME, name);
+    GetMonData(mon, MON_DATA_IS_SHINY, isShiny);
+    GetMonData(mon, MON_DATA_IS_ALPHA, isAlpha);
     StringCopy10(gStringVar1, name);
     StringCopy(gStringVar2, gSpeciesNames[postEvoSpecies]);
 
@@ -503,11 +503,8 @@ void TradeEvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, u8 preEvoSprit
                                 postEvoSpecies,
                                 personality);
 
-    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-    if (gSaveBlock2Ptr->individualColors)
-        LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
-    else
-        LoadCompressedPalette(pokePal->data, 0x120, 0x20);
+    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, personality, isShiny);
+    LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality, isAlpha);
 
     SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, 1);
     gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;

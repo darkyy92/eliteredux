@@ -54,10 +54,11 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
 void LoadHueShiftedMonSpritePalette(const struct CompressedSpritePalette *src, u32 personality)
 {
     struct SpritePalette dest;
+    bool8 isAlpha = FALSE;
 
     LZ77UnCompWram(src->data, gDecompressionBuffer);
 
-    HueShiftMonPalette((u16*) gDecompressionBuffer, personality);
+    HueShiftMonPalette((u16*) gDecompressionBuffer, personality, isAlpha);
     dest.data = (void*) gDecompressionBuffer;
     dest.tag = src->tag;
     LoadSpritePalette(&dest);

@@ -25,22 +25,21 @@ struct BoxPokemon
     u8 nickname[12];
 
     // Word 6: Species + Experience points (used to derive level)
-    u32 species:11;
+    u32 move1:10;
     u32 experience:21;
+    u32 isShiny:1;
 
     // Words 7 & 8: moves, language, gender, friendship, Pokérus, ppBonuses
-    u32 move1:10;
     u32 move2:10;
+    u32 move3:10;
     u32 language:3;
-    u32 gender:1;
+    u32 isAplha:1;
     u32 friendship:8;
 
-    u32 move3:10;
+    u32 species:16;
     u32 move4:10;
-    u8 abilityNum:2;
-    u8 isShiny:1;
-    u8 hpType:5;
-    u8 filler2:4;
+    u32 hpType:5;
+    u32 filler:1;
 
     // Words 9 - 11: EV's
     u8 hpEV;
@@ -55,9 +54,11 @@ struct BoxPokemon
     u32 nature:5;
     u32 isEgg:1;
     u32 metLevel:7;
-    u32 filler3:3;
-    u16 pokeball:5; //31 balls
+    u32 pokeball:5; //31 balls
     u32 otGender:1;
+    u32 speedDown:1;
+    u32 gender:1; //not used?
+    u32 attackDown:1;
 
     // Words 13 & 14: Trainer name + met location
     u8 metLocation;
@@ -80,8 +81,8 @@ struct BoxPokemon
     u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
     u32 nationalRibbon:1;
     u32 earthRibbon:1;
-    u32 filler1:2;
     u32 markings:4;
+    u32 abilityNum:2;
 };
 
 struct Pokemon
@@ -413,9 +414,9 @@ void PlayBattleBGM(void);
 void PlayMapChosenOrBattleBGM(u16 songId);
 void CreateTask_PlayMapChosenOrBattleBGM(u16 songId);
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon);
-const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality);
+const u32 *GetMonSpritePal(u16 species, u32 personality, bool8 isShiny);
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon);
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality);
+const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species , u32 personality, bool8 isShiny);
 bool32 IsHMMove2(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
 s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);

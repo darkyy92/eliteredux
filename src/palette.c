@@ -5,6 +5,8 @@
 #include "gpu_regs.h"
 #include "task.h"
 #include "constants/rgb.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 enum
 {
@@ -183,7 +185,8 @@ static inline s32 RoundClampShift(fixed v) {
  * Performs a hue shift on the colors in a given palette. Index must be from 0 to 63.
  * Values 0-31 shift right, while values 32-63 shift left (but 32 is treated as 0, 33 as 1, etc.).
  ***/
-void HueShiftMonPalette(u16* colors, u32 personality) {
+#define ALPHA_RED_COLOR 31
+void HueShiftMonPalette(u16* colors, u32 personality, bool8 isAlpha) {
     //Use third personality byte to determine color;
     //Limit the index to valid bounds
     u32 index = (personality >> 16) & (64-1);
@@ -213,11 +216,26 @@ void HueShiftMonPalette(u16* colors, u32 personality) {
         color = colors[i];
 
         //Unpack the color
-        r     = (color & 0x1F) << FIX_SHIFT;
-        color = color >> 5;
-        g     = (color & 0x1F) << FIX_SHIFT;
-        color = color >> 5;
-        b     = (color & 0x1F) << FIX_SHIFT;
+        if (gSaveBlock2Ptr->individualColors){
+            if(isAlpha)
+                r = ALPHA_RED_COLOR << FIX_SHIFT;
+            else
+                r = (color & 0x1F) << FIX_SHIFT;
+            color = color >> 5;
+            g     = (color & 0x1F) << FIX_SHIFT;
+            color = color >> 5;
+            b     = (color & 0x1F) << FIX_SHIFT; 
+        }
+        else{
+            if(isAlpha)
+                r = ALPHA_RED_COLOR << FIX_SHIFT;
+            else
+                r = (color & 0x1F) << FIX_SHIFT;
+            color = color >> 5;
+            g     = (color & 0x1F) << FIX_SHIFT;
+            color = color >> 5;
+            b     = (color & 0x1F) << FIX_SHIFT; 
+        }
 
         //Hue shift, clamping at the max component value (31)
         rx = RoundClampShift(FxMul(r, val1) + FxMul(g, val2) + FxMul(b, val3));
@@ -229,11 +247,11 @@ void HueShiftMonPalette(u16* colors, u32 personality) {
     }
 }
 
-void LoadHueShiftedMonPalette(const u32 *src, u16 offset, u16 size, u32 personality)
+void LoadHueShiftedMonPalette(const u32 *src, u16 offset, u16 size, u32 personality, bool8 isAlpha)
 {
     LZDecompressWram(src, gPaletteDecompressionBuffer);
 
-    HueShiftMonPalette((u16*) gPaletteDecompressionBuffer, personality);
+    HueShiftMonPalette((u16*) gPaletteDecompressionBuffer, personality, isAlpha);
 
     CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferUnfaded + offset, size);
     CpuCopy16(gPaletteDecompressionBuffer, gPlttBufferFaded + offset, size);

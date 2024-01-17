@@ -4838,7 +4838,7 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8* data)
     case MON_DATA_PP2:
     case MON_DATA_PP3:
     case MON_DATA_PP4:
-        ret = 0;
+        ret = mon->pp[field - MON_DATA_PP1];
         break;
     default:
         ret = GetBoxMonData(&mon->box, field, data);
@@ -4926,10 +4926,13 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_MOVE1:
         retVal = boxMon->move1;
+        break;
     case MON_DATA_MOVE2:
         retVal = boxMon->move2;
+        break;
     case MON_DATA_MOVE3:
         retVal = boxMon->move3;
+        break;
     case MON_DATA_MOVE4:
         retVal = boxMon->move4;
         break;
@@ -4988,8 +4991,17 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_EGG:
         retVal = boxMon->isEgg;
         break;
+    case MON_DATA_IS_ALPHA:
+        retVal = boxMon->isAplha;
+        break;
+    case MON_DATA_HP_TYPE:
+        retVal = boxMon->hpType;
+        break;
+    case MON_DATA_IS_SHINY:
+        retVal = boxMon->isShiny;
+        break;
     case MON_DATA_SPEED_DOWN:
-        retVal = FALSE; //boxMon->speedDown;
+        retVal = boxMon->speedDown;
         break;
     case MON_DATA_ABILITY_NUM:
         retVal = boxMon->abilityNum;
@@ -5138,6 +5150,12 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
     case MON_DATA_MAIL:
         SET8(mon->mail);
         break;
+    case MON_DATA_PP1:
+    case MON_DATA_PP2:
+    case MON_DATA_PP3:
+    case MON_DATA_PP4:
+            SET8(mon->pp[field - MON_DATA_PP1]);
+        break;
     case MON_DATA_SPECIES2:
         break;
     default:
@@ -5197,17 +5215,15 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_MOVE1:
         SET16(boxMon->move1);
+        break;
     case MON_DATA_MOVE2:
         SET16(boxMon->move2);
+        break;
     case MON_DATA_MOVE3:
         SET16(boxMon->move3);
+        break;
     case MON_DATA_MOVE4:
         SET16(boxMon->move4);
-        break;
-    case MON_DATA_PP1:
-    case MON_DATA_PP2:
-    case MON_DATA_PP3:
-    case MON_DATA_PP4:
         break;
     case MON_DATA_HP_EV:
             SET8(boxMon->hpEV);
@@ -5258,11 +5274,20 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_IS_EGG:
         SET8(boxMon->isEgg);
         break;
+    case MON_DATA_IS_ALPHA:
+        SET32(boxMon->isAplha);
+        break;
+    case MON_DATA_HP_TYPE:
+        SET32(boxMon->hpType);
+        break;
+    case MON_DATA_IS_SHINY:
+        SET32(boxMon->isShiny);
+        break;
     case MON_DATA_SPEED_DOWN:
-        //SET8(boxMon->speedDown);
+        SET32(boxMon->speedDown);
         break;
     case MON_DATA_ABILITY_NUM:
-        SET8(boxMon->abilityNum);
+        SET32(boxMon->abilityNum);
         break;
     case MON_DATA_COOL_RIBBON:
         SET8(boxMon->coolRibbon);
@@ -7955,21 +7980,29 @@ static void Task_PlayMapChosenOrBattleBGM(u8 taskId)
 
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon)
 {
+    bool8 isShiny = GetMonData(mon, MON_DATA_IS_SHINY, 0);
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
     u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    return GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);
+
+    if (isShiny)
+    {
+        if (SpeciesHasGenderDifference[species] && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
+            return gMonShinyPaletteTableFemale[species].data;
+        else
+            return gMonShinyPaletteTable[species].data;
+    }
+    else
+    {
+        if (SpeciesHasGenderDifference[species] && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
+            return gMonPaletteTableFemale[species].data;
+        else
+            return gMonPaletteTable[species].data;
+    }
 }
 
-const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality)
-{
-    u32 shinyValue;
-
-    if (species > NUM_SPECIES)
-        return gMonPaletteTable[0].data;
-
-    shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-    if (shinyValue < getShinyOdds())
+const u32 *GetMonSpritePal(u16 species, u32 personality, bool8 isShiny){
+    if (isShiny)
     {
         if (SpeciesHasGenderDifference[species] && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
             return gMonShinyPaletteTableFemale[species].data;
@@ -7990,15 +8023,13 @@ const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
     u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    return GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
+    bool8 isShiny = GetMonData(mon, MON_DATA_IS_SHINY, 0);
+    return GetMonSpritePalStructFromOtIdPersonality(species, personality, isShiny);
 }
 
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality)
+const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 personality, bool8 isShiny)
 {
-    u32 shinyValue;
-
-    shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-    if (shinyValue < getShinyOdds())
+    if (isShiny)
     {
         if (SpeciesHasGenderDifference[species] && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
             return &gMonShinyPaletteTableFemale[species];
@@ -8178,9 +8209,8 @@ void SetWildMonHeldItem(void)
 
 bool8 IsMonShiny(struct Pokemon *mon)
 {
-    u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    return IsShinyOtIdPersonality(otId, personality);
+    bool8 isShiny = GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, NULL);
+    return isShiny;
 }
 
 bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
