@@ -6416,26 +6416,17 @@ static void RefreshDisplayMon(void)
 static void SetMovingMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
-        sStorage->movingMon = gPlayerParty[sCursorPosition];
+        gPlayerParty[position] = sStorage->movingMon;
     else
-        BoxMonAtToMon(boxId, position, &sStorage->movingMon);
-
-    PurgeMonOrBoxMon(boxId, position);
-    sMovingMonOrigBoxId = boxId;
-    sMovingMonOrigBoxPos = position;
+        SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
 }
 
 static void SetPlacedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
-    {
         gPlayerParty[position] = sStorage->movingMon;
-    }
     else
-    {
-        BoxMonRestorePP(&sStorage->movingMon.box);
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
-    }
 }
 
 static void PurgeMonOrBoxMon(u8 boxId, u8 position)

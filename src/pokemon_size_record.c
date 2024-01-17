@@ -36,7 +36,7 @@ static const struct UnknownStruct sBigMonSizeTable[] =
     { 1700,   1,   -26 },
 };
 
-static const u8 sGiftRibbonsMonDataIds[GIFT_RIBBONS_COUNT - 4] =
+static const u8 sGiftRibbonsMonDataIds[GIFT_RIBBONS_COUNT] =
 {
     MON_DATA_EFFORT_RIBBON
 };
