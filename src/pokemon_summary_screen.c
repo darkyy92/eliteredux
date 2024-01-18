@@ -4568,12 +4568,7 @@ static void SaveSpeciesWithSurname(u16 species){
         StringCopy(gStringVar2, gSpeciesNames[species]);
         StringExpandPlaceholders(gStringVar4, gText_Subname);
     }
-    else if(species >= SPECIES_MILOTIC_MEGA && species <= SPECIES_MEGANIUM_MEGA){ //Custom Mega
-        StringCopy(gStringVar1, gText_Mega);
-        StringCopy(gStringVar2, gSpeciesNames[species]);
-        StringExpandPlaceholders(gStringVar4, gText_Subname);
-    }
-    else if(species >= SPECIES_LUXRAY_MEGA && species <= SPECIES_TEMP_MEGA10){ //Custom Mega 2
+    else if(species >= CUSTOM_MEGA_START && species <= LAST_CUSTOM_MEGA){ //Custom Mega
         StringCopy(gStringVar1, gText_Mega);
         StringCopy(gStringVar2, gSpeciesNames[species]);
         StringExpandPlaceholders(gStringVar4, gText_Subname);

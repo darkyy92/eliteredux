@@ -831,6 +831,16 @@ gBattleAnims_Moves::
 	.4byte Move_ROCKET_PUNCH
 	.4byte Move_WEB_SHOT
 	.4byte Move_AURA_FORCE
+	.4byte Move_DRAKE_MISSILE
+	.4byte Move_LOTUS_SHOWER
+	.4byte Move_JAGGED_HORNS
+	.4byte Move_BLOOD_SHOT
+	.4byte Move_FLASH_FREEZE
+	.4byte Move_PHANTOM_GLOVES
+	.4byte Move_HOMING_FLETCH
+	.4byte Move_BITTER_MALICE
+	.4byte Move_INFERNAL_PARADE
+	.4byte Move_DEVIOUS_SHOT
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4073,6 +4083,36 @@ Move_WEB_SHOT:
 
 Move_AURA_FORCE:
 	goto Move_AURA_SPHERE
+
+Move_DRAKE_MISSILE:
+	goto Move_AURA_SPHERE
+
+Move_LOTUS_SHOWER::
+	goto Move_PETAL_BLIZZARD
+
+Move_JAGGED_HORNS::
+	goto Move_HORN_ATTACK
+
+Move_BLOOD_SHOT::
+	goto Move_ACID
+
+Move_FLASH_FREEZE::
+	goto Move_FREEZE_DRY
+
+Move_PHANTOM_GLOVES::
+	goto Move_SHADOW_CLAW
+
+Move_HOMING_FLETCH::
+	goto Move_THOUSAND_ARROWS
+
+Move_BITTER_MALICE::
+	goto Move_DARK_PULSE
+
+Move_INFERNAL_PARADE::
+	goto Move_WILL_O_WISP
+
+Move_DEVIOUS_SHOT::
+	goto Move_THOUSAND_ARROWS
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2
@@ -24821,6 +24861,27 @@ Status_Powder:
 	end
 
 Status_Bleed:
+	loadspritegfx ANIM_TAG_RED_PARTICLES
+	monbg ANIM_DEF_PARTNER
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 2, 0, 10, 1
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_DEF_PARTNER, 2, 0, 10, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, 20, 2, 2, 0, 12, RGB(30, 0, 0)
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 0, -22, 0, 15, 55, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, -26, -24, 0, 15, 55, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 15, -27, 0, 15, 50, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, -15, -17, 0, 10, 45, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 27, -22, 0, 15, 50, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
 	end
 
 General_CastformChange:

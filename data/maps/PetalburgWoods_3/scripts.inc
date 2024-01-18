@@ -60,7 +60,7 @@ PetalburgWoods3_EventScript_PrimalCascoon_Battle_Text_3:
 PetalburgWoods3_EventScript_PrimalCascoon_Battle_Text_4:
 	.string "If you dream of further defying the\n"
 	.string "limits you'll want that Purple Orb.\p"
-	.string "It allows Cascoon to unlock its\n"
+	.string "It allows Cascoon to unlock it's\n"
 	.string "potential that was lost to time...$"
 
 PetalburgWoods3_EventScript_PrimalCascoon_Battle_Text_5:

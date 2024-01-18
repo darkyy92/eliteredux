@@ -810,6 +810,16 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_ROCKET_PUNCH]      = _("Rocket Punch"),
     [MOVE_WEB_SHOT]          = _("Web Shot"),
     [MOVE_AURA_FORCE]        = _("Aura Force"),
+    [MOVE_DRAKE_MISSILE]     = _("DrakeMissile"),
+    [MOVE_LOTUS_SHOWER]      = _("Lotus Shower"),
+    [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
+    [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
+    [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
+    [MOVE_PHANTOM_GLOVES]    = _("PhantomGlove"),
+    [MOVE_HOMING_FLETCH]     = _("HomingFletch"),
+    [MOVE_BITTER_MALICE]     = _("BitterMalice"),
+    [MOVE_INFERNAL_PARADE]   = _("Infer.Parade"),
+    [MOVE_DEVIOUS_SHOT]      = _("Devious Shot"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1627,4 +1637,14 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_ROCKET_PUNCH]      = _("Rocket Punch"),
     [MOVE_WEB_SHOT]          = _("Web Shot"),
     [MOVE_AURA_FORCE]        = _("Aura Force"),
+    [MOVE_DRAKE_MISSILE]     = _("Drake Missile"),
+    [MOVE_LOTUS_SHOWER]      = _("Lotus Shower"),
+    [MOVE_JAGGED_HORNS]      = _("Jagged Horns"),
+    [MOVE_BLOOD_SHOT]        = _("Blood Shot"),
+    [MOVE_FLASH_FREEZE]      = _("Flash Freeze"),
+    [MOVE_PHANTOM_GLOVES]    = _("Phantom Gloves"),
+    [MOVE_HOMING_FLETCH]     = _("Homing Fletch"),
+    [MOVE_BITTER_MALICE]     = _("Bitter Malice"),
+    [MOVE_INFERNAL_PARADE]   = _("Infernal Parade"),
+    [MOVE_DEVIOUS_SHOT]      = _("Devious Shot"),
 };

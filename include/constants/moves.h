@@ -837,8 +837,18 @@
 #define MOVE_ROCKET_PUNCH        804
 #define MOVE_WEB_SHOT            805
 #define MOVE_AURA_FORCE          806
+#define MOVE_DRAKE_MISSILE       807
+#define MOVE_LOTUS_SHOWER        808
+#define MOVE_JAGGED_HORNS        809
+#define MOVE_BLOOD_SHOT          810
+#define MOVE_FLASH_FREEZE        811
+#define MOVE_PHANTOM_GLOVES      812
+#define MOVE_HOMING_FLETCH       813
+#define MOVE_BITTER_MALICE       814
+#define MOVE_INFERNAL_PARADE     815
+#define MOVE_DEVIOUS_SHOT        816
 
-#define MOVES_COUNT_DARKY        807
+#define MOVES_COUNT_DARKY        817
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

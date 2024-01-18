@@ -1317,7 +1317,7 @@ static const union AnimCmd *const sSpriteTemplate_StatusCondition[] =
 
 static const struct CompressedSpriteSheet sSpriteSheet_StatusIcons =
 {
-    gStatusGfx_Icons, 0x400, 1202
+    gStatusGfx_Icons, 1152, 1202
 };
 
 static const struct CompressedSpritePalette sSpritePalette_StatusIcons =

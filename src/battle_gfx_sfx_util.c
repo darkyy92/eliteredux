@@ -405,20 +405,32 @@ void InitAndLaunchChosenStatusAnimation(bool8 isStatus2, u32 status)
     gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive = 1;
     if (!isStatus2)
     {
-        if (status == STATUS1_FREEZE || status == STATUS1_FROSTBITE)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_FRZ);
-        else if (status == STATUS1_POISON || status & STATUS1_TOXIC_POISON)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PSN);
-        else if (status == STATUS1_BURN)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_BRN);
-        else if (status & STATUS1_SLEEP)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_SLP);
-        else if (status == STATUS1_PARALYSIS)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PRZ);
-        else if (status == STATUS1_BLEED)
-            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_BLEED);
-        else // no animation
-            gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive = 0;
+        switch(status)
+        {
+            case STATUS1_FREEZE:
+            case STATUS1_FROSTBITE:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_FRZ);
+            break;
+            case STATUS1_POISON:
+            case STATUS1_TOXIC_POISON:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PSN);
+            break;
+            case STATUS1_BURN:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_BRN);
+            break;
+            case STATUS1_SLEEP:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_SLP);
+            break;
+            case STATUS1_PARALYSIS:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PRZ);
+            break;
+            case STATUS1_BLEED:
+                LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_BLEED);
+            break;
+            default: // no animation
+                gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive = 0;
+            break;
+        }
     }
     else
     {

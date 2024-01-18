@@ -3945,6 +3945,16 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ROCKET_PUNCH      - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_WEB_SHOT          - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_AURA_FORCE        - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_DRAKE_MISSILE     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_LOTUS_SHOWER      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_JAGGED_HORNS      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BLOOD_SHOT        - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_FLASH_FREEZE      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_PHANTOM_GLOVES    - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_HOMING_FLETCH     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_BITTER_MALICE     - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_INFERNAL_PARADE   - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_DEVIOUS_SHOT      - 1] = sFROST_BRANDDescription, //ToChange
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5587,4 +5597,14 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_ROCKET_PUNCH      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_WEB_SHOT          - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_AURA_FORCE        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_DRAKE_MISSILE     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_LOTUS_SHOWER      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_JAGGED_HORNS      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BLOOD_SHOT        - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_FLASH_FREEZE      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_PHANTOM_GLOVES    - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_HOMING_FLETCH     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_BITTER_MALICE     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_INFERNAL_PARADE   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_DEVIOUS_SHOT      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
 };

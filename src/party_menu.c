@@ -4755,7 +4755,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     }
     else
     {
-        canHeal = IsHPRecoveryItem(item);
+        canHeal = IsHPRecoveryItem(item); //asdf
         if (canHeal == TRUE)
         {
             hp = GetMonData(mon, MON_DATA_HP);
@@ -6410,8 +6410,8 @@ u8 GetItemEffectType(u16 item)
             return ITEM_EFFECT_CURE_PARALYSIS;
         else if (statusCure == ITEM3_CONFUSION)
             return ITEM_EFFECT_CURE_CONFUSION;
-        // else if (statusCure == ITEM3_BLEED)
-        //     return ITEM_EFFECT_CURE_BLEED;
+        else if (statusCure == ITEM3_BLEED)
+            return ITEM_EFFECT_CURE_BLEED;
         else if (itemEffect[0] >> 7 && !statusCure)
             return ITEM_EFFECT_CURE_INFATUATION;
         else
