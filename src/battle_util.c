@@ -4300,9 +4300,9 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
     {
         gBattleWeather = (sWeatherFlagsInfo[weatherEnumId][0]);
         if (GetBattlerHoldEffect(battler, TRUE) == sWeatherFlagsInfo[weatherEnumId][2])
-            gWishFutureKnock.weatherDuration = 12;
+            gWishFutureKnock.weatherDuration = WEATHER_DURATION_EXTENDED;
         else
-            gWishFutureKnock.weatherDuration = 8;
+            gWishFutureKnock.weatherDuration = WEATHER_DURATION;
 
         return TRUE;
     }
@@ -4318,9 +4318,9 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
         gFieldStatuses |= statusFlag;
 
         if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
-            *timer = 8;
+            *timer = TERRAIN_DURATION_EXTENDED;
         else
-            *timer = 5;
+            *timer = TERRAIN_DURATION;
 
         gBattlerAttacker = gBattleScripting.battler = battler;
         return TRUE;
@@ -5956,7 +5956,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 //This is the stuff that has to be changed for each ability
                 if(!(gFieldStatuses & STATUS_FIELD_GRAVITY) && activateAbilty){
-                    gFieldTimers.gravityTimer = 8;
+                    gFieldTimers.gravityTimer = GRAVITY_DURATION_EXTENDED;
                     gFieldStatuses |= STATUS_FIELD_GRAVITY;
                     BattleScriptPushCursorAndCallback(BattleScript_AtlasStarts);
                     effect++;
@@ -5986,7 +5986,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 //This is the stuff that has to be changed for each ability
                 if(!(gFieldStatuses & STATUS_FIELD_GRAVITY) && activateAbilty){
-                    gFieldTimers.gravityTimer = 5;
+                    gFieldTimers.gravityTimer = GRAVITY_DURATION;
                     gFieldStatuses |= STATUS_FIELD_GRAVITY;
                     BattleScriptPushCursorAndCallback(BattleScript_GravityStarts);
                     effect++;
