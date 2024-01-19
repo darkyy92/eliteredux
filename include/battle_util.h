@@ -47,8 +47,8 @@
 
 #define WEATHER_DURATION                8
 #define WEATHER_DURATION_EXTENDED       12
-#define TERRAIN_DURATION                5
-#define TERRAIN_DURATION_EXTENDED       8
+#define TERRAIN_DURATION                8
+#define TERRAIN_DURATION_EXTENDED       12
 #define GRAVITY_DURATION                5
 #define GRAVITY_DURATION_EXTENDED       8
 #define TRICK_ROOM_DURATION             5
