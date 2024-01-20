@@ -4983,10 +4983,12 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_HP_IV:
     case MON_DATA_ATK_IV:
     case MON_DATA_DEF_IV:
-    case MON_DATA_SPEED_IV:
     case MON_DATA_SPATK_IV:
     case MON_DATA_SPDEF_IV:
         retVal = MAX_IVS;
+        break;
+    case MON_DATA_SPEED_IV:
+        retVal = boxMon->speedDown ? 0 : MAX_IVS;
         break;
     case MON_DATA_IS_EGG:
         retVal = boxMon->isEgg;
