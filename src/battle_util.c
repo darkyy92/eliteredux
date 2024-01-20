@@ -6234,9 +6234,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 //Checks if the ability is triggered
                 if(IsBattlerAlive(battler)
-                   && !gProtectStructs[sBattlerAttacker].extraMoveUsed
-                   && !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP)
-                   && !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
+                   && !gProtectStructs[battler].extraMoveUsed
+                   && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
+                   && !(gBattleMons[battler].status1 & STATUS1_FREEZE))
                     activateAbilty = TRUE;
 
                 //This is the stuff that has to be changed for each ability
