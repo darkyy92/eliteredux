@@ -504,7 +504,9 @@
 #define ABILITY_ACCELERATE       (ABILITIES_COUNT_LATEST_GEN + 206) // 2 turn based moves are now used instantly
 #define ABILITY_FROST_BURN       (ABILITIES_COUNT_LATEST_GEN + 207) // When a user uses a fire move it follows it up with a 40 bp ice beam.
 #define ABILITY_ITCHY_DEFENSE    (ABILITIES_COUNT_LATEST_GEN + 208) // Uses infestation upon getting hit by a contact move.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_ITCHY_DEFENSE + 1) 
+#define ABILITY_GENERATOR        (ABILITIES_COUNT_LATEST_GEN + 209) // Charge on entry.
+#define ABILITY_MOON_SPIRIT      (ABILITIES_COUNT_LATEST_GEN + 210) // Gain stab on dark/fairy, moonlight recovers 75% HP.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_MOON_SPIRIT + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

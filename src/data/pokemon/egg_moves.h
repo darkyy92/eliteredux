@@ -219,6 +219,7 @@ const u16 gEggMoves[] = {
         MOVE_LEECH_SEED,
         MOVE_WIDE_GUARD,
         MOVE_ROTOTILLER,
+        MOVE_STICKY_WEB,
         MOVE_FELL_STINGER,
         MOVE_GRASSY_TERRAIN),
 
@@ -854,7 +855,8 @@ const u16 gEggMoves[] = {
         MOVE_SCREECH,
         MOVE_GIGA_DRAIN,
         MOVE_FORESIGHT,
-        MOVE_TAKE_DOWN),
+        MOVE_TAKE_DOWN,
+        MOVE_SPIKE_CANNON),
 
     egg_moves(AERODACTYL,
         MOVE_JAGGED_FANGS, // new

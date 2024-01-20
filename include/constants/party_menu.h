@@ -172,7 +172,7 @@
 #define TUTOR_MOVE_TELEPORT         149
 
 #define TUTOR_MOVE_COUNT            150
-#define MAX_TUTOR_MOVE_COUNT        19 // This is just the highest number of tutor moves any one pokemon has, increase as needed
+#define MAX_TUTOR_MOVE_COUNT        20 // This is just the highest number of tutor moves any one pokemon has, increase as needed
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

@@ -468,6 +468,8 @@ static const u8 sAbilityInverseRoomDescription[] = _("Sets up the Inverse field\
 static const u8 sAbilityAccelerateDescription[] = _("2 turn based moves are\nnow used instantly");
 static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after\nusing a Fire-type move.");
 static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
+static const u8 sAbilityGeneratorDescription[] = _("Charges up on entry.");
+static const u8 sAbilityMoonSpiritDescription[] = _("Fairy & Dark gains STAB.\nMoonlight recovers 75% HP.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -956,6 +958,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_ACCELERATE] = _("Accelerate"),
         [ABILITY_FROST_BURN] = _("Frost Burn"),
         [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
+        [ABILITY_GENERATOR] = _("Generator"),
+        [ABILITY_MOON_SPIRIT] = _("Moon Spirit"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1437,4 +1441,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_ACCELERATE] = sAbilityAccelerateDescription,
         [ABILITY_FROST_BURN] = sAbilityFrostBurnDescription,
         [ABILITY_ITCHY_DEFENSE] = sAbilityItchyDefenseDescription,
+        [ABILITY_GENERATOR] = sAbilityGeneratorDescription,
+        [ABILITY_MOON_SPIRIT] = sAbilityMoonSpiritDescription,
 };

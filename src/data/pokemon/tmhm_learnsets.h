@@ -4222,6 +4222,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM81_X_SCISSOR)
                                         | TMHM2(TM87_SMACK_DOWN)
+                                        | TMHM2(TM89_U_TURN) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM98_FALSE_SWIPE)
                                         | TMHM2(TM100_CURSE)

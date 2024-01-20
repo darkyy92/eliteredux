@@ -6208,6 +6208,59 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            // Cheap Tactics
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_GENERATOR)){
+                bool8 activateAbilty = FALSE;
+                bool8 checkPassed    = FALSE;
+                bool8 hasTarget      = FALSE;
+                u16 abilityToCheck = ABILITY_GENERATOR; //For easier copypaste
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            checkPassed = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            checkPassed = TRUE;
+                        }
+                    break;
+                }
+
+                //Checks if the ability is triggered
+                if(IsBattlerAlive(battler)
+                   && !gProtectStructs[sBattlerAttacker].extraMoveUsed
+                   && !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP)
+                   && !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
+                    u16 extraMove = MOVE_CHARGE;      //The Extra Move to be used
+                    u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                    u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                    u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
+                    gTempMove = gCurrentMove;
+                    gCurrentMove = extraMove;
+                    gMultiHitCounter = 0;
+                    gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                    //Move Effect
+                    VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                    VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
+                    effect++;
+                }
+            }
+
             // Intimidate
             if(BATTLER_HAS_ABILITY(battler, ABILITY_INTIMIDATE)){
                 u16 abilityToCheck = ABILITY_INTIMIDATE; //For easier copypaste
@@ -15107,6 +15160,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_RAICHU)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+    case HOLD_EFFECT_LEEK:
+        if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_FARFETCHD
+            && IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(2.0));
+        break;
     case HOLD_EFFECT_CHOICE_BAND:
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -15658,6 +15716,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
 	     abilityAtk == ABILITY_MYSTIC_POWER || BattlerHasInnate(battlerAtk, ABILITY_MYSTIC_POWER)||
          (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
+         (abilityAtk == ABILITY_MOON_SPIRIT && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_MOON_SPIRIT) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
          (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE) ||
 		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (BattlerHasInnate(battlerAtk, ABILITY_AURORA_BOREALIS) && moveType == TYPE_ICE))
     {
