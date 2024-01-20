@@ -3124,6 +3124,7 @@ static void FillPartnerParty(u16 trainerId)
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
+                u8 hpType;
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.ItemCustomMoves;
 
                 level = GetHighestLevelInPlayerParty(); //+ partyData[i].lvl; Scaling not working as expected, but not needed anyway
@@ -3142,6 +3143,19 @@ static void FillPartnerParty(u16 trainerId)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_NATURE, &partyData[i].nature);
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &partyData[i].ability);
+
+                SetMonData(&gPlayerParty[i], MON_DATA_SPEED_DOWN, &partyData[i].zeroSpeedIvs);
+                
+                if (partyData[i].hpType) {
+                    SetMonData(&gPlayerParty[i], MON_DATA_HP_TYPE, &partyData[i].hpType);
+                }
+                else {
+                    do {
+                        hpType = Random() % NUMBER_OF_MON_TYPES;
+                    } while (hpType == TYPE_MYSTERY);
+                    
+                    SetMonData(&gPlayerParty[i], MON_DATA_HP_TYPE, &hpType);
+                }
 
                 //SetPartnerPokemonData
 
@@ -3167,30 +3181,6 @@ static void FillPartnerParty(u16 trainerId)
                             SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
                         break;
                     }
-                }
-
-                //Sets Ivs for Hidden Power Customization
-                for (j = 0; j < NUM_STATS; j++){
-                    switch(j){
-                        case 0:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 1:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 2:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 3:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 4:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 5:
-                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
-                        break;
-                        }
                 }
 
                 CalculateMonStats(&gPlayerParty[i + 3]); // called twice; fix in future
