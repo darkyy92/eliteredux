@@ -3128,6 +3128,14 @@ static const u8 sAQUA_BASHTDescription[] = _(
 static const u8 sTECTONIC_FANGSDescription[] =_(
     "User inserts it's ground shaking fangs.\n"
     "10% chance to flinch.");
+
+static const u8 sSTARBUSTDescription[] = _(
+    "The user crashes a large star onto the opponent.\n"
+    "30% chance to Flinch.");
+
+static const u8 sCheapShotDescription[] = _(
+    "The user sneaks into the shadows, then attacks.\n"
+    "Mega Launcher Boosted.");
     
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3955,6 +3963,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_BITTER_MALICE     - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_INFERNAL_PARADE   - 1] = sFROST_BRANDDescription, //ToChange
     [MOVE_DEVIOUS_SHOT      - 1] = sFROST_BRANDDescription, //ToChange
+    [MOVE_STARBURST         - 1] = sSTARBUSTDescription,
+    [MOVE_CHEAP_SHOT        - 1] = sCheapShotDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4785,6 +4795,8 @@ static const u8 sMoveFourLineDescription_BrambleBast[] = _("20% chance to apply\
 static const u8 sMoveFourLineDescription_AsteroidDownFall[] = _("Launches a small\nasteroid onto the\ntarget. Cannot miss.\nMega Launcher Boost."); // new
 static const u8 sMoveFourLineDescription_AquaBash[] = _("A mystical jab\nstrikes the foe.\n20% flinch chance.\nMighty Horn boost."); // new
 static const u8 sMoveFourLineDescription_TectonicFangs[] = _("User inserts it's\nground shaking fangs,\n10% chance to flinch.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_StartBust[] = _("The user crashes a star\nshaped ray down.\n30% Flinch chance.\nMega Launcher Boosted."); // new
+static const u8 sMoveFourLineDescription_CheapShot[] = _("The user sneaks into\nthe shadows, then attacks\nwith a concealed projectile.\nMega Launcher Boosted.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5607,4 +5619,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_BITTER_MALICE     - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_INFERNAL_PARADE   - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
     [MOVE_DEVIOUS_SHOT      - 1] = sMoveFourLineDescription_FrostBrand, //ToChange
+    [MOVE_STARBURST         - 1] = sMoveFourLineDescription_StartBust,
+    [MOVE_CHEAP_SHOT        - 1] = sMoveFourLineDescription_CheapShot,
 };

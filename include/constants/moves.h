@@ -847,8 +847,10 @@
 #define MOVE_BITTER_MALICE       814
 #define MOVE_INFERNAL_PARADE     815
 #define MOVE_DEVIOUS_SHOT        816
+#define MOVE_STARBURST           817
+#define MOVE_CHEAP_SHOT          818
 
-#define MOVES_COUNT_DARKY        817
+#define MOVES_COUNT_DARKY        819
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

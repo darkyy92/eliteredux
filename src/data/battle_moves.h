@@ -10357,6 +10357,35 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags2 = FLAG_HORN_BASED,
     },
 
+    [MOVE_STARBURST] =
+    {
+        .effect = EFFECT_FLINCH_HIT,
+        .power = 110,
+        .type = TYPE_NORMAL,
+        .accuracy = 90,
+        .pp = 20,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_MEGA_LAUNCHER_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_CHEAP_SHOT] = 
+    {
+        .effect = EFFECT_SEMI_INVULNERABLE,
+        .power = 120,
+        .type = TYPE_DARK,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
+        .split = SPLIT_PHYSICAL,
+        
+    },
+
     [MOVE_OBLIVION_WING] =
     {
         .effect = EFFECT_ABSORB,

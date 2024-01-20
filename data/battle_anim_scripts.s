@@ -841,6 +841,8 @@ gBattleAnims_Moves::
 	.4byte Move_BITTER_MALICE
 	.4byte Move_INFERNAL_PARADE
 	.4byte Move_DEVIOUS_SHOT
+	.4byte Move_STARBURST
+	.4byte Move_CHEAP_SHOT
 	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
@@ -4113,6 +4115,12 @@ Move_INFERNAL_PARADE::
 
 Move_DEVIOUS_SHOT::
 	goto Move_THOUSAND_ARROWS
+
+Move_STARBURST::
+    goto Move_CHARGE_BEAM
+
+Move_CHEAP_SHOT::
+    goto Move_SHADOW_FORCE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2
