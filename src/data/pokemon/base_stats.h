@@ -596,7 +596,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PIDGEOT] =
     {
     .baseHP        = 83,
-    .baseAttack    = 95,
+    .baseAttack    = 80,
     .baseDefense   = 75,
     .baseSpeed     = 101,
     .baseSpAttack  = 85,
@@ -612,8 +612,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FLYING,
-    .abilities = {ABILITY_NO_GUARD, ABILITY_MAJESTIC_BIRD, ABILITY_BIG_PECKS},
-    .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GIANT_WINGS},
+    .abilities = {ABILITY_NO_GUARD, ABILITY_DUST_CLOUD, ABILITY_SPEED_BOOST},
+    .innates = {ABILITY_FLOCK, ABILITY_MAJESTIC_BIRD, ABILITY_GIANT_WINGS},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
@@ -621,10 +621,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PIDGEOT_MEGA] =
     {
     .baseHP        = 83,
-    .baseAttack    = 115,
+    .baseAttack    = 80,
     .baseDefense   = 95,
-    .baseSpeed     = 121,
-    .baseSpAttack  = 115, // nerf bc of Majestic Bird
+    .baseSpeed     = 126,
+    .baseSpAttack  = 130, // nerf bc of Majestic Bird
     .baseSpDefense = 80,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_FLYING,
@@ -637,8 +637,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FLYING,
-    .abilities = {ABILITY_NO_GUARD, ABILITY_MAJESTIC_BIRD, ABILITY_BIG_PECKS},
-    .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GIANT_WINGS},
+    .abilities = {ABILITY_NO_GUARD, ABILITY_DUST_CLOUD, ABILITY_SPEED_BOOST},
+    .innates = {ABILITY_FLOCK, ABILITY_MAJESTIC_BIRD, ABILITY_GIANT_WINGS},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },

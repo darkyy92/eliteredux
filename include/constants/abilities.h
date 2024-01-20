@@ -506,7 +506,8 @@
 #define ABILITY_ITCHY_DEFENSE    (ABILITIES_COUNT_LATEST_GEN + 208) // Uses infestation upon getting hit by a contact move.
 #define ABILITY_GENERATOR        (ABILITIES_COUNT_LATEST_GEN + 209) // Charge on entry.
 #define ABILITY_MOON_SPIRIT      (ABILITIES_COUNT_LATEST_GEN + 210) // Gain stab on dark/fairy, moonlight recovers 75% HP.
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_MOON_SPIRIT + 1) 
+#define ABILITY_DUST_CLOUD       (ABILITIES_COUNT_LATEST_GEN + 211) // Sand attack on entry
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_DUST_CLOUD + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

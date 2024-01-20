@@ -470,6 +470,7 @@ static const u8 sAbilityFrostBurnDescription[] = _("Triggers 40BP Ice Beam after
 static const u8 sAbilityItchyDefenseDescription[] = _("Causes infestation when\nhit by a contact move.");
 static const u8 sAbilityGeneratorDescription[] = _("Charges up on entry.");
 static const u8 sAbilityMoonSpiritDescription[] = _("Fairy & Dark gains STAB.\nMoonlight recovers 75% HP.");
+static const u8 sAbilityDustCloudDescription[] = _("Attacks with Sand Attack\non switch-in.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -960,6 +961,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_ITCHY_DEFENSE] = _("Itchy Defense"),
         [ABILITY_GENERATOR] = _("Generator"),
         [ABILITY_MOON_SPIRIT] = _("Moon Spirit"),
+        [ABILITY_DUST_CLOUD] = _("Dust Cloud"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1443,4 +1445,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_ITCHY_DEFENSE] = sAbilityItchyDefenseDescription,
         [ABILITY_GENERATOR] = sAbilityGeneratorDescription,
         [ABILITY_MOON_SPIRIT] = sAbilityMoonSpiritDescription,
+        [ABILITY_DUST_CLOUD] = sAbilityDustCloudDescription,
 };
