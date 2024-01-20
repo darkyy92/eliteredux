@@ -6208,11 +6208,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
-            // Cheap Tactics
+            // Generator
             if(BATTLER_HAS_ABILITY(battler, ABILITY_GENERATOR)){
-                bool8 activateAbilty = FALSE;
-                bool8 checkPassed    = FALSE;
-                bool8 hasTarget      = FALSE;
                 u16 abilityToCheck = ABILITY_GENERATOR; //For easier copypaste
 
                 switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
@@ -6220,45 +6217,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
                             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                             gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                            checkPassed = TRUE;
                         }
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
                             gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                            checkPassed = TRUE;
                         }
                     break;
                 }
 
-                //Checks if the ability is triggered
-                if(IsBattlerAlive(battler)
-                   && !gProtectStructs[battler].extraMoveUsed
-                   && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-                   && !(gBattleMons[battler].status1 & STATUS1_FREEZE))
-                    activateAbilty = TRUE;
-
-                //This is the stuff that has to be changed for each ability
-                if(activateAbilty){
-                    u16 extraMove = MOVE_CHARGE;      //The Extra Move to be used
-                    u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                    u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                    u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                    gTempMove = gCurrentMove;
-                    gCurrentMove = extraMove;
-                    gMultiHitCounter = 0;
-                    gProtectStructs[battler].extraMoveUsed = TRUE;
-
-                    //Move Effect
-                    VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                    VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
-                    effect++;
-                }
+                BattleScriptPushCursorAndCallback(BattleScript_GeneratorActivates);
+                effect++;
             }
 
             // Intimidate
