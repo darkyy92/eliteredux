@@ -27444,10 +27444,10 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_STAKATAKA] =
     {
-    .baseHP        = 61,
-    .baseAttack    = 131,
+    .baseHP        = 59,
+    .baseAttack    = 139,
     .baseDefense   = 211,
-    .baseSpeed     = 13,
+    .baseSpeed     = 7,
     .baseSpAttack  = 53,
     .baseSpDefense = 101,
     .type1 = TYPE_ROCK,
