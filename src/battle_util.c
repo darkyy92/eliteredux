@@ -1035,7 +1035,7 @@ static const u8 sMovesNotAffectedByStench[] =
     [MOVE_ZING_ZAP] = 1,
 };
 
-static const u8 sAbilitiesAffectedByMoldBreaker[] =
+static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
 {
     [ABILITY_BATTLE_ARMOR] = 1,
     [ABILITY_CLEAR_BODY] = 1,
@@ -1133,6 +1133,8 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_EVAPORATE] = 1,
     [ABILITY_RADIANCE] = 1,
     [ABILITY_JUNGLES_GUARD] = 1,
+    [ABILITY_EARTH_EATER] = 1,
+    [ABILITY_SAND_GUARD] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
