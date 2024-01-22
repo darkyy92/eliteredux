@@ -7550,6 +7550,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
             effect = 1;
         }
+        //Dazzling
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_SAND_GUARD)
+            && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT
+            && GetChosenMovePriority(gBattlerAttacker, battler) > 0)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAND_GUARD;
+
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS){
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_MULTIPLETURNS);
+            }
+
+            if (gStatuses3[gBattlerAttacker] & STATUS3_SEMI_INVULNERABLE)
+                gStatuses3[gBattlerAttacker] &= ~(STATUS3_SEMI_INVULNERABLE);
+
+            gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
+            effect = 1;
+        }
         else if (BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
           && !(IS_MOVE_STATUS(move) && (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || BattlerHasInnate(gBattlerTarget, ABILITY_MAGIC_BOUNCE))))
         {
@@ -15825,6 +15843,11 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&finalModifier, UQ_4_12(0.50));
     }
+    // Sand Guard
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_SAND_GUARD) 
+        && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT
+        && IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.50));
 	
     // target's ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
