@@ -40,7 +40,7 @@ struct BoxPokemon
 
     u32 species:16;
     u32 move4:10;
-    u32 hpType:5;
+    u32 hpType:5; //Will be used for tera type too
     u32 isEventMon:1;
 
     // Words 9 - 11: EV's
