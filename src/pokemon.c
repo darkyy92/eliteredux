@@ -3710,6 +3710,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 nature;
     u8 maxIV = MAX_IV_MASK;
     u8 statIDs[NUM_STATS] = {0, 1, 2, 3, 4, 5};
+    u8 hpType;
 
     ZeroBoxMonData(boxMon);
 
@@ -3835,6 +3836,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
 
     }
+
+    do {
+        hpType = Random() % NUMBER_OF_MON_TYPES;
+    } while (hpType == TYPE_MYSTERY);
+
+    SetBoxMonData(boxMon, MON_DATA_HP_TYPE, &hpType);
+
     nature = personality % 25;
     SetBoxMonData(boxMon, MON_DATA_NATURE, &nature);
 
@@ -4063,6 +4071,7 @@ void CreateBattleTowerMon2(struct Pokemon *mon, struct BattleTowerPokemon *src, 
     SetMonData(mon, MON_DATA_SPATK_IV, &value);
     value = src->spDefenseIV;
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
+    SetMonData(mon, MON_DATA_HP_TYPE, &src->hpType);
     MonRestorePP(mon);
     CalculateMonStats(mon);
 }
@@ -4164,6 +4173,7 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     dest->spDefenseIV  = GetMonData(mon, MON_DATA_SPDEF_IV, NULL);
     dest->abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     dest->personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    dest->hpType = GetMonData(mon, MON_DATA_HP_TYPE, NULL);
     GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
 }
 
@@ -4983,10 +4993,12 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_HP_IV:
     case MON_DATA_ATK_IV:
     case MON_DATA_DEF_IV:
-    case MON_DATA_SPEED_IV:
     case MON_DATA_SPATK_IV:
     case MON_DATA_SPDEF_IV:
         retVal = MAX_IVS;
+        break;
+    case MON_DATA_SPEED_IV:
+        retVal = boxMon->speedDown ? 0 : MAX_IVS;
         break;
     case MON_DATA_IS_EGG:
         retVal = boxMon->isEgg;
@@ -5682,6 +5694,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
+    dst->hpType = GetMonData(src, MON_DATA_HP_TYPE, NULL);
     dst->type1 = gBaseStats[dst->species].type1;
     dst->type2 = gBaseStats[dst->species].type2;
     dst->type3 = TYPE_MYSTERY;

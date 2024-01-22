@@ -306,6 +306,7 @@ struct BattleTowerPokemon
     u32 personality;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 friendship;
+    u8 hpType;
 };
 
 #define NULL_BATTLE_TOWER_POKEMON { .nickname = __("$$$$$$$$$$$") }

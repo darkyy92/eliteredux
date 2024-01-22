@@ -152,6 +152,7 @@ struct BattlePokemon
     /*0x54*/ u32 otId;
     /*0x58*/ u8 nature;
     /*0x5A*/ bool8 wasalreadytotemboosted;
+    /*0x5C*/ u8 hpType;
 };
 
 struct BaseStats

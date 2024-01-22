@@ -6936,8 +6936,8 @@ const struct Item gItems[] =
         .holdEffectParam = 50,
         .description = sNormalGemDesc,
         .pocket = POCKET_BATTLE,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TypeGems,
         .secondaryId = TYPE_NORMAL,
     },
 
@@ -6950,8 +6950,8 @@ const struct Item gItems[] =
         .holdEffectParam = 50,
         .description = sFairyGemDesc,
         .pocket = POCKET_BATTLE,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TypeGems,
         .secondaryId = TYPE_FAIRY,
     },
 

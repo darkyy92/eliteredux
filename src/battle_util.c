@@ -13798,22 +13798,6 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         basePower = CalcBeatUpPower();
         break;
     #endif
-    case EFFECT_HIDDEN_POWER:
-    {
-        #if B_HIDDEN_POWER_DMG < GEN_6
-        u8 powerBits;
-
-        powerBits = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
-                | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
-                | ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1)
-                | ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2)
-                | ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3)
-                | ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
-
-        basePower = (40 * powerBits) / 63 + 30;
-        #endif
-        break;
-    }
     case EFFECT_GRAV_APPLE:
         if (IsGravityActive())
             MulModifier(&basePower, UQ_4_12(1.5));
