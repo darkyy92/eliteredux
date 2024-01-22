@@ -5655,6 +5655,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM80_VENOSHOCK)
                                         | TMHM2(TM81_X_SCISSOR)
                                         | TMHM2(TM84_POISON_JAB)
+                                        | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
                                         | TMHM2(TM100_CURSE)
@@ -6260,6 +6261,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM99_DAZZLING_GLEAM)
                                         | TMHM2(TM100_CURSE)
+                                        | TMHM2(HM02_FLY)
                                         | TMHM2(HM05_FLASH)),
     [SPECIES_SKIPLOOM]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
@@ -6286,6 +6288,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM99_DAZZLING_GLEAM)
                                         | TMHM2(TM100_CURSE)
+                                        | TMHM2(HM02_FLY)
                                         | TMHM2(HM05_FLASH)),
     [SPECIES_JUMPLUFF]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
@@ -6314,6 +6317,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM99_DAZZLING_GLEAM)
                                         | TMHM2(TM100_CURSE)
+                                        | TMHM2(HM02_FLY)
                                         | TMHM2(HM05_FLASH)),
     [SPECIES_AIPOM]   = TMHM_LEARNSET (TMHM1(TM01_FOCUS_PUNCH)
                                         | TMHM1(TM03_WATER_PULSE)
@@ -7812,6 +7816,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM73_THUNDER_WAVE)
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM85_DREAM_EATER)
+                                        | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM93_WILD_CHARGE)

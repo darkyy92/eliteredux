@@ -388,7 +388,8 @@ const u16 gEggMoves[] = {
         MOVE_POWER_WHIP,
         MOVE_ACID_SPRAY,
         MOVE_BELCH,
-        MOVE_STRENGTH_SAP),
+        MOVE_STRENGTH_SAP,
+        MOVE_HYPNOSIS),
 
     egg_moves(TENTACOOL,
         MOVE_AURORA_BEAM,
@@ -1164,7 +1165,8 @@ const u16 gEggMoves[] = {
         MOVE_SEED_BOMB,
         MOVE_ENDURE,
         MOVE_GRASSY_TERRAIN,
-        MOVE_STRENGTH_SAP),
+        MOVE_STRENGTH_SAP,
+        MOVE_QUICK_ATTACK),
 
     egg_moves(AIPOM,
         MOVE_COUNTER,
@@ -1367,7 +1369,8 @@ const u16 gEggMoves[] = {
         MOVE_MUD_SLAP,
         MOVE_ACID,
         MOVE_ROCK_BLAST,
-        MOVE_FINAL_GAMBIT),
+        MOVE_FINAL_GAMBIT,
+        MOVE_ROCK_CLIMB),
 
     egg_moves(HERACROSS,
         MOVE_HARDEN,
