@@ -24,7 +24,7 @@ struct BoxPokemon
     u32 otId;
 
     // Words 3-5: Pokémon nickname (12 chars)
-    u8 nickname[12];
+    u8 nickname[POKEMON_NAME_LENGTH];
 
     // Word 6: Species + Experience points (used to derive level)
     u32 move1:10;
