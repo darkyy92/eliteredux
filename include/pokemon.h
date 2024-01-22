@@ -15,6 +15,8 @@
 #define EVENT_LEGAL     1
 #define NEW_PERSONALITY 1
 
+#define REMOVE_RIBBONS
+
 struct BoxPokemon
 {
     // Words 1 & 2: PID + Trainer ID
@@ -57,32 +59,38 @@ struct BoxPokemon
     u32 pokeball:5; //31 balls
     u32 otGender:1;
     u32 speedDown:1;
-    u32 gender:1; //not used?
+    u32 filler:1;
     u32 attackDown:1;
 
     // Words 13 & 14: Trainer name + met location
     u8 metLocation;
     u8 otName[PLAYER_NAME_LENGTH];
 
-    // Word 16: ribbons and markings
-    u32 coolRibbon:3;
-    u32 beautyRibbon:3;
-    u32 cuteRibbon:3;
-    u32 smartRibbon:3;
-    u32 toughRibbon:3;
-    u32 championRibbon:1;
-    u32 winningRibbon:1;
-    u32 victoryRibbon:1;
-    u32 artistRibbon:1;
-    u32 effortRibbon:1;
-    u32 marineRibbon:1;  // never distributed
-    u32 landRibbon:1;    // never distributed
-    u32 skyRibbon:1;     // never distributed
-    u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
-    u32 nationalRibbon:1;
-    u32 earthRibbon:1;
-    u32 markings:4;
-    u32 abilityNum:2;
+    #ifdef REMOVE_RIBBONS
+        u8 markings:4;
+        u8 abilityNum:2;
+        u8 filler2:2;
+	#else
+        // Word 16: ribbons and markings
+        u32 coolRibbon:3;
+        u32 beautyRibbon:3;
+        u32 cuteRibbon:3;
+        u32 smartRibbon:3;
+        u32 toughRibbon:3;
+        u32 championRibbon:1;
+        u32 winningRibbon:1;
+        u32 victoryRibbon:1;
+        u32 artistRibbon:1;
+        u32 effortRibbon:1;
+        u32 marineRibbon:1;  // never distributed
+        u32 landRibbon:1;    // never distributed
+        u32 skyRibbon:1;     // never distributed
+        u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
+        u32 nationalRibbon:1;
+        u32 earthRibbon:1;
+        u32 markings:4;
+        u32 abilityNum:2;
+	#endif
 };
 
 struct Pokemon

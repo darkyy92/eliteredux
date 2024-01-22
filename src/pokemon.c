@@ -5019,34 +5019,74 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = boxMon->abilityNum;
         break;
     case MON_DATA_COOL_RIBBON:
-        retVal = boxMon->coolRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->coolRibbon;
+	    #endif
         break;
     case MON_DATA_BEAUTY_RIBBON:
-        retVal = boxMon->beautyRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->beautyRibbon;
+	    #endif
         break;
     case MON_DATA_CUTE_RIBBON:
-        retVal = boxMon->cuteRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->cuteRibbon;
+	    #endif
         break;
     case MON_DATA_SMART_RIBBON:
-        retVal = boxMon->smartRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->smartRibbon;
+	    #endif
         break;
     case MON_DATA_TOUGH_RIBBON:
-        retVal = boxMon->toughRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->toughRibbon;
+	    #endif
         break;
     case MON_DATA_CHAMPION_RIBBON:
-        retVal = boxMon->championRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->championRibbon;
+	    #endif
         break;
     case MON_DATA_WINNING_RIBBON:
-        retVal = boxMon->winningRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->winningRibbon;
+	    #endif
         break;
     case MON_DATA_VICTORY_RIBBON:
-        retVal = boxMon->victoryRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->victoryRibbon;
+	    #endif
         break;
     case MON_DATA_ARTIST_RIBBON:
-        retVal = boxMon->artistRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->artistRibbon;
+	    #endif
         break;
     case MON_DATA_EFFORT_RIBBON:
-        retVal = boxMon->effortRibbon;
+        #ifdef REMOVE_RIBBONS
+            retVal = FALSE;
+        #else
+            retVal = boxMon->effortRibbon;
+	    #endif
         break;
     case MON_DATA_IS_EVENT_MON:
         retVal = boxMon->isEventMon;
@@ -5084,36 +5124,44 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         }
         break;
     case MON_DATA_RIBBON_COUNT:
-        retVal = 0;
-        if (boxMon->species && !boxMon->isEgg)
-        {
-            retVal += boxMon->coolRibbon;
-            retVal += boxMon->beautyRibbon;
-            retVal += boxMon->cuteRibbon;
-            retVal += boxMon->smartRibbon;
-            retVal += boxMon->toughRibbon;
-            retVal += boxMon->championRibbon;
-            retVal += boxMon->winningRibbon;
-            retVal += boxMon->victoryRibbon;
-            retVal += boxMon->artistRibbon;
-            retVal += boxMon->effortRibbon;
-        }
+        #ifdef REMOVE_RIBBONS
+            retVal = 0;
+	    #else
+            retVal = 0;
+            if (boxMon->species && !boxMon->isEgg)
+            {
+                retVal += boxMon->coolRibbon;
+                retVal += boxMon->beautyRibbon;
+                retVal += boxMon->cuteRibbon;
+                retVal += boxMon->smartRibbon;
+                retVal += boxMon->toughRibbon;
+                retVal += boxMon->championRibbon;
+                retVal += boxMon->winningRibbon;
+                retVal += boxMon->victoryRibbon;
+                retVal += boxMon->artistRibbon;
+                retVal += boxMon->effortRibbon;
+            }
+	    #endif
         break;
     case MON_DATA_RIBBONS:
-        retVal = 0;
-        if (boxMon->species && !boxMon->isEgg)
-        {
-            retVal = boxMon->championRibbon
-                | (boxMon->coolRibbon << 1)
-                | (boxMon->beautyRibbon << 4)
-                | (boxMon->cuteRibbon << 7)
-                | (boxMon->smartRibbon << 10)
-                | (boxMon->toughRibbon << 13)
-                | (boxMon->winningRibbon << 16)
-                | (boxMon->victoryRibbon << 17)
-                | (boxMon->artistRibbon << 18)
-                | (boxMon->effortRibbon << 19);
-        }
+        #ifdef REMOVE_RIBBONS
+            retVal = 0;
+	    #else
+            retVal = 0;
+            if (boxMon->species && !boxMon->isEgg)
+            {
+                retVal = boxMon->championRibbon
+                    | (boxMon->coolRibbon << 1)
+                    | (boxMon->beautyRibbon << 4)
+                    | (boxMon->cuteRibbon << 7)
+                    | (boxMon->smartRibbon << 10)
+                    | (boxMon->toughRibbon << 13)
+                    | (boxMon->winningRibbon << 16)
+                    | (boxMon->victoryRibbon << 17)
+                    | (boxMon->artistRibbon << 18)
+                    | (boxMon->effortRibbon << 19);
+            }
+	    #endif
         break;
     default:
         break;
@@ -5209,7 +5257,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     }
     case MON_DATA_MARKINGS:
-        SET8(boxMon->markings);
+        #ifdef REMOVE_RIBBONS
+            SET8(boxMon->markings);
+        #else
+            SET32(boxMon->markings);
+	    #endif
         break;
     case MON_DATA_SPECIES:
     {
@@ -5299,38 +5351,82 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET32(boxMon->speedDown);
         break;
     case MON_DATA_ABILITY_NUM:
-        SET32(boxMon->abilityNum);
+        #ifdef REMOVE_RIBBONS
+            SET8(boxMon->markings);
+        #else
+            SET32(boxMon->abilityNum);
+	    #endif
         break;
     case MON_DATA_COOL_RIBBON:
-        SET8(boxMon->coolRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->coolRibbon);
+        break;
+	    #endif
     case MON_DATA_BEAUTY_RIBBON:
-        SET8(boxMon->beautyRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->beautyRibbon);
+        break;
+	    #endif
     case MON_DATA_CUTE_RIBBON:
-        SET8(boxMon->cuteRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->cuteRibbon);
+        break;
+	    #endif
     case MON_DATA_SMART_RIBBON:
-        SET8(boxMon->smartRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->smartRibbon);
+        break;
+	    #endif
     case MON_DATA_TOUGH_RIBBON:
-        SET8(boxMon->toughRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->toughRibbon);
+        break;
+	    #endif
     case MON_DATA_CHAMPION_RIBBON:
-        SET8(boxMon->championRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->championRibbon);
+        break;
+	    #endif
     case MON_DATA_WINNING_RIBBON:
-        SET8(boxMon->winningRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->winningRibbon);
+        break;
+	    #endif
     case MON_DATA_VICTORY_RIBBON:
-        SET8(boxMon->victoryRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->victoryRibbon);
+        break;
+	    #endif
     case MON_DATA_ARTIST_RIBBON:
-        SET8(boxMon->artistRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->artistRibbon);
+        break;
+	    #endif
     case MON_DATA_EFFORT_RIBBON:
-        SET8(boxMon->effortRibbon);
+        #ifdef REMOVE_RIBBONS
         break;
+        #else
+            SET8(boxMon->effortRibbon);
+        break;
+	    #endif
     case MON_DATA_NATURE:
         SET8(boxMon->nature);
         break;
