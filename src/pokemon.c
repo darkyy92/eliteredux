@@ -5036,8 +5036,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_EFFORT_RIBBON:
         retVal = boxMon->effortRibbon;
         break;
-    case MON_DATA_FATEFUL_ENCOUNTER:
-        retVal = FALSE;
+    case MON_DATA_IS_EVENT_MON:
+        retVal = boxMon->isEventMon;
         break;
     case MON_DATA_EVENT_LEGAL:
         retVal = EVENT_LEGAL;
@@ -5226,22 +5226,22 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET16(boxMon->move4);
         break;
     case MON_DATA_HP_EV:
-            SET8(boxMon->hpEV);
+        SET8(boxMon->hpEV);
         break;
     case MON_DATA_ATK_EV:
-            SET8(boxMon->attackEV);
+        SET8(boxMon->attackEV);
         break;
     case MON_DATA_DEF_EV:
-            SET8(boxMon->defenseEV);
+        SET8(boxMon->defenseEV);
         break;
     case MON_DATA_SPEED_EV:
-            SET8(boxMon->speedEV);
+        SET8(boxMon->speedEV);
         break;
     case MON_DATA_SPATK_EV:
-            SET8(boxMon->spAttackEV);
+        SET8(boxMon->spAttackEV);
         break;
     case MON_DATA_SPDEF_EV:
-            SET8(boxMon->spDefenseEV);
+        SET8(boxMon->spDefenseEV);
         break;
     case MON_DATA_COOL:
     case MON_DATA_BEAUTY:
@@ -5322,7 +5322,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_NATURE:
         SET8(boxMon->nature);
         break;
-    case MON_DATA_FATEFUL_ENCOUNTER:
+    case MON_DATA_IS_EVENT_MON:
+        SET32(boxMon->isEventMon);
+        break;
     case MON_DATA_HP_IV:
     case MON_DATA_ATK_IV:
     case MON_DATA_DEF_IV:

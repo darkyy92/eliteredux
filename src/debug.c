@@ -1629,7 +1629,7 @@ static void DebugAction_Util_ResetParty(u8 taskId)
 
     //Make Aplha
     SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
-    //SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeAlpha);
+    SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeAlpha);
 
 /*
     // Party Mons

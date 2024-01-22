@@ -185,65 +185,82 @@ static inline s32 RoundClampShift(fixed v) {
  * Performs a hue shift on the colors in a given palette. Index must be from 0 to 63.
  * Values 0-31 shift right, while values 32-63 shift left (but 32 is treated as 0, 33 as 1, etc.).
  ***/
-#define ALPHA_RED_COLOR 31
+
+#define GET_R(color) ((color) & 0x1F)
+#define GET_G(color) (((color) >> 5) & 0x1F)
+#define GET_B(color) (((color) >> 10) & 0x1F)
+#define POKEMON_BLEND_INTENSITY       1
+#define POKEMON_BLEND_INTENSITY_ALPHA 5
+#define MAX_COLOR_VALUE 30
+#define MIN_COLOR_VALUE 1
+
 void HueShiftMonPalette(u16* colors, u32 personality, bool8 isAlpha) {
-    //Use third personality byte to determine color;
-    //Limit the index to valid bounds
-    u32 index = (personality >> 16) & (64-1);
+    s32 r, g, b, i;
+    u8 count = 16;
+    u8 tone = Q_8_8(0.6);
+    u8 PokemonRGB[] = {0,0,0};
+    bool8 shouldBlend = TRUE;
+    bool8 shouldBlendColor = TRUE;
 
-    //sCosTable and sSinTable are two tables for precalculated cosine values, one after other, each with 32
-    //elements of two bytes. The values are represented in fixed point, and the table doesn't go very far around the
-    //circle (currently represent about +/-20 degrees).
-    //The index into the table is treated a little strangely. an index of 0 corresponds to cos(0) and sin(0).
-    //values of index after 32 are treated like -(index-32). for cosine, because cos(x) == cos(-x), I can just
-    //chop off bits after the first 5 and index into the table. For sine, sin(-x) == -sin(x), so I flip the sign of the
-    //value in the table at (index-32). This is all done to save space.
-    fixed cosA = sCosTable[index & 31],
-          sinA = index >= 32 ? -(fixed)(sSinTable[index-32]) : sSinTable[index];
+    if (!gSaveBlock2Ptr->individualColors && !isAlpha)
+        shouldBlend = FALSE;
 
-    //The following code performs an approximate hue shift on each color in the palette, taken from this post on stack
-    //overflow, optimized to work with this fixed point stuff: https://stackoverflow.com/a/8510751/963007
-    fixed val1 = ONE_THIRD + FxMul(cosA, TWO_THIRDS);
-    fixed val2 = FxMul(ONE - cosA, ONE_THIRD) - FxMul(SQRT_1_3, sinA);
-    fixed val3 = FxMul(ONE - cosA, ONE_THIRD) + FxMul(SQRT_1_3, sinA);
-
-    u8 i;
-    u16 color;
-    fixed r, g, b;
-    s32 rx, gx, bx;
-
-    for (i = 1; i < 16; i++) { //Skip past first color, which is transparency
-        color = colors[i];
-
-        //Unpack the color
-        if (gSaveBlock2Ptr->individualColors){
-            if(isAlpha)
-                r = ALPHA_RED_COLOR << FIX_SHIFT;
-            else
-                r = (color & 0x1F) << FIX_SHIFT;
-            color = color >> 5;
-            g     = (color & 0x1F) << FIX_SHIFT;
-            color = color >> 5;
-            b     = (color & 0x1F) << FIX_SHIFT; 
+    if(shouldBlend){
+        if(isAlpha){
+            PokemonRGB[0] = 31;
+            PokemonRGB[1] = 0;
+            PokemonRGB[2] = 0;
         }
         else{
-            if(isAlpha)
-                r = ALPHA_RED_COLOR << FIX_SHIFT;
-            else
-                r = (color & 0x1F) << FIX_SHIFT;
-            color = color >> 5;
-            g     = (color & 0x1F) << FIX_SHIFT;
-            color = color >> 5;
-            b     = (color & 0x1F) << FIX_SHIFT; 
+            PokemonRGB[0] = GET_R(personality);
+            PokemonRGB[1] = GET_G(personality);
+            PokemonRGB[2] = GET_B(personality);
         }
 
-        //Hue shift, clamping at the max component value (31)
-        rx = RoundClampShift(FxMul(r, val1) + FxMul(g, val2) + FxMul(b, val3));
-        gx = RoundClampShift(FxMul(r, val3) + FxMul(g, val1) + FxMul(b, val2));
-        bx = RoundClampShift(FxMul(r, val2) + FxMul(g, val3) + FxMul(b, val1));
+        for (i = 0; i < count; i++) //Skip past first color, which is transparency
+        {
+            shouldBlendColor = TRUE;
+            r = GET_R(*colors);
+            g = GET_G(*colors);
+            b = GET_B(*colors);
 
-        //Pack the color
-        colors[i] = rx | (gx << 5) | (bx << 10);
+            /*if((r <= MIN_COLOR_VALUE || r >= MAX_COLOR_VALUE) && 
+               (g <= MIN_COLOR_VALUE || g >= MAX_COLOR_VALUE) && 
+               (b <= MIN_COLOR_VALUE || b >= MAX_COLOR_VALUE)) // Check if the color is complete Black or White
+                shouldBlendColor = FALSE;*/
+
+            //if((r <= MIN_COLOR_VALUE || r >= MAX_COLOR_VALUE) && r == g && g == b) // Check if the color is complete Black or White
+            //    shouldBlendColor = FALSE;
+
+            if(shouldBlendColor){
+                /*#ifdef DEBUG_BUILD
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "HueShiftMonPalette Color %d - R: %d, G: %d, B: %d, IsAlpha: %d", i, r, g, b, isAlpha);
+                MgbaClose();
+                #endif*/
+
+                if(isAlpha){
+                    r = (r + (((PokemonRGB[0] - r) * POKEMON_BLEND_INTENSITY_ALPHA) >> 4));
+                    g = (g + (((PokemonRGB[1] - g) * POKEMON_BLEND_INTENSITY_ALPHA) >> 4));
+                    b = (b + (((PokemonRGB[2] - b) * POKEMON_BLEND_INTENSITY_ALPHA) >> 4));
+                }
+                else{
+                    r = (r + (((PokemonRGB[0] - r) * POKEMON_BLEND_INTENSITY) >> 4));
+                    g = (g + (((PokemonRGB[1] - g) * POKEMON_BLEND_INTENSITY) >> 4));
+                    b = (b + (((PokemonRGB[2] - b) * POKEMON_BLEND_INTENSITY) >> 4));
+                }
+
+                if (r > 31)
+                    r = 31;
+                if (g > 31)
+                    g = 31;
+                if (b > 31)
+                    b = 31;
+
+                *colors++ = RGB2(r, g, b);
+                //colors[i] = r | (g << 5) | (b << 10);
+            }
+        }
     }
 }
 

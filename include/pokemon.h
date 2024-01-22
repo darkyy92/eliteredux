@@ -39,7 +39,7 @@ struct BoxPokemon
     u32 species:16;
     u32 move4:10;
     u32 hpType:5;
-    u32 filler:1;
+    u32 isEventMon:1;
 
     // Words 9 - 11: EV's
     u8 hpEV;
@@ -75,9 +75,9 @@ struct BoxPokemon
     u32 victoryRibbon:1;
     u32 artistRibbon:1;
     u32 effortRibbon:1;
-    u32 marineRibbon:1; // never distributed
-    u32 landRibbon:1; // never distributed
-    u32 skyRibbon:1; // never distributed
+    u32 marineRibbon:1;  // never distributed
+    u32 landRibbon:1;    // never distributed
+    u32 skyRibbon:1;     // never distributed
     u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
     u32 nationalRibbon:1;
     u32 earthRibbon:1;
