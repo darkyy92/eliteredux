@@ -472,6 +472,7 @@ static const u8 sAbilityGeneratorDescription[] = _("Charges up on entry.");
 static const u8 sAbilityMoonSpiritDescription[] = _("Fairy & Dark gains STAB.\nMoonlight recovers 75% HP.");
 static const u8 sAbilityDustCloudDescription[] = _("Attacks with Sand Attack\non switch-in.");
 static const u8 sAbilityBerserkerRageDescription[] = _("Berserk + Rampage.");
+static const u8 sAbilityTricksterDescription[] =_("Uses Disable\non switch-in.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -964,6 +965,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_MOON_SPIRIT] = _("Moon Spirit"),
         [ABILITY_DUST_CLOUD] = _("Dust Cloud"),
         [ABILITY_BERSERKER_RAGE] = _("Berserker Rage"),
+        [ABILITY_TRICKSTER] = _("Trickster"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1449,4 +1451,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_MOON_SPIRIT] = sAbilityMoonSpiritDescription,
         [ABILITY_DUST_CLOUD] = sAbilityDustCloudDescription,
         [ABILITY_BERSERKER_RAGE] = sAbilityBerserkerRageDescription,
+        [ABILITY_TRICKSTER] = sAbilityTricksterDescription,
 };
