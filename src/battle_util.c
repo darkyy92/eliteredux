@@ -4544,6 +4544,69 @@ bool32 TryPrimalReversion(u8 battlerId)
     return FALSE;
 }
 
+static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect) {
+    bool8 activateAbilty = FALSE;
+    bool8 checkPassed    = FALSE;
+    bool8 hasTarget      = FALSE;
+    u8 i;
+    u8 opposingBattler = BATTLE_OPPOSITE(battler);
+    if (!BATTLER_HAS_ABILITY(battler, ability)) return FALSE;
+
+    switch(BattlerHasInnateOrAbility(battler, ability)){
+        case BATTLER_INNATE:
+            if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ability)]){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
+                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ability)] = TRUE;
+                checkPassed = TRUE;
+            }
+        break;
+        case BATTLER_ABILITY:
+            if(!gSpecialStatuses[battler].switchInAbilityDone){
+                gBattlerAttacker = battler;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                checkPassed = TRUE;
+            }
+        break;
+    }
+
+    //Checks Target
+    for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+    {
+        if (IsBattlerAlive(opposingBattler) && gBattleMons[opposingBattler].hp != 1)
+        {
+            gBattlerTarget = opposingBattler;
+            hasTarget = TRUE;
+        }
+    }
+
+    if(checkPassed && hasTarget){
+        //Checks if the ability is triggered
+        if(canUseExtraMove(battler, gBattlerTarget)){
+            activateAbilty = TRUE;
+        }
+    }
+
+    //This is the stuff that has to be changed for each ability
+    if(activateAbilty){
+        gTempMove = gCurrentMove;
+        gCurrentMove = extraMove;
+        gMultiHitCounter = 0;
+        gProtectStructs[battler].extraMoveUsed = TRUE;
+
+        //Move Effect
+        VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+        VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+        VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+        gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+        BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
+        (*effect)++;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -11125,68 +11188,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         gBattlerAbility = battler;
 
     return effect;
-}
-
-static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8 movePower, u8 moveEffectSecondaryChance, u8 extraMoveSecondaryEffect) {
-    bool8 activateAbilty = FALSE;
-    bool8 checkPassed    = FALSE;
-    bool8 hasTarget      = FALSE;
-    u8 opposingBattler = BATTLE_OPPOSITE(battler);
-    if (!BATTLER_HAS_ABILITY(battler, ability)) return FALSE;
-
-    switch(BattlerHasInnateOrAbility(battler, ability)){
-        case BATTLER_INNATE:
-            if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ability)]){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
-                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ability)] = TRUE;
-                checkPassed = TRUE;
-            }
-        break;
-        case BATTLER_ABILITY:
-            if(!gSpecialStatuses[battler].switchInAbilityDone){
-                gBattlerAttacker = battler;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                checkPassed = TRUE;
-            }
-        break;
-    }
-
-    //Checks Target
-    for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
-    {
-        if (IsBattlerAlive(opposingBattler) && gBattleMons[opposingBattler].hp != 1)
-        {
-            gBattlerTarget = opposingBattler;
-            hasTarget = TRUE;
-        }
-    }
-
-    if(checkPassed && hasTarget){
-        //Checks if the ability is triggered
-        if(canUseExtraMove(battler, gBattlerTarget)){
-            activateAbilty = TRUE;
-        }
-    }
-
-    //This is the stuff that has to be changed for each ability
-    if(activateAbilty){
-        gTempMove = gCurrentMove;
-        gCurrentMove = extraMove;
-        gMultiHitCounter = 0;
-        gProtectStructs[battler].extraMoveUsed = TRUE;
-
-        //Move Effect
-        VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-        VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-        VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-        gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-        BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
-        (*effect)++;
-        return TRUE;
-    }
-
-    return FALSE;
 }
 
 bool32 IsNeutralizingGasBannedAbility(u32 ability)
