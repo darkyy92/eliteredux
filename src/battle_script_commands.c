@@ -14204,6 +14204,15 @@ static void Cmd_switchoutabilities(void)
             BattleScriptPush(gBattlescriptCurrInstr);
             gBattlescriptCurrInstr = BattleScript_RegeneratorExits;
     }
+    else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_NATURAL_RECOVERY)) {
+        if(BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_RECOVERY))
+            gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_RECOVERY)] = TRUE;
+        else
+            gSpecialStatuses[gActiveBattler].switchInAbilityDone = TRUE;
+        
+        BattleScriptPush(gBattlescriptCurrInstr);
+        gBattlescriptCurrInstr = BattleScript_NaturalRecoveryExits;
+    }
     else{
         if((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || GetBattlerAbility(gActiveBattler) == ABILITY_NATURAL_CURE ||
             BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || GetBattlerAbility(gActiveBattler) == ABILITY_SELF_REPAIR) && 

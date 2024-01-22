@@ -3370,6 +3370,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN)
     {
         if((BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->abilities[battlerAtk] == ABILITY_NATURAL_CURE ||
+            BattlerHasInnate(battlerAtk, ABILITY_NATURAL_RECOVERY) || AI_DATA->abilities[battlerAtk] == ABILITY_NATURAL_RECOVERY ||
             BattlerHasInnate(battlerAtk, ABILITY_SELF_REPAIR)  || AI_DATA->abilities[battlerAtk] == ABILITY_SELF_REPAIR) &&
             AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING &&
             HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
@@ -3389,6 +3390,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE)
     {
         if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->abilities[battlerAtk] == ABILITY_NATURAL_CURE ||
+            BattlerHasInnate(battlerAtk, ABILITY_NATURAL_RECOVERY) || AI_DATA->abilities[battlerAtk] == ABILITY_NATURAL_RECOVERY ||
            BattlerHasInnate(battlerAtk, ABILITY_SELF_REPAIR)  || AI_DATA->abilities[battlerAtk] == ABILITY_SELF_REPAIR){
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
          && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE))

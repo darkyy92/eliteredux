@@ -474,6 +474,7 @@ static const u8 sAbilityDustCloudDescription[] = _("Attacks with Sand Attack\non
 static const u8 sAbilityBerserkerRageDescription[] = _("Berserk + Rampage.");
 static const u8 sAbilityTricksterDescription[] =_("Uses Disable\non switch-in.");
 static const u8 sAbilitySandGuardDescription[] =_("Blocks priority and reduces\nspecial damage by half in sand.");
+static const u8 sAbilityNaturalRecoveryDescription[] =_("Natural Cure + Regenerator.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -968,6 +969,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_BERSERKER_RAGE] = _("Berserker Rage"),
         [ABILITY_TRICKSTER] = _("Trickster"),
         [ABILITY_SAND_GUARD] = _("Sand Guard"),
+        [ABILITY_NATURAL_RECOVERY] = _("Natural Recovery"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1455,4 +1457,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_BERSERKER_RAGE] = sAbilityBerserkerRageDescription,
         [ABILITY_TRICKSTER] = sAbilityTricksterDescription,
         [ABILITY_SAND_GUARD] = sAbilitySandGuardDescription,
+        [ABILITY_NATURAL_RECOVERY] = sAbilityNaturalRecoveryDescription,
 };

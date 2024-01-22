@@ -709,8 +709,9 @@
 #define STRINGID_PKMNBLEEDHEALED2                     738
 #define STRINGID_PKMNBLEEDHEALEDBY                    739
 #define STRINGID_PKMNSITEMHEALEDBLEED                 740
+#define STRINGID_NATURAL_RECOVERY_EXITS               741
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNSITEMHEALEDBLEED + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_NATURAL_RECOVERY_EXITS + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

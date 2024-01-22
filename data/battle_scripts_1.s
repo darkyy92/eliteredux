@@ -10900,6 +10900,21 @@ BattleScript_NeutralizingGasExitsLoop:
 	restoretarget
 	return
 
+BattleScript_NaturalRecoveryExits::
+	clearstatus BS_ATTACKER
+	tryhealquarterhealth BS_ATTACKER, BattleScript_NaturalRecoveryExits_NothingToHeal
+BattleScript_NaturalRecoveryExits_NothingToHeal:
+	jumpifstatus BS_ATTACKER, STATUS1_ANY, BattleScript_NaturalRecoveryExits_HasStatus
+	return
+BattleScript_NaturalRecoveryExits_HasStatus:
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_NATURAL_RECOVERY
+	call BattleScript_AbilityPopUp
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_NATURAL_RECOVERY_EXITS
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_NaturalCureExits::
 	copybyte gBattlerAbility, gBattlerAttacker
 	sethword sABILITY_OVERWRITE, ABILITY_NATURAL_CURE
