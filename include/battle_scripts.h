@@ -543,6 +543,7 @@ extern const u8 BattleScript_ScareActivated[];
 extern const u8 BattleScript_MonkeyBusinessActivated[];
 extern const u8 BattleScript_FearMongerActivated[];
 extern const u8 BattleScript_GeneratorActivates[];
+extern const u8 BattleScript_EffectSoothingAroma[];
 
 extern const u8 BattleScript_Archmage_Effect_Type_Electric[];
 extern const u8 BattleScript_Archmage_Effect_Type_Fairy[];

@@ -4657,6 +4657,19 @@ BattleScript_PartyHealEnd::
 	waitstate
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectSoothingAroma::
+	copyword gTempMove, gCurrentMove
+	setword gCurrentMove, MOVE_AROMATHERAPY
+	call BattleScript_AbilityPopUp
+	healpartystatus
+	waitstate
+	printfromtable gPartyStatusHealStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ATTACKER_WITH_PARTNER
+	waitstate
+	copyword gCurrentMove, gTempMove
+	end3
+
 BattleScript_EffectTripleKick::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE

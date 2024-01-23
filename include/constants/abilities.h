@@ -511,7 +511,9 @@
 #define ABILITY_TRICKSTER        (ABILITIES_COUNT_LATEST_GEN + 213) // Disable on entry
 #define ABILITY_SAND_GUARD       (ABILITIES_COUNT_LATEST_GEN + 214) // -50% special damage and block priority in sandstorm
 #define ABILITY_NATURAL_RECOVERY (ABILITIES_COUNT_LATEST_GEN + 215) // Natural Cure + Regenerator
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_NATURAL_RECOVERY + 1) 
+#define ABILITY_WIND_RIDER       (ABILITIES_COUNT_LATEST_GEN + 216) // Immune to wind moves. Increases attack in tailwind.
+#define ABILITY_SOOTHING_AROMA   (ABILITIES_COUNT_LATEST_GEN + 217) // Cures party status on entry.
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_SOOTHING_AROMA + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

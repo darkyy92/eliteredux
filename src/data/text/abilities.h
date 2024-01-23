@@ -475,6 +475,8 @@ static const u8 sAbilityBerserkerRageDescription[] = _("Berserk + Rampage.");
 static const u8 sAbilityTricksterDescription[] =_("Uses Disable\non switch-in.");
 static const u8 sAbilitySandGuardDescription[] =_("Blocks priority and reduces\nspecial damage by half in sand.");
 static const u8 sAbilityNaturalRecoveryDescription[] =_("Natural Cure + Regenerator.");
+static const u8 sAbilityWindRiderDescription[] =_("Increases attack in tailwind\nor when hit by wind move.");
+static const u8 sAbilitySoothingAromaDescription[] =_("Cures party status on entry.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -970,6 +972,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_TRICKSTER] = _("Trickster"),
         [ABILITY_SAND_GUARD] = _("Sand Guard"),
         [ABILITY_NATURAL_RECOVERY] = _("Natural Recovery"),
+        [ABILITY_WIND_RIDER] = _("Wind Rider"),
+        [ABILITY_SOOTHING_AROMA] = _("Soothing Aroma"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1458,4 +1462,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_TRICKSTER] = sAbilityTricksterDescription,
         [ABILITY_SAND_GUARD] = sAbilitySandGuardDescription,
         [ABILITY_NATURAL_RECOVERY] = sAbilityNaturalRecoveryDescription,
+        [ABILITY_WIND_RIDER] = sAbilityWindRiderDescription,
+        [ABILITY_SOOTHING_AROMA] = sAbilitySoothingAromaDescription,
 };
