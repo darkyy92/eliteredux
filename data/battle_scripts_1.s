@@ -8616,9 +8616,9 @@ BattleScript_CheckWindRiderActivated:
 	goto BattleScript_CheckWindRiderPartner
 BattleScript_CheckWindRiderPartnerActivated:
 	raisehighestattackingstat BS_ABILITY_PARTNER, 1, BattleScript_CheckWindRiderEnd
-	showabilitypopup BS_ABILITY_BATTLER
+	showabilitypopup BS_ABILITY_PARTNER
 	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
 	goto BattleScript_CheckWindRiderEnd
 

@@ -1941,7 +1941,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         //Second Type
-        if(moveType2 != TYPE_NORMAL, moveType2 != TYPE_MYSTERY){
+        if(moveType2 != TYPE_NORMAL && moveType2 != TYPE_MYSTERY){
             if (illusionSpecies != SPECIES_NONE){
                 MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBaseStats[illusionSpecies].type1, userId, FALSE);
 
