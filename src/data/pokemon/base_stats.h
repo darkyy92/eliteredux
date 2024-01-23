@@ -20399,12 +20399,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_BOUFFALANT] =
     {
-    .baseHP        = 95,
-    .baseAttack    = 110,
-    .baseDefense   = 95,
-    .baseSpeed     = 55,
-    .baseSpAttack  = 40,
-    .baseSpDefense = 95,
+    .baseHP        =  95,
+    .baseAttack    =  110,
+    .baseDefense   = 105,
+    .baseSpeed     =  55,
+    .baseSpAttack  =  40,
+    .baseSpDefense = 125,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_NORMAL,
     .catchRate = 255,
