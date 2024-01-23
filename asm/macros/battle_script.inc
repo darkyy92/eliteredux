@@ -2093,3 +2093,9 @@
 	1:
 	.endm
 
+	.macro raisehighestattackingstat battler:req, increase:req, ptr:req
+	various \battler, VARIOUS_RAISE_HIGHEST_ATTACKING_STAT
+	.byte \increase
+	.4byte \ptr
+	.endm
+

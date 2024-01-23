@@ -8596,8 +8596,32 @@ BattleScript_AirBlowerActivated::
 	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_AIRBLOWERACTIVATED
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_CheckWindRider
+
+BattleScript_CheckWindRider::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_WIND_RIDER
+	jumpifability BS_ABILITY_BATTLER, ABILITY_WIND_RIDER, BattleScript_CheckWindRiderActivated
+BattleScript_CheckWindRiderPartner:
+	jumpifability BS_ABILITY_PARTNER, ABILITY_WIND_RIDER, BattleScript_CheckWindRiderPartnerActivated
+BattleScript_CheckWindRiderEnd:
 	sethword sABILITY_OVERWRITE, 0
 	end3
+BattleScript_CheckWindRiderActivated:
+	raisehighestattackingstat BS_ABILITY_BATTLER, 1, BattleScript_CheckWindRiderPartner
+	showabilitypopup BS_ABILITY_BATTLER
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+	goto BattleScript_CheckWindRiderPartner
+BattleScript_CheckWindRiderPartnerActivated:
+	raisehighestattackingstat BS_ABILITY_PARTNER, 1, BattleScript_CheckWindRiderEnd
+	showabilitypopup BS_ABILITY_BATTLER
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+	goto BattleScript_CheckWindRiderEnd
+
 
 BattleScript_PastelVeilActivated::
 	copybyte gBattlerAbility, gBattlerAttacker

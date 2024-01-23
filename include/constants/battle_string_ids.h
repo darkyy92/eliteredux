@@ -711,8 +711,9 @@
 #define STRINGID_PKMNSITEMHEALEDBLEED                 740
 #define STRINGID_NATURAL_RECOVERY_EXITS               741
 #define STRINGID_SOOTHING_AROMA_CURE_STATUS           742
+#define STRINGID_WINDRIDERACTIVATED                   743
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_SOOTHING_AROMA_CURE_STATUS + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_WINDRIDERACTIVATED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

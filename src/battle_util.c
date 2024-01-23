@@ -1135,6 +1135,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_JUNGLES_GUARD] = 1,
     [ABILITY_EARTH_EATER] = 1,
     [ABILITY_SAND_GUARD] = 1,
+    [ABILITY_WIND_RIDER] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -1410,6 +1411,9 @@ u8 GetBattlerForBattleScript(u8 caseId)
         break;
     case BS_ABILITY_BATTLER:
         ret = gBattlerAbility;
+        break;
+    case BS_ABILITY_PARTNER:
+        ret = BATTLE_PARTNER(gBattlerAbility);
         break;
     }
     return ret;
@@ -6787,6 +6791,41 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+            
+            // Intrepid Sword
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_WIND_RIDER) && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_TWISTED_DIMENSION; //For easier copypaste
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gBattlerAttacker = battler;
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbilty = TRUE;
+                        }
+                    break;
+                }
+
+                if (activateAbilty) {
+                    gBattlerAttacker = battler;
+
+                    if (gBattleMons[battler].attack >= gBattleMons[battler].spAttack)
+                        SET_STATCHANGER(STAT_ATK, 1, FALSE);
+                    else
+                        SET_STATCHANGER(STAT_SPATK, 1, FALSE);
+
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
+                    effect++;
+                }
+            }
 
             //Twisted Dimension
             if(BATTLER_HAS_ABILITY(battler, ABILITY_TWISTED_DIMENSION)){
@@ -7905,6 +7944,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 2, statId = STAT_SPEED;
                 }
 			}
+
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_WIND_RIDER)){
+                if (gBattleMoves[move].flags2 & FLAG_AIR_BASED){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WIND_RIDER;
+                    effect = 2;
+                    
+                    if (gBattleMons[battler].spAttack < gBattleMons[battler].attack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+                }
+            }
 
             if (effect == 1) // Drain Hp ability.
             {

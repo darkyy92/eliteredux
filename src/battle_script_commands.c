@@ -8322,6 +8322,8 @@ static void Cmd_various(void)
     s32 i, j;
     u8 data[10];
     u32 side, bits;
+    u8 increase;
+    u8 statId;
 
     if (gBattleControllerExecFlags)
         return;
@@ -10220,16 +10222,23 @@ static void Cmd_various(void)
         else
             gBattleCommunication[0] = B_SIDE_OPPONENT;
         break;
-    case VARIOUS_SET_WEATHER_GRAPHICS:
-            if (gBattleWeather & WEATHER_SUN_ANY)
-                gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
-            else if (gBattleWeather & WEATHER_RAIN_ANY)
-                gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
-            else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
-                gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
-            else if (gBattleWeather & WEATHER_HAIL_ANY)
-                gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
-        break;
+    case VARIOUS_RAISE_HIGHEST_ATTACKING_STAT:
+        increase = gBattlescriptCurrInstr[3];
+
+        if (gBattleMons[gActiveBattler].attack >= gBattleMons[gActiveBattler].spAttack)
+            statId = STAT_ATK;
+        else
+            statId = STAT_SPATK;
+
+        SET_STATCHANGER(statId, increase, FALSE);
+
+        if (!CompareStat(gActiveBattler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
+        else if (ChangeStatBuffs(GET_STAT_BUFF_VALUE_WITH_SIGN(gBattleScripting.statChanger), GET_STAT_BUFF_ID(gBattleScripting.statChanger), 0, 0) == STAT_CHANGE_WORKED)
+            gBattlescriptCurrInstr = gBattlescriptCurrInstr + 8;
+        else
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
@@ -12752,6 +12761,7 @@ static void Cmd_settailwind(void)
         gSideTimers[side].tailwindBattlerId = gBattlerAttacker;
         gSideTimers[side].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5) ? 4 : 3;
         gBattlescriptCurrInstr += 5;
+        BattleScriptPushCursorAndCallback(BattleScript_CheckWindRider);
     }
     else
     {
