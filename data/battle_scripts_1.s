@@ -2787,6 +2787,7 @@ BattleScript_EffectTailwind:
 	waitanimation
 	printstring STRINGID_TAILWINDBLEW
 	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_CheckWindRider
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMircleEye:
@@ -8596,7 +8597,8 @@ BattleScript_AirBlowerActivated::
 	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_AIRBLOWERACTIVATED
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_CheckWindRider
+	call BattleScript_CheckWindRider
+	end3
 
 BattleScript_CheckWindRider::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -8606,7 +8608,7 @@ BattleScript_CheckWindRiderPartner:
 	jumpifability BS_ABILITY_PARTNER, ABILITY_WIND_RIDER, BattleScript_CheckWindRiderPartnerActivated
 BattleScript_CheckWindRiderEnd:
 	sethword sABILITY_OVERWRITE, 0
-	end3
+	return
 BattleScript_CheckWindRiderActivated:
 	raisehighestattackingstat BS_ABILITY_BATTLER, 1, BattleScript_CheckWindRiderPartner
 	showabilitypopup BS_ABILITY_BATTLER

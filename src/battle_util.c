@@ -6792,7 +6792,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             
-            // Intrepid Sword
+            // Wind Rider
             if(BATTLER_HAS_ABILITY(battler, ABILITY_WIND_RIDER) && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND){
                 bool8 activateAbilty = FALSE;
                 u16 abilityToCheck = ABILITY_TWISTED_DIMENSION; //For easier copypaste
