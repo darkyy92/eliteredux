@@ -10171,6 +10171,47 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        //Volcano Rage
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_WEATHER_CAST)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_WEATHER_CAST; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(canUseExtraMove(battler, gBattlerTarget)){
+                switch (move) {
+                    case MOVE_SUNNY_DAY:
+                    case MOVE_RAIN_DANCE:
+                    case MOVE_SANDSTORM:
+                    case MOVE_HAIL:
+                        activateAbilty = TRUE;
+                        break;
+                }
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+				u16 extraMove = MOVE_WEATHER_BALL;    //The Extra Move to be used
+                u8 movePower = 0;                     //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;      //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;      //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+        }
 		
 		//Electric Burst
 		if (BATTLER_HAS_ABILITY(battler, ABILITY_ELECTRIC_BURST)){

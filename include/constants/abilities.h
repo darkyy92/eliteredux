@@ -516,7 +516,9 @@
 #define ABILITY_PRIM_AND_PROPER  (ABILITIES_COUNT_LATEST_GEN + 218) // Wonder Skin + Cute Charm
 #define ABILITY_SUPER_STRAIN     (ABILITIES_COUNT_LATEST_GEN + 219) // 25% recoil and -attack on kill
 #define ABILITY_TIPPING_POINT    (ABILITIES_COUNT_LATEST_GEN + 220) // +spatk when taking damage
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_TIPPING_POINT + 1) 
+#define ABILITY_WEATHER_CAST     (ABILITIES_COUNT_LATEST_GEN + 221) // Uses weather ball after weather changing move
+
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_WEATHER_CAST + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
