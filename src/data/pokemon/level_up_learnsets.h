@@ -11097,7 +11097,6 @@ static const struct LevelUpMove sRotomLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-
 static const struct LevelUpMove sRotomHeatLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE), // replaced Double Team
@@ -11116,7 +11115,6 @@ static const struct LevelUpMove sRotomHeatLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-
 static const struct LevelUpMove sRotomWashLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE), // replaced Double Team
@@ -11134,8 +11132,6 @@ static const struct LevelUpMove sRotomWashLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(55, MOVE_UPROAR),
 	LEVEL_UP_END
 };
-
-
 
 static const struct LevelUpMove sRotomMowLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
@@ -11173,7 +11169,6 @@ static const struct LevelUpMove sRotomFrostLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-
 static const struct LevelUpMove sRotomFanLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE), // replaced Double Team
@@ -11191,21 +11186,6 @@ static const struct LevelUpMove sRotomFanLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(55, MOVE_UPROAR),
 	LEVEL_UP_END
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 static const struct LevelUpMove sUxieLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_MEMENTO),
