@@ -478,6 +478,7 @@ static const u8 sAbilityNaturalRecoveryDescription[] =_("Natural Cure + Regenera
 static const u8 sAbilityWindRiderDescription[] =_("Increases attack in tailwind\nor when hit by wind move.");
 static const u8 sAbilitySoothingAromaDescription[] =_("Cures party status on entry.");
 static const u8 sAbilityPrimAndProperDescription[] =_("Wonder Skin + Cute Charm.");
+static const u8 sAbilitySuperStrainDescription[] =_("KOs lower Attack by +1.\nTake 25% recoil damage.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -976,6 +977,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_WIND_RIDER] = _("Wind Rider"),
         [ABILITY_SOOTHING_AROMA] = _("Soothing Aroma"),
         [ABILITY_PRIM_AND_PROPER] = _("Prim and Proper"),
+        [ABILITY_SUPER_STRAIN] = _("Super Strain"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1467,4 +1469,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_WIND_RIDER] = sAbilityWindRiderDescription,
         [ABILITY_SOOTHING_AROMA] = sAbilitySoothingAromaDescription,
         [ABILITY_PRIM_AND_PROPER] = sAbilityPrimAndProperDescription,
+        [ABILITY_SUPER_STRAIN] = sAbilitySuperStrainDescription,
 };
