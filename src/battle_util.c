@@ -8476,6 +8476,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_PRIM_AND_PROPER:
         case ABILITY_CUTE_CHARM:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -9514,7 +9515,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Cute Charm
-		if(BattlerHasInnate(battler, ABILITY_CUTE_CHARM)){
+		if(BattlerHasInnate(battler, ABILITY_CUTE_CHARM) || BattlerHasInnate(battler, ABILITY_PRIM_AND_PROPER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -9530,7 +9531,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
              && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != MON_GENDERLESS)
             {
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CUTE_CHARM;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = BattlerHasInnate(battler, ABILITY_CUTE_CHARM) ? ABILITY_CUTE_CHARM : ABILITY_PRIM_AND_PROPER;
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_INFATUATED_WITH(gBattlerTarget);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;

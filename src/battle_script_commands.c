@@ -1988,7 +1988,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         return 100;
 
     // Check Wonder Skin.
-    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WONDER_SKIN, defAbility) && IS_MOVE_STATUS(move))
+    if ((BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WONDER_SKIN, defAbility) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_PRIM_AND_PROPER, defAbility)) && IS_MOVE_STATUS(move))
         moveAcc = 50;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;

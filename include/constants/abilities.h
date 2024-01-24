@@ -513,6 +513,7 @@
 #define ABILITY_NATURAL_RECOVERY (ABILITIES_COUNT_LATEST_GEN + 215) // Natural Cure + Regenerator
 #define ABILITY_WIND_RIDER       (ABILITIES_COUNT_LATEST_GEN + 216) // Immune to wind moves. Increases attack in tailwind.
 #define ABILITY_SOOTHING_AROMA   (ABILITIES_COUNT_LATEST_GEN + 217) // Cures party status on entry.
+#define ABILITY_PRIM_AND_PROPER  (ABILITIES_COUNT_LATEST_GEN + 218) // Wonder Skin + Cute Charm
 #define ABILITIES_COUNT_CUSTOM   (ABILITY_SOOTHING_AROMA + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
