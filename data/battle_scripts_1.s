@@ -8359,6 +8359,13 @@ BattleScript_AngerPointsLightBoostActivates::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_TippingPointsLightBoostActivates::
+	call BattleScript_AbilityPopUp
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 BattleScript_BattlerInnateStatRaiseOnSwitchIn::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp

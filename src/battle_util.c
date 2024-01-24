@@ -9202,6 +9202,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
+		
+		// Anger Point
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_TIPPING_POINT)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
+                SET_STATCHANGER(STAT_SPATK, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_SPATK], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && IS_MOVE_SPECIAL(gCurrentMove)
+             && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			{
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
+				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursor();
+				gBattleMons[battler].statStages[STAT_SPATK]++;
+				gBattleScripting.animArg1 = 14 + STAT_SPATK;
+				gBattleScripting.animArg2 = 0;
+				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
+				effect++;
+			}
+		}
 
         //Fearmonger Paralyze Chance
 		if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){

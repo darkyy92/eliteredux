@@ -479,6 +479,7 @@ static const u8 sAbilityWindRiderDescription[] =_("Increases attack in tailwind\
 static const u8 sAbilitySoothingAromaDescription[] =_("Cures party status on entry.");
 static const u8 sAbilityPrimAndProperDescription[] =_("Wonder Skin + Cute Charm.");
 static const u8 sAbilitySuperStrainDescription[] =_("KOs lower Attack by +1.\nTake 25% recoil damage.");
+static const u8 sAbilityTippingPointDescription[] =_("Critical hits maximize SpAtk.\nGetting hit raises SpAtk.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -978,6 +979,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_SOOTHING_AROMA] = _("Soothing Aroma"),
         [ABILITY_PRIM_AND_PROPER] = _("Prim and Proper"),
         [ABILITY_SUPER_STRAIN] = _("Super Strain"),
+        [ABILITY_TIPPING_POINT] = _("Tipping Point"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1470,4 +1472,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_SOOTHING_AROMA] = sAbilitySoothingAromaDescription,
         [ABILITY_PRIM_AND_PROPER] = sAbilityPrimAndProperDescription,
         [ABILITY_SUPER_STRAIN] = sAbilitySuperStrainDescription,
+        [ABILITY_TIPPING_POINT] = sAbilityTippingPointDescription,
 };

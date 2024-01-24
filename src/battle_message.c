@@ -452,6 +452,7 @@ static const u8 sText_PkmnRaisedSpecialAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PRE
 static const u8 sText_PkmnRaisedSpecialDefense[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Special Defense!");
 static const u8 sText_InflatablePkmnRaisedDefenses[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Inflatable\nraised its Defenses!");
 static const u8 sText_AngerPointsPkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Anger Point\nraised its Attack!");
+static const u8 sText_TippingPointsPkmnRaisedSpecialAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Tipping Point\nraised its Special Attack!");
 static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} regained\nhealth!");
 
 static const u8 sText_AttackerBecameInfected[] = _("{B_ATK_NAME_WITH_PREFIX} became\ninfected!");
@@ -1530,6 +1531,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDATTACK - 12] = sText_PkmnRaisedAttack,
     [STRINGID_INFLATABLEPKMNRAISEDDEFENSE - 12] = sText_InflatablePkmnRaisedDefenses,
     [STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
+    [STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK - 12] = sText_TippingPointsPkmnRaisedSpecialAttack,
     [STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
     [STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
     [STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
