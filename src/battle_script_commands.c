@@ -5558,6 +5558,17 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                     effect = TRUE;
                     break;
+                default:
+                    gBattleMoveDamage = 0;
+                }
+
+                if (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SUPER_STRAIN)) {
+                    gBattleMoveDamage = max(1, gBattleMoveDamage + (gBattleScripting.savedDmg / 4));
+                    if (!effect) {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
+                    }
+                    effect = TRUE;
                 }
 				
 				if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || 
@@ -8823,6 +8834,39 @@ static void Cmd_various(void)
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                 BattleScriptPush(gBattlescriptCurrInstr + 3);
                 gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
+                return;
+            }
+        }
+        break;
+    case VARIOUS_TRY_ACTIVATE_SUPER_STRAIN:    // and variants
+        {
+            u8 statToChange = NUM_BATTLE_STATS;
+            u16 abilityToCheck = ABILITY_NONE;
+            bool8 checkMoxieVariants = HasAttackerFaintedTarget();
+            bool8 activateMoxieVariant = FALSE;
+
+            if(!checkMoxieVariants)
+                break;
+
+            // Super Strain
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SUPER_STRAIN)) {
+                statToChange = STAT_ATK;
+                abilityToCheck = ABILITY_MOXIE;
+                activateMoxieVariant = TRUE;
+            }
+
+            if (checkMoxieVariants
+            && activateMoxieVariant
+            && !NoAliveMonsForEitherParty()
+            && statToChange != NUM_BATTLE_STATS
+            && CompareStat(gBattlerAttacker, statToChange, MIN_STAT_STAGE, CMP_GREATER_THAN))
+            {
+                gBattleMons[gBattlerAttacker].statStages[statToChange]--;
+                SET_STATCHANGER(statToChange, 1, TRUE);
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, statToChange);
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                BattleScriptPush(gBattlescriptCurrInstr + 3);
+                gBattlescriptCurrInstr = BattleScript_LowerStatOnFaintingTarget;
                 return;
             }
         }

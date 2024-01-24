@@ -382,6 +382,7 @@ extern const u8 BattleScript_SandSpitActivates[];
 extern const u8 BattleScript_PerishBodyActivates[];
 extern const u8 BattleScript_ActivateAsOne[];
 extern const u8 BattleScript_RaiseStatOnFaintingTarget[];
+extern const u8 BattleScript_LowerStatOnFaintingTarget[];
 extern const u8 BattleScript_QuickClawActivation[];
 extern const u8 BattleScript_QuickDrawActivation[];
 extern const u8 BattleScript_CustapBerryActivation[];

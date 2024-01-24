@@ -1448,6 +1448,10 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_MOXIE
 	.endm
 
+	.macro tryactivatesuperstrain battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_SUPER_STRAIN
+	.endm
+
 	.macro tryactivaterampage battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_RAMPAGE
 	.endm
