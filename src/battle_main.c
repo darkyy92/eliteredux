@@ -4950,10 +4950,12 @@ u16 IsMyceliumMightActive(u32 battlerId)
 {
     u16 ability = gBattleMons[battlerId].ability;
 
-    if (ability == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battlerId, ABILITY_MYCELIUM_MIGHT))
-        return gBattleMoves[GetChosenMove(battlerId)].split == SPLIT_STATUS;
-    else
-        return FALSE;
+    if (ability == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battlerId, ABILITY_MYCELIUM_MIGHT)){
+        *BattleMove move = &gBattleMoves[GetChosenMove(battlerId)];
+        return move->split == SPLIT_STATUS && move->target & !MOVE_TARGET_USER;
+    }
+    
+    return FALSE;
 }
 
 s8 GetChosenMovePriority(u32 battlerId, u32 target)
@@ -5070,7 +5072,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     return priority;
 }
 
-#define MYCELIUM_MIGHT_AFFECTED(battler, move) (BATTLER_HAS_ABILITY(battler, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[move].split == SPLIT_STATUS)
+#define MYCELIUM_MIGHT_AFFECTED(battler, move) (BATTLER_HAS_ABILITY(battler, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[move].split == SPLIT_STATUS && gBattleMoves[move].target & !MOVE_TARGET_USER)
 
 u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 {
