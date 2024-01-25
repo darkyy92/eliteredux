@@ -1291,10 +1291,11 @@
 	.4byte \ptr
 	.endm
 
-	.macro trygetbaddreamstarget ptr:req, prevptr:req
+	.macro trygetbaddreamstarget ptr:req, prevptr:req, ptrpeaceful:req
 	.byte 0xfd
 	.4byte \ptr
 	.4byte \prevptr
+	.4byte \ptrpeaceful
 	.endm
 
 	.macro tryworryseed ptr:req

@@ -9605,7 +9605,7 @@ BattleScript_BadDreamsActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_BAD_DREAMS
 	setbyte gBattlerTarget, 0
 BattleScript_BadDreamsLoop:
-	trygetbaddreamstarget BattleScript_BadDreamsEnd, BattleScript_BadDreamsPrevented
+	trygetbaddreamstarget BattleScript_BadDreamsEnd, BattleScript_BadDreamsPrevented, BattleScript_BadDreamsPreventedPeacefulSlumber
 	call BattleScript_AbilityPopUp
 	dmg_1_4_targethp
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
@@ -9622,6 +9622,7 @@ BattleScript_BadDreamsPrevented:
 	call BattleScript_AbilityPopUp
 	pause 60
 	sethword sABILITY_OVERWRITE, ABILITY_SWEET_DREAMS
+BattleScript_BadDreamsPreventedContinue:
 	showabilitypopup BS_TARGET
 	recordability BS_TARGET
 	sethword sABILITY_OVERWRITE, 0
@@ -9631,6 +9632,11 @@ BattleScript_BadDreamsIncrement:
 	goto BattleScript_BadDreamsLoop
 BattleScript_BadDreamsEnd:
 	end3
+BattleScript_BadDreamsPreventedPeacefulSlumber:
+	call BattleScript_AbilityPopUp
+	pause 60
+	sethword sABILITY_OVERWRITE, ABILITY_SWEET_DREAMS
+	goto BattleScript_BadDreamsPreventedContinue
 
 BattleScript_TookAttack::
 	attackstring
@@ -11123,6 +11129,7 @@ BattleScript_HydroCircuitAbsorbEffect_NothingToHeal:
     return
 
 BattleScript_SweetDreamsActivates::
+	call BattleScript_AbilityPopUp
 	printstring STRINGID_SWEETDREAMSHPUP
 	waitmessage B_WAIT_TIME_LONG
 	recordability BS_ATTACKER

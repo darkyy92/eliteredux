@@ -7418,6 +7418,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BattlerHasInnate(gActiveBattler, ABILITY_SWEET_DREAMS)){
                 if (!BATTLER_MAX_HP(gActiveBattler) && !BATTLER_HEALING_BLOCKED(gActiveBattler) && ((gBattleMons[battler].status1 & STATUS1_SLEEP) || BattlerHasInnate(battler, ABILITY_COMATOSE)  || GetBattlerAbility(battler) == ABILITY_COMATOSE))
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SWEET_DREAMS;
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptPushCursorAndCallback(BattleScript_SweetDreamsActivates);
+                    effect++;
+                }
+			}
+			
+			// Sweet Dreams
+            if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PEACEFUL_SLUMBER)){
+                if (!BATTLER_MAX_HP(gActiveBattler) && !BATTLER_HEALING_BLOCKED(gActiveBattler) && ((gBattleMons[battler].status1 & STATUS1_SLEEP) || BattlerHasInnate(battler, ABILITY_COMATOSE)  || GetBattlerAbility(battler) == ABILITY_COMATOSE))
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PEACEFUL_SLUMBER;
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -7524,6 +7539,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            // Peaceful Slumber
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_PEACEFUL_SLUMBER)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_PEACEFUL_SLUMBER; //For easier copypaste
+
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck) == BATTLER_INNATE)
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                
+                if(!BATTLER_MAX_HP(battler) && 
+                   !BATTLER_HEALING_BLOCKED(gActiveBattler) && 
+                   gDisableStructs[battler].isFirstTurn != 2)
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
+				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+					if (gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					gBattleMoveDamage *= -1;
+					BattleScriptPushCursorAndCallback(BattleScript_SelfSufficientActivates);
+					effect++;
+                }
+            }
+
             // Self Repair
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SELF_REPAIR)){
                 bool8 activateAbilty = FALSE;
@@ -7555,7 +7594,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && !BATTLER_HEALING_BLOCKED(battler))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
-                    gBattleMoveDamage = gBattleMons[battler].maxHP / (gLastUsedAbility == ABILITY_RAIN_DISH ? 8 : 8); // was 16 : 8
+                    gBattleMoveDamage = gBattleMons[battler].maxHP / 8; // was 16 : 8
 				    gBattleScripting.abilityPopupOverwrite = ABILITY_RAIN_DISH;
 				    gLastUsedAbility = ABILITY_RAIN_DISH;
                     if (gBattleMoveDamage == 0)

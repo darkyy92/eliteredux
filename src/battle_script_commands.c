@@ -15526,8 +15526,10 @@ static void Cmd_trygetbaddreamstarget(void)
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_SWEET_DREAMS) || BattlerHasInnate(gBattlerTarget, ABILITY_SWEET_DREAMS))
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 5);
+    else if (BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_PEACEFUL_SLUMBER))
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 9);
     else
-        gBattlescriptCurrInstr += 9;
+        gBattlescriptCurrInstr += 13;
 }
 
 static void Cmd_tryworryseed(void)
