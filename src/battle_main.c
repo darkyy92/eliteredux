@@ -5936,6 +5936,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
                  || ((ability == ABILITY_DRACONIZE       || MonHasInnate(mon, ABILITY_DRACONIZE, disableRandomizer))       && (ateType = TYPE_DRAGON))
                  || ((ability == ABILITY_EMANATE         || MonHasInnate(mon, ABILITY_EMANATE, disableRandomizer))         && (ateType = TYPE_PSYCHIC))
                  || ((ability == ABILITY_ENLIGHTENED     || MonHasInnate(mon, ABILITY_ENLIGHTENED, disableRandomizer))     && (ateType = TYPE_PSYCHIC))
+                 || ((ability == ABILITY_FERTILIZE       || MonHasInnate(mon, ABILITY_FERTILIZE, disableRandomizer))       && (ateType = TYPE_GRASS))
                 )
              ){
         return ateType;
@@ -6081,6 +6082,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
                  || ((attackerAbility == ABILITY_DRACONIZE       || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))       && (ateType = TYPE_DRAGON))
                  || ((attackerAbility == ABILITY_EMANATE         || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))         && (ateType = TYPE_PSYCHIC))
                  || ((attackerAbility == ABILITY_ENLIGHTENED     || BattlerHasInnate(battlerAtk, ABILITY_ENLIGHTENED))     && (ateType = TYPE_PSYCHIC))
+                 || ((attackerAbility == ABILITY_FERTILIZE       || BattlerHasInnate(battlerAtk, ABILITY_FERTILIZE))       && (ateType = TYPE_GRASS))
                 )
              )
         return ateType;
@@ -6212,6 +6214,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                  || ((attackerAbility == ABILITY_DRACONIZE           || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))           && (ateType = TYPE_DRAGON))
                  || ((attackerAbility == ABILITY_EMANATE             || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))             && (ateType = TYPE_PSYCHIC))
                  || ((attackerAbility == ABILITY_ENLIGHTENED         || BattlerHasInnate(battlerAtk, ABILITY_ENLIGHTENED))         && (ateType = TYPE_PSYCHIC))
+                 || ((attackerAbility == ABILITY_FERTILIZE           || BattlerHasInnate(battlerAtk, ABILITY_FERTILIZE))           && (ateType = TYPE_GRASS))
                 )
              )
     {

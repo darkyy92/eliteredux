@@ -14167,7 +14167,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EMANATE) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
     
-    //Emanate
+    //Enlightened
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ENLIGHTENED) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 
@@ -14189,6 +14189,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	
 	// Aerilate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AERILATE) && moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
+	
+	// Fertilize
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FERTILIZE) && moveType == TYPE_GRASS && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Normalize
