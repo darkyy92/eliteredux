@@ -88,7 +88,7 @@ GPIOPortReadEnable: @ 80000C8
 	.4byte gBallSpriteSheets
 	.4byte gBallSpritePalettes
 
-	.4byte 0x000000a8 @ offsetof(struct SaveBlock2, gcnLinkFlags)
+	.4byte 0x000000a8 @ ?
 	.4byte 0x00000864 @ ?
 	.4byte 0x0000089b @ ?
 

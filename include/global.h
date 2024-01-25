@@ -216,7 +216,6 @@ struct Pokedex
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
     /*0x08*/ u32 spindaPersonality; // set when you first see Spinda
     /*0x0C*/ u32 unknown3;
-    /*0x10*/ u8 filler[0x68]; // Previously Dex Flags, feel free to remove.
 };
 
 struct PokemonJumpRecords
@@ -499,54 +498,59 @@ struct RankingHall2P
 
 struct SaveBlock2
 {
-    /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x08*/ u8 playerGender; // MALE, FEMALE
-    /*0x09*/ u8 specialSaveWarpFlags;
-    /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
-    /*0x0E*/ u16 playTimeHours;
-    /*0x10*/ u8 playTimeMinutes;
-    /*0x11*/ u8 playTimeSeconds;
-    /*0x12*/ u8 playTimeVBlanks;
-    /*0x13*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    /*0x14*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
-             u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
-             u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
-             u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
-             u16 optionsBattleSceneOff:1; // whether battle animations are disabled
-             u16 regionMapZoom:1; // whether the map is zoomed in
-             u16 gameDifficulty:4; // Which difficulty the player chose (Normal/Hard/Challenge/Insanity, with Normal being 0)
-    /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[6]; //To Delete
-             u8 levelCaps; // Various options for level caps
-             u16 autoRun:1;
-             u16 permanentRepel:1;
-             u16 damageDone:1;
-             u16 askForNickname:1;
-             u16 shinyrate:2;
-             u16 enableEvs:1;
-             u16 playerAI:1;
-             u16 individualColors:1;
-             u16 doubleBattleMode:1;
-    /*0x98*/ struct Time localTimeOffset;
-    /*0xA0*/ struct Time lastBerryTreeUpdate;
-    /*0xA8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
-    /*0xAC*/ u32 encryptionKey;
-    /*0xB0*/ struct PlayersApprentice playerApprentice;
-    /*0xDC*/ struct Apprentice apprentices[APPRENTICE_COUNT];
-    /*0x1EC*/ struct BerryCrush berryCrush;
-    /*0x1FC*/ struct PokemonJumpRecords pokeJump;
-    /*0x20C*/ struct BerryPickingResults berryPick;
-    /*0x21C*/ struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][2][3]; // From record mixing.
-    /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
-    /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
-    /*0x64C*/ struct BattleFrontier frontier;
-              u8 innaterandomizedMode:1;
-              u8 encounterRandomizedMode:1;
-              u8 abilityRandomizedMode:1;
-              u8 moveRandomizedMode:1;
-              u8 typeRandomizedMode:1;
-              u8 encounterRandomizedLegendaryMode:1;
-              u8 optionsHpBarSpeed:2;
+    u8 playerName[PLAYER_NAME_LENGTH + 1];
+    u8 playerGender; // MALE, FEMALE
+    u8 specialSaveWarpFlags;
+    u8 playerTrainerId[TRAINER_ID_LENGTH];
+    u16 playTimeHours;
+    u8  playTimeMinutes;
+    u8  playTimeSeconds;
+    u8  playTimeVBlanks;
+    struct Pokedex pokedex;
+    struct Time localTimeOffset;
+    struct Time lastBerryTreeUpdate;
+    u32 encryptionKey;
+    struct PlayersApprentice playerApprentice;
+    struct Apprentice apprentices[APPRENTICE_COUNT];
+    struct BerryCrush berryCrush;
+    struct PokemonJumpRecords pokeJump;
+    struct BerryPickingResults berryPick;
+    struct RankingHall1P hallRecords1P[HALL_FACILITIES_COUNT][2][3]; // From record mixing.
+    struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
+    u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
+    struct BattleFrontier frontier;
+
+    //Game Options
+    u16 optionsTextSpeed:3;       // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
+    u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
+    u16 optionsSound:1;           // OPTIONS_SOUND_[MONO/STEREO]
+    u16 optionsBattleStyle:1;     // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
+    u16 optionsBattleSceneOff:1;  // whether battle animations are disabled
+    u16 regionMapZoom:1;          // whether the map is zoomed in
+    u16 gameDifficulty:4;         // Which difficulty the player chose (Normal/Hard/Challenge/Insanity, with Normal being 0)
+
+    u16 levelCaps:3;              // Various options for level caps
+    u16 innaterandomizedMode:1;
+    u16 encounterRandomizedMode:1;
+    u16 abilityRandomizedMode:1;
+    u16 moveRandomizedMode:1;
+    u16 typeRandomizedMode:1;
+    u16 encounterRandomizedLegendaryMode:1;
+    u16 optionsHpBarSpeed:2;
+    u16 autoRun:1;
+    u16 permanentRepel:1;
+    u16 damageDone:1;
+    u16 askForNickname:1;
+
+    u16 shinyrate:2;
+    u16 enableEvs:1;
+    u16 playerAI:1;
+    u16 individualColors:1;
+    u16 doubleBattleMode:1;
+    u16 optionsButtonMode:3;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
+    u16 disableAutomaticEVGain:1;
+    u16 disableExpGain:1;
+    u16 filler:5;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
@@ -618,7 +622,6 @@ struct Roamer
     /*0x11*/ u8 smart;
     /*0x12*/ u8 tough;
     /*0x13*/ bool8 active;
-    /*0x14*/ u8 filler[0x8];
 };
 
 struct RamScriptData
@@ -666,7 +669,6 @@ struct MauvilleManBard
     /*0x02*/ u16 songLyrics[BARD_SONG_LENGTH];
     /*0x0E*/ u16 temporaryLyrics[BARD_SONG_LENGTH];
     /*0x1A*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x22*/ u8 filler_2DB6[0x3];
     /*0x25*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
     /*0x29*/ bool8 hasChangedSong;
     /*0x2A*/ u8 language;
@@ -676,7 +678,6 @@ struct MauvilleManStoryteller
 {
     u8 id;
     bool8 alreadyRecorded;
-    u8 filler2[2];
     u8 gameStatIDs[NUM_STORYTELLER_TALES];
     u8 trainerNames[NUM_STORYTELLER_TALES][PLAYER_NAME_LENGTH];
     u8 statValues[NUM_STORYTELLER_TALES][4];
@@ -717,7 +718,6 @@ typedef union OldMan
     struct MauvilleManHipster hipster;
     struct MauvilleOldManTrader trader;
     struct MauvilleManStoryteller storyteller;
-    u8 filler[0x40];
 } OldMan;
 
 struct RecordMixing_UnknownStructSub
@@ -756,7 +756,6 @@ struct RecordMixingGiftData
     u8 unk0;
     u8 quantity;
     u16 itemId;
-    u8 filler4[8];
 };
 
 struct RecordMixingGift
