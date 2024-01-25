@@ -1136,6 +1136,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_EARTH_EATER] = 1,
     [ABILITY_SAND_GUARD] = 1,
     [ABILITY_WIND_RIDER] = 1,
+    [ABILITY_ENLIGHTENED] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -4524,6 +4525,8 @@ bool8 BattlerCanBeIntimidated(u8 battler){
     && !BattlerHasInnate(gBattlerAttacker,      ABILITY_VITAL_SPIRIT)     //Abilities that prevent it
     && gBattleMons[gBattlerAttacker].ability != ABILITY_INNER_FOCUS       //Abilities that prevent it
     && !BattlerHasInnate(gBattlerAttacker,      ABILITY_INNER_FOCUS)      //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_ENLIGHTENED       //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_ENLIGHTENED)      //Abilities that prevent it
     && gBattleMons[gBattlerAttacker].ability != ABILITY_FULL_METAL_BODY   //Abilities that prevent it
     && !BattlerHasInnate(gBattlerAttacker,      ABILITY_FULL_METAL_BODY)  //Abilities that prevent it
     && gBattleMons[gBattlerAttacker].ability != ABILITY_CLEAR_BODY        //Abilities that prevent it
@@ -14129,6 +14132,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     
     //Emanate
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EMANATE) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
+    
+    //Emanate
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ENLIGHTENED) && moveType == TYPE_PSYCHIC && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 
     // Pollinate

@@ -1954,6 +1954,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 		moveAcc = 90;
     else if(move == MOVE_FOCUS_BLAST && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INNER_FOCUS, atkAbility)))
 		moveAcc = 90;
+    else if(move == MOVE_FOCUS_BLAST && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ENLIGHTENED, atkAbility)))
+		moveAcc = 90;
 	
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY)
@@ -3385,6 +3387,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_FLINCH:
                 if (GetBattlerAbility(gEffectBattler) == ABILITY_INNER_FOCUS || BattlerHasInnate(gEffectBattler, ABILITY_INNER_FOCUS))
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                else if (GetBattlerAbility(gEffectBattler) == ABILITY_ENLIGHTENED || BattlerHasInnate(gEffectBattler, ABILITY_ENLIGHTENED))
                 {
                     gBattlescriptCurrInstr++;
                 }
@@ -11732,7 +11738,8 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
                BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
                BATTLER_HAS_ABILITY(battler, ABILITY_VITAL_SPIRIT) ||
                BATTLER_HAS_ABILITY(battler, ABILITY_DISCIPLINE)   ||
-               BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS))
+               BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS)) ||
+               BATTLER_HAS_ABILITY(battler, ABILITY_ENLIGHTENED))
                 return TRUE;
 
             checkOblivious = TRUE;
