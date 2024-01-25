@@ -521,8 +521,8 @@
 #define ABILITY_PEACEFUL_SLUMBER (ABILITIES_COUNT_LATEST_GEN + 223) // Sweet Dreams + Self Sufficient
 #define ABILITY_AFTERSHOCK       (ABILITIES_COUNT_LATEST_GEN + 224) // Magnitude after ground type move
 #define ABILITY_FREEZING_POINT   (ABILITIES_COUNT_LATEST_GEN + 225) // Frostbite poison point
-#define ABILITY_CHILLING_AURA    (ABILITIES_COUNT_LATEST_GEN + 226) // Hail on hit + frostbite poison touch
-#define ABILITY_NEUROFORCE_PLUS  (ABILITIES_COUNT_LATEST_GEN + 227) // Neuroforce + Mystic Power
+#define ABILITY_CRYO_PROFICIENCY (ABILITIES_COUNT_LATEST_GEN + 226) // Hail on hit + frostbite poison touch
+#define ABILITY_ARCANE_FORCE     (ABILITIES_COUNT_LATEST_GEN + 227) // Neuroforce + Mystic Power
 #define ABILITY_DOOMBRINGER      (ABILITIES_COUNT_LATEST_GEN + 228) // Doom Desire on entry
 #define ABILITY_WISHMAKER        (ABILITIES_COUNT_LATEST_GEN + 229) // Wish on entry
 #define ABILITY_YUKI_ONNA        (ABILITIES_COUNT_LATEST_GEN + 230) // Scare + Intimidate + 10% Infatuate chance
@@ -530,7 +530,7 @@
 #define ABILITY_REFRIGERATOR     (ABILITIES_COUNT_LATEST_GEN + 232) // Refrigerate + Illuminate
 #define ABILITY_HEAVEN_ASUNDER   (ABILITIES_COUNT_LATEST_GEN + 233) // Spacial Rend 100% crit chance. +1 crit stage.
 #define ABILITY_HYDRATION_PLUS   (ABILITIES_COUNT_LATEST_GEN + 234) // Hydration + Water Veil
-#define ABILITY_DRIZZLE_PLUS     (ABILITIES_COUNT_LATEST_GEN + 235) // Drizzle + Swift Swim
+#define ABILITY_SEABORNE         (ABILITIES_COUNT_LATEST_GEN + 235) // Drizzle + Swift Swim
 #define ABILITY_HIGH_TIDE        (ABILITIES_COUNT_LATEST_GEN + 236) // Surf after water move
 #define ABILITY_CHANGE_OF_HEART  (ABILITIES_COUNT_LATEST_GEN + 237) // Heart Swap on entry
 #define ABILITY_MYSTIC_BLADES    (ABILITIES_COUNT_LATEST_GEN + 238) // Keen Edge boost + keen edge does special damage
@@ -542,11 +542,11 @@
 #define ABILITY_TELEKINETIC      (ABILITIES_COUNT_LATEST_GEN + 244) // Telekinesis on entry
 #define ABILITY_COMBUSTION       (ABILITIES_COUNT_LATEST_GEN + 245) // 50% boost to fire moves
 #define ABILITY_PONY_POWER       (ABILITIES_COUNT_LATEST_GEN + 246) // Keen edge + mystical blades
-#define ABILITY_POWDER_ON_ENTRY  (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
+#define ABILITY_POWDER_BURST     (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
 #define ABILITY_RECYCLE_ON_SWITCH (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
-#define ABILITY_TRICK_OR_TREAT_ON_ENTRY (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
+#define ABILITY_HALLOWEEN_SEASON (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_TRICK_OR_TREAT_ON_ENTRY + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_HALLOWEEN_SEASON + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
