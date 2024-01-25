@@ -2287,6 +2287,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
+        if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DELTA_STREAM, moveNum)){
+            if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
+                abilityNullifiesDamage = TRUE;
+            }
+        }
+
         if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_BULLETPROOF, moveNum)){
             if(TestMoveFlags(moveNum, FLAG_BALLISTIC)){
                 abilityNullifiesDamage = TRUE;

@@ -1141,6 +1141,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     //   Color Change
     //   Prismatic Fur
     //   Cheating Death
+    //   Delta Stream
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -16752,16 +16753,16 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, ABILITY_GIFTED_MIND);
         }
-    } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_WEATHER_CONTROL) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
+    } else if ((BATTLER_HAS_ABILITY(battlerDef, ABILITY_WEATHER_CONTROL) || BATTLER_HAS_ABILITY(battlerDef, ABILITY_DELTA_STREAM)) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
         {
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEATHER_CONTROL;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = BATTLER_HAS_ABILITY(battlerDef, ABILITY_DELTA_STREAM) ? ABILITY_DELTA_STREAM : ABILITY_WEATHER_CONTROL;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
-            RecordAbilityBattle(battlerDef, ABILITY_WEATHER_CONTROL);
+            RecordAbilityBattle(battlerDef, gLastUsedAbility);
         }
     } else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_EVAPORATE) && moveType == TYPE_WATER)
     {
@@ -16883,6 +16884,8 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
             modifier = UQ_4_12(0.0);
 		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_WEATHER_CONTROL || BattlerHasInnate(battlerDef, ABILITY_WEATHER_CONTROL))) 
+            modifier = UQ_4_12(0.0);
+		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_DELTA_STREAM || BattlerHasInnate(battlerDef, ABILITY_DELTA_STREAM))) 
             modifier = UQ_4_12(0.0);
     }
 

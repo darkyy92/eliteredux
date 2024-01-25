@@ -913,6 +913,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (TestMoveFlags(move, FLAG_WEATHER_BASED))
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_DELTA_STREAM:
+                if (TestMoveFlags(move, FLAG_WEATHER_BASED))
+                    RETURN_SCORE_MINUS(20);
+                break;
             } // def ability checks
             
             // target partner ability checks & not attacking partner
