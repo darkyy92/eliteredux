@@ -15827,7 +15827,8 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 
     // check stab
     if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
-	     abilityAtk == ABILITY_MYSTIC_POWER || BattlerHasInnate(battlerAtk, ABILITY_MYSTIC_POWER)||
+	     abilityAtk == ABILITY_MYSTIC_POWER || BattlerHasInnate(battlerAtk, ABILITY_MYSTIC_POWER) ||
+	     abilityAtk == ABILITY_ARCANE_FORCE || BattlerHasInnate(battlerAtk, ABILITY_ARCANE_FORCE) ||
          (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
          (abilityAtk == ABILITY_MOON_SPIRIT && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_MOON_SPIRIT) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
          (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE) ||
@@ -15921,6 +15922,12 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 	if(BattlerHasInnate(battlerAtk, ABILITY_NEUROFORCE)){
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.25));
+	}
+    
+	// Arcane Force
+	if(BattlerHasInnate(battlerAtk, ABILITY_ARCANE_FORCE)){
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.1));
 	}
 	
 	// Fatal Precision
