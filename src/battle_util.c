@@ -6193,8 +6193,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Telekinetic
             UseEntryMove(battler, ABILITY_TELEKINETIC, &effect, MOVE_TELEKINESIS, 0, 0, 0);
 
-            // Telekinetic
+            // Powder Burst
             UseEntryMove(battler, ABILITY_POWDER_BURST, &effect, MOVE_POWDER, 0, 0, 0);
+
+            // Monster Mash
+            UseEntryMove(battler, ABILITY_MONSTER_MASH, &effect, MOVE_TRICK_OR_TREAT, 0, 0, 0);
 
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
@@ -15123,6 +15126,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
+	// Guts
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DETERMINATION)){
+        if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
+	
 	//Illusion
 	if(BattlerHasInnate(battlerAtk, ABILITY_ILLUSION)){
 		if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
@@ -15845,10 +15854,10 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check frostbite
-    if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && !IS_MOVE_PHYSICAL(move) &&
+    if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IS_MOVE_SPECIAL(move) &&
         gBattleMoves[move].effect != EFFECT_FACADE  &&
-        abilityAtk != ABILITY_GUTS                  && 
-        !BattlerHasInnate(battlerAtk, ABILITY_GUTS))
+        abilityAtk != ABILITY_DETERMINATION         && 
+        !BattlerHasInnate(battlerAtk, ABILITY_DETERMINATION))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather
