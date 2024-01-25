@@ -6193,6 +6193,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Telekinetic
             UseEntryMove(battler, ABILITY_TELEKINETIC, &effect, MOVE_TELEKINESIS, 0, 0, 0);
 
+            // Telekinetic
+            UseEntryMove(battler, ABILITY_POWDER_BURST, &effect, MOVE_POWDER, 0, 0, 0);
+
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
                 u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
