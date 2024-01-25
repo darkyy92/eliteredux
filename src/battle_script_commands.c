@@ -11738,7 +11738,7 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
                BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
                BATTLER_HAS_ABILITY(battler, ABILITY_VITAL_SPIRIT) ||
                BATTLER_HAS_ABILITY(battler, ABILITY_DISCIPLINE)   ||
-               BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS)) ||
+               BATTLER_HAS_ABILITY(battler, ABILITY_INNER_FOCUS)  ||
                BATTLER_HAS_ABILITY(battler, ABILITY_ENLIGHTENED))
                 return TRUE;
 
@@ -13184,13 +13184,14 @@ static void Cmd_magnitudedamagecalculation(void)
 {
     bool8 isExtraMove = gProtectStructs[gBattlerAttacker].extraMoveUsed;
     u8 maxRoll = 100;
+    u32 magnitude;
 
     if(isExtraMove){
         maxRoll = VarGet(VAR_EXTRA_MOVE_DAMAGE);
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
     }
 
-    u32 magnitude = Random() % maxRoll;
+    magnitude = Random() % maxRoll;
 
     if (magnitude < 5)
     {

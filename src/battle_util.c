@@ -4616,7 +4616,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     return FALSE;
 }
 
-static void UseAttackerFollowUpMove(u8 *effect, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
+static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
 {
     gTempMove = gCurrentMove;
     gCurrentMove = extraMove;
@@ -10055,7 +10055,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                UseAttackerFollowUpMove(&effect, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
             }
         }
 
@@ -10066,7 +10066,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                UseAttackerFollowUpMove(&effect, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
             }
         }
 
@@ -10077,7 +10077,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
-                UseAttackerFollowUpMove(&effect, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
             }
         }
 
@@ -10088,7 +10088,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
-                UseAttackerFollowUpMove(&effect, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
             }
         }
 
@@ -10102,7 +10102,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     case MOVE_RAIN_DANCE:
                     case MOVE_SANDSTORM:
                     case MOVE_HAIL:
-                        UseAttackerFollowUpMove(&effect, ABILITY_WEATHER_CAST, MOVE_WEATHER_BALL, 20, 0, 0);
+                        UseAttackerFollowUpMove(&effect, battler, ABILITY_WEATHER_CAST, MOVE_WEATHER_BALL, 20, 0, 0);
                         break;
                 }
             }
@@ -10115,7 +10115,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_GROUND)){
-                UseAttackerFollowUpMove(&effect, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
             }
         }
 		
