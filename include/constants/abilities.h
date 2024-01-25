@@ -529,7 +529,7 @@
 #define ABILITY_SUPPRESS         (ABILITIES_COUNT_LATEST_GEN + 231) // Torment on Entry
 #define ABILITY_REFRIGERATOR     (ABILITIES_COUNT_LATEST_GEN + 232) // Refrigerate + Illuminate
 #define ABILITY_HEAVEN_ASUNDER   (ABILITIES_COUNT_LATEST_GEN + 233) // Spacial Rend 100% crit chance. +1 crit stage.
-#define ABILITY_HYDRATION_PLUS   (ABILITIES_COUNT_LATEST_GEN + 234) // Hydration + Water Veil
+#define ABILITY_PURIFYING_WATERS (ABILITIES_COUNT_LATEST_GEN + 234) // Hydration + Water Veil
 #define ABILITY_SEABORNE         (ABILITIES_COUNT_LATEST_GEN + 235) // Drizzle + Swift Swim
 #define ABILITY_HIGH_TIDE        (ABILITIES_COUNT_LATEST_GEN + 236) // Surf after water move
 #define ABILITY_CHANGE_OF_HEART  (ABILITIES_COUNT_LATEST_GEN + 237) // Heart Swap on entry
@@ -543,10 +543,10 @@
 #define ABILITY_COMBUSTION       (ABILITIES_COUNT_LATEST_GEN + 245) // 50% boost to fire moves
 #define ABILITY_PONY_POWER       (ABILITIES_COUNT_LATEST_GEN + 246) // Keen edge + mystical blades
 #define ABILITY_POWDER_BURST     (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
-#define ABILITY_RECYCLE_ON_SWITCH (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
-#define ABILITY_HALLOWEEN_SEASON (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
+#define ABILITY_SALVAGE          (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
+#define ABILITY_MONSTER_MASH     (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_HALLOWEEN_SEASON + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_MONSTER_MASH + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

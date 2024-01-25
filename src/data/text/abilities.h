@@ -493,7 +493,7 @@ static const u8 sAbilityYukiOnnaDescription[] = _("Scare + Intimidate.\n10% chan
 static const u8 sAbilitySuppressDescription[] = _("Uses Torment\non entry.");
 static const u8 sAbilityRefrigeratorDescription[] = _("Refrigerate + Illuminate.");
 static const u8 sAbilityHeavenAsunderDescription[] = _("Spacial Rend always crits.\nUps crit level by +1.");
-static const u8 sAbilityHydrationPlusDescription[] = _("Hydration + Water Veil.");
+static const u8 sAbilityPurifyingWatersDescription[] = _("Hydration + Water Veil.");
 static const u8 sAbilitySeaborneDescription[] = _("Drizzle + Swift Swim.");
 static const u8 sAbilityHighTideDescription[] = _("Triggers 50 BP Surf after\nusing a Water-type move.");
 static const u8 sAbilityChangeOfHeartDescription[] = _("Uses Heart Swap\non switch-in.");
@@ -507,8 +507,8 @@ static const u8 sAbilityTelekineticDescription[] = _("Uses Telekinesis\non switc
 static const u8 sAbilityCombustionDescription[] = _("Ups Fire moves by 50%.");
 static const u8 sAbilityPonyPowerDescription[] = _("Keen Edge + Mystic Blades.");
 static const u8 sAbilityPowderBurstDescription[] = _("Uses Powder\non switch-in.");
-static const u8 sAbilityRecycleOnSwitchDescription[] = _("Recover item\non switch-out.");
-static const u8 sAbilityHalloweenSeasonDescription[] = _("Uses Trick-or-Treat\non switch-in.");
+static const u8 sAbilitySalvageDescription[] = _("Recover item\non switch-out.");
+static const u8 sAbilityMonsterMashDescription[] = _("Uses Trick-or-Treat\non switch-in.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1022,7 +1022,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_SUPPRESS] = _("Suppress"),
         [ABILITY_REFRIGERATOR] = _("Refrigerator"),
         [ABILITY_HEAVEN_ASUNDER] = _("Heaven Asunder"),
-        [ABILITY_HYDRATION_PLUS] = _("NAMEGOESHERE"),
+        [ABILITY_PURIFYING_WATERS] = _("Purifying Waters"),
         [ABILITY_SEABORNE] = _("Seaborne"),
         [ABILITY_HIGH_TIDE] = _("High Tide"),
         [ABILITY_CHANGE_OF_HEART] = _("Change of Heart"),
@@ -1036,8 +1036,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_COMBUSTION] = _("Combustion"),
         [ABILITY_PONY_POWER] = _("Pony Powder"),
         [ABILITY_POWDER_BURST] = _("Powder Burst"),
-        [ABILITY_RECYCLE_ON_SWITCH] = _("NAMEGOESHERE"),
-        [ABILITY_HALLOWEEN_SEASON] = _("Halloween Season"),
+        [ABILITY_SALVAGE] = _("Salvage"),
+        [ABILITY_MONSTER_MASH] = _("Monster Mash"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1544,7 +1544,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_SUPPRESS] = sAbilitySuppressDescription,
         [ABILITY_REFRIGERATOR] = sAbilityRefrigeratorDescription,
         [ABILITY_HEAVEN_ASUNDER] = sAbilityHeavenAsunderDescription,
-        [ABILITY_HYDRATION_PLUS] = sAbilityHydrationPlusDescription,
+        [ABILITY_PURIFYING_WATERS] = sAbilityPurifyingWatersDescription,
         [ABILITY_SEABORNE] = sAbilitySeaborneDescription,
         [ABILITY_HIGH_TIDE] = sAbilityHighTideDescription,
         [ABILITY_CHANGE_OF_HEART] = sAbilityChangeOfHeartDescription,
@@ -1558,6 +1558,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_COMBUSTION] = sAbilityCombustionDescription,
         [ABILITY_PONY_POWER] = sAbilityPonyPowerDescription,
         [ABILITY_POWDER_BURST] = sAbilityPowderBurstDescription,
-        [ABILITY_RECYCLE_ON_SWITCH] = sAbilityRecycleOnSwitchDescription,
-        [ABILITY_HALLOWEEN_SEASON] = sAbilityHalloweenSeasonDescription,
+        [ABILITY_SALVAGE] = sAbilitySalvageDescription,
+        [ABILITY_MONSTER_MASH] = sAbilityMonsterMashDescription,
 };
