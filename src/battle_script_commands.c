@@ -10634,6 +10634,8 @@ static void Cmd_manipulatedamage(void)
             gBattleMoveDamage = (gHpDealt / 4);
         else if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_ANGELS_WRATH))
             gBattleMoveDamage = gHpDealt;
+        else if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_PURE_LOVE))
+            gBattleMoveDamage = (gHpDealt / 4);
         else
             gBattleMoveDamage = (gHpDealt / 2);
 

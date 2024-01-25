@@ -11125,7 +11125,6 @@ BattleScript_NosferatuActivated_NothingToHeal:
     return
 
 BattleScript_HydroCircuitAbsorbEffectActivated::
-	sethword sABILITY_OVERWRITE, ABILITY_HYDRO_CIRCUIT
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	manipulatedamage DMG_TO_HP_FROM_ABILITY

@@ -9779,6 +9779,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		
+		//Pure Love
+		if(BattlerHasInnate(battler, ABILITY_PURE_LOVE)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerTarget].hp != 0
+             && (Random() % 3) == 0
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_OBLIVIOUS
+			 && !BattlerHasInnate(gBattlerAttacker, ABILITY_OBLIVIOUS)
+             && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
+             && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PURE_LOVE;
+                gBattleMons[gBattlerAttacker].status2 |= STATUS2_INFATUATED_WITH(gBattlerTarget);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
+                effect++;
+            }
+		}
+		
 		//Gooey, Tangling Hair & Super Hot Goo
 		if(BattlerHasInnate(battler, ABILITY_GOOEY) || 
            BattlerHasInnate(battler, ABILITY_TANGLING_HAIR) || 
@@ -10093,7 +10115,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Hydro Circuit
 	    if(BATTLER_HAS_ABILITY(battler, ABILITY_HYDRO_CIRCUIT)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && !BATTLER_HEALING_BLOCKED(gBattlerAttacker)
@@ -10102,6 +10123,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
             {
                 //Attacker
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HYDRO_CIRCUIT;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HydroCircuitAbsorbEffectActivated;
+                effect++;
+            }
+        }
+
+        // Hydro Circuit
+	    if(BATTLER_HAS_ABILITY(battler, ABILITY_PURE_LOVE)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && !BATTLER_HEALING_BLOCKED(gBattlerAttacker)
+             && IsBattlerAlive(gBattlerAttacker)
+             && gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATED_WITH(gBattlerAttacker)
+             && TARGET_TURN_DAMAGED) // Need to actually hit the target
+            {
+                //Attacker
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PURE_LOVE;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HydroCircuitAbsorbEffectActivated;
                 effect++;
