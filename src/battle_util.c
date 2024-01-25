@@ -6873,6 +6873,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+            
+            // Purifying Waters
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_PURIFYING_WATERS)){
+                bool8 activateAbility = FALSE;
+                u16 abilityToCheck = ABILITY_PURIFYING_WATERS; //For easier copypaste
+
+                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                    case BATTLER_INNATE:
+                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbility = TRUE;
+                        }
+                    break;
+                    case BATTLER_ABILITY:
+                        if(!gSpecialStatuses[battler].switchInAbilityDone){
+                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbility = TRUE;
+                        }
+                    break;
+                }
+
+                if (activateAbility) {
+                    gBattlerAttacker = battler;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                    gStatuses3[battler] |= STATUS3_AQUA_RING;
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerEnvelopedItselfInAVeil);
+                    effect++;
+                }
+            }
 
             //Twisted Dimension
             if(BATTLER_HAS_ABILITY(battler, ABILITY_TWISTED_DIMENSION)){
@@ -7335,6 +7364,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleScripting.abilityPopupOverwrite = ABILITY_HYDRATION;
 			        gLastUsedAbility = ABILITY_HYDRATION;
+                    goto ABILITY_HEAL_MON_STATUS_INNATE;
+                }
+            }
+
+			// Purifying Waters
+            if(BattlerHasInnate(gActiveBattler, ABILITY_PURIFYING_WATERS)){
+                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
+                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_PURIFYING_WATERS;
+			        gLastUsedAbility = ABILITY_PURIFYING_WATERS;
                     goto ABILITY_HEAL_MON_STATUS_INNATE;
                 }
             }
@@ -11012,6 +11052,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 1;
                 }
                 break;
+            case ABILITY_PURIFYING_WATERS:
             case ABILITY_WATER_VEIL:
             case ABILITY_WATER_BUBBLE:
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
@@ -11108,6 +11149,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            //Water Veil
+            if(BattlerHasInnate(battler, ABILITY_PURIFYING_WATERS)){
+                if (gBattleMons[battler].status1 & STATUS1_BURN)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PURIFYING_WATERS;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    effect = 1;
+                }
+            }
+
             //Water Bubble
             if(BattlerHasInnate(battler, ABILITY_WATER_BUBBLE)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
@@ -11193,7 +11244,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			// Water Veil & Water Bubble
 			if(BattlerHasInnate(battler, ABILITY_WATER_VEIL) || 
-               BattlerHasInnate(battler, ABILITY_WATER_BUBBLE)){
+               BattlerHasInnate(battler, ABILITY_WATER_BUBBLE) || 
+               BattlerHasInnate(battler, ABILITY_PURIFYING_WATERS)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
                 {
                     StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
@@ -11761,6 +11813,8 @@ bool32 CanBeBurned(u8 battlerId)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
 	  || BattlerHasInnate(battlerId, ABILITY_WATER_VEIL)
+      || ability == ABILITY_PURIFYING_WATERS
+	  || BattlerHasInnate(battlerId, ABILITY_PURIFYING_WATERS)
       || ability == ABILITY_WATER_BUBBLE
 	  || BattlerHasInnate(battlerId, ABILITY_WATER_BUBBLE)
       || ability == ABILITY_COMATOSE
@@ -13176,6 +13230,8 @@ case ITEMEFFECT_KINGSROCK:
                 && !IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_VEIL
 				&& !BattlerHasInnate(battlerId, ABILITY_WATER_VEIL)
+                && GetBattlerAbility(battlerId) != ABILITY_PURIFYING_WATERS
+				&& !BattlerHasInnate(battlerId, ABILITY_PURIFYING_WATERS)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_BUBBLE
 				&& !BattlerHasInnate(battlerId, ABILITY_WATER_BUBBLE)
                 && GetBattlerAbility(battlerId) != ABILITY_COMATOSE
