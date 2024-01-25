@@ -5410,7 +5410,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(abilityEffect && caseID == ABILITYEFFECT_ON_SWITCHIN){
             // Weather Abilities --------------------------------------------------------------------------------------------------
             // Drizzle
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_DRIZZLE)){
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_DRIZZLE) || BATTLER_HAS_ABILITY(battler, ABILITY_SEABORNE)){
                 bool8 activateAbilty = FALSE;
                 u16 abilityToCheck = ABILITY_DRIZZLE; //For easier copypaste
 
@@ -5429,6 +5429,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             activateAbilty = TRUE;
                         }
                     break;
+                }
+
+                if (!activateAbilty) {
+                    abilityToCheck = ABILITY_SEABORNE;
+
+                    switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                        case BATTLER_INNATE:
+                            if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                                activateAbilty = TRUE;
+                            }
+                        break;
+                        case BATTLER_ABILITY:
+                            if(!gSpecialStatuses[battler].switchInAbilityDone){
+                                gBattlerAttacker = battler;
+                                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                                activateAbilty = TRUE;
+                            }
+                        break;
+                    }
                 }
 
                 //This is the stuff that has to be changed for each ability

@@ -4875,6 +4875,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         if ((ability == ABILITY_SWIFT_SWIM || BattlerHasInnate(battlerId, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed = (speed * 150) / 100;
 
+        if ((ability == ABILITY_SEABORNE || BattlerHasInnate(battlerId, ABILITY_SEABORNE)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+            speed = (speed * 150) / 100;
+
         if ((ability == ABILITY_CHLOROPHYLL || BattlerHasInnate(battlerId, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed = (speed * 150) / 100;
 
