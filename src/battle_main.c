@@ -5921,6 +5921,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && (   ((ability == ABILITY_PIXILATE        || MonHasInnate(mon, ABILITY_PIXILATE, disableRandomizer))        && (ateType = TYPE_FAIRY))
                  || ((ability == ABILITY_REFRIGERATE     || MonHasInnate(mon, ABILITY_REFRIGERATE, disableRandomizer))     && (ateType = TYPE_ICE))
+                 || ((ability == ABILITY_REFRIGERATOR    || MonHasInnate(mon, ABILITY_REFRIGERATOR, disableRandomizer))    && (ateType = TYPE_ICE))
                  || ((ability == ABILITY_AERILATE        || MonHasInnate(mon, ABILITY_AERILATE, disableRandomizer))        && (ateType = TYPE_FLYING))
 				 || ((ability == ABILITY_IMMOLATE        || MonHasInnate(mon, ABILITY_IMMOLATE, disableRandomizer))        && (ateType = TYPE_FIRE))
 				 || ((ability == ABILITY_SOLAR_FLARE     || MonHasInnate(mon, ABILITY_SOLAR_FLARE, disableRandomizer))     && (ateType = TYPE_FIRE))
@@ -6067,6 +6068,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && (   ((attackerAbility == ABILITY_PIXILATE        || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))        && (ateType = TYPE_FAIRY))
                  || ((attackerAbility == ABILITY_REFRIGERATE     || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))     && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_REFRIGERATOR    || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))    && (ateType = TYPE_ICE))
                  || ((attackerAbility == ABILITY_AERILATE        || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))        && (ateType = TYPE_FLYING))
 				 || ((attackerAbility == ABILITY_IMMOLATE        || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))        && (ateType = TYPE_FIRE))
 				 || ((attackerAbility == ABILITY_SOLAR_FLARE     || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))     && (ateType = TYPE_FIRE))
@@ -6199,6 +6201,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && (   ((attackerAbility == ABILITY_PIXILATE            || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))            && (ateType = TYPE_FAIRY))
                  || ((attackerAbility == ABILITY_REFRIGERATE         || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))         && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_REFRIGERATOR        || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))        && (ateType = TYPE_ICE))
                  || ((attackerAbility == ABILITY_AERILATE            || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))            && (ateType = TYPE_FLYING))
 				 || ((attackerAbility == ABILITY_IMMOLATE            || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))            && (ateType = TYPE_FIRE))
 				 || ((attackerAbility == ABILITY_SOLAR_FLARE         || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))         && (ateType = TYPE_FIRE))
