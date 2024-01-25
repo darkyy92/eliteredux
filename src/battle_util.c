@@ -8976,6 +8976,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
+		// Cryo Proficiency
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_CRYO_PROFICIENCY)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && !(gBattleWeather & WEATHER_HAIL_ANY && WEATHER_HAS_EFFECT))
+            {
+                if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BlockedByPrimalWeatherRet;
+                    effect++;
+                }
+                else if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
+                {
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_CryoProficiencyActivates;
+                    effect++;
+                }
+			}
+		}
+		
 		// Perish Body
 		if(BattlerHasInnate(battler, ABILITY_PERISH_BODY)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -9604,7 +9627,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
 		// Freezing Point
-		if(BattlerHasInnate(battler, ABILITY_FREEZING_POINT)){
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_FREEZING_POINT)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerAttacker].hp != 0
 				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -9614,6 +9637,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				 && (Random() % 3) == 0)
 				{
 					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FREEZING_POINT;
+					gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_FROSTBITE;
+					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+		}
+
+		// Freezing Point
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_CRYO_PROFICIENCY)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+				 && gBattleMons[gBattlerAttacker].hp != 0
+				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+				 && TARGET_TURN_DAMAGED
+				 && CanGetFrostbite(gBattlerAttacker)
+				 && IsMoveMakingContact(move, gBattlerAttacker)
+				 && (Random() % 3) == 0)
+				{
+					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CRYO_PROFICIENCY;
 					gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_FROSTBITE;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();

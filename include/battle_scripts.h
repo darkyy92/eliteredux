@@ -379,6 +379,7 @@ extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchIn[];
 extern const u8 BattleScript_CottonDownActivates[];
 extern const u8 BattleScript_BallFetch[];
 extern const u8 BattleScript_SandSpitActivates[];
+extern const u8 BattleScript_CryoProficiencyActivates[];
 extern const u8 BattleScript_PerishBodyActivates[];
 extern const u8 BattleScript_ActivateAsOne[];
 extern const u8 BattleScript_RaiseStatOnFaintingTarget[];

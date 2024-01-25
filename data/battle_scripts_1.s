@@ -9072,6 +9072,15 @@ BattleScript_SandSpitActivates::
 	call BattleScript_WeatherFormChanges
 	return
 
+BattleScript_CryoProficiencyActivates::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_STARTEDHAIL
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES, NULL
+	call BattleScript_WeatherFormChanges
+	return
+
 BattleScript_ShedSkinActivates::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNSXCUREDYPROBLEM
