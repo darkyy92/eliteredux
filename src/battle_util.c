@@ -15444,6 +15444,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
+	// Fighter 
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FIGHTER)){
+		if (moveType == TYPE_FIGHTING)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
 	// Rocky Payload
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ROCKY_PAYLOAD)){
 		if (moveType == TYPE_ROCK)
