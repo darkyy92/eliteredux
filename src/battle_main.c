@@ -4938,15 +4938,19 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     return speed;
 }
 
+u16 GetChosenMove(u32 battlerId)
+{
+    if (gProtectStructs[battlerId].noValidMoves)
+        return MOVE_STRUGGLE;
+    else
+        return gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+}
+
 s8 GetChosenMovePriority(u32 battlerId, u32 target)
 {
-    u16 move;
+    u16 move = GetChosenMove(battlerId);
 
     gProtectStructs[battlerId].pranksterElevated = 0;
-    if (gProtectStructs[battlerId].noValidMoves)
-        move = MOVE_STRUGGLE;
-    else
-        move = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
 
     return GetMovePriority(battlerId, move, target);
 }
@@ -5032,7 +5036,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
         case EFFECT_STRENGTH_SAP:
-            priority++; // priority += 3;
+            priority += 3;
             break;
         }
     }
@@ -5055,6 +5059,8 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
 
     return priority;
 }
+
+#define MYCELIUM_MIGHT_AFFECTED(battler, move) (BATTLER_HAS_ABILITY(battler, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[move].split == SPLIT_STATUS)
 
 u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 {
@@ -5103,29 +5109,24 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 
     if (priority1 == priority2)
     {
-        // QUICK CLAW / CUSTAP - always first
-        // LAGGING TAIL - always last
-        // STALL - always last
-        
-        if (gProtectStructs[battler1].quickDraw && !gProtectStructs[battler2].quickDraw)
+        u8 b1GoFirst = gProtectStructs[battler1].quickDraw + gProtectStructs[battler1].usedCustapBerry;
+        u8 b2GoFirst = gProtectStructs[battler2].quickDraw + gProtectStructs[battler2].usedCustapBerry;
+        u8 b1GoLast  = (holdEffectBattler1 == HOLD_EFFECT_LAGGING_TAIL)
+                        + BATTLER_HAS_ABILITY(battler1, ABILITY_STALL)
+                        + BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS)
+                        + MYCELIUM_MIGHT_AFFECTED(battler1, GetChosenMove(battler1));
+        u8 b2GoLast  = (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL)
+                        + BATTLER_HAS_ABILITY(battler2, ABILITY_STALL)
+                        + BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS)
+                        + MYCELIUM_MIGHT_AFFECTED(battler2, GetChosenMove(battler2));
+
+        if (b1GoFirst > b2GoFirst)
             strikesFirst = 0;
-        else if (!gProtectStructs[battler1].quickDraw && gProtectStructs[battler2].quickDraw)
+        else if (b1GoFirst < b2GoFirst)
             strikesFirst = 1;
-        else if (gProtectStructs[battler1].usedCustapBerry && !gProtectStructs[battler2].usedCustapBerry)
-            strikesFirst = 0;
-        else if (gProtectStructs[battler2].usedCustapBerry && !gProtectStructs[battler1].usedCustapBerry)
+        else if (b1GoLast > b2GoLast)
             strikesFirst = 1;
-        else if (holdEffectBattler1 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler2 != HOLD_EFFECT_LAGGING_TAIL)
-            strikesFirst = 1;
-        else if (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler1 != HOLD_EFFECT_LAGGING_TAIL)
-            strikesFirst = 0;
-        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
-            strikesFirst = 1;
-        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
-            strikesFirst = 0;
-        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
-            strikesFirst = 1;
-        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
+        else if (b1GoLast < b2GoLast)
             strikesFirst = 0;
         else
         {

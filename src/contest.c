@@ -104,7 +104,7 @@ static u8 CreateContestantSprite(u16, u32, u32, u32);
 static void PrintContestMoveDescription(u16);
 static u16 SanitizeSpecies(u16);
 static void ContestClearGeneralTextWindow(void);
-static u16 GetChosenMove(u8);
+static u16 GetChosenContestMove(u8);
 static void GetAllChosenMoves(void);
 static void ContestPrintLinkStandby(void);
 static void FillContestantWindowBgs(void);
@@ -1633,7 +1633,7 @@ static void Task_SelectedMove(u8 taskId)
 {
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
     {
-        u16 move = GetChosenMove(gContestPlayerMonIndex);
+        u16 move = GetChosenContestMove(gContestPlayerMonIndex);
         u8 taskId2;
 
         eContestantStatus[gContestPlayerMonIndex].currMove = move;
@@ -1716,7 +1716,7 @@ static void Task_AppealSetup(u8 taskId)
 
             for (i = 0; i + gNumLinkContestPlayers < CONTESTANT_COUNT; i++)
             {
-                eContestantStatus[gNumLinkContestPlayers + i].currMove = GetChosenMove(gNumLinkContestPlayers + i);
+                eContestantStatus[gNumLinkContestPlayers + i].currMove = GetChosenContestMove(gNumLinkContestPlayers + i);
             }
         }
         gTasks[taskId].tState = APPEALSTATE_START_TURN;
@@ -3382,7 +3382,7 @@ static void ContestClearGeneralTextWindow(void)
     Contest_SetBgCopyFlags(0);
 }
 
-static u16 GetChosenMove(u8 contestant)
+static u16 GetChosenContestMove(u8 contestant)
 {
     if (Contest_IsMonsTurnDisabled(contestant))
         return MOVE_NONE;
@@ -3405,7 +3405,7 @@ static void GetAllChosenMoves(void)
     s32 i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
-        eContestantStatus[i].currMove = GetChosenMove(i);
+        eContestantStatus[i].currMove = GetChosenContestMove(i);
 }
 
 static void RankContestants(void)
