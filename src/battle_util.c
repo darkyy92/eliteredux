@@ -6187,6 +6187,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Doombringer
             UseEntryMove(battler, ABILITY_DOOMBRINGER, &effect, MOVE_DOOM_DESIRE, 0, 0, 0);
 
+            // Change of Heart
+            UseEntryMove(battler, ABILITY_CHANGE_OF_HEART, &effect, MOVE_HEART_SWAP, 0, 0, 0);
+
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
                 u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
