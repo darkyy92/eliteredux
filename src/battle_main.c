@@ -4951,7 +4951,7 @@ u16 IsMyceliumMightActive(u32 battlerId)
     u16 ability = gBattleMons[battlerId].ability;
 
     if (ability == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battlerId, ABILITY_MYCELIUM_MIGHT)){
-        *BattleMove move = &gBattleMoves[GetChosenMove(battlerId)];
+        const struct BattleMove *move = &gBattleMoves[GetChosenMove(battlerId)];
         return move->split == SPLIT_STATUS && move->target & !MOVE_TARGET_USER;
     }
     
