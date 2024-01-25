@@ -6406,7 +6406,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             
             // Fearmonger
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER) || BATTLER_HAS_ABILITY(battler, ABILITY_YUKI_ONNA)){
                 u16 abilityToCheck = ABILITY_FEARMONGER; //For easier copypaste
                 bool8 activateAbilty = FALSE;
 
@@ -6425,11 +6425,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                 }
 
+                if (!activateAbilty) {
+                    abilityToCheck = ABILITY_YUKI_ONNA;
+
+                    switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                        case BATTLER_INNATE:
+                            if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                                activateAbilty = TRUE;
+                            }
+                        break;
+                        case BATTLER_ABILITY:
+                            if(!gSpecialStatuses[battler].switchInAbilityDone){
+                                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                                activateAbilty = TRUE;
+                            }
+                        break;
+                    }
+                }
+
                 if(activateAbilty){
                     u8 numAbility, numStats, statToLower, i, target;
                     bool8 canLowerStat = FALSE;
                     for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
-                        if(gIntimidateCloneData[i].ability == abilityToCheck)
+                        if(gIntimidateCloneData[i].ability == ABILITY_FEARMONGER)
                             break;
                     }
 
@@ -6456,13 +6475,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
 
                     if(canLowerStat){ //Ability effect can be triggered
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                         BattleScriptPushCursorAndCallback(BattleScript_FearMongerActivated);
                         effect++;
                     }
                 }
             }
             
-            // Fearmonger
+            // Monkey Business
             if(BATTLER_HAS_ABILITY(battler, ABILITY_MONKEY_BUSINESS)){
                 u16 abilityToCheck = ABILITY_MONKEY_BUSINESS; //For easier copypaste
                 bool8 activateAbilty = FALSE;
@@ -9423,6 +9443,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Fearmonger Paralyze Chance
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_YUKI_ONNA)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerTarget].hp != 0
+             && (Random() % 10) == 0
+             && !BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_OBLIVIOUS)
+             && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
+             && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
+             && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != MON_GENDERLESS)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_YUKI_ONNA;
+                gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_ATTRACT;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
 		// Static (Defender)
         STATIC_INNATE:
 		if(BattlerHasInnate(battler, ABILITY_STATIC)){
@@ -11377,49 +11421,53 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if ((BATTLER_HAS_ABILITY(i, ABILITY_INTIMIDATE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
+            if ((BATTLER_HAS_ABILITY(i, ABILITY_INTIMIDATE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER) || BATTLER_HAS_ABILITY(i, ABILITY_YUKI_ONNA)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
                 && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
+                
+                if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
+                if(BATTLER_HAS_ABILITY(i, ABILITY_YUKI_ONNA))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_YUKI_ONNA;
+                else
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTIMIDATE;
+
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
-                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
-                        BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3PopoutFearmonger);
-                    else
-                        BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3Popout);
+                    BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
                 }
                 else
                 {
                     BattleScriptPushCursor();
-                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
-                        gBattlescriptCurrInstr = BattleScript_IntimidateActivatesPopoutFearmonger;
-                    else
-                        gBattlescriptCurrInstr = BattleScript_IntimidateActivatesPopout;
+                    gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
                 break;
             }
             
-            if ((BATTLER_HAS_ABILITY(i, ABILITY_SCARE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED
+            if ((BATTLER_HAS_ABILITY(i, ABILITY_SCARE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER) || BATTLER_HAS_ABILITY(i, ABILITY_YUKI_ONNA)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED
                 && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
                 gLastUsedAbility = ABILITY_SCARE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_SCARED);
+
+                if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
+                if(BATTLER_HAS_ABILITY(i, ABILITY_YUKI_ONNA))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_YUKI_ONNA;
+                else
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCARE;
+
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
-                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
-                        BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3PopoutFearmonger);
-                    else
-                        BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3Popout);
+                    BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3);
                 }
                 else
                 {
                     BattleScriptPushCursor();
-                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
-                        gBattlescriptCurrInstr = BattleScript_ScareActivatesPopoutFearmonger;
-                    else
-                        gBattlescriptCurrInstr = BattleScript_ScareActivatesPopout;
+                    gBattlescriptCurrInstr = BattleScript_ScareActivates;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
