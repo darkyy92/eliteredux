@@ -14169,6 +14169,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
+
+    // Mystic Blades
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MYSTIC_BLADES)){
+		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
 	
 	// Iron Fist / Power Fists
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)  || 
@@ -15727,6 +15733,15 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     if ((gBattleMons[battlerAtk].ability == ABILITY_POWER_FISTS || 
               BattlerHasInnate(battlerAtk, ABILITY_POWER_FISTS)) && 
               gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
+    {
+        defStat = spDef;
+        defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
+        usesDefStat = FALSE;
+    }
+
+    if ((gBattleMons[battlerAtk].ability == ABILITY_MYSTIC_BLADES || 
+              BattlerHasInnate(battlerAtk, ABILITY_MYSTIC_BLADES)) && 
+              gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) 
     {
         defStat = spDef;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
