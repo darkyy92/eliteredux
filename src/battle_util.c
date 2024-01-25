@@ -9584,7 +9584,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Poison Point
-        POISON_POINT_INNATE:
 		if(BattlerHasInnate(battler, ABILITY_POISON_POINT)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerAttacker].hp != 0
@@ -9596,6 +9595,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				{
 					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_POISON_POINT;
 					gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_POISON;
+					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+		}
+
+		// Freezing Point
+		if(BattlerHasInnate(battler, ABILITY_FREEZING_POINT)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+				 && gBattleMons[gBattlerAttacker].hp != 0
+				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+				 && TARGET_TURN_DAMAGED
+				 && CanGetFrostbite(gBattlerAttacker)
+				 && IsMoveMakingContact(move, gBattlerAttacker)
+				 && (Random() % 3) == 0)
+				{
+					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FREEZING_POINT;
+					gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_FROSTBITE;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
