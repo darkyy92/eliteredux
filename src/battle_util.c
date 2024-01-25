@@ -6181,6 +6181,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Trickster
             UseEntryMove(battler, ABILITY_TRICKSTER, &effect, MOVE_DISABLE, 0, 0, 0);
 
+            // Doombringer
+            UseEntryMove(battler, ABILITY_DOOMBRINGER, &effect, MOVE_DOOM_DESIRE, 0, 0, 0);
+
             // Generator
             if(BATTLER_HAS_ABILITY(battler, ABILITY_GENERATOR)){
                 u16 abilityToCheck = ABILITY_GENERATOR; //For easier copypaste
