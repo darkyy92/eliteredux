@@ -6184,6 +6184,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Doombringer
             UseEntryMove(battler, ABILITY_DOOMBRINGER, &effect, MOVE_DOOM_DESIRE, 0, 0, 0);
 
+            // Wishmaker
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
+                u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
+                if (gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][innateNumber][GetBattlerSide(battler)] < 3) {
+                    if (UseEntryMove(battler, ABILITY_WISHMAKER, &effect, MOVE_WISH, 0, 0, 0))
+                        gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][innateNumber][GetBattlerSide(battler)]++;
+                }
+            }
+
             // Generator
             if(BATTLER_HAS_ABILITY(battler, ABILITY_GENERATOR)){
                 u16 abilityToCheck = ABILITY_GENERATOR; //For easier copypaste
