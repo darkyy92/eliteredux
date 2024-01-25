@@ -518,33 +518,33 @@
 #define ABILITY_TIPPING_POINT    (ABILITIES_COUNT_LATEST_GEN + 220) // +spatk when taking damage
 #define ABILITY_WEATHER_CAST     (ABILITIES_COUNT_LATEST_GEN + 221) // Uses weather ball after weather changing move
 #define ABILITY_ENLIGHTENED      (ABILITIES_COUNT_LATEST_GEN + 222) // Emanate + Inner Focus
-#define ABILITY_PEACEFUL_SLUMBER (ABILITIES_COUNT_LATEST_GEN + 223) // Emanate + Inner Focus
-#define ABILITY_AFTERSHOCK       (ABILITIES_COUNT_LATEST_GEN + 224) // Emanate + Inner Focus
-#define ABILITY_FREEZING_POINT   (ABILITIES_COUNT_LATEST_GEN + 225) // Emanate + Inner Focus
-#define ABILITY_CHILLING_AURA    (ABILITIES_COUNT_LATEST_GEN + 226) // Emanate + Inner Focus
-#define ABILITY_NEUROFORCE_PLUS  (ABILITIES_COUNT_LATEST_GEN + 227) // Emanate + Inner Focus
-#define ABILITY_DOOMBRINGER      (ABILITIES_COUNT_LATEST_GEN + 228) // Emanate + Inner Focus
-#define ABILITY_WISHMAKER        (ABILITIES_COUNT_LATEST_GEN + 229) // Emanate + Inner Focus
-#define ABILITY_YUKI_ONNA        (ABILITIES_COUNT_LATEST_GEN + 230) // Emanate + Inner Focus
-#define ABILITY_SUPPRESS         (ABILITIES_COUNT_LATEST_GEN + 231) // Emanate + Inner Focus
-#define ABILITY_REFRIGERATOR     (ABILITIES_COUNT_LATEST_GEN + 232) // Emanate + Inner Focus
-#define ABILITY_HEAVEN_ASUNDER   (ABILITIES_COUNT_LATEST_GEN + 233) // Emanate + Inner Focus
-#define ABILITY_HYDRATION_PLUS   (ABILITIES_COUNT_LATEST_GEN + 234) // Emanate + Inner Focus
-#define ABILITY_DRIZZLE_PLUS     (ABILITIES_COUNT_LATEST_GEN + 235) // Emanate + Inner Focus
-#define ABILITY_HIGH_TIDE        (ABILITIES_COUNT_LATEST_GEN + 236) // Emanate + Inner Focus
-#define ABILITY_CHANGE_OF_HEART  (ABILITIES_COUNT_LATEST_GEN + 237) // Emanate + Inner Focus
-#define ABILITY_MYSTIC_BLADES    (ABILITIES_COUNT_LATEST_GEN + 238) // Emanate + Inner Focus
-#define ABILITY_DETERMINATION    (ABILITIES_COUNT_LATEST_GEN + 239) // Emanate + Inner Focus
-#define ABILITY_FERTILIZE        (ABILITIES_COUNT_LATEST_GEN + 240) // Emanate + Inner Focus
-#define ABILITY_PURE_LOVE        (ABILITIES_COUNT_LATEST_GEN + 241) // Emanate + Inner Focus
-#define ABILITY_FIGHTER          (ABILITIES_COUNT_LATEST_GEN + 242) // Emanate + Inner Focus
-#define ABILITY_MYCELIUM_MIGHT   (ABILITIES_COUNT_LATEST_GEN + 243) // Emanate + Inner Focus
-#define ABILITY_TELEKINETIC      (ABILITIES_COUNT_LATEST_GEN + 244) // Emanate + Inner Focus
-#define ABILITY_COMBUSTION       (ABILITIES_COUNT_LATEST_GEN + 245) // Emanate + Inner Focus
-#define ABILITY_PONY_POWER       (ABILITIES_COUNT_LATEST_GEN + 246) // Emanate + Inner Focus
-#define ABILITY_POWDER_ON_ENTRY  (ABILITIES_COUNT_LATEST_GEN + 247) // Emanate + Inner Focus
-#define ABILITY_RECYCLE_ON_SWITCH (ABILITIES_COUNT_LATEST_GEN + 248) // Emanate + Inner Focus
-#define ABILITY_TRICK_OR_TREAT_ON_ENTRY (ABILITIES_COUNT_LATEST_GEN + 249) // Emanate + Inner Focus
+#define ABILITY_PEACEFUL_SLUMBER (ABILITIES_COUNT_LATEST_GEN + 223) // Sweet Dreams + Self Sufficient
+#define ABILITY_AFTERSHOCK       (ABILITIES_COUNT_LATEST_GEN + 224) // Magnitude after ground type move
+#define ABILITY_FREEZING_POINT   (ABILITIES_COUNT_LATEST_GEN + 225) // Frostbite poison point
+#define ABILITY_CHILLING_AURA    (ABILITIES_COUNT_LATEST_GEN + 226) // Hail on hit + frostbite poison touch
+#define ABILITY_NEUROFORCE_PLUS  (ABILITIES_COUNT_LATEST_GEN + 227) // Neuroforce + Mystic Power
+#define ABILITY_DOOMBRINGER      (ABILITIES_COUNT_LATEST_GEN + 228) // Doom Desire on entry
+#define ABILITY_WISHMAKER        (ABILITIES_COUNT_LATEST_GEN + 229) // Wish on entry
+#define ABILITY_YUKI_ONNA        (ABILITIES_COUNT_LATEST_GEN + 230) // Scare + Intimidate + 10% Infatuate chance
+#define ABILITY_SUPPRESS         (ABILITIES_COUNT_LATEST_GEN + 231) // Torment on Entry
+#define ABILITY_REFRIGERATOR     (ABILITIES_COUNT_LATEST_GEN + 232) // Refrigerate + Illuminate
+#define ABILITY_HEAVEN_ASUNDER   (ABILITIES_COUNT_LATEST_GEN + 233) // Spacial Rend 100% crit chance. +1 crit stage.
+#define ABILITY_HYDRATION_PLUS   (ABILITIES_COUNT_LATEST_GEN + 234) // Hydration + Water Veil
+#define ABILITY_DRIZZLE_PLUS     (ABILITIES_COUNT_LATEST_GEN + 235) // Drizzle + Swift Swim
+#define ABILITY_HIGH_TIDE        (ABILITIES_COUNT_LATEST_GEN + 236) // Surf after water move
+#define ABILITY_CHANGE_OF_HEART  (ABILITIES_COUNT_LATEST_GEN + 237) // Heart Swap on entry
+#define ABILITY_MYSTIC_BLADES    (ABILITIES_COUNT_LATEST_GEN + 238) // Keen Edge boost + keen edge does special damage
+#define ABILITY_DETERMINATION    (ABILITIES_COUNT_LATEST_GEN + 239) // Special guts
+#define ABILITY_FERTILIZE        (ABILITIES_COUNT_LATEST_GEN + 240) // Grass -ate
+#define ABILITY_PURE_LOVE        (ABILITIES_COUNT_LATEST_GEN + 241) // Charm on contact, ignores gender. Heal % damage vs infatuated.
+#define ABILITY_FIGHTER          (ABILITIES_COUNT_LATEST_GEN + 242) // Fighting overgrow
+#define ABILITY_MYCELIUM_MIGHT   (ABILITIES_COUNT_LATEST_GEN + 243) // Status moves go last and ignore innates
+#define ABILITY_TELEKINETIC      (ABILITIES_COUNT_LATEST_GEN + 244) // Telekinesis on entry
+#define ABILITY_COMBUSTION       (ABILITIES_COUNT_LATEST_GEN + 245) // 50% boost to fire moves
+#define ABILITY_PONY_POWER       (ABILITIES_COUNT_LATEST_GEN + 246) // Keen edge + mystical blades
+#define ABILITY_POWDER_ON_ENTRY  (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
+#define ABILITY_RECYCLE_ON_SWITCH (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
+#define ABILITY_TRICK_OR_TREAT_ON_ENTRY (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
 
 #define ABILITIES_COUNT_CUSTOM   (ABILITY_TRICK_OR_TREAT_ON_ENTRY + 1) 
 
