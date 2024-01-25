@@ -1307,8 +1307,8 @@ bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
        BattlerHasInnate(battler, ABILITY_TURBOBLAZE))
         return TRUE;
     
-    if (atkAbility == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battler, ABILITY_MYCELIUM_MIGHT))
-        return gBattleMoves[GetChosenMove(battler)].split == SPLIT_STATUS;
+    if (IsMyceliumMightActive(battler))
+        return TRUE;
 
     return FALSE;
 }

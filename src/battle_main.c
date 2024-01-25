@@ -4946,6 +4946,16 @@ u16 GetChosenMove(u32 battlerId)
         return gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
 }
 
+u16 IsMyceliumMightActive(u32 battlerId)
+{
+    u16 ability = gBattleMons[battlerId].ability;
+
+    if (ability == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battlerId, ABILITY_MYCELIUM_MIGHT))
+        return gBattleMoves[GetChosenMove(battlerId)].split == SPLIT_STATUS;
+    else
+        return FALSE;
+}
+
 s8 GetChosenMovePriority(u32 battlerId, u32 target)
 {
     u16 move = GetChosenMove(battlerId);

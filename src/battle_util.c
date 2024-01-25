@@ -3947,7 +3947,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_MOVE:
-            if ((gBattleMoves[gCurrentMove].flags & FLAG_POWDER) && (gBattlerAttacker != gBattlerTarget)) // Rage Powder targets the user
+            if ((gBattleMoves[gCurrentMove].flags & FLAG_POWDER) && (gBattlerAttacker != gBattlerTarget) && !IsMyceliumMightActive(gBattlerAttacker)) // Rage Powder targets the user
             {
                 if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
                     || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT
@@ -11881,6 +11881,9 @@ bool32 CanSleep(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
 
+    if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
+        return TRUE;
+
     if (ability == ABILITY_INSOMNIA
 	  || BattlerHasInnate(gActiveBattler, ABILITY_INSOMNIA)
       || ability == ABILITY_VITAL_SPIRIT
@@ -11899,7 +11902,10 @@ bool32 CanSleep(u8 battlerId)
 bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 {
     u16 ability = GetBattlerAbility(battlerTarget);
-    
+
+    if (gBattleMons[battlerTarget].status1 & !STATUS1_ANY && IsMyceliumMightActive(battlerAttacker))
+        return TRUE;
+        
     if (!(CanPoisonType(battlerAttacker, battlerTarget))
      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
@@ -11917,6 +11923,10 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 bool32 CanBeBurned(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
+
+    if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
+        return TRUE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
@@ -11937,6 +11947,10 @@ bool32 CanBeBurned(u8 battlerId)
 bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget)
 {
     u16 ability = GetBattlerAbility(battlerTarget);
+
+    if (gBattleMons[battlerTarget].status1 & !STATUS1_ANY && IsMyceliumMightActive(battlerAttacker))
+        return TRUE;
+
     if ((!CanParalyzeType(battlerAttacker, battlerTarget))
       || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
       || BATTLER_HAS_ABILITY(battlerTarget, ABILITY_LIMBER)
@@ -11969,6 +11983,10 @@ bool32 CanBeFrozen(u8 battlerId)
 bool32 CanGetFrostbite(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
+
+    if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
+        return TRUE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_COMATOSE
@@ -11982,6 +12000,9 @@ bool32 CanGetFrostbite(u8 battlerId)
 
 bool32 CanBleed(u8 battlerId)
 {
+    if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
+        return TRUE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
         || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST)
         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
@@ -11995,6 +12016,9 @@ bool32 CanBleed(u8 battlerId)
 
 bool32 CanBeConfused(u8 battlerId)
 {
+    if (gBattleMons[battlerId].status2 & !STATUS2_CONFUSION && IsMyceliumMightActive(gBattlerAttacker))
+        return TRUE;
+
     if (GetBattlerAbility(gEffectBattler) == ABILITY_OWN_TEMPO
 	  || BattlerHasInnate(battlerId, ABILITY_OWN_TEMPO)
       || GetBattlerAbility(gEffectBattler) == ABILITY_DISCIPLINE
