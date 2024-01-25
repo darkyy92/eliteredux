@@ -1022,7 +1022,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_SUPPRESS] = _("Suppress"),
         [ABILITY_REFRIGERATOR] = _("Refrigerator"),
         [ABILITY_HEAVEN_ASUNDER] = _("Heaven Asunder"),
-        [ABILITY_HYDRATION_PLUS] = _("ABILITY HYDRATION PLUS"),
+        [ABILITY_HYDRATION_PLUS] = _("NAMEGOESHERE"),
         [ABILITY_SEABORNE] = _("Seaborne"),
         [ABILITY_HIGH_TIDE] = _("High Tide"),
         [ABILITY_CHANGE_OF_HEART] = _("Change of Heart"),
@@ -1036,7 +1036,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_COMBUSTION] = _("Combustion"),
         [ABILITY_PONY_POWER] = _("Pony Powder"),
         [ABILITY_POWDER_BURST] = _("Powder Burst"),
-        [ABILITY_RECYCLE_ON_SWITCH] = _("ABILITY RECYCLE ON SWITCH"),
+        [ABILITY_RECYCLE_ON_SWITCH] = _("NAMEGOESHERE"),
         [ABILITY_HALLOWEEN_SEASON] = _("Halloween Season"),
 };
 
