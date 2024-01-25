@@ -2419,6 +2419,21 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     u16 userSpecies = gBattleMons[userId].species;
     u16 targetSpecies = gBattleMons[targetId].species;
 
+    if (BATTLER_HAS_ABILITY(userId, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[moveNum].split == SPLIT_STATUS && gBattleMoves[moveNum].target & !MOVE_TARGET_USER) {
+        switch(gBattleMoves[moveNum].effect){
+            case EFFECT_SLEEP:
+            case EFFECT_TOXIC:
+            case EFFECT_POISON:
+            case EFFECT_WILL_O_WISP:
+            case EFFECT_PARALYZE:
+                return gBattleMons[targetId].status1 & STATUS1_ANY ? MOVE_EFFECTIVENESS_NONE : MOVE_EFFECTIVENESS_STATUS;
+            case EFFECT_CONFUSE:
+                return gBattleMons[targetId].status2 & STATUS2_CONFUSION ? MOVE_EFFECTIVENESS_NONE : MOVE_EFFECTIVENESS_STATUS;
+            default:
+                return MOVE_EFFECTIVENESS_STATUS;
+        }
+    }
+
     //Specific Moves
     switch(moveNum){
         case MOVE_LEECH_SEED:

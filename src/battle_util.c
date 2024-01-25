@@ -10182,7 +10182,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && !BATTLER_HEALING_BLOCKED(gBattlerAttacker)
              && IsBattlerAlive(gBattlerAttacker)
-             && gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATED_WITH(gBattlerAttacker)
+             && gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
             {
                 //Attacker

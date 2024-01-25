@@ -12384,7 +12384,12 @@ static void Cmd_trytoapplymoveeffect(void)
                 u32 pidAtk     = gBattleMons[gBattlerAttacker].personality;
                 u32 pidDef     = gBattleMons[gBattlerTarget].personality;
 
-                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                if (IsMyceliumMightActive(gBattlerAttacker) && !(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION))
+                {
+                    gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+                    appliedEffect = TRUE;
+                }
+                else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && IsBattlerAlive(gBattlerTarget)
                 && !gProtectStructs[gBattlerTarget].confusionSelfDmg
                 && GetBattlerAbility(gBattlerTarget) != ABILITY_OBLIVIOUS
@@ -12402,7 +12407,12 @@ static void Cmd_trytoapplymoveeffect(void)
         break;
         case EFFECT_CURSE_HIT:
             if(rand <= secondaryEffectChance){
-                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                if (IsMyceliumMightActive(gBattlerAttacker) && !(gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED))
+                {
+                    gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
+                    appliedEffect = TRUE;
+                }
+                else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && IsBattlerAlive(gBattlerTarget)
                 && !gProtectStructs[gBattlerTarget].confusionSelfDmg
                 && TARGET_TURN_DAMAGED
@@ -12428,7 +12438,12 @@ static void Cmd_trytoapplymoveeffect(void)
         break;
         case EFFECT_LEECH_SEED_HIT:
              if(rand <= secondaryEffectChance){
-                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                if (IsMyceliumMightActive(gBattlerAttacker) && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+                {
+                    gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
+                    appliedEffect = TRUE;
+                }
+                else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gBattleMons[gBattlerTarget].hp != 0
                 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
                 && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
