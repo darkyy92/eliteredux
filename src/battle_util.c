@@ -4616,6 +4616,23 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     return FALSE;
 }
 
+static void UseAttackerFollowUpMove(u8 *effect, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
+{
+    gTempMove = gCurrentMove;
+    gCurrentMove = extraMove;
+    VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+    gProtectStructs[battler].extraMoveUsed = TRUE;
+
+    //Move Effect
+    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+    VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
+    gBattleScripting.abilityPopupOverwrite = ability;
+
+    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+    (*effect)++;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -10033,152 +10050,50 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         //Volcano Rage
         if(BATTLER_HAS_ABILITY(battler, ABILITY_VOLCANO_RAGE)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_VOLCANO_RAGE; //For easier copypaste
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-				u16 extraMove = MOVE_ERUPTION;    //The Extra Move to be used
-                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
+                UseAttackerFollowUpMove(&effect, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
             }
         }
 
         //Frost Burn
         if(BATTLER_HAS_ABILITY(battler, ABILITY_FROST_BURN)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_FROST_BURN; //For easier copypaste
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-				u16 extraMove = MOVE_ICE_BEAM;    //The Extra Move to be used
-                u8 movePower = 40;                //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 10;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = MOVE_EFFECT_FROSTBITE;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
+                UseAttackerFollowUpMove(&effect, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
             }
         }
 
         //Pryo Shells
         if(BATTLER_HAS_ABILITY(battler, ABILITY_PYRO_SHELLS)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_PYRO_SHELLS; //For easier copypaste
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-				u16 extraMove = MOVE_OUTBURST;    //The Extra Move to be used
-                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
+                UseAttackerFollowUpMove(&effect, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
             }
         }
 
         //Thundercall
         if(BATTLER_HAS_ABILITY(battler, ABILITY_THUNDERCALL)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_THUNDERCALL; //For easier copypaste
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-				u16 extraMove = MOVE_SMITE;        //The Extra Move to be used
-                u8 movePower = 20;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = MOVE_EFFECT_SMACK_DOWN; //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
+                UseAttackerFollowUpMove(&effect, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
             }
         }
 
         //Volcano Rage
         if(BATTLER_HAS_ABILITY(battler, ABILITY_WEATHER_CAST)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_WEATHER_CAST; //For easier copypaste
 
             //Checks if the ability is triggered
             if(canUseExtraMove(battler, gBattlerTarget)){
@@ -10187,32 +10102,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     case MOVE_RAIN_DANCE:
                     case MOVE_SANDSTORM:
                     case MOVE_HAIL:
-                        activateAbilty = TRUE;
+                        UseAttackerFollowUpMove(&effect, ABILITY_WEATHER_CAST, MOVE_WEATHER_BALL, 20, 0, 0);
                         break;
                 }
             }
+        }
 
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-				u16 extraMove = MOVE_WEATHER_BALL;    //The Extra Move to be used
-                u8 movePower = 0;                     //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;      //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;      //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
+        //Aftershock
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_AFTERSHOCK)){
 
-                //Move Effect
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                (GetTypeBeforeUsingMove(move, battler) == TYPE_GROUND)){
+                UseAttackerFollowUpMove(&effect, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
             }
         }
 		

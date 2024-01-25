@@ -13182,7 +13182,15 @@ static void Cmd_setsafeguard(void)
 
 static void Cmd_magnitudedamagecalculation(void)
 {
-    u32 magnitude = Random() % 100;
+    bool8 isExtraMove = gProtectStructs[gBattlerAttacker].extraMoveUsed;
+    u8 maxRoll = 100;
+
+    if(isExtraMove){
+        maxRoll = VarGet(VAR_EXTRA_MOVE_DAMAGE);
+        VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
+    }
+
+    u32 magnitude = Random() % maxRoll;
 
     if (magnitude < 5)
     {
