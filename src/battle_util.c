@@ -6233,24 +6233,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Generator
             if(BATTLER_HAS_ABILITY(battler, ABILITY_GENERATOR)){
                 u16 abilityToCheck = ABILITY_GENERATOR; //For easier copypaste
+                bool8 activateAbility = FALSE;
 
                 switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
                     case BATTLER_INNATE:
                         if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                             gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            activateAbility = TRUE;
                         }
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            activateAbility = TRUE;
                         }
                     break;
                 }
 
-                BattleScriptPushCursorAndCallback(BattleScript_GeneratorActivates);
-                effect++;
+                if (activateAbility) {
+                    gBattlerAttacker = battler;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                    BattleScriptPushCursorAndCallback(BattleScript_GeneratorActivates);
+                    effect++;
+                }
             }
 
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SOOTHING_AROMA)){
