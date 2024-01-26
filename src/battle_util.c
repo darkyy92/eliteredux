@@ -9914,7 +9914,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        //Volcano Rage
+        //Weather Cast
         if(BATTLER_HAS_ABILITY(battler, ABILITY_WEATHER_CAST)){
 
             //Checks if the ability is triggered
@@ -9941,7 +9941,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        //Volcano Rage
+        //High Tide
         if(BATTLER_HAS_ABILITY(battler, ABILITY_HIGH_TIDE)){
 
             //Checks if the ability is triggered
@@ -9949,6 +9949,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_WATER)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_HIGH_TIDE, MOVE_SURF, 50, 0, 0);
+            }
+        }
+
+        //Two Step
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_TWO_STEP)){
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                gBattleMoves[move].flags & FLAG_DANCE) {
+                UseAttackerFollowUpMove(&effect, battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
             }
         }
 		
