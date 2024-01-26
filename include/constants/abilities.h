@@ -545,8 +545,14 @@
 #define ABILITY_POWDER_BURST     (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
 #define ABILITY_SALVAGE          (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
 #define ABILITY_MONSTER_MASH     (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
+#define ABILITY_TWO_STEP         (ABILITIES_COUNT_LATEST_GEN + 250) // Revelation dance after dance move
+#define ABILITY_SPITEFUL         (ABILITIES_COUNT_LATEST_GEN + 251) // Spite on contact
+#define ABILITY_FORTITUDE        (ABILITIES_COUNT_LATEST_GEN + 252) // SpDef Stamina
+#define ABILITY_DEVOURER         (ABILITIES_COUNT_LATEST_GEN + 253) // Jaws of Carnage + Strong Jaw
+#define ABILITY_PHANTOM_THIEF    (ABILITIES_COUNT_LATEST_GEN + 254) // Spectral Thief on Entry
+#define ABILITY_EARLY_GRAVE      (ABILITIES_COUNT_LATEST_GEN + 255) // Ghost Gale Wings
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_MONSTER_MASH + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_EARLY_GRAVE + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -509,6 +509,12 @@ static const u8 sAbilityPonyPowerDescription[] = _("Keen Edge + Mystic Blades.")
 static const u8 sAbilityPowderBurstDescription[] = _("Uses Powder\non switch-in.");
 static const u8 sAbilitySalvageDescription[] = _("Recover item\non switch-out.");
 static const u8 sAbilityMonsterMashDescription[] = _("Uses Trick-or-Treat\non switch-in.");
+static const u8 sAbilityTwoStepDescription[] = _("Triggers 50BP Revelation Dance\nafter using a Dance move.");
+static const u8 sAbilitySpitefulDescription[] = _("Reduces attacker's PP when hit.");
+static const u8 sAbilityFortitudeDescription[] = _("Boosts SpDef +1 when hit.\nMaxes SpDef on crit.");
+static const u8 sAbilityDevourerDescription[] = _("Strong Jaw + Primal Maw.");
+static const u8 sAbilityPhantomThiefDescription[] = _("Uses 40BP Spectral Thief\non switch-in.");
+static const u8 sAbilityEarlyGraveDescription[] = _("Ghost moves get +1 priority.\nRequires full HP.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1038,6 +1044,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_POWDER_BURST] = _("Powder Burst"),
         [ABILITY_SALVAGE] = _("Salvage"),
         [ABILITY_MONSTER_MASH] = _("Monster Mash"),
+        [ABILITY_TWO_STEP] = _("Two Step"),
+        [ABILITY_SPITEFUL] = _("Spiteful"),
+        [ABILITY_FORTITUDE] = _("Fortitude"),
+        [ABILITY_DEVOURER] = _("Devourer"),
+        [ABILITY_PHANTOM_THIEF] = _("Phantom Thief"),
+        [ABILITY_EARLY_GRAVE] = _("Early Grave"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1560,4 +1572,10 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_POWDER_BURST] = sAbilityPowderBurstDescription,
         [ABILITY_SALVAGE] = sAbilitySalvageDescription,
         [ABILITY_MONSTER_MASH] = sAbilityMonsterMashDescription,
+        [ABILITY_TWO_STEP] = sAbilityTwoStepDescription,
+        [ABILITY_SPITEFUL] = sAbilitySpitefulDescription,
+        [ABILITY_FORTITUDE] = sAbilityFortitudeDescription,
+        [ABILITY_DEVOURER] = sAbilityDevourerDescription,
+        [ABILITY_PHANTOM_THIEF] = sAbilityPhantomThiefDescription,
+        [ABILITY_EARLY_GRAVE] = sAbilityEarlyGraveDescription,
 };
