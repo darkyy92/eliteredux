@@ -12,9 +12,6 @@ jobs:
       MODERN: 0
       COMPARE: 0
     steps:
-      - name: Check if you uploaded a the correct emerald gba file
-        run: sha1sum -c pokemon_emerald.sha1
-        
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -29,7 +26,6 @@ jobs:
         # build-essential, git, and libpng-dev are already installed
         # gcc-arm-none-eabi is only needed for the modern build
         # as an alternative to dkP
-
       - name: Download poryscript
         run: cd tools && wget https://github.com/huderlem/poryscript/releases/download/3.3.0/poryscript-linux.zip && unzip poryscript-linux.zip -d ./ && rm ./poryscript-linux.zip && mv ./poryscript-linux ./poryscript && ls && cd ..
         # Downloads poryscript and unzips it
@@ -43,14 +39,22 @@ jobs:
       - name: Agbcc
         run: make -j${nproc} all
 
-      - name: Upload gba
+      - name: Download pokeemerald repo
+        run: pwd && cd tools && git clone https://github.com/pret/pokeemerald
+        # Clones pokeemerald repo
+
+      - name: Install agbcc to vanilla emerald
+        run: pwd && cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald && pwd
+
+      - name: Build pokeemerald repo
+        run: pwd && cd tools && cd pokeemerald && pwd && ls && make -j${nproc}
+        # builds agbcc to pokeemerald repo
+
+      - name: Build the patch
+        run: chmod -R 755 ./flips-linux && ls && ./flips-linux --create tools/pokeemerald/pokeemerald.gba pokeemerald.gba EliteRedux.bps
+
+      - name: Upload bps file
         uses: actions/upload-artifact@v2
         with:
-          name: pokeemerald_built
-          path: pokeemerald.gba
-          
-      - name: Upload map
-        uses: actions/upload-artifact@v2
-        with:
-          name: pokeemerald_map
-          path: pokeemerald.map
+          name: pokeemerald_patch
+          path: EliteRedux.bps
