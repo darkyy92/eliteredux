@@ -4976,44 +4976,18 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     if(BATTLER_HAS_ABILITY(battlerId, ABILITY_OPPORTUNIST) && gBattleMons[target].hp <= gBattleMons[target].maxHP / 2)
         priority++;
 
-	// Gale Wings
-    if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || BattlerHasInnate(battlerId, ABILITY_GALE_WINGS))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FLYING
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
-	// Flaming Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || BattlerHasInnate(battlerId, ABILITY_FLAMING_SOUL))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FIRE
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    #define GALE_WINGS_CLONE(ability, type) if (BATTLER_HAS_ABILITY(battlerId, ability) \
+                                                && GetTypeBeforeUsingMove(move, battlerId) == type \
+                                                && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId))) \
+                                                    priority++;
 
-	// Early Grave
-	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_EARLY_GRAVE)
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_GHOST
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    GALE_WINGS_CLONE(ABILITY_GALE_WINGS, TYPE_FLYING)
+    GALE_WINGS_CLONE(ABILITY_FLAMING_SOUL, TYPE_FIRE)
+    GALE_WINGS_CLONE(ABILITY_EARLY_GRAVE, TYPE_GHOST)
+    GALE_WINGS_CLONE(ABILITY_FROZEN_SOUL, TYPE_ICE)
+    GALE_WINGS_CLONE(ABILITY_VOLT_RUSH, TYPE_ELECTRIC)
 
-	// Frozen Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || BattlerHasInnate(battlerId, ABILITY_FROZEN_SOUL))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ICE
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
-
-    // Volt Rush
-	if ((GetBattlerAbility(battlerId) == ABILITY_VOLT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VOLT_RUSH))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ELECTRIC
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    #undef GALE_WINGS_CLONE
 
     // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || BattlerHasInnate(battlerId, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
