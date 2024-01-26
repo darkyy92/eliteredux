@@ -8560,6 +8560,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+        
+        // Cursed Body
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_SPITEFUL)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && move != MOVE_STRUGGLE
+             && IsBattlerAlive(gBattlerAttacker)
+             && gBattlerAttacker != gBattlerTarget
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0)
+            {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPITEFUL;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilitySpiteful;
+                effect++;
+            }
+        }
 		
 		// Soul Linker Defender
 		if(BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){

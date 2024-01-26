@@ -4635,6 +4635,19 @@ BattleScript_EffectSpite::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_AbilitySpiteful::
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	tryspiteppreduce BattleScript_ButItFailed
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNREDUCEDPP
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_AbilitySpitefulFailed:
+	copybyte gBattlerTarget, gBattlerAttacker
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	return
+
 BattleScript_EffectHealBell::
 	attackcanceler
 	attackstring
