@@ -4992,7 +4992,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     }
 
 	// Early Grave
-	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_EARLY_GRAVE))
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_EARLY_GRAVE)
         && GetTypeBeforeUsingMove(move, battlerId) == TYPE_GHOST
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
