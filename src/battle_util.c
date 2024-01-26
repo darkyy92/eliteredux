@@ -6261,6 +6261,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SOOTHING_AROMA)){
                 u16 abilityToCheck = ABILITY_SOOTHING_AROMA; //For easier copypaste
                 bool8 anyStatus = FALSE;
+                bool8 canActivate = FALSE;
                 struct Pokemon *party;
 
                 if (GetBattlerSide(battler) == B_SIDE_PLAYER)
@@ -6271,29 +6272,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
                     case BATTLER_INNATE:
                         if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                             gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                            canActivate = TRUE;
                         }
                     break;
                     case BATTLER_ABILITY:
                         if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
                             gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                            canActivate = TRUE;
                         }
                     break;
                 }
 
-                for (i = 0; i < PARTY_SIZE; i++) {
-                    u32 status1 = GetMonData(&party[i], MON_DATA_STATUS);
-                    if (status1 & STATUS1_ANY) {
-                        anyStatus = TRUE;
-                        break;
+                if (canActivate) {
+                    for (i = 0; i < PARTY_SIZE; i++) {
+                        u32 status1 = GetMonData(&party[i], MON_DATA_STATUS);
+                        if (status1 & STATUS1_ANY) {
+                            anyStatus = TRUE;
+                            break;
+                        }
                     }
-                }
 
-                if (anyStatus) {
-                    BattleScriptPushCursorAndCallback(BattleScript_EffectSoothingAroma);
-                    effect++;
+                    if (anyStatus) {
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gBattlerAttacker = battler;
+                        BattleScriptPushCursorAndCallback(BattleScript_EffectSoothingAroma);
+                        effect++;
+                    }
                 }
             }
 
