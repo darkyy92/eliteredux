@@ -1560,13 +1560,25 @@ static void Cmd_attackcanceler(void)
     }
     // Primal Maw
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
-	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)) // Includes Innate
+	&& (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_PRIMAL_MAW)) // Includes Innate
 	&& (gBattleMoves[gCurrentMove].flags & FLAG_STRONG_JAW_BOOST)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_PRIMAL_MAW;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+    // Devourer
+    if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
+	&& (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DEVOURER)) // Includes Innate
+	&& (gBattleMoves[gCurrentMove].flags & FLAG_STRONG_JAW_BOOST)
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_DEVOURER;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -12339,6 +12351,7 @@ static void Cmd_calculatesetdamage(void)
                 break;
             case ABILITY_RAGING_BOXER:
             case ABILITY_PRIMAL_MAW:
+            case ABILITY_DEVOURER:
                 gBattleMoveDamage = baseDamage / 2;
                 break;
         }

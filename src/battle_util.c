@@ -13962,6 +13962,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRONG_JAW) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
         MulModifier(&modifier, UQ_4_12(1.5));
 	
+	// Strong Jaw
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DEVOURER) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
+        MulModifier(&modifier, UQ_4_12(1.5));
+	
 	// Pixilate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
@@ -15756,6 +15760,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
             }
             break;
         case ABILITY_PRIMAL_MAW:
+        case ABILITY_DEVOURER:
         case ABILITY_RAGING_BOXER:
             if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
                 MulModifier(&finalModifier, UQ_4_12(0.5));
