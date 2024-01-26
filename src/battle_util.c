@@ -16081,9 +16081,9 @@ void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef,
 {
     u16 mod = GetTypeModifier(moveType, defType);
 
-    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NORMALIZE) && moveType == TYPE_NORMAL && modifier != UQ_4_12(0.0))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NORMALIZE) && moveType == TYPE_NORMAL && mod != UQ_4_12(0.0))
     {
-        modifier = UQ_4_12(1.0);
+        mod = UQ_4_12(1.0);
     }
     else if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {
