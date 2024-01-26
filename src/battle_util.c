@@ -5951,6 +5951,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -5989,6 +5990,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -6027,6 +6029,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -6065,6 +6068,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
