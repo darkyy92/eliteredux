@@ -4562,6 +4562,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
             if(!gSpecialStatuses[battlerId].switchInInnateDone[GetBattlerInnateNum(battlerId, ability)]){
                 gSpecialStatuses[battlerId].switchInInnateDone[GetBattlerInnateNum(battlerId, ability)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
+                gBattlerAttacker = battlerId;
                 return TRUE;
             }
             return FALSE;
@@ -4569,6 +4570,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
             if(!gSpecialStatuses[battlerId].switchInAbilityDone){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
                 gSpecialStatuses[battlerId].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battlerId;
                 return TRUE;
             }
             return FALSE;
@@ -4585,8 +4587,6 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     u8 opposingBattler = BATTLE_OPPOSITE(battler);
     
     if (!CheckAndSetSwitchInAbility(battler, ability)) return FALSE;
-    
-    gBattlerAttacker = battler;
 
     //Checks Target
     for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
@@ -5412,7 +5412,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Weather Abilities --------------------------------------------------------------------------------------------------
             // Drizzle and Seaborne
             if(CheckAndSetSwitchInAbility(battler, ABILITY_DRIZZLE) || CheckAndSetSwitchInAbility(battler, ABILITY_SEABORNE)){
-                gBattlerAttacker = battler;
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
@@ -5427,7 +5426,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             
             // Sand Stream
             if(CheckAndSetSwitchInAbility(battler, ABILITY_SAND_STREAM)){
-                gBattlerAttacker = battler;
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
@@ -5442,7 +5440,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Drought
             if(CheckAndSetSwitchInAbility(battler, ABILITY_DROUGHT)){
-                gBattlerAttacker = battler;
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
@@ -5457,7 +5454,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Snow Warning
             if(CheckAndSetSwitchInAbility(battler, ABILITY_SNOW_WARNING)){
-                gBattlerAttacker = battler;
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
@@ -5499,7 +5495,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Terrain Abilities --------------------------------------------------------------------------------------------------
             // Electric Surge
             if(CheckAndSetSwitchInAbility(battler, ABILITY_ELECTRIC_SURGE)){
-                gBattlerAttacker = battler;
                 if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
                     BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
                     effect++;
@@ -5508,7 +5503,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Grassy Surge
             if(CheckAndSetSwitchInAbility(battler, ABILITY_GRASSY_SURGE)){
-                gBattlerAttacker = battler;
                 if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer)){
                     BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
                     effect++;
@@ -5517,7 +5511,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 
             // Misty Surge
             if(CheckAndSetSwitchInAbility(battler, ABILITY_MISTY_SURGE)){
-                gBattlerAttacker = battler;
                 if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer)){
                     BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
                     effect++;
@@ -5526,7 +5519,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Psychic Surge
             if(CheckAndSetSwitchInAbility(battler, ABILITY_PSYCHIC_SURGE)){
-                gBattlerAttacker = battler;
                 if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer)){
                     BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
                     effect++;
@@ -5596,7 +5588,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             
             // Lets Roll
             if(CheckAndSetSwitchInAbility(battler, ABILITY_LETS_ROLL)){
-                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETS_ROLL)] = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
                 gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
@@ -5823,7 +5814,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Pickup
             if(CheckAndSetSwitchInAbility(battler, ABILITY_PICKUP)){
                 if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)){
-                    gBattlerAttacker = battler;
                     gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES | SIDE_STATUS_STICKY_WEB);
                     BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
                     effect++;
@@ -5834,7 +5824,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(CheckAndSetSwitchInAbility(battler, ABILITY_FOREWARN)){
                 bool8 hasTarget      = FALSE;
                 u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                gBattlerAttacker = battler;
 
                 //Checks Target
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
@@ -5910,7 +5899,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Generator
             if(CheckAndSetSwitchInAbility(battler, ABILITY_GENERATOR)){
-                gBattlerAttacker = battler;
                 BattleScriptPushCursorAndCallback(BattleScript_GeneratorActivates);
                 effect++;
             }
@@ -5933,7 +5921,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
 
                 if (anyStatus) {
-                    gBattlerAttacker = battler;
                     BattleScriptPushCursorAndCallback(BattleScript_EffectSoothingAroma);
                     effect++;
                 }
@@ -5951,7 +5938,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -5990,7 +5976,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -6029,7 +6014,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
@@ -6068,7 +6052,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-                gBattlerAttacker = battler;
 
                 for(i = 0; i < numStats; i++){
                     statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
