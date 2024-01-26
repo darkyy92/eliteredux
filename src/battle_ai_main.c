@@ -724,6 +724,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        if (moveType == TYPE_GROUND
+          && (AI_DATA->abilities[battlerDef] == ABILITY_EARTH_EATER || BattlerHasInnate(battlerDef, ABILITY_EARTH_EATER)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
         if (move == MOVE_LEECH_SEED
           && (AI_DATA->abilities[battlerDef] == ABILITY_IMPENETRABLE || BattlerHasInnate(battlerDef, ABILITY_IMPENETRABLE)))
         {
@@ -813,6 +819,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         score -= 5;
                     break;
                 }
+                break;
+            case ABILITY_EARTH_EATER:
+                if (moveType == TYPE_GROUND)
+                    RETURN_SCORE_MINUS(20);
                 break;
             case ABILITY_VOLT_ABSORB:
             case ABILITY_MOTOR_DRIVE:
@@ -986,6 +996,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 break;
             }
         }
+
+        //Earth Eater
+        if((BattlerHasInnate(battlerDef, ABILITY_EARTH_EATER)) && 
+            moveType == TYPE_GROUND)
+            RETURN_SCORE_MINUS(20);
 
         //Volt Absorb, Motor Drive and Lighting Rod
         if((BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB)  || 
@@ -3069,6 +3084,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 switch (atkPartnerAbility)
                 {
                 case ABILITY_VOLT_ABSORB:
+                case ABILITY_EARTH_EATER:
                     if (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_HP_AWARE))
                     {
                         RETURN_SCORE_MINUS(10);
@@ -5352,6 +5368,7 @@ static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     {
         if ((effect == EFFECT_HEAL_PULSE || effect == EFFECT_HIT_ENEMY_HEAL_ALLY)
          || (moveType == TYPE_ELECTRIC && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_VOLT_ABSORB)
+         || (moveType == TYPE_GROUND && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_EARTH_EATER)
          || (moveType == TYPE_WATER && (AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_DRY_SKIN || AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_WATER_ABSORB)))
         {
             if (CanTargetFaintAi(FOE(battlerAtk), BATTLE_PARTNER(battlerAtk))

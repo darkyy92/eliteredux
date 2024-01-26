@@ -1998,6 +1998,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
                 if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
                     abilityNullifiesDamage = TRUE;
+
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_EARTH_EATER, moveNum))
+                    abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ELECTRIC:
                 if(gBattleMons[userId].ability == ABILITY_GROUND_SHOCK || BattlerHasInnate(userId, ABILITY_GROUND_SHOCK)){
