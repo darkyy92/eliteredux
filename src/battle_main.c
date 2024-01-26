@@ -4991,6 +4991,14 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
         priority++;
     }
 
+	// Early Grave
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_EARLY_GRAVE))
+        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_GHOST
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
+    {
+        priority++;
+    }
+
 	// Frozen Soul
 	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || BattlerHasInnate(battlerId, ABILITY_FROZEN_SOUL))
         && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ICE
