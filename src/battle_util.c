@@ -4581,7 +4581,6 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
 
 static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect) {
     bool8 activateAbilty = FALSE;
-    bool8 checkPassed    = FALSE;
     bool8 hasTarget      = FALSE;
     u8 i;
     u8 opposingBattler = BATTLE_OPPOSITE(battler);
@@ -4598,7 +4597,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
         }
     }
 
-    if(checkPassed && hasTarget){
+    if(hasTarget){
         //Checks if the ability is triggered
         if(canUseExtraMove(battler, gBattlerTarget)){
             activateAbilty = TRUE;
