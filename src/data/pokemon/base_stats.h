@@ -18499,14 +18499,14 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SIGILYPH] =
     {
-    .baseHP        = 72,
-    .baseAttack    = 58,
-    .baseDefense   = 80,
-    .baseSpeed     = 97,
-    .baseSpAttack  = 103,
-    .baseSpDefense = 80,
+    .baseHP        =  72,
+    .baseAttack    =  58,
+    .baseDefense   =  80,
+    .baseSpeed     =  97,
+    .baseSpAttack  =  103,
+    .baseSpDefense =  80,
     .type1 = TYPE_PSYCHIC,
-    .type2 = TYPE_FLYING,
+    .type2 = TYPE_GHOST,
     .catchRate = 255,
     .expYield = 172,
     .evYield_SpAttack  = 2,
@@ -25193,14 +25193,14 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_LURANTIS] =
     {
-    .baseHP        = 70,
-    .baseAttack    = 105,
-    .baseDefense   = 90,
-    .baseSpeed     = 45,
-    .baseSpAttack  = 80,
-    .baseSpDefense = 90,
+    .baseHP        =  70,
+    .baseAttack    =  105,
+    .baseDefense   =  90,
+    .baseSpeed     =  45,
+    .baseSpAttack  =  80,
+    .baseSpDefense =  90,
     .type1 = TYPE_GRASS,
-    .type2 = TYPE_BUG,
+    .type2 = TYPE_GRASS,
     .catchRate = 255,
     .expYield = 168,
     .evYield_Attack    = 2,
