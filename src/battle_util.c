@@ -5896,6 +5896,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Monster Mash
             UseEntryMove(battler, ABILITY_MONSTER_MASH, &effect, MOVE_TRICK_OR_TREAT, 0, 0, 0);
 
+            // Phantom Thief
+            UseEntryMove(battler, ABILITY_PHANTOM_THIEF, &effect, MOVE_SPECTRAL_THIEF, 40, 0, 0);
+
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
                 u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
