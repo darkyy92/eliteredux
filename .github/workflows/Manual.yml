@@ -12,9 +12,6 @@ jobs:
       MODERN: 0
       COMPARE: 0
     steps:
-      - name: Check if you uploaded a the correct emerald gba file
-        run: sha1sum -c pokemon_emerald.sha1
-        
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -29,6 +26,9 @@ jobs:
         # build-essential, git, and libpng-dev are already installed
         # gcc-arm-none-eabi is only needed for the modern build
         # as an alternative to dkP
+        
+      - name: Check if you uploaded a the correct emerald gba file
+        run: sha1sum -c pokemon_emerald.sha1
 
       - name: Download poryscript
         run: cd tools && wget https://github.com/huderlem/poryscript/releases/download/3.3.0/poryscript-linux.zip && unzip poryscript-linux.zip -d ./ && rm ./poryscript-linux.zip && mv ./poryscript-linux ./poryscript && ls && cd ..
