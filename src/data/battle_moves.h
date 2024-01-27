@@ -12894,11 +12894,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_LEECH_BLADE] =
     {
-        .power = 75,
-        .pp = 15,
         .effect = EFFECT_ABSORB,
+        .power = 75,
         .type = TYPE_GRASS,
         .accuracy = 100,
+        .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -13024,16 +13024,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
     },
-    [MOVE_FIRE_BONE_RUSH] =
+    [MOVE_BLAZING_BONE] =
     {
-        .power = 15,
-        .priority = 1,
-        .accuracy = 100,
         .effect = EFFECT_MULTI_HIT,
+        .power = 15,
         .type = TYPE_FIRE,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .priority = 1,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_BONE_BASED,
         .split = SPLIT_PHYSICAL,
     },

@@ -876,7 +876,7 @@
 #define MOVE_RIDER_KICK          843
 #define MOVE_AQUA_CUTTER         844
 #define MOVE_INVERSE_ROOM        845
-#define MOVE_FIRE_BONE_RUSH      846
+#define MOVE_BLAZING_BONE      846
 
 
 #define MOVES_COUNT_DARKY        847
