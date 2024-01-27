@@ -10186,6 +10186,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+		//Flaming Jaws
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_FLAMING_JAWS)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBeBurned(gBattlerTarget)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+			 && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)//Biting Moves
+             && (Random() % 2) == 0)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FLAMING_JAWS;
+                gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
         //Shocking Jaws
 		if (BattlerHasInnate(battler, ABILITY_SHOCKING_JAWS)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -15508,7 +15529,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     }
 	
 	// Punk Rock
-	if(BATTLER_HAS_ABILITY(battleDef, ABILITY_BASS_BOOSTED)){
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_BASS_BOOSTED)){
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
     }
