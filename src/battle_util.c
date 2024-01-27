@@ -6435,7 +6435,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)){
                     //Enable Trick Room
                     gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-                    gFieldTimers.trickRoomTimer = 3;
+                    gFieldTimers.trickRoomTimer = TRICK_ROOM_DURATION_SHORT;
                     BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
                     effect++;
                 }
@@ -6453,7 +6453,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(!(gFieldStatuses & STATUS_FIELD_INVERSE_ROOM)){
                     //Enable Trick Room
                     gFieldStatuses |= STATUS_FIELD_INVERSE_ROOM;
-                    gFieldTimers.inverseRoomTimer = 3;
+                    gFieldTimers.inverseRoomTimer = INVERSE_ROOM_DURATION_SHORT;
                     BattleScriptPushCursorAndCallback(BattleScript_InversedRoomActivated);
                     effect++;
                 }
@@ -13716,6 +13716,10 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     case EFFECT_EXPANDING_FORCE:
         if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
             basePower = 120;
+        break;
+    case EFFECT_MISTY_TERRAIN_BOOST:
+        if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(gBattlerAttacker))
+            basePower = basePower * 13 / 10;
         break;
     }
 

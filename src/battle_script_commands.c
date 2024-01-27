@@ -10303,6 +10303,10 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
         return;
+    case VARIOUS_SET_DYNAMIC_TYPE:
+        gBattleStruct->dynamicMoveType = gBattlescriptCurrInstr[3];
+        gBattlescriptCurrInstr += 4;
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
@@ -14040,7 +14044,7 @@ static void HandleRoomMove(u32 statusFlag, u8 *timer, u8 stringId, u8 duration)
     else
     {
         gFieldStatuses |= statusFlag;
-        *timer = 5;
+        *timer = duration;
         gBattleCommunication[MULTISTRING_CHOOSER] = stringId;
     }
 }
@@ -14058,8 +14062,11 @@ static void Cmd_setroom(void)
     case EFFECT_MAGIC_ROOM:
         HandleRoomMove(STATUS_FIELD_MAGIC_ROOM, &gFieldTimers.magicRoomTimer, 4, MAGIC_ROOM_DURATION);
         break;
+    case EFFECT_INVERSE_ROOM:
+        HandleRoomMove(STATUS_FIELD_INVERSE_ROOM, &gFieldTimers.inverseRoomTimer, 6, INVERSE_ROOM_DURATION);
+        break;
     default:
-        gBattleCommunication[MULTISTRING_CHOOSER] = 6;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 8;
         break;
     }
     gBattlescriptCurrInstr++;

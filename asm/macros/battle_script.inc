@@ -2104,3 +2104,8 @@
 	.4byte \ptr
 	.endm
 
+	.macro setdynamictype battler:req, type:req
+	various \battler, VARIOUS_SET_DYNAMIC_TYPE
+	.byte \type
+	.endm
+

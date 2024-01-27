@@ -699,7 +699,7 @@
 #define STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3   728
 #define STRINGID_INVERSEROOMENDS                      729
 #define STRINGID_INVERSEROOMACTIVATED                 730
-#define STRINGID_ATTACKERGOTTHETYPE  		      	      731
+#define STRINGID_ATTACKERGOTTHETYPE  		      	  731
 #define STRINGID_DEFENDERTYPECHANGEDTO                732
 #define STRINGID_ATTACKERBECAMEINFECTED               733
 #define STRINGID_PASTELVEILACTIVATED                  734
@@ -713,8 +713,9 @@
 #define STRINGID_SOOTHING_AROMA_CURE_STATUS           742
 #define STRINGID_LASTABILITYLOWEREDSTAT               743
 #define STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK      744
+#define STRINGID_SETUPINVERSEROOM                     745
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_SETUPINVERSEROOM + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

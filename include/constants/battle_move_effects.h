@@ -411,7 +411,13 @@
 #define EFFECT_FROSTBITE             404
 #define EFFECT_FREEZE                405
 #define EFFECT_INFERNAL_PARADE       406 //Double Power if has Status + Burn Chance
+#define EFFECT_WYRM_WIND             407
+#define EFFECT_MISTY_TERRAIN_BOOST   408
+#define EFFECT_BERRY_SMASH           409
+#define EFFECT_INVERSE_ROOM          410
+#define EFFECT_DRAIN_BRAIN           411
+#define EFFECT_FLINCH_30             412
 
-#define NUM_BATTLE_MOVE_EFFECTS 407 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS      (EFFECT_FLINCH_30 + 1) // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

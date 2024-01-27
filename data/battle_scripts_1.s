@@ -431,6 +431,12 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFrostbite               @ EFFECT_FROSTBITE
 	.4byte BattleScript_EffectFreeze                  @ EFFECT_FREEZE
 	.4byte BattleScript_EffectBurnHit                 @ EFFECT_INFERNAL_PARADE
+	.4byte BattleScript_EffectWyrmWind			  	  @ EFFECT_WYRM_WIND
+	.4byte BattleScript_EffectHit			  		  @ EFFECT_MISTY_TERRAIN_BOOST
+	.4byte BattleScript_EffectBerrySmash              @ EFFECT_BERRY_SMASH
+	.4byte BattleScript_EffectInverseRoom             @ EFFECT_INVERSE_ROOM
+	.4byte BattleScript_EffectDrainBrain              @ EFFECT_DRAIN_BRAIN
+	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_30
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -673,6 +679,62 @@ BattleScript_ScaleShotEnd::
 	setmoveeffect MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 	seteffectwithchance
 	setmoveeffect MOVE_EFFECT_DEF_MINUS_1 | MOVE_EFFECT_AFFECTS_USER
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendcase MOVEEND_SYNCHRONIZE_TARGET
+	moveendfrom MOVEEND_STATUS_IMMUNITY_ABILITIES
+	end
+
+BattleScript_EffectWyrmWind::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setmultihitcounter 0x0
+	initmultihitstring
+	sethword sMULTIHIT_EFFECT, 0x0
+BattleScript_WyrmWindLoop::
+	jumpifhasnohp BS_ATTACKER, BattleScript_WyrmWindEnd
+	jumpifhasnohp BS_TARGET, BattleScript_WyrmWindPrintStrings
+	jumpifhalfword CMP_EQUAL, gChosenMove, MOVE_SLEEP_TALK, BattleScript_WyrmWindDoMultiHit
+	jumpifstatus BS_ATTACKER, STATUS1_SLEEP, BattleScript_WyrmWindPrintStrings
+BattleScript_WyrmWindDoMultiHit::
+	movevaluescleanup
+	copyhword sMOVE_EFFECT, sMULTIHIT_EFFECT
+	critcalc
+	damagecalc
+	jumpifmovehadnoeffect BattleScript_WyrmWindMultiHitNoMoreHits
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	multihitresultmessage
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 0x1
+	addbyte sMULTIHIT_STRING + 4, 0x1
+	moveendto MOVEEND_NEXT_TARGET
+	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_WyrmWindPrintStrings
+	decrementmultihit BattleScript_WyrmWindLoop
+	goto BattleScript_WyrmWindPrintStrings
+BattleScript_WyrmWindMultiHitNoMoreHits::
+	pause 0x20
+BattleScript_WyrmWindPrintStrings::
+	resultmessage
+	waitmessage 0x40
+	jumpifmovehadnoeffect BattleScript_WyrmWindEnd
+	copyarray gBattleTextBuff1, sMULTIHIT_STRING, 0x6
+	printstring STRINGID_HITXTIMES
+	waitmessage 0x40
+BattleScript_WyrmWindEnd::
+	setmoveeffect MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+	seteffectwithchance
+	setmoveeffect MOVE_EFFECT_SP_DEF_MINUS_1 | MOVE_EFFECT_AFFECTS_USER
 	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 	moveendcase MOVEEND_SYNCHRONIZE_TARGET
@@ -1307,6 +1369,52 @@ BattleScript_StrengthSapMustLower:
 	attackanimation
 	waitanimation
 	goto BattleScript_StrengthSapLower
+	
+BattleScript_EffectDrainBrain:
+	setstatchanger STAT_SPATK, 1, TRUE
+	attackcanceler
+	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_SPATK, MIN_STAT_STAGE, BattleScript_DrainBrainTryLower
+	pause B_WAIT_TIME_SHORT
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_MoveEnd
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+BattleScript_DrainBrainTryLower:
+	getstatvalue BS_TARGET, STAT_SPATK
+	jumpiffullhp BS_ATTACKER, BattleScript_DrainBrainMustLower
+	attackanimation
+	waitanimation
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_DrainBrainHp
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_FELL_EMPTY, BattleScript_DrainBrainHp
+BattleScript_DrainBrainLower:
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DrainBrainHp
+@ Drain HP without lowering a stat
+BattleScript_DrainBrainTryHp:
+	jumpiffullhp BS_ATTACKER, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+BattleScript_DrainBrainHp:
+	jumpiffullhp BS_ATTACKER, BattleScript_MoveEnd
+	manipulatedamage DMG_BIG_ROOT
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNENERGYDRAINED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+BattleScript_DrainBrainMustLower:
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_MoveEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_FELL_EMPTY, BattleScript_MoveEnd
+	attackanimation
+	waitanimation
+	goto BattleScript_DrainBrainLower
 
 BattleScript_EffectBugBite:
 	setmoveeffect MOVE_EFFECT_BUG_BITE | MOVE_EFFECT_CERTAIN
@@ -2743,6 +2851,7 @@ BattleScript_RoomServiceLoop_NextBattler:
 	restoretarget
 	goto BattleScript_MoveEnd
 	
+BattleScript_EffectInverseRoom:
 BattleScript_EffectWonderRoom:
 BattleScript_EffectMagicRoom:
 	attackcanceler
@@ -2998,6 +3107,40 @@ BattleScript_EffectNaturalGift:
 BattleScript_EffectNaturalGiftEnd:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectBerrySmash:
+	jumpifnotberry BS_ATTACKER, BattleScript_EffectBerrySmashNoBerry
+	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_EffectBerrySmashNoBerry
+	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_EffectBerrySmashNoBerry
+	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_EffectBerrySmashNoBerry
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	consumeberry BS_ATTACKER
+	jumpifmovehadnoeffect BattleScript_EffectBerrySmashEnd
+BattleScript_EffectBerrySmashEnd:
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+BattleScript_EffectBerrySmashNoBerry:
+	setdynamictype BS_ATTACKER, 0
+	setmoveeffect 0
+	goto BattleScript_EffectHit
 
 BattleScript_MakeMoveMissed::
 	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
@@ -4688,7 +4831,6 @@ BattleScript_EffectTripleKick::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
-	ppreduce
 	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
 	addbyte sTRIPLE_KICK_POWER 20
 	goto BattleScript_HitFromAtkString

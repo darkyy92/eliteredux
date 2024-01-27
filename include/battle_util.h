@@ -52,8 +52,11 @@
 #define GRAVITY_DURATION                5
 #define GRAVITY_DURATION_EXTENDED       8
 #define TRICK_ROOM_DURATION             5
+#define TRICK_ROOM_DURATION_SHORT       3
 #define WONDER_ROOM_DURATION            5
 #define MAGIC_ROOM_DURATION             5
+#define INVERSE_ROOM_DURATION           5
+#define INVERSE_ROOM_DURATION_SHORT     3
 
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))

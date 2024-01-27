@@ -5909,7 +5909,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         else if (type2 != TYPE_MYSTERY)
             return type2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
@@ -5920,6 +5920,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
              && (   ((ability == ABILITY_PIXILATE        || MonHasInnate(mon, ABILITY_PIXILATE, disableRandomizer))        && (ateType = TYPE_FAIRY))
                  || ((ability == ABILITY_REFRIGERATE     || MonHasInnate(mon, ABILITY_REFRIGERATE, disableRandomizer))     && (ateType = TYPE_ICE))
                  || ((ability == ABILITY_REFRIGERATOR    || MonHasInnate(mon, ABILITY_REFRIGERATOR, disableRandomizer))    && (ateType = TYPE_ICE))
@@ -5975,7 +5976,8 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH)
 				return TYPE_FIGHTING;
 	}
 
@@ -6036,7 +6038,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             return gBattleMons[battlerAtk].type3;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -6067,6 +6069,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
              && (   ((attackerAbility == ABILITY_PIXILATE        || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))        && (ateType = TYPE_FAIRY))
                  || ((attackerAbility == ABILITY_REFRIGERATE     || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))     && (ateType = TYPE_ICE))
                  || ((attackerAbility == ABILITY_REFRIGERATOR    || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))    && (ateType = TYPE_ICE))
@@ -6166,7 +6169,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | 0x80;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             gBattleStruct->dynamicMoveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -6200,6 +6203,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
              && (   ((attackerAbility == ABILITY_PIXILATE            || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))            && (ateType = TYPE_FAIRY))
                  || ((attackerAbility == ABILITY_REFRIGERATE         || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))         && (ateType = TYPE_ICE))
                  || ((attackerAbility == ABILITY_REFRIGERATOR        || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))        && (ateType = TYPE_ICE))
@@ -6264,7 +6268,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIRE;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -6276,7 +6281,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIRE;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -6296,7 +6302,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIGHTING;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;

@@ -849,8 +849,37 @@
 #define MOVE_DEVIOUS_SHOT        816
 #define MOVE_STARBURST           817
 #define MOVE_CHEAP_SHOT          818
+#define MOVE_TORRENT_FIST        819
+#define MOVE_STAR_CRASH          820
+#define MOVE_STONE_AXE           821
+#define MOVE_ENERGY_WAVE         822
+#define MOVE_GRASS_FLIP_TURN     823
+#define MOVE_HEADLONG_RUSH       824
+#define MOVE_REVIVAL_BLESSING    825
+#define MOVE_WHIRLING_STRIKES    826
+#define MOVE_MIND_BREAK          827
+#define MOVE_WYRM_WIND           828
+#define MOVE_SHED_TAIL           829
+#define MOVE_BERRY_SMASH         830
+#define MOVE_HYDRO_STEAM         831
+#define MOVE_FIRE_HYDRO_STEAM    832
+#define MOVE_TRIPLE_ARROWS       833
+#define MOVE_DOUBLE_LARIAT       834
+#define MOVE_SPECIAL_AQUA_JET    835
+#define MOVE_LEECH_BLADE         836
+#define MOVE_YGGDRASIL_FORCE     837
+#define MOVE_DRAIN_BRAIN         838
+#define MOVE_PSYCHIC_DOUBLE_EDGE 839
+#define MOVE_ESPER_WING          840
+#define MOVE_SPECIAL_MORTAL_SPIN 841
+#define MOVE_GEM_MISSILE         842
+#define MOVE_RIDER_KICK          843
+#define MOVE_AQUA_CUTTER         844
+#define MOVE_INVERSE_ROOM        845
+#define MOVE_FIRE_BONE_RUSH      846
 
-#define MOVES_COUNT_DARKY        819
+
+#define MOVES_COUNT_DARKY        847
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

@@ -220,6 +220,7 @@
 #define VARIOUS_TRY_ACTIVATE_JAWS_OF_CARNAGE    144
 #define VARIOUS_RAISE_HIGHEST_ATTACKING_STAT    145
 #define VARIOUS_TRY_ACTIVATE_SUPER_STRAIN       146
+#define VARIOUS_SET_DYNAMIC_TYPE                147
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
