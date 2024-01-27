@@ -14066,6 +14066,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FAE_HUNTER) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)) // check if foe has Fairy-type
         MulModifier(&modifier, UQ_4_12(1.5));
 
+    // Fae Hunter
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MONSTER_HUNTER) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_DARK)) // check if foe has Fairy-type
+        MulModifier(&modifier, UQ_4_12(1.5));
+
     // Marine Apex
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MARINE_APEX) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
         MulModifier(&modifier, UQ_4_12(1.5));
