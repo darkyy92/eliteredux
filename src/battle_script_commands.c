@@ -10890,11 +10890,18 @@ static void Cmd_stockpiletohpheal(void)
 
 static void Cmd_checkcondition(void)
 {
-    u8 targetSide = GetBattlerSide(BATTLE_OPPOSITE(gBattlerAttacker));
+    u8 targetSide = GetBattlerSide(gBattlerTarget);
     u16 condition = T1_READ_16(gBattlescriptCurrInstr + 1);
     const u8 *ptrBefore = gBattlescriptCurrInstr;
     const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
     bool8 appliedEffect = FALSE;
+
+    if (targetSide == GetBattlerSide(gBattlerAttacker)) {
+        gBattlerTarget = BATTLE_OPPOSITE(gBattlerAttacker);
+        if (!IsBattlerAlive(gBattlerTarget)) gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+        if (!IsBattlerAlive(gBattlerTarget)) gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+        targetSide = GetBattlerSide(gBattlerTarget);
+    }
 
     switch(condition){
         case CONDITION_SPIKES:
