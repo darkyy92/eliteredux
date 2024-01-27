@@ -519,6 +519,7 @@ static const u8 sAbilityGrapplerDescription[] = _("Trapping moves last 6 turns.\
 static const u8 sAbilityBassBoostedDescription[] = _("Amplifier + Punk Rock.");
 static const u8 sAbilityFlamingJawsDescription[] = _("Biting moves have 50% chance\nto burn the target.");
 static const u8 sAbilityMonsterHunterDescription[] = _("Does 50% more damage to\nDark-types.");
+static const u8 sAbilityElectromorphosisDescription[] = _("Charges up when getting hit.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1510,7 +1511,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_LUMBERJACK] = sLumberjackDescription,
         [ABILITY_WELL_BAKED_BODY] = sWellBakedBodyDescription,
         [ABILITY_FURNACE] = sFurnaceDescription,
-        [ABILITY_ELECTROMORPHOSIS] = sAbilityTestDescription, //sElectromorphosisDescription,
+        [ABILITY_ELECTROMORPHOSIS] = sAbilityElectromorphosisDescription,
         [ABILITY_ROCKY_PAYLOAD] = sRockyPayloadDescription,
         [ABILITY_FAIRY_TALE] = sFairyTaleDescription,
         [ABILITY_EARTH_EATER] = sEarthEaterDescription,
