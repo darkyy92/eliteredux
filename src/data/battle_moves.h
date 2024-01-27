@@ -12672,15 +12672,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_TORRENT_FIST] =
     {
-        .accuracy = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .pp = 1,
-        .secondaryEffectChance = 0,
+        .power = 75,
+        .pp = 15,
+        .effect = EFFECT_FLINCH_HIT,
+        .type = TYPE_WATER,
+        .accuracy = 100,
+        .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_IRON_FIST_BOOST,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_STAR_CRASH] =
@@ -12776,15 +12776,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_MIND_BREAK] =
     {
-        .accuracy = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .pp = 1,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_CONFUSE_HIT,
+        .power = 110,
+        .type = TYPE_PSYCHIC,
+        .accuracy = 90,
+        .pp = 10,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_WYRM_WIND] =
@@ -12894,28 +12894,28 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_LEECH_BLADE] =
     {
-        .accuracy = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .pp = 1,
+        .power = 75,
+        .pp = 15,
+        .effect = EFFECT_ABSORB,
+        .type = TYPE_GRASS,
+        .accuracy = 100,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_STAT_STAGES_IGNORED | FLAG_KEEN_EDGE_BOOST,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_YGGDRASIL_FORCE] =
     {
-        .accuracy = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .pp = 1,
+        .effect = EFFECT_SUPERPOWER,
+        .power = 120,
+        .type = TYPE_GRASS,
+        .accuracy = 100,
+        .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_DRAIN_BRAIN] =
@@ -12931,7 +12931,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
     },
-    [MOVE_PSYCHIC_DOUBLE_EDGE] =
+    [MOVE_PSYCHOKINETIC_SLAM] =
     {
         .effect = EFFECT_RECOIL_33,
         .power = 120,
@@ -12958,7 +12958,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_SPECIAL,
         .flags2 = FLAG_AIR_BASED,
     },
-    [MOVE_SPECIAL_MORTAL_SPIN] =
+    [MOVE_MORTAL_SPIN] =
     {
         .effect = EFFECT_MORTAL_SPIN,
         .power = 30,
@@ -12966,7 +12966,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 100,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
@@ -12987,16 +12987,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_RIDER_KICK] =
     {
+        .effect = EFFECT_HIT,
+        .power = 90,
+        .type = TYPE_BUG,
         .accuracy = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .pp = 1,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_TARGET_ABILITY_IGNORED | FLAG_STRIKER_BOOST,
+        .split = SPLIT_SPECIAL,
     },
     [MOVE_AQUA_CUTTER] =
     {
