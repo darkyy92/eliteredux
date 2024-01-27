@@ -3980,7 +3980,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 if (moveType == TYPE_FIRE)
                 {
                     gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
-                    gBattleMoveDamage = BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker) ? 0 : gBattleMons[gBattlerAttacker].maxHP / 4;
+                    gBattleMoveDamage = BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker) ? 0 : (gBattleMons[gBattlerAttacker].maxHP / 4);
                     gBattlescriptCurrInstr = BattleScript_MoveUsedPowder;
                     effect = 1;
                 }
@@ -17629,6 +17629,7 @@ bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
        !gProtectStructs[sBattlerAttacker].confusionSelfDmg      &&
        !gProtectStructs[sBattlerAttacker].extraMoveUsed         &&
        !gProtectStructs[sBattlerAttacker].flinchImmobility      &&
+       !gProtectStructs[sBattlerAttacker].powderSelfDmg         &&
        !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP) &&
        !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
         return TRUE;
