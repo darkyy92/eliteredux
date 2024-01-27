@@ -41,6 +41,7 @@
 #define sSWITCH_CASE                 gBattleScripting + 0x37 //switchCase
 #define sBERRY_OVERRIDE              gBattleScripting + 0x38 //overrideBerryRequirements
 #define sBATTLER_OVERRIDE            gBattleScripting + 0x39 //battlerPopupOverwrite
+#define sEFFECT_CHANCE               gBattleScripting + 0x3C //moveSecondaryEffectChance
 
 #define cMULTISTRING_CHOOSER         gBattleCommunication + 5
 #define cMISS_TYPE                   gBattleCommunication + 6

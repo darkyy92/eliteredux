@@ -239,7 +239,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectNaturalGift             @ EFFECT_NATURAL_GIFT
 	.4byte BattleScript_EffectWakeUpSlap              @ EFFECT_WAKE_UP_SLAP
 	.4byte BattleScript_EffectHit                     @ EFFECT_WRING_OUT
-	.4byte BattleScript_EffectHit                     @ EFFECT_HEX
+	.4byte BattleScript_DoubleSimpleEffect            @ EFFECT_HEX
 	.4byte BattleScript_EffectHit                     @ EFFECT_ASSURANCE
 	.4byte BattleScript_EffectHit                     @ EFFECT_TRUMP_CARD
 	.4byte BattleScript_EffectHit                     @ EFFECT_ACROBATICS
@@ -436,7 +436,11 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBerrySmash              @ EFFECT_BERRY_SMASH
 	.4byte BattleScript_EffectInverseRoom             @ EFFECT_INVERSE_ROOM
 	.4byte BattleScript_EffectDrainBrain              @ EFFECT_DRAIN_BRAIN
-	.4byte BattleScript_EffectFlinchHit               @ EFFECT_FLINCH_30
+	.4byte BattleScript_EffectTripleArrows            @ EFFECT_TRIPLE_ARROWS
+	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_25_STATUS
+	.4byte BattleScript_EffectHit                     @ EFFECT_WEATHER_BOOST
+	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
+	
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
@@ -3052,6 +3056,34 @@ BattleScript_MoveEnd::
 	moveendall
 	end
 
+BattleScript_EffectTripleArrows::
+	setmoveeffect MOVE_EFFECT_DEF_MINUS_1
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	setmoveeffect MOVE_EFFECT_FLINCH
+	setmoveeffectchance 30
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendall
+	end
+
 BattleScript_FastEffectHit::
 BattleScript_FastHitFromAtkCanceler::
 	attackcanceler
@@ -3424,6 +3456,7 @@ BattleScript_EffectParalyzeHit::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAttracttHit::
+	argumenttomoveeffect
 	call BattleScript_EffectHit_Return
 	trytoapplymoveeffect BattleScript_MoveEffectAttract
 	goto BattleScript_MoveEnd
@@ -3532,6 +3565,7 @@ BattleScript_ExplosionLoop:
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
+	argumentstatuseffect
 	tryfaintmon BS_TARGET, FALSE, NULL
 	moveendto MOVEEND_NEXT_TARGET
 	jumpifnexttargetvalid BattleScript_ExplosionLoop
@@ -3893,6 +3927,31 @@ BattleScript_EffectFlinchWithStatus:
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	argumentstatuseffect
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
+BattleScript_DoubleSimpleEffect::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	argumenttomoveeffect
+	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
@@ -5202,6 +5261,34 @@ BattleScript_EffectRapidSpinEnd::
 	setmoveeffect MOVE_EFFECT_RAPIDSPIN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_EffectHit
 .endif
+
+BattleScript_EffectMortalSpin::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+	setmoveeffect MOVE_EFFECT_RAPIDSPIN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	seteffectwithchance
+	argumenttomoveeffect
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendall
+	end
 
 BattleScript_EffectSonicboom::
 	attackcanceler

@@ -3064,12 +3064,14 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
 {                                               \
     gBattlescriptCurrInstr++;                   \
     gBattleScripting.moveEffect = 0; \
+    gBattleScripting.moveSecondaryEffectChance = 0; \
     return;                                     \
 }
 
 #define RESET_RETURN                            \
 {                                               \
     gBattleScripting.moveEffect = 0; \
+    gBattleScripting.moveSecondaryEffectChance = 0; \
     return;                                     \
 }
 
@@ -3370,6 +3372,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         else if (statusChanged == FALSE)
         {
             gBattleScripting.moveEffect = 0;
+            gBattleScripting.moveSecondaryEffectChance = 0;
             gBattlescriptCurrInstr++;
             return;
         }
@@ -3903,13 +3906,17 @@ void SetMoveEffect(bool32 primary, u32 certain)
     }
 
     gBattleScripting.moveEffect = 0;
+    gBattleScripting.moveSecondaryEffectChance = 0;
 }
 
 static void Cmd_seteffectwithchance(void)
 {
-    u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+    u32 percentChance = gBattleScripting.moveSecondaryEffectChance ? 
+        (gBattleScripting.moveSecondaryEffectChance == 0xFF ? 
+            0 : gBattleScripting.moveSecondaryEffectChance) :
+        gBattleMoves[gCurrentMove].secondaryEffectChance;
     u8 moveType = gBattleMoves[gCurrentMove].type;
-    u8 moveEffect = gBattleMoves[gCurrentMove].effect;
+    u8 moveEffect = gBattleScripting.moveEffect ? (gBattleScripting.moveEffect & 0xFF) : gBattleMoves[gCurrentMove].effect;
 
     FlagClear(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED);
 
@@ -3993,6 +4000,7 @@ static void Cmd_seteffectwithchance(void)
 
     gBattleScripting.moveEffect = 0;
     gBattleScripting.multihitMoveEffect = 0;
+    gBattleScripting.moveSecondaryEffectChance = 0;
 }
 
 static void Cmd_seteffectprimary(void)
@@ -4017,6 +4025,7 @@ static void Cmd_clearstatusfromeffect(void)
     gBattleScripting.moveEffect = 0;
     gBattlescriptCurrInstr += 2;
     gBattleScripting.multihitMoveEffect = 0;
+    gBattleScripting.moveSecondaryEffectChance = 0;
 }
 
 static void Cmd_tryfaintmon(void)
@@ -4692,6 +4701,7 @@ static void MoveValuesCleanUp(void)
     gMoveResultFlags = 0;
     gIsCriticalHit = FALSE;
     gBattleScripting.moveEffect = 0;
+    gBattleScripting.moveSecondaryEffectChance = 0;
     gBattleCommunication[MISS_TYPE] = 0;
     gHitMarker &= ~(HITMARKER_DESTINYBOND);
     gHitMarker &= ~(HITMARKER_SYNCHRONISE_EFFECT);
@@ -5559,6 +5569,12 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
+                case EFFECT_RECOIL_25_STATUS: // Flare Blitz - can burn, Volt Tackle - can paralyze
+                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
+                    effect = TRUE;
+                    break;
                 case EFFECT_RECOIL_33: // Double Edge, 33 % recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 3);
                     BattleScriptPushCursor();
@@ -6183,6 +6199,7 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerAttacker].damagedMons = 0;
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
+            gBattleScripting.moveSecondaryEffectChance = 0;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:

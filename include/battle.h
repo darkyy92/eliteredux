@@ -725,6 +725,7 @@ struct BattleScripting
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
     bool8 forceFalseSwipeEffect;
     bool8 doublehealthRestore;
+    u8 moveSecondaryEffectChance;
 };
 
 // rom_80A5C6C

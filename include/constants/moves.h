@@ -853,7 +853,7 @@
 #define MOVE_STAR_CRASH          820
 #define MOVE_STONE_AXE           821
 #define MOVE_ENERGY_WAVE         822
-#define MOVE_GRASS_FLIP_TURN     823
+#define MOVE_FLUTTERING_LEAF     823
 #define MOVE_HEADLONG_RUSH       824
 #define MOVE_REVIVAL_BLESSING    825
 #define MOVE_WHIRLING_STRIKES    826

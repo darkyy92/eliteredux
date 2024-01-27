@@ -416,8 +416,11 @@
 #define EFFECT_BERRY_SMASH           409
 #define EFFECT_INVERSE_ROOM          410
 #define EFFECT_DRAIN_BRAIN           411
-#define EFFECT_FLINCH_30             412
+#define EFFECT_TRIPLE_ARROWS         412
+#define EFFECT_RECOIL_25_STATUS      413
+#define EFFECT_WEATHER_BOOST         414
+#define EFFECT_MORTAL_SPIN           415
 
-#define NUM_BATTLE_MOVE_EFFECTS      (EFFECT_FLINCH_30 + 1) // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS      (EFFECT_MORTAL_SPIN + 1) // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

@@ -1973,6 +1973,10 @@
 	sethword sSAVED_MOVE_EFFECT \effect
 	.endm
 
+	.macro setmoveeffectchance effect:req
+	sethword sEFFECT_CHANCE \effect
+	.endm
+
 	.macro chosenstatus1animation battler:req, status:req
 	chosenstatusanimation \battler, 0x0, \status
 	.endm
