@@ -295,7 +295,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(gActiveBattler, ABILITY_AMPLIFIER)) 
+    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -315,7 +315,7 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(battler, ABILITY_AMPLIFIER)) 
+    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -1137,6 +1137,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_SAND_GUARD] = 1,
     [ABILITY_WIND_RIDER] = 1,
     [ABILITY_ENLIGHTENED] = 1,
+    [ABILITY_BASS_BOOSTED] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -13927,6 +13928,13 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // Amplifier
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMPLIFIER) && (gBattleMoves[move].flags & FLAG_SOUND))
         MulModifier(&modifier, UQ_4_12(1.3));
+
+    // Bass Boosted
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BASS_BOOSTED) && (gBattleMoves[move].flags & FLAG_SOUND))
+    {
+        MulModifier(&modifier, UQ_4_12(1.3));
+        MulModifier(&modifier, UQ_4_12(1.3));
+    }
 	
 	// Steely Spirit
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STEELY_SPIRIT) && moveType == TYPE_STEEL)
@@ -15495,6 +15503,12 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	
 	// Punk Rock
 	if(BattlerHasInnate(battlerDef, ABILITY_PUNK_ROCK)){
+        if (gBattleMoves[move].flags & FLAG_SOUND)
+            MulModifier(&modifier, UQ_4_12(2.0));
+    }
+	
+	// Punk Rock
+	if(BATTLER_HAS_ABILITY(battleDef, ABILITY_BASS_BOOSTED)){
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
     }

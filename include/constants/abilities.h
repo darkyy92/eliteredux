@@ -551,6 +551,9 @@
 #define ABILITY_DEVOURER         (ABILITIES_COUNT_LATEST_GEN + 253) // Jaws of Carnage + Strong Jaw
 #define ABILITY_PHANTOM_THIEF    (ABILITIES_COUNT_LATEST_GEN + 254) // Spectral Thief on Entry
 #define ABILITY_EARLY_GRAVE      (ABILITIES_COUNT_LATEST_GEN + 255) // Ghost Gale Wings
+#define ABILITY_GRAPPLER         (ABILITIES_COUNT_LATEST_GEN + 256) // Trapping moves last longer and deal more damage
+#define ABILITY_BASS_BOOSTED     (ABILITIES_COUNT_LATEST_GEN + 257) // Punk Rock + Amplifier
+#define ABILITY_FLAMING_JAWS     (ABILITIES_COUNT_LATEST_GEN + 258) // Fire Solenoglyphs
 
 #define ABILITIES_COUNT_CUSTOM   (ABILITY_EARLY_GRAVE + 1) 
 
