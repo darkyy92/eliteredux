@@ -8867,6 +8867,13 @@ static void Cmd_various(void)
                 activateMoxieVariant = TRUE;
             }
 
+            //Hubris
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUBRIS)){
+                statToChange = STAT_SPATK;
+                abilityToCheck = ABILITY_HUBRIS;
+                activateMoxieVariant = TRUE;
+            }
+
             if (checkMoxieVariants
             && activateMoxieVariant
             && !NoAliveMonsForEitherParty()
