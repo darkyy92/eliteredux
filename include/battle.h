@@ -208,6 +208,7 @@ struct SpecialStatus
     u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
+    bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer

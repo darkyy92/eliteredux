@@ -7256,7 +7256,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         else if (BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-          && !(IS_MOVE_STATUS(move) && (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || BattlerHasInnate(gBattlerTarget, ABILITY_MAGIC_BOUNCE))))
+          && !(IS_MOVE_STATUS(move) && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_MAGIC_BOUNCE)))
         {
             if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || !(gBattleMoves[move].target & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
                 CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
@@ -9709,8 +9709,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
 			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
 			 && gBattleMoves[move].type == TYPE_FIGHTING
-             && gBattleMoves[move].effect != EFFECT_MULTI_HIT){
+             && !gSpecialStatuses[gActiveBattler].turnAbilityTriggers[GetBattlerInnateNum(battler, abilityToCheck)]){
                 activateAbilty = TRUE;
+                gSpecialStatuses[gActiveBattler].turnAbilityTriggers[GetBattlerInnateNum(battler, abilityToCheck)]++;
             }
 
             //This is the stuff that has to be changed for each ability
