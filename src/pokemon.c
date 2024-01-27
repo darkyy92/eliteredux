@@ -9444,6 +9444,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_FLOWER_GIFT            &&
        innate != ABILITY_AS_ONE_ICE_RIDER       &&
        innate != ABILITY_AS_ONE_SHADOW_RIDER    &&
+       innate != ABILITY_CROWNED_KING           &&
        #ifdef BALANCE_RANDOMIZER_ABILITIES
        innate != ABILITY_ANGELS_WRATH           &&
        #endif
@@ -9472,6 +9473,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
               randomizedInnate == ABILITY_ICE_FACE              ||
               randomizedInnate == ABILITY_AS_ONE_ICE_RIDER      ||
               randomizedInnate == ABILITY_AS_ONE_SHADOW_RIDER   ||
+              randomizedInnate == ABILITY_CROWNED_KING          ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
               randomizedInnate == ABILITY_COMATOSE              ||
               randomizedInnate == ABILITY_TRUANT                ||
@@ -9533,6 +9535,7 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
               randomizedAbility == ABILITY_ICE_FACE             ||
               randomizedAbility == ABILITY_AS_ONE_ICE_RIDER     ||
               randomizedAbility == ABILITY_AS_ONE_SHADOW_RIDER  ||
+              randomizedAbility == ABILITY_CROWNED_KING         ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
               randomizedAbility == ABILITY_COMATOSE             ||
               randomizedAbility == ABILITY_WONDER_GUARD         ||

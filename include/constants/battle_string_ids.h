@@ -714,8 +714,9 @@
 #define STRINGID_LASTABILITYLOWEREDSTAT               743
 #define STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK      744
 #define STRINGID_SETUPINVERSEROOM                     745
+#define STRINGID_CROWNEDKINGENTERS                    746
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_SETUPINVERSEROOM + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_CROWNEDKINGENTERS + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -961,6 +962,7 @@
 #define B_MSG_SWITCHIN_PASTEL_VEIL      15
 #define B_MSG_SWITCHIN_NEUTRALIZING_GAS 16
 #define B_MSG_SWITCHIN_LETHARGY         17
+#define B_MSG_SWITCHIN_CROWNEDKING      18
 
 // gMentalHerbCureStringIds
 #define B_MSG_MENTALHERBCURE_INFATUATION       0

@@ -10211,6 +10211,30 @@ BattleScript_RaiseStatOnFaintingTarget::
 	waitmessage B_WAIT_TIME_LONG
 	return	
 
+BattleScript_CrownedKing::
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_CrownedKingSpAtkMaxed
+	sethword sABILITY_OVERWRITE, ABILITY_GRIM_NEIGH
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_CrownedKingSpAtkMaxed
+	call BattleScript_RaiseStatOnFaintingTarget
+BattleScript_CrownedKingSpAtkMaxed:
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_CrownedKingAtkMaxed
+	sethword sABILITY_OVERWRITE, ABILITY_CHILLING_NEIGH
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_CrownedKingAtkMaxed
+	call BattleScript_RaiseStatOnFaintingTarget
+BattleScript_CrownedKingAtkMaxed:
+	return
+
+
+	call BattleScript_AbilityPopUp
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_LASTABILITYRAISEDSTAT
+	waitmessage B_WAIT_TIME_LONG
+	return	
+
 BattleScript_LowerStatOnFaintingTarget::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
@@ -10283,7 +10307,6 @@ BattleScript_ActivateUnnerve::
 	end3
 
 BattleScript_ActivateAsOne::
-	sethword sABILITY_OVERWRITE, ABILITY_AS_ONE_SHADOW_RIDER
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
 	waitmessage B_WAIT_TIME_LONG

@@ -722,6 +722,7 @@ static const u8 sText_ASandstormKickedUp[] = _("A sandstorm kicked up!");
 static const u8 sText_PkmnsWillPerishIn3Turns[] = _("Both Pokémon will perish\nin three turns!");
 static const u8 sText_AbilityRaisedStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s ability\nraised its {B_BUFF1}!");
 static const u8 sText_AsOneEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has two Abilities!");
+static const u8 sText_CrownedKingEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has three Abilities!");
 static const u8 sText_CuriousMedicineEnters[] = _("{B_EFF_NAME_WITH_PREFIX}'s\nstat changes were reset!");
 static const u8 sText_CanActFaster[] = _("{B_ATK_NAME_WITH_PREFIX} can act faster,\nthanks to its ability!");
 static const u8 sText_CanActFasterItem[] = _("{B_ATK_NAME_WITH_PREFIX} can act faster,\nthanks to its {B_BUFF1}!");
@@ -1548,6 +1549,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDSPECIALDEFENSE - 12] = sText_PkmnRaisedSpecialDefense,
     [STRINGID_ATTACKERBECAMEINFECTED - 12] = sText_AttackerBecameInfected,
     [STRINGID_SETUPINVERSEROOM - 12] = sText_PkmnInverseDimensions,
+    [STRINGID_CROWNEDKINGENTERS - 12] = sText_CrownedKingEnters,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1612,6 +1614,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
     [B_MSG_SWITCHIN_LETHARGY] = STRINGID_LETHARGYTENTERS,
+    [B_MSG_SWITCHIN_CROWNEDKING] = STRINGID_CROWNEDKINGENTERS,
 };
 
 const u16 gMissStringIds[] =

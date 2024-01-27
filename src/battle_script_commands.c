@@ -8845,16 +8845,18 @@ static void Cmd_various(void)
             }
 
             //Chilling Neigh
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)){
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)
+                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
                 statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_CHILLING_NEIGH;
+                abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
                 activateMoxieVariant = TRUE;
             }
 
-            //As One Ice Rider
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
-                statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
+            //Grim Neigh
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GRIM_NEIGH)
+                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_SHADOW_RIDER)){
+                statToChange = STAT_SPATK;
+                abilityToCheck = ABILITY_GRIM_NEIGH; // as one ice rider is treated as chilling neigh
                 activateMoxieVariant = TRUE;
             }
 
@@ -8957,21 +8959,13 @@ static void Cmd_various(void)
             return;
         }
         break;
-    case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:   // and as one shadow rider
-        if ((GetBattlerAbility(gActiveBattler) == ABILITY_GRIM_NEIGH
-         || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_SHADOW_RIDER)
-          && HasAttackerFaintedTarget()
-          && !NoAliveMonsForEitherParty()
-          && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+    case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:
+        if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CROWNED_KING)
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty())
         {
-            gBattleMons[gBattlerAttacker].statStages[STAT_SPATK]++;
-            SET_STATCHANGER(STAT_SPATK, 1, FALSE);
-            PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
             BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_SHADOW_RIDER)
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIM_NEIGH;
-            gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
+            gBattlescriptCurrInstr = BattleScript_CrownedKing;
             return;
         }
         break;

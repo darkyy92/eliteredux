@@ -383,6 +383,7 @@ extern const u8 BattleScript_CryoProficiencyActivates[];
 extern const u8 BattleScript_PerishBodyActivates[];
 extern const u8 BattleScript_ActivateAsOne[];
 extern const u8 BattleScript_RaiseStatOnFaintingTarget[];
+extern const u8 BattleScript_CrownedKing[];
 extern const u8 BattleScript_LowerStatOnFaintingTarget[];
 extern const u8 BattleScript_QuickClawActivation[];
 extern const u8 BattleScript_QuickDrawActivation[];

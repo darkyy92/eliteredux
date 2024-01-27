@@ -114,6 +114,7 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sRolePlayBannedAbilities[] =
@@ -141,6 +142,7 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sRolePlayBannedAttackerAbilities[] =
@@ -159,6 +161,7 @@ static const u16 sRolePlayBannedAttackerAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sWorrySeedBannedAbilities[] =
@@ -177,12 +180,14 @@ static const u16 sWorrySeedBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sGastroAcidBannedAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
     ABILITY_BATTLE_BOND,
     ABILITY_COMATOSE,
     ABILITY_DISGUISE,
@@ -195,8 +200,6 @@ static const u16 sGastroAcidBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_STANCE_CHANGE,
     ABILITY_ZEN_MODE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
 };
 
 static const u16 sEntrainmentBannedAttackerAbilities[] =
@@ -217,6 +220,7 @@ static const u16 sEntrainmentBannedAttackerAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
@@ -234,6 +238,7 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sTwoStrikeMoves[] =
@@ -1171,6 +1176,7 @@ static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
     [ABILITY_ZEN_MODE] = 1,
     [ABILITY_AS_ONE_ICE_RIDER] = 1,
     [ABILITY_AS_ONE_SHADOW_RIDER] = 1,
+    [ABILITY_CROWNED_KING] = 1,
 };
 
 static const u8 sHoldEffectToType[][2] =
@@ -5539,6 +5545,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_CROWNED_KING)) {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CROWNEDKING;
+                BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
+                effect++;
+            }
             
             // Download
             if(BattlerHasInnate(battler, ABILITY_DOWNLOAD)){
@@ -7826,6 +7838,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_STANCE_CHANGE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
@@ -7857,6 +7870,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_STANCE_CHANGE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
@@ -7890,6 +7904,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_ZEN_MODE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
@@ -11191,6 +11206,7 @@ bool32 IsNeutralizingGasBannedAbility(u32 ability)
     case ABILITY_ICE_FACE:
     case ABILITY_AS_ONE_ICE_RIDER:
     case ABILITY_AS_ONE_SHADOW_RIDER:
+    case ABILITY_CROWNED_KING:
         return TRUE;
     default:
         return FALSE;
@@ -17126,7 +17142,8 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId)
 {
     if (IsAbilityOnOpposingSide(battlerId, ABILITY_UNNERVE)
       || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_ICE_RIDER)
-      || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_SHADOW_RIDER))
+      || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_SHADOW_RIDER)
+      || IsAbilityOnOpposingSide(battlerId, ABILITY_CROWNED_KING))
         return TRUE;
     return FALSE;
 }
