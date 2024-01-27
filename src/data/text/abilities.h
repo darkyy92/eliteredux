@@ -515,7 +515,7 @@ static const u8 sAbilityFortitudeDescription[] = _("Boosts SpDef +1 when hit.\nM
 static const u8 sAbilityDevourerDescription[] = _("Strong Jaw + Primal Maw.");
 static const u8 sAbilityPhantomThiefDescription[] = _("Uses 40BP Spectral Thief\non switch-in.");
 static const u8 sAbilityEarlyGraveDescription[] = _("Ghost moves get +1 priority.\nRequires full HP.");
-static const u8 sAbilityGrapplerDescription[] = _("Trapping moves last 6 turns.\nTrapping deals 1/8 HP.");
+static const u8 sAbilityGrapplerDescription[] = _("Trapping moves last 6 turns.\nTrapping deals 1/6 HP.");
 static const u8 sAbilityBassBoosted[] = _("Amplifier + Punk Rock.");
 static const u8 sAbilityFlamingJaws[] = _("Biting moves have 50% chance\nto burn the target.");
 

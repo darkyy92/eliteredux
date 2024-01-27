@@ -3481,11 +3481,17 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 else
                 {
+                    bool8 hasGrappler = BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_GRAPPLER);
+                    bool8 hasGripClaw = GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW;
                     gBattleMons[gEffectBattler].status2 |= STATUS2_WRAPPED;
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
-                        gDisableStructs[gEffectBattler].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                    if (hasGrappler && hasGripClaw)
+                        gDisableStructs[gEffectBattler].wrapTurns = 8;
+                    else if (hasGrappler)
+                        gDisableStructs[gEffectBattler].wrapTurns = 6;
+                    else if (hasGripClaw)
+                        gDisableStructs[gEffectBattler].wrapTurns = 7;
                     else
-                        gDisableStructs[gEffectBattler].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+                        gDisableStructs[gEffectBattler].wrapTurns = (Random() % 2) + 4;
 
                     gBattleStruct->wrappedMove[gEffectBattler] = gCurrentMove;
                     gBattleStruct->wrappedBy[gEffectBattler] = gBattlerAttacker;
