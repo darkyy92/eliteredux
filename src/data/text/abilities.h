@@ -520,6 +520,14 @@ static const u8 sAbilityBassBoostedDescription[] = _("Amplifier + Punk Rock.");
 static const u8 sAbilityFlamingJawsDescription[] = _("Biting moves have 50% chance\nto burn the target.");
 static const u8 sAbilityMonsterHunterDescription[] = _("Does 50% more damage to\nDark-types.");
 static const u8 sAbilityElectromorphosisDescription[] = _("Charges up when getting hit.");
+static const u8 sAbilityCrownedSwordDescription[] = _("Intrepid Sword + Anger Point.");
+static const u8 sAbilityCrownedShieldDescription[] = _("Intrepid Shield + Stamina.");
+static const u8 sAbilityBerserkDnaDescription[] = _("Sharply ups highest attacking stat\nbut confuses on entry.");
+static const u8 sAbilityCrownedKingDescription[] = _("Unnerve +\nGrim Neigh + Chilling Neigh.");
+static const u8 sAbilitySnapTrapWhenHitDescription[] = _("Counters contact with\n50BP Snap Trap.");
+static const u8 sAbilityPermanenceDescription[] = _("Foes can't heal.");
+static const u8 sAbilityHubrisDescription[] = _("KOs raise SpAtk by +1.");
+static const u8 sAbilityCosmicDazeDescription[] = _("2x damage vs confused. Enemies\ntake 2x confusion damage.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1059,6 +1067,14 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_BASS_BOOSTED] = _("Bass Boosted"),
         [ABILITY_FLAMING_JAWS] = _("Flaming Jaws"),
         [ABILITY_MONSTER_HUNTER] = _("Monster Hunter"),
+        [ABILITY_CROWNED_SWORD] = _("Crowned Sword"),
+        [ABILITY_CROWNED_SHIELD] = _("Crowned Shield"),
+        [ABILITY_BERSERK_DNA] = _("Berserk DNA"),
+        [ABILITY_CROWNED_KING] = _("Crowned King"),
+        [ABILITY_SNAP_TRAP_WHEN_HIT] = _("Snap Trap When Hit"),
+        [ABILITY_PERMANENCE] = _("Permanence"),
+        [ABILITY_HUBRIS] = _("Hubris"),
+        [ABILITY_COSMIC_DAZE] = _("Cosmic Daze"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1591,4 +1607,12 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_BASS_BOOSTED] = sAbilityBassBoostedDescription,
         [ABILITY_FLAMING_JAWS] = sAbilityFlamingJawsDescription,
         [ABILITY_MONSTER_HUNTER] = sAbilityMonsterHunterDescription,
+        [ABILITY_CROWNED_SWORD] = sAbilityCrownedSwordDescription,
+        [ABILITY_CROWNED_SHIELD] = sAbilityCrownedShieldDescription,
+        [ABILITY_BERSERK_DNA] = sAbilityBerserkDnaDescription,
+        [ABILITY_CROWNED_KING] = sAbilityCrownedKingDescription,
+        [ABILITY_SNAP_TRAP_WHEN_HIT] = sAbilitySnapTrapWhenHitDescription,
+        [ABILITY_PERMANENCE] = sAbilityPermanenceDescription,
+        [ABILITY_HUBRIS] = sAbilityHubrisDescription,
+        [ABILITY_COSMIC_DAZE] = sAbilityCosmicDazeDescription,
 };

@@ -114,6 +114,7 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sRolePlayBannedAbilities[] =
@@ -141,6 +142,7 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sRolePlayBannedAttackerAbilities[] =
@@ -159,6 +161,7 @@ static const u16 sRolePlayBannedAttackerAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sWorrySeedBannedAbilities[] =
@@ -177,12 +180,14 @@ static const u16 sWorrySeedBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sGastroAcidBannedAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
     ABILITY_BATTLE_BOND,
     ABILITY_COMATOSE,
     ABILITY_DISGUISE,
@@ -195,8 +200,6 @@ static const u16 sGastroAcidBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_STANCE_CHANGE,
     ABILITY_ZEN_MODE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
 };
 
 static const u16 sEntrainmentBannedAttackerAbilities[] =
@@ -217,6 +220,7 @@ static const u16 sEntrainmentBannedAttackerAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
@@ -234,6 +238,7 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_CROWNED_KING,
 };
 
 static const u16 sTwoStrikeMoves[] =
@@ -1171,6 +1176,7 @@ static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
     [ABILITY_ZEN_MODE] = 1,
     [ABILITY_AS_ONE_ICE_RIDER] = 1,
     [ABILITY_AS_ONE_SHADOW_RIDER] = 1,
+    [ABILITY_CROWNED_KING] = 1,
 };
 
 static const u8 sHoldEffectToType[][2] =
@@ -1842,7 +1848,7 @@ bool32 IsGravityPreventingMove(u32 move)
 
 bool32 IsHealBlockPreventingMove(u8 battler, u32 move)
 {
-    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK) && !IsAbilityOnOpposingSide(battler, ABILITY_PERMANENCE))
         return FALSE;
     
     switch (gBattleMoves[move].effect)
@@ -3863,7 +3869,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = TRUE;
                         gBattlerTarget = gBattlerAttacker;
-                        gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+                        gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, IsAbilityOnSide(BATTLE_OPPOSITE(gBattlerAttacker), ABILITY_COSMIC_DAZE) ? 80 : 40, FALSE, FALSE, TRUE);
                         gProtectStructs[gBattlerAttacker].confusionSelfDmg = TRUE;
                         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     }
@@ -4612,7 +4618,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
         VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
         VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
-        gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+        gBattleScripting.replaceEndWithEnd3++;
         BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
         (*effect)++;
         return TRUE;
@@ -4828,6 +4834,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
+                effect++;
+            }
+            break;
+        case ABILITY_CROWNED_KING:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CROWNEDKING;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
                 effect++;
@@ -6352,6 +6367,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_CROWNED_SWORD))
+            {
+                SET_STATCHANGER(STAT_ATK, 1, FALSE);
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
+                effect++;
+            }
+
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_CROWNED_SHIELD))
+            {
+                SET_STATCHANGER(STAT_DEF, 1, FALSE);
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
+                effect++;
+            }
             
             // Dauntless Shield
             if(BattlerHasInnate(battler, ABILITY_DAUNTLESS_SHIELD)){
@@ -6467,6 +6496,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     BattleScriptPushCursorAndCallback(BattleScript_InverseRoomRemoved);
                     effect++;
                 }
+            }
+
+            //Permanence
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_PERMANENCE)) {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PERMANENCE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+
+            //Berserk DNA
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_BERSERK_DNA))
+            {
+                bool8 becameConfused = FALSE;
+                if (CanBeConfused(battler)) {
+                    gBattleMons[battler].status2 |= STATUS2_CONFUSION;
+                    gBattleMons[battler].status2 |= STATUS2_CONFUSION_TURN(3);
+                    becameConfused = TRUE;
+                }
+                BattleScriptPushCursorAndCallback(becameConfused ? BattleScript_BerserkDNA : BattleScript_BerserkDNANoConfusion);
+                
+                effect++;
             }
 
             if(BattlerHasInnate(battler, ABILITY_FURNACE)){
@@ -7812,6 +7862,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_STANCE_CHANGE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
@@ -7843,6 +7894,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_STANCE_CHANGE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
@@ -7876,6 +7928,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_ZEN_MODE:
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
+                case ABILITY_CROWNED_KING:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
@@ -8823,7 +8876,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		
-		// Stamina
+		// Crowned Shield
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_CROWNED_SHIELD)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // new effect
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SHIELD;
+                SET_STATCHANGER(STAT_DEF, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_DEF], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // old effect
+             && move != MOVE_SUBSTITUTE
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SHIELD;
+                SET_STATCHANGER(STAT_DEF, 1, FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
+                effect++;
+            }
+		}
+		
+		// Fortitude
 		if(BATTLER_HAS_ABILITY(battler, ABILITY_FORTITUDE)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // new effect
              && gIsCriticalHit
@@ -8882,7 +8963,38 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
-		// Anger Point
+		// Crowned Sword
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_CROWNED_SWORD)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
+                SET_STATCHANGER(STAT_ATK, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_ATK], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && IS_MOVE_SPECIAL(gCurrentMove)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			{
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
+				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursor();
+				gBattleMons[battler].statStages[STAT_ATK]++;
+				gBattleScripting.animArg1 = 14 + STAT_ATK;
+				gBattleScripting.animArg2 = 0;
+				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
+				effect++;
+			}
+		}
+		
+		// Tipping Point
 		if(BATTLER_HAS_ABILITY(battler, ABILITY_TIPPING_POINT)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gIsCriticalHit
@@ -9165,6 +9277,46 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(activateAbilty){
                 u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used
                 u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
+                gCurrentMove = extraMove;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
+                effect++;
+            }
+        }
+
+        //Parry
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_SNAP_TRAP_WHEN_HIT; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                !gRetaliationInProgress                     &&
+                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                IsMoveMakingContact(move, gBattlerAttacker) &&
+                TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                u16 extraMove = MOVE_SNAP_TRAP;  //The Extra Move to be used
+                u8 movePower = 50;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
@@ -11118,6 +11270,7 @@ bool32 IsNeutralizingGasBannedAbility(u32 ability)
     case ABILITY_ICE_FACE:
     case ABILITY_AS_ONE_ICE_RIDER:
     case ABILITY_AS_ONE_SHADOW_RIDER:
+    case ABILITY_CROWNED_KING:
         return TRUE;
     default:
         return FALSE;
@@ -14057,6 +14210,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
                 MulModifier(&modifier, UQ_4_12(1.25));
             }
 	}
+
+    // Cosmic Daze
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COSMIC_DAZE) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+        MulModifier(&modifier, UQ_4_12(2.0));
 	
 	// Dragonslayer
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DRAGONSLAYER) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
@@ -17053,7 +17210,8 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId)
 {
     if (IsAbilityOnOpposingSide(battlerId, ABILITY_UNNERVE)
       || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_ICE_RIDER)
-      || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_SHADOW_RIDER))
+      || IsAbilityOnOpposingSide(battlerId, ABILITY_AS_ONE_SHADOW_RIDER)
+      || IsAbilityOnOpposingSide(battlerId, ABILITY_CROWNED_KING))
         return TRUE;
     return FALSE;
 }

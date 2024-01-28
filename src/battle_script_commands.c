@@ -2313,12 +2313,6 @@ static void Cmd_damagecalc(void)
     GET_MOVE_TYPE(gCurrentMove, moveType);
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
 
-    if(gBattleScripting.forceFalseSwipeEffect){ //To avoid KOing from abilities like Cheap Tactics
-        if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
-            gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-        gBattleScripting.forceFalseSwipeEffect = FALSE;
-    }
-
     gBattlescriptCurrInstr++;
 }
 
@@ -2369,7 +2363,7 @@ static void Cmd_adjustdamage(void)
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
 
-    if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE
+    if ((gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gBattleScripting.forceFalseSwipeEffect)
         && !gProtectStructs[gBattlerTarget].endured
         && !gSpecialStatuses[gBattlerTarget].focusBanded
         && !gSpecialStatuses[gBattlerTarget].focusSashed
@@ -5039,6 +5033,12 @@ static void Cmd_return(void)
 
 static void Cmd_end(void)
 {
+    if (gBattleScripting.replaceEndWithEnd3 > 0) {
+        gBattleScripting.replaceEndWithEnd3--;
+        Cmd_end3();
+        return;
+    }
+
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_AddSkillPoints(gBattlerAttacker);
 
@@ -6206,6 +6206,7 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
             gBattleScripting.moveSecondaryEffectChance = 0;
+            gBattleScripting.forceFalseSwipeEffect = FALSE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -8845,16 +8846,18 @@ static void Cmd_various(void)
             }
 
             //Chilling Neigh
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)){
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)
+                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
                 statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_CHILLING_NEIGH;
+                abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
                 activateMoxieVariant = TRUE;
             }
 
-            //As One Ice Rider
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
-                statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
+            //Grim Neigh
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GRIM_NEIGH)
+                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_SHADOW_RIDER)){
+                statToChange = STAT_SPATK;
+                abilityToCheck = ABILITY_GRIM_NEIGH; // as one ice rider is treated as chilling neigh
                 activateMoxieVariant = TRUE;
             }
 
@@ -8862,6 +8865,13 @@ static void Cmd_various(void)
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_ADRENALINE_RUSH)){
                 statToChange = STAT_SPEED;
                 abilityToCheck = ABILITY_ADRENALINE_RUSH;
+                activateMoxieVariant = TRUE;
+            }
+
+            //Hubris
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUBRIS)){
+                statToChange = STAT_SPATK;
+                abilityToCheck = ABILITY_HUBRIS;
                 activateMoxieVariant = TRUE;
             }
 
@@ -8957,21 +8967,13 @@ static void Cmd_various(void)
             return;
         }
         break;
-    case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:   // and as one shadow rider
-        if ((GetBattlerAbility(gActiveBattler) == ABILITY_GRIM_NEIGH
-         || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_SHADOW_RIDER)
-          && HasAttackerFaintedTarget()
-          && !NoAliveMonsForEitherParty()
-          && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+    case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:
+        if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CROWNED_KING)
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty())
         {
-            gBattleMons[gBattlerAttacker].statStages[STAT_SPATK]++;
-            SET_STATCHANGER(STAT_SPATK, 1, FALSE);
-            PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
             BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_SHADOW_RIDER)
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIM_NEIGH;
-            gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
+            gBattlescriptCurrInstr = BattleScript_CrownedKing;
             return;
         }
         break;
@@ -10329,6 +10331,9 @@ static void Cmd_various(void)
     case VARIOUS_SET_DYNAMIC_TYPE:
         gBattleStruct->dynamicMoveType = gBattlescriptCurrInstr[3];
         gBattlescriptCurrInstr += 4;
+        return;
+    case VARIOUS_GOTO_ACTUAL_MOVE:
+        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
         return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
@@ -14359,7 +14364,8 @@ static void Cmd_switchoutabilities(void)
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
 		}
-        else if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || GetBattlerAbility(gActiveBattler) == ABILITY_REGENERATOR){ 
+        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_REGENERATOR)
+                && !(gBattleMons[gActiveBattler].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(gActiveBattler, ABILITY_PERMANENCE))){ 
             gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
             gBattleMoveDamage += gBattleMons[gActiveBattler].hp;
             if (gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)

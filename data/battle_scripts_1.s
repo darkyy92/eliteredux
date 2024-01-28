@@ -5112,9 +5112,11 @@ BattleScript_EffectSwagger::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SwaggerTryConfuse:
+	jumpifability BS_ATTACKER, ABILITY_MYCELIUM_MIGHT, BattleScript_SwaggerTryConfuseMyceliumMight
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
 	jumpifability BS_TARGET, ABILITY_DISCIPLINE, BattleScript_Discipline
 	jumpifsafeguard BattleScript_SafeguardProtected
+BattleScript_SwaggerTryConfuseMyceliumMight:
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	seteffectprimary
 	goto BattleScript_MoveEnd
@@ -8949,35 +8951,9 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
-BattleScript_EffectExtraHitOnSwitchIn::
-BattleScript_ExtraHitFromAtkCancelerOnSwitchIn::
-	attackcanceler
-BattleScript_ExtraHitFromAccCheckOnSwitchIn::
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-BattleScript_ExtraHitFromAtkStringOnSwitchIn::
-BattleScript_ExtraHitFromCritCalcOnSwitchIn::
-	critcalc
 	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
-	damagecalc
-	adjustdamage
-BattleScript_ExtraHitFromAtkAnimationOnSwitchIn::
-	playmoveanimation BS_ATTACKER, MOVE_NONE
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	seteffectwithchance
-	tryfaintmon BS_TARGET, FALSE, NULL
-BattleScript_ExtraExtraMoveEndOnSwitchIn::
-	moveendall
-	end3
+	gotoactualmove BS_ATTACKER
 
 BattleScript_DefenderEffectSpeedDownHit::
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
@@ -10211,6 +10187,30 @@ BattleScript_RaiseStatOnFaintingTarget::
 	waitmessage B_WAIT_TIME_LONG
 	return	
 
+BattleScript_CrownedKing::
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_CrownedKingSpAtkMaxed
+	sethword sABILITY_OVERWRITE, ABILITY_GRIM_NEIGH
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_CrownedKingSpAtkMaxed
+	call BattleScript_RaiseStatOnFaintingTarget
+BattleScript_CrownedKingSpAtkMaxed:
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_CrownedKingAtkMaxed
+	sethword sABILITY_OVERWRITE, ABILITY_CHILLING_NEIGH
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_CrownedKingAtkMaxed
+	call BattleScript_RaiseStatOnFaintingTarget
+BattleScript_CrownedKingAtkMaxed:
+	return
+
+
+	call BattleScript_AbilityPopUp
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_LASTABILITYRAISEDSTAT
+	waitmessage B_WAIT_TIME_LONG
+	return	
+
 BattleScript_LowerStatOnFaintingTarget::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
@@ -10283,7 +10283,6 @@ BattleScript_ActivateUnnerve::
 	end3
 
 BattleScript_ActivateAsOne::
-	sethword sABILITY_OVERWRITE, ABILITY_AS_ONE_SHADOW_RIDER
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -11463,6 +11462,29 @@ BattleScript_InverseRoomRemoved::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_BerserkDNA::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BERSERKDNA
+	raisehighestattackingstat BS_ATTACKER, 2, BattleScript_BerserkDNAStatMaxed
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+BattleScript_BerserkDNAStatMaxed:
+	chosenstatus2animation BS_ATTACKER, STATUS2_CONFUSION
+	copybyte gEffectBattler, gBattlerAttacker
+	printstring STRINGID_PKMNWASCONFUSED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BerserkDNANoConfusion::
+	raisehighestattackingstat BS_ATTACKER, 2, BattleScript_BerserkDNAStatMaxedNoConfusion
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BERSERKDNA
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+BattleScript_BerserkDNAStatMaxedNoConfusion:
+	end3
 
 BattleScript_GripPincerActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER

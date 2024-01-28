@@ -555,8 +555,16 @@
 #define ABILITY_BASS_BOOSTED     (ABILITIES_COUNT_LATEST_GEN + 257) // Punk Rock + Amplifier
 #define ABILITY_FLAMING_JAWS     (ABILITIES_COUNT_LATEST_GEN + 258) // Fire Solenoglyphs
 #define ABILITY_MONSTER_HUNTER   (ABILITIES_COUNT_LATEST_GEN + 259) // +50% damage vs dark types
+#define ABILITY_CROWNED_SWORD    (ABILITIES_COUNT_LATEST_GEN + 260) // Intrepid Sword + Anger Point
+#define ABILITY_CROWNED_SHIELD   (ABILITIES_COUNT_LATEST_GEN + 261) // Intrepid Shield + Stamina
+#define ABILITY_BERSERK_DNA      (ABILITIES_COUNT_LATEST_GEN + 262) // Ups highest attacking stat by 2 stages on entry but confuses the user
+#define ABILITY_CROWNED_KING     (ABILITIES_COUNT_LATEST_GEN + 263) // Unnerve + Grim Neigh + Chilling Neigh
+#define ABILITY_SNAP_TRAP_WHEN_HIT   (ABILITIES_COUNT_LATEST_GEN + 264) // 50 BP Snap Trap when hit by contact move
+#define ABILITY_PERMANENCE       (ABILITIES_COUNT_LATEST_GEN + 265) // Heal Block on entry
+#define ABILITY_HUBRIS           (ABILITIES_COUNT_LATEST_GEN + 266) // +1 SpAtk on KO
+#define ABILITY_COSMIC_DAZE      (ABILITIES_COUNT_LATEST_GEN + 267) // Double damage vs confused targets. Double opposing confusion self damage.
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_MONSTER_HUNTER + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_COSMIC_DAZE + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

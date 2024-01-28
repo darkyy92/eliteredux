@@ -2113,3 +2113,7 @@
 	.byte \type
 	.endm
 
+	.macro gotoactualmove battler:req
+	various \battler, VARIOUS_GOTO_ACTUAL_MOVE
+	.endm
+

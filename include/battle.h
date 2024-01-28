@@ -726,6 +726,7 @@ struct BattleScripting
     bool8 forceFalseSwipeEffect;
     bool8 doublehealthRestore;
     u8 moveSecondaryEffectChance;
+    u8 replaceEndWithEnd3;
 };
 
 // rom_80A5C6C
