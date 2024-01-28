@@ -5039,6 +5039,12 @@ static void Cmd_return(void)
 
 static void Cmd_end(void)
 {
+    if (gBattleScripting.replaceEndWithEnd3 > 0) {
+        gBattleScripting.replaceEndWithEnd3--;
+        Cmd_end3();
+        return;
+    }
+
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_AddSkillPoints(gBattlerAttacker);
 
@@ -10330,6 +10336,9 @@ static void Cmd_various(void)
     case VARIOUS_SET_DYNAMIC_TYPE:
         gBattleStruct->dynamicMoveType = gBattlescriptCurrInstr[3];
         gBattlescriptCurrInstr += 4;
+        return;
+    case VARIOUS_GOTO_ACTUAL_MOVE:
+        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
         return;
     } // End of switch (gBattlescriptCurrInstr[2])
 

@@ -4618,7 +4618,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
         VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
         VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
-        gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+        gBattleScripting.replaceEndWithEnd3++;
         BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
         (*effect)++;
         return TRUE;
