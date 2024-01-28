@@ -440,6 +440,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_25_STATUS
 	.4byte BattleScript_EffectHit                     @ EFFECT_WEATHER_BOOST
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
+	.4byte BattleScript_EffectKarma                   @ EFFECT_KARMA
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -4999,6 +5000,39 @@ BattleScript_DoGhostCurse::
 	printstring STRINGID_PKMNLAIDCURSE
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER, FALSE, NULL
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectKarma::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_SPEED, MIN_STAT_STAGE, BattleScript_KarmaTrySpeed
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_KarmaTrySpeed
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_ButItFailed
+BattleScript_KarmaTrySpeed::
+	copybyte gBattlerTarget, gBattlerAttacker
+	setbyte sB_ANIM_TURN, 1
+	attackanimation
+	waitanimation
+	setstatchanger STAT_SPEED, 1, TRUE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_KarmaTrySpAttack
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_KarmaTrySpAttack::
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_KarmaTrySpDefense
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_KarmaTrySpDefense::
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_KarmaEnd
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_KarmaEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMatBlock::

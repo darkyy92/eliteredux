@@ -13037,6 +13037,27 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_BONE_BASED,
         .split = SPLIT_PHYSICAL,
     },
+    [MOVE_KARMA] =
+    {
+        .effect = EFFECT_KARMA,
+        .power = 0,
+        .type = TYPE_POISON,
+        .accuracy = 0,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SNATCH_AFFECTED,
+        .split = SPLIT_STATUS,
+    },
+    // [MOVE_CHILLING_WATER] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_CHILLY_RECEPTION] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_ICE_SPINNER] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_TIDY_UP] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_POPULATION_BOMB] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_RAGING_SOULS] = sMoveFourLineDescription_CheapShot,
+    // [MOVE_TWIN_BEAM] = sMoveFourLineDescription_CheapShot,
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
