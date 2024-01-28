@@ -441,6 +441,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_WEATHER_BOOST
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectKarma                   @ EFFECT_KARMA
+	.4byte BattleScript_EffectRemoveTerrainNoFail     @ EFFECT_REMOVE_TERRAIN_NO_FAIL
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -1141,6 +1142,32 @@ BattleScript_EffectRemoveTerrain:
 	attackstring
 	ppreduce
 	jumpifword CMP_NO_COMMON_BITS, gFieldStatuses, STATUS_FIELD_TERRAIN_ANY, BattleScript_ButItFailed
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	removeterrain
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 4, BattleScript_MoveEnd
+	printfromtable gTerrainEndingStringIds
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectRemoveTerrainNoFail:
+	attackcanceler
+	attackstring
+	ppreduce
 	critcalc
 	damagecalc
 	adjustdamage

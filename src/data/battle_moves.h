@@ -13063,7 +13063,20 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_PROTECT_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
     },
-    // [MOVE_CHILLING_WATER] = sMoveFourLineDescription_CheapShot,
+    [MOVE_ICE_SPINNER] =
+    {
+        .effect = EFFECT_REMOVE_TERRAIN_NO_FAIL,
+        .power = 80,
+        .type = TYPE_ICE,
+        .accuracy = 100,
+        .pp = 15,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT |FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_PROTECT_AFFECTED,
+        .split = SPLIT_PHYSICAL,
+    },
+
     // [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,
     // [MOVE_CHILLY_RECEPTION] = sMoveFourLineDescription_CheapShot,
     // [MOVE_ICE_SPINNER] = sMoveFourLineDescription_CheapShot,
