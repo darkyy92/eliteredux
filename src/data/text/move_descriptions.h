@@ -3993,6 +3993,15 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_AQUA_CUTTER - 1] = sCheapShotDescription,
     [MOVE_INVERSE_ROOM - 1] = sCheapShotDescription,
     [MOVE_BLAZING_BONE - 1] = sCheapShotDescription,
+    [MOVE_KARMA] = sCheapShotDescription,
+    [MOVE_CHILLING_WATER] = sCheapShotDescription,
+    [MOVE_GHASTLY_ECHO] = sCheapShotDescription,
+    [MOVE_CHILLY_RECEPTION] = sCheapShotDescription,
+    [MOVE_ICE_SPINNER] = sCheapShotDescription,
+    [MOVE_TIDY_UP] = sCheapShotDescription,
+    [MOVE_POPULATION_BOMB] = sCheapShotDescription,
+    [MOVE_RAGING_SOULS] = sCheapShotDescription,
+    [MOVE_TWIN_BEAM] = sCheapShotDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5677,4 +5686,13 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_AQUA_CUTTER - 1] = sMoveFourLineDescription_CheapShot,
     [MOVE_INVERSE_ROOM - 1] = sMoveFourLineDescription_CheapShot,
     [MOVE_BLAZING_BONE - 1] = sMoveFourLineDescription_CheapShot,
+    [MOVE_KARMA] = sMoveFourLineDescription_CheapShot,
+    [MOVE_CHILLING_WATER] = sMoveFourLineDescription_CheapShot,
+    [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,
+    [MOVE_CHILLY_RECEPTION] = sMoveFourLineDescription_CheapShot,
+    [MOVE_ICE_SPINNER] = sMoveFourLineDescription_CheapShot,
+    [MOVE_TIDY_UP] = sMoveFourLineDescription_CheapShot,
+    [MOVE_POPULATION_BOMB] = sMoveFourLineDescription_CheapShot,
+    [MOVE_RAGING_SOULS] = sMoveFourLineDescription_CheapShot,
+    [MOVE_TWIN_BEAM] = sMoveFourLineDescription_CheapShot,
 };
