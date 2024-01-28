@@ -13050,6 +13050,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SNATCH_AFFECTED,
         .split = SPLIT_STATUS,
     },
+    [MOVE_CHILLING_WATER] =
+    {
+        .effect = EFFECT_ATTACK_DOWN_HIT,
+        .power = 50,
+        .type = TYPE_WATER,
+        .accuracy = 100,
+        .pp = 20,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED
+        .priority = 0,
+        .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_PROTECT_AFFECTED | FLAG_SHEER_FORCE_BOOST,
+        .split = SPLIT_SPECIAL,
+    },
     // [MOVE_CHILLING_WATER] = sMoveFourLineDescription_CheapShot,
     // [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,
     // [MOVE_CHILLY_RECEPTION] = sMoveFourLineDescription_CheapShot,
