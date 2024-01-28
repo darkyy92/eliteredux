@@ -15532,7 +15532,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         spDef = gBattleMons[battlerDef].spDefense;
     }
 
-    if ((gBattleMoves[move].effect == EFFECT_PSYSHOCK || IS_MOVE_PHYSICAL(move) || (gBattleMoves[move].flags & FLAG_HITS_PHYSICAL_DEF)) && !(gBattleMoves[move].flags & FLAG_HITS_SPDEF)) // uses defense stat instead of sp.def
+    if ((gBattleMoves[move].effect == EFFECT_PSYSHOCK || IS_MOVE_PHYSICAL(move) || (gBattleMoves[move].flags2 & FLAG_HITS_PHYSICAL_DEF)) && !(gBattleMoves[move].flags2 & FLAG_HITS_SPDEF)) // uses defense stat instead of sp.def
     {
         defStat = def;
         defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
