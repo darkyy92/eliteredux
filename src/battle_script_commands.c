@@ -2313,12 +2313,6 @@ static void Cmd_damagecalc(void)
     GET_MOVE_TYPE(gCurrentMove, moveType);
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
 
-    if(gBattleScripting.forceFalseSwipeEffect){ //To avoid KOing from abilities like Cheap Tactics
-        if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
-            gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-        gBattleScripting.forceFalseSwipeEffect = FALSE;
-    }
-
     gBattlescriptCurrInstr++;
 }
 
@@ -2369,7 +2363,7 @@ static void Cmd_adjustdamage(void)
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
 
-    if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE
+    if ((gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gBattleScripting.forceFalseSwipeEffect)
         && !gProtectStructs[gBattlerTarget].endured
         && !gSpecialStatuses[gBattlerTarget].focusBanded
         && !gSpecialStatuses[gBattlerTarget].focusSashed
@@ -6212,6 +6206,7 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
             gBattleScripting.moveSecondaryEffectChance = 0;
+            gBattleScripting.forceFalseSwipeEffect = FALSE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:

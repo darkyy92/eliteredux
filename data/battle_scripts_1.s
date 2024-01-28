@@ -8949,6 +8949,8 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
+	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
+	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
 	gotoactualmove BS_ATTACKER
 
 BattleScript_DefenderEffectSpeedDownHit::
