@@ -13103,12 +13103,23 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
+    [MOVE_RAGING_SOULS] =
+    {
+        .effect = EFFECT_OVERHEAT,
+        .power = 130,
+        .type = TYPE_GHOST,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .split = SPLIT_SPECIAL,
+    },
 
     // [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,
     // [MOVE_CHILLY_RECEPTION] = sMoveFourLineDescription_CheapShot,
     // [MOVE_TIDY_UP] = sMoveFourLineDescription_CheapShot,
-    // [MOVE_POPULATION_BOMB] = sMoveFourLineDescription_CheapShot,
-    // [MOVE_RAGING_SOULS] = sMoveFourLineDescription_CheapShot,
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
