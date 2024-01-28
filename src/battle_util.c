@@ -9276,6 +9276,46 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Parry
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_SNAP_TRAP_WHEN_HIT; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                !gRetaliationInProgress                     &&
+                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                IsMoveMakingContact(move, gBattlerAttacker) &&
+                TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                u16 extraMove = MOVE_SNAP_TRAP;  //The Extra Move to be used
+                u8 movePower = 50;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
+                gCurrentMove = extraMove;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
+                effect++;
+            }
+        }
+
         //Scrapyard
         if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPYARD)){
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
