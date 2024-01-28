@@ -12341,7 +12341,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SURGING_STRIKES] =
     {
-        .effect = EFFECT_TRIPLE_KICK,
+        .effect = EFFECT_DOUBLE_HIT,
         .power = 25,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -12352,6 +12352,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_IRON_FIST_BOOST,
         .flags2 = FLAG_ALWAYS_CRIT,
         .split = SPLIT_PHYSICAL,
+        .argument = 3,
     },
 
     [MOVE_THUNDER_CAGE] =
@@ -13088,6 +13089,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_TWO_STRIKES | FLAG_MEGA_LAUNCHER_BOOST,
         .split = SPLIT_SPECIAL,
+    },
+    [MOVE_POPULATION_BOMB] =
+    {
+        .effect = EFFECT_TEN_HITS,
+        .power = 20,
+        .type = TYPE_NORMAL,
+        .accuracy = 90,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .split = SPLIT_PHYSICAL,
     },
 
     // [MOVE_GHASTLY_ECHO] = sMoveFourLineDescription_CheapShot,

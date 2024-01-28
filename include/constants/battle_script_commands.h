@@ -223,6 +223,7 @@
 #define VARIOUS_TRY_ACTIVATE_SUPER_STRAIN       146
 #define VARIOUS_SET_DYNAMIC_TYPE                147
 #define VARIOUS_GOTO_ACTUAL_MOVE                148
+#define VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE     149
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

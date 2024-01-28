@@ -422,7 +422,8 @@
 #define EFFECT_MORTAL_SPIN           415
 #define EFFECT_KARMA                 416
 #define EFFECT_REMOVE_TERRAIN_NO_FAIL 417
+#define EFFECT_TEN_HITS              418
 
-#define NUM_BATTLE_MOVE_EFFECTS      (EFFECT_REMOVE_TERRAIN_NO_FAIL + 1) // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS      (EFFECT_TEN_HITS + 1) // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

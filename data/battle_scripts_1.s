@@ -442,6 +442,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectKarma                   @ EFFECT_KARMA
 	.4byte BattleScript_EffectRemoveTerrainNoFail     @ EFFECT_REMOVE_TERRAIN_NO_FAIL
+	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -4918,12 +4919,7 @@ BattleScript_EffectTripleKick::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
-	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
-	addbyte sTRIPLE_KICK_POWER 20
-	goto BattleScript_HitFromAtkString
-
-BS_TripleAxel:
-	addbyte sTRIPLE_KICK_POWER 20
+	increasetriplekickpower BS_ATTACKER
 	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectThief::

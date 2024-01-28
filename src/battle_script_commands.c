@@ -2079,7 +2079,9 @@ static void Cmd_accuracycheck(void)
             gBattlescriptCurrInstr += 7;
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn < ParentalBondInitialCount(gBattlerAttacker)
-        || (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
+        || (gSpecialStatuses[gBattlerAttacker].multiHitOn &&
+            (!(gBattleMoves[move].effect == EFFECT_TRIPLE_KICK ||
+               gBattleMoves[move].effect == EFFECT_TEN_HITS)
         || BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE)
 		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_KUNOICHI_BLADE
 		|| BattlerHasInnate(gBattlerAttacker, ABILITY_SKILL_LINK)
@@ -10335,6 +10337,9 @@ static void Cmd_various(void)
     case VARIOUS_GOTO_ACTUAL_MOVE:
         gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
         return;
+    case VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE:
+        gBattleScripting.tripleKickPower += gBattleMoves[gCurrentMove].power;
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

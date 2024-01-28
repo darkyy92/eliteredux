@@ -243,16 +243,8 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
 
 static const u16 sTwoStrikeMoves[] =
 {
-    MOVE_BONEMERANG,
-    MOVE_DOUBLE_HIT,
     MOVE_DOUBLE_IRON_BASH,
-    MOVE_DOUBLE_KICK,
-    MOVE_DRAGON_DARTS,
-    MOVE_DUAL_CHOP,
-    MOVE_DUAL_WINGBEAT,
-    MOVE_GEAR_GRIND,
     MOVE_TWINEEDLE,
-    0xFFFF
 };
 
 u8 CalcBeatUpPower(void)
@@ -4062,14 +4054,20 @@ u8 AtkCanceller_UnableToUseMove(void)
             {
                 gMultiHitCounter = 2;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
-                if (gCurrentMove == MOVE_DRAGON_DARTS)
-                {
-                    // TODO
-                }
+            }
+            else if (gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_HIT)
+            {
+                gMultiHitCounter = gBattleMoves[gCurrentMove].argument ? gBattleMoves[gCurrentMove].argument : 3;
+				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK)
             {
                 gMultiHitCounter = 3;
+				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+            }
+            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TEN_HITS)
+            {
+                gMultiHitCounter = 10;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             #if B_BEAT_UP_DMG >= GEN_5
