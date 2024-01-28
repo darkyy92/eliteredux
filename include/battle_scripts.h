@@ -472,6 +472,8 @@ extern const u8 BattleScript_InversedRoomActivated[];
 extern const u8 BattleScript_InverseRoomRemoved[];
 extern const u8 BattleScript_TwistedDimensionRemoved[];
 extern const u8 BattleScript_Permanence[];
+extern const u8 BattleScript_BerserkDNA[];
+extern const u8 BattleScript_BerserkDNANoConfusion[];
 extern const u8 BattleScript_NorthWindActivated[];
 extern const u8 BattleScript_GripPincerActivated[];
 extern const u8 BattleScript_PrintDamageDoneString[];

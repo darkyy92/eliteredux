@@ -6524,6 +6524,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            //Berserk DNA
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_BERSERK_DNA))
+            {
+                bool8 becameConfused = FALSE;
+                if (CanBeConfused(battler)) {
+                    gBattleMons[battler].status2 |= STATUS2_CONFUSION;
+                    gBattleMons[battler].status2 |= STATUS2_CONFUSION_TURN(3);
+                    becameConfused = TRUE;
+                }
+                BattleScriptPushCursorAndCallback(becameConfused ? BattleScript_BerserkDNA : BattleScript_BerserkDNANoConfusion);
+                
+                effect++;
+            }
+
             if(BattlerHasInnate(battler, ABILITY_FURNACE)){
                 if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
                 && IsBattlerAlive(battler)

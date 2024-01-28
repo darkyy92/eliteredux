@@ -5112,9 +5112,11 @@ BattleScript_EffectSwagger::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SwaggerTryConfuse:
+	jumpifability BS_ATTACKER, ABILITY_MYCELIUM_MIGHT, BattleScript_SwaggerTryConfuseMyceliumMight
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
 	jumpifability BS_TARGET, ABILITY_DISCIPLINE, BattleScript_Discipline
 	jumpifsafeguard BattleScript_SafeguardProtected
+BattleScript_SwaggerTryConfuseMyceliumMight:
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	seteffectprimary
 	goto BattleScript_MoveEnd
@@ -11464,6 +11466,30 @@ BattleScript_Permanence::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PERMANENCE
 	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BerserkDNA::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BERSERKDNA
+	raisehighestattackingstat BS_ATTACKER, 2, BattleScript_BerserkDNAStatMaxed
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+BattleScript_BerserkDNAStatMaxed:
+	chosenstatus2animation BS_ATTACKER, STATUS2_CONFUSION
+	copybyte gEffectBattler, gBattlerAttacker
+	printstring STRINGID_PKMNWASCONFUSED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BerserkDNANoConfusion::
+	raisehighestattackingstat BS_ATTACKER, 2, BattleScript_BerserkDNAStatMaxedNoConfusion
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BERSERKDNA
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_BATTLERABILITYRAISEDSTAT
+BattleScript_BerserkDNAStatMaxedNoConfusion:
 	end3
 
 BattleScript_GripPincerActivated::
