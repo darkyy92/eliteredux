@@ -14364,7 +14364,8 @@ static void Cmd_switchoutabilities(void)
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
 		}
-        else if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || GetBattlerAbility(gActiveBattler) == ABILITY_REGENERATOR){ 
+        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_REGENERATOR)
+                && !(gBattleMons[gActiveBattler].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(gActiveBattler, ABILITY_PERMANENCE))){ 
             gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
             gBattleMoveDamage += gBattleMons[gActiveBattler].hp;
             if (gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)

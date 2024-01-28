@@ -830,7 +830,7 @@ static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PRE
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
 static const u8 sText_InverseRoomEnds[] = _("The inverted dimensions returned to\nnormal!");
-static const u8 sText_Permanence[] = _("{B_ATK_NAME_WITH_PREFIX} blocks\nthe opposing team from healing!");
+static const u8 sText_Permanence[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is preventing\nthe opposing team from healing!");
 static const u8 sText_BerserkDNA[] = _("{B_ATK_NAME_WITH_PREFIX} goes\nberserk!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");

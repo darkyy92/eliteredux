@@ -525,7 +525,7 @@ static const u8 sAbilityCrownedShieldDescription[] = _("Intrepid Shield + Stamin
 static const u8 sAbilityBerserkDnaDescription[] = _("Sharply ups highest attacking stat\nbut confuses on entry.");
 static const u8 sAbilityCrownedKingDescription[] = _("Unnerve +\nGrim Neigh + Chilling Neigh.");
 static const u8 sAbilitySnapTrapWhenHitDescription[] = _("Counters contact with\n50BP Snap Trap.");
-static const u8 sAbilityPermanenceDescription[] = _("Blocks healing on entry.");
+static const u8 sAbilityPermanenceDescription[] = _("Foes can't heal.");
 static const u8 sAbilityHubrisDescription[] = _("KOs raise SpAtk by +1.");
 static const u8 sAbilityCosmicDazeDescription[] = _("2x damage vs confused. Enemies\ntake 2x confusion damage.");
 

@@ -1848,7 +1848,7 @@ bool32 IsGravityPreventingMove(u32 move)
 
 bool32 IsHealBlockPreventingMove(u8 battler, u32 move)
 {
-    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+    if (!(gStatuses3[battler] & STATUS3_HEAL_BLOCK) && !IsAbilityOnOpposingSide(battler, ABILITY_PERMANENCE))
         return FALSE;
     
     switch (gBattleMoves[move].effect)
@@ -6500,29 +6500,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Permanence
             if (CheckAndSetSwitchInAbility(battler, ABILITY_PERMANENCE)) {
-                u8 opponent = BATTLE_OPPOSITE(battler);
-                bool8 blockedHealing = FALSE;
-
-                if (IsBattlerAlive(opponent) && !(gStatuses3[opponent] & STATUS3_HEAL_BLOCK))
-                {
-                    gStatuses3[opponent] |= STATUS3_HEAL_BLOCK;
-                    gDisableStructs[opponent].healBlockTimer = 5;
-                    blockedHealing = TRUE;
-                }
-
-                opponent = BATTLE_PARTNER(battler);
-                if (IsBattlerAlive(opponent) && !(gStatuses3[opponent] & STATUS3_HEAL_BLOCK))
-                {
-                    gStatuses3[opponent] |= STATUS3_HEAL_BLOCK;
-                    gDisableStructs[opponent].healBlockTimer = 5;
-                    blockedHealing = TRUE;
-                }
-
-                if (blockedHealing) {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PERMANENCE;
-                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                    effect++;
-                }
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PERMANENCE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
             }
 
             //Berserk DNA
