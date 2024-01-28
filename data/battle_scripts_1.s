@@ -11460,6 +11460,11 @@ BattleScript_InverseRoomRemoved::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_Permanence::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PERMANENCE
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_GripPincerActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER

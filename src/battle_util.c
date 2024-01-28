@@ -6498,6 +6498,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            //Permanence
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_PERMANENCE)) {
+                u8 opponent = BATTLE_OPPOSITE(battler);
+                bool8 blockedHealing = FALSE;
+
+                if (IsBattlerAlive(opponent) && !(gStatuses3[opponent] & STATUS3_HEAL_BLOCK))
+                {
+                    gStatuses3[opponent] |= STATUS3_HEAL_BLOCK;
+                    gDisableStructs[opponent].healBlockTimer = 5;
+                    blockedHealing = TRUE;
+                }
+
+                opponent = BATTLE_PARTNER(battler);
+                if (IsBattlerAlive(opponent) && !(gStatuses3[opponent] & STATUS3_HEAL_BLOCK))
+                {
+                    gStatuses3[opponent] |= STATUS3_HEAL_BLOCK;
+                    gDisableStructs[opponent].healBlockTimer = 5;
+                    blockedHealing = TRUE;
+                }
+
+                if (blockedHealing) {
+                    BattleScriptPushCursorAndCallback(BattleScript_Permanence);
+                    effect++;
+                }
+            }
+
             if(BattlerHasInnate(battler, ABILITY_FURNACE)){
                 if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
                 && IsBattlerAlive(battler)

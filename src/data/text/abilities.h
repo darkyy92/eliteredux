@@ -525,7 +525,7 @@ static const u8 sAbilityCrownedShieldDescription[] = _("Intrepid Shield + Stamin
 static const u8 sAbilityBerserkDnaDescription[] = _("Sharply ups highest attacking stat\nbut confuses on entry.");
 static const u8 sAbilityCrownedKingDescription[] = _("Unnerve +\nGrim Neigh + Chilling Neigh.");
 static const u8 sAbilitySnapTrapWhenHitDescription[] = _("Counters contact with\n50BP Snap Trap.");
-static const u8 sAbilityHealBlockOnEntryDescription[] = _("Blocks healing on entry.");
+static const u8 sAbilityPermanenceDescription[] = _("Blocks healing on entry.");
 static const u8 sAbilityHubrisDescription[] = _("KOs raise SpAtk by +1.");
 static const u8 sAbilityCosmicDazeDescription[] = _("2x damage vs confused. Enemies\ntake 2x confusion damage.");
 
@@ -1072,7 +1072,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_BERSERK_DNA] = _("Berserk DNA"),
         [ABILITY_CROWNED_KING] = _("Crowned King"),
         [ABILITY_SNAP_TRAP_WHEN_HIT] = _("Snap Trap When Hit"),
-        [ABILITY_HEAL_BLOCK_ON_ENTRY] = _("Heal Block On Entry"),
+        [ABILITY_PERMANENCE] = _("Permanence"),
         [ABILITY_HUBRIS] = _("Hubris"),
         [ABILITY_COSMIC_DAZE] = _("Cosmic Daze"),
 };
@@ -1612,7 +1612,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_BERSERK_DNA] = sAbilityBerserkDnaDescription,
         [ABILITY_CROWNED_KING] = sAbilityCrownedKingDescription,
         [ABILITY_SNAP_TRAP_WHEN_HIT] = sAbilitySnapTrapWhenHitDescription,
-        [ABILITY_HEAL_BLOCK_ON_ENTRY] = sAbilityHealBlockOnEntryDescription,
+        [ABILITY_PERMANENCE] = sAbilityPermanenceDescription,
         [ABILITY_HUBRIS] = sAbilityHubrisDescription,
         [ABILITY_COSMIC_DAZE] = sAbilityCosmicDazeDescription,
 };

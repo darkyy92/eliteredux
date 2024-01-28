@@ -830,6 +830,7 @@ static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PRE
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
 static const u8 sText_InverseRoomEnds[] = _("The inverted dimensions returned to\nnormal!");
+static const u8 sText_Permanence[] = _("{B_ATK_NAME_WITH_PREFIX} blocks\nthe opposing team from healing!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -1550,6 +1551,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ATTACKERBECAMEINFECTED - 12] = sText_AttackerBecameInfected,
     [STRINGID_SETUPINVERSEROOM - 12] = sText_PkmnInverseDimensions,
     [STRINGID_CROWNEDKINGENTERS - 12] = sText_CrownedKingEnters,
+    [STRINGID_PERMANENCE - 12] = sText_Permanence,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
