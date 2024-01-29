@@ -7202,6 +7202,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
 			}
+
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BLOOD_PRICE)) {
+                if (gBattleMoves[move].split != SPLIT_STATUS
+                    && !BATTLER_HAS_MAGIC_GUARD(gActiveBattler)
+                    && !gProtectStructs[gActiveBattler].confusionSelfDmg)
+                {
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 10;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+
+                    gBattlerAttacker = gActiveBattler;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BLOOD_PRICE;
+                    
+                    BattleScriptPushCursorAndCallback(BattleScript_AbilitySelfDamage);
+                    effect++;
+                }
+            }
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
@@ -11225,7 +11242,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !BATTLER_HEALING_BLOCKED(gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !BATTLER_MAX_HP(gBattlerAttacker) 
-             && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED){
                 activateAbilty = TRUE;
             }
@@ -14232,6 +14248,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     // Lumberjack
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LUMBERJACK) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
         MulModifier(&modifier, UQ_4_12(1.5));
+
+    // Blood Price
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BLOOD_PRICE))
+        MulModifier(&modifier, UQ_4_12(1.3));
 	
 	// Huge Power & Pure Power
 	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUGE_POWER)  ||

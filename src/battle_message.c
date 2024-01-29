@@ -542,6 +542,7 @@ static const u8 sText_Trainer2LoseText[];
 static const s8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} endured\nthe hit using its ability!");
 static const s8 sText_PowerHerbActivation[] = _("{B_ATK_NAME_WITH_PREFIX} became fully charged\ndue to its {B_LAST_ITEM}!");
 static const s8 sText_HurtByItem[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby its {B_LAST_ITEM}!");
+static const s8 sText_HurtByAbility[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby its ability!");
 static const s8 sText_BadlyPoisonedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was badly \npoisoned by the {B_LAST_ITEM}!");
 static const s8 sText_BurnedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was burned\nby the {B_LAST_ITEM}!");
 static const s8 sText_TargetAbilityActivates[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY} activates!");
@@ -1379,6 +1380,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ENDUREDSTURDY - 12] = sText_EnduredViaSturdy,
     [STRINGID_POWERHERB - 12] = sText_PowerHerbActivation,
     [STRINGID_HURTBYITEM - 12] = sText_HurtByItem,
+    [STRINGID_HURTBYABILITY - 12] = sText_HurtByAbility,
     [STRINGID_PSNBYITEM - 12] = sText_BadlyPoisonedByItem,
     [STRINGID_BRNBYITEM - 12] = sText_BurnedByItem,
     [STRINGID_DEFABILITYIN - 12] = sText_TargetAbilityActivates,

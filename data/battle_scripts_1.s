@@ -9319,6 +9319,16 @@ BattleScript_SolarPowerActivates::
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	end3
+
+BattleScript_AbilitySelfDamage::
+	call BattleScript_AbilityPopUp
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_HURTBYABILITY
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	end3
 	
 BattleScript_HealerActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_HEALER

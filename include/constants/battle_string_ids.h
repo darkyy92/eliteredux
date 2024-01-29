@@ -717,8 +717,9 @@
 #define STRINGID_CROWNEDKINGENTERS                    746
 #define STRINGID_PERMANENCE                           747
 #define STRINGID_BERSERKDNA                           748
+#define STRINGID_HURTBYABILITY                        749
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BERSERKDNA + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_HURTBYABILITY + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
