@@ -4642,6 +4642,32 @@ static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 ext
     (*effect)++;
 }
 
+static void AbilityHealMonStatus(u8 *effect, u8 battler, u16 ability) {
+    if (!(gBattleMons[battler].status1 & STATUS1_ANY)) return;
+
+    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+    if (gBattleMons[battler].status1 & STATUS1_BURN)
+        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+    if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
+        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+    if (gBattleMons[battler].status1 & STATUS1_BLEED)
+        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
+
+    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
+    gBattleMons[battler].status1 = 0;
+    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+    gBattleScripting.battler = gActiveBattler = battler;
+    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+    MarkBattlerForControllerExec(gActiveBattler);
+    (*effect)++;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -4888,14 +4914,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
-        case ABILITY_FRISK:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                BattleScriptPushCursorAndCallback(BattleScript_FriskActivates); // Try activate
-                effect++;
-            }
-            return effect; // Note: It returns effect as to not record the ability if Frisk does not activate.
         case ABILITY_DOWNLOAD:
             // Check if the switch-in ability has already been done
             if (!gSpecialStatuses[battler].switchInAbilityDone)
@@ -5417,6 +5435,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
         if(abilityEffect && caseID == ABILITYEFFECT_ON_SWITCHIN){
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_FRISK))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_FriskActivates); // Try activate
+                effect++;
+            }
+
             // Weather Abilities --------------------------------------------------------------------------------------------------
             // Drizzle and Seaborne
             if(CheckAndSetSwitchInAbility(battler, ABILITY_DRIZZLE) || CheckAndSetSwitchInAbility(battler, ABILITY_SEABORNE)){
@@ -6700,37 +6724,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_HYDRATION:
-                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
-                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
                 {
-                    goto ABILITY_HEAL_MON_STATUS;
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_HYDRATION);
                 }
                 break;
             case ABILITY_SHED_SKIN:
-                if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
+                if ((Random() % 3) == 0)
                 {
-                ABILITY_HEAL_MON_STATUS:
-                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BURN)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                    if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BLEED)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
-
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
-                    gBattleMons[battler].status1 = 0;
-                    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
-                    gBattleScripting.battler = gActiveBattler = battler;
-                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
-                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    effect++;
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_SHED_SKIN);
                 }
                 break;
             case ABILITY_SPEED_BOOST:
@@ -6891,52 +6893,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
 			// Hydration
             if(BattlerHasInnate(gActiveBattler, ABILITY_HYDRATION)){
-                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
-                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_HYDRATION;
-			        gLastUsedAbility = ABILITY_HYDRATION;
-                    goto ABILITY_HEAL_MON_STATUS_INNATE;
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_HYDRATION);
                 }
             }
 
 			// Purifying Waters
             if(BattlerHasInnate(gActiveBattler, ABILITY_PURIFYING_WATERS)){
-                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
-                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_PURIFYING_WATERS;
-			        gLastUsedAbility = ABILITY_PURIFYING_WATERS;
-                    goto ABILITY_HEAL_MON_STATUS_INNATE;
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_PURIFYING_WATERS);
                 }
             }
 			
 			// Shed Skin
             if(BattlerHasInnate(gActiveBattler, ABILITY_SHED_SKIN)){
-                if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
+                if ((Random() % 3) == 0)
                 {
-                ABILITY_HEAL_MON_STATUS_INNATE:
-                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BURN)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_FREEZE)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BLEED)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
-
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
-                    gBattleMons[battler].status1 = 0;
-                    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
-                    gBattleScripting.battler = gActiveBattler = battler;
-                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
-                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    effect++;
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_SHED_SKIN);
                 }
 			}
 			
@@ -10982,8 +10957,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
-            //Water Veil
-            if(BattlerHasInnate(battler, ABILITY_PURIFYING_WATERS)){
+            //Purifying Waters
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_PURIFYING_WATERS)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PURIFYING_WATERS;

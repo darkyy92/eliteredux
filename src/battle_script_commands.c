@@ -8489,6 +8489,12 @@ static void Cmd_various(void)
                     gBattleStruct->friskedAbility = TRUE;
                     gBattlescriptCurrInstr = BattleScript_FriskMsgWithPopup;
                 }
+
+                if (!(gStatuses3[gBattlerTarget] & STATUS3_EMBARGO))
+                {
+                    gStatuses3[gBattlerTarget] |= STATUS3_EMBARGO;
+                    gDisableStructs[gBattlerTarget].embargoTimer = 2;
+                }
                 return;
             }
         }
