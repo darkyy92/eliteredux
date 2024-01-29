@@ -528,6 +528,10 @@ static const u8 sAbilitySnapTrapWhenHitDescription[] = _("Counters contact with\
 static const u8 sAbilityPermanenceDescription[] = _("Foes can't heal.");
 static const u8 sAbilityHubrisDescription[] = _("KOs raise SpAtk by +1.");
 static const u8 sAbilityCosmicDazeDescription[] = _("2x damage vs confused. Enemies\ntake 2x confusion damage.");
+static const u8 sAbilityMindsEyeDescription[] = _("Hits Ghost-type Pokémon.\nAccuracy can't be lowered."),
+static const u8 sAbilityBloodPriceDescription[] = _("Does 30% more damage but\nlose 10% HP when attacking."),
+static const u8 sAbilitySpikeArmorDescription[] = _("30% chance to bleed\non contact."),
+static const u8 sAbilityVoodooPowerDescription[] = _("30% chance to bleed when\nhit by special attacks."),
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1075,6 +1079,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_PERMANENCE] = _("Permanence"),
         [ABILITY_HUBRIS] = _("Hubris"),
         [ABILITY_COSMIC_DAZE] = _("Cosmic Daze"),
+        [ABILITY_MINDS_EYE] = _("Mind's Eye"),
+        [ABILITY_BLOOD_PRICE] = _("Blood Price"),
+        [ABILITY_SPIKE_ARMOR] = _("Spike Armor"),
+        [ABILITY_VOODOO_POWER] = _("Voodoo Power"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1615,4 +1623,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_PERMANENCE] = sAbilityPermanenceDescription,
         [ABILITY_HUBRIS] = sAbilityHubrisDescription,
         [ABILITY_COSMIC_DAZE] = sAbilityCosmicDazeDescription,
+        [ABILITY_MINDS_EYE] = sAbilityMindsEyeDescription,
+        [ABILITY_BLOOD_PRICE] = sAbilityBloodPriceDescription,
+        [ABILITY_SPIKE_ARMOR] = sAbilitySpikeArmorDescription,
+        [ABILITY_VOODOO_POWER] = sAbilityVoodooPowerDescription,
 };

@@ -563,8 +563,12 @@
 #define ABILITY_PERMANENCE       (ABILITIES_COUNT_LATEST_GEN + 265) // Heal Block on entry
 #define ABILITY_HUBRIS           (ABILITIES_COUNT_LATEST_GEN + 266) // +1 SpAtk on KO
 #define ABILITY_COSMIC_DAZE      (ABILITIES_COUNT_LATEST_GEN + 267) // Double damage vs confused targets. Double opposing confusion self damage.
+#define ABILITY_MINDS_EYE        (ABILITIES_COUNT_LATEST_GEN + 268) // Can hit ghost types. Accuracy can't be lowered
+#define ABILITY_BLOOD_PRICE      (ABILITIES_COUNT_LATEST_GEN + 269) // Life Orb
+#define ABILITY_SPIKE_ARMOR      (ABILITIES_COUNT_LATEST_GEN + 270) // Bleed on contact
+#define ABILITY_VOODOO_POWER     (ABILITIES_COUNT_LATEST_GEN + 271) // Bleed on hit by special
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_COSMIC_DAZE + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_VOODOO_POWER + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
