@@ -4906,6 +4906,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
 	
 	if (ability == ABILITY_LEAD_COAT || BattlerHasInnate(battlerId, ABILITY_LEAD_COAT))
         speed *= 0.9;
+
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LIGHT_METAL, ability))
+        speed = (speed * 130) / 100;
 	
 	/*if ((ability == ABILITY_NOCTURNAL || BattlerHasInnate(battlerId, ABILITY_NOCTURNAL)) && !IsCurrentlyDay())
         speed *= 1.1;
