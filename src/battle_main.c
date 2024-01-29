@@ -5054,6 +5054,9 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
 		priority++;
 	}
 
+    if (move == MOVE_RAZOR_WIND && (gSideStatuses[0] & SIDE_STATUS_TAILWIND || gSideStatuses[1] & SIDE_STATUS_TAILWIND))
+        priority++;
+
     return priority;
 }
 
