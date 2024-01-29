@@ -528,10 +528,10 @@ static const u8 sAbilitySnapTrapWhenHitDescription[] = _("Counters contact with\
 static const u8 sAbilityPermanenceDescription[] = _("Foes can't heal.");
 static const u8 sAbilityHubrisDescription[] = _("KOs raise SpAtk by +1.");
 static const u8 sAbilityCosmicDazeDescription[] = _("2x damage vs confused. Enemies\ntake 2x confusion damage.");
-static const u8 sAbilityMindsEyeDescription[] = _("Hits Ghost-type Pokémon.\nAccuracy can't be lowered."),
-static const u8 sAbilityBloodPriceDescription[] = _("Does 30% more damage but\nlose 10% HP when attacking."),
-static const u8 sAbilitySpikeArmorDescription[] = _("30% chance to bleed\non contact."),
-static const u8 sAbilityVoodooPowerDescription[] = _("30% chance to bleed when\nhit by special attacks."),
+static const u8 sAbilityMindsEyeDescription[] = _("Hits Ghost-type Pokémon.\nAccuracy can't be lowered.");
+static const u8 sAbilityBloodPriceDescription[] = _("Does 30% more damage but\nlose 10% HP when attacking.");
+static const u8 sAbilitySpikeArmorDescription[] = _("30% chance to bleed\non contact.");
+static const u8 sAbilityVoodooPowerDescription[] = _("30% chance to bleed when\nhit by special attacks.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
