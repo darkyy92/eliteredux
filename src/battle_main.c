@@ -5862,7 +5862,7 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
-
+#define HAS_ABILITY(abilityToCheck) (MonHasInnate(mon, abilityToCheck, disableRandomizer) || ability == abilityToCheck)
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
     u32 moveType, ateType, attackerAbility, tempstuff;
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
@@ -5917,34 +5917,38 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         if (ItemId_GetPocket(item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
     }
+    //Sand Song
+    if(HAS_ABILITY(ABILITY_SAND_SONG) && gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL){
+        return TYPE_GROUND;
+    }
 
-   if (gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
-             && (   ((ability == ABILITY_PIXILATE        || MonHasInnate(mon, ABILITY_PIXILATE, disableRandomizer))        && (ateType = TYPE_FAIRY))
-                 || ((ability == ABILITY_REFRIGERATE     || MonHasInnate(mon, ABILITY_REFRIGERATE, disableRandomizer))     && (ateType = TYPE_ICE))
-                 || ((ability == ABILITY_REFRIGERATOR    || MonHasInnate(mon, ABILITY_REFRIGERATOR, disableRandomizer))    && (ateType = TYPE_ICE))
-                 || ((ability == ABILITY_AERILATE        || MonHasInnate(mon, ABILITY_AERILATE, disableRandomizer))        && (ateType = TYPE_FLYING))
-				 || ((ability == ABILITY_IMMOLATE        || MonHasInnate(mon, ABILITY_IMMOLATE, disableRandomizer))        && (ateType = TYPE_FIRE))
-				 || ((ability == ABILITY_SOLAR_FLARE     || MonHasInnate(mon, ABILITY_SOLAR_FLARE, disableRandomizer))     && (ateType = TYPE_FIRE))
-				 || ((ability == ABILITY_TECTONIZE       || MonHasInnate(mon, ABILITY_TECTONIZE, disableRandomizer))       && (ateType = TYPE_GROUND))
-				 || ((ability == ABILITY_FIGHT_SPIRIT    || MonHasInnate(mon, ABILITY_FIGHT_SPIRIT, disableRandomizer))    && (ateType = TYPE_FIGHTING))
-                 || ((ability == ABILITY_INTOXICATE      || MonHasInnate(mon, ABILITY_INTOXICATE, disableRandomizer))      && (ateType = TYPE_POISON))
-                 || ((ability == ABILITY_HYDRATE         || MonHasInnate(mon, ABILITY_HYDRATE, disableRandomizer))         && (ateType = TYPE_WATER))
-                 || ((ability == ABILITY_GALVANIZE       || MonHasInnate(mon, ABILITY_GALVANIZE, disableRandomizer))       && (ateType = TYPE_ELECTRIC))
-                 || ((ability == ABILITY_POLLINATE       || MonHasInnate(mon, ABILITY_POLLINATE, disableRandomizer))       && (ateType = TYPE_BUG))
-				 || ((ability == ABILITY_SPECTRAL_SHROUD || MonHasInnate(mon, ABILITY_SPECTRAL_SHROUD, disableRandomizer)) && (ateType = TYPE_GHOST))
-				 || ((ability == ABILITY_SPECTRALIZE     || MonHasInnate(mon, ABILITY_SPECTRALIZE, disableRandomizer))     && (ateType = TYPE_GHOST))
-                 || ((ability == ABILITY_MINERALIZE      || MonHasInnate(mon, ABILITY_MINERALIZE, disableRandomizer))      && (ateType = TYPE_ROCK))
-                 || ((ability == ABILITY_DRACONIZE       || MonHasInnate(mon, ABILITY_DRACONIZE, disableRandomizer))       && (ateType = TYPE_DRAGON))
-                 || ((ability == ABILITY_EMANATE         || MonHasInnate(mon, ABILITY_EMANATE, disableRandomizer))         && (ateType = TYPE_PSYCHIC))
-                 || ((ability == ABILITY_ENLIGHTENED     || MonHasInnate(mon, ABILITY_ENLIGHTENED, disableRandomizer))     && (ateType = TYPE_PSYCHIC))
-                 || ((ability == ABILITY_FERTILIZE       || MonHasInnate(mon, ABILITY_FERTILIZE, disableRandomizer))       && (ateType = TYPE_GRASS))
+    if (gBattleMoves[move].type == TYPE_NORMAL
+            && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+            && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+            && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+            && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+            && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
+            && (   (HAS_ABILITY(ABILITY_PIXILATE)          && (ateType = TYPE_FAIRY))
+                || (HAS_ABILITY(ABILITY_REFRIGERATE)       && (ateType = TYPE_ICE))
+                || (HAS_ABILITY(ABILITY_REFRIGERATOR)      && (ateType = TYPE_ICE))
+                || (HAS_ABILITY(ABILITY_AERILATE)          && (ateType = TYPE_FLYING))
+		        || (HAS_ABILITY(ABILITY_IMMOLATE)          && (ateType = TYPE_FIRE))
+			    || (HAS_ABILITY(ABILITY_SOLAR_FLARE)       && (ateType = TYPE_FIRE))
+				|| (HAS_ABILITY(ABILITY_TECTONIZE)         && (ateType = TYPE_GROUND))
+				|| (HAS_ABILITY(ABILITY_FIGHT_SPIRIT)      && (ateType = TYPE_FIGHTING))
+                || (HAS_ABILITY(ABILITY_INTOXICATE)        && (ateType = TYPE_POISON))
+                || (HAS_ABILITY(ABILITY_HYDRATE)           && (ateType = TYPE_WATER))
+                || (HAS_ABILITY(ABILITY_GALVANIZE)         && (ateType = TYPE_ELECTRIC))
+                || (HAS_ABILITY(ABILITY_POLLINATE)         && (ateType = TYPE_BUG))
+				|| (HAS_ABILITY(ABILITY_SPECTRAL_SHROUD)   && (ateType = TYPE_GHOST))
+				|| (HAS_ABILITY(ABILITY_SPECTRALIZE)       && (ateType = TYPE_GHOST))
+                || (HAS_ABILITY(ABILITY_MINERALIZE)        && (ateType = TYPE_ROCK))
+                || (HAS_ABILITY(ABILITY_DRACONIZE)         && (ateType = TYPE_DRAGON))
+                || (HAS_ABILITY(ABILITY_EMANATE)           && (ateType = TYPE_PSYCHIC))
+                || (HAS_ABILITY(ABILITY_ENLIGHTENED)       && (ateType = TYPE_PSYCHIC))
+                || (HAS_ABILITY(ABILITY_FERTILIZE)         && (ateType = TYPE_GRASS))
                 )
-             ){
+            ){
         return ateType;
     }
 
@@ -5952,29 +5956,24 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         return TYPE_DARK;
 	
 	//Crystallize
-	if(MonHasInnate(mon, ABILITY_CRYSTALLIZE, disableRandomizer) || ability == ABILITY_CRYSTALLIZE){
+	if(HAS_ABILITY(ABILITY_CRYSTALLIZE)){
 		if(gBattleMoves[move].type == TYPE_ROCK)
 			return TYPE_ICE;
 	}
-    //Sand Song
-    if(MonHasInnate(mon, ABILITY_SAND_SONG, disableRandomizer) || ability == ABILITY_SAND_SONG){
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            return TYPE_GROUND;
-    }
     //Normalize
-    if(MonHasInnate(mon, ABILITY_NORMALIZE, disableRandomizer) || ability == ABILITY_NORMALIZE){
+    if(HAS_ABILITY(ABILITY_NORMALIZE)){
         if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL)
         return TYPE_NORMAL;
     }
     //Liquid Voice
-    if(MonHasInnate(mon, ABILITY_LIQUID_VOICE, disableRandomizer) || ability == ABILITY_LIQUID_VOICE){
+    if(HAS_ABILITY(ABILITY_LIQUID_VOICE)){
         if (gBattleMoves[move].flags & FLAG_SOUND)
             return TYPE_WATER;
     }
 	//Fight Spirit
-	if(MonHasInnate(mon, ABILITY_FIGHT_SPIRIT, disableRandomizer)){
+	if(HAS_ABILITY(ABILITY_FIGHT_SPIRIT)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -5986,6 +5985,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
 
     return gBattleMoves[move].type;
 }
+#undef HAS_ABILITY
 
 u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     u32 moveType, ateType, attackerAbility, tempstuff;
@@ -6065,8 +6065,11 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 
     attackerAbility = GetBattlerAbility(battlerAtk);
     GET_MOVE_TYPE(move, moveType);
+
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL) || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
         return TYPE_ELECTRIC;
+    else if (gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAND_SONG))
+        return TYPE_GROUND;
     else if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -6105,9 +6108,6 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
              (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
         return TYPE_WATER;
-    else if (gBattleMoves[move].flags & FLAG_SOUND && 
-             (attackerAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
-        return TYPE_GROUND;
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
         return TYPE_ELECTRIC;
     else if (move == MOVE_AURA_WHEEL && gBattleMons[battlerAtk].species == SPECIES_MORPEKO_HANGRY)
@@ -6201,6 +6201,11 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_ELECTRIC;
     }
+    else if (gBattleMoves[move].flags & FLAG_SOUND && gBattleMoves[move].type == TYPE_NORMAL && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SAND_SONG, attackerAbility))
+    {
+        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
+        gBattleStruct->ateBoost[battlerAtk] = 1;
+    }
     else if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -6249,11 +6254,6 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
             (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
-    }
-    else if (gBattleMoves[move].flags & FLAG_SOUND && 
-            (attackerAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
-    {
-        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
     }
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
     {
