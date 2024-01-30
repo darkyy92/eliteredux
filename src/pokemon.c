@@ -6700,10 +6700,14 @@ u8 *UseStatIncreaseItem(u16 itemId)
 
     if (itemId == ITEM_ENIGMA_BERRY)
     {
+        #ifndef ITEM_EXPANSION
         if (gMain.inBattle)
             itemEffect = gEnigmaBerries[gBattlerInMenuId].itemEffect;
         else
             itemEffect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+        #else
+        itemEffect = 0;
+        #endif
     }
     else
     {
