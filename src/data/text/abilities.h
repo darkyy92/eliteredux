@@ -533,6 +533,22 @@ static const u8 sAbilityMindsEyeDescription[] = _("Hits Ghost-type Pokémon.\nAc
 static const u8 sAbilityBloodPriceDescription[] = _("Does 30% more damage but\nlose 10% HP when attacking.");
 static const u8 sAbilitySpikeArmorDescription[] = _("30% chance to bleed\non contact.");
 static const u8 sAbilityVoodooPowerDescription[] = _("30% chance to bleed when\nhit by special attacks.");
+static const u8 sAbilityBansheeDescription[] = _("Placeholder");
+static const u8 sAbilityWebSpinnerDescription[] = _("Placeholder");
+static const u8 sAbilityShowdownModeDescription[] = _("Placeholder");
+static const u8 sAbilitySeedSowerDescription[] = _("Placeholder");
+static const u8 sAbilityAirborneDescription[] = _("Placeholder");
+static const u8 sAbilityParrotingDescription[] = _("Placeholder");
+static const u8 sAbilityBlockOnEntryDescription[] = _("Placeholder");
+static const u8 sAbilityPurifyingSaltDescription[] = _("Placeholder");
+static const u8 sAbilityArmorCannonDescription[] = _("Placeholder");
+static const u8 sAbilityBitterBladeDescription[] = _("Placeholder");
+static const u8 sAbilityWindPowerDescription[] = _("Placeholder");
+static const u8 sAbilityMomentumPlusDescription[] = _("Placeholder");
+static const u8 sAbilitySpecialSpeedForceDescription[] = _("Placeholder");
+static const u8 sAbilityGuardDogDescription[] = _("Placeholder");
+static const u8 sAbilityAngerShellDescription[] = _("Placeholder");
+static const u8 sAbilityEgoistDescription[] = _("Placeholder");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1085,7 +1101,23 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_SPIKE_ARMOR] = _("Spike Armor"),
         [ABILITY_VOODOO_POWER] = _("Voodoo Power"),
         [ABILITY_CHROME_COAT] = _("Chrome Coat"),
-};
+        [ABILITY_BANSHEE] = _("Banshee"),
+        [ABILITY_WEB_SPINNER] = _("Web Spinner"),
+        [ABILITY_SHOWDOWN_MODE] = _("Showdown Mode"),
+        [ABILITY_SEED_SOWER] = _("Seed Sower"),
+        [ABILITY_AIRBORNE] = _("Airborne"),
+        [ABILITY_PARROTING] = _("Parroting"),
+        [ABILITY_BLOCK_ON_ENTRY] = _("Block On Entry"),
+        [ABILITY_PURIFYING_SALT] = _("Purifying Salt"),
+        [ABILITY_ARMOR_CANNON] = _("Armor Cannon"),
+        [ABILITY_BITTER_BLADE] = _("Bitter Blade"),
+        [ABILITY_WIND_POWER] = _("Wind Power"),
+        [ABILITY_MOMENTUM_PLUS] = _("Momentum Plus"),
+        [ABILITY_SPECIAL_SPEED_FORCE] = _("Special Speed Force"),
+        [ABILITY_GUARD_DOG] = _("Guard Dog"),
+        [ABILITY_ANGER_SHELL] = _("Anger Shell"),
+        [ABILITY_EGOIST] = _("Egoist"),
+        };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     {
@@ -1630,4 +1662,20 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_SPIKE_ARMOR] = sAbilitySpikeArmorDescription,
         [ABILITY_VOODOO_POWER] = sAbilityVoodooPowerDescription,
         [ABILITY_CHROME_COAT] = sAbilityChromeCoatDescription,
+        [ABILITY_BANSHEE] = sAbilityBansheeDescription,
+        [ABILITY_WEB_SPINNER] = sAbilityWebSpinnerDescription,
+        [ABILITY_SHOWDOWN_MODE] = sAbilityShowdownModeDescription,
+        [ABILITY_SEED_SOWER] = sAbilitySeedSowerDescription,
+        [ABILITY_AIRBORNE] = sAbilityAirborneDescription,
+        [ABILITY_PARROTING] = sAbilityParrotingDescription,
+        [ABILITY_BLOCK_ON_ENTRY] = sAbilityBlockOnEntryDescription,
+        [ABILITY_PURIFYING_SALT] = sAbilityPurifyingSaltDescription,
+        [ABILITY_ARMOR_CANNON] = sAbilityArmorCannonDescription,
+        [ABILITY_BITTER_BLADE] = sAbilityBitterBladeDescription,
+        [ABILITY_WIND_POWER] = sAbilityWindPowerDescription,
+        [ABILITY_MOMENTUM_PLUS] = sAbilityMomentumPlusDescription,
+        [ABILITY_SPECIAL_SPEED_FORCE] = sAbilitySpecialSpeedForceDescription,
+        [ABILITY_GUARD_DOG] = sAbilityGuardDogDescription,
+        [ABILITY_ANGER_SHELL] = sAbilityAngerShellDescription,
+        [ABILITY_EGOIST] = sAbilityEgoistDescription,
 };

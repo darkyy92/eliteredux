@@ -567,9 +567,25 @@
 #define ABILITY_BLOOD_PRICE      (ABILITIES_COUNT_LATEST_GEN + 269) // Life Orb
 #define ABILITY_SPIKE_ARMOR      (ABILITIES_COUNT_LATEST_GEN + 270) // Bleed on contact
 #define ABILITY_VOODOO_POWER     (ABILITIES_COUNT_LATEST_GEN + 271) // Bleed on hit by special
-#define ABILITY_CHROME_COAT      (ABILITIES_COUNT_LATEST_GEN + 272) // Bleed on hit by special
+#define ABILITY_CHROME_COAT      (ABILITIES_COUNT_LATEST_GEN + 272) // 40% special damage reduction
+#define ABILITY_BANSHEE          (ABILITIES_COUNT_LATEST_GEN + 273) // Bleed on hit by special
+#define ABILITY_WEB_SPINNER      (ABILITIES_COUNT_LATEST_GEN + 274) // Bleed on hit by special
+#define ABILITY_SHOWDOWN_MODE    (ABILITIES_COUNT_LATEST_GEN + 275) // Bleed on hit by special
+#define ABILITY_SEED_SOWER       (ABILITIES_COUNT_LATEST_GEN + 276) // Bleed on hit by special
+#define ABILITY_AIRBORNE         (ABILITIES_COUNT_LATEST_GEN + 277) // Bleed on hit by special
+#define ABILITY_PARROTING        (ABILITIES_COUNT_LATEST_GEN + 278) // Bleed on hit by special
+#define ABILITY_BLOCK_ON_ENTRY   (ABILITIES_COUNT_LATEST_GEN + 279) // Bleed on hit by special
+#define ABILITY_PURIFYING_SALT   (ABILITIES_COUNT_LATEST_GEN + 280) // Bleed on hit by special
+#define ABILITY_ARMOR_CANNON     (ABILITIES_COUNT_LATEST_GEN + 281) // Bleed on hit by special
+#define ABILITY_BITTER_BLADE     (ABILITIES_COUNT_LATEST_GEN + 282) // Bleed on hit by special
+#define ABILITY_WIND_POWER       (ABILITIES_COUNT_LATEST_GEN + 283) // Bleed on hit by special
+#define ABILITY_MOMENTUM_PLUS    (ABILITIES_COUNT_LATEST_GEN + 284) // Bleed on hit by special
+#define ABILITY_SPECIAL_SPEED_FORCE (ABILITIES_COUNT_LATEST_GEN + 285) // Bleed on hit by special
+#define ABILITY_GUARD_DOG        (ABILITIES_COUNT_LATEST_GEN + 286) // Bleed on hit by special
+#define ABILITY_ANGER_SHELL      (ABILITIES_COUNT_LATEST_GEN + 287) // Bleed on hit by special
+#define ABILITY_EGOIST           (ABILITIES_COUNT_LATEST_GEN + 288) // Bleed on hit by special
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_CHROME_COAT + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_EGOIST + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
