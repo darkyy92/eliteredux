@@ -36,7 +36,7 @@ struct UnkStruct_203F3C8_02DC
 struct UnkStruct_203F3C8
 {
     /*0000*/ struct WonderCard unk_0000;
-    /*014c*/ struct MEventBuffer_3430_Sub unk_014C;
+    /*014c*/ struct WonderCardMetadata unk_014C;
     /*0170*/ const struct UnkStruct_8467FB8 * unk_0170;
     /*0174*/ u8 unk_0174;
     /*0175*/ u8 unk_0175;
@@ -150,7 +150,7 @@ const struct UnkStruct_8467FB8 gUnknown_082F1D60[8] = {
     {1, 0, 0, 7, gWonderCardBgGfx8, gWonderCardBgTilemap8, gWonderCardBgPal8}
 };
 
-bool32 InitWonderCardResources(struct WonderCard * r5, struct MEventBuffer_3430_Sub * r6)
+bool32 InitWonderCardResources(struct WonderCard * r5, struct WonderCardMetadata * r6)
 {
     if (r5 == NULL || r6 == NULL)
         return FALSE;
@@ -557,7 +557,7 @@ bool32 InitWonderNewsResources(const struct WonderNews * a0)
     return TRUE;
 }
 
-void DestroyWonderNewsResources(void)
+void ClearSavedWonderNewsAndRelatedResources(void)
 {
     if (sWonderNewsData != NULL)
     {

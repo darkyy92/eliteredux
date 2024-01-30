@@ -1,2 +1,6 @@
+# 1 "data/maps/NavelRock_Down04/scripts.pory"
+
+# 2 "data/maps/NavelRock_Down04/scripts.pory"
 NavelRock_Down04_MapScripts:: @ 826924D
+# 3 "data/maps/NavelRock_Down04/scripts.pory"
 	.byte 0

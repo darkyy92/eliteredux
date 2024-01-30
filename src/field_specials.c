@@ -130,7 +130,11 @@ static void Task_CloseBattlePikeCurtain(u8 taskId);
 static u8 DidPlayerGetFirstFans(void);
 static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
+#ifndef FREE_LINK_BATTLE_RECORDS
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *linkRecords, u8 a, u8 b);
+#else
+static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer);
+#endif
 
 void Special_ShowDiploma(void)
 {
@@ -1658,15 +1662,15 @@ u16 GetMysteryEventCardVal(void)
     switch (gSpecialVar_Result)
     {
         case GET_NUM_STAMPS:
-            return mevent_081445C0(GET_NUM_STAMPS_INTERNAL);
+            return MysteryGift_GetCardStat(GET_NUM_STAMPS_INTERNAL);
         case GET_MAX_STAMPS:
-            return mevent_081445C0(GET_MAX_STAMPS_INTERNAL);
+            return MysteryGift_GetCardStat(GET_MAX_STAMPS_INTERNAL);
         case GET_CARD_BATTLES_WON:
-            return mevent_081445C0(GET_CARD_BATTLES_WON_INTERNAL);
+            return MysteryGift_GetCardStat(GET_CARD_BATTLES_WON_INTERNAL);
         case 3: // Never occurs
-            return mevent_081445C0(1);
+            return MysteryGift_GetCardStat(1);
         case 4: // Never occurs
-            return mevent_081445C0(2);
+            return MysteryGift_GetCardStat(2);
         default:
             return 0;
     }
@@ -5031,9 +5035,14 @@ void BufferFanClubTrainerName(void)
         case FANCLUB_MEMBER8:
             break;
     }
+    #ifndef FREE_LINK_BATTLE_RECORDS
     BufferFanClubTrainerName_(&gSaveBlock1Ptr->linkBattleRecords, whichLinkTrainer, whichNPCTrainer);
+    #else
+    BufferFanClubTrainerName_(whichLinkTrainer, whichNPCTrainer);
+    #endif
 }
 
+#ifndef FREE_LINK_BATTLE_RECORDS
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *linkRecords, u8 whichLinkTrainer, u8 whichNPCTrainer)
 {
     struct LinkBattleRecord *record = &linkRecords->entries[whichLinkTrainer];
@@ -5071,6 +5080,35 @@ static void BufferFanClubTrainerName_(struct LinkBattleRecords *linkRecords, u8 
         ConvertInternationalString(gStringVar1, linkRecords->languages[whichLinkTrainer]);
     }
 }
+#else
+static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer)
+{
+    switch (whichNPCTrainer)
+    {
+        case 0:
+            StringCopy(gStringVar1, gText_Wallace);
+            break;
+        case 1:
+            StringCopy(gStringVar1, gText_Steven);
+            break;
+        case 2:
+            StringCopy(gStringVar1, gText_Brawly);
+            break;
+        case 3:
+            StringCopy(gStringVar1, gText_Winona);
+            break;
+        case 4:
+            StringCopy(gStringVar1, gText_Phoebe);
+            break;
+        case 5:
+            StringCopy(gStringVar1, gText_Glacia);
+            break;
+        default:
+            StringCopy(gStringVar1, gText_Wallace);
+            break;
+    }
+}
+#endif
 
 void UpdateTrainerFansAfterLinkBattle(void)
 {

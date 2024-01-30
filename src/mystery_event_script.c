@@ -218,6 +218,7 @@ bool8 MEScrCmd_runscript(struct ScriptContext *ctx)
 
 bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
 {
+    #ifndef FREE_ENIGMA_BERRY
     u8 *str;
     const u8 *message;
     bool32 haveBerry = IsEnigmaBerryValid();
@@ -250,7 +251,7 @@ bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
         VarSet(VAR_ENIGMA_BERRY_AVAILABLE, 1);
     else
         ctx->data[2] = 1;
-
+    #endif
     return FALSE;
 }
 
@@ -349,11 +350,13 @@ bool8 MEScrCmd_givepokemon(struct ScriptContext *ctx)
 
 bool8 MEScrCmd_addtrainer(struct ScriptContext *ctx)
 {
+    #ifndef FREE_BATTLE_TOWER_E_READER
     u32 data = ScriptReadWord(ctx) - ctx->data[1] + ctx->data[0];
     memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, (void *)data, sizeof(gSaveBlock2Ptr->frontier.ereaderTrainer));
     ValidateEReaderTrainer();
     StringExpandPlaceholders(gStringVar4, gText_MysteryGiftNewTrainer);
     ctx->data[2] = 2;
+    #endif
     return FALSE;
 }
 

@@ -1887,17 +1887,25 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
 static void DebugAction_Util_CheckSaveBlock(u8 taskId)
 {
     static const u8 sDebugText_SaveBlockSize[] =  _("SaveBlock1 is {STR_VAR_1} bytes long.\nMax size is 15872 bytes.\pSaveBlock2 is {STR_VAR_2} bytes long.\nMax size is 3968 bytes.\pPokemonStorage is {STR_VAR_3} bytes long.\nMax size is 35712 bytes.");
-    static const u8 sDebugText_PokemonSize[] =  _("Pokemon data is {STR_VAR_1} bytes long.\nBoxMon is {STR_VAR_2} bytes long.\pPokemonStorage is {STR_VAR_3} bytes long.\nMax size is 35712 bytes.");
+    static const u8 sDebugText_NumFlagBytes[]  =  _("Num Flag Bytes is: {STR_VAR_1}\pDex Flags No is: {STR_VAR_2}\pTrainers count is {STR_VAR_3}.");
+    //static const u8 sDebugText_PokemonSize[] =  _("Pokemon data is {STR_VAR_1} bytes long.\nBoxMon is {STR_VAR_2} bytes long.\pPokemonStorage is {STR_VAR_3} bytes long.\nMax size is 35712 bytes.");
+
+    //NUM_FLAG_BYTES
 
     /*ConvertIntToDecimalStringN(gStringVar1, sizeof(struct SaveBlock1), STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, sizeof(struct SaveBlock2), STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar3, sizeof(struct PokemonStorage), STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, sDebugText_SaveBlockSize);*/
+
+    ConvertIntToDecimalStringN(gStringVar1, NUM_FLAG_BYTES, STR_CONV_MODE_LEFT_ALIGN, 6); //767
+    ConvertIntToDecimalStringN(gStringVar2, DEX_FLAGS_NO, STR_CONV_MODE_LEFT_ALIGN,   6); //128
+    ConvertIntToDecimalStringN(gStringVar3, TRAINERS_COUNT, STR_CONV_MODE_LEFT_ALIGN, 6); //1600
+    StringExpandPlaceholders(gStringVar4,   sDebugText_NumFlagBytes);
     
-    ConvertIntToDecimalStringN(gStringVar1, sizeof(struct Pokemon), STR_CONV_MODE_LEFT_ALIGN, 6);
+    /*ConvertIntToDecimalStringN(gStringVar1, sizeof(struct Pokemon), STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, sizeof(struct BoxPokemon), STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar3, sizeof(struct PokemonStorage), STR_CONV_MODE_LEFT_ALIGN, 6);
-    StringExpandPlaceholders(gStringVar4, sDebugText_PokemonSize);
+    StringExpandPlaceholders(gStringVar4, sDebugText_PokemonSize);*/
 
     Debug_DestroyMenu_Full(taskId);
     ScriptContext2_Enable();

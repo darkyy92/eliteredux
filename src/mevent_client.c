@@ -80,7 +80,7 @@ static void mevent_client_jmp_buffer(struct mevent_client * svr)
     svr->cmdidx = 0;
 }
 
-static void mevent_client_send_word(struct mevent_client * svr, u32 ident, u32 word)
+static void MysteryGiftClient_InitSendWord(struct mevent_client * svr, u32 ident, u32 word)
 {
     CpuFill32(0, svr->sendBuffer, ME_SEND_BUF_SIZE);
     *(u32 *)svr->sendBuffer = word;
@@ -126,7 +126,7 @@ static u32 mainseq_3(struct mevent_client * svr)
     return 1;
 }
 
-static u32 mainseq_4(struct mevent_client * svr)
+static u32 Client_Run(struct mevent_client * svr)
 {
     // process command
     struct mevent_client_cmd * cmd = &svr->cmdBuffer[svr->cmdidx];
@@ -155,7 +155,7 @@ static u32 mainseq_4(struct mevent_client * svr)
         svr->flag = 0;
         break;
     case 19:
-        mevent_client_send_word(svr, 0x12, GetGameStat(cmd->parameter));
+        MysteryGiftClient_InitSendWord(svr, 0x12, GetGameStat(cmd->parameter));
         svr->mainseqno = 3;
         svr->flag = 0;
         break;
@@ -190,38 +190,43 @@ static u32 mainseq_4(struct mevent_client * svr)
         svr->flag = 0;
         return 4;
     case 8:
-        sub_801B580(svr->sendBuffer, svr->unk_4C);
-        mevent_srv_sub_init_send(&svr->manager, 0x11, svr->sendBuffer, sizeof(struct MEventStruct_Unk1442CC));
+        MysteryGift_LoadLinkGameData(svr->sendBuffer, svr->unk_4C);
+        mevent_srv_sub_init_send(&svr->manager, 0x11, svr->sendBuffer, sizeof(struct MysteryGiftLinkGameData));
         break;
     case 14:
-        mevent_client_send_word(svr, 0x13, svr->param);
+        MysteryGiftClient_InitSendWord(svr, 0x13, svr->param);
         break;
     case 10:
-        sub_801B21C(svr->recvBuffer);
+        SaveWonderCard(svr->recvBuffer);
         break;
     case 9:
-        if (!sub_801B1A4(svr->recvBuffer))
+        if (!IsWonderNewsSameAsSaved(svr->recvBuffer))
         {
-            sub_801B078(svr->recvBuffer);
-            mevent_client_send_word(svr, 0x13, 0);
+            SaveWonderNews(svr->recvBuffer);
+            MysteryGiftClient_InitSendWord(svr, 0x13, 0);
         }
-        else
-            mevent_client_send_word(svr, 0x13, 1);
+        else{
+            // Wonder News has already been saved (or is invalid).
+            // Prepare a signal to indicate it was not saved.
+            MysteryGiftClient_InitSendWord(svr, 0x13, 1);
+        }
         break;
     case 15:
         svr->mainseqno = 6;
         svr->flag = 0;
         break;
     case 16:
-        sub_801B508(svr->recvBuffer);
+        MysteryGift_TrySaveStamp(svr->recvBuffer);
         break;
     case 17:
         InitRamScript_NoObjectEvent(svr->recvBuffer, 1000);
         break;
     case 18:
+        #ifndef FREE_BATTLE_TOWER_E_READER
         memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, svr->recvBuffer, 0xbc);
         ValidateEReaderTrainer();
         break;
+        #endif
     case 21:
         memcpy(gDecompressionBuffer, svr->recvBuffer, ME_SEND_BUF_SIZE);
         svr->mainseqno = 7;
@@ -282,7 +287,7 @@ static u32 mevent_client_exec(struct mevent_client * svr)
         mainseq_1,
         mainseq_2,
         mainseq_3,
-        mainseq_4,
+        Client_Run,
         mainseq_5,
         mainseq_6,
         mainseq_7

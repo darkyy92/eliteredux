@@ -1,7 +1,16 @@
-CaveOfOrigin_Entrance_MapScripts:: @ 8235759
-	map_script MAP_SCRIPT_ON_RESUME, CaveOfOrigin_Entrance_OnResume
-	.byte 0
+# 1 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
 
+# 2 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
+CaveOfOrigin_Entrance_MapScripts:: @ 8235759
+# 3 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
+	map_script MAP_SCRIPT_ON_RESUME, CaveOfOrigin_Entrance_OnResume
+# 4 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
+	.byte 0
+# 5 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
+
+# 6 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
 CaveOfOrigin_Entrance_OnResume: @ 823575F
+# 7 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
 	setescapewarp MAP_SOOTOPOLIS_CITY, 255, 31, 17
+# 8 "data/maps/CaveOfOrigin_Entrance/scripts.pory"
 	end
