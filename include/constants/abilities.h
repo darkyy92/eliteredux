@@ -584,8 +584,9 @@
 #define ABILITY_GUARD_DOG        (ABILITIES_COUNT_LATEST_GEN + 286) // Bleed on hit by special
 #define ABILITY_ANGER_SHELL      (ABILITIES_COUNT_LATEST_GEN + 287) // Bleed on hit by special
 #define ABILITY_EGOIST           (ABILITIES_COUNT_LATEST_GEN + 288) // Bleed on hit by special
+#define ABILITY_SUBDUE           (ABILITIES_COUNT_LATEST_GEN + 289) // Bleed on hit by special
 
-#define ABILITIES_COUNT_CUSTOM   (ABILITY_EGOIST + 1) 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_SUBDUE + 1) 
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -5278,7 +5278,10 @@ static void Cmd_playstatchangeanimation(void)
         flags ^= STAT_CHANGE_NEGATIVE;
     }
     
-    if (ability == ABILITY_SIMPLE || BattlerHasInnate(gActiveBattler, ABILITY_SIMPLE))
+    if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SIMPLE))
+        flags |= STAT_CHANGE_BY_TWO;
+    
+    if (gBattlerAttacker != gActiveBattler && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SUBDUE))
         flags |= STAT_CHANGE_BY_TWO;
 
     if (flags & STAT_CHANGE_NEGATIVE) // goes down
@@ -11091,7 +11094,12 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
     }
 
-    if (GetBattlerAbility(gActiveBattler) == ABILITY_SIMPLE || BattlerHasInnate(gActiveBattler, ABILITY_SIMPLE))
+    if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SIMPLE))
+    {
+        statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
+    }
+
+    if (gActiveBattler != gBattlerAttacker && BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SUBDUE) && statValue <= -1)
     {
         statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
     }

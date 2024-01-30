@@ -549,6 +549,7 @@ static const u8 sAbilitySpecialSpeedForceDescription[] = _("Placeholder");
 static const u8 sAbilityGuardDogDescription[] = _("Placeholder");
 static const u8 sAbilityAngerShellDescription[] = _("Placeholder");
 static const u8 sAbilityEgoistDescription[] = _("Placeholder");
+static const u8 sAbilitySubdueDescription[] = _("Doubles the power of\nstat dropping moves.");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1117,6 +1118,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_GUARD_DOG] = _("Guard Dog"),
         [ABILITY_ANGER_SHELL] = _("Anger Shell"),
         [ABILITY_EGOIST] = _("Egoist"),
+        [ABILITY_SUBDUE] = _("Subdue"),
         };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1678,4 +1680,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_GUARD_DOG] = sAbilityGuardDogDescription,
         [ABILITY_ANGER_SHELL] = sAbilityAngerShellDescription,
         [ABILITY_EGOIST] = sAbilityEgoistDescription,
+        [ABILITY_SUBDUE] = sAbilitySubdueDescription,
 };
