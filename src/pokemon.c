@@ -3711,6 +3711,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 maxIV = MAX_IV_MASK;
     u8 statIDs[NUM_STATS] = {0, 1, 2, 3, 4, 5};
     u8 hpType;
+    bool8 isShiny = FALSE;
 
     ZeroBoxMonData(boxMon);
 
@@ -3720,14 +3721,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         personality = Random32();
 
     //Determine original trainer ID
-    if (otIdType == OT_ID_RANDOM_NO_SHINY) //Pokemon cannot be shiny
+    if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
-        u32 shinyValue;
-        do
-        {
-            value = Random32();
-            shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
-        } while (shinyValue < getShinyOdds());
+        value = Random32();
     }
     else if (otIdType == OT_ID_PRESET) //Pokemon has a preset OT ID
     {
@@ -3735,35 +3731,25 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else //Player is the OT
     {
-        #ifdef ITEM_SHINY_CHARM
         u32 shinyRolls = (CheckBagHasItem(ITEM_SHINY_CHARM, 1)) ? 3 : 1;
-        #else
-        u32 shinyRolls = 1;
-        #endif
-        u32 i;
+        u8 i;
 
         value = gSaveBlock2Ptr->playerTrainerId[0]
                   | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
                   | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
                   | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
-        for (i = 0; i < shinyRolls; i++)
-        {
-            if (Random() < SHINY_ODDS)
-                FlagSet(FLAG_SHINY_CREATION);   // use a flag bc of CreateDexNavWildMon
+        if (!FlagGet(FLAG_SHINY_CREATION)){
+            for (i = 0; i < shinyRolls; i++)
+            {
+                if (Random() < getShinyOdds())
+                    FlagSet(FLAG_SHINY_CREATION);   // use a flag bc of CreateDexNavWildMon
+            }
         }
 
         if (FlagGet(FLAG_SHINY_CREATION))
-        {
-            u8 nature = personality % NUM_NATURES;  // keep current nature
-            do {
-                personality = Random32();
-                personality = ((((Random() % SHINY_ODDS) ^ (HIHALF(value) ^ LOHALF(value))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
-            } while (nature != GetNatureFromPersonality(personality));
-
-            // clear the flag after use
-            FlagClear(FLAG_SHINY_CREATION);
-        }
+            isShiny = TRUE;
+        FlagClear(FLAG_SHINY_CREATION);
     }
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
@@ -3784,6 +3770,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &isShiny);
 
     if (fixedIV < USE_RANDOM_IVS)
     {
