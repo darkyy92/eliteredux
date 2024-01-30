@@ -103,7 +103,9 @@
     "LittlerootTown_MaysHouse_2F",
     "LittlerootTown_ProfessorBirchsLab",
     "PalletTown",
-    "ViridianCity"
+    "ViridianCity",
+    "Route22",
+    "Route2"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
