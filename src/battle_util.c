@@ -14133,6 +14133,10 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAND_SONG) && moveType == TYPE_GROUND && gBattleMoves[move].flags & FLAG_SOUND && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.2));
 	
+	// Sand Song
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BANSHEE) && moveType == TYPE_GHOST && gBattleMoves[move].flags & FLAG_SOUND && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.2));
+	
 	// Punk Rock
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PUNK_ROCK) && (gBattleMoves[move].flags & FLAG_SOUND))
         MulModifier(&modifier, UQ_4_12(1.3));

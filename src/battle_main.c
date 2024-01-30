@@ -5933,6 +5933,11 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         return TYPE_GROUND;
     }
 
+    //Requiem
+    if(HAS_ABILITY(ABILITY_BANSHEE) && gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL){
+        return TYPE_GHOST;
+    }
+
     if (gBattleMoves[move].type == TYPE_NORMAL
             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -6081,6 +6086,8 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
         return TYPE_ELECTRIC;
     else if (gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAND_SONG))
         return TYPE_GROUND;
+    else if (gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BANSHEE))
+        return TYPE_GHOST;
     else if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -6215,6 +6222,11 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     else if (gBattleMoves[move].flags & FLAG_SOUND && gBattleMoves[move].type == TYPE_NORMAL && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SAND_SONG, attackerAbility))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
+        gBattleStruct->ateBoost[battlerAtk] = 1;
+    }
+    else if (gBattleMoves[move].flags & FLAG_SOUND && gBattleMoves[move].type == TYPE_NORMAL && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_BANSHEE, attackerAbility))
+    {
+        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GHOST;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].type == TYPE_NORMAL
