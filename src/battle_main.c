@@ -4927,6 +4927,8 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
         speed *= 2;
 
+    if (calcType == TOTAL_SPEED_SECONDARY) return speed;
+
     // item effects
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
         speed /= 2;
@@ -4936,8 +4938,6 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         speed = (speed * 150) / 100;
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battlerId].species == SPECIES_DITTO && !(gBattleMons[battlerId].status2 & STATUS2_TRANSFORMED))
         speed *= 2;
-
-    if (calcType == TOTAL_SPEED_SECONDARY) return speed;
 
     // stat stages
     speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
