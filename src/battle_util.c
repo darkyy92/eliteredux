@@ -1135,6 +1135,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_WIND_RIDER] = 1,
     [ABILITY_ENLIGHTENED] = 1,
     [ABILITY_BASS_BOOSTED] = 1,
+    [ABILITY_CHROME_COAT] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -13527,6 +13528,9 @@ u32 GetBattlerWeight(u8 battlerId)
 	
 	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_LEAD_COAT))
         weight *= 3;
+	
+	if (BATTLER_HAS_ABILITY(battlerId, ABILITY_CHROME_COAT))
+        weight *= 3;
 
     if (holdEffect == HOLD_EFFECT_FLOAT_STONE)
         weight /= 2;
@@ -14428,7 +14432,11 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
 		MulModifier(&modifier, UQ_4_12(0.8));
 
 	// Lead Coat
-	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEAD_COAT))
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEAD_COAT) && IS_MOVE_PHYSICAL(move))
+		MulModifier(&modifier, UQ_4_12(0.6));
+
+	// Lead Coat
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_CHROME_COAT) && IS_MOVE_SPECIAL(move))
 		MulModifier(&modifier, UQ_4_12(0.6));
 
     // Parry

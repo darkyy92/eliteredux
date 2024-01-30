@@ -4838,9 +4838,7 @@ static const struct LevelUpMove sSteelixLevelUpLearnset[] = {
     LEVEL_UP_MOVE(54, MOVE_HEAD_SMASH), // new
 	LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),
 	LEVEL_UP_MOVE(60, MOVE_MAGNET_RISE),
-    #ifdef REBALANCED_VERSION
     LEVEL_UP_MOVE(64, MOVE_SHORE_UP),
-    #endif
     LEVEL_UP_END
 };
 

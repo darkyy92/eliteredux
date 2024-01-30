@@ -4904,7 +4904,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     if ((ability == ABILITY_VIOLENT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VIOLENT_RUSH)) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 	
-	if (ability == ABILITY_LEAD_COAT || BattlerHasInnate(battlerId, ABILITY_LEAD_COAT))
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LEAD_COAT, ability))
+        speed  = speed * 9 / 10;
+	
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_CHROME_COAT, ability))
         speed  = speed * 9 / 10;
 
 	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LIGHT_METAL, ability))

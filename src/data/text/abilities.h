@@ -287,7 +287,8 @@ static const u8 sLetsRollDescription[] = _("Starts in Defense Curl.\nUps Defense
 static const u8 sAquaticDescription[] = _("Adds Water-Type.");
 static const u8 sLoudBangDescription[] = _("Sound moves have 50% chance\nto confuse the foe.");
 static const u8 sCoilUpDescription[] = _("Biting moves have +1 priority\nthe first time they are used.");
-static const u8 sLeadCoatDescription[] = _("Reduces damage taken by 40%,\nbut decreases Speed by 10%.");
+static const u8 sLeadCoatDescription[] = _("Reduces physical damage taken by\n40%, but decreases Speed by 10%.");
+static const u8 sAbilityChromeCoatDescription[] = _("Reduces special damage taken by\n40%, but decreases Speed by 10%.");
 static const u8 sAmphibiousDescription[] = _("Water moves gain STAB\n(+ 50% power).");
 static const u8 sGroundedDescription[] = _("Adds Ground-Type.");
 static const u8 sEarthboundDescription[] = _("Increases Ground-type\nmoves by 25%.");
@@ -1083,6 +1084,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_BLOOD_PRICE] = _("Blood Price"),
         [ABILITY_SPIKE_ARMOR] = _("Spike Armor"),
         [ABILITY_VOODOO_POWER] = _("Voodoo Power"),
+        [ABILITY_CHROME_COAT] = _("Chrome Coat"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1627,4 +1629,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_BLOOD_PRICE] = sAbilityBloodPriceDescription,
         [ABILITY_SPIKE_ARMOR] = sAbilitySpikeArmorDescription,
         [ABILITY_VOODOO_POWER] = sAbilityVoodooPowerDescription,
+        [ABILITY_CHROME_COAT] = sAbilityChromeCoatDescription,
 };
