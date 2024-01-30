@@ -48,6 +48,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 
 enum
 {
@@ -7511,6 +7512,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
         const struct MapHeader *mapHeader;
     #endif
     u16 targetSpecies = 0;
+    u16 actualSpecies = species;
 
     u16 item;
 
@@ -7522,6 +7524,8 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     u8 base_i = 0;
     u8 times = 0;
     u8 depth_x = 16;
+    
+    if (IsEeveelution(species)) species = SPECIES_EEVEE;
 
     StringCopy(gStringVar1, gSpeciesNames[species]);
 
@@ -7533,7 +7537,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 times += 1;
         #endif
         #ifdef POKEMON_EXPANSION
-            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION)
+            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION && gEvolutionTable[species][i].targetSpecies != actualSpecies)
                 times += 1;
         #endif
     }
@@ -7600,9 +7604,10 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
             break;
         case EVO_ITEM:
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            if (targetSpecies == actualSpecies) continue;
             item = gEvolutionTable[species][i].param;
             CopyItemName(item, gStringVar2);
-            targetSpecies = gEvolutionTable[species][i].targetSpecies;
             CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);
             handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
             StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM );

@@ -6939,6 +6939,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
     u16 currentMap;
+    u16 actualSpecies = species;
 
     if (heldItem == ITEM_ENIGMA_BERRY)
         holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
@@ -6952,6 +6953,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     /*Old code with Eviolite preventing evolutions
     if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE || ItemId_GetId(heldItem) == ITEM_EVIOLITE) && mode != EVO_MODE_ITEM_CHECK)
         return SPECIES_NONE;*/
+
+    if (IsEeveelution(species)) {
+        species = SPECIES_EEVEE;
+    }
 
     switch (mode)
     {
@@ -7149,6 +7154,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             case EVO_ITEM:
                 if (gEvolutionTable[species][i].param == evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                if (targetSpecies == actualSpecies) continue;
                 break;
             case EVO_ITEM_FEMALE:
                 if (GetMonGender(mon) == MON_FEMALE && gEvolutionTable[species][i].param == evolutionItem)
@@ -10019,4 +10025,22 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else
         return TRUE;
+}
+
+bool8 IsEeveelution(u16 species) 
+{
+    switch (species) {
+        case SPECIES_VAPOREON:
+        case SPECIES_JOLTEON:
+        case SPECIES_FLAREON:
+        case SPECIES_UMBREON:
+        case SPECIES_ESPEON:
+        case SPECIES_LEAFEON:
+        case SPECIES_GLACEON:
+        case SPECIES_SYLVEON:
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
 }

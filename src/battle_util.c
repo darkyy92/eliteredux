@@ -9449,7 +9449,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
 		}
 
-		// Freezing Point
+		// Cryo Proficiency
 		if(BATTLER_HAS_ABILITY(battler, ABILITY_CRYO_PROFICIENCY)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerAttacker].hp != 0
