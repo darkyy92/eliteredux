@@ -13835,13 +13835,13 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         basePower += (CountBattlerStatIncreases(battlerAtk, TRUE) * 20);
         break;
     case EFFECT_ELECTRO_BALL:
-        speed = GetBattlerTotalSpeedStat(battlerAtk) / GetBattlerTotalSpeedStat(battlerDef);
+        speed = GetBattlerTotalSpeedStat(battlerAtk, TOTAL_SPEED_FULL) / GetBattlerTotalSpeedStat(battlerDef, TOTAL_SPEED_FULL);
         if (speed >= ARRAY_COUNT(sSpeedDiffPowerTable))
             speed = ARRAY_COUNT(sSpeedDiffPowerTable) - 1;
         basePower = sSpeedDiffPowerTable[speed];
         break;
     case EFFECT_GYRO_BALL:
-        basePower = ((25 * GetBattlerTotalSpeedStat(battlerDef)) / GetBattlerTotalSpeedStat(battlerAtk)) + 1;
+        basePower = ((25 * GetBattlerTotalSpeedStat(battlerDef, TOTAL_SPEED_FULL)) / GetBattlerTotalSpeedStat(battlerAtk, TOTAL_SPEED_FULL)) + 1;
         if (basePower > 150)
             basePower = 150;
         break;
@@ -14271,20 +14271,6 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BLOOD_PRICE))
         MulModifier(&modifier, UQ_4_12(1.3));
 	
-	// Huge Power & Pure Power
-	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUGE_POWER)  ||
-        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PURE_POWER)) && 
-        IS_MOVE_PHYSICAL(move))
-           MulModifier(&modifier, UQ_4_12(2.0));
-
-	// Feline Prowess
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FELINE_PROWESS) && IS_MOVE_SPECIAL(move))
-        MulModifier(&modifier, UQ_4_12(2.0));
-	
-	// Majestic Bird
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MAJESTIC_BIRD) && IS_MOVE_SPECIAL(move))
-        MulModifier(&modifier, UQ_4_12(1.5));
-	
 	//Toxic Boost
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TOXIC_BOOST) && (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY) && IS_MOVE_PHYSICAL(move))
         MulModifier(&modifier, UQ_4_12(1.5));
@@ -14608,164 +14594,135 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     return ApplyModifier(modifier, basePower);
 }
 
+static u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isCrit, bool8 isUnaware, bool8 calculatingSecondary) {
+    u32 statBase = 0;
+    u8 statStage = gBattleMons[battler].statStages[statEnum];
+    u32 extraStat = 0;
+
+    switch (statEnum)
+    {
+        case STAT_HP:
+            return 0;
+        case STAT_ATK:
+            statBase = gBattleMons[battler].attack;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_HUGE_POWER)) statBase *= 2;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_PURE_POWER)) statBase *= 2;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEFEATIST) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3)) statBase /= 2;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_SLOW_START) && gDisableStructs[battler].slowStartTimer != 0) statBase /= 2;
+
+            // check burn
+            if ((gBattleMons[battler].status1 & STATUS1_BURN)      &&
+                gBattleMoves[move].effect != EFFECT_FACADE         && 
+                !BATTLER_HAS_ABILITY(battler, ABILITY_FLARE_BOOST) &&
+                !BATTLER_HAS_ABILITY(battler, ABILITY_HEATPROOF)   &&
+                !BATTLER_HAS_ABILITY(battler, ABILITY_GUTS))
+                statBase /= 2;
+            break;
+        case STAT_SPATK:
+            statBase = gBattleMons[battler].spAttack;
+	        if (BATTLER_HAS_ABILITY(battler, ABILITY_MAJESTIC_BIRD)) statBase = statBase * 3 / 2;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_FELINE_PROWESS)) statBase *= 2;
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEFEATIST) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3)) statBase /= 2;
+            if ((BATTLER_HAS_ABILITY(battler, ABILITY_BIG_LEAVES) || BATTLER_HAS_ABILITY(battler, ABILITY_SOLAR_POWER)) && IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
+                statBase = statBase * 3 / 2;
+                
+            // check frostbite
+            if ((gBattleMons[battler].status1 & STATUS1_FROSTBITE)   &&
+                gBattleMoves[move].effect != EFFECT_FACADE           && 
+                !BATTLER_HAS_ABILITY(battler, ABILITY_DETERMINATION))
+                statBase /= 2;
+            break;
+        case STAT_DEF:
+            statBase = gBattleMons[battler].defense;
+            break;
+        case STAT_SPDEF:
+            statBase = gBattleMons[battler].spDefense;
+            break;
+        case STAT_SPEED:
+            statBase = GetBattlerTotalSpeedStat(battler, calculatingSecondary ? TOTAL_SPEED_SECONDARY : TOTAL_SPEED_PRIMARY);
+            break;
+    }
+
+    if (isUnaware) statStage = DEFAULT_STAT_STAGE;
+    else if (isCrit) statStage = max(statStage, DEFAULT_STAT_STAGE);
+    
+    if (!calculatingSecondary) {
+        if (secondaryStat == statEnum && statEnum != STAT_SPEED) statBase = statBase * 6 / 5;
+        else if (secondaryStat == statEnum && statEnum == STAT_SPEED) 
+        {
+            statBase *= gStatStageRatios[statStage][0];
+            statBase /= gStatStageRatios[statStage][1];
+            statBase += CalculateStat(battler, secondaryStat, 0, move, isCrit, isUnaware, TRUE) / 5;
+            return statBase;
+        }
+        else if (secondaryStat) statBase += CalculateStat(battler, secondaryStat, 0, move, isCrit, isUnaware, TRUE) / 5;
+    }
+
+    statBase *= gStatStageRatios[statStage][0];
+    statBase /= gStatStageRatios[statStage][1];
+    
+    return statBase;
+}
+
 static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, bool32 updateFlags)
 {
-    u8 atkStage;
+    u8 atkStatToUse = 0;
+    u8 secondaryAtkStatToUse = 0;
+    u8 statBattler = battlerAtk;
+    //Calculates Highest Attack Stat after stat boosts
+    bool8 isUnaware = BATTLER_HAS_ABILITY(battlerDef, ABILITY_UNAWARE);
+    u8 highestAttackStat = STAT_ATK;
     u32 atkStat;
     u16 modifier;
-    //Calculates Highest Attack Stat after stat boosts
-    u32 atkStatCheck      = gBattleMons[battlerAtk].attack;
-    u8  atkStageCheck     = gBattleMons[battlerAtk].statStages[STAT_ATK];
-    u32 spAtkStatCheck    = gBattleMons[battlerAtk].attack;
-    u8  spAtkStageCheck   = gBattleMons[battlerAtk].statStages[STAT_SPATK];
-    u8  highestAttackStat = STAT_ATK;
-
-    atkStatCheck *= gStatStageRatios[atkStageCheck][0];
-    atkStatCheck /= gStatStageRatios[atkStageCheck][1];
-
-    spAtkStatCheck *= gStatStageRatios[spAtkStageCheck][0];
-    spAtkStatCheck /= gStatStageRatios[spAtkStageCheck][1];
-
-    if(spAtkStatCheck > atkStatCheck)
-        highestAttackStat = STAT_SPATK;
 
     if (gBattleMoves[move].effect == EFFECT_FOUL_PLAY)
     {
-        if (IS_MOVE_PHYSICAL(move))
-        {
-            atkStat = gBattleMons[battlerDef].attack;
-            atkStage = gBattleMons[battlerDef].statStages[STAT_ATK];
-        }
-        else
-        {
-            atkStat = gBattleMons[battlerDef].spAttack;
-            atkStage = gBattleMons[battlerDef].statStages[STAT_SPATK];
-        }
+        statBattler = battlerDef;
     }
     else if (gBattleMoves[move].effect == EFFECT_BODY_PRESS)
     {
-        atkStat = gBattleMons[battlerAtk].defense;
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
+        isUnaware = BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE);
+        atkStatToUse = STAT_DEF;
     }
-	// Equinox
-	else if (BattlerHasInnate(battlerAtk, ABILITY_EQUINOX)|| GetBattlerAbility(battlerAtk) == ABILITY_EQUINOX)
-    {
-		if (highestAttackStat == STAT_ATK)
+    else {
+        // Speed Force
+        if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SPEED_FORCE) && gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
         {
-            atkStat  = gBattleMons[battlerAtk].attack;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+            secondaryAtkStatToUse = STAT_SPEED;
         }
-        else
+        // Power Core
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_CORE))
         {
-            atkStat  = gBattleMons[battlerAtk].spAttack;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+            secondaryAtkStatToUse = IS_MOVE_PHYSICAL(move) ? STAT_DEF : STAT_SPDEF;
         }
-    }
-	// Ancient Idol
-	else if (BattlerHasInnate(battlerAtk, ABILITY_ANCIENT_IDOL)|| GetBattlerAbility(battlerAtk) == ABILITY_ANCIENT_IDOL)
-    {
-		//Has Innate functionality
-		if (IS_MOVE_PHYSICAL(move))
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_JUGGERNAUT) && gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
         {
-            atkStat = gBattleMons[battlerAtk].defense;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
-        }
-        else
-        {
-            atkStat = gBattleMons[battlerAtk].spDefense;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
-        }
-    }
-    // Momentum + Speed Force
-	else if ((BattlerHasInnate(battlerAtk, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
-             (BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) &&
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
-		atkStat = gBattleMons[battlerAtk].speed + (gBattleMons[battlerAtk].speed * 0.2);
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
-    }
-    // Momentum
-	else if ((BattlerHasInnate(battlerAtk, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
-		atkStat = gBattleMons[battlerAtk].speed;
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
-    }
-	// Speed Force
-	else if ((BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
-        u32 speedStat;
-        u8 speedStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
-        if(speedStage >= DEFAULT_STAT_STAGE){
-            speedStat = gBattleMons[battlerAtk].speed * (((speedStage - 6) * 0.5) + 1);
-        }
-        else{
-            switch(speedStage){
-                case 5: // -1
-                    speedStat = gBattleMons[battlerAtk].speed * 0.66;
-                break;
-                case 4: // -2
-                    speedStat = gBattleMons[battlerAtk].speed * 0.50;
-                break;
-                case 3: // - 3
-                    speedStat = gBattleMons[battlerAtk].speed * 0.40;
-                break;
-                case 2: // - 4
-                    speedStat = gBattleMons[battlerAtk].speed * 0.33;
-                break;
-                case 1: // - 5
-                    speedStat = gBattleMons[battlerAtk].speed * 0.28;
-                break;
-                case 0: // - 6
-                    speedStat = gBattleMons[battlerAtk].speed * 0.25;
-                break;
-            }
-        }
-		atkStat = gBattleMons[battlerAtk].attack + (speedStat * 0.2);
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
-    }
-    // Power Core
-	else if (BattlerHasInnate(battlerAtk, ABILITY_POWER_CORE)|| GetBattlerAbility(battlerAtk) == ABILITY_POWER_CORE){
-		if (IS_MOVE_PHYSICAL(move))
-        {
-            atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
-        }
-        else
-        {
-            atkStat = gBattleMons[battlerAtk].spAttack + (gBattleMons[battlerAtk].spDefense * 0.2);
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
-        }
-    }
-    else
-    {
-        if (IS_MOVE_PHYSICAL(move))
-        {
-            atkStat = gBattleMons[battlerAtk].attack;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
-        }
-        else
-        {
-            atkStat = gBattleMons[battlerAtk].spAttack;
-            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+            secondaryAtkStatToUse = STAT_DEF;
         }
 
-        // Juggernaut
-        if ((BattlerHasInnate(battlerAtk, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
-                (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)) {
-            atkStat += gBattleMons[battlerAtk].defense * 0.2;
+	    // Equinox
+        if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EQUINOX))
+        {
+            u32 atk = CalculateStat(battlerAtk, STAT_ATK, secondaryAtkStatToUse, move, isCrit, isUnaware, FALSE);
+            u32 spAtk = CalculateStat(battlerAtk, STAT_SPATK, secondaryAtkStatToUse, move, isCrit, isUnaware, FALSE);
+            atkStatToUse = atk > spAtk ? STAT_ATK : STAT_SPATK;
+        }
+        // Ancient Idol
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANCIENT_IDOL))
+        {
+            atkStatToUse = IS_MOVE_PHYSICAL(move) ? STAT_DEF : STAT_SPDEF;
+        }
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MOMENTUM) && gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
+        {
+            atkStatToUse = STAT_SPEED;
+        }
+        else
+        {
+            atkStatToUse = IS_MOVE_PHYSICAL(move) ? STAT_ATK : STAT_SPATK;
         }
     }
-	
 
-    // critical hits ignore attack stat's stage drops
-    if (isCrit && atkStage < DEFAULT_STAT_STAGE)
-        atkStage = DEFAULT_STAT_STAGE;
-    // pokemon with unaware ignore attack stat changes while taking damage
-    if (GetBattlerAbility(battlerDef) == ABILITY_UNAWARE || 
-        BattlerHasInnate(battlerDef, ABILITY_UNAWARE))
-        atkStage = DEFAULT_STAT_STAGE;
-
-    atkStat *= gStatStageRatios[atkStage][0];
-    atkStat /= gStatStageRatios[atkStage][1];
+    atkStat = CalculateStat(statBattler, atkStatToUse, secondaryAtkStatToUse, move, isCrit, isUnaware, FALSE);
 
     // apply attack stat modifiers
     modifier = UQ_4_12(1.0);
@@ -14773,29 +14730,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     // attacker's abilities
     switch (GetBattlerAbility(battlerAtk))
     {
-    case ABILITY_SLOW_START:
-        if (gDisableStructs[battlerAtk].slowStartTimer != 0)
-            MulModifier(&modifier, UQ_4_12(0.5));
-        break;
-    case ABILITY_LETHARGY:
-        if(gDisableStructs[battlerAtk].slowStartTimer == 0 || gDisableStructs[battlerAtk].slowStartTimer == 1)
-            MulModifier(&modifier, UQ_4_12(0.2));
-        else if(gDisableStructs[battlerAtk].slowStartTimer == 2)
-            MulModifier(&modifier, UQ_4_12(0.4));
-        else if(gDisableStructs[battlerAtk].slowStartTimer == 3)
-            MulModifier(&modifier, UQ_4_12(0.6));
-        else if(gDisableStructs[battlerAtk].slowStartTimer == 4)
-            MulModifier(&modifier, UQ_4_12(0.8));
-        break;
-    case ABILITY_BIG_LEAVES:
-    case ABILITY_SOLAR_POWER:
-        if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
-            MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_DEFEATIST:
-        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(0.5));
-        break;
     case ABILITY_FLASH_FIRE:
         if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -15006,20 +14940,8 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	//Innates
-	
-    // Deafitist
-    if(BattlerHasInnate(battlerAtk, ABILITY_DEFEATIST)){
-        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
-            MulModifier(&modifier, UQ_4_12(0.5));
-    }
 
-	// Slow Start
-	if(BattlerHasInnate(battlerAtk, ABILITY_SLOW_START)){
-        if (gDisableStructs[battlerAtk].slowStartTimer != 0)
-            MulModifier(&modifier, UQ_4_12(0.5));
-    }
-
-	if(BattlerHasInnate(battlerAtk, ABILITY_LETHARGY)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LETHARGY)){
         if(gDisableStructs[battlerAtk].slowStartTimer == 0 || gDisableStructs[battlerAtk].slowStartTimer == 1)
             MulModifier(&modifier, UQ_4_12(0.2));
         else if(gDisableStructs[battlerAtk].slowStartTimer == 2)
@@ -15088,18 +15010,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
         }
-	}
-	
-	//Solar Power
-	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_POWER)){
-		if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
-				MulModifier(&modifier, UQ_4_12(1.5));
-	}
-
-    //Big Leaves
-	if(BattlerHasInnate(battlerAtk, ABILITY_BIG_LEAVES)){
-		if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
-				MulModifier(&modifier, UQ_4_12(1.5));
 	}
 
     // target's abilities
@@ -15805,24 +15715,6 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     // check crit
     if (isCrit)
         dmg = ApplyModifier((B_CRIT_MULTIPLIER >= GEN_6 ? UQ_4_12(1.5) : UQ_4_12(2.0)), dmg);
-
-    // check burn
-    if ((gBattleMons[battlerAtk].status1 & STATUS1_BURN) && IS_MOVE_PHYSICAL(move) &&
-        gBattleMoves[move].effect != EFFECT_FACADE         && 
-        abilityAtk != ABILITY_FLARE_BOOST                  && 
-        !BattlerHasInnate(battlerAtk, ABILITY_FLARE_BOOST) &&
-        abilityAtk != ABILITY_HEATPROOF                    && 
-        !BattlerHasInnate(battlerAtk, ABILITY_HEATPROOF)   &&
-        abilityAtk != ABILITY_GUTS                         && 
-        !BattlerHasInnate(battlerAtk, ABILITY_GUTS))
-        dmg = ApplyModifier(UQ_4_12(0.5), dmg);
-
-    // check frostbite
-    if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IS_MOVE_SPECIAL(move) &&
-        gBattleMoves[move].effect != EFFECT_FACADE  &&
-        abilityAtk != ABILITY_DETERMINATION         && 
-        !BattlerHasInnate(battlerAtk, ABILITY_DETERMINATION))
-        dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather
     if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_PERMANENT))
@@ -17378,7 +17270,7 @@ void SortBattlersBySpeed(u8 *battlers, bool8 slowToFast)
     u16 speeds[4] = {0};
     
     for (i = 0; i < gBattlersCount; i++)
-        speeds[i] = GetBattlerTotalSpeedStat(battlers[i]);
+        speeds[i] = GetBattlerTotalSpeedStat(battlers[i], TOTAL_SPEED_FULL);
 
     for (i = 1; i < gBattlersCount; i++)
     {

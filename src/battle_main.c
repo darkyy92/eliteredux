@@ -4863,7 +4863,7 @@ void SwapTurnOrder(u8 id1, u8 id2)
     SWAP(gBattlerByTurnOrder[id1], gBattlerByTurnOrder[id2], temp);
 }
 
-u32 GetBattlerTotalSpeedStat(u8 battlerId)
+u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
 {
     u32 speed = gBattleMons[battlerId].speed;
     u32 ability = GetBattlerAbility(battlerId);
@@ -4905,7 +4905,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speed = (speed * 150) / 100;
 	
 	if (ability == ABILITY_LEAD_COAT || BattlerHasInnate(battlerId, ABILITY_LEAD_COAT))
-        speed *= 0.9;
+        speed  = speed * 9 / 10;
 
 	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LIGHT_METAL, ability))
         speed = (speed * 130) / 100;
@@ -4914,9 +4914,18 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed *= 1.1;
     */
 
-    // stat stages
-    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
-    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+    if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
+        speed *= 2;
+
+    // paralysis drop
+    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
+        speed /= (B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4);
+
+    if (calcType == TOTAL_SPEED_PRIMARY) return speed;
+
+    // various effects
+    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
+        speed *= 2;
 
     // item effects
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
@@ -4928,15 +4937,11 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battlerId].species == SPECIES_DITTO && !(gBattleMons[battlerId].status2 & STATUS2_TRANSFORMED))
         speed *= 2;
 
-    // various effects
-    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
-        speed *= 2;
-    if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
-        speed *= 2;
+    if (calcType == TOTAL_SPEED_SECONDARY) return speed;
 
-    // paralysis drop
-    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
-        speed /= (B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4);
+    // stat stages
+    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
+    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
 
     return speed;
 }
@@ -5070,7 +5075,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     s8 priority1 = 0, priority2 = 0;
 
     // Battler 1
-    speedBattler1 = GetBattlerTotalSpeedStat(battler1);
+    speedBattler1 = GetBattlerTotalSpeedStat(battler1, TOTAL_SPEED_FULL);
     holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
 
     // Quick Draw
@@ -5086,7 +5091,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         gProtectStructs[battler1].usedCustapBerry = TRUE;
 
     // Battler 2
-    speedBattler2 = GetBattlerTotalSpeedStat(battler2);
+    speedBattler2 = GetBattlerTotalSpeedStat(battler2, TOTAL_SPEED_FULL);
     holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler2) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)

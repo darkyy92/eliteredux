@@ -67,7 +67,10 @@ void BattleTurnPassed(void);
 u8 IsRunningFromBattleImpossible(void);
 void SwitchPartyOrder(u8 battlerId);
 void SwapTurnOrder(u8 id1, u8 id2);
-u32 GetBattlerTotalSpeedStat(u8 battlerId);
+#define TOTAL_SPEED_FULL 0
+#define TOTAL_SPEED_PRIMARY 1
+#define TOTAL_SPEED_SECONDARY 2
+u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType);
 u16 GetChosenMove(u32 battlerId);
 u16 IsMyceliumMightActive(u32 battlerId);
 s8 GetChosenMovePriority(u32 battlerId, u32 target);

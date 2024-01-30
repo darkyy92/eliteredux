@@ -3061,13 +3061,13 @@ u16 GetBattlerSideSpeedAverage(u8 battler)
 
     if (IsBattlerAlive(battler))
     {
-        speed1 = GetBattlerTotalSpeedStat(battler);
+        speed1 = GetBattlerTotalSpeedStat(battler, TOTAL_SPEED_FULL);
         numBattlersAlive++;
     }
 
     if (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battler)))
     {
-        speed2 = GetBattlerTotalSpeedStat(BATTLE_PARTNER(battler));
+        speed2 = GetBattlerTotalSpeedStat(BATTLE_PARTNER(battler), TOTAL_SPEED_FULL);
         numBattlersAlive++;
     }
 
@@ -3714,8 +3714,8 @@ void IncreaseParalyzeScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
     
     if (AI_CanParalyze(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
     {
-        u8 atkSpeed = GetBattlerTotalSpeedStat(battlerAtk);
-        u8 defSpeed = GetBattlerTotalSpeedStat(battlerDef);
+        u8 atkSpeed = GetBattlerTotalSpeedStat(battlerAtk, TOTAL_SPEED_FULL);
+        u8 defSpeed = GetBattlerTotalSpeedStat(battlerDef, TOTAL_SPEED_FULL);
         
         if ((defSpeed >= atkSpeed && defSpeed / 2 < atkSpeed) // You'll go first after paralyzing foe
           || HasMoveEffect(battlerAtk, EFFECT_HEX)
