@@ -59,6 +59,7 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/weather.h"
+#include "constants/maps.h"
 
 
 #if TX_DEBUG_SYSTEM_ENABLE == TRUE
@@ -1864,7 +1865,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
 
 static void DebugAction_Util_PoisonMons(u8 taskId)
 {
-    int i;
+    /*int i;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0)
@@ -1875,7 +1876,11 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
         }
     }
-    PlaySE(SE_FIELD_POISON);
+    PlaySE(SE_FIELD_POISON);*/
+    SetWarpDestinationToMapWarp(MAP_GROUP(PALLET_TOWN), MAP_NUM(PALLET_TOWN), 0); //If not warp with the number available -> center of map
+    DoWarp();
+    ResetInitialPlayerAvatarState();
+    DebugAction_DestroyExtraWindow(taskId);
 }
 
 static void DebugAction_Util_CheckSaveBlock(u8 taskId)

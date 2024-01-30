@@ -830,3 +830,36 @@ gTileset_UnionRoom::
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_General_FRLG::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_General_FRLG
+	.4byte gTilesetPalettes_General_FRLG
+	.4byte gMetatiles_General_FRLG
+	.4byte gMetatileAttributes_General_FRLG
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_PalletTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_PalletTown
+	.4byte gTilesetPalettes_PalletTown
+	.4byte gMetatiles_PalletTown
+	.4byte gMetatileAttributes_PalletTown
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_ViridianCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_ViridianCity
+	.4byte gTilesetPalettes_ViridianCity
+	.4byte gMetatiles_ViridianCity
+	.4byte gMetatileAttributes_ViridianCity
+	.4byte NULL @ animation callback

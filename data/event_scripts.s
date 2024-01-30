@@ -1108,3 +1108,9 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/MeteorFalls_HaxorusRoom/scripts.inc"
 
 	.include "data/maps/PetalburgWoods_BreloomRoom/scripts.inc"
+
+	.include "data/maps/PalletTown/scripts.inc"
+
+	.include "data/maps/Route1/scripts.inc"
+
+	.include "data/maps/ViridianCity/scripts.inc"
