@@ -4002,6 +4002,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_POPULATION_BOMB] = sCheapShotDescription,
     [MOVE_RAGING_SOULS] = sCheapShotDescription,
     [MOVE_TWIN_BEAM] = sCheapShotDescription,
+    [MOVE_REQUIEM] = sCheapShotDescription,
+    [MOVE_ARMOR_CANNON] = sCheapShotDescription,
+    [MOVE_BITTER_BLADE] = sCheapShotDescription,
+    [MOVE_SOIL_DRAIN] = sCheapShotDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5695,4 +5699,8 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POPULATION_BOMB] = sMoveFourLineDescription_CheapShot,
     [MOVE_RAGING_SOULS] = sMoveFourLineDescription_CheapShot,
     [MOVE_TWIN_BEAM] = sMoveFourLineDescription_CheapShot,
+    [MOVE_REQUIEM] = sMoveFourLineDescription_CheapShot,
+    [MOVE_ARMOR_CANNON] = sMoveFourLineDescription_CheapShot,
+    [MOVE_BITTER_BLADE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_SOIL_DRAIN] = sMoveFourLineDescription_CheapShot,
 };

@@ -859,6 +859,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_POPULATION_BOMB] = _("POPULATION B"),
     [MOVE_RAGING_SOULS] = _("RAGING SOULS"),
     [MOVE_TWIN_BEAM] = _("TWIN BEAM"),
+    [MOVE_REQUIEM] = _("REQUIEM"),
+    [MOVE_ARMOR_CANNON] = _("ARMOR CANNO"),
+    [MOVE_BITTER_BLADE] = _("BITTER BLAD"),
+    [MOVE_SOIL_DRAIN] = _("SOIL DRAIN"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1725,4 +1729,8 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_POPULATION_BOMB] = _("POPULATION BOMB"),
     [MOVE_RAGING_SOULS] = _("RAGING SOULS"),
     [MOVE_TWIN_BEAM] = _("TWIN BEAM"),
+    [MOVE_REQUIEM] = _("REQUIEM"),
+    [MOVE_ARMOR_CANNON] = _("ARMOR CANNON"),
+    [MOVE_BITTER_BLADE] = _("BITTER BLADE"),
+    [MOVE_SOIL_DRAIN] = _("SOIL DRAIN"),
 };
