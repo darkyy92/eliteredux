@@ -5921,6 +5921,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Phantom Thief
             UseEntryMove(battler, ABILITY_PHANTOM_THIEF, &effect, MOVE_SPECTRAL_THIEF, 40, 0, 0);
 
+            // Web Spinner
+            UseEntryMove(battler, ABILITY_WEB_SPINNER, &effect, MOVE_STRING_SHOT, 0, 0, 0);
+
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
                 u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
