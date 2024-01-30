@@ -3712,6 +3712,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 statIDs[NUM_STATS] = {0, 1, 2, 3, 4, 5};
     u8 hpType;
     bool8 isShiny = FALSE;
+    bool8 isAlpha = FALSE;
 
     ZeroBoxMonData(boxMon);
 
@@ -3749,8 +3750,14 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
         if (FlagGet(FLAG_SHINY_CREATION))
             isShiny = TRUE;
+        
         FlagClear(FLAG_SHINY_CREATION);
     }
+
+    if(FlagGet(FLAG_ALPHA_CREATION))
+        isAlpha = TRUE;
+    
+    FlagClear(FLAG_ALPHA_CREATION);
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
@@ -3771,6 +3778,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &isShiny);
+    SetBoxMonData(boxMon, MON_DATA_IS_ALPHA, &isAlpha);
 
     if (fixedIV < USE_RANDOM_IVS)
     {
@@ -8341,7 +8349,7 @@ void SetWildMonHeldItem(void)
 
 bool8 IsMonShiny(struct Pokemon *mon)
 {
-    bool8 isShiny = GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, NULL);
+    bool8 isShiny = GetMonData(mon, MON_DATA_IS_SHINY, NULL);
     return isShiny;
 }
 

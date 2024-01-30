@@ -1626,10 +1626,11 @@ static void DebugAction_Util_ResetParty(u8 taskId)
     u16 species = SPECIES_BULBASAUR;
     u16 oldSpecies = SPECIES_NONE;
     bool8 makeAlpha = TRUE;
+    bool8 makeShiny = TRUE;
 
     //Make Aplha
     SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
-    SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeAlpha);
+    SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeShiny);
 
 /*
     // Party Mons
