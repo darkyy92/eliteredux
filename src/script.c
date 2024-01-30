@@ -408,7 +408,7 @@ const u8 *GetRamScript(u8 objectId, const u8 *script)
         return scriptData->script;
     }
     #else
-    return FALSE;
+    return script;
     #endif
 }
 

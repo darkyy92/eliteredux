@@ -159,7 +159,7 @@ bool32 IsWonderNewsSameAsSaved(const u8 *src)
 
 void DestroyWonderCard(void)
 {
-    #ifndef FREE_MYSTERY_EVENT_BUFFERS
+    /*#ifndef FREE_MYSTERY_EVENT_BUFFERS
     ClearSavedWonderCard();
     ClearSavedWonderCardMetadata();
     ClearSavedTrainerIds();
@@ -167,7 +167,7 @@ void DestroyWonderCard(void)
     ClearMysteryEventFlags();
     ClearMysteryEventVars();
     ClearEReaderTrainer(&gSaveBlock2Ptr->frontier.ereaderTrainer);
-    #endif
+    #endif*/
 }
 
 bool32 SaveWonderCard(const struct WonderCard *card)
