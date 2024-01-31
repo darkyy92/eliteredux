@@ -543,7 +543,7 @@
 #define ABILITY_COMBUSTION          (ABILITIES_COUNT_LATEST_GEN + 245) // 50% boost to fire moves
 #define ABILITY_PONY_POWER          (ABILITIES_COUNT_LATEST_GEN + 246) // Keen edge + mystical blades
 #define ABILITY_POWDER_BURST        (ABILITIES_COUNT_LATEST_GEN + 247) // Powder on entry
-#define ABILITY_SALVAGE             (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
+#define ABILITY_RETRIEVER             (ABILITIES_COUNT_LATEST_GEN + 248) // Recover item on switch
 #define ABILITY_MONSTER_MASH        (ABILITIES_COUNT_LATEST_GEN + 249) // Trick or treat on entry
 #define ABILITY_TWO_STEP            (ABILITIES_COUNT_LATEST_GEN + 250) // Revelation dance after dance move
 #define ABILITY_SPITEFUL            (ABILITIES_COUNT_LATEST_GEN + 251) // Spite on contact
@@ -587,7 +587,7 @@
 #define ABILITY_SUBDUE              (ABILITIES_COUNT_LATEST_GEN + 289) // Bleed on hit by special
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN (ABILITIES_COUNT_LATEST_GEN + 290)
 #define ABILITY_DARK_GALE_WINGS     (ABILITIES_COUNT_LATEST_GEN + 291)
-#define ABILITY_RETRIEVER           (ABILITIES_COUNT_LATEST_GEN + 292)
+// Need 292
 #define ABILITY_WATER_GALE_WINGS    (ABILITIES_COUNT_LATEST_GEN + 293)
 #define ABILITY_ZERO_TO_HERO        (ABILITIES_COUNT_LATEST_GEN + 294)
 #define ABILTIY_COSTAR              (ABILITIES_COUNT_LATEST_GEN + 295)

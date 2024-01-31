@@ -14381,7 +14381,7 @@ static void Cmd_switchoutabilities(void)
             BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 2, &gBattleMoveDamage);
             MarkBattlerForControllerExec(gActiveBattler);
 		}
-        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SALVAGE)) {
+        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_RETRIEVER)) {
             u16 *usedHeldItem;
             usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
 
