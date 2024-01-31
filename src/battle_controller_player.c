@@ -2322,6 +2322,13 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
+        if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_ARMOR_TAIL, moveNum) ||
+            (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_ARMOR_TAIL, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+            if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
+                abilityNullifiesDamage = TRUE;
+            }
+        }
+
         if((gBattleMons[userId].ability == ABILITY_BONE_ZONE || BattlerHasInnate(userId, ABILITY_BONE_ZONE)) &&
             TestMoveFlags(moveNum, FLAG_BONE_BASED)){
 
@@ -2518,6 +2525,14 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     //Dazzling
     if(gBattleMons[targetId].ability == ABILITY_DAZZLING || BattlerHasInnate(targetId, ABILITY_DAZZLING) ||
         (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Armor Tail
+    if(gBattleMons[targetId].ability == ABILITY_ARMOR_TAIL || BattlerHasInnate(targetId, ABILITY_ARMOR_TAIL) ||
+        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_ARMOR_TAIL && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_ARMOR_TAIL) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
             moveNullified = TRUE;
         }

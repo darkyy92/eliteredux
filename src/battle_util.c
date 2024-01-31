@@ -7283,7 +7283,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
             effect = 1;
         }
-        //Dazzling
+        //Armor Tail
+        else if ((BATTLER_HAS_ABILITY(battler, ABILITY_ARMOR_TAIL) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battler), ABILITY_ARMOR_TAIL))
+            && GetChosenMovePriority(gBattlerAttacker, battler) > 0
+            && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ARMOR_TAIL;
+
+            if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battler), ABILITY_ARMOR_TAIL) && !BATTLER_HAS_ABILITY(battler, ABILITY_ARMOR_TAIL)){
+                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
+            }
+
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS){
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+                gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_MULTIPLETURNS);
+            }
+
+            if (gStatuses3[gBattlerAttacker] & STATUS3_SEMI_INVULNERABLE)
+                gStatuses3[gBattlerAttacker] &= ~(STATUS3_SEMI_INVULNERABLE);
+
+            gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
+            effect = 1;
+        }
+        //Sand Guard
         else if(BATTLER_HAS_ABILITY(battler, ABILITY_SAND_GUARD)
             && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT
             && GetChosenMovePriority(gBattlerAttacker, battler) > 0)

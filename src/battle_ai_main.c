@@ -1043,8 +1043,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //Dazzling and Queenly Majesty
         if((BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_DAZZLING)                 ||
             BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_QUEENLY_MAJESTY)          ||
+            BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_ARMOR_TAIL)               ||
             BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_DAZZLING) ||
-            BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_QUEENLY_MAJESTY)) &&
+            BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_QUEENLY_MAJESTY) ||
+            BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_ARMOR_TAIL)) &&
            atkPriority > 0)
             RETURN_SCORE_MINUS(20);
 

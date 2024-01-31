@@ -560,7 +560,6 @@ static const u8 sAbilityCommanderDescription[] = _("Placeholder");
 static const u8 sAbilityEjectPackAbilityDescription[] = _("Placeholder");
 static const u8 sAbilityVengefulSpiritDescription[] = _("Placeholder");
 static const u8 sAbilityCudChewDescription[] = _("Placeholder");
-static const u8 sAbilityArmorTailDescription[] = _("Placeholder");
 static const u8 sAbilityMindCrushDescription[] = _("Placeholder");
 static const u8 sAbilitySupremeOverlordDescription[] = _("Placeholder");
 
@@ -1713,7 +1712,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_EJECT_PACK_ABILITY] = sAbilityEjectPackAbilityDescription,
         [ABILITY_VENGEFUL_SPIRIT] = sAbilityVengefulSpiritDescription,
         [ABILITY_CUD_CHEW] = sAbilityCudChewDescription,
-        [ABILITY_ARMOR_TAIL] = sAbilityArmorTailDescription,
+        [ABILITY_ARMOR_TAIL] = sQueenlyMajestyDescription,
         [ABILITY_MIND_CRUSH] = sAbilityMindCrushDescription,
         [ABILITY_SUPREME_OVERLORD] = sAbilitySupremeOverlordDescription,
 };
