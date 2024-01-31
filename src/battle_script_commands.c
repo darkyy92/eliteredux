@@ -11882,7 +11882,7 @@ static void Cmd_battlemacros(void)
             for(i = 0; i < numStats; i++){
                 statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
-                    if (ChangeStatBuffs(SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE, statToLower, 0, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
+                    if (ChangeStatBuffs(SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE, statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
                     statslowered++;
                     //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                     if(statslowered == 1){
