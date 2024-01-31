@@ -576,8 +576,8 @@
 #define ABILITY_PARROTING           (ABILITIES_COUNT_LATEST_GEN + 278) // Bleed on hit by special
 #define ABILITY_BLOCK_ON_ENTRY      (ABILITIES_COUNT_LATEST_GEN + 279) // Bleed on hit by special
 #define ABILITY_PURIFYING_SALT      (ABILITIES_COUNT_LATEST_GEN + 280) // Bleed on hit by special
-#define ABILITY_ARMOR_CANNON        (ABILITIES_COUNT_LATEST_GEN + 281) // Bleed on hit by special
-#define ABILITY_BITTER_BLADE        (ABILITIES_COUNT_LATEST_GEN + 282) // Bleed on hit by special
+// Need 281
+// Need 282
 #define ABILITY_WIND_POWER          (ABILITIES_COUNT_LATEST_GEN + 283) // Bleed on hit by special
 #define ABILITY_MOMENTUM_PLUS       (ABILITIES_COUNT_LATEST_GEN + 284) // Bleed on hit by special
 #define ABILITY_SPECIAL_SPEED_FORCE (ABILITIES_COUNT_LATEST_GEN + 285) // Bleed on hit by special
