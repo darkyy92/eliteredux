@@ -550,6 +550,19 @@ static const u8 sAbilityGuardDogDescription[] = _("Placeholder");
 static const u8 sAbilityAngerShellDescription[] = _("Placeholder");
 static const u8 sAbilityEgoistDescription[] = _("Placeholder");
 static const u8 sAbilitySubdueDescription[] = _("Doubles the power of\nstat dropping moves.");
+static const u8 sAbilityHugePowerForOneTurnDescription[] = _("Placeholder");
+static const u8 sAbilityDarkGaleWingsDescription[] = _("Placeholder");
+static const u8 sAbilityRetrieverDescription[] = _("Placeholder");
+static const u8 sAbilityWaterGaleWingsDescription[] = _("Placeholder");
+static const u8 sAbilityZeroToHeroDescription[] = _("Placeholder");
+static const u8 sAbilityCostarDescription[] = _("Placeholder");
+static const u8 sAbilityCommanderDescription[] = _("Placeholder");
+static const u8 sAbilityEjectPackAbilityDescription[] = _("Placeholder");
+static const u8 sAbilityVengefulSpiritDescription[] = _("Placeholder");
+static const u8 sAbilityCudChewDescription[] = _("Placeholder");
+static const u8 sAbilityArmorTailDescription[] = _("Placeholder");
+static const u8 sAbilityMindCrushDescription[] = _("Placeholder");
+static const u8 sAbilitySupremeOverlordDescription[] = _("Placeholder");
 
 // Nyaaaa's Custom Abilities
 //static const u8 sEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
@@ -1119,6 +1132,19 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
         [ABILITY_ANGER_SHELL] = _("Anger Shell"),
         [ABILITY_EGOIST] = _("Egoist"),
         [ABILITY_SUBDUE] = _("Subdue"),
+        [ABILITY_HUGE_POWER_FOR_ONE_TURN] = _("Huge Power For One T"),
+        [ABILITY_DARK_GALE_WINGS] = _("Dark Gale Wings"),
+        [ABILITY_RETRIEVER] = _("Retriever"),
+        [ABILITY_WATER_GALE_WINGS] = _("Water Gale Wings"),
+        [ABILITY_ZERO_TO_HERO] = _("Zero To Hero"),
+        [ABILTIY_COSTAR] = _("Costar"),
+        [ABILITY_COMMANDER] = _("Commander"),
+        [ABILITY_EJECT_PACK_ABILITY] = _("Eject Pack Ability"),
+        [ABILITY_VENGEFUL_SPIRIT] = _("Vengeful Spirit"),
+        [ABILITY_CUD_CHEW] = _("Cud Chew"),
+        [ABILITY_ARMOR_TAIL] = _("Armor Tail"),
+        [ABILITY_MIND_CRUSH] = _("Mind Crush"),
+        [ABILITY_SUPREME_OVERLORD] = _("Supreme Overlord"),
         };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1681,4 +1707,17 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
         [ABILITY_ANGER_SHELL] = sAbilityAngerShellDescription,
         [ABILITY_EGOIST] = sAbilityEgoistDescription,
         [ABILITY_SUBDUE] = sAbilitySubdueDescription,
+        [ABILITY_HUGE_POWER_FOR_ONE_TURN] = sAbilityHugePowerForOneTurnDescription,
+        [ABILITY_DARK_GALE_WINGS] = sAbilityDarkGaleWingsDescription,
+        [ABILITY_RETRIEVER] = sAbilityRetrieverDescription,
+        [ABILITY_WATER_GALE_WINGS] = sAbilityWaterGaleWingsDescription,
+        [ABILITY_ZERO_TO_HERO] = sAbilityZeroToHeroDescription,
+        [ABILTIY_COSTAR] = sAbilityCostarDescription,
+        [ABILITY_COMMANDER] = sAbilityCommanderDescription,
+        [ABILITY_EJECT_PACK_ABILITY] = sAbilityEjectPackAbilityDescription,
+        [ABILITY_VENGEFUL_SPIRIT] = sAbilityVengefulSpiritDescription,
+        [ABILITY_CUD_CHEW] = sAbilityCudChewDescription,
+        [ABILITY_ARMOR_TAIL] = sAbilityArmorTailDescription,
+        [ABILITY_MIND_CRUSH] = sAbilityMindCrushDescription,
+        [ABILITY_SUPREME_OVERLORD] = sAbilitySupremeOverlordDescription,
 };
