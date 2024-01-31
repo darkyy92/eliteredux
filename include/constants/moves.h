@@ -890,8 +890,18 @@
 #define MOVE_ARMOR_CANNON           857
 #define MOVE_BITTER_BLADE           858
 #define MOVE_SOIL_DRAIN             859
+#define MOVE_GIGATON_HAMMER         860
+#define MOVE_TRIPLE_DIVE            861
+#define MOVE_JET_PUNCH              862
+#define MOVE_RAGE_PUNCH             863
+#define MOVE_WICKED_TORQUE          864
+#define MOVE_BLAZING_TORQUE         865
+#define MOVE_NOXIOUS_TORQUE         866
+#define MOVE_MAGICAL_TORQUE         867
+#define MOVE_COMBAT_TORQUE          868
 
-#define MOVES_COUNT_DARKY        MOVE_SOIL_DRAIN + 1
+
+#define MOVES_COUNT_DARKY        MOVE_COMBAT_TORQUE + 1
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 

@@ -4006,6 +4006,15 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ARMOR_CANNON] = sCheapShotDescription,
     [MOVE_BITTER_BLADE] = sCheapShotDescription,
     [MOVE_SOIL_DRAIN] = sCheapShotDescription,
+    [MOVE_GIGATON_HAMMER] = sCheapShotDescription,
+    [MOVE_TRIPLE_DIVE] = sCheapShotDescription,
+    [MOVE_JET_PUNCH] = sCheapShotDescription,
+    [MOVE_RAGE_PUNCH] = sCheapShotDescription,
+    [MOVE_WICKED_TORQUE] = sCheapShotDescription,
+    [MOVE_BLAZING_TORQUE] = sCheapShotDescription,
+    [MOVE_NOXIOUS_TORQUE] = sCheapShotDescription,
+    [MOVE_MAGICAL_TORQUE] = sCheapShotDescription,
+    [MOVE_COMBAT_TORQUE] = sCheapShotDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5703,4 +5712,13 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_ARMOR_CANNON] = sMoveFourLineDescription_CheapShot,
     [MOVE_BITTER_BLADE] = sMoveFourLineDescription_CheapShot,
     [MOVE_SOIL_DRAIN] = sMoveFourLineDescription_CheapShot,
+    [MOVE_GIGATON_HAMMER] = sMoveFourLineDescription_CheapShot,
+    [MOVE_TRIPLE_DIVE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_JET_PUNCH] = sMoveFourLineDescription_CheapShot,
+    [MOVE_RAGE_PUNCH] = sMoveFourLineDescription_CheapShot,
+    [MOVE_WICKED_TORQUE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_BLAZING_TORQUE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_NOXIOUS_TORQUE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_MAGICAL_TORQUE] = sMoveFourLineDescription_CheapShot,
+    [MOVE_COMBAT_TORQUE] = sMoveFourLineDescription_CheapShot,
 };
