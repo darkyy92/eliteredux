@@ -581,3 +581,19 @@ gMetatiles_ViridianCity::
 	.align 1
 gMetatileAttributes_ViridianCity::
 	.incbin "data/tilesets/secondary/viridian_city/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_Building_Frlg::
+	.incbin "data/tilesets/primary/building_frlg/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Building_Frlg::
+	.incbin "data/tilesets/primary/building_frlg/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_Generic_Building2::
+	.incbin "data/tilesets/secondary/generic_building_2/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Generic_Building2::
+	.incbin "data/tilesets/secondary/generic_building_2/metatile_attributes.bin"

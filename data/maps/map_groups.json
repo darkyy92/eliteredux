@@ -105,7 +105,9 @@
     "PalletTown",
     "ViridianCity",
     "Route22",
-    "Route2"
+    "Route2",
+    "ViridianForest",
+    "Route2_ViridianForest_SouthEntrance"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

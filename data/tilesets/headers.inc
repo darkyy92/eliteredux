@@ -863,3 +863,25 @@ gTileset_ViridianCity::
 	.4byte gMetatiles_ViridianCity
 	.4byte gMetatileAttributes_ViridianCity
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_Building_Frlg::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_Building_Frlg
+	.4byte gTilesetPalettes_Building_Frlg
+	.4byte gMetatiles_Building_Frlg
+	.4byte gMetatileAttributes_Building_Frlg
+	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_Generic_Building2::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0 @ padding
+	.4byte gTilesetTiles_Generic_Building2
+	.4byte gTilesetPalettes_Generic_Building2
+	.4byte gMetatiles_Generic_Building2
+	.4byte gMetatileAttributes_Generic_Building2
+	.4byte NULL @ animation callback

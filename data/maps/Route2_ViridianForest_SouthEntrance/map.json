@@ -1,8 +1,8 @@
 {
-  "id": "MAP_ROUTE2",
-  "name": "Route2",
-  "layout": "LAYOUT_ROUTE2",
-  "music": "MUS_RG_ROUTE1",
+  "id": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+  "name": "Route2_ViridianForest_SouthEntrance",
+  "layout": "LAYOUT_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+  "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,30 +12,31 @@
   "allow_running": false,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_VIRIDIAN_CITY",
-      "offset": -12,
-      "direction": "down"
-    }
-  ],
+  "connections": 0,
   "object_events": [
 
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 51,
+      "x": 8,
+      "y": 10,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 10,
       "elevation": 0,
       "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_warp_id": "2"
     },
     {
       "x": 6,
-      "y": 51,
+      "y": 10,
       "elevation": 0,
       "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
