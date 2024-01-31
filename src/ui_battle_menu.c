@@ -3597,7 +3597,7 @@ static void PrintSpeedTab(void)
         battlertoCheck = sBattlerByTurnOrder[firstMon + i];
         if(IsBattlerAlive(battlertoCheck)){
             u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[battlertoCheck].species, gBattleMons[battlertoCheck].personality);
-            u16 speed = GetBattlerTotalSpeedStat(battlertoCheck);
+            u16 speed = GetBattlerTotalSpeedStat(battlertoCheck, TOTAL_SPEED_FULL);
             species = gBattleMons[battlertoCheck].species;
             target = BATTLE_OPPOSITE(battlertoCheck);
             targetCurrentHp = gBattleMons[target].hp;

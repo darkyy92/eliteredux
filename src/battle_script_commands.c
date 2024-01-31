@@ -5274,11 +5274,14 @@ static void Cmd_playstatchangeanimation(void)
     statsToCheck = gBattlescriptCurrInstr[2];
 
     // Handle Contrary and Simple
-    if (ability == ABILITY_CONTRARY || BattlerHasInnate(gActiveBattler, ABILITY_CONTRARY)){
+    if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CONTRARY, ability)){
         flags ^= STAT_CHANGE_NEGATIVE;
     }
     
-    if (ability == ABILITY_SIMPLE || BattlerHasInnate(gActiveBattler, ABILITY_SIMPLE))
+    if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_SIMPLE, ability))
+        flags |= STAT_CHANGE_BY_TWO;
+    
+    if (gBattlerAttacker != gActiveBattler && BATTLER_HAS_ABILITY_FAST(gBattlerAttacker, ABILITY_SUBDUE, ability))
         flags |= STAT_CHANGE_BY_TWO;
 
     if (flags & STAT_CHANGE_NEGATIVE) // goes down
@@ -5301,16 +5304,11 @@ static void Cmd_playstatchangeanimation(void)
                     }
                 }
                 else if (!gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
-                        && ability != ABILITY_CLEAR_BODY
-						&& !BattlerHasInnate(gActiveBattler, ABILITY_CLEAR_BODY)
-                        && ability != ABILITY_FULL_METAL_BODY
-						&& !BattlerHasInnate(gActiveBattler, ABILITY_FULL_METAL_BODY)
-                        && ability != ABILITY_WHITE_SMOKE
-						&& !BattlerHasInnate(gActiveBattler, ABILITY_WHITE_SMOKE)
-                        && !(ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
-						&& !(BattlerHasInnate(gActiveBattler, ABILITY_KEEN_EYE) && currStat == STAT_ACC)
-                        && !(ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK)
-						&& !(BattlerHasInnate(gActiveBattler, ABILITY_HYPER_CUTTER) && currStat == STAT_ATK))
+                        && !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability)
+						&& !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_FULL_METAL_BODY, ability)
+                        && !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_WHITE_SMOKE, ability)
+						&& !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability) && currStat == STAT_ACC)
+                        && !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability) && currStat == STAT_ATK))
                 {
                     if (gBattleMons[gActiveBattler].statStages[currStat] > MIN_STAT_STAGE)
                     {
@@ -8457,9 +8455,7 @@ static void Cmd_various(void)
         return;
     case VARIOUS_GET_STAT_VALUE:
         i = gBattlescriptCurrInstr[3];
-        gBattleMoveDamage = *(u16*)(&gBattleMons[gActiveBattler].attack) + (i - 1);
-        gBattleMoveDamage *= gStatStageRatios[gBattleMons[gActiveBattler].statStages[i]][0];
-        gBattleMoveDamage /= gStatStageRatios[gBattleMons[gActiveBattler].statStages[i]][1];
+        gBattleMoveDamage = CalculateStat(gActiveBattler, i, 0, 0, TRUE, FALSE, BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_UNAWARE), FALSE);
         gBattlescriptCurrInstr += 4;
         return;
     case VARIOUS_JUMP_IF_FULL_HP:
@@ -11056,6 +11052,9 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     bool32 notProtectAffected = FALSE;
     u32 index;
     bool32 affectsUser = (flags & MOVE_EFFECT_AFFECTS_USER);
+    bool8 dontSetBuffers = flags & STAT_BUFF_DONT_SET_BUFFERS;
+
+    flags &= ~STAT_BUFF_DONT_SET_BUFFERS;
 
     if (affectsUser)
         gActiveBattler = gBattlerAttacker;
@@ -11074,7 +11073,9 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         notProtectAffected++;
     flags &= ~(STAT_BUFF_NOT_PROTECT_AFFECTED);
 
-    if (GetBattlerAbility(gActiveBattler) == ABILITY_CONTRARY || BattlerHasInnate(gActiveBattler, ABILITY_CONTRARY))
+    if (dontSetBuffers) flags = 0;
+
+    if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CONTRARY))
     {
         #ifdef DEBUG_BUILD
         if(FlagGet(FLAG_SYS_MGBA_PRINT)){
@@ -11093,20 +11094,24 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
     }
 
-    if (GetBattlerAbility(gActiveBattler) == ABILITY_SIMPLE || BattlerHasInnate(gActiveBattler, ABILITY_SIMPLE))
+    if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SIMPLE))
     {
         statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
     }
 
-    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+    if (!affectsUser && BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SUBDUE) && statValue <= -1)
+    {
+        statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
+    }
+
+    if (!dontSetBuffers) { PREPARE_STAT_BUFFER(gBattleTextBuff1, statId); }
 
     if (statValue <= -1) // Stat decrease.
     {
         if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE
-            && !(gActiveBattler == gBattlerTarget && 
-            (GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR || BattlerHasInnate(gBattlerAttacker, ABILITY_INFILTRATOR) || 
-             GetBattlerAbility(gBattlerAttacker) == ABILITY_MARINE_APEX || BattlerHasInnate(gBattlerAttacker, ABILITY_MARINE_APEX))))
+            && !(!affectsUser && 
+            (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_INFILTRATOR) || BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_MARINE_APEX))))
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
             {
@@ -11127,15 +11132,15 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         else if (gCurrentMove != MOVE_CURSE
                  && notProtectAffected != TRUE && JumpIfMoveAffectedByProtect(0))
         {
-            gBattlescriptCurrInstr = BattleScript_ButItFailed;
+            if (flags == STAT_BUFF_ALLOW_PTR)
+            {
+                gBattlescriptCurrInstr = BattleScript_ButItFailed;
+            }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if ((GetBattlerAbility(gActiveBattler) == ABILITY_CLEAR_BODY
-		          || BattlerHasInnate(gActiveBattler, ABILITY_CLEAR_BODY)
-                  || GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY
-		          || BattlerHasInnate(gActiveBattler, ABILITY_FULL_METAL_BODY)
-                  || GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE
-		          || BattlerHasInnate(gActiveBattler, ABILITY_WHITE_SMOKE))
+        else if ((BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CLEAR_BODY)
+		          || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_FULL_METAL_BODY)
+                  || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_WHITE_SMOKE))
                  && !certain && gCurrentMove != MOVE_CURSE)
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
@@ -11146,18 +11151,15 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 }
                 else
                 {
-                    if(GetBattlerAbility(gActiveBattler) == ABILITY_CLEAR_BODY || 
-                       BattlerHasInnate(gActiveBattler, ABILITY_CLEAR_BODY)){
+                    if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CLEAR_BODY)){
                         gBattleScripting.abilityPopupOverwrite = ABILITY_CLEAR_BODY;
                         gLastUsedAbility = ABILITY_CLEAR_BODY;
                     }
-                    else if(GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY || 
-                       BattlerHasInnate(gActiveBattler, ABILITY_FULL_METAL_BODY)){
+                    else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_FULL_METAL_BODY)){
                         gBattleScripting.abilityPopupOverwrite = ABILITY_FULL_METAL_BODY;
                         gLastUsedAbility = ABILITY_FULL_METAL_BODY;
                     }
-                    else if(GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE || 
-                            BattlerHasInnate(gActiveBattler, ABILITY_WHITE_SMOKE)){
+                    else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_WHITE_SMOKE)){
                         gBattleScripting.abilityPopupOverwrite = ABILITY_WHITE_SMOKE;
                         gLastUsedAbility = ABILITY_WHITE_SMOKE;
                     }
@@ -11214,10 +11216,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             return STAT_CHANGE_DIDNT_WORK;
         }
         else if (!certain
-                && ((GetBattlerAbility(gActiveBattler) == ABILITY_KEEN_EYE && statId == STAT_ACC)
-				|| (BattlerHasInnate(gActiveBattler, ABILITY_KEEN_EYE) && statId == STAT_ACC)
-                || (GetBattlerAbility(gActiveBattler) == ABILITY_HYPER_CUTTER && statId == STAT_ATK)
-				|| (BattlerHasInnate(gActiveBattler, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)))
+                && ((BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_KEEN_EYE) && statId == STAT_ACC)
+				|| (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)))
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
             {
@@ -11252,85 +11252,87 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
         else // try to decrease
         {
-            statValue = -GET_STAT_BUFF_VALUE(statValue);
-            if (gBattleMons[gActiveBattler].statStages[statId] == 1)
-                statValue = -1;
-            else if (gBattleMons[gActiveBattler].statStages[statId] == 2 && statValue < -2)
-                statValue = -2;
-            gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
-            index = 1;
-            if (statValue == -2)
+            statValue = GET_STAT_BUFF_VALUE(statValue);
+            statValue = -min(statValue, gBattleMons[gActiveBattler].statStages[statId]);
+                
+            if (!dontSetBuffers)
             {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_STATHARSHLY;
-                gBattleTextBuff2[3] = STRINGID_STATHARSHLY >> 8;
-                index = 4;
-            }
-            else if (statValue <= -3)
-            {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_SEVERELY & 0xFF;
-                gBattleTextBuff2[3] = STRINGID_SEVERELY >> 8;
-                index = 4;
-            }
-            gBattleTextBuff2[index] = B_BUFF_STRING;
-            index++;
-            gBattleTextBuff2[index] = STRINGID_STATFELL;
-            index++;
-            gBattleTextBuff2[index] = STRINGID_STATFELL >> 8;
-            index++;
-            gBattleTextBuff2[index] = B_BUFF_EOS;
-            
-            if (gBattleMons[gActiveBattler].statStages[statId] == MIN_STAT_STAGE)
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_DECREASE;
-            }
-            else
-            {
-                gProtectStructs[gActiveBattler].statFell = TRUE;   // Eject pack, lash out
-                gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == gActiveBattler); // B_MSG_ATTACKER_STAT_FELL or B_MSG_DEFENDER_STAT_FELL
+                gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
+                index = 1;
+                if (statValue == -2)
+                {
+                    gBattleTextBuff2[1] = B_BUFF_STRING;
+                    gBattleTextBuff2[2] = STRINGID_STATHARSHLY;
+                    gBattleTextBuff2[3] = STRINGID_STATHARSHLY >> 8;
+                    index = 4;
+                }
+                else if (statValue <= -3)
+                {
+                    gBattleTextBuff2[1] = B_BUFF_STRING;
+                    gBattleTextBuff2[2] = STRINGID_SEVERELY & 0xFF;
+                    gBattleTextBuff2[3] = STRINGID_SEVERELY >> 8;
+                    index = 4;
+                }
+                gBattleTextBuff2[index] = B_BUFF_STRING;
+                index++;
+                gBattleTextBuff2[index] = STRINGID_STATFELL;
+                index++;
+                gBattleTextBuff2[index] = STRINGID_STATFELL >> 8;
+                index++;
+                gBattleTextBuff2[index] = B_BUFF_EOS;
+                
+                if (gBattleMons[gActiveBattler].statStages[statId] == MIN_STAT_STAGE)
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_DECREASE;
+                }
+                else
+                {
+                    gProtectStructs[gActiveBattler].statFell = TRUE;   // Eject pack, lash out
+                    gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == gActiveBattler); // B_MSG_ATTACKER_STAT_FELL or B_MSG_DEFENDER_STAT_FELL
+                }
             }
         }
     }
     else // stat increase
     {
         statValue = GET_STAT_BUFF_VALUE(statValue);
-        if (gBattleMons[gActiveBattler].statStages[statId] == 11)
-            statValue = 1;
-        else if (gBattleMons[gActiveBattler].statStages[statId] == 10 && statValue > 2)
-            statValue = 2;
-        gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
-        index = 1;
-        if (statValue == 2)
-        {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
-            gBattleTextBuff2[3] = STRINGID_STATSHARPLY >> 8;
-            index = 4;
-        }
-        else if (statValue >= 3)
-        {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_DRASTICALLY & 0xFF;
-            gBattleTextBuff2[3] = STRINGID_DRASTICALLY >> 8;
-            index = 4;
-        }
-        gBattleTextBuff2[index] = B_BUFF_STRING;
-        index++;
-        gBattleTextBuff2[index] = STRINGID_STATROSE;
-        index++;
-        gBattleTextBuff2[index] = STRINGID_STATROSE >> 8;
-        index++;
-        gBattleTextBuff2[index] = B_BUFF_EOS;
+        statValue = min(statValue, MAX_STAT_STAGE - gBattleMons[gActiveBattler].statStages[statId]);
 
-        if (gBattleMons[gActiveBattler].statStages[statId] == MAX_STAT_STAGE)
+        if (!dontSetBuffers)
         {
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_INCREASE;
-        }
-        else
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == gActiveBattler);
-            gProtectStructs[gActiveBattler].statRaised = TRUE;
+            gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
+            index = 1;
+            if (statValue == 2)
+            {
+                gBattleTextBuff2[1] = B_BUFF_STRING;
+                gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
+                gBattleTextBuff2[3] = STRINGID_STATSHARPLY >> 8;
+                index = 4;
+            }
+            else if (statValue >= 3)
+            {
+                gBattleTextBuff2[1] = B_BUFF_STRING;
+                gBattleTextBuff2[2] = STRINGID_DRASTICALLY & 0xFF;
+                gBattleTextBuff2[3] = STRINGID_DRASTICALLY >> 8;
+                index = 4;
+            }
+            gBattleTextBuff2[index] = B_BUFF_STRING;
+            index++;
+            gBattleTextBuff2[index] = STRINGID_STATROSE;
+            index++;
+            gBattleTextBuff2[index] = STRINGID_STATROSE >> 8;
+            index++;
+            gBattleTextBuff2[index] = B_BUFF_EOS;
+
+            if (gBattleMons[gActiveBattler].statStages[statId] == MAX_STAT_STAGE)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_INCREASE;
+            }
+            else
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == gActiveBattler);
+                gProtectStructs[gActiveBattler].statRaised = TRUE;
+            }
         }
     }
 
@@ -11790,12 +11792,10 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     //Check if the opposing battler is immune to stat lowering in general or if the mon is not alive
     if(gBattleMons[battler].hp == 0                          ||
        stat == STAT_HP                                       ||
-       gDisableStructs[battler].substituteHP != 0            ||
        BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)      ||
        BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
        BATTLER_HAS_ABILITY(battler, ABILITY_FULL_METAL_BODY) ||
-       BATTLER_HAS_ABILITY(battler, ABILITY_MIRROR_ARMOR)    ||
-       gBattleMons[battler].statStages[stat] == MIN_STAT_STAGE)
+       BATTLER_HAS_ABILITY(battler, ABILITY_MIRROR_ARMOR))
         return TRUE;
 
     switch(ability){
@@ -11882,6 +11882,7 @@ static void Cmd_battlemacros(void)
             for(i = 0; i < numStats; i++){
                 statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
+                    if (ChangeStatBuffs(SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE, statToLower, 0, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
                     statslowered++;
                     //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                     if(statslowered == 1){
@@ -11893,12 +11894,6 @@ static void Cmd_battlemacros(void)
                     else if(statslowered == 3){
                         PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
                     }
-                    
-                    gBattlerTarget = opposingBattler;
-                    if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
-                        gBattleMons[opposingBattler].statStages[statToLower]++;
-                    else
-                        gBattleMons[opposingBattler].statStages[statToLower]--;
                     
                     abilityActivated = TRUE;
 

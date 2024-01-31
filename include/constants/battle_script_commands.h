@@ -246,6 +246,7 @@
 #define STAT_BUFF_ALLOW_PTR                 (1 << 0)   // If set, allow use of jumpptr. Set in every use of statbuffchange
 #define STAT_BUFF_NOT_PROTECT_AFFECTED      (1 << 5)
 #define STAT_BUFF_UPDATE_MOVE_EFFECT        (1 << 6)
+#define STAT_BUFF_DONT_SET_BUFFERS          (1 << 7)
 
 // stat change flags for Cmd_playstatchangeanimation
 #define STAT_CHANGE_NEGATIVE             (1 << 0)
