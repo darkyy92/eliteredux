@@ -42,6 +42,8 @@
 #define sBERRY_OVERRIDE              gBattleScripting + 0x38 //overrideBerryRequirements
 #define sBATTLER_OVERRIDE            gBattleScripting + 0x39 //battlerPopupOverwrite
 #define sEFFECT_CHANCE               gBattleScripting + 0x3C //moveSecondaryEffectChance
+#define sLIMIT_MOVEEND               gBattleScripting + 0x3E //limitMoveend
+#define sSAVED_MOVEEND_STATE         gBattleScripting + 0x3F //replaceEndWithEnd3
 
 #define cMULTISTRING_CHOOSER         gBattleCommunication + 5
 #define cMISS_TYPE                   gBattleCommunication + 6

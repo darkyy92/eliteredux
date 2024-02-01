@@ -516,7 +516,7 @@
 #define ABILITY_PRIM_AND_PROPER     (ABILITIES_COUNT_LATEST_GEN + 218) // Wonder Skin + Cute Charm
 #define ABILITY_SUPER_STRAIN        (ABILITIES_COUNT_LATEST_GEN + 219) // 25% recoil and -attack on kill
 #define ABILITY_TIPPING_POINT       (ABILITIES_COUNT_LATEST_GEN + 220) // +spatk when taking damage
-#define ABILITY_WEATHER_CAST        (ABILITIES_COUNT_LATEST_GEN + 221) // Uses weather ball after weather changing move
+// Needs 221
 #define ABILITY_ENLIGHTENED         (ABILITIES_COUNT_LATEST_GEN + 222) // Emanate + Inner Focus
 #define ABILITY_PEACEFUL_SLUMBER    (ABILITIES_COUNT_LATEST_GEN + 223) // Sweet Dreams + Self Sufficient
 #define ABILITY_AFTERSHOCK          (ABILITIES_COUNT_LATEST_GEN + 224) // Magnitude after ground type move

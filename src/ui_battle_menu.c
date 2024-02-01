@@ -1682,7 +1682,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     GET_MOVE_TYPE(move, moveType);
 
     //Sets move power depending on the mon ability/stats
-    movePower = CalcMoveBasePowerAfterModifiers(move, sMenuDataPtr->battlerId, target, moveType, FALSE);
+    movePower = CalcMoveBasePowerAfterModifiers(move, 0, sMenuDataPtr->battlerId, target, moveType, FALSE);
 
     //MoveType2
     if(gBattleMoves[move].type2 != TYPE_MYSTERY && gBattleMoves[move].type2 != TYPE_NORMAL)

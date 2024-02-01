@@ -5039,6 +5039,8 @@ static void Cmd_end(void)
 {
     if (gBattleScripting.replaceEndWithEnd3 > 0) {
         gBattleScripting.replaceEndWithEnd3--;
+        gBattleScripting.limitMoveend = 0;
+        gBattleScripting.moveendState = gBattleScripting.storedMoveendState;
         Cmd_end3();
         return;
     }
@@ -5422,6 +5424,11 @@ static void Cmd_moveend(void)
     u16 *choicedMoveAtk = NULL;
     u32 arg1, arg2;
     u32 originallyUsedMove;
+
+    if (gBattleScripting.limitMoveend && gBattleScripting.moveendState > gBattleScripting.limitMoveend)
+    {
+        gBattlescriptCurrInstr += 3;
+    }
 
     if (gChosenMove == 0xFFFF)
         originallyUsedMove = 0;
@@ -13262,6 +13269,7 @@ static void Cmd_magnitudedamagecalculation(void)
 
     if(isExtraMove){
         maxRoll = VarGet(VAR_EXTRA_MOVE_DAMAGE);
+        if (!maxRoll) maxRoll = 100;
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
     }
 

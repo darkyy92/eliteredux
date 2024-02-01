@@ -4682,6 +4682,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
 
 static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
 {
+    if (!canUseExtraMove(battler, gBattlerTarget)) return;
     gTempMove = gCurrentMove;
     gCurrentMove = extraMove;
     VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
@@ -4693,7 +4694,8 @@ static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 ext
 
     gBattleScripting.abilityPopupOverwrite = ability;
 
-    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+    gBattleScripting.replaceEndWithEnd3++;
+    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMove);
     (*effect)++;
 }
 
@@ -10071,7 +10073,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
             }
@@ -10082,7 +10083,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
             }
@@ -10093,7 +10093,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
             }
@@ -10104,25 +10103,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
             }
         }
 
         //Weather Cast
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_WEATHER_CAST)){
-
-            //Checks if the ability is triggered
-            if(canUseExtraMove(battler, gBattlerTarget)){
-                switch (move) {
-                    case MOVE_SUNNY_DAY:
-                    case MOVE_RAIN_DANCE:
-                    case MOVE_SANDSTORM:
-                    case MOVE_HAIL:
-                        UseAttackerFollowUpMove(&effect, battler, ABILITY_WEATHER_CAST, MOVE_WEATHER_BALL, 20, 0, 0);
-                        break;
-                }
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST)){
+            switch (move) {
+                case MOVE_SUNNY_DAY:
+                case MOVE_RAIN_DANCE:
+                case MOVE_SANDSTORM:
+                case MOVE_HAIL:
+                    UseAttackerFollowUpMove(&effect, battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
+                    break;
             }
         }
 
@@ -10131,7 +10125,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 gBattleMoves[move].power){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
             }
@@ -10142,7 +10135,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 (GetTypeBeforeUsingMove(move, battler) == TYPE_WATER)){
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_HIGH_TIDE, MOVE_SURF, 50, 0, 0);
             }
@@ -10153,7 +10145,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                canUseExtraMove(battler, gBattlerTarget)   &&
                 gBattleMoves[move].flags & FLAG_DANCE) {
                 UseAttackerFollowUpMove(&effect, battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
             }
@@ -14037,11 +14028,12 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     return basePower;
 }
 
-u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags)
+u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags)
 {
     u32 i, ability;
     u32 holdEffectAtk, holdEffectParamAtk;
     u16 basePower = CalcMoveBasePower(move, battlerAtk, battlerDef);
+    u16 actualPower = fixedPower ? fixedPower : basePower;
     u16 holdEffectModifier;
     u16 modifier = UQ_4_12(1.0);
     u32 atkSide = GET_BATTLER_SIDE(battlerAtk);
@@ -14677,7 +14669,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 m
     if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && moveType == TYPE_FAIRY && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
 	
-    return ApplyModifier(modifier, basePower);
+    return ApplyModifier(modifier, actualPower);
 }
 
 u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isAttack, bool8 isCrit, bool8 isUnaware, bool8 calculatingSecondary) {
@@ -16038,7 +16030,7 @@ s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveTy
     if (typeEffectivenessModifier == UQ_4_12(0))
         return 0;
     
-    gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags);
+    gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, 0, battlerAtk, battlerDef, moveType, updateFlags);
 
     // long dmg basic formula
     dmg = ((gBattleMons[battlerAtk].level * 2) / 5) + 2;
@@ -16069,10 +16061,7 @@ static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType,
     if (typeEffectivenessModifier == UQ_4_12(0))
         return 0;
 
-    if (fixedBasePower)
-        gBattleMovePower = fixedBasePower;
-    else
-        gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags);
+    gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, fixedBasePower, battlerAtk, battlerDef, moveType, updateFlags);
 
     // long dmg basic formula
     dmg = ((gBattleMons[battlerAtk].level * 2) / 5) + 2;
