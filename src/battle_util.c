@@ -14752,6 +14752,11 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                 && gDisableStructs[battler].isFirstTurn)
                     statBase = statBase * 6 / 5;
 
+            // Huge Power on First Turn
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_HUGE_POWER_FOR_ONE_TURN)
+                && gDisableStructs[battler].isFirstTurn)
+                    statBase *= 2;
+
             // Burn
             if ((gBattleMons[battler].status1 & STATUS1_BURN)
                 && gBattleMoves[move].effect != EFFECT_FACADE
