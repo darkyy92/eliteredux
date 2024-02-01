@@ -14183,8 +14183,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRONG_JAW) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
         MulModifier(&modifier, UQ_4_12(1.5));
 	
-	// Strong Jaw
+	// Devourer
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DEVOURER) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
+        MulModifier(&modifier, UQ_4_12(1.5));
+	
+	// Mind Crush
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRONG_JAW) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Pixilate
@@ -14908,6 +14912,10 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MOMENTUM) && gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
         {
             atkStatToUse = STAT_SPEED;
+        }
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MIND_CRUSH) && gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+        {
+            atkStatToUse = STAT_SPATK;
         }
         else
         {

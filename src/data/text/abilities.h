@@ -558,7 +558,7 @@ static const u8 sAbilityCommanderDescription[] = _("Placeholder");
 static const u8 sAbilityEjectPackAbilityDescription[] = _("Placeholder");
 static const u8 sAbilityVengefulSpiritDescription[] = _("Placeholder");
 static const u8 sAbilityCudChewDescription[] = _("Placeholder");
-static const u8 sAbilityMindCrushDescription[] = _("Placeholder");
+static const u8 sAbilityMindCrushDescription[] = _("Biting moves use SpAtk and\ndeal 50% more damage.");
 static const u8 sAbilitySupremeOverlordDescription[] = _("Placeholder");
 
 // Nyaaaa's Custom Abilities
