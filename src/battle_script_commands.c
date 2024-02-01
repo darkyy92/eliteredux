@@ -8292,8 +8292,9 @@ u32 IsAbilityStatusProtected(u32 battler)
     return IsFlowerVeilProtected(battler)
         || IsLeafGuardProtected(battler)
         || IsDesertCloakProtected(battler)
-        || IsShieldsDownProtected(battler
-        || GetBattlerAbility(battler) == ABILITY_COMATOSE);
+        || IsShieldsDownProtected(battler)
+        || BATTLER_HAS_ABILITY(battler, ABILITY_COMATOSE)
+        || BATTLER_HAS_ABILITY(battler, ABILITY_PURIFYING_SALT);
 }
 
 static void RecalcBattlerStats(u32 battler, struct Pokemon *mon)

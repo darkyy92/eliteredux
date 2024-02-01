@@ -2270,6 +2270,11 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                   (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_RADIANCE, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
                     abilityNullifiesDamage = TRUE;
             break;
+            case TYPE_GHOST:
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_PURIFYING_SALT, moveNum))
+                    MulModifier(&mod, UQ_4_12(0.5));
+            break;
+
         }
         if(gBattleMons[userId].ability == ABILITY_LUMBERJACK || BattlerHasInnate(userId, ABILITY_LUMBERJACK)){
             if(gBattleMons[targetId].type1 == TYPE_GRASS  || gBattleMons[targetId].type2 == TYPE_GRASS || gBattleMons[targetId].type3 == TYPE_GRASS){

@@ -1141,6 +1141,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_ENLIGHTENED] = 1,
     [ABILITY_BASS_BOOSTED] = 1,
     [ABILITY_CHROME_COAT] = 1,
+    [ABILITY_PURIFYING_SALT] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -10973,6 +10974,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Innates
+            //Purifying Salt
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_PURIFYING_SALT))
+            {
+                if (gBattleMons[battler].status1 & STATUS1_ANY)
+                {
+                    u32 status1 = gBattleMons[battler].status1;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PURIFYING_SALT;
+                    if (status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON)) StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                    else if (status1 & STATUS1_BLEED) StringCopy(gBattleTextBuff1, gStatusConditionString_BleedJpn);
+                    else if (status1 & STATUS1_BURN) StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    else if (status1 & STATUS1_FROSTBITE) StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    else if (status1 & STATUS1_SLEEP) StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    else StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                    effect = 1;
+                }
+            }
+
             //Immunity
             if(BattlerHasInnate(battler, ABILITY_IMMUNITY)){
                 if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
@@ -11676,12 +11694,8 @@ bool32 CanSleep(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
-    if (ability == ABILITY_INSOMNIA
-	  || BattlerHasInnate(gActiveBattler, ABILITY_INSOMNIA)
-      || ability == ABILITY_VITAL_SPIRIT
-	  || BattlerHasInnate(gActiveBattler, ABILITY_VITAL_SPIRIT)
-      || ability == ABILITY_COMATOSE
-	  || BattlerHasInnate(gActiveBattler, ABILITY_COMATOSE)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_INSOMNIA, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VITAL_SPIRIT, ability)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityOnSide(battlerId, ABILITY_SWEET_VEIL)
@@ -11701,10 +11715,7 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
     if (!(CanPoisonType(battlerAttacker, battlerTarget))
      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || ability == ABILITY_IMMUNITY
-	 || BattlerHasInnate(battlerTarget, ABILITY_IMMUNITY)
-     || ability == ABILITY_COMATOSE
-	 || BattlerHasInnate(battlerTarget, ABILITY_COMATOSE)
+     || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_IMMUNITY, ability)
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || IsAbilityStatusProtected(battlerTarget)
      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -11722,14 +11733,9 @@ bool32 CanBeBurned(u8 battlerId)
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || ability == ABILITY_WATER_VEIL
-	  || BattlerHasInnate(battlerId, ABILITY_WATER_VEIL)
-      || ability == ABILITY_PURIFYING_WATERS
-	  || BattlerHasInnate(battlerId, ABILITY_PURIFYING_WATERS)
-      || ability == ABILITY_WATER_BUBBLE
-	  || BattlerHasInnate(battlerId, ABILITY_WATER_BUBBLE)
-      || ability == ABILITY_COMATOSE
-	  || BattlerHasInnate(battlerId, ABILITY_COMATOSE)
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_VEIL, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_PURIFYING_WATERS, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_BUBBLE, ability)
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -11745,9 +11751,8 @@ bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget)
 
     if ((!CanParalyzeType(battlerAttacker, battlerTarget))
       || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-      || BATTLER_HAS_ABILITY(battlerTarget, ABILITY_LIMBER)
-      || BATTLER_HAS_ABILITY(battlerTarget, ABILITY_JUGGERNAUT)
-      || BATTLER_HAS_ABILITY(battlerTarget, ABILITY_COMATOSE)
+      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability)
       || gBattleMons[battlerTarget].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerTarget)
       || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -11761,10 +11766,7 @@ bool32 CanBeFrozen(u8 battlerId)
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || ability == ABILITY_MAGMA_ARMOR
-	  || BattlerHasInnate(battlerId, ABILITY_MAGMA_ARMOR)
-      || ability == ABILITY_COMATOSE
-	  || BattlerHasInnate(battlerId, ABILITY_COMATOSE)
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MAGMA_ARMOR, battlerId)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
@@ -11774,15 +11776,11 @@ bool32 CanBeFrozen(u8 battlerId)
 
 bool32 CanGetFrostbite(u8 battlerId)
 {
-    u16 ability = GetBattlerAbility(battlerId);
-
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || ability == ABILITY_COMATOSE
-	  || BattlerHasInnate(battlerId, ABILITY_COMATOSE)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
@@ -11800,8 +11798,7 @@ bool32 CanBleed(u8 battlerId)
         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
         || gBattleMons[battlerId].status1 & STATUS1_ANY
         || IsAbilityStatusProtected(battlerId)
-        || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN)
-        || BATTLER_HAS_ABILITY(battlerId, ABILITY_COMATOSE))
+        || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
 }
@@ -11811,10 +11808,8 @@ bool32 CanBeConfused(u8 battlerId)
     if (gBattleMons[battlerId].status2 & !STATUS2_CONFUSION && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
-    if (GetBattlerAbility(gEffectBattler) == ABILITY_OWN_TEMPO
-	  || BattlerHasInnate(battlerId, ABILITY_OWN_TEMPO)
-      || GetBattlerAbility(gEffectBattler) == ABILITY_DISCIPLINE
-      || BattlerHasInnate(battlerId, ABILITY_DISCIPLINE)
+    if (BATTLER_HAS_ABILITY(gEffectBattler, ABILITY_OWN_TEMPO)
+      || BATTLER_HAS_ABILITY(gEffectBattler, ABILITY_DISCIPLINE)
       || gBattleMons[gEffectBattler].status2 & STATUS2_CONFUSION
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -15144,6 +15139,10 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(2.0));
         }
 	}
+
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_PURIFYING_SALT) && moveType == TYPE_GHOST) {
+        MulModifier(&modifier, UQ_4_12(0.5));
+    }
 	
 	// Stakeout
 	if(BattlerHasInnate(battlerAtk, ABILITY_STAKEOUT)){

@@ -628,6 +628,7 @@ BattleScript_BeakBlastBurn::
 	jumpiftype BS_TARGET, TYPE_FIRE, BattleScript_NotAffected
 	jumpifability BS_TARGET, ABILITY_WATER_VEIL, BattleScript_WaterVeilPrevents
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	//jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_BeakBlastBurnReturn
@@ -3224,6 +3225,7 @@ BattleScript_EffectSleep::
 	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_AlreadyAsleep
 	jumpifcantmakeasleep BattleScript_CantMakeAsleep
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifability BS_TARGET_SIDE, ABILITY_SWEET_VEIL, BattleScript_SweetVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
@@ -3247,6 +3249,7 @@ BattleScript_EffectBleed::
 	jumpiftype BS_TARGET, TYPE_ROCK,  BattleScript_NotAffected
 	jumpiftype BS_TARGET, TYPE_GHOST, BattleScript_NotAffected
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
@@ -3268,6 +3271,7 @@ BattleScript_EffectFrostbite::
 	jumpiftype BS_TARGET, TYPE_ICE, BattleScript_NotAffected
 	jumpifability BS_TARGET, ABILITY_MAGMA_ARMOR, BattleScript_LeafGuardProtects
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
@@ -3290,6 +3294,7 @@ BattleScript_EffectFreeze::
 	jumpiftype BS_TARGET, TYPE_ICE, BattleScript_NotAffected
 	jumpifability BS_TARGET, ABILITY_MAGMA_ARMOR, BattleScript_LeafGuardProtects
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
@@ -4006,6 +4011,7 @@ BattleScript_EffectToxic::
 	ppreduce
 	jumpifability BS_TARGET, ABILITY_IMMUNITY, BattleScript_ImmunityProtected
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifability BS_TARGET_SIDE, ABILITY_PASTEL_VEIL, BattleScript_PastelVeilProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
@@ -4363,6 +4369,7 @@ BattleScript_EffectPoison::
 	ppreduce
 	jumpifability BS_TARGET, ABILITY_IMMUNITY, BattleScript_ImmunityProtected
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifability BS_TARGET_SIDE, ABILITY_PASTEL_VEIL, BattleScript_PastelVeilProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
@@ -4389,6 +4396,7 @@ BattleScript_EffectParalyze:
 	ppreduce
 	jumpifability BS_TARGET, ABILITY_LIMBER, BattleScript_LimberProtected
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
@@ -5915,6 +5923,7 @@ BattleScript_EffectWillOWisp::
 	jumpifability BS_TARGET, ABILITY_WATER_VEIL, BattleScript_WaterVeilPrevents
 	jumpifability BS_TARGET, ABILITY_WATER_BUBBLE, BattleScript_WaterVeilPrevents
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
@@ -6209,6 +6218,7 @@ BattleScript_EffectYawn::
 	jumpifability BS_TARGET, ABILITY_VITAL_SPIRIT, BattleScript_PrintBankAbilityMadeIneffective
 	jumpifability BS_TARGET, ABILITY_INSOMNIA, BattleScript_PrintBankAbilityMadeIneffective
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_PrintBankAbilityMadeIneffective
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_PrintBankAbilityMadeIneffective
 	jumpifflowerveil BattleScript_FlowerVeilProtects
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
