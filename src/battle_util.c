@@ -6578,6 +6578,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 
+            //Permanence
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_BLOCK_ON_ENTRY)) {
+                u8 anyBlocked = FALSE;
+                u8 opponent = BATTLE_OPPOSITE(battler);
+
+                if (IsBattlerAlive(opponent) && !(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)) {
+                    gBattleMons[battler].status2 |= STATUS2_ESCAPE_PREVENTION;
+                    anyBlocked = TRUE;
+                }
+
+                opponent = BATTLE_PARTNER(opponent);
+                if (IsBattlerAlive(opponent) && !(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)) {
+                    gBattleMons[battler].status2 |= STATUS2_ESCAPE_PREVENTION;
+                    anyBlocked = TRUE;
+                }
+
+                if (anyBlocked) {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_BLOCK_ON_ENTRY;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    effect++;
+                }
+            }
+
             //Berserk DNA
             if (CheckAndSetSwitchInAbility(battler, ABILITY_BERSERK_DNA))
             {

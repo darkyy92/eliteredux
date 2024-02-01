@@ -834,6 +834,7 @@ static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats 
 static const u8 sText_InverseRoomEnds[] = _("The inverted dimensions returned to\nnormal!");
 static const u8 sText_Permanence[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is preventing\nthe opposing team from healing!");
 static const u8 sText_BerserkDNA[] = _("{B_ATK_NAME_WITH_PREFIX} goes\nberserk!");
+static const u8 sText_BlockOnEntry[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} blocks\nthe opposing team from fleeing!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -1558,6 +1559,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PERMANENCE - 12] = sText_Permanence,
     [STRINGID_BERSERKDNA - 12] = sText_BerserkDNA,
     [STRINGID_RETRIEVEREXITS - 12] = sText_RetrieverExits,
+    [STRINGID_BLOCK_ON_ENTRY - 12] = sText_BlockOnEntry,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1624,6 +1626,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_LETHARGY] = STRINGID_LETHARGYTENTERS,
     [B_MSG_SWITCHIN_CROWNEDKING] = STRINGID_CROWNEDKINGENTERS,
     [B_MSG_SWITCHIN_PERMANENCE] = STRINGID_PERMANENCE,
+    [B_MSG_SWITCHIN_BLOCK_ON_ENTRY] = STRINGID_BLOCK_ON_ENTRY,
 };
 
 const u16 gMissStringIds[] =
