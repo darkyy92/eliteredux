@@ -455,7 +455,6 @@ struct OptionData
 };
 
 struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
-    
     [SETTING_DIFFICULTY] =
     {
         .title = _("Difficulty"),

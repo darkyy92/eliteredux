@@ -2977,8 +2977,8 @@ static void ShowKeyboardSwapMenu(void)
 {
     FillWindowPixelBuffer(3, PIXEL_FILL(1));
     DrawTextBorderOuter(3, 1, 13);
-    PrintTextArray(3, 2, 8, 1, 14, 5, sKeyboardPageTitleTexts);
-    sub_81983AC(3, 2, 0, 1, 14, 5, GetCurrentKeyboardPage());
+    PrintMenuActionTextsAtPos(3, 2, 8, 1, 14, 5, sKeyboardPageTitleTexts);
+    InitMenuNormal(3, 2, 0, 1, 14, 5, GetCurrentKeyboardPage());
     PutWindowTilemap(3);
 }
 

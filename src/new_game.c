@@ -218,6 +218,8 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     RandomizeBerryEncounters();
 	gSaveBlock1Ptr->dexNavChain = 0;
+    memset(&gSaveBlock2Ptr->questStatus, 0, sizeof(gSaveBlock2Ptr->questStatus));
+    gSaveBlock2Ptr->activeQuest = 0;
 }
 
 static void ResetMiniGamesRecords(void)

@@ -209,33 +209,34 @@ gScriptCmdTable::
 	.4byte ScrCmd_checkmoneventlegal        @ 0xce
 	.4byte ScrCmd_gotoram                   @ 0xcf
 	.4byte ScrCmd_nop1                      @ 0xd0
-	.4byte ScrCmd_warpspinenter             @ 0xd1
-	.4byte ScrCmd_setmonmetlocation         @ 0xd2
-	.4byte ScrCmd_moverotatingtileobjects   @ 0xd3
-	.4byte ScrCmd_turnrotatingtileobjects   @ 0xd4
-	.4byte ScrCmd_initrotatingtilepuzzle    @ 0xd5
-	.4byte ScrCmd_freerotatingtilepuzzle    @ 0xd6
-	.4byte ScrCmd_warpmossdeepgym           @ 0xd7
-	.4byte ScrCmd_selectapproachingtrainer  @ 0xd8
-	.4byte ScrCmd_lockfortrainer            @ 0xd9
-	.4byte ScrCmd_closebraillemessage       @ 0xda
-	.4byte ScrCmd_messageinstant            @ 0xdb
-	.4byte ScrCmd_fadescreenswapbuffers     @ 0xdc
-	.4byte ScrCmd_buffertrainerclassname    @ 0xdd
-	.4byte ScrCmd_buffertrainername         @ 0xde
-	.4byte ScrCmd_pokenavcall               @ 0xdf
-	.4byte ScrCmd_warpsootopolislegend      @ 0xe0
-	.4byte ScrCmd_buffercontesttype         @ 0xe1
-	.4byte ScrCmd_bufferitemnameplural      @ 0xe2
-	.4byte ScrCmd_checkPartyHasSpecies      @ 0xe3
-	.4byte ScrCmd_isChosenMonSpecies        @ 0xe4
-	.4byte ScrCmd_multichoice2              @ 0xe5
-	.4byte ScrCmd_giveBattleItems           @ 0xe6
-	.4byte ScrCmd_givecustommon             @ 0xe7
-	.4byte ScrCmd_toggleSaveblock           @ 0xe8
-	.4byte ScrCmd_checkSaveblockValue       @ 0xe9
-	.4byte ScrCmd_setwildbattlewithcustommoves @0xea
-	.4byte ScrCmd_checkpartyfortypeornumber @ 0xeb
+	.4byte ScrCmd_warpspinenter                @ 0xd1
+	.4byte ScrCmd_setmonmetlocation            @ 0xd2
+	.4byte ScrCmd_moverotatingtileobjects      @ 0xd3
+	.4byte ScrCmd_turnrotatingtileobjects      @ 0xd4
+	.4byte ScrCmd_initrotatingtilepuzzle       @ 0xd5
+	.4byte ScrCmd_freerotatingtilepuzzle       @ 0xd6
+	.4byte ScrCmd_warpmossdeepgym              @ 0xd7
+	.4byte ScrCmd_selectapproachingtrainer     @ 0xd8
+	.4byte ScrCmd_lockfortrainer               @ 0xd9
+	.4byte ScrCmd_closebraillemessage          @ 0xda
+	.4byte ScrCmd_messageinstant               @ 0xdb
+	.4byte ScrCmd_fadescreenswapbuffers        @ 0xdc
+	.4byte ScrCmd_buffertrainerclassname       @ 0xdd
+	.4byte ScrCmd_buffertrainername            @ 0xde
+	.4byte ScrCmd_pokenavcall                  @ 0xdf
+	.4byte ScrCmd_warpsootopolislegend         @ 0xe0
+	.4byte ScrCmd_buffercontesttype            @ 0xe1
+	.4byte ScrCmd_bufferitemnameplural         @ 0xe2
+	.4byte ScrCmd_checkPartyHasSpecies         @ 0xe3
+	.4byte ScrCmd_isChosenMonSpecies           @ 0xe4
+	.4byte ScrCmd_multichoice2                 @ 0xe5
+	.4byte ScrCmd_giveBattleItems              @ 0xe6
+	.4byte ScrCmd_givecustommon                @ 0xe7
+	.4byte ScrCmd_toggleSaveblock              @ 0xe8
+	.4byte ScrCmd_checkSaveblockValue          @ 0xe9
+	.4byte ScrCmd_setwildbattlewithcustommoves @ 0xea
+	.4byte ScrCmd_checkpartyfortypeornumber    @ 0xeb
+	.4byte ScrCmd_questmenu 				   @ 0xec
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

@@ -157,3 +157,4 @@
 	.include "src/option_plus_menu.o"
 	.include "src/ui_intro_options.o"
 	.include "src/ui_battle_menu.o"
+	.include "src/quests.o"
