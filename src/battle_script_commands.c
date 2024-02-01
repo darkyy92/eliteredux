@@ -4076,6 +4076,7 @@ static void Cmd_tryfaintmon(void)
             gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
             BattleScriptPush(gBattlescriptCurrInstr + 7);
             gBattlescriptCurrInstr = BS_ptr;
+            gFaintedMonCount[GetBattlerSide(gActiveBattler)]++;
             if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
             {
                 gHitMarker |= HITMARKER_x400000;

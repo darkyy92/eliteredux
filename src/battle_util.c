@@ -6602,6 +6602,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            //Supreme Overlord
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_SUPREME_OVERLORD))
+            {
+                if (gFaintedMonCount[GetBattlerSide(battler)])
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SUPREME_OVERLORD;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    effect++;
+                }
+            }
+
             //Berserk DNA
             if (CheckAndSetSwitchInAbility(battler, ABILITY_BERSERK_DNA))
             {
@@ -14736,11 +14747,6 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             // Pure Power
             if (BATTLER_HAS_ABILITY(battler, ABILITY_PURE_POWER)) statBase *= 2;
                     
-            // Defeatist
-            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEFEATIST)
-                && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
-                    statBase /= 2;
-                    
             // Slow Start
             if (BATTLER_HAS_ABILITY(battler, ABILITY_SLOW_START)
                 && gDisableStructs[battler].slowStartTimer != 0)
@@ -14768,6 +14774,16 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                 && !BATTLER_HAS_ABILITY(battler, ABILITY_HEATPROOF)
                 && !BATTLER_HAS_ABILITY(battler, ABILITY_GUTS))
                     statBase /= 2;
+
+            HANDLE_STAT_CALC_ATK_OR_SPATK:
+            // Supreme Overlord
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_SUPREME_OVERLORD))
+                statBase = statBase * (10 + max(5, gFaintedMonCount[GetBattlerSide(battler)])) / 10;
+                    
+            // Defeatist
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEFEATIST)
+                && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
+                    statBase /= 2;
             break;
         case STAT_SPATK:
             statBase = gBattleMons[battler].spAttack;
@@ -14777,11 +14793,6 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                     
             // Feline Prowess
             if (BATTLER_HAS_ABILITY(battler, ABILITY_FELINE_PROWESS)) statBase *= 2;
-                    
-            // Defeatist
-            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEFEATIST)
-                && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
-                    statBase /= 2;
                     
             // Big Leaves/Solar Power
             if ((BATTLER_HAS_ABILITY(battler, ABILITY_BIG_LEAVES) || BATTLER_HAS_ABILITY(battler, ABILITY_SOLAR_POWER))
@@ -14793,6 +14804,8 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                 && gBattleMoves[move].effect != EFFECT_FACADE
                 && !BATTLER_HAS_ABILITY(battler, ABILITY_DETERMINATION))
                     statBase /= 2;
+            
+            goto HANDLE_STAT_CALC_ATK_OR_SPATK;
             break;
         case STAT_DEF:
             if (isWonderRoomActive()) goto CALCULATE_STAT_SPDEF;

@@ -720,8 +720,9 @@
 #define STRINGID_HURTBYABILITY                        749
 #define STRINGID_RETRIEVEREXITS                       750
 #define STRINGID_BLOCK_ON_ENTRY                       751
+#define STRINGID_SUPREME_OVERLORD                     752
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BLOCK_ON_ENTRY + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_SUPREME_OVERLORD + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -970,6 +971,7 @@
 #define B_MSG_SWITCHIN_CROWNEDKING      18
 #define B_MSG_SWITCHIN_PERMANENCE       19
 #define B_MSG_SWITCHIN_BLOCK_ON_ENTRY   20
+#define B_MSG_SWITCHIN_SUPREME_OVERLORD 21
 
 // gMentalHerbCureStringIds
 #define B_MSG_MENTALHERBCURE_INFATUATION       0

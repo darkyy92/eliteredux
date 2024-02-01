@@ -205,6 +205,7 @@ EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
 EWRAM_DATA u32 gSideStatuses[2] = {0};
+EWRAM_DATA u8 gFaintedMonCount[2] = {0};
 EWRAM_DATA struct SideTimer gSideTimers[2] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
@@ -3311,6 +3312,7 @@ static void BattleStartClearSetData(void)
     memset(&gDisableStructs, 0, sizeof(gDisableStructs));
     memset(&gFieldTimers, 0, sizeof(gFieldTimers));
     memset(&gSideStatuses, 0, sizeof(gSideStatuses));
+    memset(&gFaintedMonCount, 0, sizeof(gFaintedMonCount));
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gWishFutureKnock, 0, sizeof(gWishFutureKnock));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
