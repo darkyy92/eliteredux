@@ -1122,3 +1122,7 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/ViridianForest/scripts.inc"
 
 	.include "data/maps/Route2_ViridianForest_SouthEntrance/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/Route2_ViridianForest_NorthEntrance/scripts.inc"

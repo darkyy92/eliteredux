@@ -597,3 +597,11 @@ gMetatiles_Generic_Building2::
 	.align 1
 gMetatileAttributes_Generic_Building2::
 	.incbin "data/tilesets/secondary/generic_building_2/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_ViridianForest::
+	.incbin "data/tilesets/secondary/viridianforest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ViridianForest::
+	.incbin "data/tilesets/secondary/viridianforest/metatile_attributes.bin"

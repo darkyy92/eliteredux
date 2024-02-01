@@ -1,4 +1,5 @@
 {
+  "layouts_table_label": "gMapLayouts",
   "group_order": [
     "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
@@ -107,7 +108,9 @@
     "Route22",
     "Route2",
     "ViridianForest",
-    "Route2_ViridianForest_SouthEntrance"
+    "Route2_ViridianForest_SouthEntrance",
+    "NewMap1",
+    "Route2_ViridianForest_NorthEntrance"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

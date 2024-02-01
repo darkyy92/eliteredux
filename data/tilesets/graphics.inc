@@ -1829,3 +1829,23 @@ gTilesetPalettes_Generic_Building2::
 	.align 2
 gTilesetTiles_Generic_Building2::
 	.incbin "data/tilesets/secondary/generic_building_2/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ViridianForest::
+	.incbin "data/tilesets/secondary/viridianforest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/viridianforest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ViridianForest::
+	.incbin "data/tilesets/secondary/viridianforest/tiles.4bpp.lz"

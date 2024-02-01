@@ -885,3 +885,14 @@ gTileset_Generic_Building2::
 	.4byte gMetatiles_Generic_Building2
 	.4byte gMetatileAttributes_Generic_Building2
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_ViridianForest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ViridianForest
+	.4byte gTilesetPalettes_ViridianForest
+	.4byte gMetatiles_ViridianForest
+	.4byte gMetatileAttributes_ViridianForest
+	.4byte NULL

@@ -1,7 +1,7 @@
 {
-  "id": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
-  "name": "Route2_ViridianForest_SouthEntrance",
-  "layout": "LAYOUT_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+  "id": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+  "name": "Route2_ViridianForest_NorthEntrance",
+  "layout": "LAYOUT_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
   "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
@@ -21,15 +21,8 @@
       "x": 7,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 7,
-      "y": 1,
-      "elevation": 0,
       "dest_map": "MAP_VIRIDIAN_FOREST",
-      "dest_warp_id": 0
+      "dest_warp_id": 2
     }
   ],
   "coord_events": [
