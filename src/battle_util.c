@@ -106,6 +106,7 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_NEUTRALIZING_GAS,
@@ -135,6 +136,7 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_ICE_FACE,
@@ -155,6 +157,7 @@ static const u16 sRolePlayBannedAttackerAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_ICE_FACE,
@@ -173,6 +176,7 @@ static const u16 sWorrySeedBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_TRUANT,
@@ -196,6 +200,7 @@ static const u16 sGastroAcidBannedAbilities[] =
     ABILITY_MULTITYPE,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_SCHOOLING,
     ABILITY_SHIELDS_DOWN,
     ABILITY_STANCE_CHANGE,
@@ -233,6 +238,7 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
+    ABILITY_ZERO_TO_HERO,
     ABILITY_BATTLE_BOND,
     ABILITY_ICE_FACE,
     ABILITY_GULP_MISSILE,
@@ -1161,6 +1167,7 @@ static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
     [ABILITY_POWER_OF_ALCHEMY] = 1,
     [ABILITY_RECEIVER] = 1,
     [ABILITY_RKS_SYSTEM] = 1,
+    [ABILITY_ZERO_TO_HERO] = 1,
     [ABILITY_SCHOOLING] = 1,
     [ABILITY_SHIELDS_DOWN] = 1,
     [ABILITY_STANCE_CHANGE] = 1,
@@ -1761,6 +1768,7 @@ void UpdateSentPokesToOpponentValue(u8 battler)
 void BattleScriptPush(const u8 *bsPtr)
 {
     //u16 ability = gBattleScripting.abilityPopupOverwrite;
+    gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size] = gBattleScripting.abilityPopupOverwrite;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
     /*if(ability != ABILITY_NONE){
         //Ability Overwrite
@@ -1780,6 +1788,7 @@ void BattleScriptPush(const u8 *bsPtr)
 void BattleScriptPushCursor(void)
 {
     //u16 ability = gBattleScripting.abilityPopupOverwrite;
+    gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size] = gBattleScripting.abilityPopupOverwrite;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
     /*if(ability != ABILITY_NONE){
         //Ability Overwrite
@@ -1800,6 +1809,11 @@ void BattleScriptPop(void)
 {
     //u16 ability = gBattleScripting.abilityPopupOverwrite;
     gBattlescriptCurrInstr = gBattleResources->battleScriptsStack->ptr[--gBattleResources->battleScriptsStack->size];
+    if (gBattleResources->battleScriptsStack->size > 0)
+    {
+        // Abilities typically get overwritten and then stored, so they will generally be one position ahead
+        gBattleScripting.abilityPopupOverwrite = gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size - 1];
+    }
     /*if(ability != ABILITY_NONE){
         //Ability Overwrite
         gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
@@ -4406,7 +4420,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
          gBattleMons[battler].species == SPECIES_CASTFORM_RAINY ||
          gBattleMons[battler].species == SPECIES_CASTFORM_SUNNY ||
          gBattleMons[battler].species == SPECIES_CASTFORM_SNOWY) && 
-	    gBattleMons[battler].ability == ABILITY_FORECAST &&
+	    BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST) &&
 		gBattleMons[battler].hp != 0){
 		if (gBattleWeather & (WEATHER_RAIN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_RAINY)
         {
@@ -4441,27 +4455,40 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     //Cherrim
     if (gBattleMons[battler].species == SPECIES_CHERRIM && 
-	          gBattleMons[battler].ability == ABILITY_FLOWER_GIFT &&
+	          BATTLER_HAS_ABILITY(battler, ABILITY_FLOWER_GIFT) &&
 		      gBattleMons[battler].hp != 0){
 			if (gBattleWeather & (WEATHER_SUN_ANY))
         {
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FLOWER_GIFT;
             gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CHERRIM_SUNSHINE;
 			return TRUE;
 		}
 	}
     else if(gBattleMons[battler].species == SPECIES_CHERRIM_SUNSHINE &&
-	          gBattleMons[battler].ability == ABILITY_FLOWER_GIFT &&
+	          BATTLER_HAS_ABILITY(battler, ABILITY_FLOWER_GIFT) &&
 		      gBattleMons[battler].hp != 0){
 			if (!(gBattleWeather & (WEATHER_SUN_ANY)))
         {
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FLOWER_GIFT;
             gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CHERRIM;
 			return TRUE;
 		}
 	}
+
+    if (gBattleMons[battler].species == SPECIES_PALAFIN && 
+	          BATTLER_HAS_ABILITY(battler, ABILITY_ZERO_TO_HERO) &&
+		      gBattleMons[battler].hp != 0 &&
+		      GetSingleUseAbilityCounter(battler, ABILITY_ZERO_TO_HERO)){
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZERO_TO_HERO;
+            gBattlerAttacker = battler;
+            gBattleMons[battler].species = SPECIES_PALAFIN_HERO;
+			return TRUE;
+		}
+	}
+
     return FALSE;
 }
 
@@ -4583,6 +4610,34 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
             return FALSE;
         default:
             return FALSE;
+    }
+}
+
+u8 GetSingleUseAbilityCounter(u8 battler, u16 ability) {
+    
+    switch (BattlerHasInnateOrAbility(battler, ability))
+    {
+        case BATTLER_INNATE:
+            return gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ability) + 1][GetBattlerSide(battler)];
+        case BATTLER_ABILITY:
+            return gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)];
+        default:
+            return -1;
+    }
+}
+
+void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
+    
+    switch (BattlerHasInnateOrAbility(battler, ability))
+    {
+        case BATTLER_INNATE:
+            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ability) + 1][GetBattlerSide(battler)] = value;
+            return;
+        case BATTLER_ABILITY:
+            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = value;
+            return;
+        default:
+            return;
     }
 }
 
@@ -5129,8 +5184,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
         case ABILITY_CHEATING_DEATH:
             if(gDisableStructs[battler].noDamageHits == 0 &&
-               !gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
-                gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
+               !GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH)){
+                SetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH, TRUE);
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
                 if(gDisableStructs[battler].noDamageHits == 1)
@@ -5780,8 +5835,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //Cheating Death
             if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){
                 if(gDisableStructs[battler].noDamageHits == 0 && 
-                !gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1][GetBattlerSide(battler)]){
-                    gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1][GetBattlerSide(battler)] = TRUE;
+                !GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH)){
+                    SetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH, TRUE);
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                     gDisableStructs[battler].noDamageHits = 2;
                     if(gDisableStructs[battler].noDamageHits == 1)
@@ -5799,20 +5854,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 bool8 activateAbilty = FALSE;
                 u16 abilityToCheck = ABILITY_COWARD; //For easier copypaste
 
-                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
-                    case BATTLER_INNATE:
-                        if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)]){
-                            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)] = TRUE;
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                    case BATTLER_ABILITY:
-                        if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
-                            gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
+                if (CheckAndSetSwitchInAbility(battler, abilityToCheck)) {
+                    if (!GetSingleUseAbilityCounter(battler, abilityToCheck)) {
+                        SetSingleUseAbilityCounter(battler, abilityToCheck, TRUE);
+                        activateAbilty = TRUE;
+                    }
                 }
 
                 //This is the stuff that has to be changed for each ability
@@ -5925,10 +5971,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Wishmaker
             if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
-                u8 innateNumber = (GetBattlerInnateNum(battler, ABILITY_WISHMAKER) + 1) % 4;
-                if (gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][innateNumber][GetBattlerSide(battler)] < 3) {
+                u8 counter = GetSingleUseAbilityCounter(battler, ABILITY_WISHMAKER) + 1;
+                if (counter <= 3) {
                     if (UseEntryMove(battler, ABILITY_WISHMAKER, &effect, MOVE_WISH, 0, 0, 0))
-                        gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][innateNumber][GetBattlerSide(battler)]++;
+                        SetSingleUseAbilityCounter(battler, ABILITY_WISHMAKER, counter);
                 }
             }
 
@@ -7872,6 +7918,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_MULTITYPE:
                 case ABILITY_POWER_CONSTRUCT:
                 case ABILITY_RKS_SYSTEM:
+                case ABILITY_ZERO_TO_HERO:
                 case ABILITY_SCHOOLING:
                 case ABILITY_SHIELDS_DOWN:
                 case ABILITY_STANCE_CHANGE:
@@ -7904,6 +7951,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_MULTITYPE:
                 case ABILITY_POWER_CONSTRUCT:
                 case ABILITY_RKS_SYSTEM:
+                case ABILITY_ZERO_TO_HERO:
                 case ABILITY_SCHOOLING:
                 case ABILITY_SHIELDS_DOWN:
                 case ABILITY_STANCE_CHANGE:
@@ -7937,6 +7985,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_IMPOSTER:
                 case ABILITY_RECEIVER:
                 case ABILITY_RKS_SYSTEM:
+                case ABILITY_ZERO_TO_HERO:
                 case ABILITY_SCHOOLING:
                 case ABILITY_STANCE_CHANGE:
                 case ABILITY_WONDER_GUARD:
@@ -11091,7 +11140,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_FORECAST: // 6
         for (battler = 0; battler < gBattlersCount; battler++)
         {
-            if (GetBattlerAbility(battler) == ABILITY_FORECAST || GetBattlerAbility(battler) == ABILITY_FLOWER_GIFT)
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST) || BATTLER_HAS_ABILITY(battler, ABILITY_FLOWER_GIFT) || BATTLER_HAS_ABILITY(battler, ABILITY_ZERO_TO_HERO))
             {
                 if (ShouldChangeFormHpBased(battler))
                 {
@@ -11316,6 +11365,7 @@ bool32 IsNeutralizingGasBannedAbility(u32 ability)
     case ABILITY_POWER_CONSTRUCT:
     case ABILITY_SCHOOLING:
     case ABILITY_RKS_SYSTEM:
+    case ABILITY_ZERO_TO_HERO:
     case ABILITY_SHIELDS_DOWN:
     case ABILITY_COMATOSE:
     case ABILITY_DISGUISE:

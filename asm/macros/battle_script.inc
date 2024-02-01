@@ -1843,8 +1843,9 @@
 	.4byte \ptr
 	.endm
 	
-	.macro tryhealquarterhealth battler:req, ptr:req
-	various \battler, VARIOUS_TRY_HEAL_QUARTER_HP
+	.macro tryhealpercenthealth battler:req, percent:req, ptr:req
+	various \battler, VARIOUS_TRY_HEAL_PERCENT_HP
+	.byte \percent
 	.4byte \ptr
 	.endm
 	

@@ -315,12 +315,13 @@ struct BattleHistory
     u8 itemsNo;
 };
 
-//#define MAX_SCRIPT_STACK_COUNT 20
+#define MAX_SCRIPT_STACK_COUNT 8
 struct BattleScriptsStack
 {
-    const u8 *ptr[8];
+    const u8 *ptr[MAX_SCRIPT_STACK_COUNT];
     u8 size;
-    //u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
+    // This ends up stored as [{pointer0, ability1}, {pointer1, ability2}, {pointer2, ability3}, ...]
+    u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
     //u8 currentAbilityStack; // current index to use in the ability pop up
     //u8 abilityOverwriteNum; // number of abilities to overwrite
 };
@@ -724,7 +725,6 @@ struct BattleScripting
     u8 overrideBerryRequirements;
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
     bool8 forceFalseSwipeEffect;
-    bool8 doublehealthRestore;
     u8 moveSecondaryEffectChance;
     u8 replaceEndWithEnd3;
 };

@@ -628,6 +628,7 @@ static const u8 sText_ForewarnActivates[] = _("Ability alerted {B_SCR_ACTIVE_NAM
 static const u8 sText_IceBodyHpGain[] = _("{B_ATK_NAME_WITH_PREFIX}'s Ice Body\nhealed it a little bit!");
 static const u8 sText_SnowWarningHail[] = _("It started to hail!");
 static const u8 sText_FriskActivates[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\nfound its {B_LAST_ITEM}!");
+static const u8 sText_RetrieverExits[] = _("{B_ATK_NAME_WITH_PREFIX} retrieved\nits {B_LAST_ITEM}!");
 static const u8 sText_UnnerveEnters[] = _("The opposing team is too nervous\nto eat Berries!");
 static const u8 sText_HarvestBerry[] = _("{B_ATK_NAME_WITH_PREFIX} harvested\nits {B_LAST_ITEM}!");
 static const u8 sText_LastAbilityRaisedBuff1[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability\nraised its {B_BUFF1}!");
@@ -1556,6 +1557,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_CROWNEDKINGENTERS - 12] = sText_CrownedKingEnters,
     [STRINGID_PERMANENCE - 12] = sText_Permanence,
     [STRINGID_BERSERKDNA - 12] = sText_BerserkDNA,
+    [STRINGID_RETRIEVEREXITS - 12] = sText_RetrieverExits,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -2037,6 +2039,13 @@ const u16 gStatusConditionsStringIds[] =
     STRINGID_PKMNFELLASLEEP,
     STRINGID_PKMNGOTFROSTBITE,
     STRINGID_PKMNSTARTBLEED,
+};
+
+const u16 gCureStatusOnExitStringIds[] =
+{
+    STRINGID_NATURAL_CURE_EXITS,
+    STRINGID_SELF_REPAIR_EXITS,
+    STRINGID_NATURAL_RECOVERY_EXITS,
 };
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");

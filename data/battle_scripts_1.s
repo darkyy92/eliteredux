@@ -1232,7 +1232,7 @@ BattleScript_EffectJungleHealing:
 	setbyte gBattleCommunication, 0
 JungleHealing_RestoreTargetHealth:
 	copybyte gBattlerAttacker, gBattlerTarget
-	tryhealquarterhealth BS_TARGET, BattleScript_JungleHealing_TryCureStatus
+	tryhealpercenthealth BS_TARGET, 25, BattleScript_JungleHealing_TryCureStatus
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
@@ -11244,49 +11244,31 @@ BattleScript_NeutralizingGasExitsLoop:
 	return
 
 BattleScript_NaturalRecoveryExits::
-	clearstatus BS_ATTACKER
-	tryhealquarterhealth BS_ATTACKER, BattleScript_NaturalRecoveryExits_NothingToHeal
-BattleScript_NaturalRecoveryExits_NothingToHeal:
+	tryhealpercenthealth BS_ATTACKER, 33, BattleScript_NaturalCureExits
+BattleScript_NaturalCureExits::
 	jumpifstatus BS_ATTACKER, STATUS1_ANY, BattleScript_NaturalRecoveryExits_HasStatus
 	return
 BattleScript_NaturalRecoveryExits_HasStatus:
+	clearstatus BS_ATTACKER
 	copybyte gBattlerAbility, gBattlerAttacker
 	sethword sABILITY_OVERWRITE, ABILITY_NATURAL_RECOVERY
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_SHORT
-	printstring STRINGID_NATURAL_RECOVERY_EXITS
+	printfromtable gCureStatusOnExitStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_NaturalCureExits::
-	copybyte gBattlerAbility, gBattlerAttacker
-	sethword sABILITY_OVERWRITE, ABILITY_NATURAL_CURE
+BattleScript_RetrieverExits::
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_SHORT
-	printstring STRINGID_NATURAL_CURE_EXITS
+	printstring STRINGID_RETRIEVEREXITS
 	waitmessage B_WAIT_TIME_LONG
-	return
-
-BattleScript_SelfRepairExits::
-	copybyte gBattlerAbility, gBattlerAttacker
-	sethword sABILITY_OVERWRITE, ABILITY_SELF_REPAIR
-	call BattleScript_AbilityPopUp
-	pause B_WAIT_TIME_SHORT
-	printstring STRINGID_SELF_REPAIR_EXITS
-	waitmessage B_WAIT_TIME_LONG
-	return
-
-BattleScript_RegeneratorExits::
-	clearstatus BS_ATTACKER
-	jumpifstatus BS_ATTACKER, STATUS1_BLEED, BattleScript_RegeneratorExits_NothingToHeal
-	tryhealquarterhealth BS_ATTACKER, BattleScript_RegeneratorExits_NothingToHeal
-BattleScript_RegeneratorExits_NothingToHeal:
 	return
 
 BattleScript_HandleSoulEaterEffect::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleSoulEaterEffect_NothingToHeal
+	tryhealpercenthealth BS_ATTACKER, 25, BattleScript_HandleSoulEaterEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_ATTACKERREGAINEDHEALTH
@@ -11297,8 +11279,7 @@ BattleScript_HandleSoulEaterEffect_NothingToHeal:
 BattleScript_HandleJawsOfCarnageEffect::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	battlemacros MACROS_GET_DOUBLE_HEALTH, 0, NULL
-	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleJawsOfCarnageEffect_NothingToHeal
+	tryhealpercenthealth BS_ATTACKER, 50, BattleScript_HandleJawsOfCarnageEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_ATTACKERREGAINEDHEALTH

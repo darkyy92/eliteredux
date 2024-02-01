@@ -505,7 +505,7 @@ static bool8 IsMonHealthyEnoughToSwitch(void)
     u32 battlerHp = gBattleMons[gActiveBattler].hp;
 
     if (gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR)
-        battlerHp = (battlerHp * 130) / 100; // Account for Regenerator healing
+        battlerHp = (battlerHp * 133) / 100; // Account for Regenerator healing
     
     if (CalculateHazardDamage() > battlerHp) // Battler will die to hazards
         return FALSE;

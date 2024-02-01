@@ -9001,6 +9001,7 @@ static void Cmd_various(void)
             case ABILITY_SHIELDS_DOWN:      case ABILITY_DISGUISE:
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
             case ABILITY_AS_ONE_ICE_RIDER:  case ABILITY_AS_ONE_SHADOW_RIDER:
+            case ABILITY_ZERO_TO_HERO:
                 break;
             default:
                 gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[gActiveBattler].ability; // re-using the variable for trace
@@ -9948,21 +9949,17 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr += 7;
         }
         return;
-    case VARIOUS_TRY_HEAL_QUARTER_HP:
-        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
+    case VARIOUS_TRY_HEAL_PERCENT_HP:
+        increase = gBattlescriptCurrInstr[3];
+        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP * increase / 100;
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
         gBattleMoveDamage *= -1;
 
-        if(gBattleScripting.doublehealthRestore)
-            gBattleMoveDamage *= 2;
-
-        gBattleScripting.doublehealthRestore = FALSE;
-
         if (gBattleMons[gActiveBattler].hp == gBattleMons[gActiveBattler].maxHP)
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);    // fail
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);    // fail
         else
-            gBattlescriptCurrInstr += 7;   // can heal
+            gBattlescriptCurrInstr += 8;   // can heal
         return;
     case VARIOUS_REMOVE_TERRAIN:
         gFieldTimers.terrainTimer = 0;
@@ -11857,8 +11854,6 @@ static void Cmd_battlemacros(void)
         case MACROS_RESET_MULTIHIT_HITS:
             gMultiHitCounter = 0;
         break;
-        case MACROS_GET_DOUBLE_HEALTH:
-            gBattleScripting.doublehealthRestore = TRUE;
         break;
         case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1:
         {
@@ -14307,8 +14302,15 @@ static void Cmd_trygetintimidatetarget(void)
 
 static void Cmd_switchoutabilities(void)
 {
+    u8 count;
+    const u8 *startingPointer = gBattlescriptCurrInstr;
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
+
+    count = GetSingleUseAbilityCounter(gActiveBattler, ABILITY_ZERO_TO_HERO);
+    if (count == 0) {
+        SetSingleUseAbilityCounter(gActiveBattler, ABILITY_ZERO_TO_HERO, TRUE);
+    }
 
     if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS) && gBattleMons[gActiveBattler].ability != ABILITY_NONE))
     {
@@ -14326,78 +14328,71 @@ static void Cmd_switchoutabilities(void)
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_TheToxicWasHasDissapeared;
     }
-    else if(((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || 
-              BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || 
-            (gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE && !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)]) ||
-            (gBattleMons[gActiveBattler].ability == ABILITY_SELF_REPAIR  && !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_SELF_REPAIR)])
-            )
-            && gBattleMons[gActiveBattler].status1 != 0) && 
-            (BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || 
-            (gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR && 
-            !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_REGENERATOR)]))
-            && !BATTLER_MAX_HP(gActiveBattler)){
-            gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
 
-            if(gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR  || 
-               gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE || 
-               gBattleMons[gActiveBattler].ability == ABILITY_SELF_REPAIR)
-                gBattleMons[gActiveBattler].ability = ABILITY_NONE;
-
-            if(BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE))
-                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)] = TRUE;
-
-            if(BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR))
-                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_SELF_REPAIR)] = TRUE;
-
-            if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR))
-                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_REGENERATOR)] = TRUE;
-
-            BattleScriptPush(gBattlescriptCurrInstr);
-            gBattlescriptCurrInstr = BattleScript_RegeneratorExits;
-    }
-    else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_NATURAL_RECOVERY)) {
-        if(BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_RECOVERY))
-            gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_RECOVERY)] = TRUE;
+    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_CURE)
+        || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_SELF_REPAIR))
+    {
+        u16 ability = gBattleScripting.switchInBattlerOverwrite;
+        if (gBattleMons[gActiveBattler].status1 & STATUS1_ANY) {
+            if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_RECOVERY) || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_REGENERATOR)) {
+                if (gBattleScripting.switchInBattlerOverwrite == ABILITY_NATURAL_RECOVERY)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                else {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? 1 : 0;
+                    gBattleScripting.switchInBattlerOverwrite = ability;
+                }
+                BattleScriptPush(gBattlescriptCurrInstr);
+                gBattlescriptCurrInstr = BattleScript_NaturalRecoveryExits;
+            }
+        }
         else
-            gSpecialStatuses[gActiveBattler].switchInAbilityDone = TRUE;
-        
+        {
+            gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? 1 : 0;
+            BattleScriptPush(gBattlescriptCurrInstr);
+            gBattlescriptCurrInstr = BattleScript_NaturalCureExits;
+        }
+    }
+
+    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_RECOVERY))
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = 2;
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_NaturalRecoveryExits;
     }
-    else{
-        if((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || GetBattlerAbility(gActiveBattler) == ABILITY_NATURAL_CURE ||
-            BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || GetBattlerAbility(gActiveBattler) == ABILITY_SELF_REPAIR) && 
-            gBattleMons[gActiveBattler].status1 != 0){
-            gBattleMons[gActiveBattler].status1 = 0;
-            BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
-            MarkBattlerForControllerExec(gActiveBattler);
-		}
-        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_REGENERATOR)
-                && !(gBattleMons[gActiveBattler].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(gActiveBattler, ABILITY_PERMANENCE))){ 
+    
+    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_REGENERATOR))
+    {
+        if (!(gBattleMons[gActiveBattler].status1 & STATUS1_BLEED) && !IsAbilityOnOpposingSide(gActiveBattler, ABILITY_PERMANENCE))
+        {
             gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
             gBattleMoveDamage += gBattleMons[gActiveBattler].hp;
             if (gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP;
             BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 2, &gBattleMoveDamage);
             MarkBattlerForControllerExec(gActiveBattler);
-		}
-        else if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_RETRIEVER)) {
-            u16 *usedHeldItem;
-            usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
-
-            if (*usedHeldItem != 0 && gBattleMons[gActiveBattler].item == 0)
-            {
-                gLastUsedItem = *usedHeldItem;
-                *usedHeldItem = 0;
-                gBattleMons[gActiveBattler].item = gLastUsedItem;
-
-                BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
-                MarkBattlerForControllerExec(gActiveBattler);
-            }
         }
-
-        gBattlescriptCurrInstr += 2;
     }
+
+    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_RETRIEVER))
+    {
+        u16 *usedHeldItem;
+        usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
+
+        if (*usedHeldItem != 0 && gBattleMons[gActiveBattler].item == 0)
+        {
+            gLastUsedItem = *usedHeldItem;
+            *usedHeldItem = 0;
+            gBattleMons[gActiveBattler].item = gLastUsedItem;
+
+            BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
+            MarkBattlerForControllerExec(gActiveBattler);
+
+            BattleScriptPush(gBattlescriptCurrInstr);
+            gBattlescriptCurrInstr = BattleScript_RetrieverExits;
+        }
+    }
+    
+    if (gBattlescriptCurrInstr == startingPointer) gBattlescriptCurrInstr += 2;
 }
 
 static void Cmd_jumpifhasnohp(void)
