@@ -1631,11 +1631,11 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTINCREASE2;
     else if (stringId == STRINGID_STATSWONTINCREASE2 && hasContrary)
         stringId = STRINGID_STATSWONTDECREASE2;
-    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE && targetHasContrary)
+    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE && (targetHasContrary || BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_GUARD_DOG)))
         stringId = STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE;
-    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2 && targetHasContrary)
+    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2 && (targetHasContrary || BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_GUARD_DOG)))
         stringId = STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE2;
-    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3 && targetHasContrary)
+    else if (stringId == STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3 && (targetHasContrary || BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_GUARD_DOG)))
         stringId = STRINGID_PKMNRAISESSTATWITHINTIMIDATECLONE3;
     else if((stringId == STRINGID_DEFENDERSSTATFELL) &&
             (GetBattlerAbility(gBattlerTarget) == ABILITY_KINGS_WRATH                 || BattlerHasInnate(gBattlerTarget, ABILITY_KINGS_WRATH) || 
