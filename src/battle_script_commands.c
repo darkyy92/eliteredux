@@ -11872,7 +11872,6 @@ static void Cmd_battlemacros(void)
             u16 numStats;
             u8 statToLower;
             u8 statslowered = 0;
-            bool8 abilityActivated = FALSE;
             u8 numAbility = 0;
 
             for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
@@ -11886,7 +11885,8 @@ static void Cmd_battlemacros(void)
             for(i = 0; i < numStats; i++){
                 statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
-                    u8 statBuff = BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_GUARD_DOG) ? SET_STAT_BUFF_VALUE(1) : SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE;
+                    u8 statBuff = BATTLER_HAS_ABILITY(opposingBattler, ABILITY_GUARD_DOG) ? SET_STAT_BUFF_VALUE(1) : SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE;
+                    gBattlerTarget = opposingBattler;
                     if (ChangeStatBuffs(statBuff, statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
                     statslowered++;
                     //For Abilities with multiple stats to lower - {} are necessary since this is a macro
@@ -11899,21 +11899,19 @@ static void Cmd_battlemacros(void)
                     else if(statslowered == 3){
                         PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
                     }
-                    
-                    abilityActivated = TRUE;
 
                     if(statslowered == 2)
                         VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
                     else if(statslowered == 3)
                         VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE3);
                 }
+            }
 
-                if(abilityActivated){
-                    u8 targetnum = VarGet(VAR_INTIMIDATED_TARGETS);
-                    targetnum++;
-                    VarSet(VAR_INTIMIDATED_TARGETS, targetnum);
-                    tryjump = TRUE;
-                }
+            if (statslowered) {
+                u8 targetnum = VarGet(VAR_INTIMIDATED_TARGETS);
+                targetnum++;
+                VarSet(VAR_INTIMIDATED_TARGETS, targetnum);
+                tryjump = TRUE;
             }
         }
         break;
@@ -11925,7 +11923,6 @@ static void Cmd_battlemacros(void)
                 u16 numStats;
                 u8 statToLower;
                 u8 statslowered = 0;
-                bool8 abilityActivated = FALSE;
                 u8 targetNum = VarGet(VAR_INTIMIDATED_TARGETS);
                 u8 numAbility = 0;
 
@@ -11937,10 +11934,13 @@ static void Cmd_battlemacros(void)
                 numAbility = i;
                 numStats = gIntimidateCloneData[numAbility].numStatsLowered;
 
-                if(gIntimidateCloneData[numAbility].targetBoth || targetNum == 0){
+                if(gIntimidateCloneData[numAbility].targetBoth || targetNum == 0) {
                     for(i = 0; i < numStats; i++){
                         statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                         if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
+                            u8 statBuff = BATTLER_HAS_ABILITY(opposingBattler, ABILITY_GUARD_DOG) ? SET_STAT_BUFF_VALUE(1) : SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE;
+                            gBattlerTarget = opposingBattler;
+                            if (ChangeStatBuffs(statBuff, statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
                             statslowered++;
                             //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                             if(statslowered == 1){
@@ -11952,12 +11952,6 @@ static void Cmd_battlemacros(void)
                             else if(statslowered == 3){
                                 PREPARE_STAT_BUFFER(gBattleTextBuff3, statToLower);
                             }
-
-                            gBattlerTarget = opposingBattler;
-                            if(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_CONTRARY))
-                                gBattleMons[opposingBattler].statStages[statToLower]++;
-                            else
-                                gBattleMons[opposingBattler].statStages[statToLower]--;
                             
                             if(statslowered == 2)
                                 VarSet(VAR_TEMP_BATTLE_STRING_OVERWRITE_1, STRINGID_PKMNCUTSSTATWITHINTIMIDATECLONE2);
