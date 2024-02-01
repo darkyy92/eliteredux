@@ -4871,36 +4871,39 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-        if ((ability == ABILITY_SWIFT_SWIM || BattlerHasInnate(battlerId, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SWIFT_SWIM, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_SEABORNE || BattlerHasInnate(battlerId, ABILITY_SEABORNE)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SEABORNE, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_CHLOROPHYLL || BattlerHasInnate(battlerId, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_CHLOROPHYLL, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_BIG_LEAVES || BattlerHasInnate(battlerId, ABILITY_BIG_LEAVES)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_BIG_LEAVES, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_SAND_RUSH   || BattlerHasInnate(battlerId, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SAND_RUSH, ability) && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_SLUSH_RUSH  || BattlerHasInnate(battlerId, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLUSH_RUSH, ability) && gBattleWeather & WEATHER_HAIL_ANY)
             speed = (speed * 150) / 100;
     }
 
     // other abilities
-    if ((ability == ABILITY_QUICK_FEET  || BattlerHasInnate(battlerId, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_QUICK_FEET, ability) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
 
-    if ((ability == ABILITY_SURGE_SURFER || BattlerHasInnate(battlerId, ABILITY_SURGE_SURFER)) && GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SURGE_SURFER, ability) && GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
         speed = (speed * 150) / 100;
 
-    if ((ability == ABILITY_SLOW_START  || BattlerHasInnate(battlerId, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLOW_START, ability) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 
-    if ((ability == ABILITY_VIOLENT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VIOLENT_RUSH)) && gDisableStructs[battlerId].isFirstTurn)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SHOWDOWN_MODE, ability) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 	
 	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LEAD_COAT, ability))
@@ -4912,7 +4915,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
 	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LIGHT_METAL, ability))
         speed = (speed * 130) / 100;
 	
-	/*if ((ability == ABILITY_NOCTURNAL || BattlerHasInnate(battlerId, ABILITY_NOCTURNAL)) && !IsCurrentlyDay())
+	/*if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_NOCTURNAL, ability) && !IsCurrentlyDay())
         speed *= 1.1;
     */
 
@@ -4960,7 +4963,7 @@ u16 IsMyceliumMightActive(u32 battlerId)
 {
     u16 ability = gBattleMons[battlerId].ability;
 
-    if (ability == ABILITY_MYCELIUM_MIGHT || BattlerHasInnate(battlerId, ABILITY_MYCELIUM_MIGHT)){
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MYCELIUM_MIGHT, ability)) {
         const struct BattleMove *move = &gBattleMoves[GetChosenMove(battlerId)];
         return move->split == SPLIT_STATUS && move->target & !MOVE_TARGET_USER;
     }
@@ -6095,29 +6098,29 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
-             && (   ((attackerAbility == ABILITY_PIXILATE        || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))        && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE     || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))     && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_REFRIGERATOR    || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))    && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE        || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))        && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_IMMOLATE        || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))        && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_SOLAR_FLARE     || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))     && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_TECTONIZE       || BattlerHasInnate(battlerAtk, ABILITY_TECTONIZE))       && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT    || BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT))    && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_INTOXICATE      || BattlerHasInnate(battlerAtk, ABILITY_INTOXICATE))      && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE         || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))         && (ateType = TYPE_WATER))
-                 || ((attackerAbility == ABILITY_GALVANIZE       || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))       && (ateType = TYPE_ELECTRIC))
-                 || ((attackerAbility == ABILITY_POLLINATE       || BattlerHasInnate(battlerAtk, ABILITY_POLLINATE))       && (ateType = TYPE_BUG))
-				 || ((attackerAbility == ABILITY_SPECTRAL_SHROUD || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)) && (ateType = TYPE_GHOST))
-				 || ((attackerAbility == ABILITY_SPECTRALIZE     || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))     && (ateType = TYPE_GHOST))
-                 || ((attackerAbility == ABILITY_MINERALIZE      || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))      && (ateType = TYPE_ROCK))
-                 || ((attackerAbility == ABILITY_DRACONIZE       || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))       && (ateType = TYPE_DRAGON))
-                 || ((attackerAbility == ABILITY_EMANATE         || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))         && (ateType = TYPE_PSYCHIC))
-                 || ((attackerAbility == ABILITY_ENLIGHTENED     || BattlerHasInnate(battlerAtk, ABILITY_ENLIGHTENED))     && (ateType = TYPE_PSYCHIC))
-                 || ((attackerAbility == ABILITY_FERTILIZE       || BattlerHasInnate(battlerAtk, ABILITY_FERTILIZE))       && (ateType = TYPE_GRASS))
+             && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)        && (ateType = TYPE_FAIRY))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)     && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)    && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_AERILATE, attackerAbility)        && (ateType = TYPE_FLYING))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IMMOLATE, attackerAbility)        && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SOLAR_FLARE, attackerAbility)     && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_TECTONIZE, attackerAbility)       && (ateType = TYPE_GROUND))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FIGHT_SPIRIT, attackerAbility)    && (ateType = TYPE_FIGHTING))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INTOXICATE, attackerAbility)      && (ateType = TYPE_POISON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYDRATE, attackerAbility)         && (ateType = TYPE_WATER))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GALVANIZE, attackerAbility)       && (ateType = TYPE_ELECTRIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_POLLINATE, attackerAbility)       && (ateType = TYPE_BUG))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRAL_SHROUD, attackerAbility) && (ateType = TYPE_GHOST))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRALIZE, attackerAbility)     && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MINERALIZE, attackerAbility)      && (ateType = TYPE_ROCK))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DRACONIZE, attackerAbility)       && (ateType = TYPE_DRAGON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_EMANATE, attackerAbility)         && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ENLIGHTENED, attackerAbility)     && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FERTILIZE, attackerAbility)       && (ateType = TYPE_GRASS))
                 )
              )
         return ateType;
-	else if(gBattleMoves[move].type == TYPE_ROCK && (attackerAbility == ABILITY_CRYSTALLIZE || BattlerHasInnate(battlerAtk, ABILITY_CRYSTALLIZE)))
+	else if(gBattleMoves[move].type == TYPE_ROCK && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_CRYSTALLIZE, attackerAbility))
 		return TYPE_ICE;
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
@@ -6125,7 +6128,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && attackerAbility == ABILITY_NORMALIZE)
         return TYPE_NORMAL;
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-             (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
+             BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LIQUID_VOICE, attackerAbility))
         return TYPE_WATER;
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
         return TYPE_ELECTRIC;
@@ -6236,25 +6239,25 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
-             && (   ((attackerAbility == ABILITY_PIXILATE            || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))            && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE         || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))         && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_REFRIGERATOR        || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATOR))        && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE            || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))            && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_IMMOLATE            || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))            && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_SOLAR_FLARE         || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))         && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_TECTONIZE           || BattlerHasInnate(battlerAtk, ABILITY_TECTONIZE))           && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT        || BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT))        && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_INTOXICATE          || BattlerHasInnate(battlerAtk, ABILITY_INTOXICATE))          && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE             || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))             && (ateType = TYPE_WATER))
-                 || ((attackerAbility == ABILITY_GALVANIZE           || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))           && (ateType = TYPE_ELECTRIC))
-                 || ((attackerAbility == ABILITY_POLLINATE           || BattlerHasInnate(battlerAtk, ABILITY_POLLINATE))           && (ateType = TYPE_BUG))
-                 || ((attackerAbility == ABILITY_SPECTRAL_SHROUD     || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD))     && (ateType = TYPE_GHOST))
-                 || ((attackerAbility == ABILITY_SPECTRALIZE         || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))         && (ateType = TYPE_GHOST))
-                 || ((attackerAbility == ABILITY_MINERALIZE          || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))          && (ateType = TYPE_ROCK))
-                 || ((attackerAbility == ABILITY_DRACONIZE           || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))           && (ateType = TYPE_DRAGON))
-                 || ((attackerAbility == ABILITY_EMANATE             || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))             && (ateType = TYPE_PSYCHIC))
-                 || ((attackerAbility == ABILITY_ENLIGHTENED         || BattlerHasInnate(battlerAtk, ABILITY_ENLIGHTENED))         && (ateType = TYPE_PSYCHIC))
-                 || ((attackerAbility == ABILITY_FERTILIZE           || BattlerHasInnate(battlerAtk, ABILITY_FERTILIZE))           && (ateType = TYPE_GRASS))
+             && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)            && (ateType = TYPE_FAIRY))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)         && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)        && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_AERILATE, attackerAbility)            && (ateType = TYPE_FLYING))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IMMOLATE, attackerAbility)            && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SOLAR_FLARE, attackerAbility)         && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_TECTONIZE, attackerAbility)           && (ateType = TYPE_GROUND))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FIGHT_SPIRIT, attackerAbility)        && (ateType = TYPE_FIGHTING))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INTOXICATE, attackerAbility)          && (ateType = TYPE_POISON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYDRATE, attackerAbility)             && (ateType = TYPE_WATER))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GALVANIZE, attackerAbility)           && (ateType = TYPE_ELECTRIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_POLLINATE, attackerAbility)           && (ateType = TYPE_BUG))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRAL_SHROUD, attackerAbility)     && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRALIZE, attackerAbility)         && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MINERALIZE, attackerAbility)          && (ateType = TYPE_ROCK))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DRACONIZE, attackerAbility)           && (ateType = TYPE_DRAGON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_EMANATE, attackerAbility)             && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ENLIGHTENED, attackerAbility)         && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FERTILIZE, attackerAbility)           && (ateType = TYPE_GRASS))
                 )
              )
     {
@@ -6275,7 +6278,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-            (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
+            BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LIQUID_VOICE, attackerAbility))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
     }

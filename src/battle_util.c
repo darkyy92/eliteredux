@@ -14381,10 +14381,6 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYDRO_CIRCUIT) && moveType == TYPE_ELECTRIC)
         MulModifier(&modifier, UQ_4_12(1.5));
 	
-	// Violent Rush
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_VIOLENT_RUSH) && (gDisableStructs[battlerAtk].isFirstTurn))
-        MulModifier(&modifier, UQ_4_12(1.2));
-	
     // Field Abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
         || (IsAbilityOnField(ABILITY_FAIRY_AURA) && moveType == TYPE_FAIRY)
@@ -14699,6 +14695,16 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             if (BATTLER_HAS_ABILITY(battler, ABILITY_SLOW_START)
                 && gDisableStructs[battler].slowStartTimer != 0)
                     statBase /= 2;
+
+            // Violent Rush
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_VIOLENT_RUSH)
+                && gDisableStructs[battler].isFirstTurn)
+                    statBase = statBase * 6 / 5;
+
+            // Showdown Mode
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SHOWDOWN_MODE)
+                && gDisableStructs[battler].isFirstTurn)
+                    statBase = statBase * 6 / 5;
 
             // Burn
             if ((gBattleMons[battler].status1 & STATUS1_BURN)
