@@ -11796,9 +11796,9 @@ static void Cmd_setlightscreen(void)
 bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ability){
     bool8 checkOblivious = FALSE;
     //Check if the opposing battler is immune to stat lowering in general or if the mon is not alive
-    if(gBattleMons[battler].hp == 0                          ||
-       stat == STAT_HP                                       ||
-       BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)      ||
+    if (gBattleMons[battler].hp == 0 || stat == STAT_HP) return TRUE;
+    else if (BATTLER_HAS_ABILITY(battler, ABILITY_GUARD_DOG)) return FALSE;
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_CLEAR_BODY)     ||
        BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
        BATTLER_HAS_ABILITY(battler, ABILITY_FULL_METAL_BODY) ||
        BATTLER_HAS_ABILITY(battler, ABILITY_MIRROR_ARMOR))
@@ -11886,7 +11886,8 @@ static void Cmd_battlemacros(void)
             for(i = 0; i < numStats; i++){
                 statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
-                    if (ChangeStatBuffs(SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE, statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
+                    u8 statBuff = BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_GUARD_DOG) ? SET_STAT_BUFF_VALUE(1) : SET_STAT_BUFF_VALUE(1) | STAT_BUFF_NEGATIVE;
+                    if (ChangeStatBuffs(statBuff, statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL) == STAT_CHANGE_DIDNT_WORK) continue;
                     statslowered++;
                     //For Abilities with multiple stats to lower - {} are necessary since this is a macro
                     if(statslowered == 1){

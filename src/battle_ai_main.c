@@ -1608,6 +1608,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             else if (AI_DATA->abilities[battlerDef] == ABILITY_SUCTION_CUPS)
                 score -= 10;
+            else if (AI_DATA->abilities[battlerDef] == ABILITY_GUARD_DOG)
+                score -= 10;
             break;
         case EFFECT_TOXIC_THREAD:
             if (!ShouldLowerStat(battlerDef, AI_DATA->abilities[battlerDef], STAT_SPEED))
