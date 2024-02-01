@@ -9235,6 +9235,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_ANGER_SHELL)) {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+            // Had more than half of hp before, now has less
+             && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
+             && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
+             && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
+             && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
+             && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGER_SHELL;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AngerShell;
+                effect++;
+            }
+        }
+
         //Itchy Defense
         if(BATTLER_HAS_ABILITY(battler, ABILITY_ITCHY_DEFENSE)){
             bool8 activateAbilty = FALSE;
