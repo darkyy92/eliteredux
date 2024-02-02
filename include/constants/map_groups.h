@@ -79,6 +79,8 @@
 #define MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE (10 | (1 << 8))
 #define MAP_NEW_MAP1                              (11 | (1 << 8))
 #define MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE (12 | (1 << 8))
+#define MAP_ROUTE2_HOUSE                          (13 | (1 << 8))
+#define MAP_ROUTE2_EAST_BUILDING                  (14 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

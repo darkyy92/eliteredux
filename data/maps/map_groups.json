@@ -110,7 +110,9 @@
     "ViridianForest",
     "Route2_ViridianForest_SouthEntrance",
     "NewMap1",
-    "Route2_ViridianForest_NorthEntrance"
+    "Route2_ViridianForest_NorthEntrance",
+    "Route2_House",
+    "Route2_EastBuilding"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

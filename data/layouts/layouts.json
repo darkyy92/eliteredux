@@ -4740,6 +4740,26 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route2_ViridianForest_NorthEntrance/border.bin",
       "blockdata_filepath": "data/layouts/Route2_ViridianForest_NorthEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE2_HOUSE",
+      "name": "Route2_House_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route2_House/border.bin",
+      "blockdata_filepath": "data/layouts/Route2_House/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE2_EAST_BUILDING",
+      "name": "Route2_EastBuilding_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route2_EastBuilding/border.bin",
+      "blockdata_filepath": "data/layouts/Route2_EastBuilding/map.bin"
     }
   ]
 }

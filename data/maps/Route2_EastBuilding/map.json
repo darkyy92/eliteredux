@@ -1,12 +1,12 @@
 {
-  "id": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
-  "name": "Route2_ViridianForest_NorthEntrance",
-  "layout": "LAYOUT_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+  "id": "MAP_ROUTE2_EAST_BUILDING",
+  "name": "Route2_EastBuilding",
+  "layout": "LAYOUT_ROUTE2_EAST_BUILDING",
   "music": "MUS_RG_PEWTER",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_ROUTE",
+  "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": false,
@@ -19,17 +19,17 @@
   "warp_events": [
     {
       "x": 7,
-      "y": 10,
-      "elevation": 0,
-      "dest_map": "MAP_VIRIDIAN_FOREST",
-      "dest_warp_id": 2
-    },
-    {
-      "x": 7,
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_ROUTE2",
-      "dest_warp_id": 2
+      "dest_warp_id": 5
+    },
+    {
+      "x": 7,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": 7
     }
   ],
   "coord_events": [
