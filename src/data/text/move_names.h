@@ -869,6 +869,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_NOXIOUS_TORQUE] = _("NOXIOUS TOR"),
     [MOVE_MAGICAL_TORQUE] = _("MAGICAL TOR"),
     [MOVE_COMBAT_TORQUE] = _("COMBAT TORQ"),
+    [MOVE_KOWTOW_CLEAVE] = _("KowtowCleave"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1744,4 +1745,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_NOXIOUS_TORQUE] = _("NOXIOUS TORQUE"),
     [MOVE_MAGICAL_TORQUE] = _("MAGICAL TORQUE"),
     [MOVE_COMBAT_TORQUE] = _("COMBAT TORQUE"),
+    [MOVE_KOWTOW_CLEAVE] = _("Kowtow Cleave"),
 };

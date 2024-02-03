@@ -3386,6 +3386,9 @@ static const u8 sMoveTwoLineDescription_MoveMagicalTorque[] = _(
 static const u8 sMoveTwoLineDescription_MoveCombatTorque[] = _(
     "Not done yet.");
 
+static const u8 sMoveTwoLineDescription_MoveKowtowCleave[] = _(
+    "Not implemented.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4257,6 +4260,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_NOXIOUS_TORQUE - 1] = sMoveTwoLineDescription_MoveNoxiousTorque,
     [MOVE_MAGICAL_TORQUE - 1] = sMoveTwoLineDescription_MoveMagicalTorque,
     [MOVE_COMBAT_TORQUE - 1] = sMoveTwoLineDescription_MoveCombatTorque,
+    [MOVE_KOWTOW_CLEAVE - 1] = sMoveTwoLineDescription_MoveKowtowCleave,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5127,6 +5131,7 @@ static const u8 sMoveFourLineDescription_MoveBlazingTorque[] = _("Not done yet."
 static const u8 sMoveFourLineDescription_MoveNoxiousTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveMagicalTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveCombatTorque[] = _("Not done yet.");
+static const u8 sMoveFourLineDescription_MoveKowtowCleave[] = _("Not implemented.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -5997,4 +6002,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_NOXIOUS_TORQUE - 1] = sMoveFourLineDescription_MoveNoxiousTorque,
     [MOVE_MAGICAL_TORQUE - 1] = sMoveFourLineDescription_MoveMagicalTorque,
     [MOVE_COMBAT_TORQUE - 1] = sMoveFourLineDescription_MoveCombatTorque,
+    [MOVE_KOWTOW_CLEAVE - 1] = sMoveFourLineDescription_MoveKowtowCleave,
 };

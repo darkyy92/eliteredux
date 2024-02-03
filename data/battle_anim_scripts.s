@@ -887,6 +887,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_NOXIOUS_TORQUE
 	.4byte Move_NONE @ MOVE_MAGICAL_TORQUE
 	.4byte Move_NONE @ MOVE_COMBAT_TORQUE
+	.4byte Move_NONE @ MOVE_KOWTOW_CLEAVE
 
 	.align 2
 gBattleAnims_StatusConditions::
