@@ -137,7 +137,7 @@ gBattleAnims_Moves::
 	.4byte Move_FOCUS_ENERGY
 	.4byte Move_BIDE
 	.4byte Move_METRONOME
-	.4byte Move_MIRROR_MOVE @ doesnt have an actual animation
+	.4byte Move_MIRROR_MOVE
 	.4byte Move_SELF_DESTRUCT
 	.4byte Move_EGG_BOMB
 	.4byte Move_LICK
@@ -373,7 +373,6 @@ gBattleAnims_Moves::
 	.4byte Move_WATER_PULSE
 	.4byte Move_DOOM_DESIRE
 	.4byte Move_PSYCHO_BOOST
-@@@@@@@@@@@@ GEN 4 @@@@@@@@@@@@
 	.4byte Move_ROOST
 	.4byte Move_GRAVITY
 	.4byte Move_MIRACLE_EYE
@@ -487,7 +486,6 @@ gBattleAnims_Moves::
 	.4byte Move_SEED_FLARE
 	.4byte Move_OMINOUS_WIND
 	.4byte Move_SHADOW_FORCE
-@@@@@@@@@@@@ GEN 5 @@@@@@@@@@@@
 	.4byte Move_HONE_CLAWS
 	.4byte Move_WIDE_GUARD
 	.4byte Move_GUARD_SPLIT
@@ -505,7 +503,7 @@ gBattleAnims_Moves::
 	.4byte Move_SLUDGE_WAVE
 	.4byte Move_QUIVER_DANCE
 	.4byte Move_HEAVY_SLAM
-	.4byte Move_SYCHRONOISE
+	.4byte Move_SYCHRONOISE @ MOVE_SYNCHRONOISE
 	.4byte Move_ELECTRO_BALL
 	.4byte Move_SOAK
 	.4byte Move_FLAME_CHARGE
@@ -580,7 +578,6 @@ gBattleAnims_Moves::
 	.4byte Move_V_CREATE
 	.4byte Move_FUSION_FLARE
 	.4byte Move_FUSION_BOLT
-@@@@@@@@@@@@ GEN 6 @@@@@@@@@@@@
 	.4byte Move_FLYING_PRESS
 	.4byte Move_MAT_BLOCK
 	.4byte Move_BELCH
@@ -643,7 +640,6 @@ gBattleAnims_Moves::
 	.4byte Move_PRECIPICE_BLADES
 	.4byte Move_DRAGON_ASCENT
 	.4byte Move_HYPERSPACE_FURY
-@@@@@@@@@@@@ GEN 7 @@@@@@@@@@@@
 	.4byte Move_SHORE_UP
 	.4byte Move_FIRST_IMPRESSION
 	.4byte Move_BANEFUL_BUNKER
@@ -712,7 +708,6 @@ gBattleAnims_Moves::
 	.4byte Move_SPARKLY_SWIRL
 	.4byte Move_VEEVEE_VOLLEY
 	.4byte Move_DOUBLE_IRON_BASH
-@@@@@@@@@@@@ GEN 8 @@@@@@@@@@@@
 	.4byte Move_DYNAMAX_CANNON
 	.4byte Move_SNIPE_SHOT
 	.4byte Move_JAW_LOCK
@@ -777,15 +772,14 @@ gBattleAnims_Moves::
 	.4byte Move_THUNDEROUS_KICK
 	.4byte Move_GLACIAL_LANCE
 	.4byte Move_ASTRAL_BARRAGE
-	.4byte Move_EERIE_SPELL 
-@@@@@@@@@@@@ Custom Moves @@@@@@@@@@@@
+	.4byte Move_EERIE_SPELL
 	.4byte Move_DEATHROLL
-	.4byte Move_EXCALIBUR 
+	.4byte Move_EXCALIBUR
 	.4byte Move_AQUA_FANG
 	.4byte Move_WAVE_CRASH
 	.4byte Move_SMITE
 	.4byte Move_OUTBURST
-	.4byte Move_SEIMSIC_FIST
+	.4byte Move_SEIMSIC_FIST @ MOVE_SEISMIC_FIST
 	.4byte Move_IRON_FANGS
 	.4byte Move_SHADOW_FANGS
 	.4byte Move_LOVELY_BITE
@@ -843,7 +837,56 @@ gBattleAnims_Moves::
 	.4byte Move_DEVIOUS_SHOT
 	.4byte Move_STARBURST
 	.4byte Move_CHEAP_SHOT
-	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
+	.4byte Move_COUNT @ MOVE_TORRENT_FIST
+	.4byte Move_NONE @ MOVE_STAR_CRASH
+	.4byte Move_NONE @ MOVE_STONE_AXE
+	.4byte Move_NONE @ MOVE_ENERGY_WAVE
+	.4byte Move_NONE @ MOVE_FLUTTERING_LEAF
+	.4byte Move_NONE @ MOVE_HEADLONG_RUSH
+	.4byte Move_NONE @ MOVE_REVIVAL_BLESSING
+	.4byte Move_NONE @ MOVE_WHIRLING_STRIKES
+	.4byte Move_NONE @ MOVE_MIND_BREAK
+	.4byte Move_NONE @ MOVE_WYRM_WIND
+	.4byte Move_NONE @ MOVE_SHED_TAIL
+	.4byte Move_NONE @ MOVE_BERRY_SMASH
+	.4byte Move_NONE @ MOVE_HYDRO_STEAM
+	.4byte Move_NONE @ MOVE_FIRE_HYDRO_STEAM
+	.4byte Move_NONE @ MOVE_TRIPLE_ARROWS
+	.4byte Move_NONE @ MOVE_DOUBLE_LARIAT
+	.4byte Move_NONE @ MOVE_SPECIAL_AQUA_JET
+	.4byte Move_NONE @ MOVE_LEECH_BLADE
+	.4byte Move_NONE @ MOVE_YGGDRASIL_FORCE
+	.4byte Move_NONE @ MOVE_DRAIN_BRAIN
+	.4byte Move_NONE @ MOVE_PSYCHOKINETIC_SLAM
+	.4byte Move_NONE @ MOVE_ESPER_WING
+	.4byte Move_NONE @ MOVE_MORTAL_SPIN
+	.4byte Move_NONE @ MOVE_GEM_MISSILE
+	.4byte Move_NONE @ MOVE_RIDER_KICK
+	.4byte Move_NONE @ MOVE_AQUA_CUTTER
+	.4byte Move_NONE @ MOVE_INVERSE_ROOM
+	.4byte Move_NONE @ MOVE_BLAZING_BONE
+	.4byte Move_NONE @ MOVE_KARMA
+	.4byte Move_NONE @ MOVE_CHILLING_WATER
+	.4byte Move_NONE @ MOVE_GHASTLY_ECHO
+	.4byte Move_NONE @ MOVE_CHILLY_RECEPTION
+	.4byte Move_NONE @ MOVE_ICE_SPINNER
+	.4byte Move_NONE @ MOVE_TIDY_UP
+	.4byte Move_NONE @ MOVE_POPULATION_BOMB
+	.4byte Move_NONE @ MOVE_RAGING_SOULS
+	.4byte Move_NONE @ MOVE_TWIN_BEAM
+	.4byte Move_NONE @ MOVE_REQUIEM
+	.4byte Move_NONE @ MOVE_ARMOR_CANNON
+	.4byte Move_NONE @ MOVE_BITTER_BLADE
+	.4byte Move_NONE @ MOVE_SOIL_DRAIN
+	.4byte Move_NONE @ MOVE_GIGATON_HAMMER
+	.4byte Move_NONE @ MOVE_TRIPLE_DIVE
+	.4byte Move_NONE @ MOVE_JET_PUNCH
+	.4byte Move_NONE @ MOVE_RAGE_PUNCH
+	.4byte Move_NONE @ MOVE_WICKED_TORQUE
+	.4byte Move_NONE @ MOVE_BLAZING_TORQUE
+	.4byte Move_NONE @ MOVE_NOXIOUS_TORQUE
+	.4byte Move_NONE @ MOVE_MAGICAL_TORQUE
+	.4byte Move_NONE @ MOVE_COMBAT_TORQUE
 
 	.align 2
 gBattleAnims_StatusConditions::
