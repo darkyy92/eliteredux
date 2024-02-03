@@ -535,6 +535,7 @@ static const u8 sAbilityTabletsOfRuinDescription[] = _("Lowers the Attack of\not
 static const u8 sAbilitySwordOfRuinDescription[] = _("Lowers the Defense of\nother Pokemon by 25%.");
 static const u8 sAbilityVesselOfRuinDescription[] = _("Lowers the Special Attack of\nother Pokemon by 25%.");
 static const u8 sAbilityBeadsOfRuinDescription[] = _("Lowers the Special Defense\nof other Pokemon by 25%.");
+static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by 33%.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1719,9 +1720,9 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_GALLANTRY] = sAbilityParrotingDescription,
     [ABILITY_ORICHALCUM_PULSE] = sAbilityParrotingDescription,
     [ABILITY_LEAF_GUARD_CLONE] = sAbilityParrotingDescription,
-    [ABILITY_WINGED_KING] = sAbilityParrotingDescription,
+    [ABILITY_WINGED_KING] = sAbilityWingedKingDescription,
     [ABILITY_HADRON_ENGINE] = sAbilityParrotingDescription,
-    [ABILITY_IRON_SERPENT] = sAbilityParrotingDescription,
+    [ABILITY_IRON_SERPENT] = sAbilityWingedKingDescription,
     [ABILITY_WEATHER_DOUBLE_BOOST] = sAbilityParrotingDescription,
     [ABILITY_SWEEPING_EDGE_PLUS] = sAbilityParrotingDescription,
 };

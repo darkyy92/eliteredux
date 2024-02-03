@@ -15959,6 +15959,18 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
             MulModifier(&finalModifier, UQ_4_12(1.25));
 	}
     
+	// Neuroforce
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_WINGED_KING)){
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.25));
+	}
+    
+	// Neuroforce
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_SERPENT)){
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.25));
+	}
+    
 	// Arcane Force
 	if(BattlerHasInnate(battlerAtk, ABILITY_ARCANE_FORCE)){
         if (typeEffectivenessModifier >= UQ_4_12(2.0))

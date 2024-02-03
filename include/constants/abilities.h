@@ -605,9 +605,9 @@
 #define ABILITY_GALLANTRY 583 // Placeholder
 #define ABILITY_ORICHALCUM_PULSE 584 // Placeholder
 #define ABILITY_LEAF_GUARD_CLONE 585 // Placeholder
-#define ABILITY_WINGED_KING 586 // Placeholder
+#define ABILITY_WINGED_KING 586 // Ups “supereffective” by 33%.
 #define ABILITY_HADRON_ENGINE 587 // Placeholder
-#define ABILITY_IRON_SERPENT 588 // Placeholder
+#define ABILITY_IRON_SERPENT 588 // Ups “supereffective” by 33%.
 #define ABILITY_WEATHER_DOUBLE_BOOST 589 // Placeholder
 #define ABILITY_SWEEPING_EDGE_PLUS 590 // Placeholder
 
