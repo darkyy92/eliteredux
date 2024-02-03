@@ -601,7 +601,7 @@
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
 #define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
 #define ABILITY_BEADS_OF_RUIN 581 // Lowers the Special Defense of other Pokemon by 25%.
-#define ABILITY_PERMAFROST_CLONE 582 // Placeholder
+#define ABILITY_PERMAFROST_CLONE 582 // Weakens “supereffective” by 25%.
 #define ABILITY_GALLANTRY 583 // Placeholder
 #define ABILITY_ORICHALCUM_PULSE 584 // Placeholder
 #define ABILITY_LEAF_GUARD_CLONE 585 // Placeholder

@@ -16025,6 +16025,10 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
     }
+	if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_PERMAFROST_CLONE)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
 	// Prism Scales
 	if(BattlerHasInnate(battlerDef, ABILITY_PRISM_SCALES)){
 		if (IS_MOVE_SPECIAL(move))
