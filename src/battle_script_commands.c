@@ -5113,10 +5113,19 @@ static void Cmd_setroost(void)
 
 static void Cmd_jumpifabilitypresent(void)
 {
+
     if (IsAbilityOnField(T1_READ_16(gBattlescriptCurrInstr + 1)))
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    {
+        if (!gBattlescriptCurrInstr[7]) {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
+        else {
+            BattleScriptPush(gBattlescriptCurrInstr + 8);
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
+    }
     else
-        gBattlescriptCurrInstr += 7;
+        gBattlescriptCurrInstr += 8;
 }
 
 static void Cmd_endselectionscript(void)
@@ -8123,6 +8132,23 @@ static void HandleTerrainMove(u32 moveEffect)
 {
     u32 statusFlag = 0;
     u8 *timer = NULL;
+    u8 override = gBattlescriptCurrInstr[3];
+    
+    switch (override)
+    {
+        case 1:
+            moveEffect = EFFECT_MISTY_TERRAIN;
+            break;
+        case 2:
+            moveEffect = EFFECT_GRASSY_TERRAIN;
+            break;
+        case 3:
+            moveEffect = EFFECT_ELECTRIC_TERRAIN;
+            break;
+        case 4:
+            moveEffect = EFFECT_PSYCHIC_TERRAIN;
+            break;
+    }
 
     switch (moveEffect)
     {
@@ -8146,7 +8172,7 @@ static void HandleTerrainMove(u32 moveEffect)
 
     if (gFieldStatuses & statusFlag || statusFlag == 0)
     {
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
     }
     else
     {
@@ -8156,7 +8182,7 @@ static void HandleTerrainMove(u32 moveEffect)
             *timer = 8;
         else
             *timer = 5;
-        gBattlescriptCurrInstr += 7;
+        gBattlescriptCurrInstr += 8;
     }
 }
 

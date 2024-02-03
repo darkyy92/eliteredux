@@ -2560,7 +2560,7 @@ BattleScript_EffectPsychicTerrain:
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
 	call BattleScript_TerrainSeedLoop
-	jumpifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
+	callifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
 	goto BattleScript_MoveEnd
 
 BattleScript_ApplyMimicry::
@@ -2577,7 +2577,7 @@ BattleScript_MimicryLoop_NextBattler:
 	addbyte gBattlerTarget, 0x1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_MimicryLoopIter
 	restoretarget
-	goto BattleScript_MoveEnd
+	return
 
 BattleScript_EffectTopsyTurvy:
 	attackcanceler
@@ -4925,16 +4925,13 @@ BattleScript_EffectSpite::
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilitySpiteful::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	tryspiteppreduce BattleScript_ButItFailed
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNREDUCEDPP
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_AbilitySpitefulFailed:
-	copybyte gBattlerTarget, gBattlerAttacker
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	return
 
 BattleScript_EffectHealBell::
@@ -9050,9 +9047,7 @@ BattleScript_DefenderEffectSpeedDownHit::
 
 BattleScript_DefenderUsedAnExtraMove::
 	savetarget
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	setbyte gRetaliationInProgress, TRUE
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
@@ -9083,7 +9078,7 @@ BattleScript_DefenderExtraHitFromAtkAnimation::
 	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 BattleScript_DefenderExtraRestoreBattlers::
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	setbyte gRetaliationInProgress, FALSE
 	restoretarget
 BattleScript_DefenderExtraMoveEnd::
@@ -9165,9 +9160,7 @@ BattleScript_BattlerAnnouncedToxicSpill::
 
 BattleScript_DefenderSetsSpikeLayer_LooseQuills::
 	savetarget
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd
 	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_QUILLS
 	call BattleScript_AbilityPopUp
@@ -9176,15 +9169,13 @@ BattleScript_DefenderSetsSpikeLayer_LooseQuills::
 	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd:
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	restoretarget
 	return
 
 BattleScript_DefenderSetsSpikeLayer_Scrapyard::
 	savetarget
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd
 	sethword sABILITY_OVERWRITE, ABILITY_SCRAPYARD
 	call BattleScript_AbilityPopUp
@@ -9193,15 +9184,13 @@ BattleScript_DefenderSetsSpikeLayer_Scrapyard::
 	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd:
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	restoretarget
 	return
 
 BattleScript_DefenderSetsToxicSpikeLayer::
 	savetarget
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	checkcondition CONDITION_TOXIC_SPIKES, BattleScript_DefenderSetsToxicSpikeLayerEnd
 	sethword sABILITY_OVERWRITE, ABILITY_TOXIC_DEBRIS
 	call BattleScript_AbilityPopUp
@@ -9210,15 +9199,13 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	printstring STRINGID_POISONSPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsToxicSpikeLayerEnd:
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	restoretarget
 	return
 
 BattleScript_DefenderSetsStealthRock::
 	savetarget
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
+	swapbattlers gBattlerAttacker, gBattlerTarget
 	checkcondition CONDITION_STEALTH_ROCK, BattleScript_DefenderSetsStealthRockEnd
 	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_ROCKS
 	call BattleScript_AbilityPopUp
@@ -9227,7 +9214,7 @@ BattleScript_DefenderSetsStealthRock::
 	printstring STRINGID_POINTEDSTONESFLOAT
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsStealthRockEnd:
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	unswapbattlers gBattlerAttacker, gBattlerTarget
 	restoretarget
 	return
 
@@ -11684,3 +11671,37 @@ BattleScript_WildTotemMegaEvolution::
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
 	end2
+
+BattleScript_SeedSower::
+	copybyte gBattlerAbility, gBattlerTarget
+	setgrassyterrain BattleScript_SeedSowerTestLeech
+	goto BattleScript_SeedSowerGrassySucceeded
+BattleScript_SeedSowerTestLeech:
+	jumpifstatus3 BS_ATTACKER, STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
+	jumpiftype BS_ATTACKER, TYPE_GRASS, BattleScript_SeedSowerEnd
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	goto BattleScript_SeedSowerDoLeech
+BattleScript_SeedSowerGrassySucceeded:
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	playmoveanimation BS_TARGET, MOVE_GRASSY_TERRAIN
+	waitanimation
+	printfromtable gTerrainStringIds
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_TerrainSeedLoop
+	callifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
+BattleScript_SeedSowerTryLeech:
+	jumpifstatus3 BS_ATTACKER, STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
+	jumpiftype BS_ATTACKER, TYPE_GRASS, BattleScript_SeedSowerEnd
+BattleScript_SeedSowerDoLeech:
+	setuserstatus3 STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
+	swapbattlers gBattlerAttacker, gBattlerTarget
+	playmoveanimation BS_ATTACKER, MOVE_LEECH_SEED
+	waitanimation
+	printstring STRINGID_PKMNSEEDED
+	waitmessage B_WAIT_TIME_LONG
+	unswapbattlers gBattlerAttacker, gBattlerTarget
+BattleScript_SeedSowerEnd:
+	end3

@@ -373,6 +373,14 @@
 	.byte 0x43
 	.2byte \ability
 	.4byte \ptr
+	.byte 0
+	.endm
+
+	.macro callifabilitypresent ability:req, ptr:req
+	.byte 0x43
+	.2byte \ability
+	.4byte \ptr
+	.byte 1
 	.endm
 
 	.macro endselectionscript
@@ -1530,9 +1538,30 @@
 	various \battler, VARIOUS_INVERT_STAT_STAGES
 	.endm
 
-	.macro setterrain ptr:req
+	.macro setterrainwithoverride ptr:req, override:req
 	various BS_ATTACKER, VARIOUS_SET_TERRAIN
+	.byte \override
 	.4byte \ptr
+	.endm
+
+	.macro setterrain ptr:req
+	setterrainwithoverride \ptr, 0
+	.endm
+
+	.macro setmistyterrain ptr:req
+	setterrainwithoverride \ptr, 1
+	.endm
+
+	.macro setgrassyterrain ptr:req
+	setterrainwithoverride \ptr, 2
+	.endm
+
+	.macro setelectricterrain ptr:req
+	setterrainwithoverride \ptr, 3
+	.endm
+
+	.macro setpsychicterrain ptr:req
+	setterrainwithoverride \ptr, 4
 	.endm
 
 	.macro trymefirst ptr:req
@@ -2120,5 +2149,16 @@
 
 	.macro increasetriplekickpower battler:req
 	various \battler, VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE
+	.endm
+
+	.macro swapbattlers battler1:req, battler2:req
+	copybyte sSAVED_BATTLER, \battler1
+	copybyte \battler1, \battler2
+	copybyte \battler2, sSAVED_BATTLER
+	.endm
+
+	.macro unswapbattlers battler1:req, battler2:req
+	copybyte \battler2, \battler1
+	copybyte \battler1, sSAVED_BATTLER
 	.endm
 

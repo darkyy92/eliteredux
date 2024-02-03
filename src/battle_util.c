@@ -6584,14 +6584,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 anyBlocked = FALSE;
                 u8 opponent = BATTLE_OPPOSITE(battler);
 
-                if (IsBattlerAlive(opponent) && !(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)) {
-                    gBattleMons[battler].status2 |= STATUS2_ESCAPE_PREVENTION;
+                if (IsBattlerAlive(opponent) && !(gBattleMons[opponent].status2 & STATUS2_ESCAPE_PREVENTION)) {
+                    gBattleMons[opponent].status2 |= STATUS2_ESCAPE_PREVENTION;
+                    gDisableStructs[opponent].battlerPreventingEscape = battler;
                     anyBlocked = TRUE;
                 }
 
                 opponent = BATTLE_PARTNER(opponent);
-                if (IsBattlerAlive(opponent) && !(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)) {
-                    gBattleMons[battler].status2 |= STATUS2_ESCAPE_PREVENTION;
+                if (IsBattlerAlive(opponent) && !(gBattleMons[opponent].status2 & STATUS2_ESCAPE_PREVENTION)) {
+                    gBattleMons[opponent].status2 |= STATUS2_ESCAPE_PREVENTION;
+                    gDisableStructs[opponent].battlerPreventingEscape = battler;
                     anyBlocked = TRUE;
                 }
 
@@ -9533,6 +9535,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
+        // Seed Sower
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SEED_SOWER)){
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED) {
+				BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_SeedSower;
                 effect++;
             }
         }

@@ -562,10 +562,10 @@
 #define ABILITY_BANSHEE 540 // Normal sound moves become Ghost and get a 20% boost.
 #define ABILITY_WEB_SPINNER 541 // Uses String Shot on switch-in.
 #define ABILITY_SHOWDOWN_MODE 542 // Ambush + Violent Rush.
-#define ABILITY_SEED_SOWER 543 // Placeholder
+#define ABILITY_SEED_SOWER 543 // Sets Grassy Terrain and Leech Seed when hit.
 #define ABILITY_AIRBORNE 544 // Boosts own and ally's Flying moves by 30%.
 #define ABILITY_PARROTING 545 // Placeholder
-#define ABILITY_BLOCK_ON_ENTRY 546 // Placeholder
+#define ABILITY_BLOCK_ON_ENTRY 546 // Prevents opposing pokemon from fleeing on entry.
 #define ABILITY_PURIFYING_SALT 547 // Immune to status conditions. Take half damage from Ghost.
 #define ABILITY_PROTOSYNTHESIS 548 // Placeholder
 #define ABILITY_QUARK_DRIVE 549 // Placeholder
