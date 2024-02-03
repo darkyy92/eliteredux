@@ -588,19 +588,19 @@
 #define ABILITY_CUD_CHEW 566 // Placeholder
 #define ABILITY_ARMOR_TAIL 567 // Protects itself and ally from priority moves.
 #define ABILITY_MIND_CRUSH 568 // Biting moves use SpAtk and deal 50% more damage.
-#define ABILITY_SUPREME_OVERLORD 569 // Placeholder
+#define ABILITY_SUPREME_OVERLORD 569 // Each fainted ally increases Attack and SpAtk by 10%.
 #define ABILITY_ILL_WILL 570 // Placeholder
-#define ABILITY_FIRE_SCALES 571 // Placeholder
+#define ABILITY_FIRE_SCALES 571 // Halves special damage.
 #define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Placeholder
 #define ABILITY_DOUBLE_IRON_BARBS 574 // Placeholder
 #define ABILITY_THERMAL_EXCHANGE 575 // Placeholder
 #define ABILITY_GOOD_AS_GOLD 576 // Placeholder
 #define ABILITY_SHARING_IS_CARING 577 // Placeholder
-#define ABILITY_TABLETS_OF_RUIN 578 // Placeholder
-#define ABILITY_SWORD_OF_RUIN 579 // Placeholder
-#define ABILITY_VESSEL_OF_RUIN 580 // Placeholder
-#define ABILITY_BEADS_OF_RUIN 581 // Placeholder
+#define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
+#define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
+#define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
+#define ABILITY_BEADS_OF_RUIN 581 // Lowers the Special Defense of other Pokemon by 25%.
 #define ABILITY_PERMAFROST_CLONE 582 // Placeholder
 #define ABILITY_GALLANTRY 583 // Placeholder
 #define ABILITY_ORICHALCUM_PULSE 584 // Placeholder

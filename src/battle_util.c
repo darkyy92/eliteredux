@@ -14748,12 +14748,17 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
     u8 statStage = gBattleMons[battler].statStages[statEnum];
     u32 extraStat = 0;
 
+    #define RUIN_CHECK(ability) if (IsAbilityOnFieldExcept(battler, ability) && !BATTLER_HAS_ABILITY(battler, ability)) statBase = statBase * 3 / 4;
+
     switch (statEnum)
     {
         case STAT_HP:
             return 0;
         case STAT_ATK:
             statBase = gBattleMons[battler].attack;
+
+            // Tablets of Ruin
+            RUIN_CHECK(ABILITY_TABLETS_OF_RUIN)
                     
             // Huge Power
             if (BATTLER_HAS_ABILITY(battler, ABILITY_HUGE_POWER)) statBase *= 2;
@@ -14801,6 +14806,9 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             break;
         case STAT_SPATK:
             statBase = gBattleMons[battler].spAttack;
+
+            // Tablets of Ruin
+            RUIN_CHECK(ABILITY_VESSEL_OF_RUIN)
                     
             // Majestic Bird
 	        if (BATTLER_HAS_ABILITY(battler, ABILITY_MAJESTIC_BIRD)) statBase = statBase * 3 / 2;
@@ -14825,6 +14833,9 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             if (isWonderRoomActive()) goto CALCULATE_STAT_SPDEF;
             CALCULATE_STAT_DEF:
             statBase = gBattleMons[battler].defense;
+
+            // Tablets of Ruin
+            RUIN_CHECK(ABILITY_SWORD_OF_RUIN)
                     
             // Marvel Scale
             if (BATTLER_HAS_ABILITY(battler, ABILITY_MARVEL_SCALE)
@@ -14846,6 +14857,9 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             CALCULATE_STAT_SPDEF:
             statBase = gBattleMons[battler].spDefense;
             
+            // Tablets of Ruin
+            RUIN_CHECK(ABILITY_BEADS_OF_RUIN)
+
             // Flower Gift
             if (BATTLER_HAS_ABILITY(battler, ABILITY_FLOWER_GIFT)
                 && gBattleMons[battler].species == SPECIES_CHERRIM
@@ -14865,6 +14879,8 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             statBase = GetBattlerTotalSpeedStat(battler, calculatingSecondary ? TOTAL_SPEED_SECONDARY : TOTAL_SPEED_PRIMARY);
             break;
     }
+
+    #undef RUIN_CHECK
 
     if (isUnaware) statStage = DEFAULT_STAT_STAGE;
     else if (isCrit && isAttack) statStage = max(statStage, DEFAULT_STAT_STAGE);
