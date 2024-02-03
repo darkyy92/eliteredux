@@ -888,6 +888,10 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_MAGICAL_TORQUE
 	.4byte Move_NONE @ MOVE_COMBAT_TORQUE
 	.4byte Move_NONE @ MOVE_KOWTOW_CLEAVE
+	.4byte Move_NONE @ MOVE_FLOWER_TRICK
+	.4byte Move_NONE @ MOVE_AQUA_STEP
+	.4byte Move_NONE @ MOVE_TORCH_SONG
+	.4byte Move_NONE @ MOVE_GLAIVE_RUSH
 
 	.align 2
 gBattleAnims_StatusConditions::

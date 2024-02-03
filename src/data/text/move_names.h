@@ -870,6 +870,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MAGICAL_TORQUE] = _("MAGICAL TOR"),
     [MOVE_COMBAT_TORQUE] = _("COMBAT TORQ"),
     [MOVE_KOWTOW_CLEAVE] = _("KowtowCleave"),
+    [MOVE_FLOWER_TRICK] = _("Flower Trick"),
+    [MOVE_AQUA_STEP] = _("Aqua Step"),
+    [MOVE_TORCH_SONG] = _("Torch Song"),
+    [MOVE_GLAIVE_RUSH] = _("Glaive Rush"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1746,4 +1750,8 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_MAGICAL_TORQUE] = _("MAGICAL TORQUE"),
     [MOVE_COMBAT_TORQUE] = _("COMBAT TORQUE"),
     [MOVE_KOWTOW_CLEAVE] = _("Kowtow Cleave"),
+    [MOVE_FLOWER_TRICK] = _("Flower Trick"),
+    [MOVE_AQUA_STEP] = _("Aqua Step"),
+    [MOVE_TORCH_SONG] = _("Torch Song"),
+    [MOVE_GLAIVE_RUSH] = _("Glaive Rush"),
 };

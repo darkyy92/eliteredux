@@ -3389,6 +3389,18 @@ static const u8 sMoveTwoLineDescription_MoveCombatTorque[] = _(
 static const u8 sMoveTwoLineDescription_MoveKowtowCleave[] = _(
     "Not implemented.");
 
+static const u8 sMoveTwoLineDescription_MoveFlowerTrick[] = _(
+    "Not implemented.");
+
+static const u8 sMoveTwoLineDescription_MoveAquaStep[] = _(
+    "Not implemented.");
+
+static const u8 sMoveTwoLineDescription_MoveTorchSong[] = _(
+    "Not implemented.");
+
+static const u8 sMoveTwoLineDescription_MoveGlaiveRush[] = _(
+    "Not implemented.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4261,6 +4273,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MAGICAL_TORQUE - 1] = sMoveTwoLineDescription_MoveMagicalTorque,
     [MOVE_COMBAT_TORQUE - 1] = sMoveTwoLineDescription_MoveCombatTorque,
     [MOVE_KOWTOW_CLEAVE - 1] = sMoveTwoLineDescription_MoveKowtowCleave,
+    [MOVE_FLOWER_TRICK - 1] = sMoveTwoLineDescription_MoveFlowerTrick,
+    [MOVE_AQUA_STEP - 1] = sMoveTwoLineDescription_MoveAquaStep,
+    [MOVE_TORCH_SONG - 1] = sMoveTwoLineDescription_MoveTorchSong,
+    [MOVE_GLAIVE_RUSH - 1] = sMoveTwoLineDescription_MoveGlaiveRush,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5132,6 +5148,10 @@ static const u8 sMoveFourLineDescription_MoveNoxiousTorque[] = _("Not done yet."
 static const u8 sMoveFourLineDescription_MoveMagicalTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveCombatTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveKowtowCleave[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveFlowerTrick[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveAquaStep[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveTorchSong[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveGlaiveRush[] = _("Not implemented.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6003,4 +6023,8 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_MAGICAL_TORQUE - 1] = sMoveFourLineDescription_MoveMagicalTorque,
     [MOVE_COMBAT_TORQUE - 1] = sMoveFourLineDescription_MoveCombatTorque,
     [MOVE_KOWTOW_CLEAVE - 1] = sMoveFourLineDescription_MoveKowtowCleave,
+    [MOVE_FLOWER_TRICK - 1] = sMoveFourLineDescription_MoveFlowerTrick,
+    [MOVE_AQUA_STEP - 1] = sMoveFourLineDescription_MoveAquaStep,
+    [MOVE_TORCH_SONG - 1] = sMoveFourLineDescription_MoveTorchSong,
+    [MOVE_GLAIVE_RUSH - 1] = sMoveFourLineDescription_MoveGlaiveRush,
 };
