@@ -5585,7 +5585,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             // Terrain Abilities --------------------------------------------------------------------------------------------------
             // Electric Surge
-            if(CheckAndSetSwitchInAbility(battler, ABILITY_ELECTRIC_SURGE)){
+            if(CheckAndSetSwitchInAbility(battler, ABILITY_ELECTRIC_SURGE) || CheckAndSetSwitchInAbility(battler, ABILITY_HADRON_ENGINE)){
                 if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
                     BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
                     effect++;
@@ -14816,6 +14816,11 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                     
             // Feline Prowess
             if (BATTLER_HAS_ABILITY(battler, ABILITY_FELINE_PROWESS)) statBase *= 2;
+
+            // Hadron Engine
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_HADRON_ENGINE)
+                && IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
+                    statBase = statBase * 4 / 3;
                     
             // Big Leaves/Solar Power
             if ((BATTLER_HAS_ABILITY(battler, ABILITY_BIG_LEAVES) || BATTLER_HAS_ABILITY(battler, ABILITY_SOLAR_POWER))
