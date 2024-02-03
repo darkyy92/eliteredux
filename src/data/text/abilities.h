@@ -535,6 +535,7 @@ static const u8 sAbilityTabletsOfRuinDescription[] = _("Lowers the Attack of\not
 static const u8 sAbilitySwordOfRuinDescription[] = _("Lowers the Defense of\nother Pokemon by 25%.");
 static const u8 sAbilityVesselOfRuinDescription[] = _("Lowers the Special Attack of\nother Pokemon by 25%.");
 static const u8 sAbilityBeadsOfRuinDescription[] = _("Lowers the Special Defense\nof other Pokemon by 25%.");
+static const u8 sAbilityOrichalcumPulseDescription[] = _("Summons sunlight in battle.\n+33% Attack in Sun.");
 static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by 33%.");
 static const u8 sAbilityHadronEngineDescription[] = _("Field becomes Electric.\n+33% SpAtk in Electric Terrain.");
 
@@ -1719,7 +1720,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BEADS_OF_RUIN] = sAbilityBeadsOfRuinDescription,
     [ABILITY_PERMAFROST_CLONE] = sAbilityPermafrostDescription,
     [ABILITY_GALLANTRY] = sAbilityParrotingDescription,
-    [ABILITY_ORICHALCUM_PULSE] = sAbilityParrotingDescription,
+    [ABILITY_ORICHALCUM_PULSE] = sAbilityOrichalcumPulseDescription,
     [ABILITY_LEAF_GUARD_CLONE] = sAbilityLeafGuardDescription,
     [ABILITY_WINGED_KING] = sAbilityWingedKingDescription,
     [ABILITY_HADRON_ENGINE] = sAbilityHadronEngineDescription,

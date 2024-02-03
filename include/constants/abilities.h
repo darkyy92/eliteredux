@@ -603,7 +603,7 @@
 #define ABILITY_BEADS_OF_RUIN 581 // Lowers the Special Defense of other Pokemon by 25%.
 #define ABILITY_PERMAFROST_CLONE 582 // Weakens “supereffective” by 25%.
 #define ABILITY_GALLANTRY 583 // Placeholder
-#define ABILITY_ORICHALCUM_PULSE 584 // Placeholder
+#define ABILITY_ORICHALCUM_PULSE 584 // Summons sunlight in battle. +33% Attack in Sun.
 #define ABILITY_LEAF_GUARD_CLONE 585 // Blocks status in sunshine.
 #define ABILITY_WINGED_KING 586 // Ups “supereffective” by 33%.
 #define ABILITY_HADRON_ENGINE 587 // Field becomes Electric. +33% SpAtk in Electric Terrain.

@@ -5530,7 +5530,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             // Drought
-            if(CheckAndSetSwitchInAbility(battler, ABILITY_DROUGHT)){
+            if(CheckAndSetSwitchInAbility(battler, ABILITY_DROUGHT) || CheckAndSetSwitchInAbility(battler, ABILITY_ORICHALCUM_PULSE)){
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
@@ -14786,6 +14786,11 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             if(BATTLER_HAS_ABILITY(battler, ABILITY_HUGE_POWER_FOR_ONE_TURN)
                 && gDisableStructs[battler].isFirstTurn)
                     statBase *= 2;
+                    
+            // Hadron Engine
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_ORICHALCUM_PULSE)
+                && IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
+                    statBase = statBase * 4 / 3;
 
             // Burn
             if ((gBattleMons[battler].status1 & STATUS1_BURN)
