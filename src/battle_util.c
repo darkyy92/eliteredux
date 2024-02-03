@@ -4072,7 +4072,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_HIT)
             {
-                gMultiHitCounter = gBattleMoves[gCurrentMove].argument ? gBattleMoves[gCurrentMove].argument : 3;
+                gMultiHitCounter = gBattleMoves[gCurrentMove].argument ? gBattleMoves[gCurrentMove].argument : 2;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK)
