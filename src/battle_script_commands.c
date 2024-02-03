@@ -8281,12 +8281,11 @@ u32 IsFlowerVeilProtected(u32 battler)
 
 u32 IsLeafGuardProtected(u32 battler)
 {
-    if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) && (GetBattlerAbility(battler) == ABILITY_LEAF_GUARD || 
-        BattlerHasInnate(battler, ABILITY_LEAF_GUARD) || 
-        GetBattlerAbility(battler) == ABILITY_BIG_LEAVES || 
-        BattlerHasInnate(battler, ABILITY_BIG_LEAVES) ||
-        GetBattlerAbility(battler) == ABILITY_JUNGLES_GUARD || 
-        BattlerHasInnate(battler, ABILITY_JUNGLES_GUARD)))
+    if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) && 
+        (BATTLER_HAS_ABILITY(battler, ABILITY_LEAF_GUARD) ||
+        BATTLER_HAS_ABILITY(battler, ABILITY_BIG_LEAVES) ||
+        BATTLER_HAS_ABILITY(battler, ABILITY_JUNGLES_GUARD) ||
+        BATTLER_HAS_ABILITY(battler, ABILITY_LEAF_GUARD_CLONE)))
         return TRUE;
     else
         return FALSE;

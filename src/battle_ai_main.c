@@ -903,6 +903,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     accuracy = 50;
                 break;
             case ABILITY_LEAF_GUARD:
+            case ABILITY_LEAF_GUARD_CLONE:
                 if (AI_WeatherHasEffect() && (gBattleWeather & WEATHER_SUN_ANY)
                   && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_UTILITY_UMBRELLA
                   && IsNonVolatileStatusMoveEffect(moveEffect))

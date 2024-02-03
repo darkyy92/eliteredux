@@ -123,6 +123,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_KEEN_EYE] = 1,
     [ABILITY_KLUTZ] = -1,
     [ABILITY_LEAF_GUARD] = 2,
+    [ABILITY_LEAF_GUARD_CLONE] = 2,
     [ABILITY_LEVITATE] = 7,
     [ABILITY_LIGHT_METAL] = 2,
     [ABILITY_LIGHTNING_ROD] = 7,
@@ -739,7 +740,7 @@ bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
 bool32 IsAffectedByPowder(u8 battler, u16 ability, u16 holdEffect)
 {
     if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
-      || ability == ABILITY_OVERCOAT || BattlerHasInnate(battler, ABILITY_OVERCOAT)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_OVERCOAT, ability)
       || AI_GetHoldEffect(battler) == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
     return TRUE;
@@ -1498,16 +1499,11 @@ bool32 ShouldSetSandstorm(u8 battler, u16 ability, u16 holdEffect)
     else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
         return FALSE;
     
-    if (ability == ABILITY_SAND_VEIL
-      || BattlerHasInnate(battler, ABILITY_SAND_VEIL)
-      || ability == ABILITY_SAND_RUSH
-      || BattlerHasInnate(battler, ABILITY_SAND_RUSH)
-      || ability == ABILITY_SAND_FORCE
-      || BattlerHasInnate(battler, ABILITY_SAND_FORCE)
-      || ability == ABILITY_OVERCOAT
-      || BattlerHasInnate(battler, ABILITY_OVERCOAT)
-      || ability == ABILITY_MAGIC_GUARD
-      || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
+    if (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SAND_VEIL, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SAND_RUSH, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SAND_FORCE, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_OVERCOAT, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_MAGIC_GUARD, ability)
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ROCK)
       || IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
@@ -1527,18 +1523,12 @@ bool32 ShouldSetHail(u8 battler, u16 ability, u16 holdEffect)
     else if (gBattleWeather & WEATHER_HAIL_ANY)
         return FALSE;
     
-    if (ability == ABILITY_SNOW_CLOAK
-      || BattlerHasInnate(battler, ABILITY_SNOW_CLOAK)
-      || ability == ABILITY_ICE_BODY
-      || BattlerHasInnate(battler, ABILITY_ICE_BODY)
-      || ability == ABILITY_FORECAST
-      || BattlerHasInnate(battler, ABILITY_FORECAST)
-      || ability == ABILITY_SLUSH_RUSH
-      || BattlerHasInnate(battler, ABILITY_SLUSH_RUSH)
-      || ability == ABILITY_MAGIC_GUARD
-      || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
-      || ability == ABILITY_OVERCOAT
-      || BattlerHasInnate(battler, ABILITY_OVERCOAT)
+    if (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SNOW_CLOAK, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ICE_BODY, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_FORECAST, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SLUSH_RUSH, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_MAGIC_GUARD, ability)
+      || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_OVERCOAT, ability)
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
       || HasMove(battler, MOVE_BLIZZARD)
@@ -1558,16 +1548,11 @@ bool32 ShouldSetRain(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
         return FALSE;
     
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
-     && (atkAbility == ABILITY_SWIFT_SWIM
-      || BattlerHasInnate(battlerAtk, ABILITY_SWIFT_SWIM)
-      || atkAbility == ABILITY_FORECAST
-      || BattlerHasInnate(battlerAtk, ABILITY_FORECAST)
-      || atkAbility == ABILITY_HYDRATION
-      || BattlerHasInnate(battlerAtk, ABILITY_HYDRATION)
-      || atkAbility == ABILITY_RAIN_DISH
-      || BattlerHasInnate(battlerAtk, ABILITY_RAIN_DISH)
-      || atkAbility == ABILITY_DRY_SKIN
-      || BattlerHasInnate(battlerAtk, ABILITY_DRY_SKIN)
+     && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SWIFT_SWIM, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FORECAST, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYDRATION, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_RAIN_DISH, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DRY_SKIN, atkAbility)
       || HasMoveEffect(battlerAtk, EFFECT_THUNDER)
       || HasMoveEffect(battlerAtk, EFFECT_HURRICANE)
       || (!(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_CHLOROPLAST) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_LEAVES))  && HasMoveEffect(battlerAtk, EFFECT_WEATHER_BALL))
@@ -1586,18 +1571,13 @@ bool32 ShouldSetSun(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
         return FALSE;
     
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
-     && (atkAbility == ABILITY_CHLOROPHYLL
-      || BattlerHasInnate(battlerAtk, ABILITY_CHLOROPHYLL)
-      || atkAbility == ABILITY_FLOWER_GIFT
-      || BattlerHasInnate(battlerAtk, ABILITY_FLOWER_GIFT)
-      || atkAbility == ABILITY_FORECAST
-      || BattlerHasInnate(battlerAtk, ABILITY_FORECAST)
-      || atkAbility == ABILITY_LEAF_GUARD
-      || BattlerHasInnate(battlerAtk, ABILITY_LEAF_GUARD)
-      || atkAbility == ABILITY_SOLAR_POWER
-      || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_POWER)
-      || atkAbility == ABILITY_HARVEST
-      || BattlerHasInnate(battlerAtk, ABILITY_HARVEST)
+     && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_CHLOROPHYLL, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FLOWER_GIFT, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FORECAST, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LEAF_GUARD, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LEAF_GUARD_CLONE, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SOLAR_POWER, atkAbility)
+      || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HARVEST, atkAbility)
       || HasMoveWithType(battlerAtk, TYPE_FIRE)
       || (!BATTLER_HAS_ABILITY(battlerAtk, ABILITY_CHLOROPLAST) && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_LEAVES)
             && (HasMoveEffect(battlerAtk, EFFECT_SOLARBEAM)
@@ -1658,29 +1638,24 @@ void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s1
 bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
 {
      if ((gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE && battlerAbility != ABILITY_CONTRARY && !BattlerHasInnate(battler, ABILITY_CONTRARY))
-      || ((battlerAbility == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)) && gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE))
+      || ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_CONTRARY, battlerAbility)) && gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE))
     {
-        if (battlerAbility == ABILITY_CLEAR_BODY
-         || BattlerHasInnate(battler, ABILITY_CLEAR_BODY)
-         || battlerAbility == ABILITY_WHITE_SMOKE
-         || BattlerHasInnate(battler, ABILITY_WHITE_SMOKE)
-         || battlerAbility == ABILITY_FULL_METAL_BODY
-         || BattlerHasInnate(battler, ABILITY_FULL_METAL_BODY))
+        if (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_CLEAR_BODY, battlerAbility)
+         || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_WHITE_SMOKE, battlerAbility)
+         || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_FULL_METAL_BODY, battlerAbility))
             return FALSE;
 
         if (stat == STAT_ATK && 
-           (battlerAbility == ABILITY_HYPER_CUTTER || 
-            BattlerHasInnate(battler, ABILITY_HYPER_CUTTER) ||
-            battlerAbility == ABILITY_DEFIANT ||
-            BattlerHasInnate(battler, ABILITY_DEFIANT)))
+           (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_HYPER_CUTTER, battlerAbility) ||
+            BATTLER_HAS_ABILITY_FAST(battler, ABILITY_DEFIANT, battlerAbility)))
             return FALSE;
 
         /*if (stat == STAT_DEF && 
-            (battlerAbility == ABILITY_BIG_PECKS || BattlerHasInnate(battler, ABILITY_BIG_PECKS)))
+            (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_BIG_PECKS, battlerAbility)))
             return FALSE;*/
 
         if (stat == STAT_SPATK && 
-           (battlerAbility == ABILITY_COMPETITIVE || BattlerHasInnate(battler, ABILITY_COMPETITIVE)))
+           (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_COMPETITIVE, battlerAbility)))
             return FALSE;
             
         return TRUE;
@@ -1693,7 +1668,7 @@ bool32 BattlerStatCanRise(u8 battler, u16 battlerAbility, u8 stat)
 {
     if ((gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE && 
           (battlerAbility != ABILITY_CONTRARY || !BattlerHasInnate(battler, ABILITY_CONTRARY)))
-      || ((battlerAbility == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY))
+      || ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_CONTRARY, battlerAbility))
           && gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE))
         return TRUE;
     return FALSE;

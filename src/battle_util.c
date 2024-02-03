@@ -1142,6 +1142,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_BASS_BOOSTED] = 1,
     [ABILITY_CHROME_COAT] = 1,
     [ABILITY_PURIFYING_SALT] = 1,
+    [ABILITY_LEAF_GUARD_CLONE] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
