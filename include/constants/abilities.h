@@ -571,7 +571,7 @@
 #define ABILITY_QUARK_DRIVE 549 // Placeholder
 #define ABILITY_WIND_POWER 550 // Placeholder
 #define ABILITY_MOMENTUM_PLUS 551 // Non-contact moves use the Speed stat for damage.
-#define ABILITY_SPECIAL_SPEED_FORCE 552 // Placeholder
+#define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
 #define ABILITY_EGOIST 555 // Placeholder

@@ -14929,6 +14929,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         {
             secondaryAtkStatToUse = STAT_SPEED;
         }
+        // Speed Force
+        if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SPECIAL_SPEED_FORCE) && IS_MOVE_SPECIAL(move))
+        {
+            secondaryAtkStatToUse = STAT_SPEED;
+        }
         // Power Core
         else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_CORE))
         {
