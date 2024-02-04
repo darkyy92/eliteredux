@@ -226,6 +226,8 @@
 #define VARIOUS_SET_DYNAMIC_TYPE                147
 #define VARIOUS_GOTO_ACTUAL_MOVE                148
 #define VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE     149
+#define VARIOUS_HANDLE_WEATHER_CHANGE           150
+#define VARIOUS_HANDLE_TERRAIN_CHANGE           151
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

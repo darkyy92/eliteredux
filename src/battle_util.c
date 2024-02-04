@@ -4648,6 +4648,38 @@ void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
     SetSingleUseAbilityCounter(battler, ability, GetSingleUseAbilityCounter(battler, ability) + value);
 }
 
+u8 GetAbilityState(u8 battler, u16 ability) {
+    
+    switch (BattlerHasInnateOrAbility(battler, ability))
+    {
+        case BATTLER_INNATE:
+            return gSpecialStatuses[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1];
+        case BATTLER_ABILITY:
+            return gSpecialStatuses[battler].abilityState[0];
+        default:
+            return -1;
+    }
+}
+
+void SetAbilityState(u8 battler, u16 ability, u8 value) {
+    
+    switch (BattlerHasInnateOrAbility(battler, ability))
+    {
+        case BATTLER_INNATE:
+            gSpecialStatuses[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1] = value;
+            return;
+        case BATTLER_ABILITY:
+            gSpecialStatuses[battler].abilityState[0] = value;
+            return;
+        default:
+            return;
+    }
+}
+
+void IncrementAbilityState(u8 battler, u16 ability, u8 value) {
+    SetAbilityState(battler, ability, GetAbilityState(battler, ability) + value);
+}
+
 static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect) {
     bool8 hasTarget      = FALSE;
     u8 i;
@@ -6617,9 +6649,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
+                    SetAbilityState(battler, ABILITY_PROTOSYNTHESIS, PARADOX_WEATHER_ACTIVE);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PARADOX_BOOST;
-                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
+                    BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
             }
 
@@ -6627,9 +6660,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                 {
+                    SetAbilityState(battler, ABILITY_QUARK_DRIVE, PARADOX_WEATHER_ACTIVE);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PARADOX_BOOST;
-                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
+                    BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
             }
 
@@ -14937,14 +14971,12 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
     }
 
     if (statEnum != STAT_SPEED
-        && BATTLER_HAS_ABILITY(battler, ABILITY_PROTOSYNTHESIS)
-        && (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || gSpecialStatuses[battler].paradoxBoost)
+        && GetAbilityState(battler, ABILITY_PROTOSYNTHESIS) > 0
         && GetHighestStatId(battler) == statEnum)
         statBase = statBase * 13 / 10;
 
     if (statEnum != STAT_SPEED
-        && BATTLER_HAS_ABILITY(battler, ABILITY_QUARK_DRIVE)
-        && (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN) || gSpecialStatuses[battler].paradoxBoost)
+        && GetAbilityState(battler, ABILITY_QUARK_DRIVE) > 0
         && GetHighestStatId(battler) == statEnum)
         statBase = statBase * 13 / 10;
 

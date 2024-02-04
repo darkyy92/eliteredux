@@ -2559,8 +2559,7 @@ BattleScript_EffectPsychicTerrain:
 	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
-	callifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
+	call BattleScript_OnTerrainChanged
 	goto BattleScript_MoveEnd
 
 BattleScript_ApplyMimicry::
@@ -5438,7 +5437,7 @@ BattleScript_MoveWeatherChange::
 	waitanimation
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSunnyDay::
@@ -7049,10 +7048,13 @@ BattleScript_LearnMoveReturn::
 BattleScript_RainContinuesOrEnds::
 	printfromtable gRainContinuesStringIds
 	waitmessage B_WAIT_TIME_LONG
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_RAIN_STOPPED, BattleScript_RainContinuesOrEndsEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_RAIN_STOPPED, BattleScript_RainStops
 	playanimation BS_ATTACKER, B_ANIM_RAIN_CONTINUES, NULL
 BattleScript_RainContinuesOrEndsEnd::
 	end2
+BattleScript_RainStops:
+	call BattleScript_OnWeatherChange
+	goto BattleScript_RainContinuesOrEndsEnd
 
 BattleScript_DamagingWeatherContinues::
 	printfromtable gSandStormHailContinuesStringIds
@@ -7091,6 +7093,7 @@ BattleScript_DamagingWeatherContinuesEnd::
 BattleScript_SandStormHailEnds::
 	printfromtable gSandStormHailEndStringIds
 	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_OnWeatherChange
 	end2
 
 BattleScript_SunlightContinues::
@@ -7102,6 +7105,7 @@ BattleScript_SunlightContinues::
 BattleScript_SunlightFaded::
 	printstring STRINGID_SUNLIGHTFADED
 	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_OnWeatherChange
 	end2
 
 BattleScript_OverworldWeatherStarts::
@@ -7161,24 +7165,28 @@ BattleScript_ElectricTerrainEnds::
 	printstring STRINGID_ELECTRICTERRAINENDS
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_OnTerrainChanged
 	end2
 
 BattleScript_MistyTerrainEnds::
 	printstring STRINGID_MISTYTERRAINENDS
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_OnTerrainChanged
 	end2
 
 BattleScript_GrassyTerrainEnds::
 	printstring STRINGID_GRASSYTERRAINENDS
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_OnTerrainChanged
 	end2
 
 BattleScript_PsychicTerrainEnds::
 	printstring STRINGID_PSYCHICTERRAINENDS
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_OnTerrainChanged
 	end2
 
 BattleScript_MudSportEnds::
@@ -8609,7 +8617,7 @@ BattleScript_DrizzleActivates::
 	printstring STRINGID_PKMNMADEITRAIN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_RAIN_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_KingsWrathActivated::
@@ -9364,7 +9372,7 @@ BattleScript_SandstreamActivates::
 	printstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SANDSTORM_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_SandSpitActivates::
@@ -9373,7 +9381,7 @@ BattleScript_SandSpitActivates::
 	printstring STRINGID_ASANDSTORMKICKEDUP
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SANDSTORM_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	return
 
 BattleScript_CryoProficiencyActivates::
@@ -9382,7 +9390,7 @@ BattleScript_CryoProficiencyActivates::
 	printstring STRINGID_STARTEDHAIL
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	return
 
 BattleScript_ShedSkinActivates::
@@ -9392,12 +9400,16 @@ BattleScript_ShedSkinActivates::
 	updatestatusicon BS_ATTACKER
 	end3
 
-BattleScript_WeatherFormChanges::
+BattleScript_OnWeatherChange::
+	savetarget
 	setbyte sBATTLER, 0
-BattleScript_WeatherFormChangesLoop::
+BattleScript_OnWeatherChangeLoop::
 	trycastformdatachange
+	copybyte gBattlerTarget, sBATTLER
+	handleweatherchange BS_TARGET
 	addbyte sBATTLER, 1
-	jumpifbytenotequal sBATTLER, gBattlersCount, BattleScript_WeatherFormChangesLoop
+	jumpifbytenotequal sBATTLER, gBattlersCount, BattleScript_OnWeatherChangeLoop
+	restoretarget
 	return
 
 BattleScript_CastformChange::
@@ -9769,7 +9781,7 @@ BattleScript_DroughtActivates::
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_DesolateLandActivates::
@@ -9779,7 +9791,7 @@ BattleScript_DesolateLandActivates::
 	printstring STRINGID_EXTREMELYHARSHSUNLIGHT
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_DesolateLandEvaporatesWaterTypeMoves::
@@ -9798,7 +9810,7 @@ BattleScript_PrimordialSeaActivates::
 	printstring STRINGID_HEAVYRAIN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_RAIN_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_PrimordialSeaFizzlesOutFireTypeMoves::
@@ -9830,20 +9842,22 @@ BattleScript_SnowWarningActivates::
 	printstring STRINGID_SNOWWARNINGHAIL
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES, NULL
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 	
-BattleScript_TerrainSeedLoop:	
+BattleScript_OnTerrainChanged:	
 	savetarget
 	setbyte gBattlerTarget, 0
-BattleScript_TerrainSeedLoopIter:
+BattleScript_OnTerrainChangedIter:
 	copybyte sBATTLER, gBattlerTarget
-	doterrainseed BS_TARGET, BattleScript_TerrainSeedLoop_NextBattler
+	handleterrainchange BS_TARGET
+	doterrainseed BS_TARGET, BattleScript_OnTerrainChanged_NextBattler
 	removeitem BS_TARGET
-BattleScript_TerrainSeedLoop_NextBattler:
+BattleScript_OnTerrainChanged_NextBattler:
 	addbyte gBattlerTarget, 0x1
-	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_TerrainSeedLoopIter
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_OnTerrainChangedIter
 	restoretarget
+	callifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
 	return
 
 BattleScript_ElectricSurgeActivates::
@@ -9852,7 +9866,7 @@ BattleScript_ElectricSurgeActivates::
 	printstring STRINGID_TERRAINBECOMESELECTRIC
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
+	call BattleScript_OnTerrainChanged
 	end3
 
 BattleScript_MistySurgeActivates::
@@ -9861,7 +9875,7 @@ BattleScript_MistySurgeActivates::
 	printstring STRINGID_TERRAINBECOMESMISTY
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
+	call BattleScript_OnTerrainChanged
 	end3
 
 BattleScript_GrassySurgeActivates::
@@ -9870,7 +9884,7 @@ BattleScript_GrassySurgeActivates::
 	printstring STRINGID_TERRAINBECOMESGRASSY
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
+	call BattleScript_OnTerrainChanged
 	end3
 
 BattleScript_PsychicSurgeActivates::
@@ -9879,7 +9893,7 @@ BattleScript_PsychicSurgeActivates::
 	printstring STRINGID_TERRAINBECOMESPSYCHIC
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
+	call BattleScript_OnTerrainChanged
 	end3
 
 BattleScript_BadDreamsActivates::
@@ -10354,9 +10368,31 @@ BattleScript_SwitchInAbilityMsg::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_ParadoxBoostActivates::
+	call BattleScript_AbilityPopUp
+	printfromtable gParadoxBoostSourceIds
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_PARADOX_BOOST
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_ParadoxBoostActivatesRet::
+	call BattleScript_AbilityPopUp
+	printfromtable gParadoxBoostSourceIds
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_PARADOX_BOOST
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_SwitchInAbilityMsgRet::
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_ParadoxBoostEnds::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PARADOX_BOOST_END
 	waitmessage B_WAIT_TIME_LONG
 	return
 
@@ -11060,7 +11096,7 @@ BattleScript_AnnounceAirLockCloudNine::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_AIRLOCKACTIVATES
 	waitmessage B_WAIT_TIME_LONG
-	call BattleScript_WeatherFormChanges
+	call BattleScript_OnWeatherChange
 	end3
 
 BattleScript_QuickClawActivation::
@@ -11690,8 +11726,7 @@ BattleScript_SeedSowerGrassySucceeded:
 	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
-	call BattleScript_TerrainSeedLoop
-	callifabilitypresent ABILITY_MIMICRY, BattleScript_ApplyMimicry
+	call BattleScript_OnTerrainChanged
 BattleScript_SeedSowerTryLeech:
 	jumpifstatus3 BS_ATTACKER, STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
 	jumpiftype BS_ATTACKER, TYPE_GRASS, BattleScript_SeedSowerEnd

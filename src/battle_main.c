@@ -4890,13 +4890,11 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
             speed = (speed * 150) / 100;
     }
     
-    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_PROTOSYNTHESIS)
-        && (IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY) || gSpecialStatuses[battlerId].paradoxBoost)
+    if (GetAbilityState(battlerId, ABILITY_PROTOSYNTHESIS) > 0
         && GetHighestStatId(battlerId) == STAT_SPEED)
         speed = speed * 3 / 2;
     
-    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_QUARK_DRIVE)
-        && (IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN) || gSpecialStatuses[battlerId].paradoxBoost)
+    if (GetAbilityState(battlerId, ABILITY_QUARK_DRIVE) > 0
         && GetHighestStatId(battlerId) == STAT_SPEED)
         speed = speed * 3 / 2;
 

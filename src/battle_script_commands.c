@@ -10363,6 +10363,50 @@ static void Cmd_various(void)
     case VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE:
         gBattleScripting.tripleKickPower += gBattleMoves[gCurrentMove].power;
         break;
+    case VARIOUS_HANDLE_WEATHER_CHANGE:
+        gBattlescriptCurrInstr += 3;
+
+        if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_WEATHER_ACTIVE
+            && !(gBattleWeather & WEATHER_SUN_ANY))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+            SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_BOOST_NOT_ACTIVE);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+        }
+        else if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_BOOST_NOT_ACTIVE
+            && (gBattleWeather & WEATHER_SUN_ANY))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+            SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_WEATHER_ACTIVE);
+            PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(gActiveBattler));
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+        }
+        return;
+    case VARIOUS_HANDLE_TERRAIN_CHANGE:
+        gBattlescriptCurrInstr += 3;
+
+        if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_WEATHER_ACTIVE
+            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+            SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_BOOST_NOT_ACTIVE);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+        }
+        else if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_BOOST_NOT_ACTIVE
+            && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+            SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_WEATHER_ACTIVE);
+            PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(gActiveBattler));
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+        }
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
