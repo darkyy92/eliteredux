@@ -2799,7 +2799,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BIG_ROOT)
         hp = (hp * 3) / 2; // Buff Big Root's additional healing from 30% to 50%
 
-    if(gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ABSORBANT, ability))
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_ABSORBANT))
         gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Absorbant additional healing from 30% to 50%
 
     if (hp == 0)
@@ -4399,7 +4399,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     //Darmanitan
     if (gBattleMons[battler].species == SPECIES_DARMANITAN && 
-	    (gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ZEN_MODE, ability)) &&
+	    (BATTLER_HAS_ABILITY(battler, ABILITY_ZEN_MODE)) &&
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
@@ -4409,7 +4409,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     //Darmanitan Galarian
     if (gBattleMons[battler].species == SPECIES_DARMANITAN_GALARIAN && 
-	    (gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ZEN_MODE, ability)) &&
+	    (BATTLER_HAS_ABILITY(battler, ABILITY_ZEN_MODE)) &&
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
@@ -4641,6 +4641,10 @@ void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
         default:
             return;
     }
+}
+
+void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
+    SetSingleUseAbilityCounter(battler, ability, GetSingleUseAbilityCounter(battler, ability) + value);
 }
 
 static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect) {
@@ -5173,31 +5177,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COMATOSE;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
-            break;
-        //Toxic Spill
-        case ABILITY_TOXIC_SPILL:
-            if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gSpecialStatuses[battler].switchInAbilityDone){
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_SPILL;
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerAnnouncedToxicSpill);
-                effect++;
-            }
-        break;
-        case ABILITY_CHEATING_DEATH:
-            if(gDisableStructs[battler].noDamageHits == 0 &&
-               !GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH)){
-                SetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH, TRUE);
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
-                gDisableStructs[battler].noDamageHits = 2;
-                if(gDisableStructs[battler].noDamageHits == 1)
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
-                else{
-                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
-                }
                 effect++;
             }
             break;
@@ -5825,28 +5804,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Toxic Spill
-            if(BattlerHasInnate(battler, ABILITY_TOXIC_SPILL)){
-                if(gDisableStructs[battler].noDamageHits == 0 && 
-                !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TOXIC_SPILL)] &&
-                GetBattlerAbility(battler) != ABILITY_NONE){
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TOXIC_SPILL)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_SPILL;
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerAnnouncedToxicSpill);
-                    effect++;
-                }
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_TOXIC_SPILL))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAnnouncedToxicSpill);
+                effect++;
             }
 
             //Cheating Death
-            if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){
-                if(gDisableStructs[battler].noDamageHits == 0 && 
-                !GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH)){
-                    SetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH, TRUE);
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
-                    gDisableStructs[battler].noDamageHits = 2;
-                    if(gDisableStructs[battler].noDamageHits == 1)
+            if(CheckAndSetSwitchInAbility(battler, ABILITY_CHEATING_DEATH))
+            {
+                u8 uses = 2 - GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH);
+                if(uses > 0) {
+                    if(uses == 1)
                         BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
                     else{
-                        ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                        ConvertIntToDecimalStringN(gBattleTextBuff4, uses, STR_CONV_MODE_LEFT_ALIGN, 2);
                         BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
                     }
                     effect++;

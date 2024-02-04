@@ -119,7 +119,6 @@ struct DisableStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    u8 noDamageHits;
     bool8 protectedThisTurn;
     u8 disciplineCounter:4;
     u8 filler:4;
