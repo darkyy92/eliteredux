@@ -904,7 +904,6 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_RAGING_BULL
 	.4byte Move_NONE @ MOVE_MAKE_IT_RAIN
 	.4byte Move_NONE @ MOVE_PSYBLADE
-	.4byte Move_NONE @ MOVE_HYDRO_STEAM
 	.4byte Move_NONE @ MOVE_RUINATION
 	.4byte Move_NONE @ MOVE_COLLISION_COURSE
 	.4byte Move_NONE @ MOVE_ELECTRO_DRIFT

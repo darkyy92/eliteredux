@@ -10531,7 +10531,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SILK_TRAP] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10542,7 +10542,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_LAST_RESPECTS] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10553,7 +10553,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_LUMINA_CRASH] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10564,7 +10564,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_ORDER_UP] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10575,7 +10575,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SPICY_EXTRACT] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10586,7 +10586,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SPIN_OUT] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10597,7 +10597,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SALT_CURE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10608,7 +10608,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_DOODLE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10619,7 +10619,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FILET_AWAY] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10630,7 +10630,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_RAGING_BULL] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10641,7 +10641,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_MAKE_IT_RAIN] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10652,18 +10652,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_PSYBLADE] =
     {
-        .effect = EFFECT_HIT,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
-    },
-    [MOVE_HYDRO_STEAM] =
-    {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10674,7 +10663,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_RUINATION] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10685,7 +10674,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_COLLISION_COURSE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10696,7 +10685,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_ELECTRO_DRIFT] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10707,7 +10696,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_POUNCE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10718,7 +10707,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_TRAILBLAZE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10729,7 +10718,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_HYPER_DRILL] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10740,7 +10729,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_DOUBLE_SHOCK] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10751,7 +10740,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_COMEUPPANCE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10762,7 +10751,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_BLOOD_MOON] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10773,7 +10762,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_AXE_KICK] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,

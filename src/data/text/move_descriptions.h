@@ -3273,7 +3273,8 @@ static const u8 sMoveTwoLineDescription_MoveBerrySmash[] = _(
     "Not done yet.");
 
 static const u8 sMoveTwoLineDescription_MoveHydroSteam[] = _(
-    "Not done yet.");
+    "The user blasts the target with boiling-hot water.\n"
+    "Boosted by the sun.");
 
 static const u8 sMoveTwoLineDescription_MoveFireHydroSteam[] = _(
     "Not done yet.");
@@ -3448,10 +3449,6 @@ static const u8 sMoveTwoLineDescription_MoveMakeItRain[] = _(
 static const u8 sMoveTwoLineDescription_MovePsyblade[] = _(
     "The user rends the target with an ethereal blade,\n"
     "stronger in electric terrain");
-
-static const u8 sMoveTwoLineDescription_MoveHydroSteam[] = _(
-    "The user blasts the target with boiling-hot water.\n"
-    "Boosted by the sun.");
 
 static const u8 sMoveTwoLineDescription_MoveRuination[] = _(
     "The user summons a ruinous disaster.\n"
@@ -4381,7 +4378,6 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_RAGING_BULL - 1] = sMoveTwoLineDescription_MoveRagingBull,
     [MOVE_MAKE_IT_RAIN - 1] = sMoveTwoLineDescription_MoveMakeItRain,
     [MOVE_PSYBLADE - 1] = sMoveTwoLineDescription_MovePsyblade,
-    [MOVE_HYDRO_STEAM - 1] = sMoveTwoLineDescription_MoveHydroSteam,
     [MOVE_RUINATION - 1] = sMoveTwoLineDescription_MoveRuination,
     [MOVE_COLLISION_COURSE - 1] = sMoveTwoLineDescription_MoveCollisionCourse,
     [MOVE_ELECTRO_DRIFT - 1] = sMoveTwoLineDescription_MoveElectroDrift,
@@ -5224,7 +5220,7 @@ static const u8 sMoveFourLineDescription_MoveMindBreak[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveWyrmWind[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveShedTail[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveBerrySmash[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveHydroSteam[] = _("Not done yet.");
+static const u8 sMoveFourLineDescription_MoveHydroSteam[] = _("The user blasts the target with boiling-hot water.\nThis move's power is not lowered in harsh sunlight\nbut rather boosted by 50%.");
 static const u8 sMoveFourLineDescription_MoveFireHydroSteam[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveTripleArrows[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveDoubleLariat[] = _("Not done yet.");
@@ -5279,7 +5275,6 @@ static const u8 sMoveFourLineDescription_MoveFiletAway[] = _("The user sharply b
 static const u8 sMoveFourLineDescription_MoveRagingBull[] = _("The user performs a tackle like a raging bull.\nThis move's type depends on the user's form.\nIt can also break barriers,\nsuch as Light Screen and Reflect.");
 static const u8 sMoveFourLineDescription_MoveMakeItRain[] = _("The user attacks by throwing out a mass of coins.\nThis also lowers the user's Sp. Atk stat.\nMoney is earned after the battle.");
 static const u8 sMoveFourLineDescription_MovePsyblade[] = _("The user rends the target with an ethereal blade.\nThis move's power is boosted by 50%\nif the user is on Electric Terrain.");
-static const u8 sMoveFourLineDescription_MoveHydroSteam[] = _("The user blasts the target with boiling-hot water.\nThis move's power is not lowered in harsh sunlight\nbut rather boosted by 50%.");
 static const u8 sMoveFourLineDescription_MoveRuination[] = _("The user summons a ruinous disaster.\nThis cuts the target's HP in half.");
 static const u8 sMoveFourLineDescription_MoveCollisionCourse[] = _("The user transforms and crashes to the ground,\ncausing a massive prehistoric explosion.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
 static const u8 sMoveFourLineDescription_MoveElectroDrift[] = _("The user races forward at ultrafast speeds,\npiercing its target with futuristic electricity.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
@@ -6177,7 +6172,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_RAGING_BULL - 1] = sMoveFourLineDescription_MoveRagingBull,
     [MOVE_MAKE_IT_RAIN - 1] = sMoveFourLineDescription_MoveMakeItRain,
     [MOVE_PSYBLADE - 1] = sMoveFourLineDescription_MovePsyblade,
-    [MOVE_HYDRO_STEAM - 1] = sMoveFourLineDescription_MoveHydroSteam,
     [MOVE_RUINATION - 1] = sMoveFourLineDescription_MoveRuination,
     [MOVE_COLLISION_COURSE - 1] = sMoveFourLineDescription_MoveCollisionCourse,
     [MOVE_ELECTRO_DRIFT - 1] = sMoveFourLineDescription_MoveElectroDrift,
