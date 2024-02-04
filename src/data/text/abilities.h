@@ -540,7 +540,7 @@ static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by
 static const u8 sAbilityHadronEngineDescription[] = _("Field becomes Electric.\n+33% SpAtk in Electric Terrain.");
 static const u8 sAbilityWeatherDoubleBoostDescription[] = _("Sun boosts Water.\nRain boosts Fire.");
 static const u8 sAbilitySweepingEdgePlusDescription[] = _("Sweeping Edge + Keen Edge.");
-static const u8 sAbilityCelestialBlessingDescription[] = _("Heal 1/12 of HP under Misty Terrain");
+static const u8 sAbilityCelestialBlessingDescription[] = _("Heal 1/12 of HP\nunder Misty Terrain");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
