@@ -548,7 +548,18 @@ static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by
 static const u8 sAbilityHadronEngineDescription[] = _("Field becomes Electric.\n+33% SpAtk in Electric Terrain.");
 static const u8 sAbilityWeatherDoubleBoostDescription[] = _("Sun boosts Water.\nRain boosts Fire.");
 static const u8 sAbilitySweepingEdgePlusDescription[] = _("Sweeping Edge + Keen Edge.");
-static const u8 sAbilityCelestialBlessingDescription[] = _("Heal 1/12 of HP\nunder Misty Terrain");
+static const u8 sAbilityCelestialBlessingDescription[] = _("Heal 1/12 of HP\nunder Misty Terrain.");
+static const u8 sAbilityChillingTouchDescription[] = _("30% chance to apply FRB\non contact.");
+static const u8 sAbilityTanceChange2Description[] = _("Transforms as it battles\n(Physical to Special moves).");
+static const u8 sAbilityMinionControlDescription[] = _("User controls it's minions, 1 extra\nhit per healthy party member.");
+static const u8 sAbilityMoltenBladesDescription[] = _("Keen Edge + Keen Edge moves\nhave a 20% chance to burn.");
+static const u8 sAbilityHauntingFrenzyDescription[] = _("20% chance to flinch the\nopponent. +1 speed on kill.");
+static const u8 sAbilityNoiseCancelDescription[] = _("Protects the party from sound\nbased moves.");
+static const u8 sAbilityRadioJamDescription[] = _("Sound based moves\ninflict disable.");
+static const u8 sAbilityOléDescription[] = _("20% chance to evade\nphysical moves.");
+static const u8 sAbilityMaliciousDescription[] = _("Lower's the foe's highest ATK\nand DEF stat.");
+static const u8 sAbilityDeadPowerDescription[] = _("1.5x ATK boost and 20% chance\nto curse on contact moves.");
+static const u8 sAbilityBrawlingWyvernDescription[] = _("All DRAGON type moves are\naffected by Iron Fist");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1144,6 +1155,17 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_WEATHER_DOUBLE_BOOST] = _("Weather Double Boost"),
     [ABILITY_SWEEPING_EDGE_PLUS] = _("Sweeping Edge Plus"),
     [ABILITY_CELESTIAL_BLESSING] = _("Celestial Blessing"),
+    [ABILITY_CHILLING_TOUCH] = _("Chilling Touch"),
+    [ABILITY_TANCE_CHANGE_2] = _("Stance Change 2"),
+    [ABILITY_MINION_CONTROL] = _("Minion Control"),
+    [ABILITY_MOLTEN_BLADES] = _("Molten Blades"),
+    [ABILITY_HAUNTING_FRENZY] = _("Haunting Frenzy"),
+    [ABILITY_NOISE_CANCEL] = _("Noise Cancel"),
+    [ABILITY_RADIO_JAM] = _("Radio Jam"),
+    [ABILITY_OLÉ] = _("Olé"),
+    [ABILITY_MALICIOUS] = _("Malicious"),
+    [ABILITY_DEAD_POWER] = _("Dead Power"),
+    [ABILITY_BRAWLING_WYVERN] = _("Brawling Wyvern"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1740,4 +1762,15 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_WEATHER_DOUBLE_BOOST] = sAbilityWeatherDoubleBoostDescription,
     [ABILITY_SWEEPING_EDGE_PLUS] = sAbilitySweepingEdgePlusDescription,
     [ABILITY_CELESTIAL_BLESSING] = sAbilityCelestialBlessingDescription,
+    [ABILITY_CHILLING_TOUCH] = sAbilityChillingTouchDescription,
+    [ABILITY_TANCE_CHANGE_2] = sAbilityTanceChange2Description,
+    [ABILITY_MINION_CONTROL] = sAbilityMinionControlDescription,
+    [ABILITY_MOLTEN_BLADES] = sAbilityMoltenBladesDescription,
+    [ABILITY_HAUNTING_FRENZY] = sAbilityHauntingFrenzyDescription,
+    [ABILITY_NOISE_CANCEL] = sAbilityNoiseCancelDescription,
+    [ABILITY_RADIO_JAM] = sAbilityRadioJamDescription,
+    [ABILITY_OLÉ] = sAbilityOléDescription,
+    [ABILITY_MALICIOUS] = sAbilityMaliciousDescription,
+    [ABILITY_DEAD_POWER] = sAbilityDeadPowerDescription,
+    [ABILITY_BRAWLING_WYVERN] = sAbilityBrawlingWyvernDescription,
 };

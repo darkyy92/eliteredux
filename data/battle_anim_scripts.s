@@ -892,6 +892,29 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_AQUA_STEP
 	.4byte Move_NONE @ MOVE_TORCH_SONG
 	.4byte Move_NONE @ MOVE_GLAIVE_RUSH
+	.4byte Move_NONE @ MOVE_SILK_TRAP
+	.4byte Move_NONE @ MOVE_LAST_RESPECTS
+	.4byte Move_NONE @ MOVE_LUMINA_CRASH
+	.4byte Move_NONE @ MOVE_ORDER_UP
+	.4byte Move_NONE @ MOVE_SPICY_EXTRACT
+	.4byte Move_NONE @ MOVE_SPIN_OUT
+	.4byte Move_NONE @ MOVE_SALT_CURE
+	.4byte Move_NONE @ MOVE_DOODLE
+	.4byte Move_NONE @ MOVE_FILET_AWAY
+	.4byte Move_NONE @ MOVE_RAGING_BULL
+	.4byte Move_NONE @ MOVE_MAKE_IT_RAIN
+	.4byte Move_NONE @ MOVE_PSYBLADE
+	.4byte Move_NONE @ MOVE_HYDRO_STEAM
+	.4byte Move_NONE @ MOVE_RUINATION
+	.4byte Move_NONE @ MOVE_COLLISION_COURSE
+	.4byte Move_NONE @ MOVE_ELECTRO_DRIFT
+	.4byte Move_NONE @ MOVE_POUNCE
+	.4byte Move_NONE @ MOVE_TRAILBLAZE
+	.4byte Move_NONE @ MOVE_HYPER_DRILL
+	.4byte Move_NONE @ MOVE_DOUBLE_SHOCK
+	.4byte Move_NONE @ MOVE_COMEUPPANCE
+	.4byte Move_NONE @ MOVE_BLOOD_MOON
+	.4byte Move_NONE @ MOVE_AXE_KICK
 
 	.align 2
 gBattleAnims_StatusConditions::

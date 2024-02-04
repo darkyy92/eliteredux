@@ -3401,6 +3401,98 @@ static const u8 sMoveTwoLineDescription_MoveTorchSong[] = _(
 static const u8 sMoveTwoLineDescription_MoveGlaiveRush[] = _(
     "Not implemented.");
 
+static const u8 sMoveTwoLineDescription_MoveSilkTrap[] = _(
+    "The user spins a silken trap\n"
+    "protects and lowers target speed");
+
+static const u8 sMoveTwoLineDescription_MoveLastRespects[] = _(
+    "The user attacks to avenge its allies\n"
+    "more damage the more defeated allies");
+
+static const u8 sMoveTwoLineDescription_MoveLuminaCrash[] = _(
+    "The user attacks by unleashing a peculiar light\n"
+    "harshly lowers the target's Sp. Def stat.");
+
+static const u8 sMoveTwoLineDescription_MoveOrderUp[] = _(
+    "The user attacks with elegant poise\n"
+    "Boosts stat with Tatsugiri.");
+
+static const u8 sMoveTwoLineDescription_MoveSpicyExtract[] = _(
+    "The user emits an incredibly spicy extract\n"
+    "Raises target ATK and lowers DEF");
+
+static const u8 sMoveTwoLineDescription_MoveSpinOut[] = _(
+    "The user spins furiously by straining its legs.\n"
+    "Inflicta damage and lowers speed");
+
+static const u8 sMoveTwoLineDescription_MoveSaltCure[] = _(
+    "The user salt cures the target,\n"
+    "inflicting damage every turn.");
+
+static const u8 sMoveTwoLineDescription_MoveDoodle[] = _(
+    "Changes the Abilities of the user\n"
+    "and its ally Pokémon to that of the target.");
+
+static const u8 sMoveTwoLineDescription_MoveFiletAway[] = _(
+    "The user sharply boosts its Attack, Sp. Atk,\n"
+    "and Speed stats by using its own HP.");
+
+static const u8 sMoveTwoLineDescription_MoveRagingBull[] = _(
+    "The user performs a tackle like a raging bull.\n"
+    "Break's barriers, such as Light Screen and Reflect.");
+
+static const u8 sMoveTwoLineDescription_MoveMakeItRain[] = _(
+    "The user attacks by throwing out a mass of coins\n"
+    "Lower's user SPA");
+
+static const u8 sMoveTwoLineDescription_MovePsyblade[] = _(
+    "The user rends the target with an ethereal blade,\n"
+    "stronger in electric terrain");
+
+static const u8 sMoveTwoLineDescription_MoveHydroSteam[] = _(
+    "The user blasts the target with boiling-hot water.\n"
+    "Boosted by the sun.");
+
+static const u8 sMoveTwoLineDescription_MoveRuination[] = _(
+    "The user summons a ruinous disaster.\n"
+    "This cuts the target's HP in half.");
+
+static const u8 sMoveTwoLineDescription_MoveCollisionCourse[] = _(
+    "The user transforms and crashes to the ground.\n"
+    "Boosted more than usual if it's a supereffective hit.");
+
+static const u8 sMoveTwoLineDescription_MoveElectroDrift[] = _(
+    "The user races forward at ultrafast speeds.\n"
+    "Boosted more than usual if it's a supereffective hit.");
+
+static const u8 sMoveTwoLineDescription_MovePounce[] = _(
+    "The user attacks by pouncing on the target.\n"
+    "This also lowers the target's Speed stat.");
+
+static const u8 sMoveTwoLineDescription_MoveTrailblaze[] = _(
+    "The user attacks suddenly as if leaping out from tall grass.\n"
+    "Boosts user's Speed stat.");
+
+static const u8 sMoveTwoLineDescription_MoveHyperDrill[] = _(
+    "Spins and pierces the target\n"
+    "Hit's through protect.");
+
+static const u8 sMoveTwoLineDescription_MoveDoubleShock[] = _(
+    "The user discharges all the electricity\n"
+    "After attacking, no longer will the user be Electric.");
+
+static const u8 sMoveTwoLineDescription_MoveComeuppance[] = _(
+    "The user retaliates with much greater force against\n"
+    "the opponent that last inflicted damage on it.");
+
+static const u8 sMoveTwoLineDescription_MoveBloodMoon[] = _(
+    "The user unleashes the spirit from a full red moon\n"
+    "This move can't be used twice in a row.");
+
+static const u8 sMoveTwoLineDescription_MoveAxeKick[] = _(
+    "The user attacks by kicking\n"
+    "May cause confusion and hurts when missing.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4277,6 +4369,29 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_AQUA_STEP - 1] = sMoveTwoLineDescription_MoveAquaStep,
     [MOVE_TORCH_SONG - 1] = sMoveTwoLineDescription_MoveTorchSong,
     [MOVE_GLAIVE_RUSH - 1] = sMoveTwoLineDescription_MoveGlaiveRush,
+    [MOVE_SILK_TRAP - 1] = sMoveTwoLineDescription_MoveSilkTrap,
+    [MOVE_LAST_RESPECTS - 1] = sMoveTwoLineDescription_MoveLastRespects,
+    [MOVE_LUMINA_CRASH - 1] = sMoveTwoLineDescription_MoveLuminaCrash,
+    [MOVE_ORDER_UP - 1] = sMoveTwoLineDescription_MoveOrderUp,
+    [MOVE_SPICY_EXTRACT - 1] = sMoveTwoLineDescription_MoveSpicyExtract,
+    [MOVE_SPIN_OUT - 1] = sMoveTwoLineDescription_MoveSpinOut,
+    [MOVE_SALT_CURE - 1] = sMoveTwoLineDescription_MoveSaltCure,
+    [MOVE_DOODLE - 1] = sMoveTwoLineDescription_MoveDoodle,
+    [MOVE_FILET_AWAY - 1] = sMoveTwoLineDescription_MoveFiletAway,
+    [MOVE_RAGING_BULL - 1] = sMoveTwoLineDescription_MoveRagingBull,
+    [MOVE_MAKE_IT_RAIN - 1] = sMoveTwoLineDescription_MoveMakeItRain,
+    [MOVE_PSYBLADE - 1] = sMoveTwoLineDescription_MovePsyblade,
+    [MOVE_HYDRO_STEAM - 1] = sMoveTwoLineDescription_MoveHydroSteam,
+    [MOVE_RUINATION - 1] = sMoveTwoLineDescription_MoveRuination,
+    [MOVE_COLLISION_COURSE - 1] = sMoveTwoLineDescription_MoveCollisionCourse,
+    [MOVE_ELECTRO_DRIFT - 1] = sMoveTwoLineDescription_MoveElectroDrift,
+    [MOVE_POUNCE - 1] = sMoveTwoLineDescription_MovePounce,
+    [MOVE_TRAILBLAZE - 1] = sMoveTwoLineDescription_MoveTrailblaze,
+    [MOVE_HYPER_DRILL - 1] = sMoveTwoLineDescription_MoveHyperDrill,
+    [MOVE_DOUBLE_SHOCK - 1] = sMoveTwoLineDescription_MoveDoubleShock,
+    [MOVE_COMEUPPANCE - 1] = sMoveTwoLineDescription_MoveComeuppance,
+    [MOVE_BLOOD_MOON - 1] = sMoveTwoLineDescription_MoveBloodMoon,
+    [MOVE_AXE_KICK - 1] = sMoveTwoLineDescription_MoveAxeKick,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5152,6 +5267,29 @@ static const u8 sMoveFourLineDescription_MoveFlowerTrick[] = _("Not implemented.
 static const u8 sMoveFourLineDescription_MoveAquaStep[] = _("Not implemented.");
 static const u8 sMoveFourLineDescription_MoveTorchSong[] = _("Not implemented.");
 static const u8 sMoveFourLineDescription_MoveGlaiveRush[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveSilkTrap[] = _("The user spins a silken trap\nprotecting itself from damage\nwhile lowering the Speed stat\nof any attacker that makes direct contact.");
+static const u8 sMoveFourLineDescription_MoveLastRespects[] = _("The user attacks to avenge its allies\nThe more defeated allies there are\nin the user's party, the greater\nthe move's power.");
+static const u8 sMoveFourLineDescription_MoveLuminaCrash[] = _("The user attacks by unleashing a peculiar light\nthat even affects the mind.\nharshly lowers the target's Sp. Def stat.");
+static const u8 sMoveFourLineDescription_MoveOrderUp[] = _("The user attacks with elegant poise\nIf the user has a Tatsugiri in its mouth,\nthis move boosts one of the user's stats\nbased on the Tatsugiri's form.");
+static const u8 sMoveFourLineDescription_MoveSpicyExtract[] = _("The user emits an incredibly spicy extract\nsharply boosting the target's Attack stat\nand harshly lowering the target's Defense stat.");
+static const u8 sMoveFourLineDescription_MoveSpinOut[] = _("The user spins furiously by straining its legs,\ninflicting damage on the target.\nThis also harshly lowers the user's Speed stat.");
+static const u8 sMoveFourLineDescription_MoveSaltCure[] = _("The user salt cures the target,\ninflicting damage every turn.\nSteel and Water types are more strongly affected by this move.");
+static const u8 sMoveFourLineDescription_MoveDoodle[] = _("The user captures the very essence\nof the target in a sketch.\nThis changes the Abilities of the user\nand its ally Pokémon to that of the target.");
+static const u8 sMoveFourLineDescription_MoveFiletAway[] = _("The user sharply boosts its Attack, Sp. Atk,\nand Speed stats by using its own HP.");
+static const u8 sMoveFourLineDescription_MoveRagingBull[] = _("The user performs a tackle like a raging bull.\nThis move's type depends on the user's form.\nIt can also break barriers,\nsuch as Light Screen and Reflect.");
+static const u8 sMoveFourLineDescription_MoveMakeItRain[] = _("The user attacks by throwing out a mass of coins.\nThis also lowers the user's Sp. Atk stat.\nMoney is earned after the battle.");
+static const u8 sMoveFourLineDescription_MovePsyblade[] = _("The user rends the target with an ethereal blade.\nThis move's power is boosted by 50%\nif the user is on Electric Terrain.");
+static const u8 sMoveFourLineDescription_MoveHydroSteam[] = _("The user blasts the target with boiling-hot water.\nThis move's power is not lowered in harsh sunlight\nbut rather boosted by 50%.");
+static const u8 sMoveFourLineDescription_MoveRuination[] = _("The user summons a ruinous disaster.\nThis cuts the target's HP in half.");
+static const u8 sMoveFourLineDescription_MoveCollisionCourse[] = _("The user transforms and crashes to the ground,\ncausing a massive prehistoric explosion.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
+static const u8 sMoveFourLineDescription_MoveElectroDrift[] = _("The user races forward at ultrafast speeds,\npiercing its target with futuristic electricity.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
+static const u8 sMoveFourLineDescription_MovePounce[] = _("The user attacks by pouncing on the target.\nThis also lowers the target's Speed stat.");
+static const u8 sMoveFourLineDescription_MoveTrailblaze[] = _("The user attacks suddenly as if leaping out from tall grass.\nThe user's nimble footwork boosts\nits Speed stat.");
+static const u8 sMoveFourLineDescription_MoveHyperDrill[] = _("The user spins the pointed part of its body\nat high speed to pierce the target.\nThis attack can hit a target using\na move such as Protect or Detect.");
+static const u8 sMoveFourLineDescription_MoveDoubleShock[] = _("The user discharges all the electricity from its body\nto perform a high-damage attack.\nAfter using this move,\nthe user will no longer be Electric type.");
+static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retaliates with much greater force against\nthe opponent that last inflicted damage on it.");
+static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes the full brunt of its spirit\nfrom a full moon that shines as red as blood.\nThis move can't be used twice in a row.");
+static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6027,4 +6165,27 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_AQUA_STEP - 1] = sMoveFourLineDescription_MoveAquaStep,
     [MOVE_TORCH_SONG - 1] = sMoveFourLineDescription_MoveTorchSong,
     [MOVE_GLAIVE_RUSH - 1] = sMoveFourLineDescription_MoveGlaiveRush,
+    [MOVE_SILK_TRAP - 1] = sMoveFourLineDescription_MoveSilkTrap,
+    [MOVE_LAST_RESPECTS - 1] = sMoveFourLineDescription_MoveLastRespects,
+    [MOVE_LUMINA_CRASH - 1] = sMoveFourLineDescription_MoveLuminaCrash,
+    [MOVE_ORDER_UP - 1] = sMoveFourLineDescription_MoveOrderUp,
+    [MOVE_SPICY_EXTRACT - 1] = sMoveFourLineDescription_MoveSpicyExtract,
+    [MOVE_SPIN_OUT - 1] = sMoveFourLineDescription_MoveSpinOut,
+    [MOVE_SALT_CURE - 1] = sMoveFourLineDescription_MoveSaltCure,
+    [MOVE_DOODLE - 1] = sMoveFourLineDescription_MoveDoodle,
+    [MOVE_FILET_AWAY - 1] = sMoveFourLineDescription_MoveFiletAway,
+    [MOVE_RAGING_BULL - 1] = sMoveFourLineDescription_MoveRagingBull,
+    [MOVE_MAKE_IT_RAIN - 1] = sMoveFourLineDescription_MoveMakeItRain,
+    [MOVE_PSYBLADE - 1] = sMoveFourLineDescription_MovePsyblade,
+    [MOVE_HYDRO_STEAM - 1] = sMoveFourLineDescription_MoveHydroSteam,
+    [MOVE_RUINATION - 1] = sMoveFourLineDescription_MoveRuination,
+    [MOVE_COLLISION_COURSE - 1] = sMoveFourLineDescription_MoveCollisionCourse,
+    [MOVE_ELECTRO_DRIFT - 1] = sMoveFourLineDescription_MoveElectroDrift,
+    [MOVE_POUNCE - 1] = sMoveFourLineDescription_MovePounce,
+    [MOVE_TRAILBLAZE - 1] = sMoveFourLineDescription_MoveTrailblaze,
+    [MOVE_HYPER_DRILL - 1] = sMoveFourLineDescription_MoveHyperDrill,
+    [MOVE_DOUBLE_SHOCK - 1] = sMoveFourLineDescription_MoveDoubleShock,
+    [MOVE_COMEUPPANCE - 1] = sMoveFourLineDescription_MoveComeuppance,
+    [MOVE_BLOOD_MOON - 1] = sMoveFourLineDescription_MoveBloodMoon,
+    [MOVE_AXE_KICK - 1] = sMoveFourLineDescription_MoveAxeKick,
 };
