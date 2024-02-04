@@ -895,7 +895,9 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
     // Check if physical moves hurt.
     if (AI_GetHoldEffect(gBattlerTarget) != HOLD_EFFECT_PROTECTIVE_PADS
         && (BATTLE_HISTORY->itemEffects[gBattlerTarget] == HOLD_EFFECT_ROCKY_HELMET
-        || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN))
+        || BATTLER_HAS_ABILITY_FAST(gBattlerTarget, ABILITY_IRON_BARBS, defAbility)
+        || BATTLER_HAS_ABILITY_FAST(gBattlerTarget, ABILITY_ROUGH_SKIN, defAbility))
+        || BATTLER_HAS_ABILITY_FAST(gBattlerTarget, ABILITY_DOUBLE_IRON_BARBS, defAbility))
     {
         if (IS_MOVE_PHYSICAL(move1) && !IS_MOVE_PHYSICAL(move2))
             return 1;
