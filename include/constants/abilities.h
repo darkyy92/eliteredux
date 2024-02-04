@@ -595,7 +595,7 @@
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Placeholder
 #define ABILITY_DOUBLE_IRON_BARBS 574 // Placeholder
 #define ABILITY_THERMAL_EXCHANGE 575 // Placeholder
-#define ABILITY_GOOD_AS_GOLD 576 // Placeholder
+#define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
 #define ABILITY_SHARING_IS_CARING 577 // Placeholder
 #define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.

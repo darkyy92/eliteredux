@@ -1143,6 +1143,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_CHROME_COAT] = 1,
     [ABILITY_PURIFYING_SALT] = 1,
     [ABILITY_LEAF_GUARD_CLONE] = 1,
+    [ABILITY_GOOD_AS_GOLD] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -7398,6 +7399,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
             gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
             gBattlescriptCurrInstr = BattleScript_DarkTypePreventsPrankster;
+            effect = 1;
+        }
+        else if (BATTLER_HAS_ABILITY(battler, ABILITY_GOOD_AS_GOLD)
+            && battler != gBattlerAttacker
+            && IS_MOVE_STATUS(move))
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GOOD_AS_GOLD;
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
         
