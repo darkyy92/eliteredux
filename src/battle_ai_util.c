@@ -1459,7 +1459,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     if (BATTLER_HAS_ABILITY_FAST_AI(battlerAtk, ABILITY_ARTILLERY) && gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
         return TRUE;
 
-    if (BATTLER_HAS_ABILITY_FAST_AI(battlerAtk, ABILITY_SWEEPING_EDGE) && gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+    if ((BATTLER_HAS_ABILITY_FAST_AI(battlerAtk, ABILITY_SWEEPING_EDGE) || BATTLER_HAS_ABILITY_FAST_AI(battlerAtk, ABILITY_SWEEPING_EDGE_PLUS)) && gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
         return TRUE;
 
     if(BATTLER_HAS_ABILITY_FAST_AI(battlerAtk, ABILITY_SIGHTING_SYSTEM))

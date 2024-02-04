@@ -290,11 +290,11 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 // Returns the target field of a move, modified by ability
 u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
 {
-    if ((ability == ABILITY_ARTILLERY || BattlerHasInnate(gActiveBattler, ABILITY_ARTILLERY)) 
+    if ((BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_ARTILLERY, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((ability == ABILITY_SWEEPING_EDGE || BattlerHasInnate(gActiveBattler, ABILITY_SWEEPING_EDGE)) 
+    else if ((BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_SWEEPING_EDGE, ability) || BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_SWEEPING_EDGE_PLUS, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -310,11 +310,11 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
 u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
 {
     u16 ability = gBattleMons[battler].ability;
-    if ((ability == ABILITY_ARTILLERY || BattlerHasInnate(battler, ABILITY_ARTILLERY)) 
+    if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ARTILLERY, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((ability == ABILITY_SWEEPING_EDGE || BattlerHasInnate(battler, ABILITY_SWEEPING_EDGE)) 
+    else if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SWEEPING_EDGE, ability) || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SWEEPING_EDGE_PLUS, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -2799,7 +2799,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BIG_ROOT)
         hp = (hp * 3) / 2; // Buff Big Root's additional healing from 30% to 50%
 
-    if(gBattleMons[battler].ability == ABILITY_ABSORBANT || BattlerHasInnate(battler, ABILITY_ABSORBANT))
+    if(gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ABSORBANT, ability))
         gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Absorbant additional healing from 30% to 50%
 
     if (hp == 0)
@@ -2820,7 +2820,7 @@ if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || Battler
 
 
 #define TOXIC_BOOST_CHECK \
-if (ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(gActiveBattler, ABILITY_TOXIC_BOOST)) \
+if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_TOXIC_BOOST, ability)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -2828,7 +2828,7 @@ if (ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(gActiveBattler, ABILITY_T
 }
 
 #define FLARE_BOOST_CHECK \
-if (ability == ABILITY_FLARE_BOOST || BattlerHasInnate(gActiveBattler, ABILITY_FLARE_BOOST)) \
+if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_FLARE_BOOST, ability)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -2923,7 +2923,7 @@ u8 DoBattlerEndTurnEffects(void)
                 if(ability != ABILITY_POISON_HEAL && !BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
 				    TOXIC_BOOST_CHECK;
 
-                if (ability == ABILITY_POISON_HEAL || BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
+                if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_POISON_HEAL, ability))
                 {
                     if (!BATTLER_MAX_HP(gActiveBattler) && !BATTLER_HEALING_BLOCKED(gActiveBattler))
                     {
@@ -2955,7 +2955,7 @@ u8 DoBattlerEndTurnEffects(void)
                 if(ability != ABILITY_POISON_HEAL && !BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
 				    TOXIC_BOOST_CHECK;
 
-                if (ability == ABILITY_POISON_HEAL || BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
+                if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_POISON_HEAL, ability))
                 {
                     if (!BATTLER_MAX_HP(gActiveBattler) && !BATTLER_HEALING_BLOCKED(gActiveBattler))
                     {
@@ -2986,7 +2986,7 @@ u8 DoBattlerEndTurnEffects(void)
                 if(ability != ABILITY_POISON_HEAL && !BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
 				    TOXIC_BOOST_CHECK;
 
-                if (ability == ABILITY_POISON_HEAL || BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
+                if (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_POISON_HEAL, ability))
                 {
                     if (!BATTLER_MAX_HP(gActiveBattler) && !BATTLER_HEALING_BLOCKED(gActiveBattler))
                     {
@@ -3409,13 +3409,13 @@ u8 DoBattlerEndTurnEffects(void)
                 gDisableStructs[gActiveBattler].slowStartTimer--;
 
                 if (gDisableStructs[gActiveBattler].slowStartTimer == 0
-                && (ability == ABILITY_SLOW_START  || BattlerHasInnate(gActiveBattler, ABILITY_SLOW_START)))
+                && (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_SLOW_START, ability)))
                 {
                     BattleScriptExecute(BattleScript_SlowStartEnds);
                     effect++;
                 }
                 else if (gDisableStructs[gActiveBattler].slowStartTimer == 0
-                    && (ability == ABILITY_LETHARGY || BattlerHasInnate(gActiveBattler, ABILITY_LETHARGY)))
+                    && (BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_LETHARGY, ability)))
                 {
                     BattleScriptExecute(BattleScript_LethargyEnds);
                     effect++;
@@ -4399,7 +4399,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     //Darmanitan
     if (gBattleMons[battler].species == SPECIES_DARMANITAN && 
-	    (gBattleMons[battler].ability == ABILITY_ZEN_MODE || BattlerHasInnate(battler, ABILITY_ZEN_MODE)) &&
+	    (gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ZEN_MODE, ability)) &&
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
@@ -4409,7 +4409,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     //Darmanitan Galarian
     if (gBattleMons[battler].species == SPECIES_DARMANITAN_GALARIAN && 
-	    (gBattleMons[battler].ability == ABILITY_ZEN_MODE || BattlerHasInnate(battler, ABILITY_ZEN_MODE)) &&
+	    (gBattleMons[battler].BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ZEN_MODE, ability)) &&
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
@@ -14121,6 +14121,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 
+    // Sweeping Edge Plus
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SWEEPING_EDGE_PLUS)){
+		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+
     // Mystic Blades
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MYSTIC_BLADES)){
 		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
@@ -15832,13 +15838,15 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if (isCrit)
         dmg = ApplyModifier((B_CRIT_MULTIPLIER >= GEN_6 ? UQ_4_12(1.5) : UQ_4_12(2.0)), dmg);
 
+    #define CHECK_WEATHER_DOUBLE_BOOST(boost, drop) (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_WEATHER_DOUBLE_BOOST) ? UQ_4_12(boost) : UQ_4_12(drop))
+
     // check sunny/rain weather
     if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_PERMANENT))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
         else if (moveType == TYPE_FIRE)
-            dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2, 0.5), dmg);
         else if (moveType == TYPE_WATER)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
     }
@@ -15847,7 +15855,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
         else if (moveType == TYPE_FIRE)
-            dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5, 0.5), dmg);
         else if (moveType == TYPE_WATER)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
     }
@@ -15858,7 +15866,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
-            dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2, 0.5), dmg);
     }
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_TEMPORARY))
     {
@@ -15867,19 +15875,21 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
-            dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5, 0.5), dmg);
     }
+
+    #undef CHECK_WEATHER_DOUBLE_BOOST
 
     // check stab
     if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
-	     abilityAtk == ABILITY_MYSTIC_POWER || BattlerHasInnate(battlerAtk, ABILITY_MYSTIC_POWER) ||
-	     abilityAtk == ABILITY_ARCANE_FORCE || BattlerHasInnate(battlerAtk, ABILITY_ARCANE_FORCE) ||
+	     BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MYSTIC_POWER, abilityAtk) ||
+	     BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ARCANE_FORCE, abilityAtk) ||
          (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
          (abilityAtk == ABILITY_MOON_SPIRIT && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_MOON_SPIRIT) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
          (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE) ||
 		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (BattlerHasInnate(battlerAtk, ABILITY_AURORA_BOREALIS) && moveType == TYPE_ICE))
     {
-        if (abilityAtk == ABILITY_ADAPTABILITY || BattlerHasInnate(battlerAtk, ABILITY_ADAPTABILITY))
+        if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ADAPTABILITY, abilityAtk))
             MulModifier(&finalModifier, UQ_4_12(2.0));
         else
             MulModifier(&finalModifier, UQ_4_12(1.5));
@@ -16653,18 +16663,18 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
         if (gBaseStats[speciesDef].type2 != gBaseStats[speciesDef].type1)
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gBaseStats[speciesDef].type2, 0, FALSE);
 
-        if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        if (moveType == TYPE_GROUND && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_LEVITATE, abilityDef)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
-		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER) || abilityDef == ABILITY_FURNACE || BattlerHasInnate(battlerDef, ABILITY_FURNACE)))
+		if (moveType == TYPE_ROCK && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_MOUNTAINEER, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_FURNACE, abilityDef)))
             modifier = UQ_4_12(0.0);
 		if ((moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG) && 
-            (abilityDef == ABILITY_GIFTED_MIND || BattlerHasInnate(battlerDef, ABILITY_GIFTED_MIND))) 
+            (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_GIFTED_MIND, abilityDef))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
             modifier = UQ_4_12(0.0);
-		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_WEATHER_CONTROL || BattlerHasInnate(battlerDef, ABILITY_WEATHER_CONTROL))) 
+		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WEATHER_CONTROL, abilityDef))) 
             modifier = UQ_4_12(0.0);
-		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_DELTA_STREAM || BattlerHasInnate(battlerDef, ABILITY_DELTA_STREAM))) 
+		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_DELTA_STREAM, abilityDef))) 
             modifier = UQ_4_12(0.0);
     }
 

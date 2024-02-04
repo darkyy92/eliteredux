@@ -538,6 +538,8 @@ static const u8 sAbilityBeadsOfRuinDescription[] = _("Lowers the Special Defense
 static const u8 sAbilityOrichalcumPulseDescription[] = _("Summons sunlight in battle.\n+33% Attack in Sun.");
 static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by 33%.");
 static const u8 sAbilityHadronEngineDescription[] = _("Field becomes Electric.\n+33% SpAtk in Electric Terrain.");
+static const u8 sAbilityWeatherDoubleBoostDescription[] = _("Sun boosts Water.\nRain boosts Fire.");
+static const u8 sAbilitySweepingEdgePlusDescription[] = _("Sweeping Edge + Keen Edge.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1725,6 +1727,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_WINGED_KING] = sAbilityWingedKingDescription,
     [ABILITY_HADRON_ENGINE] = sAbilityHadronEngineDescription,
     [ABILITY_IRON_SERPENT] = sAbilityWingedKingDescription,
-    [ABILITY_WEATHER_DOUBLE_BOOST] = sAbilityParrotingDescription,
-    [ABILITY_SWEEPING_EDGE_PLUS] = sAbilityParrotingDescription,
+    [ABILITY_WEATHER_DOUBLE_BOOST] = sAbilityWeatherDoubleBoostDescription,
+    [ABILITY_SWEEPING_EDGE_PLUS] = sAbilitySweepingEdgePlusDescription,
 };

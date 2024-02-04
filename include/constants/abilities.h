@@ -608,8 +608,8 @@
 #define ABILITY_WINGED_KING 586 // Ups “supereffective” by 33%.
 #define ABILITY_HADRON_ENGINE 587 // Field becomes Electric. +33% SpAtk in Electric Terrain.
 #define ABILITY_IRON_SERPENT 588 // Ups “supereffective” by 33%.
-#define ABILITY_WEATHER_DOUBLE_BOOST 589 // Placeholder
-#define ABILITY_SWEEPING_EDGE_PLUS 590 // Placeholder
+#define ABILITY_WEATHER_DOUBLE_BOOST 589 // Sun boosts Water. Rain boosts Fire.
+#define ABILITY_SWEEPING_EDGE_PLUS 590 // Sweeping Edge + Keen Edge.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_SWEEPING_EDGE_PLUS + 1)
 
