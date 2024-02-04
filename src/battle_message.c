@@ -836,6 +836,7 @@ static const u8 sText_Permanence[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is preve
 static const u8 sText_BerserkDNA[] = _("{B_ATK_NAME_WITH_PREFIX} goes\nberserk!");
 static const u8 sText_BlockOnEntry[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} blocks\nthe opposing team from fleeing!");
 static const u8 sText_SupremeOverlord[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} gained\nstrength from the fallen!");
+static const u8 sText_ParadoxBoost[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\nwas heightened!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -1562,6 +1563,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_RETRIEVEREXITS - 12] = sText_RetrieverExits,
     [STRINGID_BLOCK_ON_ENTRY - 12] = sText_BlockOnEntry,
     [STRINGID_SUPREME_OVERLORD - 12] = sText_SupremeOverlord,
+    [STRINGID_PARADOX_BOOST - 12] = sText_ParadoxBoost,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1630,6 +1632,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_PERMANENCE] = STRINGID_PERMANENCE,
     [B_MSG_SWITCHIN_BLOCK_ON_ENTRY] = STRINGID_BLOCK_ON_ENTRY,
     [B_MSG_SWITCHIN_SUPREME_OVERLORD] = STRINGID_SUPREME_OVERLORD,
+    [B_MSG_SWITCHIN_PARADOX_BOOST] = STRINGID_PARADOX_BOOST,
 };
 
 const u16 gMissStringIds[] =

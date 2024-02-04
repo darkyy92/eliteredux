@@ -8348,22 +8348,6 @@ static void RecalcBattlerStats(u32 battler, struct Pokemon *mon)
     gBattleMons[battler].type2 = RandomizeType(gBaseStats[gBattleMons[battler].species].type2, gBattleMons[battler].species, gBattleMons[battler].personality, FALSE);
 }
 
-static u32 GetHighestStatId(u32 battlerId)
-{
-    u32 i, highestId = STAT_ATK, highestStat = gBattleMons[battlerId].attack;
-
-    for (i = STAT_DEF; i < NUM_STATS; i++)
-    {
-        u16 *statVal = &gBattleMons[battlerId].attack + (i - 1);
-        if (*statVal > highestStat)
-        {
-            highestStat = *statVal;
-            highestId = i;
-        }
-    }
-    return highestId;
-}
-
 static bool32 IsRototillerAffected(u32 battlerId)
 {
     if (!IsBattlerAlive(battlerId))

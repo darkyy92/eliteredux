@@ -4889,6 +4889,16 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLUSH_RUSH, ability) && gBattleWeather & WEATHER_HAIL_ANY)
             speed = (speed * 150) / 100;
     }
+    
+    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_PROTOSYNTHESIS)
+        && (IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY) || gSpecialStatuses[battlerId].paradoxBoost)
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
+    
+    if (BATTLER_HAS_ABILITY(battlerId, ABILITY_QUARK_DRIVE)
+        && (IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN) || gSpecialStatuses[battlerId].paradoxBoost)
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
 
     // other abilities
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_QUICK_FEET, ability) && gBattleMons[battlerId].status1 & STATUS1_ANY)

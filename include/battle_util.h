@@ -213,6 +213,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability);
 u8 GetSingleUseAbilityCounter(u8 battler, u16 ability);
 void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
+u8 GetHighestStatId(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

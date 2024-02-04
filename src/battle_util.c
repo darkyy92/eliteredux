@@ -6613,6 +6613,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_PROTOSYNTHESIS))
+            {
+                if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
+                {
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PARADOX_BOOST;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                }
+            }
+
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_QUARK_DRIVE))
+            {
+                if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
+                {
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PARADOX_BOOST;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                }
+            }
+
             if(BattlerHasInnate(battler, ABILITY_FURNACE)){
                 if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
                 && IsBattlerAlive(battler)
@@ -14916,6 +14936,18 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             break;
     }
 
+    if (statEnum != STAT_SPEED
+        && BATTLER_HAS_ABILITY(battler, ABILITY_PROTOSYNTHESIS)
+        && (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || gSpecialStatuses[battler].paradoxBoost)
+        && GetHighestStatId(battler) == statEnum)
+        statBase = statBase * 13 / 10;
+
+    if (statEnum != STAT_SPEED
+        && BATTLER_HAS_ABILITY(battler, ABILITY_QUARK_DRIVE)
+        && (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN) || gSpecialStatuses[battler].paradoxBoost)
+        && GetHighestStatId(battler) == statEnum)
+        statBase = statBase * 13 / 10;
+
     #undef RUIN_CHECK
 
     if (isUnaware) statStage = DEFAULT_STAT_STAGE;
@@ -17895,3 +17927,19 @@ bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
         return FALSE;
 }
 
+u8 GetHighestStatId(u8 battlerId)
+{
+    u8 i, highestId = STAT_ATK;
+    u32 highestStat = gBattleMons[battlerId].attack;
+
+    for (i = STAT_DEF; i < NUM_STATS; i++)
+    {
+        u16 *statVal = &gBattleMons[battlerId].attack + (i - 1);
+        if (*statVal > highestStat)
+        {
+            highestStat = *statVal;
+            highestId = i;
+        }
+    }
+    return highestId;
+}
