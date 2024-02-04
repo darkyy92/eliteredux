@@ -5825,6 +5825,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            // Gallantry
+            if(CheckAndSetSwitchInAbility(battler, ABILITY_GALLANTRY))
+            {
+                u8 uses = 1 - GetSingleUseAbilityCounter(battler, ABILITY_GALLANTRY);
+                if(uses > 0) {
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
+                    effect++;
+                }
+            }
+
             // Coward
             if(BATTLER_HAS_ABILITY(battler, ABILITY_COWARD)){
                 bool8 activateAbilty = FALSE;

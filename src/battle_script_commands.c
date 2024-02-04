@@ -14735,11 +14735,18 @@ u8 RemainingNoDamageHits(u8 battler)
     if (BATTLER_HAS_ABILITY(battler, ABILITY_CHEATING_DEATH))
         counts += 2 - GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH);
 
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_GALLANTRY))
+        counts += 1 - GetSingleUseAbilityCounter(battler, ABILITY_GALLANTRY);
+
     return counts;
 }
 
 u16 GetNoDamageAbility(u8 batter)
 {
+    if (BATTLER_HAS_ABILITY(batter, ABILITY_GALLANTRY)
+        && GetSingleUseAbilityCounter(batter, ABILITY_GALLANTRY) < 1)
+            return ABILITY_GALLANTRY;
+
     if (BATTLER_HAS_ABILITY(batter, ABILITY_CHEATING_DEATH)
         && GetSingleUseAbilityCounter(batter, ABILITY_CHEATING_DEATH) < 2)
             return ABILITY_CHEATING_DEATH;
