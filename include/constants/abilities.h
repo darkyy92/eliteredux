@@ -592,7 +592,7 @@
 #define ABILITY_ILL_WILL 570 // Placeholder
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
 #define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
-#define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Placeholder
+#define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/4 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Placeholder
 #define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.

@@ -14842,6 +14842,11 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             // Feline Prowess
             if (BATTLER_HAS_ABILITY(battler, ABILITY_FELINE_PROWESS)) statBase *= 2;
 
+            // Special Violent Rush
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SPECIAL_VIOLENT_RUSH)
+                && gDisableStructs[battler].isFirstTurn)
+                    statBase = statBase * 6 / 5;
+
             // Hadron Engine
             if (BATTLER_HAS_ABILITY(battler, ABILITY_HADRON_ENGINE)
                 && IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))

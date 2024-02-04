@@ -4903,6 +4903,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SPECIAL_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
+
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SHOWDOWN_MODE, ability) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 	
