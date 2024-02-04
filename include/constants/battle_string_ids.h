@@ -721,8 +721,13 @@
 #define STRINGID_RETRIEVEREXITS                       750
 #define STRINGID_BLOCK_ON_ENTRY                       751
 #define STRINGID_SUPREME_OVERLORD                     752
+#define STRINGID_PARADOX_BOOST                        753
+#define STRINGID_PARADOX_BOOST_END                    754
+#define STRINGID_PARADOX_BOOST_WEATHER                755
+#define STRINGID_PARADOX_BOOST_ITEM                   756
+#define STRINGID_PARADOX_BOOST_TERRAIN                757
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_SUPREME_OVERLORD + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PARADOX_BOOST_TERRAIN + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -972,6 +977,10 @@
 #define B_MSG_SWITCHIN_PERMANENCE       19
 #define B_MSG_SWITCHIN_BLOCK_ON_ENTRY   20
 #define B_MSG_SWITCHIN_SUPREME_OVERLORD 21
+
+#define B_MSG_PARADOX_BOOST_ITEM        0
+#define B_MSG_PARADOX_BOOST_WEATHER     1
+#define B_MSG_PARADOX_BOOST_TERRAIN     2
 
 // gMentalHerbCureStringIds
 #define B_MSG_MENTALHERBCURE_INFATUATION       0

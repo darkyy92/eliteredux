@@ -3323,7 +3323,6 @@ static void BattleStartClearSetData(void)
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
         gDisableStructs[i].hasBeenOnBattle = FALSE;
-        gDisableStructs[i].noDamageHits = 0;
         gLastMoves[i] = 0;
         gLastLandedMoves[i] = 0;
         gLastHitByType[i] = 0;
@@ -3595,7 +3594,6 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].statFell = FALSE;
     gProtectStructs[gActiveBattler].pranksterElevated = FALSE;
     gDisableStructs[gActiveBattler].hasBeenOnBattle = FALSE;
-    gDisableStructs[gActiveBattler].noDamageHits = 0;
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 
@@ -4891,6 +4889,14 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLUSH_RUSH, ability) && gBattleWeather & WEATHER_HAIL_ANY)
             speed = (speed * 150) / 100;
     }
+    
+    if (GetAbilityState(battlerId, ABILITY_PROTOSYNTHESIS) > 0
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
+    
+    if (GetAbilityState(battlerId, ABILITY_QUARK_DRIVE) > 0
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
 
     // other abilities
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_QUICK_FEET, ability) && gBattleMons[battlerId].status1 & STATUS1_ANY)
@@ -4903,6 +4909,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         speed /= 2;
 
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SPECIAL_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SHOWDOWN_MODE, ability) && gDisableStructs[battlerId].isFirstTurn)

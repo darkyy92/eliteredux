@@ -119,7 +119,6 @@ struct DisableStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    u8 noDamageHits;
     bool8 protectedThisTurn;
     u8 disciplineCounter:4;
     u8 filler:4;
@@ -209,6 +208,7 @@ struct SpecialStatus
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
+    u8 abilityState[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer

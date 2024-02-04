@@ -72,6 +72,13 @@ struct TypePower
     u16 effect;
 };
 
+enum ParadoxBoostState
+{
+    PARADOX_BOOST_NOT_ACTIVE = 0,
+    PARADOX_BOOSTER_ENERGY,
+    PARADOX_WEATHER_ACTIVE,
+};
+
 extern const struct TypePower gNaturalGiftTable[];
 
 s32 CountUsablePartyMons(u8 battlerId);
@@ -212,6 +219,11 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
 bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability);
 u8 GetSingleUseAbilityCounter(u8 battler, u16 ability);
 void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
+void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
+u8 GetAbilityState(u8 battler, u16 ability);
+void SetAbilityState(u8 battler, u16 ability, u8 value);
+void IncrementAbilityState(u8 battler, u16 ability, u8 value);
+u8 GetHighestStatId(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

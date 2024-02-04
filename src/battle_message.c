@@ -836,6 +836,11 @@ static const u8 sText_Permanence[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is preve
 static const u8 sText_BerserkDNA[] = _("{B_ATK_NAME_WITH_PREFIX} goes\nberserk!");
 static const u8 sText_BlockOnEntry[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} blocks\nthe opposing team from fleeing!");
 static const u8 sText_SupremeOverlord[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} gained\nstrength from the fallen!");
+static const u8 sText_ParadoxBoost[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\nwas boosted!");
+static const u8 sText_ParadoxBoostEnd[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\nreturns to normal!");
+static const u8 sText_ParadoxBoostItem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s uses\nits Booster Energy!");
+static const u8 sText_ParadoxBoostSun[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the harsh sunlight!");
+static const u8 sText_ParadoxBoostElectricTerrain[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the electric terrain!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -1562,6 +1567,11 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_RETRIEVEREXITS - 12] = sText_RetrieverExits,
     [STRINGID_BLOCK_ON_ENTRY - 12] = sText_BlockOnEntry,
     [STRINGID_SUPREME_OVERLORD - 12] = sText_SupremeOverlord,
+    [STRINGID_PARADOX_BOOST - 12] = sText_ParadoxBoost,
+    [STRINGID_PARADOX_BOOST_END - 12] = sText_ParadoxBoostEnd,
+    [STRINGID_PARADOX_BOOST_ITEM - 12] = sText_ParadoxBoostItem,
+    [STRINGID_PARADOX_BOOST_WEATHER - 12] = sText_ParadoxBoostSun,
+    [STRINGID_PARADOX_BOOST_TERRAIN - 12] = sText_ParadoxBoostElectricTerrain,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1630,6 +1640,13 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_PERMANENCE] = STRINGID_PERMANENCE,
     [B_MSG_SWITCHIN_BLOCK_ON_ENTRY] = STRINGID_BLOCK_ON_ENTRY,
     [B_MSG_SWITCHIN_SUPREME_OVERLORD] = STRINGID_SUPREME_OVERLORD,
+};
+
+const u16 gParadoxBoostSourceIds[] =
+{
+    [B_MSG_PARADOX_BOOST_ITEM] = STRINGID_PARADOX_BOOST_ITEM,
+    [B_MSG_PARADOX_BOOST_WEATHER] = STRINGID_PARADOX_BOOST_WEATHER,
+    [B_MSG_PARADOX_BOOST_TERRAIN] = STRINGID_PARADOX_BOOST_TERRAIN,
 };
 
 const u16 gMissStringIds[] =

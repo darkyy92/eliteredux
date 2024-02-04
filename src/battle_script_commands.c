@@ -2345,7 +2345,7 @@ static void Cmd_adjustdamage(void)
         goto END;
     if (DoesDisguiseBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
         goto END;
-    if(DoesBattlerHasNoDamageHits(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+    if (RemainingNoDamageHits(gBattlerTarget))
         goto END;
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         goto END;
@@ -2562,18 +2562,20 @@ static void Cmd_healthbarupdate(void)
             PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
             FlagSet(FLAG_SYS_DISABLE_DAMAGE_DONE);
         }
-        else if (DoesBattlerHasNoDamageHits(gBattlerAttacker, gActiveBattler, gCurrentMove))
+        else if (RemainingNoDamageHits(gActiveBattler) > 0)
         {
-            u8 nodamageHits = gDisableStructs[gActiveBattler].noDamageHits;
-            
-            nodamageHits--;
+            u16 ability = GetNoDamageAbility(gActiveBattler);
+            u8 noDamageHits;
+            IncrementSingleUseAbilityCounter(gActiveBattler, ability, 1);
 
-            if(nodamageHits == 0)
+            noDamageHits = RemainingNoDamageHits(gActiveBattler);
+            
+            if(noDamageHits == 0)
                 PrepareStringBattle(STRINGID_BATTLERCANNOLONGERENDUREHITS, gActiveBattler);
-            else if(nodamageHits == 1)
+            else if(noDamageHits == 1)
                 PrepareStringBattle(STRINGID_BATTLERCANSTILLENDUREASINGLEHIT, gActiveBattler);
             else{
-                ConvertIntToDecimalStringN(gBattleTextBuff4, nodamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                ConvertIntToDecimalStringN(gBattleTextBuff4, noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
                 PrepareStringBattle(STRINGID_BATTLERCANSTILLENDUREHITS, gActiveBattler);
             }
 
@@ -2652,16 +2654,14 @@ static void Cmd_datahpupdate(void)
                 return;
             }
         }
-        else if (DoesBattlerHasNoDamageHits(gBattlerAttacker, gActiveBattler, gCurrentMove))
+        else if (RemainingNoDamageHits(gActiveBattler) > 0)
         {
-            if(gDisableStructs[gActiveBattler].noDamageHits != 0){
-                gDisableStructs[gActiveBattler].noDamageHits--;
-
-                if(gDisableStructs[gActiveBattler].noDamageHits == 0){
-                    gBattlescriptCurrInstr += 2;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BattlerCanNoLongerEndureHits;
-                }
+            IncrementSingleUseAbilityCounter(gActiveBattler, GetNoDamageAbility(gActiveBattler), 1);
+            if (RemainingNoDamageHits(gActiveBattler) <= 0)
+            {
+                gBattlescriptCurrInstr += 2;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_BattlerCanNoLongerEndureHits;
             }
         }
         else if (DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
@@ -8348,22 +8348,6 @@ static void RecalcBattlerStats(u32 battler, struct Pokemon *mon)
     gBattleMons[battler].type2 = RandomizeType(gBaseStats[gBattleMons[battler].species].type2, gBattleMons[battler].species, gBattleMons[battler].personality, FALSE);
 }
 
-static u32 GetHighestStatId(u32 battlerId)
-{
-    u32 i, highestId = STAT_ATK, highestStat = gBattleMons[battlerId].attack;
-
-    for (i = STAT_DEF; i < NUM_STATS; i++)
-    {
-        u16 *statVal = &gBattleMons[battlerId].attack + (i - 1);
-        if (*statVal > highestStat)
-        {
-            highestStat = *statVal;
-            highestId = i;
-        }
-    }
-    return highestId;
-}
-
 static bool32 IsRototillerAffected(u32 battlerId)
 {
     if (!IsBattlerAlive(battlerId))
@@ -10379,6 +10363,50 @@ static void Cmd_various(void)
     case VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE:
         gBattleScripting.tripleKickPower += gBattleMoves[gCurrentMove].power;
         break;
+    case VARIOUS_HANDLE_WEATHER_CHANGE:
+        gBattlescriptCurrInstr += 3;
+
+        if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_WEATHER_ACTIVE
+            && !(gBattleWeather & WEATHER_SUN_ANY))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+            SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_BOOST_NOT_ACTIVE);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+        }
+        else if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_BOOST_NOT_ACTIVE
+            && (gBattleWeather & WEATHER_SUN_ANY))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+            SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_WEATHER_ACTIVE);
+            PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(gActiveBattler));
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+        }
+        return;
+    case VARIOUS_HANDLE_TERRAIN_CHANGE:
+        gBattlescriptCurrInstr += 3;
+
+        if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_WEATHER_ACTIVE
+            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+            SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_BOOST_NOT_ACTIVE);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+        }
+        else if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_BOOST_NOT_ACTIVE
+            && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+            SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_WEATHER_ACTIVE);
+            PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(gActiveBattler));
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+        }
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
@@ -14728,14 +14756,30 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
         return TRUE;
 }
 
-bool32 DoesBattlerHasNoDamageHits(u8 battlerAtk, u8 battlerDef, u32 move)
+u8 RemainingNoDamageHits(u8 battler)
 {
-    bool8 ret = FALSE;
+    u8 counts = 0;
 
-    if(gDisableStructs[battlerDef].noDamageHits != 0)
-        ret = TRUE;
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_CHEATING_DEATH))
+        counts += 2 - GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH);
 
-    return ret;
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_GALLANTRY))
+        counts += 1 - GetSingleUseAbilityCounter(battler, ABILITY_GALLANTRY);
+
+    return counts;
+}
+
+u16 GetNoDamageAbility(u8 batter)
+{
+    if (BATTLER_HAS_ABILITY(batter, ABILITY_GALLANTRY)
+        && GetSingleUseAbilityCounter(batter, ABILITY_GALLANTRY) < 1)
+            return ABILITY_GALLANTRY;
+
+    if (BATTLER_HAS_ABILITY(batter, ABILITY_CHEATING_DEATH)
+        && GetSingleUseAbilityCounter(batter, ABILITY_CHEATING_DEATH) < 2)
+            return ABILITY_CHEATING_DEATH;
+
+    return ABILITY_NONE;
 }
 
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)

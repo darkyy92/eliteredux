@@ -854,6 +854,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (TestMoveFlags(move, FLAG_BALLISTIC))
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_GOOD_AS_GOLD:
+                if (IS_MOVE_STATUS(move) && battlerAtk != battlerDef)
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_FLOWER_VEIL:
                 if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect)))
                     RETURN_SCORE_MINUS(10);
@@ -1038,7 +1042,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         //Bulletproof
         if(BattlerHasInnate(battlerDef, ABILITY_BULLETPROOF) &&
-           TestMoveFlags(move, FLAG_BALLISTIC))
+           TestMoveFlags(move, FLAG_BALLISTIC) &&
+           battlerAtk != battlerDef)
+            RETURN_SCORE_MINUS(20);
+
+        //Bulletproof
+        if(BattlerHasInnate(battlerDef, ABILITY_GOOD_AS_GOLD) &&
+           IS_MOVE_STATUS(move))
             RETURN_SCORE_MINUS(20);
 
         //Dazzling and Queenly Majesty

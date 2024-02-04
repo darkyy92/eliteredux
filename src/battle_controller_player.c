@@ -2449,6 +2449,11 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
         }
     }
 
+    if (BATTLER_HAS_ABILITY(targetId, ABILITY_GOOD_AS_GOLD)
+        && IS_MOVE_STATUS(moveNum)
+        && targetId != userId)
+            moveNullified = TRUE;
+
     //Specific Moves
     switch(moveNum){
         case MOVE_LEECH_SEED:

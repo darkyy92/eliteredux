@@ -2151,6 +2151,14 @@
 	various \battler, VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE
 	.endm
 
+	.macro handleweatherchange battler:req
+	various \battler, VARIOUS_HANDLE_WEATHER_CHANGE
+	.endm
+
+	.macro handleterrainchange battler:req
+	various \battler, VARIOUS_HANDLE_TERRAIN_CHANGE
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

@@ -567,11 +567,11 @@
 #define ABILITY_PARROTING 545 // Placeholder
 #define ABILITY_BLOCK_ON_ENTRY 546 // Prevents opposing pokemon from fleeing on entry.
 #define ABILITY_PURIFYING_SALT 547 // Immune to status conditions. Take half damage from Ghost.
-#define ABILITY_PROTOSYNTHESIS 548 // Placeholder
-#define ABILITY_QUARK_DRIVE 549 // Placeholder
+#define ABILITY_PROTOSYNTHESIS 548 // Boosts highest stat in Sun or with Booster Energy.
+#define ABILITY_QUARK_DRIVE 549 // Boosts highest stat in Electric Terrain or with Booster Energy.
 #define ABILITY_WIND_POWER 550 // Placeholder
-#define ABILITY_MOMENTUM_PLUS 551 // Placeholder
-#define ABILITY_SPECIAL_SPEED_FORCE 552 // Placeholder
+#define ABILITY_MOMENTUM_PLUS 551 // Non-contact moves use the Speed stat for damage.
+#define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
 #define ABILITY_EGOIST 555 // Placeholder
@@ -592,17 +592,17 @@
 #define ABILITY_ILL_WILL 570 // Placeholder
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
 #define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
-#define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Placeholder
-#define ABILITY_DOUBLE_IRON_BARBS 574 // Placeholder
+#define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
+#define ABILITY_DOUBLE_IRON_BARBS 574 // 1/4 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Placeholder
-#define ABILITY_GOOD_AS_GOLD 576 // Placeholder
+#define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
 #define ABILITY_SHARING_IS_CARING 577 // Placeholder
 #define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
 #define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
 #define ABILITY_BEADS_OF_RUIN 581 // Lowers the Special Defense of other Pokemon by 25%.
 #define ABILITY_PERMAFROST_CLONE 582 // Weakens “supereffective” by 25%.
-#define ABILITY_GALLANTRY 583 // Placeholder
+#define ABILITY_GALLANTRY 583 // Gets no damage for first hit.
 #define ABILITY_ORICHALCUM_PULSE 584 // Summons sunlight in battle. +33% Attack in Sun.
 #define ABILITY_LEAF_GUARD_CLONE 585 // Blocks status in sunshine.
 #define ABILITY_WINGED_KING 586 // Ups “supereffective” by 33%.
