@@ -10718,6 +10718,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        //Molten Blades
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_MOLTEN_BLADES)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBeBurned(gBattlerAttacker, gBattlerTarget)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+			 && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) //Keen Edge
+             && (Random() % 100) < 20)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOLTEN_BLADES;
+                gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
 		// Poison Touch
 		if (BattlerHasInnate(battler, ABILITY_POISON_TOUCH)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -10738,6 +10759,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+
 		// Spectral Shroud
         if (BattlerHasInnate(battler, ABILITY_SPECTRAL_SHROUD)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -14293,6 +14315,12 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 
     // Keen Edge
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KEEN_EDGE)){
+		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+
+    // Molten Blades
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MOLTEN_BLADES)){
 		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
