@@ -611,16 +611,15 @@
 #define ABILITY_WEATHER_DOUBLE_BOOST 589 // Sun boosts Water. Rain boosts Fire.
 #define ABILITY_SWEEPING_EDGE_PLUS 590 // Sweeping Edge + Keen Edge.
 #define ABILITY_CELESTIAL_BLESSING 591 // Heal 1/12 of HP under Misty Terrain.
-#define ABILITY_CHILLING_TOUCH 592 // 30% chance to apply FRB on contact.
-#define ABILITY_MINION_CONTROL 593 // User controls it's minions, 1 extra hit per healthy party member.
-#define ABILITY_MOLTEN_BLADES 594 // Keen Edge + Keen Edge moves have a 20% chance to burn.
-#define ABILITY_HAUNTING_FRENZY 595 // 20% chance to flinch the opponent. +1 speed on kill.
-#define ABILITY_NOISE_CANCEL 596 // Protects the party from sound based moves.
-#define ABILITY_RADIO_JAM 597 // Sound based moves inflict disable.
-#define ABILITY_OLE 598 // 20% chance to evade physical moves.
-#define ABILITY_MALICIOUS 599 // Lower's the foe's highest ATK and DEF stat.
-#define ABILITY_DEAD_POWER 600 // 1.5x ATK boost and 20% chance to curse on contact moves.
-#define ABILITY_BRAWLING_WYVERN 601 // All DRAGON type moves are affected by Iron Fist
+#define ABILITY_MINION_CONTROL 592 // User controls it's minions, 1 extra hit per healthy party member.
+#define ABILITY_MOLTEN_BLADES 593 // Keen Edge + Keen Edge moves have a 20% chance to burn.
+#define ABILITY_HAUNTING_FRENZY 594 // 20% chance to flinch the opponent. +1 speed on kill.
+#define ABILITY_NOISE_CANCEL 595 // Protects the party from sound based moves.
+#define ABILITY_RADIO_JAM 596 // Sound based moves inflict disable.
+#define ABILITY_OLE 597 // 20% chance to evade physical moves.
+#define ABILITY_MALICIOUS 598 // Lower's the foe's highest ATK and DEF stat.
+#define ABILITY_DEAD_POWER 599 // 1.5x ATK boost and 20% chance to curse on contact moves.
+#define ABILITY_BRAWLING_WYVERN 600 // All DRAGON type moves are affected by Iron Fist
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_BRAWLING_WYVERN + 1)
 
