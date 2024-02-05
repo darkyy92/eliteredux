@@ -618,7 +618,7 @@
 #define ABILITY_HAUNTING_FRENZY 596 // 20% chance to flinch the opponent. +1 speed on kill.
 #define ABILITY_NOISE_CANCEL 597 // Protects the party from sound based moves.
 #define ABILITY_RADIO_JAM 598 // Sound based moves inflict disable.
-#define ABILITY_OLÉ 599 // 20% chance to evade physical moves.
+#define ABILITY_OLE 599 // 20% chance to evade physical moves.
 #define ABILITY_MALICIOUS 600 // Lower's the foe's highest ATK and DEF stat.
 #define ABILITY_DEAD_POWER 601 // 1.5x ATK boost and 20% chance to curse on contact moves.
 #define ABILITY_BRAWLING_WYVERN 602 // All DRAGON type moves are affected by Iron Fist
