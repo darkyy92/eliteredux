@@ -2038,7 +2038,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_SNOW_CLOAK, defAbility) && gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAIL_ANY)
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_OLE, defAbility))
+    if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_OLE, defAbility) && IS_MOVE_PHYSICAL(move))
         calc = (calc * 80) / 100; // 20% Ole! loss
 
     if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_TANGLED_FEET, defAbility) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
