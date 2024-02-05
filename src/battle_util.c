@@ -4648,7 +4648,7 @@ void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
     SetSingleUseAbilityCounter(battler, ability, GetSingleUseAbilityCounter(battler, ability) + value);
 }
 
-u8 GetAbilityState(u8 battler, u16 ability) {
+u32 GetAbilityState(u8 battler, u16 ability) {
     
     switch (BattlerHasInnateOrAbility(battler, ability))
     {
@@ -4661,7 +4661,7 @@ u8 GetAbilityState(u8 battler, u16 ability) {
     }
 }
 
-void SetAbilityState(u8 battler, u16 ability, u8 value) {
+void SetAbilityState(u8 battler, u16 ability, u32 value) {
     
     switch (BattlerHasInnateOrAbility(battler, ability))
     {
@@ -4676,7 +4676,7 @@ void SetAbilityState(u8 battler, u16 ability, u8 value) {
     }
 }
 
-void IncrementAbilityState(u8 battler, u16 ability, u8 value) {
+void IncrementAbilityState(u8 battler, u16 ability, u32 value) {
     SetAbilityState(battler, ability, GetAbilityState(battler, ability) + value);
 }
 
@@ -7236,6 +7236,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gBattleMoveDamage *= -1;
 					BattleScriptPushCursorAndCallback(BattleScript_SelfSufficientActivates);
 					effect++;
+                }
+            }
+
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_CUD_CHEW))
+            {
+                u32 itemId = GetAbilityState(battler, ABILITY_CUD_CHEW);
+                if (itemId & CUD_CHEW_CURRENT_TURN)
+                {
+                    SetAbilityState(battler, ABILITY_CUD_CHEW, itemId & ~CUD_CHEW_CURRENT_TURN);
+                }
+                else
+                {
+                    // attacker temporarily gains their item
+                    gBattleStruct->changedItems[battler] = gBattleMons[battler].item;
+                    gBattleMons[battler].item = itemId;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_CUD_CHEW;
+                    gBattlerAttacker = battler;
+                    
+                    BattleScriptPushCursorAndCallback(BattleScript_CudChew);
+                    effect++;
+
                 }
             }
 

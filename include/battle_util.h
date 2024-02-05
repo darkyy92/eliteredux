@@ -79,6 +79,8 @@ enum ParadoxBoostState
     PARADOX_WEATHER_ACTIVE,
 };
 
+#define CUD_CHEW_CURRENT_TURN (1 << 15)
+
 extern const struct TypePower gNaturalGiftTable[];
 
 s32 CountUsablePartyMons(u8 battlerId);
@@ -220,9 +222,9 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability);
 u8 GetSingleUseAbilityCounter(u8 battler, u16 ability);
 void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
-u8 GetAbilityState(u8 battler, u16 ability);
-void SetAbilityState(u8 battler, u16 ability, u8 value);
-void IncrementAbilityState(u8 battler, u16 ability, u8 value);
+u32 GetAbilityState(u8 battler, u16 ability);
+void SetAbilityState(u8 battler, u16 ability, u32 value);
+void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId);
 
 // Ability checks

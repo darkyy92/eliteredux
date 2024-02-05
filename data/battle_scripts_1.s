@@ -1473,6 +1473,14 @@ BattleScript_MoveEffectBugBite::
 	setbyte sBERRY_OVERRIDE, FALSE
 	return
 
+BattleScript_CudChew::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	setbyte sBERRY_OVERRIDE, TRUE   @ override the requirements for eating berries
+	consumeberry BS_ATTACKER, TRUE  @ consume the berry, then restore the item from changedItems
+	setbyte sBERRY_OVERRIDE, FALSE
+	end3
+
 BattleScript_EffectCoreEnforcer:
 	setmoveeffect MOVE_EFFECT_CORE_ENFORCER | MOVE_EFFECT_CERTAIN
 	goto BattleScript_EffectHit

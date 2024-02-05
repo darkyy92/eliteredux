@@ -7686,7 +7686,7 @@ static void Cmd_setgravity(void)
 static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
 {
     if (ItemId_GetPocket(itemId) == POCKET_BERRIES
-        && GetBattlerAbility(battlerId) == ABILITY_CHEEK_POUCH
+        && BATTLER_HAS_ABILITY(battlerId, ABILITY_CHEEK_POUCH)
         && !BATTLER_HEALING_BLOCKED(battlerId)
         && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
         && !BATTLER_MAX_HP(battlerId))
@@ -7701,6 +7701,17 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
         return TRUE;
     }
     return FALSE;
+}
+
+static void SetCudChew(u32 battlerId, u32 itemId)
+{
+    if (ItemId_GetPocket(itemId) == POCKET_BERRIES
+        && BATTLER_HAS_ABILITY(battlerId, ABILITY_CUD_CHEW)
+        && GetAbilityState(battlerId, ABILITY_CUD_CHEW) == 0
+        && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]])
+    {
+        SetAbilityState(battlerId, ABILITY_CUD_CHEW, itemId | CUD_CHEW_CURRENT_TURN);
+    }
 }
 
 static void Cmd_removeitem(void)
