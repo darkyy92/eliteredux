@@ -7240,6 +7240,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            // Self Sufficient
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_CELESTIAL_BLESSING)){
+                if(!BATTLER_MAX_HP(battler) && 
+                   !BATTLER_HEALING_BLOCKED(gActiveBattler) && 
+                   gDisableStructs[battler].isFirstTurn != 2 &&
+                   IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
+                {
+                    u16 abilityToCheck = ABILITY_CELESTIAL_BLESSING; //For easier copypaste
+
+                    BattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CELESTIAL_BLESSING;
+                    
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 12;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptPushCursorAndCallback(BattleScript_SelfSufficientActivates);
+                    effect++;
+                }
+            }
+
             if (BATTLER_HAS_ABILITY(battler, ABILITY_CUD_CHEW))
             {
                 u32 itemId = GetAbilityState(battler, ABILITY_CUD_CHEW);
