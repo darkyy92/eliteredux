@@ -452,6 +452,7 @@ static const u8 sText_PkmnRaisedSpecialAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PRE
 static const u8 sText_PkmnRaisedSpecialDefense[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Special Defense!");
 static const u8 sText_InflatablePkmnRaisedDefenses[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Inflatable\nraised its Defenses!");
 static const u8 sText_AngerPointsPkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Anger Point\nraised its Attack!");
+static const u8 sText_TippingPointsPkmnRaisedSpecialAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Tipping Point\nraised its Special Attack!");
 static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} regained\nhealth!");
 
 static const u8 sText_AttackerBecameInfected[] = _("{B_ATK_NAME_WITH_PREFIX} became\ninfected!");
@@ -541,6 +542,7 @@ static const u8 sText_Trainer2LoseText[];
 static const s8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} endured\nthe hit using its ability!");
 static const s8 sText_PowerHerbActivation[] = _("{B_ATK_NAME_WITH_PREFIX} became fully charged\ndue to its {B_LAST_ITEM}!");
 static const s8 sText_HurtByItem[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby its {B_LAST_ITEM}!");
+static const s8 sText_HurtByAbility[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby its ability!");
 static const s8 sText_BadlyPoisonedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was badly \npoisoned by the {B_LAST_ITEM}!");
 static const s8 sText_BurnedByItem[] = _("{B_EFF_NAME_WITH_PREFIX} was burned\nby the {B_LAST_ITEM}!");
 static const s8 sText_TargetAbilityActivates[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY} activates!");
@@ -564,6 +566,7 @@ static const u8 sText_PkmnSwitchedStatChanges[] = _("{B_ATK_NAME_WITH_PREFIX} sw
 static const u8 sText_PkmnSurroundedWithVeilOfWater[] = _("{B_ATK_NAME_WITH_PREFIX} surrounded itself\nwith a veil of water!");
 static const u8 sText_PkmnLevitatedOnElectromagnetism[] = _("{B_ATK_NAME_WITH_PREFIX} levitated on\nelectromagnetism!");
 static const u8 sText_PkmnTwistedDimensions[] = _("{B_ATK_NAME_WITH_PREFIX} twisted\nthe dimensions!");
+static const u8 sText_PkmnInverseDimensions[] = _("{B_ATK_NAME_WITH_PREFIX} inverted\nthe dimensions!");
 static const u8 sText_PointedStonesFloat[] =_("Pointed stones float in the air\naround {B_DEF_TEAM2} team!");
 static const u8 sText_CloakedInMysticalMoonlight[] =_("It became cloaked in mystical\nmoonlight!");
 static const u8 sText_TrappedBySwirlingMagma[] =_("{B_DEF_NAME_WITH_PREFIX} became\ntrapped by swirling magma!");
@@ -625,9 +628,11 @@ static const u8 sText_ForewarnActivates[] = _("Ability alerted {B_SCR_ACTIVE_NAM
 static const u8 sText_IceBodyHpGain[] = _("{B_ATK_NAME_WITH_PREFIX}'s Ice Body\nhealed it a little bit!");
 static const u8 sText_SnowWarningHail[] = _("It started to hail!");
 static const u8 sText_FriskActivates[] = _("{B_ATK_NAME_WITH_PREFIX} frisked {B_DEF_NAME_WITH_PREFIX} and\nfound its {B_LAST_ITEM}!");
+static const u8 sText_RetrieverExits[] = _("{B_ATK_NAME_WITH_PREFIX} retrieved\nits {B_LAST_ITEM}!");
 static const u8 sText_UnnerveEnters[] = _("The opposing team is too nervous\nto eat Berries!");
 static const u8 sText_HarvestBerry[] = _("{B_ATK_NAME_WITH_PREFIX} harvested\nits {B_LAST_ITEM}!");
 static const u8 sText_LastAbilityRaisedBuff1[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability\nraised its {B_BUFF1}!");
+static const u8 sText_LastAbilityLoweredBuff1[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability\nlowered its {B_BUFF1}!");
 static const u8 sText_MagicBounceActivates[] = _("The {B_DEF_NAME_WITH_PREFIX} bounced the\n{B_ATK_NAME_WITH_PREFIX} back!");
 static const u8 sText_ProteanTypeChange[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY} transformed\nit into the {B_BUFF1} type!");
 static const u8 sText_SymbiosisItemPass[] = _("{B_ATK_NAME_WITH_PREFIX} passed its {B_LAST_ITEM}\nto {B_SCR_ACTIVE_NAME_WITH_PREFIX} through {B_ATK_ABILITY}!");
@@ -719,6 +724,7 @@ static const u8 sText_ASandstormKickedUp[] = _("A sandstorm kicked up!");
 static const u8 sText_PkmnsWillPerishIn3Turns[] = _("Both Pokémon will perish\nin three turns!");
 static const u8 sText_AbilityRaisedStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s ability\nraised its {B_BUFF1}!");
 static const u8 sText_AsOneEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has two Abilities!");
+static const u8 sText_CrownedKingEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has three Abilities!");
 static const u8 sText_CuriousMedicineEnters[] = _("{B_EFF_NAME_WITH_PREFIX}'s\nstat changes were reset!");
 static const u8 sText_CanActFaster[] = _("{B_ATK_NAME_WITH_PREFIX} can act faster,\nthanks to its ability!");
 static const u8 sText_CanActFasterItem[] = _("{B_ATK_NAME_WITH_PREFIX} can act faster,\nthanks to its {B_BUFF1}!");
@@ -767,6 +773,7 @@ static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the a
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_RegeneratorExits[] = _("Regenerator cured some of\n{B_ATK_NAME_WITH_PREFIX}'s health!");
 static const u8 sText_NaturalCureExits[] = _("Natural Cure cured\n{B_ATK_NAME_WITH_PREFIX}'s status!");
+static const u8 sText_NaturalRecoveryExits[] = _("Natural Recovery cured\n{B_ATK_NAME_WITH_PREFIX}'s status!");
 static const u8 sText_SelfRepairExits[] = _("Self Repair cured\n{B_ATK_NAME_WITH_PREFIX}'s status!");
 static const u8 sText_BattlerInnateRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nraised its {B_BUFF1}!");
 static const u8 sText_BattlerAddedTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF2}-type!");
@@ -824,7 +831,16 @@ static const u8 sText_AttackerAccuracySharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX
 static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s Evasiveness\nsharply rose!");
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
-static const u8 sText_InverseRoomEnds[] = _("The inversed dimensions returned to\nnormal!");
+static const u8 sText_InverseRoomEnds[] = _("The inverted dimensions returned to\nnormal!");
+static const u8 sText_Permanence[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is preventing\nthe opposing team from healing!");
+static const u8 sText_BerserkDNA[] = _("{B_ATK_NAME_WITH_PREFIX} goes\nberserk!");
+static const u8 sText_BlockOnEntry[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} blocks\nthe opposing team from fleeing!");
+static const u8 sText_SupremeOverlord[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} gained\nstrength from the fallen!");
+static const u8 sText_ParadoxBoost[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\nwas boosted!");
+static const u8 sText_ParadoxBoostEnd[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\nreturns to normal!");
+static const u8 sText_ParadoxBoostItem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s uses\nits Booster Energy!");
+static const u8 sText_ParadoxBoostSun[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the harsh sunlight!");
+static const u8 sText_ParadoxBoostElectricTerrain[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the electric terrain!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -922,6 +938,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_NEUTRALIZINGGASOVER - 12] = sText_NeutralizingGasOver,
     [STRINGID_REGENERATOR_EXITS - 12] = sText_RegeneratorExits,
     [STRINGID_NATURAL_CURE_EXITS - 12] = sText_NaturalCureExits,
+    [STRINGID_NATURAL_RECOVERY_EXITS - 12] = sText_NaturalRecoveryExits,
     [STRINGID_SELF_REPAIR_EXITS - 12] = sText_SelfRepairExits,
     [STRINGID_NEUTRALIZINGGASENTERS - 12] = sText_NeutralizingGasEnters,
     [STRINGID_BATTLERTYPECHANGEDTO - 12] = sText_BattlerTypeChangedTo,
@@ -1371,6 +1388,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ENDUREDSTURDY - 12] = sText_EnduredViaSturdy,
     [STRINGID_POWERHERB - 12] = sText_PowerHerbActivation,
     [STRINGID_HURTBYITEM - 12] = sText_HurtByItem,
+    [STRINGID_HURTBYABILITY - 12] = sText_HurtByAbility,
     [STRINGID_PSNBYITEM - 12] = sText_BadlyPoisonedByItem,
     [STRINGID_BRNBYITEM - 12] = sText_BurnedByItem,
     [STRINGID_DEFABILITYIN - 12] = sText_TargetAbilityActivates,
@@ -1457,6 +1475,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_UNNERVEENTERS - 12] = sText_UnnerveEnters,
     [STRINGID_HARVESTBERRY - 12] = sText_HarvestBerry,
     [STRINGID_LASTABILITYRAISEDSTAT - 12] = sText_LastAbilityRaisedBuff1,
+    [STRINGID_LASTABILITYLOWEREDSTAT - 12] = sText_LastAbilityLoweredBuff1,
     [STRINGID_MAGICBOUNCEACTIVATES - 12] = sText_MagicBounceActivates,
     [STRINGID_PROTEANTYPECHANGE - 12] = sText_ProteanTypeChange,
     [STRINGID_SYMBIOSISITEMPASS - 12] = sText_SymbiosisItemPass,
@@ -1526,6 +1545,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDATTACK - 12] = sText_PkmnRaisedAttack,
     [STRINGID_INFLATABLEPKMNRAISEDDEFENSE - 12] = sText_InflatablePkmnRaisedDefenses,
     [STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
+    [STRINGID_TIPPINGPOINTSPKMNRAISEDSPATTACK - 12] = sText_TippingPointsPkmnRaisedSpecialAttack,
     [STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
     [STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
     [STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
@@ -1540,6 +1560,18 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNRAISEDSPECIALATTACK - 12] = sText_PkmnRaisedSpecialAttack,
     [STRINGID_PKMNRAISEDSPECIALDEFENSE - 12] = sText_PkmnRaisedSpecialDefense,
     [STRINGID_ATTACKERBECAMEINFECTED - 12] = sText_AttackerBecameInfected,
+    [STRINGID_SETUPINVERSEROOM - 12] = sText_PkmnInverseDimensions,
+    [STRINGID_CROWNEDKINGENTERS - 12] = sText_CrownedKingEnters,
+    [STRINGID_PERMANENCE - 12] = sText_Permanence,
+    [STRINGID_BERSERKDNA - 12] = sText_BerserkDNA,
+    [STRINGID_RETRIEVEREXITS - 12] = sText_RetrieverExits,
+    [STRINGID_BLOCK_ON_ENTRY - 12] = sText_BlockOnEntry,
+    [STRINGID_SUPREME_OVERLORD - 12] = sText_SupremeOverlord,
+    [STRINGID_PARADOX_BOOST - 12] = sText_ParadoxBoost,
+    [STRINGID_PARADOX_BOOST_END - 12] = sText_ParadoxBoostEnd,
+    [STRINGID_PARADOX_BOOST_ITEM - 12] = sText_ParadoxBoostItem,
+    [STRINGID_PARADOX_BOOST_WEATHER - 12] = sText_ParadoxBoostSun,
+    [STRINGID_PARADOX_BOOST_TERRAIN - 12] = sText_ParadoxBoostElectricTerrain,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1604,6 +1636,17 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
     [B_MSG_SWITCHIN_LETHARGY] = STRINGID_LETHARGYTENTERS,
+    [B_MSG_SWITCHIN_CROWNEDKING] = STRINGID_CROWNEDKINGENTERS,
+    [B_MSG_SWITCHIN_PERMANENCE] = STRINGID_PERMANENCE,
+    [B_MSG_SWITCHIN_BLOCK_ON_ENTRY] = STRINGID_BLOCK_ON_ENTRY,
+    [B_MSG_SWITCHIN_SUPREME_OVERLORD] = STRINGID_SUPREME_OVERLORD,
+};
+
+const u16 gParadoxBoostSourceIds[] =
+{
+    [B_MSG_PARADOX_BOOST_ITEM] = STRINGID_PARADOX_BOOST_ITEM,
+    [B_MSG_PARADOX_BOOST_WEATHER] = STRINGID_PARADOX_BOOST_WEATHER,
+    [B_MSG_PARADOX_BOOST_TERRAIN] = STRINGID_PARADOX_BOOST_TERRAIN,
 };
 
 const u16 gMissStringIds[] =
@@ -2005,6 +2048,8 @@ const u16 gRoomsStringIds[] =
     STRINGID_PKMNTWISTEDDIMENSIONS, STRINGID_TRICKROOMENDS,
     STRINGID_SWAPSDEFANDSPDEFOFALLPOKEMON, STRINGID_WONDERROOMENDS,
     STRINGID_HELDITEMSLOSEEFFECTS, STRINGID_MAGICROOMENDS,
+    STRINGID_HELDITEMSLOSEEFFECTS, STRINGID_MAGICROOMENDS,
+    STRINGID_INVERSEROOMACTIVATED, STRINGID_INVERSEROOMENDS,
     STRINGID_EMPTYSTRING3
 };
 
@@ -2017,6 +2062,13 @@ const u16 gStatusConditionsStringIds[] =
     STRINGID_PKMNFELLASLEEP,
     STRINGID_PKMNGOTFROSTBITE,
     STRINGID_PKMNSTARTBLEED,
+};
+
+const u16 gCureStatusOnExitStringIds[] =
+{
+    STRINGID_NATURAL_CURE_EXITS,
+    STRINGID_SELF_REPAIR_EXITS,
+    STRINGID_NATURAL_RECOVERY_EXITS,
 };
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");

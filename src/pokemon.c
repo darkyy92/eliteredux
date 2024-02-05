@@ -6798,6 +6798,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
     u16 currentMap;
+    u16 actualSpecies = species;
 
     if (heldItem == ITEM_ENIGMA_BERRY){
         #ifndef FREE_ENIGMA_BERRY
@@ -6816,6 +6817,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     /*Old code with Eviolite preventing evolutions
     if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE || ItemId_GetId(heldItem) == ITEM_EVIOLITE) && mode != EVO_MODE_ITEM_CHECK)
         return SPECIES_NONE;*/
+
+    if (IsEeveelution(species)) {
+        species = SPECIES_EEVEE;
+    }
 
     switch (mode)
     {
@@ -7013,6 +7018,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             case EVO_ITEM:
                 if (gEvolutionTable[species][i].param == evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                if (targetSpecies == actualSpecies) continue;
                 break;
             case EVO_ITEM_FEMALE:
                 if (GetMonGender(mon) == MON_FEMALE && gEvolutionTable[species][i].param == evolutionItem)
@@ -7899,7 +7905,7 @@ u8 GetNumberOfTutorMoves(struct Pokemon *mon)
     }
 
     //New Tutor Moves
-    for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    for (i = 0; i< MAX_TUTOR_MOVE_COUNT; i++)
     {
         if (!MonKnowsMove(mon, GetNewTutorMove(species, i)) && 
             gBattleMoves[GetNewTutorMove(species, i)].effect != EFFECT_PLACEHOLDER && 
@@ -7934,7 +7940,7 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     }
 
     //New Tutor Moves
-    for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    for (i = 0; i< MAX_TUTOR_MOVE_COUNT; i++)
     {
         if (!MonKnowsMove(mon, RandomizeMoves(GetNewTutorMove(species, i), species, personality)) && 
             gBattleMoves[GetNewTutorMove(species, i)].effect != EFFECT_PLACEHOLDER && GetNewTutorMove(species, i) != MOVE_NONE)
@@ -9323,6 +9329,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_FLOWER_GIFT            &&
        innate != ABILITY_AS_ONE_ICE_RIDER       &&
        innate != ABILITY_AS_ONE_SHADOW_RIDER    &&
+       innate != ABILITY_CROWNED_KING           &&
        #ifdef BALANCE_RANDOMIZER_ABILITIES
        innate != ABILITY_ANGELS_WRATH           &&
        #endif
@@ -9351,6 +9358,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
               randomizedInnate == ABILITY_ICE_FACE              ||
               randomizedInnate == ABILITY_AS_ONE_ICE_RIDER      ||
               randomizedInnate == ABILITY_AS_ONE_SHADOW_RIDER   ||
+              randomizedInnate == ABILITY_CROWNED_KING          ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
               randomizedInnate == ABILITY_COMATOSE              ||
               randomizedInnate == ABILITY_TRUANT                ||
@@ -9412,6 +9420,7 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
               randomizedAbility == ABILITY_ICE_FACE             ||
               randomizedAbility == ABILITY_AS_ONE_ICE_RIDER     ||
               randomizedAbility == ABILITY_AS_ONE_SHADOW_RIDER  ||
+              randomizedAbility == ABILITY_CROWNED_KING         ||
               #ifdef BALANCE_RANDOMIZER_ABILITIES
               randomizedAbility == ABILITY_COMATOSE             ||
               randomizedAbility == ABILITY_WONDER_GUARD         ||
@@ -9895,4 +9904,22 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else
         return TRUE;
+}
+
+bool8 IsEeveelution(u16 species) 
+{
+    switch (species) {
+        case SPECIES_VAPOREON:
+        case SPECIES_JOLTEON:
+        case SPECIES_FLAREON:
+        case SPECIES_UMBREON:
+        case SPECIES_ESPEON:
+        case SPECIES_LEAFEON:
+        case SPECIES_GLACEON:
+        case SPECIES_SYLVEON:
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
 }

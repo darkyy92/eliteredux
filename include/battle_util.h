@@ -45,11 +45,24 @@
 #define BATTLER_ABILITY    1
 #define BATTLER_INNATE     2
 
+#define WEATHER_DURATION                8
+#define WEATHER_DURATION_EXTENDED       12
+#define TERRAIN_DURATION                8
+#define TERRAIN_DURATION_EXTENDED       12
+#define GRAVITY_DURATION                5
+#define GRAVITY_DURATION_EXTENDED       8
+#define TRICK_ROOM_DURATION             5
+#define TRICK_ROOM_DURATION_SHORT       3
+#define WONDER_ROOM_DURATION            5
+#define MAGIC_ROOM_DURATION             5
+#define INVERSE_ROOM_DURATION           5
+#define INVERSE_ROOM_DURATION_SHORT     3
+
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))
 #define BATTLER_HAS_ABILITY_FAST(battlerId, abilityToCheck, battlerAbility) ((battlerAbility == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster
 
-#define BATTLER_HEALING_BLOCKED(battlerId) (gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].status1 & STATUS1_BLEED)
+#define BATTLER_HEALING_BLOCKED(battlerId) (gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(battlerId, ABILITY_PERMANENCE))
 
 // for Natural Gift and Fling
 struct TypePower
@@ -57,6 +70,13 @@ struct TypePower
     u8 type;
     u8 power;
     u16 effect;
+};
+
+enum ParadoxBoostState
+{
+    PARADOX_BOOST_NOT_ACTIVE = 0,
+    PARADOX_BOOSTER_ENERGY,
+    PARADOX_WEATHER_ACTIVE,
 };
 
 extern const struct TypePower gNaturalGiftTable[];
@@ -138,7 +158,7 @@ u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 u32 GetBattlerWeight(u8 battlerId);
 s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags);
 s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 *typeEffectivenessModifier);
-u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags);
+u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags);
 u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities);
 u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef, u8 leveldef);
 u16 GetTypeModifier(u8 atkType, u8 defType);
@@ -195,6 +215,15 @@ bool8 isMagicRoomActive(void);
 bool8 isWonderRoomActive(void);
 bool32 TryPrimalReversion(u8 battlerId);
 bool8 HasAnyLoweredStat(u8 battler);
+u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isAttack, bool8 isCrit, bool8 isUnaware, bool8 calculatingSecondary);
+bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability);
+u8 GetSingleUseAbilityCounter(u8 battler, u16 ability);
+void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
+void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
+u8 GetAbilityState(u8 battler, u16 ability);
+void SetAbilityState(u8 battler, u16 ability, u8 value);
+void IncrementAbilityState(u8 battler, u16 ability, u8 value);
+u8 GetHighestStatId(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

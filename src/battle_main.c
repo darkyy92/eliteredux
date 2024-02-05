@@ -205,6 +205,7 @@ EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
 EWRAM_DATA u32 gSideStatuses[2] = {0};
+EWRAM_DATA u8 gFaintedMonCount[2] = {0};
 EWRAM_DATA struct SideTimer gSideTimers[2] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
@@ -3235,6 +3236,7 @@ static void BattleStartClearSetData(void)
     memset(&gDisableStructs, 0, sizeof(gDisableStructs));
     memset(&gFieldTimers, 0, sizeof(gFieldTimers));
     memset(&gSideStatuses, 0, sizeof(gSideStatuses));
+    memset(&gFaintedMonCount, 0, sizeof(gFaintedMonCount));
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gWishFutureKnock, 0, sizeof(gWishFutureKnock));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
@@ -3245,7 +3247,6 @@ static void BattleStartClearSetData(void)
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
         gDisableStructs[i].hasBeenOnBattle = FALSE;
-        gDisableStructs[i].noDamageHits = 0;
         gLastMoves[i] = 0;
         gLastLandedMoves[i] = 0;
         gLastHitByType[i] = 0;
@@ -3289,7 +3290,6 @@ static void BattleStartClearSetData(void)
     gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
     gBattleScripting.battlerPopupOverwrite = MAX_BATTLERS_COUNT;
     gBattleScripting.forceFalseSwipeEffect = 0;
-    gBattleScripting.doublehealthRestore = 0;
     gBattleScripting.switchInBattlerOverwrite = MAX_BATTLERS_COUNT;
     gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
     gBattleScripting.monCaught = FALSE;
@@ -3518,7 +3518,6 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].statFell = FALSE;
     gProtectStructs[gActiveBattler].pranksterElevated = FALSE;
     gDisableStructs[gActiveBattler].hasBeenOnBattle = FALSE;
-    gDisableStructs[gActiveBattler].noDamageHits = 0;
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 
@@ -4787,7 +4786,7 @@ void SwapTurnOrder(u8 id1, u8 id2)
     SWAP(gBattlerByTurnOrder[id1], gBattlerByTurnOrder[id2], temp);
 }
 
-u32 GetBattlerTotalSpeedStat(u8 battlerId)
+u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
 {
     u32 speed = gBattleMons[battlerId].speed;
     u32 ability = GetBattlerAbility(battlerId);
@@ -4796,45 +4795,79 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-        if ((ability == ABILITY_SWIFT_SWIM || BattlerHasInnate(battlerId, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SWIFT_SWIM, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_CHLOROPHYLL || BattlerHasInnate(battlerId, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SEABORNE, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_BIG_LEAVES || BattlerHasInnate(battlerId, ABILITY_BIG_LEAVES)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_CHLOROPHYLL, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_SAND_RUSH   || BattlerHasInnate(battlerId, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_BIG_LEAVES, ability) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed = (speed * 150) / 100;
 
-        if ((ability == ABILITY_SLUSH_RUSH  || BattlerHasInnate(battlerId, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SAND_RUSH, ability) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+            speed = (speed * 150) / 100;
+
+        if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLUSH_RUSH, ability) && gBattleWeather & WEATHER_HAIL_ANY)
             speed = (speed * 150) / 100;
     }
+    
+    if (GetAbilityState(battlerId, ABILITY_PROTOSYNTHESIS) > 0
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
+    
+    if (GetAbilityState(battlerId, ABILITY_QUARK_DRIVE) > 0
+        && GetHighestStatId(battlerId) == STAT_SPEED)
+        speed = speed * 3 / 2;
 
     // other abilities
-    if ((ability == ABILITY_QUICK_FEET  || BattlerHasInnate(battlerId, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_QUICK_FEET, ability) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
 
-    if ((ability == ABILITY_SURGE_SURFER || BattlerHasInnate(battlerId, ABILITY_SURGE_SURFER)) && GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SURGE_SURFER, ability) && GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
         speed = (speed * 150) / 100;
 
-    if ((ability == ABILITY_SLOW_START  || BattlerHasInnate(battlerId, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLOW_START, ability) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 
-    if ((ability == ABILITY_VIOLENT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VIOLENT_RUSH)) && gDisableStructs[battlerId].isFirstTurn)
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SPECIAL_VIOLENT_RUSH, ability) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SHOWDOWN_MODE, ability) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
 	
-	if (ability == ABILITY_LEAD_COAT || BattlerHasInnate(battlerId, ABILITY_LEAD_COAT))
-        speed *= 0.9;
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LEAD_COAT, ability))
+        speed  = speed * 9 / 10;
 	
-	/*if ((ability == ABILITY_NOCTURNAL || BattlerHasInnate(battlerId, ABILITY_NOCTURNAL)) && !IsCurrentlyDay())
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_CHROME_COAT, ability))
+        speed  = speed * 9 / 10;
+
+	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LIGHT_METAL, ability))
+        speed = (speed * 130) / 100;
+	
+	/*if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_NOCTURNAL, ability) && !IsCurrentlyDay())
         speed *= 1.1;
     */
 
-    // stat stages
-    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
-    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+    if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
+        speed *= 2;
+
+    // paralysis drop
+    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
+        speed /= (B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4);
+
+    if (calcType == TOTAL_SPEED_PRIMARY) return speed;
+
+    // various effects
+    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
+        speed *= 2;
+
+    if (calcType == TOTAL_SPEED_SECONDARY) return speed;
 
     // item effects
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
@@ -4846,28 +4879,38 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battlerId].species == SPECIES_DITTO && !(gBattleMons[battlerId].status2 & STATUS2_TRANSFORMED))
         speed *= 2;
 
-    // various effects
-    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
-        speed *= 2;
-    if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
-        speed *= 2;
-
-    // paralysis drop
-    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
-        speed /= (B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4);
+    // stat stages
+    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
+    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
 
     return speed;
 }
 
+u16 GetChosenMove(u32 battlerId)
+{
+    if (gProtectStructs[battlerId].noValidMoves)
+        return MOVE_STRUGGLE;
+    else
+        return gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+}
+
+u16 IsMyceliumMightActive(u32 battlerId)
+{
+    u16 ability = gBattleMons[battlerId].ability;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MYCELIUM_MIGHT, ability)) {
+        const struct BattleMove *move = &gBattleMoves[GetChosenMove(battlerId)];
+        return move->split == SPLIT_STATUS && move->target & !MOVE_TARGET_USER;
+    }
+    
+    return FALSE;
+}
+
 s8 GetChosenMovePriority(u32 battlerId, u32 target)
 {
-    u16 move;
+    u16 move = GetChosenMove(battlerId);
 
     gProtectStructs[battlerId].pranksterElevated = 0;
-    if (gProtectStructs[battlerId].noValidMoves)
-        move = MOVE_STRUGGLE;
-    else
-        move = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
 
     return GetMovePriority(battlerId, move, target);
 }
@@ -4881,36 +4924,20 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     if(BATTLER_HAS_ABILITY(battlerId, ABILITY_OPPORTUNIST) && gBattleMons[target].hp <= gBattleMons[target].maxHP / 2)
         priority++;
 
-	// Gale Wings
-    if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || BattlerHasInnate(battlerId, ABILITY_GALE_WINGS))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FLYING
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
-	// Flaming Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || BattlerHasInnate(battlerId, ABILITY_FLAMING_SOUL))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FIRE
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    #define GALE_WINGS_CLONE(ability, type) if (BATTLER_HAS_ABILITY(battlerId, ability) \
+                                                && GetTypeBeforeUsingMove(move, battlerId) == type \
+                                                && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId))) \
+                                                    priority++;
 
-	// Frozen Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || BattlerHasInnate(battlerId, ABILITY_FROZEN_SOUL))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ICE
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    GALE_WINGS_CLONE(ABILITY_GALE_WINGS, TYPE_FLYING)
+    GALE_WINGS_CLONE(ABILITY_FLAMING_SOUL, TYPE_FIRE)
+    GALE_WINGS_CLONE(ABILITY_EARLY_GRAVE, TYPE_GHOST)
+    GALE_WINGS_CLONE(ABILITY_FROZEN_SOUL, TYPE_ICE)
+    GALE_WINGS_CLONE(ABILITY_VOLT_RUSH, TYPE_ELECTRIC)
+    GALE_WINGS_CLONE(ABILITY_DARK_GALE_WINGS, TYPE_DARK)
+    GALE_WINGS_CLONE(ABILITY_WATER_GALE_WINGS, TYPE_WATER)
 
-    // Volt Rush
-	if ((GetBattlerAbility(battlerId) == ABILITY_VOLT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VOLT_RUSH))
-        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ELECTRIC
-        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
-    {
-        priority++;
-    }
+    #undef GALE_WINGS_CLONE
 
     // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || BattlerHasInnate(battlerId, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
@@ -4953,7 +4980,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
         case EFFECT_STRENGTH_SAP:
-            priority++; // priority += 3;
+            priority += 3;
             break;
         }
     }
@@ -4974,8 +5001,13 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
 		priority++;
 	}
 
+    if (move == MOVE_RAZOR_WIND && (gSideStatuses[0] & SIDE_STATUS_TAILWIND || gSideStatuses[1] & SIDE_STATUS_TAILWIND))
+        priority++;
+
     return priority;
 }
+
+#define MYCELIUM_MIGHT_AFFECTED(battler, move) (BATTLER_HAS_ABILITY(battler, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[move].split == SPLIT_STATUS && gBattleMoves[move].target & !MOVE_TARGET_USER)
 
 u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 {
@@ -4985,7 +5017,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     s8 priority1 = 0, priority2 = 0;
 
     // Battler 1
-    speedBattler1 = GetBattlerTotalSpeedStat(battler1);
+    speedBattler1 = GetBattlerTotalSpeedStat(battler1, TOTAL_SPEED_FULL);
     holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
 
     // Quick Draw
@@ -5001,7 +5033,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         gProtectStructs[battler1].usedCustapBerry = TRUE;
 
     // Battler 2
-    speedBattler2 = GetBattlerTotalSpeedStat(battler2);
+    speedBattler2 = GetBattlerTotalSpeedStat(battler2, TOTAL_SPEED_FULL);
     holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler2) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
@@ -5024,29 +5056,24 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 
     if (priority1 == priority2)
     {
-        // QUICK CLAW / CUSTAP - always first
-        // LAGGING TAIL - always last
-        // STALL - always last
-        
-        if (gProtectStructs[battler1].quickDraw && !gProtectStructs[battler2].quickDraw)
+        u8 b1GoFirst = gProtectStructs[battler1].quickDraw + gProtectStructs[battler1].usedCustapBerry;
+        u8 b2GoFirst = gProtectStructs[battler2].quickDraw + gProtectStructs[battler2].usedCustapBerry;
+        u8 b1GoLast  = (holdEffectBattler1 == HOLD_EFFECT_LAGGING_TAIL)
+                        + BATTLER_HAS_ABILITY(battler1, ABILITY_STALL)
+                        + BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS)
+                        + MYCELIUM_MIGHT_AFFECTED(battler1, GetChosenMove(battler1));
+        u8 b2GoLast  = (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL)
+                        + BATTLER_HAS_ABILITY(battler2, ABILITY_STALL)
+                        + BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS)
+                        + MYCELIUM_MIGHT_AFFECTED(battler2, GetChosenMove(battler2));
+
+        if (b1GoFirst > b2GoFirst)
             strikesFirst = 0;
-        else if (!gProtectStructs[battler1].quickDraw && gProtectStructs[battler2].quickDraw)
+        else if (b1GoFirst < b2GoFirst)
             strikesFirst = 1;
-        else if (gProtectStructs[battler1].usedCustapBerry && !gProtectStructs[battler2].usedCustapBerry)
-            strikesFirst = 0;
-        else if (gProtectStructs[battler2].usedCustapBerry && !gProtectStructs[battler1].usedCustapBerry)
+        else if (b1GoLast > b2GoLast)
             strikesFirst = 1;
-        else if (holdEffectBattler1 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler2 != HOLD_EFFECT_LAGGING_TAIL)
-            strikesFirst = 1;
-        else if (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler1 != HOLD_EFFECT_LAGGING_TAIL)
-            strikesFirst = 0;
-        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
-            strikesFirst = 1;
-        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
-            strikesFirst = 0;
-        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
-            strikesFirst = 1;
-        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
+        else if (b1GoLast < b2GoLast)
             strikesFirst = 0;
         else
         {
@@ -5227,6 +5254,9 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleMons[gActiveBattler].status2 &= ~(STATUS2_SUBSTITUTE);
 
         gSpecialStatuses[gActiveBattler].parentalBondOn = 0;
+        for (i = 0; i < NUM_INNATE_PER_SPECIES + 1; i++) {
+            gSpecialStatuses[gActiveBattler].turnAbilityTriggers[i] = 0;
+        }
     }
 
     gSideStatuses[0] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
@@ -5782,7 +5812,7 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
-
+#define HAS_ABILITY(abilityToCheck) (MonHasInnate(mon, abilityToCheck, disableRandomizer) || ability == abilityToCheck)
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
     u32 moveType, ateType, attackerAbility, tempstuff;
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
@@ -5821,35 +5851,48 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         else if (type2 != TYPE_MYSTERY)
             return type2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
     }
+    //Sand Song
+    if(HAS_ABILITY(ABILITY_SAND_SONG) && gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL){
+        return TYPE_GROUND;
+    }
 
-   if (gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && (   ((ability == ABILITY_PIXILATE        || MonHasInnate(mon, ABILITY_PIXILATE, disableRandomizer))        && (ateType = TYPE_FAIRY))
-                 || ((ability == ABILITY_REFRIGERATE     || MonHasInnate(mon, ABILITY_REFRIGERATE, disableRandomizer))     && (ateType = TYPE_ICE))
-                 || ((ability == ABILITY_AERILATE        || MonHasInnate(mon, ABILITY_AERILATE, disableRandomizer))        && (ateType = TYPE_FLYING))
-				 || ((ability == ABILITY_IMMOLATE         || MonHasInnate(mon, ABILITY_IMMOLATE, disableRandomizer))         && (ateType = TYPE_FIRE))
-				 || ((ability == ABILITY_SOLAR_FLARE     || MonHasInnate(mon, ABILITY_SOLAR_FLARE, disableRandomizer))     && (ateType = TYPE_FIRE))
-				 || ((ability == ABILITY_TECTONIZE       || MonHasInnate(mon, ABILITY_TECTONIZE, disableRandomizer))       && (ateType = TYPE_GROUND))
-				 || ((ability == ABILITY_FIGHT_SPIRIT    || MonHasInnate(mon, ABILITY_FIGHT_SPIRIT, disableRandomizer))    && (ateType = TYPE_FIGHTING))
-                 || ((ability == ABILITY_INTOXICATE       || MonHasInnate(mon, ABILITY_INTOXICATE, disableRandomizer))       && (ateType = TYPE_POISON))
-                 || ((ability == ABILITY_HYDRATE         || MonHasInnate(mon, ABILITY_HYDRATE, disableRandomizer))         && (ateType = TYPE_WATER))
-                 || (((ability == ABILITY_GALVANIZE)     || MonHasInnate(mon, ABILITY_GALVANIZE, disableRandomizer))       && (ateType = TYPE_ELECTRIC))
-                 || (((ability == ABILITY_POLLINATE)      || MonHasInnate(mon, ABILITY_POLLINATE, disableRandomizer))        && (ateType = TYPE_BUG))
-				 || ((ability == ABILITY_SPECTRAL_SHROUD || MonHasInnate(mon, ABILITY_SPECTRAL_SHROUD, disableRandomizer)) && (ateType = TYPE_GHOST))
-				 || ((ability == ABILITY_SPECTRALIZE     || MonHasInnate(mon, ABILITY_SPECTRALIZE, disableRandomizer))     && (ateType = TYPE_GHOST))
-                 || ((ability == ABILITY_MINERALIZE      || MonHasInnate(mon, ABILITY_MINERALIZE, disableRandomizer))      && (ateType = TYPE_ROCK))
-                 || ((ability == ABILITY_DRACONIZE       || MonHasInnate(mon, ABILITY_DRACONIZE, disableRandomizer))       && (ateType = TYPE_DRAGON))
-                 || ((ability == ABILITY_EMANATE         || MonHasInnate(mon, ABILITY_EMANATE, disableRandomizer))         && (ateType = TYPE_PSYCHIC))
+    //Requiem
+    if(HAS_ABILITY(ABILITY_BANSHEE) && gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL){
+        return TYPE_GHOST;
+    }
+
+    if (gBattleMoves[move].type == TYPE_NORMAL
+            && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+            && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+            && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+            && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+            && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
+            && (   (HAS_ABILITY(ABILITY_PIXILATE)          && (ateType = TYPE_FAIRY))
+                || (HAS_ABILITY(ABILITY_REFRIGERATE)       && (ateType = TYPE_ICE))
+                || (HAS_ABILITY(ABILITY_REFRIGERATOR)      && (ateType = TYPE_ICE))
+                || (HAS_ABILITY(ABILITY_AERILATE)          && (ateType = TYPE_FLYING))
+		        || (HAS_ABILITY(ABILITY_IMMOLATE)          && (ateType = TYPE_FIRE))
+			    || (HAS_ABILITY(ABILITY_SOLAR_FLARE)       && (ateType = TYPE_FIRE))
+				|| (HAS_ABILITY(ABILITY_TECTONIZE)         && (ateType = TYPE_GROUND))
+				|| (HAS_ABILITY(ABILITY_FIGHT_SPIRIT)      && (ateType = TYPE_FIGHTING))
+                || (HAS_ABILITY(ABILITY_INTOXICATE)        && (ateType = TYPE_POISON))
+                || (HAS_ABILITY(ABILITY_HYDRATE)           && (ateType = TYPE_WATER))
+                || (HAS_ABILITY(ABILITY_GALVANIZE)         && (ateType = TYPE_ELECTRIC))
+                || (HAS_ABILITY(ABILITY_POLLINATE)         && (ateType = TYPE_BUG))
+				|| (HAS_ABILITY(ABILITY_SPECTRAL_SHROUD)   && (ateType = TYPE_GHOST))
+				|| (HAS_ABILITY(ABILITY_SPECTRALIZE)       && (ateType = TYPE_GHOST))
+                || (HAS_ABILITY(ABILITY_MINERALIZE)        && (ateType = TYPE_ROCK))
+                || (HAS_ABILITY(ABILITY_DRACONIZE)         && (ateType = TYPE_DRAGON))
+                || (HAS_ABILITY(ABILITY_EMANATE)           && (ateType = TYPE_PSYCHIC))
+                || (HAS_ABILITY(ABILITY_ENLIGHTENED)       && (ateType = TYPE_PSYCHIC))
+                || (HAS_ABILITY(ABILITY_FERTILIZE)         && (ateType = TYPE_GRASS))
                 )
-             ){
+            ){
         return ateType;
     }
 
@@ -5857,39 +5900,36 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         return TYPE_DARK;
 	
 	//Crystallize
-	if(MonHasInnate(mon, ABILITY_CRYSTALLIZE, disableRandomizer) || ability == ABILITY_CRYSTALLIZE){
+	if(HAS_ABILITY(ABILITY_CRYSTALLIZE)){
 		if(gBattleMoves[move].type == TYPE_ROCK)
 			return TYPE_ICE;
 	}
-    //Sand Song
-    if(MonHasInnate(mon, ABILITY_SAND_SONG, disableRandomizer) || ability == ABILITY_SAND_SONG){
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            return TYPE_GROUND;
-    }
     //Normalize
-    if(MonHasInnate(mon, ABILITY_NORMALIZE, disableRandomizer) || ability == ABILITY_NORMALIZE){
+    if(HAS_ABILITY(ABILITY_NORMALIZE)){
         if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL)
         return TYPE_NORMAL;
     }
     //Liquid Voice
-    if(MonHasInnate(mon, ABILITY_LIQUID_VOICE, disableRandomizer) || ability == ABILITY_LIQUID_VOICE){
+    if(HAS_ABILITY(ABILITY_LIQUID_VOICE)){
         if (gBattleMoves[move].flags & FLAG_SOUND)
             return TYPE_WATER;
     }
 	//Fight Spirit
-	if(MonHasInnate(mon, ABILITY_FIGHT_SPIRIT, disableRandomizer)){
+	if(HAS_ABILITY(ABILITY_FIGHT_SPIRIT)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH)
 				return TYPE_FIGHTING;
 	}
 
     return gBattleMoves[move].type;
 }
+#undef HAS_ABILITY
 
 u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     u32 moveType, ateType, attackerAbility, tempstuff;
@@ -5934,7 +5974,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             return gBattleMons[battlerAtk].type3;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -5958,33 +5998,42 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 
     attackerAbility = GetBattlerAbility(battlerAtk);
     GET_MOVE_TYPE(move, moveType);
+
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL) || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
         return TYPE_ELECTRIC;
+    else if (gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAND_SONG))
+        return TYPE_GROUND;
+    else if (gBattleMoves[move].flags & FLAG_SOUND && moveType == TYPE_NORMAL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BANSHEE))
+        return TYPE_GHOST;
     else if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && (   ((attackerAbility == ABILITY_PIXILATE        || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))        && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE     || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))     && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE        || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))        && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_IMMOLATE         || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))         && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_SOLAR_FLARE     || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))     && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_TECTONIZE       || BattlerHasInnate(battlerAtk, ABILITY_TECTONIZE))       && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT    || BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT))    && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_INTOXICATE       || BattlerHasInnate(battlerAtk, ABILITY_INTOXICATE))       && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE         || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))         && (ateType = TYPE_WATER))
-                 || (((attackerAbility == ABILITY_GALVANIZE)     || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))       && (ateType = TYPE_ELECTRIC))
-                 || (((attackerAbility == ABILITY_POLLINATE)      || BattlerHasInnate(battlerAtk, ABILITY_POLLINATE))        && (ateType = TYPE_BUG))
-				 || ((attackerAbility == ABILITY_SPECTRAL_SHROUD || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)) && (ateType = TYPE_GHOST))
-				 || ((attackerAbility == ABILITY_SPECTRALIZE     || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))     && (ateType = TYPE_GHOST))
-                 || ((attackerAbility == ABILITY_MINERALIZE      || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))      && (ateType = TYPE_ROCK))
-                 || ((attackerAbility == ABILITY_DRACONIZE       || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))       && (ateType = TYPE_DRAGON))
-                 || ((attackerAbility == ABILITY_EMANATE         || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))       && (ateType = TYPE_PSYCHIC))
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
+             && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)        && (ateType = TYPE_FAIRY))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)     && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)    && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_AERILATE, attackerAbility)        && (ateType = TYPE_FLYING))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IMMOLATE, attackerAbility)        && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SOLAR_FLARE, attackerAbility)     && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_TECTONIZE, attackerAbility)       && (ateType = TYPE_GROUND))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FIGHT_SPIRIT, attackerAbility)    && (ateType = TYPE_FIGHTING))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INTOXICATE, attackerAbility)      && (ateType = TYPE_POISON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYDRATE, attackerAbility)         && (ateType = TYPE_WATER))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GALVANIZE, attackerAbility)       && (ateType = TYPE_ELECTRIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_POLLINATE, attackerAbility)       && (ateType = TYPE_BUG))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRAL_SHROUD, attackerAbility) && (ateType = TYPE_GHOST))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRALIZE, attackerAbility)     && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MINERALIZE, attackerAbility)      && (ateType = TYPE_ROCK))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DRACONIZE, attackerAbility)       && (ateType = TYPE_DRAGON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_EMANATE, attackerAbility)         && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ENLIGHTENED, attackerAbility)     && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FERTILIZE, attackerAbility)       && (ateType = TYPE_GRASS))
                 )
              )
         return ateType;
-	else if(gBattleMoves[move].type == TYPE_ROCK && (attackerAbility == ABILITY_CRYSTALLIZE || BattlerHasInnate(battlerAtk, ABILITY_CRYSTALLIZE)))
+	else if(gBattleMoves[move].type == TYPE_ROCK && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_CRYSTALLIZE, attackerAbility))
 		return TYPE_ICE;
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
@@ -5992,11 +6041,8 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && attackerAbility == ABILITY_NORMALIZE)
         return TYPE_NORMAL;
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-             (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
+             BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LIQUID_VOICE, attackerAbility))
         return TYPE_WATER;
-    else if (gBattleMoves[move].flags & FLAG_SOUND && 
-             (attackerAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
-        return TYPE_GROUND;
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
         return TYPE_ELECTRIC;
     else if (move == MOVE_AURA_WHEEL && gBattleMons[battlerAtk].species == SPECIES_MORPEKO_HANGRY)
@@ -6051,7 +6097,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | 0x80;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             gBattleStruct->dynamicMoveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -6080,27 +6126,41 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_ELECTRIC;
     }
+    else if (gBattleMoves[move].flags & FLAG_SOUND && gBattleMoves[move].type == TYPE_NORMAL && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SAND_SONG, attackerAbility))
+    {
+        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
+        gBattleStruct->ateBoost[battlerAtk] = 1;
+    }
+    else if (gBattleMoves[move].flags & FLAG_SOUND && gBattleMoves[move].type == TYPE_NORMAL && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_BANSHEE, attackerAbility))
+    {
+        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GHOST;
+        gBattleStruct->ateBoost[battlerAtk] = 1;
+    }
     else if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && (   ((attackerAbility == ABILITY_PIXILATE            || BattlerHasInnate(battlerAtk, ABILITY_PIXILATE))            && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE         || BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE))         && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE            || BattlerHasInnate(battlerAtk, ABILITY_AERILATE))            && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_IMMOLATE             || BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE))             && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_SOLAR_FLARE         || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE))         && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_TECTONIZE           || BattlerHasInnate(battlerAtk, ABILITY_TECTONIZE))           && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT        || BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT))        && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_INTOXICATE           || BattlerHasInnate(battlerAtk, ABILITY_INTOXICATE))           && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE             || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))             && (ateType = TYPE_WATER))
-                 || (((attackerAbility == ABILITY_GALVANIZE)         || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))           && (ateType = TYPE_ELECTRIC))
-                 || (((attackerAbility == ABILITY_POLLINATE)          || BattlerHasInnate(battlerAtk, ABILITY_POLLINATE))            && (ateType = TYPE_BUG))
-                 || (((attackerAbility == ABILITY_SPECTRAL_SHROUD)   || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD))     && (ateType = TYPE_GHOST))
-                 || (((attackerAbility == ABILITY_SPECTRALIZE)       || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))         && (ateType = TYPE_GHOST))
-                 || (((attackerAbility == ABILITY_MINERALIZE)        || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))          && (ateType = TYPE_ROCK))
-                 || (((attackerAbility == ABILITY_DRACONIZE)         || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))           && (ateType = TYPE_DRAGON))
-                 || (((attackerAbility == ABILITY_EMANATE)           || BattlerHasInnate(battlerAtk, ABILITY_EMANATE))             && (ateType = TYPE_PSYCHIC))
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
+             && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)            && (ateType = TYPE_FAIRY))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)         && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)        && (ateType = TYPE_ICE))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_AERILATE, attackerAbility)            && (ateType = TYPE_FLYING))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IMMOLATE, attackerAbility)            && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SOLAR_FLARE, attackerAbility)         && (ateType = TYPE_FIRE))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_TECTONIZE, attackerAbility)           && (ateType = TYPE_GROUND))
+				 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FIGHT_SPIRIT, attackerAbility)        && (ateType = TYPE_FIGHTING))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_INTOXICATE, attackerAbility)          && (ateType = TYPE_POISON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_HYDRATE, attackerAbility)             && (ateType = TYPE_WATER))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GALVANIZE, attackerAbility)           && (ateType = TYPE_ELECTRIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_POLLINATE, attackerAbility)           && (ateType = TYPE_BUG))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRAL_SHROUD, attackerAbility)     && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SPECTRALIZE, attackerAbility)         && (ateType = TYPE_GHOST))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MINERALIZE, attackerAbility)          && (ateType = TYPE_ROCK))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DRACONIZE, attackerAbility)           && (ateType = TYPE_DRAGON))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_EMANATE, attackerAbility)             && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ENLIGHTENED, attackerAbility)         && (ateType = TYPE_PSYCHIC))
+                 || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FERTILIZE, attackerAbility)           && (ateType = TYPE_GRASS))
                 )
              )
     {
@@ -6121,14 +6181,9 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-            (attackerAbility == ABILITY_LIQUID_VOICE || BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)))
+            BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_LIQUID_VOICE, attackerAbility))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
-    }
-    else if (gBattleMoves[move].flags & FLAG_SOUND && 
-            (attackerAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
-    {
-        gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
     }
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
     {
@@ -6146,7 +6201,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIRE;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -6158,7 +6214,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIRE;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -6178,7 +6235,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
 				ateType = TYPE_FIGHTING;
 				gBattleStruct->dynamicMoveType = 0x80 | ateType;
 				gBattleStruct->ateBoost[battlerAtk] = 1;

@@ -89,7 +89,7 @@
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
 #define MOVE_NAME_LENGTH 12
-#define LONG_MOVE_NAME_LENGTH 16
+#define LONG_MOVE_NAME_LENGTH 18
 #define NUM_QUESTIONNAIRE_WORDS 4
 
 #define MALE 0
@@ -144,7 +144,7 @@
 #define MACROS_PRINT_MGBA_MESSAGE                          0
 #define MACROS_FORCE_FALSE_SWIPE_EFFECT                    1
 #define MACROS_RESET_MULTIHIT_HITS                         2
-#define MACROS_GET_DOUBLE_HEALTH                           3
+// Missing 3
 #define MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1   4
 #define MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2   5
 #define MACROS_SAVE_ABILITY_TO_VARIABLE                    6

@@ -41,6 +41,9 @@
 #define sSWITCH_CASE                 gBattleScripting + 0x37 //switchCase
 #define sBERRY_OVERRIDE              gBattleScripting + 0x38 //overrideBerryRequirements
 #define sBATTLER_OVERRIDE            gBattleScripting + 0x39 //battlerPopupOverwrite
+#define sEFFECT_CHANCE               gBattleScripting + 0x3C //moveSecondaryEffectChance
+#define sLIMIT_MOVEEND               gBattleScripting + 0x3E //limitMoveend
+#define sSAVED_MOVEEND_STATE         gBattleScripting + 0x3F //replaceEndWithEnd3
 
 #define cMULTISTRING_CHOOSER         gBattleCommunication + 5
 #define cMISS_TYPE                   gBattleCommunication + 6
@@ -62,6 +65,7 @@
 #define BS_PLAYER2                  13
 #define BS_OPPONENT2                14
 #define BS_ABILITY_BATTLER          15
+#define BS_ABILITY_PARTNER          16
 
 // Cmd_accuracycheck
 #define NO_ACC_CALC_CHECK_LOCK_ON 0xFFFF
@@ -184,7 +188,7 @@
 #define VARIOUS_JUMP_IF_TERRAIN_AFFECTED        109
 #define VARIOUS_EERIE_SPELL_PP_REDUCE           110
 #define VARIOUS_JUMP_IF_TEAM_HEALTHY            111
-#define VARIOUS_TRY_HEAL_QUARTER_HP             112
+#define VARIOUS_TRY_HEAL_PERCENT_HP             112
 #define VARIOUS_REMOVE_TERRAIN                  113
 #define VARIOUS_JUMP_IF_PRANKSTER_BLOCKED       114
 #define VARIOUS_TRY_TO_CLEAR_PRIMAL_WEATHER     115
@@ -217,6 +221,13 @@
 #define VARIOUS_GET_BATTLER_SIDE                142
 #define VARIOUS_SET_WEATHER_GRAPHICS            143
 #define VARIOUS_TRY_ACTIVATE_JAWS_OF_CARNAGE    144
+#define VARIOUS_RAISE_HIGHEST_ATTACKING_STAT    145
+#define VARIOUS_TRY_ACTIVATE_SUPER_STRAIN       146
+#define VARIOUS_SET_DYNAMIC_TYPE                147
+#define VARIOUS_GOTO_ACTUAL_MOVE                148
+#define VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE     149
+#define VARIOUS_HANDLE_WEATHER_CHANGE           150
+#define VARIOUS_HANDLE_TERRAIN_CHANGE           151
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -239,6 +250,7 @@
 #define STAT_BUFF_ALLOW_PTR                 (1 << 0)   // If set, allow use of jumpptr. Set in every use of statbuffchange
 #define STAT_BUFF_NOT_PROTECT_AFFECTED      (1 << 5)
 #define STAT_BUFF_UPDATE_MOVE_EFFECT        (1 << 6)
+#define STAT_BUFF_DONT_SET_BUFFERS          (1 << 7)
 
 // stat change flags for Cmd_playstatchangeanimation
 #define STAT_CHANGE_NEGATIVE             (1 << 0)

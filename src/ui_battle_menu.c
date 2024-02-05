@@ -1682,7 +1682,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     GET_MOVE_TYPE(move, moveType);
 
     //Sets move power depending on the mon ability/stats
-    movePower = CalcMoveBasePowerAfterModifiers(move, sMenuDataPtr->battlerId, target, moveType, FALSE);
+    movePower = CalcMoveBasePowerAfterModifiers(move, 0, sMenuDataPtr->battlerId, target, moveType, FALSE);
 
     //MoveType2
     if(gBattleMoves[move].type2 != TYPE_MYSTERY && gBattleMoves[move].type2 != TYPE_NORMAL)
@@ -3597,7 +3597,7 @@ static void PrintSpeedTab(void)
         battlertoCheck = sBattlerByTurnOrder[firstMon + i];
         if(IsBattlerAlive(battlertoCheck)){
             u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[battlertoCheck].species, gBattleMons[battlertoCheck].personality);
-            u16 speed = GetBattlerTotalSpeedStat(battlertoCheck);
+            u16 speed = GetBattlerTotalSpeedStat(battlertoCheck, TOTAL_SPEED_FULL);
             species = gBattleMons[battlertoCheck].species;
             target = BATTLE_OPPOSITE(battlertoCheck);
             targetCurrentHp = gBattleMons[target].hp;

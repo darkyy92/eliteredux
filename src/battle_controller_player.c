@@ -1941,7 +1941,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         //Second Type
-        if(moveType2 != TYPE_NORMAL, moveType2 != TYPE_MYSTERY){
+        if(moveType2 != TYPE_NORMAL && moveType2 != TYPE_MYSTERY){
             if (illusionSpecies != SPECIES_NONE){
                 MulByTypeEffectiveness(&mod, moveNum, moveType2, targetId, gBaseStats[illusionSpecies].type1, userId, FALSE);
 
@@ -1997,6 +1997,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
 
                 if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
+                    abilityNullifiesDamage = TRUE;
+
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_EARTH_EATER, moveNum))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ELECTRIC:
@@ -2267,6 +2270,11 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                   (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_RADIANCE, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
                     abilityNullifiesDamage = TRUE;
             break;
+            case TYPE_GHOST:
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_PURIFYING_SALT, moveNum))
+                    MulModifier(&mod, UQ_4_12(0.5));
+            break;
+
         }
         if(gBattleMons[userId].ability == ABILITY_LUMBERJACK || BattlerHasInnate(userId, ABILITY_LUMBERJACK)){
             if(gBattleMons[targetId].type1 == TYPE_GRASS  || gBattleMons[targetId].type2 == TYPE_GRASS || gBattleMons[targetId].type3 == TYPE_GRASS){
@@ -2282,6 +2290,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_WEATHER_CONTROL, moveNum)){
+            if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
+                abilityNullifiesDamage = TRUE;
+            }
+        }
+
+        if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DELTA_STREAM, moveNum)){
             if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
                 abilityNullifiesDamage = TRUE;
             }
@@ -2308,6 +2322,13 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
         if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DAZZLING, moveNum) ||
             (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_DAZZLING, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+            if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
+                abilityNullifiesDamage = TRUE;
+            }
+        }
+
+        if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_ARMOR_TAIL, moveNum) ||
+            (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_ARMOR_TAIL, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
             if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
                 abilityNullifiesDamage = TRUE;
             }
@@ -2413,6 +2434,26 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     u16 userSpecies = gBattleMons[userId].species;
     u16 targetSpecies = gBattleMons[targetId].species;
 
+    if (BATTLER_HAS_ABILITY(userId, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[moveNum].split == SPLIT_STATUS && gBattleMoves[moveNum].target & !MOVE_TARGET_USER) {
+        switch(gBattleMoves[moveNum].effect){
+            case EFFECT_SLEEP:
+            case EFFECT_TOXIC:
+            case EFFECT_POISON:
+            case EFFECT_WILL_O_WISP:
+            case EFFECT_PARALYZE:
+                return gBattleMons[targetId].status1 & STATUS1_ANY ? MOVE_EFFECTIVENESS_NONE : MOVE_EFFECTIVENESS_STATUS;
+            case EFFECT_CONFUSE:
+                return gBattleMons[targetId].status2 & STATUS2_CONFUSION ? MOVE_EFFECTIVENESS_NONE : MOVE_EFFECTIVENESS_STATUS;
+            default:
+                return MOVE_EFFECTIVENESS_STATUS;
+        }
+    }
+
+    if (BATTLER_HAS_ABILITY(targetId, ABILITY_GOOD_AS_GOLD)
+        && IS_MOVE_STATUS(moveNum)
+        && targetId != userId)
+            moveNullified = TRUE;
+
     //Specific Moves
     switch(moveNum){
         case MOVE_LEECH_SEED:
@@ -2494,6 +2535,14 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     //Dazzling
     if(gBattleMons[targetId].ability == ABILITY_DAZZLING || BattlerHasInnate(targetId, ABILITY_DAZZLING) ||
         (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Armor Tail
+    if(gBattleMons[targetId].ability == ABILITY_ARMOR_TAIL || BattlerHasInnate(targetId, ABILITY_ARMOR_TAIL) ||
+        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_ARMOR_TAIL && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_ARMOR_TAIL) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
             moveNullified = TRUE;
         }

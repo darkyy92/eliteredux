@@ -32628,8 +32628,8 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2, // ABILITY_RAMPAGE, ABILITY_SWIFT_SWIM, ABILITY_DRIZZLE},
     //.innates = {ABILITY_PRIMAL_ARMOR, ABILITY_SEA_GUARDIAN, ABILITY_POWER_CORE},
-    //.ivs = {31, 0, 31, 22, 31, 31}, // 22 SpAtk IVs for Sea Guardian to boost to Speed at lvl70
-    .evs = {248, 0, 0, 0, 8, 252},      // HP, Atk, Def, SpA, SpD, Spe
+    .ivs = {31, 0, 31, 31, 31, 31}, // Sea Guardian boosts Speed at lvl70
+    .evs = {116, 0, 0, 136, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_TIMID,
     .moves = MOVE_SURF, MOVE_SPACIAL_REND, MOVE_THUNDER, MOVE_EARTH_POWER
     },

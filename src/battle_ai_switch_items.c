@@ -201,6 +201,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         absorbingTypeAbilities[0] = ABILITY_SAP_SIPPER;
         numAbsorbingAbilities = 1;
     }
+    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_GROUND)
+    {
+        absorbingTypeAbilities[0] = ABILITY_EARTH_EATER;
+        numAbsorbingAbilities = 1;
+    }
     else
         return FALSE;
     
@@ -261,7 +266,7 @@ static bool8 ShouldSwitchIfNaturalCure(void)
 {
     if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP))
         return FALSE;
-    if (!BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_NATURAL_CURE) && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_SELF_REPAIR))
+    if (!BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_NATURAL_CURE) && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_SELF_REPAIR) && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_NATURAL_RECOVERY))
         return FALSE;
 
     if ((gLastLandedMoves[gActiveBattler] == 0 || gLastLandedMoves[gActiveBattler] == 0xFFFF) && Random() & 1)
@@ -500,7 +505,7 @@ static bool8 IsMonHealthyEnoughToSwitch(void)
     u32 battlerHp = gBattleMons[gActiveBattler].hp;
 
     if (gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR)
-        battlerHp = (battlerHp * 130) / 100; // Account for Regenerator healing
+        battlerHp = (battlerHp * 133) / 100; // Account for Regenerator healing
     
     if (CalculateHazardDamage() > battlerHp) // Battler will die to hazards
         return FALSE;

@@ -48,6 +48,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 
 enum
 {
@@ -235,8 +236,8 @@ struct PokedexView
     u8 menuIsOpen;
     u16 menuCursorPos;
     s16 menuY;     //Menu Y position (inverted because we use REG_BG0VOFS for this)
-    u8 unkArr2[8]; // Cleared, never read
-    u8 unkArr3[8]; // Cleared, never read
+    u8 abilitynum;
+    u8 innatenum;
 };
 
 // this file's functions
@@ -1829,10 +1830,8 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->menuIsOpen = 0;
     pokedexView->menuCursorPos = 0;
     pokedexView->menuY = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr2); i++)
-        pokedexView->unkArr2[i] = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr3); i++)
-        pokedexView->unkArr3[i] = 0;
+    pokedexView->abilitynum = 0;
+    pokedexView->innatenum = 0;
 }
 
 void CB2_OpenPokedex(void)
@@ -6435,6 +6434,34 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         PrintStatsScreen_MoveNameAndInfo(taskId);
     }
 
+    if ((JOY_REPEAT(R_BUTTON)))
+    {
+        u16 species = NationalPokedexNumToSpecies(sPokedexListItem->dexNum);
+        if(gTasks[taskId].data[5] == 0){
+            do{
+                if(sPokedexView->abilitynum < (NUM_ABILITY_SLOTS - 1))
+                    sPokedexView->abilitynum++;
+                else
+                    sPokedexView->abilitynum = 0;
+            }
+            while(gBaseStats[species].abilities[sPokedexView->abilitynum] == ABILITY_NONE);
+        }
+        else{
+            do{
+                if(sPokedexView->innatenum < (NUM_ABILITY_SLOTS - 1))
+                    sPokedexView->innatenum++;
+                else
+                    sPokedexView->innatenum = 0;
+            }
+            while(gBaseStats[species].innates[sPokedexView->innatenum] == ABILITY_NONE);
+        }
+
+        FillWindowPixelRect(0, PIXEL_FILL(0), 0, 48, 240, 130);
+        PrintStatsScreen_Left(taskId);
+        PrintStatsScreen_DestroyMoveItemIcon(taskId);
+        PrintStatsScreen_MoveNameAndInfo(taskId);
+    }
+
     //Switch screens
     if ((JOY_NEW(DPAD_LEFT) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
     {
@@ -7201,30 +7228,20 @@ static void PrintStatsScreen_Left(u8 taskId)
         base_i++;
     }
 
-
-
-    //Abilitie(s)
     if (gTasks[taskId].data[5] == 0)
     {    
-        ability0 = gBaseStats[species].abilities[0];
-        PrintInfoScreenTextSmallWhite(gAbilityNames[ability0], abilities_x, abilities_y);
-        PrintInfoScreenTextSmall(gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
-
-        if (gBaseStats[species].abilities[1] != ABILITY_NONE)
-        {
-            PrintInfoScreenTextSmallWhite(gAbilityNames[gBaseStats[species].abilities[1]], abilities_x, abilities_y + 30);
-            PrintInfoScreenTextSmall(gAbilityDescriptionPointers[gBaseStats[species].abilities[1]], abilities_x, abilities_y + 44);
-        }  
-    }
-    #ifdef POKEMON_EXPANSION
-    else //Hidden abilities
-    {
-        ability0 = gBaseStats[species].abilities[2];
+        //Abilitie(s)
+        ability0 = gBaseStats[species].abilities[sPokedexView->abilitynum];
         PrintInfoScreenTextSmallWhite(gAbilityNames[ability0], abilities_x, abilities_y);
         PrintInfoScreenTextSmall(gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
     }
-    #endif
-
+    else{
+        //Innates
+        ability0 = gBaseStats[species].innates[sPokedexView->innatenum];
+        PrintInfoScreenTextSmallWhite(gAbilityNames[ability0], abilities_x, abilities_y);
+        PrintInfoScreenTextSmall(gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
+        
+    }
 }
 static void Task_SwitchScreensFromStatsScreen(u8 taskId)
 {
@@ -7510,6 +7527,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
         const struct MapHeader *mapHeader;
     #endif
     u16 targetSpecies = 0;
+    u16 actualSpecies = species;
 
     u16 item;
 
@@ -7521,6 +7539,8 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     u8 base_i = 0;
     u8 times = 0;
     u8 depth_x = 16;
+    
+    if (IsEeveelution(species)) species = SPECIES_EEVEE;
 
     StringCopy(gStringVar1, gSpeciesNames[species]);
 
@@ -7532,7 +7552,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 times += 1;
         #endif
         #ifdef POKEMON_EXPANSION
-            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION)
+            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION && gEvolutionTable[species][i].targetSpecies != actualSpecies)
                 times += 1;
         #endif
     }
@@ -7599,9 +7619,10 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
             break;
         case EVO_ITEM:
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            if (targetSpecies == actualSpecies) continue;
             item = gEvolutionTable[species][i].param;
             CopyItemName(item, gStringVar2);
-            targetSpecies = gEvolutionTable[species][i].targetSpecies;
             CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);
             handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
             StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM );

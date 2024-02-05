@@ -119,7 +119,6 @@ struct DisableStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    u8 noDamageHits;
     bool8 protectedThisTurn;
     u8 disciplineCounter:4;
     u8 filler:4;
@@ -208,6 +207,8 @@ struct SpecialStatus
     u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
+    bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
+    u8 abilityState[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer
@@ -314,12 +315,13 @@ struct BattleHistory
     u8 itemsNo;
 };
 
-//#define MAX_SCRIPT_STACK_COUNT 20
+#define MAX_SCRIPT_STACK_COUNT 8
 struct BattleScriptsStack
 {
-    const u8 *ptr[8];
+    const u8 *ptr[MAX_SCRIPT_STACK_COUNT];
     u8 size;
-    //u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
+    // This ends up stored as [{pointer0, ability1}, {pointer1, ability2}, {pointer2, ability3}, ...]
+    u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
     //u8 currentAbilityStack; // current index to use in the ability pop up
     //u8 abilityOverwriteNum; // number of abilities to overwrite
 };
@@ -723,7 +725,10 @@ struct BattleScripting
     u8 overrideBerryRequirements;
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
     bool8 forceFalseSwipeEffect;
-    bool8 doublehealthRestore;
+    u8 moveSecondaryEffectChance;
+    u8 replaceEndWithEnd3;
+    u8 limitMoveend;
+    u8 storedMoveendState;
 };
 
 // rom_80A5C6C
@@ -908,6 +913,7 @@ extern u32 gHitMarker;
 extern u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT];
 extern u8 gUnusedFirstBattleVar2;
 extern u32 gSideStatuses[2];
+extern u8 gFaintedMonCount[2];
 extern struct SideTimer gSideTimers[2];
 extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u32 gStatuses4[MAX_BATTLERS_COUNT];

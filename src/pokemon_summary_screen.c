@@ -4635,13 +4635,16 @@ static void BufferMonPokemonEvolutionData(void)
     u8 times = 0;
     u16 item;
     const struct MapHeader *mapHeader;
+    u16 actualSpecies = species;
 	x = 60;
 	y = 4;
+
+    if (IsEeveelution(species)) species = SPECIES_EEVEE;
 
     //Calculate number of possible direct evolutions (e.g. Eevee has 8 but torchic has 1)
     for (i = 0; i < EVOS_PER_MON; i++)
     {
-        if(gEvolutionTable[species][i].method != 0){
+        if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].targetSpecies != actualSpecies){
             times++;
         } 
     }
@@ -4720,6 +4723,7 @@ static void BufferMonPokemonEvolutionData(void)
             case EVO_ITEM:
                 //Target Species
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                if (targetSpecies == actualSpecies) continue;
                 SaveSpeciesWithSurname(targetSpecies);
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
                 //Evolution Method
