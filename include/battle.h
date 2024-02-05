@@ -645,6 +645,8 @@ struct BattleStruct
         typeArg = gBattleMoves[move].type;                  \
 }
 
+#define IS_MOVE_TYPE(move, moveType) ((gBattleStruct->dynamicMoveType ? gBattleStruct->dynamicMoveType & 0x3F : gBattleMoves[move].type) == moveType)
+
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveSplit(move) == SPLIT_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)

@@ -553,16 +553,16 @@ static const u8 sAbilityWingedKingDescription[] = _("Ups “supereffective” by
 static const u8 sAbilityHadronEngineDescription[] = _("Field becomes Electric.\n+33% SpAtk in Electric Terrain.");
 static const u8 sAbilityWeatherDoubleBoostDescription[] = _("Sun boosts Water.\nRain boosts Fire.");
 static const u8 sAbilitySweepingEdgePlusDescription[] = _("Sweeping Edge + Keen Edge.");
-static const u8 sAbilityCelestialBlessingDescription[] = _("Heal 1/12 of HP\nunder Misty Terrain.");
-static const u8 sAbilityMinionControlDescription[] = _("User controls it's minions, 1 extra\nhit per healthy party member.");
+static const u8 sAbilityCelestialBlessingDescription[] = _("Recovers 1/12 of its health each\nturn under Misty Terrain.");
+static const u8 sAbilityMinionControlDescription[] = _("Moves hit an extra time for\neach healthy party member.");
 static const u8 sAbilityMoltenBladesDescription[] = _("Keen Edge + Keen Edge moves\nhave a 20% chance to burn.");
 static const u8 sAbilityHauntingFrenzyDescription[] = _("20% chance to flinch the\nopponent. +1 speed on kill.");
-static const u8 sAbilityNoiseCancelDescription[] = _("Protects the party from sound\nbased moves.");
-static const u8 sAbilityRadioJamDescription[] = _("Sound based moves\ninflict disable.");
+static const u8 sAbilityNoiseCancelDescription[] = _("Protects the party from sound-\nbased moves.");
+static const u8 sAbilityRadioJamDescription[] = _("Sound-based moves\ninflict disable.");
 static const u8 sAbilityOleDescription[] = _("20% chance to evade\nphysical moves.");
-static const u8 sAbilityMaliciousDescription[] = _("Lower's the foe's highest ATK\nand DEF stat.");
-static const u8 sAbilityDeadPowerDescription[] = _("1.5x ATK boost and 20% chance\nto curse on contact moves.");
-static const u8 sAbilityBrawlingWyvernDescription[] = _("All DRAGON type moves are\naffected by Iron Fist");
+static const u8 sAbilityMaliciousDescription[] = _("Lowers the foe's highest\nAttack and Defense stat.");
+static const u8 sAbilityDeadPowerDescription[] = _("1.5x Attack boost. 20% chance\nto curse on contact moves.");
+static const u8 sAbilityBrawlingWyvernDescription[] = _("Dragon type moves become\npunching moves.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {

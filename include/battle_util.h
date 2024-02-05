@@ -81,6 +81,8 @@ enum ParadoxBoostState
 
 #define CUD_CHEW_CURRENT_TURN (1 << 15)
 
+#define IS_IRON_FIST(attacker, moveToCheck) (gBattleMoves[moveToCheck].flags & FLAG_IRON_FIST_BOOST || (BATTLER_HAS_ABILITY(attacker, ABILITY_BRAWLING_WYVERN) && IS_MOVE_TYPE(moveToCheck, TYPE_DRAGON)))
+
 extern const struct TypePower gNaturalGiftTable[];
 
 s32 CountUsablePartyMons(u8 battlerId);

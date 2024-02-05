@@ -1525,7 +1525,7 @@ static void Cmd_attackcanceler(void)
 	// Raging Boxer
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
 	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER)) // Includes Innate
-	&& (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST)
+	&& (IS_IRON_FIST(gBattlerAttacker, gCurrentMove))
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
@@ -2263,7 +2263,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PERFECTIONIST) && gBattleMoves[move].power <= 50 && gBattleMoves[move].power > 0)
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYPER_CUTTER)  && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-                    + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PRECISE_FIST)  && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
+                    + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PRECISE_FIST)  && IS_IRON_FIST(battlerAtk, move))
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SUPER_LUCK))
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HEAVEN_ASUNDER));
 
@@ -3968,7 +3968,7 @@ static void Cmd_seteffectwithchance(void)
 
     //Precise fist boosts
     if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRECISE_FIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PRECISE_FIST))
-             && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST))
+             && IS_IRON_FIST(gBattlerAttacker, gCurrentMove))
         percentChance = percentChance * 2;
     
     //Frostbite are more likely to occour during Hail

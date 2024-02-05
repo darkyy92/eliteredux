@@ -14320,7 +14320,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)  || 
        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) ||
        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA)){
-		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+		if (IS_IRON_FIST(battlerAtk, move))
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
@@ -14332,7 +14332,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 
     //Combat Specialist 
     if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COMBAT_SPECIALIST)){
-		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+		if (IS_IRON_FIST(battlerAtk, move))
            MulModifier(&modifier, UQ_4_12(1.3));
         if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -15954,7 +15954,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         defStatToUse = STAT_SPDEF;
     }
 
-    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) && IS_IRON_FIST(battlerAtk, move)) 
     {
         defStatToUse = STAT_SPDEF;
     }

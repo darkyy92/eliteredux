@@ -5062,7 +5062,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     }
     
 	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || BattlerHasInnate(battlerId, ABILITY_BLITZ_BOXER))
-		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+		&& IS_IRON_FIST(battlerId, move)
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
