@@ -66,6 +66,7 @@
 #define BS_OPPONENT2                14
 #define BS_ABILITY_BATTLER          15
 #define BS_ABILITY_PARTNER          16
+#define BS_TARGET_PARTNER           17
 
 // Cmd_accuracycheck
 #define NO_ACC_CALC_CHECK_LOCK_ON 0xFFFF
@@ -228,6 +229,7 @@
 #define VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE     149
 #define VARIOUS_HANDLE_WEATHER_CHANGE           150
 #define VARIOUS_HANDLE_TERRAIN_CHANGE           151
+#define VARIOUS_GET_BATTLER                     152
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

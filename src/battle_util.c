@@ -1145,6 +1145,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_LEAF_GUARD_CLONE] = 1,
     [ABILITY_GOOD_AS_GOLD] = 1,
     [ABILITY_THERMAL_EXCHANGE] = 1,
+    [ABILITY_NOISE_CANCEL] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -1426,6 +1427,9 @@ u8 GetBattlerForBattleScript(u8 caseId)
         break;
     case BS_ABILITY_PARTNER:
         ret = BATTLE_PARTNER(gBattlerAbility);
+        break;
+    case BS_TARGET_PARTNER:
+        ret = BATTLE_PARTNER(gBattlerTarget);
         break;
     }
     return ret;
@@ -3152,8 +3156,8 @@ u8 DoBattlerEndTurnEffects(void)
                 for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
                 {
                     if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-                     && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF
-				     && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUNDPROOF))
+                     && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF)
+                     && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -7249,7 +7253,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     u16 abilityToCheck = ABILITY_CELESTIAL_BLESSING; //For easier copypaste
 
-                    BattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CELESTIAL_BLESSING;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CELESTIAL_BLESSING;
                     
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 12;
                     if (gBattleMoveDamage == 0)
@@ -7365,11 +7369,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
-        if ((GetBattlerAbility(battler) == ABILITY_SOUNDPROOF || BattlerHasInnate(battler, ABILITY_SOUNDPROOF))
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_SOUNDPROOF)
             && !(gBattleMoves[move].target & MOVE_TARGET_USER)
 			&& gBattleMoves[move].flags & FLAG_SOUND)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUNDPROOF;
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
+            effect = 1;
+        }
+        else if (IsAbilityOnSide(battler, ABILITY_NOISE_CANCEL)
+            && !(gBattleMoves[move].target & MOVE_TARGET_USER)
+			&& gBattleMoves[move].flags & FLAG_SOUND)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NOISE_CANCEL;
+            if (!BATTLER_HAS_ABILITY(battler, ABILITY_NOISE_CANCEL)) {
+                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
+            }
+
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
@@ -7384,7 +7402,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
-        else if ((IsAbilityOnField(ABILITY_RADIANCE)) && moveType == TYPE_DARK)
+        else if (IsAbilityOnField(ABILITY_RADIANCE) && moveType == TYPE_DARK)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_RADIANCE;
             gBattleScripting.battlerPopupOverwrite = IsAbilityOnField(ABILITY_RADIANCE);
@@ -7394,21 +7412,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         //Queenly Majesty
-        else if(((GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY            || 
-             BattlerHasInnate(battler, ABILITY_QUEENLY_MAJESTY))                   ||
-           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || 
-             BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_QUEENLY_MAJESTY))   && 
-             IsBattlerAlive(BATTLE_PARTNER(battler))))
+        else if(IsAbilityOnSide(battler, ABILITY_QUEENLY_MAJESTY)
             && GetChosenMovePriority(gBattlerAttacker, battler) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler)
             && !(move == MOVE_SCRATCH && BattlerHasInnateOrAbility(gBattlerAttacker, ABILITY_CHEAP_TACTICS))
             )
         {
-            if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(battler, ABILITY_QUEENLY_MAJESTY)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
-            }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_QUEENLY_MAJESTY)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
+            if (!BATTLER_HAS_ABILITY(battler, ABILITY_QUEENLY_MAJESTY)) {
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
 
@@ -7424,16 +7435,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         //Dazzling
-        else if(((GetBattlerAbility(battler) == ABILITY_DAZZLING || BattlerHasInnate(battler, ABILITY_DAZZLING)) ||
-           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_DAZZLING)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+        else if(IsAbilityOnSide(battler, ABILITY_DAZZLING)
             && GetChosenMovePriority(gBattlerAttacker, battler) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
-            if(GetBattlerAbility(battler) == ABILITY_DAZZLING || BattlerHasInnate(battler, ABILITY_DAZZLING)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
-            }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_DAZZLING)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
+            if (!BATTLER_HAS_ABILITY(battler, ABILITY_DAZZLING)) {
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
 
@@ -7449,13 +7456,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         //Armor Tail
-        else if ((BATTLER_HAS_ABILITY(battler, ABILITY_ARMOR_TAIL) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battler), ABILITY_ARMOR_TAIL))
+        else if (IsAbilityOnSide(battler, ABILITY_ARMOR_TAIL)
             && GetChosenMovePriority(gBattlerAttacker, battler) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ARMOR_TAIL;
-
-            if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battler), ABILITY_ARMOR_TAIL) && !BATTLER_HAS_ABILITY(battler, ABILITY_ARMOR_TAIL)){
+            if (!BATTLER_HAS_ABILITY(battler, ABILITY_ARMOR_TAIL)) {
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
 

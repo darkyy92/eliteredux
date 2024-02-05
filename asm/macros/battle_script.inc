@@ -2159,6 +2159,10 @@
 	various \battler, VARIOUS_HANDLE_TERRAIN_CHANGE
 	.endm
 
+	.macro getbattler battler:req
+	various \battler, VARIOUS_GET_BATTLER
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

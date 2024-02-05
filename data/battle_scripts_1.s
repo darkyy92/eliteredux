@@ -5168,14 +5168,20 @@ BattleScript_EffectPerishSong::
 	setbyte gBattlerTarget, 0
 BattleScript_PerishSongLoop::
 	jumpifability BS_TARGET, ABILITY_SOUNDPROOF, BattleScript_PerishSongBlocked
+	jumpifability BS_TARGET, ABILITY_NOISE_CANCEL, BattleScript_PerishSongBlocked
+	jumpifability BS_TARGET, ABILITY_NOISE_CANCEL, BattleScript_PerishSongBlocked
 	jumpifpranksterblocked BS_TARGET, BattleScript_PerishSongNotAffected
 BattleScript_PerishSongLoopIncrement::
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_PerishSongLoop
 	goto BattleScript_MoveEnd
 
+BattleScript_PerishSongBlockedPartner::
+	getbattler BS_TARGET_PARTNER
+	goto BattleScript_PerishSongBlockedContinue
 BattleScript_PerishSongBlocked::
 	copybyte sBATTLER, gBattlerTarget
+BattleScript_PerishSongBlockedContinue:
 	printstring STRINGID_PKMNSXBLOCKSY2
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_PerishSongLoopIncrement

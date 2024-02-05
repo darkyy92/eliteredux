@@ -1408,7 +1408,7 @@ static bool32 NoTargetPresent(u32 move)
 static bool32 TryAegiFormChange(void)
 {
     // Only Aegislash with Stance Change can transform, transformed mons cannot.
-    if ((GetBattlerAbility(gBattlerAttacker) != ABILITY_STANCE_CHANGE && !BattlerHasInnate(gBattlerAttacker, ABILITY_STANCE_CHANGE))
+    if (!BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_STANCE_CHANGE)
         || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
         return FALSE;
 
@@ -3135,7 +3135,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         {
         case STATUS1_SLEEP:
             // check active uproar
-            if (GetBattlerAbility(gEffectBattler) != ABILITY_SOUNDPROOF && !BattlerHasInnate(gEffectBattler, ABILITY_SOUNDPROOF))
+            if (!BATTLER_HAS_ABILITY(gEffectBattler, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gEffectBattler, ABILITY_NOISE_CANCEL))
             {
                 for (gActiveBattler = 0;
                     gActiveBattler < gBattlersCount && !(gBattleMons[gActiveBattler].status2 & STATUS2_UPROAR);
@@ -10435,6 +10435,9 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
         }
         return;
+    case VARIOUS_GET_BATTLER:
+        gBattleScripting.battler = gActiveBattler;
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
@@ -10878,8 +10881,8 @@ bool8 UproarWakeUpCheck(u8 battlerId)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (!(gBattleMons[i].status2 & STATUS2_UPROAR) || 
-            GetBattlerAbility(battlerId) == ABILITY_SOUNDPROOF || 
-            BattlerHasInnate(battlerId, ABILITY_SOUNDPROOF))
+            BATTLER_HAS_ABILITY(battlerId, ABILITY_SOUNDPROOF) ||
+            IsAbilityOnSide(battlerId, ABILITY_NOISE_CANCEL))
             continue;
 
         gBattleScripting.battler = i;
@@ -13059,7 +13062,7 @@ static void Cmd_healpartystatus(void)
         else
             party = gEnemyParty;
 
-        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUNDPROOF))
+        if (!BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL))
         {
             gBattleMons[gBattlerAttacker].status1 = 0;
             gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -13075,7 +13078,7 @@ static void Cmd_healpartystatus(void)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
         {
-            if (GetBattlerAbility(gActiveBattler) != ABILITY_SOUNDPROOF && !BattlerHasInnate(gActiveBattler, ABILITY_SOUNDPROOF))
+            if (!BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gActiveBattler, ABILITY_NOISE_CANCEL))
             {
                 gBattleMons[gActiveBattler].status1 = 0;
                 gBattleMons[gActiveBattler].status2 &= ~(STATUS2_NIGHTMARE);
@@ -13096,18 +13099,22 @@ static void Cmd_healpartystatus(void)
 
             if (species != SPECIES_NONE && species != SPECIES_EGG)
             {
-                u16 ability;
+                u16 healMon;
 
-                if (gBattlerPartyIndexes[gBattlerAttacker] == i)
-                    ability = GetBattlerAbility(gBattlerAttacker);
-                else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-                         && gBattlerPartyIndexes[gActiveBattler] == i
-                         && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
-                    ability = GetBattlerAbility(gActiveBattler);
+                if (gBattlerPartyIndexes[gBattlerAttacker] == i || gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == i)
+                {
+                    healMon = !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL);
+                }
                 else
-                    ability = GetAbilityBySpecies(species, abilityNum);
+                {
+                    u16 ability = GetAbilityBySpecies(species, abilityNum);
+                    healMon = ability != ABILITY_SOUNDPROOF
+                        && ability != ABILITY_NOISE_CANCEL
+                        && !MonHasInnate(&party[i], ABILITY_SOUNDPROOF, FALSE)
+                        && !MonHasInnate(&party[i], ABILITY_NOISE_CANCEL, FALSE);
+                }
 
-                if (ability != ABILITY_SOUNDPROOF && !MonHasInnate(&party[i], ABILITY_SOUNDPROOF, FALSE))
+                if (healMon)
                     toHeal |= (1 << i);
             }
         }
@@ -13188,8 +13195,8 @@ static void Cmd_trysetperishsong(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (gStatuses3[i] & STATUS3_PERISH_SONG
-            || GetBattlerAbility(i) == ABILITY_SOUNDPROOF
-			|| BattlerHasInnate(i, ABILITY_SOUNDPROOF)
+            || BATTLER_HAS_ABILITY(i, ABILITY_SOUNDPROOF)
+			|| IsAbilityOnSide(i, ABILITY_NOISE_CANCEL)
             || BlocksPrankster(gCurrentMove, gBattlerAttacker, i, TRUE))
         {
             notAffectedCount++;

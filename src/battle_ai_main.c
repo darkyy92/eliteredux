@@ -850,6 +850,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (TestMoveFlags(move, FLAG_SOUND))
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_NOISE_CANCEL:
+                if (TestMoveFlags(move, FLAG_SOUND))
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_BULLETPROOF:
                 if (TestMoveFlags(move, FLAG_BALLISTIC))
                     RETURN_SCORE_MINUS(20);
@@ -958,6 +962,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //check for def innates
         //Soundproof
         if(BattlerHasInnate(battlerDef, ABILITY_SOUNDPROOF) && TestMoveFlags(move, FLAG_SOUND))
+            RETURN_SCORE_MINUS(20);
+
+        //Soundproof
+        if(BattlerHasInnate(battlerDef, ABILITY_NOISE_CANCEL) && TestMoveFlags(move, FLAG_SOUND))
             RETURN_SCORE_MINUS(20);
 
         //Queenly Majesty
@@ -1797,13 +1805,19 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (CountUsablePartyMons(battlerAtk) == 0
                   && AI_DATA->abilities[battlerAtk] != ABILITY_SOUNDPROOF
                   && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_SOUNDPROOF
+                  && AI_DATA->abilities[battlerAtk] != ABILITY_NOISE_CANCEL
+                  && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_NOISE_CANCEL
                   && CountUsablePartyMons(FOE(battlerAtk)) >= 1)
                 {
                     score -= 10; //Don't wipe your team if you're going to lose
                 }
                 else if ((!IsBattlerAlive(FOE(battlerAtk)) || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF
+                  || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL
                   || gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG)
                   && (!IsBattlerAlive(BATTLE_PARTNER(FOE(battlerAtk))) || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_SOUNDPROOF
+                  || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL
                   || gStatuses3[BATTLE_PARTNER(FOE(battlerAtk))] & STATUS3_PERISH_SONG))
                 {
                     score -= 10; //Both enemies are perish songed
@@ -1815,11 +1829,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             else
             {
-                if (CountUsablePartyMons(battlerAtk) == 0 && AI_DATA->abilities[battlerAtk] != ABILITY_SOUNDPROOF
+                if (CountUsablePartyMons(battlerAtk) == 0 && (AI_DATA->abilities[battlerAtk] != ABILITY_SOUNDPROOF
+                  || AI_DATA->abilities[battlerAtk] != ABILITY_NOISE_CANCEL)
                   && CountUsablePartyMons(battlerDef) >= 1)
                     score -= 10;
 
-                if (gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF)
+                if (gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF
+                  || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL)
                     score -= 10;
             }
             break;
