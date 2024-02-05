@@ -8224,6 +8224,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_CURSED)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HAUNTED_SPIRIT;
 				gBattleMons[gBattlerAttacker].status2 |= STATUS2_CURSED;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HauntedSpiritActivated;
@@ -8964,6 +8965,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		//Haunted Spirit
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_VENGEFUL_SPIRIT)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp == 0
+		     && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST)
+             && IsBattlerAlive(gBattlerAttacker)
+			 && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_CURSED)
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VENGEFUL_SPIRIT;
+				gBattleMons[gBattlerAttacker].status2 |= STATUS2_CURSED;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HauntedSpiritActivated;
+                effect++;
+            }
+		}
+		
+		//Haunted Spirit
 		if(BattlerHasInnate(battler, ABILITY_HAUNTED_SPIRIT)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp == 0
@@ -8973,7 +8991,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HAUNTED_SPIRIT;
-				
 				gBattleMons[gBattlerAttacker].status2 |= STATUS2_CURSED;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HauntedSpiritActivated;
@@ -15692,6 +15709,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	// Vengeance
 	if(BattlerHasInnate(battlerAtk, ABILITY_VENGEANCE)){
+		if (moveType == TYPE_GHOST)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Vengeance
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_VENGEANCE)){
 		if (moveType == TYPE_GHOST)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))

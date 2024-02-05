@@ -584,7 +584,7 @@
 #define ABILITY_COSTAR 562 // Placeholder
 #define ABILITY_COMMANDER 563 // Placeholder
 #define ABILITY_EJECT_PACK_ABILITY 564 // Placeholder
-#define ABILITY_VENGEFUL_SPIRIT 565 // Placeholder
+#define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.
 #define ABILITY_CUD_CHEW 566 // Placeholder
 #define ABILITY_ARMOR_TAIL 567 // Protects itself and ally from priority moves.
 #define ABILITY_MIND_CRUSH 568 // Biting moves use SpAtk and deal 50% more damage.
