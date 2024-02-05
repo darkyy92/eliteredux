@@ -388,7 +388,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectStuffCheeks             @ EFFECT_STUFF_CHEEKS
 	.4byte BattleScript_EffectDefenseDownHit          @ EFFECT_GRAV_APPLE
 	.4byte BattleScript_EffectEvasionUpHit            @ EFFECT_EVASION_UP_HIT
-	.4byte BattleScript_EffectDoubleIronBash          @ EFFECT_DOUBLE_IRON_BASH
 	.4byte BattleScript_EffectGlitzyGlow              @ EFFECT_GLITZY_GLOW
 	.4byte BattleScript_EffectBaddyBad                @ EFFECT_BADDY_BAD
 	.4byte BattleScript_EffectSappySeed               @ EFFECT_SAPPY_SEED
@@ -1068,16 +1067,6 @@ BattleScript_EffectGlitzyGlow:
 	printfromtable gReflectLightScreenSafeguardStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectDoubleIronBash:
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
-	setmultihitcounter 2
-	initmultihitstring
-	sethword sMULTIHIT_EFFECT, MOVE_EFFECT_FLINCH
-	goto BattleScript_MultiHitLoop
 
 BattleScript_EffectEvasionUpHit:
 	setmoveeffect MOVE_EFFECT_EVS_PLUS_1 | MOVE_EFFECT_AFFECTS_USER

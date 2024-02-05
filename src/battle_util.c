@@ -1001,43 +1001,6 @@ void HandleAction_ActionFinished(void)
 
 // rom const data
 
-static const u8 sMovesNotAffectedByStench[] =
-{
-    [MOVE_AIR_SLASH] = 1,
-    [MOVE_ASTONISH] = 1,
-    [MOVE_BITE] = 1,
-    [MOVE_BONE_CLUB] = 1,
-    [MOVE_DARK_PULSE] = 1,
-    [MOVE_DOUBLE_IRON_BASH] = 1,
-    [MOVE_DRAGON_RUSH] = 1,
-    [MOVE_EXTRASENSORY] = 1,
-    [MOVE_FAKE_OUT] = 1,
-    [MOVE_FIERY_WRATH] = 1,
-    [MOVE_FIRE_FANG] = 1,
-    [MOVE_FLING] = 1,
-    [MOVE_FLOATY_FALL] = 1,
-    [MOVE_HEADBUTT] = 1,
-    [MOVE_HEART_STAMP] = 1,
-    [MOVE_HYPER_FANG] = 1,
-    [MOVE_ICE_FANG] = 1,
-    [MOVE_ICICLE_CRASH] = 1,
-    [MOVE_IRON_HEAD] = 1,
-    [MOVE_NEEDLE_ARM] = 1,
-    [MOVE_NONE] = 1,
-    [MOVE_ROCK_SLIDE] = 1,
-    [MOVE_ROLLING_KICK] = 1,
-    [MOVE_SECRET_POWER] = 1,
-    [MOVE_SKY_ATTACK] = 1,
-    [MOVE_SNORE] = 1,
-    [MOVE_STEAMROLLER] = 1,
-    [MOVE_STOMP] = 1,
-    [MOVE_THUNDER_FANG] = 1,
-    [MOVE_TWISTER] = 1,
-    [MOVE_WATERFALL] = 1,
-    [MOVE_ZEN_HEADBUTT] = 1,
-    [MOVE_ZING_ZAP] = 1,
-};
-
 static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
 {
     [ABILITY_BATTLE_ARMOR] = 1,
@@ -4767,6 +4730,31 @@ static void AbilityHealMonStatus(u8 *effect, u8 battler, u16 ability) {
     BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
     MarkBattlerForControllerExec(gActiveBattler);
     (*effect)++;
+}
+
+static bool8 CanMoveHaveExtraFlinchChance(u16 move)
+{
+    switch (gBattleMoves[move].effect)
+    {
+        case EFFECT_FLINCH_HIT:
+        case EFFECT_FAKE_OUT:
+        case EFFECT_FLINCH_STATUS:
+        case EFFECT_FLINCH_RECOIL_25:
+        case EFFECT_FLINCH_RECOIL_50:
+        case EFFECT_FLINCH_MINIMIZE_HIT:
+        case EFFECT_FLING:
+        case EFFECT_SECRET_POWER:
+        case EFFECT_SNORE:
+        case EFFECT_TWISTER:
+            return gBattleMoves[move].secondaryEffectChance > 0;
+            
+        case EFFECT_TRIPLE_ARROWS:
+            return FALSE;
+
+        default:
+            return TRUE;
+    }
+    return TRUE;
 }
 
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
@@ -10724,7 +10712,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && CanBeBurned(gBattlerAttacker, gBattlerTarget)
+             && CanBeBurned(gBattlerTarget)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
 			 && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) //Keen Edge
              && (Random() % 100) < 20)
@@ -11031,13 +11019,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[battler].confusionSelfDmg
-             && (Random() % 10) == 0
+             && (Random() % 100) < 10
              && !IS_MOVE_STATUS(move)
              && TARGET_TURN_DAMAGED
-             && !sMovesNotAffectedByStench[gCurrentMove])
+             && CanMoveHaveExtraFlinchChance(move))
             {
-                if(BattlerHasInnate(battler, ABILITY_STENCH))
-				    gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_STENCH;
+                gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_STENCH;
+                gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
+                BattleScriptPushCursor();
+                SetMoveEffect(FALSE, 0);
+                BattleScriptPop();
+                effect++;
+            }
+		}
+	
+		// Stench
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_HAUNTING_FRENZY)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[battler].confusionSelfDmg
+             && (Random() % 100) < 20
+             && !IS_MOVE_STATUS(move)
+             && TARGET_TURN_DAMAGED
+             && !(gBattleMons[gBattlerTarget].status2 & STATUS2_FLINCHED)
+             && CanMoveHaveExtraFlinchChance(move))
+            {
+                gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_HAUNTING_FRENZY;
                 gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                 BattleScriptPushCursor();
                 SetMoveEffect(FALSE, 0);

@@ -8897,42 +8897,35 @@ static void Cmd_various(void)
             if(!checkMoxieVariants)
                 break;
 
-            //Moxie
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MOXIE)){
-                statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_MOXIE;
-                activateMoxieVariant = TRUE;
+            #define MOXIE_CHECK_OTHER(ability, stat, abilityToReport) if (BATTLER_HAS_ABILITY(gActiveBattler, ability)){ \
+                statToChange = stat; \
+                abilityToCheck = abilityToReport; \
+                activateMoxieVariant = TRUE; \
             }
+
+            #define MOXIE_CHECK(ability, stat) MOXIE_CHECK_OTHER(ability, stat, ability)
+
+            //Moxie
+            MOXIE_CHECK(ABILITY_MOXIE, STAT_ATK)
 
             //Chilling Neigh
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CHILLING_NEIGH)
-                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_ICE_RIDER)){
-                statToChange = STAT_ATK;
-                abilityToCheck = ABILITY_CHILLING_NEIGH; // as one ice rider is treated as chilling neigh
-                activateMoxieVariant = TRUE;
-            }
+            MOXIE_CHECK(ABILITY_CHILLING_NEIGH, STAT_ATK)
+            MOXIE_CHECK_OTHER(ABILITY_AS_ONE_ICE_RIDER, STAT_ATK, ABILITY_CHILLING_NEIGH)
 
             //Grim Neigh
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GRIM_NEIGH)
-                || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_AS_ONE_SHADOW_RIDER)){
-                statToChange = STAT_SPATK;
-                abilityToCheck = ABILITY_GRIM_NEIGH; // as one ice rider is treated as chilling neigh
-                activateMoxieVariant = TRUE;
-            }
+            MOXIE_CHECK(ABILITY_GRIM_NEIGH, STAT_SPATK)
+            MOXIE_CHECK_OTHER(ABILITY_AS_ONE_SHADOW_RIDER, STAT_SPATK, ABILITY_GRIM_NEIGH)
 
             //Adrenaline Rush
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_ADRENALINE_RUSH)){
-                statToChange = STAT_SPEED;
-                abilityToCheck = ABILITY_ADRENALINE_RUSH;
-                activateMoxieVariant = TRUE;
-            }
+            MOXIE_CHECK(ABILITY_ADRENALINE_RUSH, STAT_SPEED)
 
             //Hubris
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HUBRIS)){
-                statToChange = STAT_SPATK;
-                abilityToCheck = ABILITY_HUBRIS;
-                activateMoxieVariant = TRUE;
-            }
+            MOXIE_CHECK(ABILITY_HUBRIS, STAT_SPATK)
+
+            // Haunting Frenzy
+            MOXIE_CHECK(ABILITY_HAUNTING_FRENZY, STAT_SPEED)
+
+            #undef MOXIE_CHECK
 
             if (checkMoxieVariants
             && activateMoxieVariant
