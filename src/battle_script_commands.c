@@ -6051,6 +6051,23 @@ static void Cmd_moveend(void)
                         effect = TRUE;
                         break;  // Only fastest eject pack activates
                     }
+
+                    if (IsBattlerAlive(battler)
+                     && gProtectStructs[battler].statFell
+                     && gProtectStructs[battler].disableEjectPack == 0
+                     && BATTLER_HAS_ABILITY(battler, ABILITY_EJECT_PACK_ABILITY)
+                     && !GetSingleUseAbilityCounter(battler, ABILITY_EJECT_PACK_ABILITY)
+                     && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))  // Does not activate if attacker used Parting Shot and can switch out
+                     && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
+                    {
+                        gProtectStructs[battler].statFell = FALSE;
+                        gActiveBattler = gBattleScripting.battler = battler;
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_EJECT_PACK_ABILITY;
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_EmergencyExitPopupNoPause;
+                        effect = TRUE;
+                        break;  // Only fastest eject pack activates
+                    }
                 }
             }
             gBattleScripting.moveendState++;

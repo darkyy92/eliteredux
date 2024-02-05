@@ -9253,6 +9253,7 @@ BattleScript_MoodyEnd:
 	
 BattleScript_EmergencyExit::
 	pause 5
+BattleScript_EmergencyExitPopupNoPause::
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_LONG
 BattleScript_EmergencyExitNoPopUp::

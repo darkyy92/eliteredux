@@ -583,7 +583,7 @@
 #define ABILITY_ZERO_TO_HERO 561 // Placeholder
 #define ABILITY_COSTAR 562 // Placeholder
 #define ABILITY_COMMANDER 563 // Placeholder
-#define ABILITY_EJECT_PACK_ABILITY 564 // Placeholder
+#define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
 #define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.
 #define ABILITY_CUD_CHEW 566 // Eats berries again at the end of the next turn.
 #define ABILITY_ARMOR_TAIL 567 // Protects itself and ally from priority moves.
