@@ -4213,7 +4213,7 @@ static void Cmd_jumpifability(void)
 
     if (hasAbility)
     {
-        gLastUsedAbility = ability;
+        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
         gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
         RecordAbilityBattle(battlerId, gLastUsedAbility);
         gBattlerAbility = battlerId;
