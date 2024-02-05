@@ -569,7 +569,7 @@
 #define ABILITY_PURIFYING_SALT 547 // Immune to status conditions. Take half damage from Ghost.
 #define ABILITY_PROTOSYNTHESIS 548 // Boosts highest stat in Sun or with Booster Energy.
 #define ABILITY_QUARK_DRIVE 549 // Boosts highest stat in Electric Terrain or with Booster Energy.
-#define ABILITY_WIND_POWER 550 // Placeholder
+#define ABILITY_WIND_POWER 550 // Charges up when hit by wind moves or Tailwind starts.
 #define ABILITY_MOMENTUM_PLUS 551 // Non-contact moves use the Speed stat for damage.
 #define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.

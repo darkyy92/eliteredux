@@ -8981,6 +8981,21 @@ BattleScript_CheckWindRiderPartnerActivated:
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
 	goto BattleScript_CheckWindRiderEnd
 
+BattleScript_CheckWindPower::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_WIND_POWER
+	jumpifability BS_ABILITY_BATTLER, ABILITY_WIND_RIDER, BattleScript_CheckWindPower_HasAbility
+	return
+BattleScript_CheckWindPower_HasAbility::
+	jumpifstatus3 BS_ABILITY_BATTLER, STATUS3_CHARGED_UP, BattleScript_CheckWindPower_AlreadyCharged
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	swapbattlers gBattlerAttacker, gBattlerTarget
+	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
+	unswapbattlers gBattlerAttacker, gBattlerTarget
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_CheckWindPower_AlreadyCharged::
+	return
 
 BattleScript_PastelVeilActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -8988,14 +9003,12 @@ BattleScript_PastelVeilActivated::
 	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_PASTELVEILACTIVATED
 	waitmessage B_WAIT_TIME_LONG
-	sethword sABILITY_OVERWRITE, 0
 	end3
 	
 BattleScript_ElectromorphosisActivates::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
 	waitmessage B_WAIT_TIME_LONG
-	sethword sABILITY_OVERWRITE, 0
 	return
 	
 BattleScript_NorthWindActivated::

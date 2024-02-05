@@ -8579,6 +8579,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Furnace
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_WIND_POWER)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && gBattleMoves[move].flags2 & FLAG_AIR_BASED
+             && !(gStatuses3[gBattlerTarget] & STATUS3_CHARGED_UP))
+            {
+                gStatuses3[gBattlerTarget] |= STATUS3_CHARGED_UP; 
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WIND_POWER;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ElectromorphosisActivates;
+                effect++;
+            }
+        }
+
         // Electromorphosis
         if (BATTLER_HAS_ABILITY(battler, ABILITY_ELECTROMORPHOSIS)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
