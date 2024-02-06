@@ -596,7 +596,7 @@
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.
 #define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
-#define ABILITY_SHARING_IS_CARING 577 // Placeholder
+#define ABILITY_SHARING_IS_CARING 577 // Stat changes are shared between all battlers.
 #define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
 #define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
