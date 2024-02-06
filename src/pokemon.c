@@ -1338,6 +1338,7 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     SPECIES_TO_NATIONAL(OGERPON),
     SPECIES_TO_NATIONAL(BASCULEGION),
     SPECIES_TO_NATIONAL(PHANTOWL),
+    SPECIES_TO_NATIONAL(DUELUMBER),
 
     // Megas
     [SPECIES_VENUSAUR_MEGA - 1] = NATIONAL_DEX_VENUSAUR,
@@ -3096,6 +3097,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_FEZANDIPITI - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_OGERPON - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PHANTOWL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_DUELUMBER - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS_THERIAN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PALKIA_ORIGIN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DIALGA_ORIGIN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
@@ -9890,7 +9892,7 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
 bool8 isSpeciesPlaceholderMon(u16 species){
     if(species == SPECIES_NONE)
         return FALSE;
-    else if(species < SPECIES_PHANTOWL + 1)
+    else if(species < SPECIES_DUELUMBER + 1)
         return FALSE;
     else if(species <= FORMS_START)
         return TRUE;

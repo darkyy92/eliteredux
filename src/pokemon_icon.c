@@ -1134,6 +1134,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_FEZANDIPITI] = gMonIcon_Fezandipiti,
     [SPECIES_OGERPON] = gMonIcon_Ogerpon,
     [SPECIES_PHANTOWL] = gMonIcon_Phantowl,
+    [SPECIES_DUELUMBER] = gMonIcon_Duelumber,
     [SPECIES_ENAMORUS_THERIAN] = gMonIcon_Enamorus_Therian,
     [SPECIES_PALKIA_ORIGIN] = gMonIcon_Palkia_Origin_Forme,
     [SPECIES_DIALGA_ORIGIN] = gMonIcon_Dialga_Origin_Forme,
@@ -3009,6 +3010,7 @@ const u8 gMonIconPaletteIndices[] =
 
     //New Mons
     [SPECIES_PHANTOWL] = 2,
+    [SPECIES_DUELUMBER] = 1,
 
     [SPECIES_EGG] = 1,
 };

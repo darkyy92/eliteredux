@@ -939,6 +939,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_PALKIA_ORIGIN] = gMonFootprint_Palkia_Origin_Forme,
     [SPECIES_ENAMORUS_THERIAN] = gMonFootprint_Enamorus_Therian,
     [SPECIES_PHANTOWL] = gMonFootprint_Phantowl,
+    [SPECIES_DUELUMBER] = gMonFootprint_Duelumber,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

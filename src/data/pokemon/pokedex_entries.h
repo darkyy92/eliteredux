@@ -24,6 +24,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_DUELUMBER] =
+    {
+        .categoryName = _("Duelumber"),
+        .height = 10,
+        .weight = 100,
+        .description = gDuelumberPokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BULBASAUR] =
     {
         .categoryName = _("Seed"),

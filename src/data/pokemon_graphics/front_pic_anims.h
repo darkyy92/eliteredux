@@ -11,10 +11,20 @@ static const union AnimCmd sAnim_PHANTOWL_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_DUELUMBER_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd *const sAnims_PHANTOWL[] ={
     sAnim_GeneralFrame0,
     sAnim_PHANTOWL_1,
+};
+
+static const union AnimCmd *const sAnims_DUELUMBER[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DUELUMBER_1,
 };
 
 static const union AnimCmd sAnim_BULBASAUR_1[] =
@@ -19389,6 +19399,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(OGERPON),
     ANIM_CMD(PHANTOWL),
     ANIM_CMD(MAROWAK_ALOLAN),
+    ANIM_CMD(DUELUMBER),
     ANIM_CMD(ENAMORUS_THERIAN),
     ANIM_CMD(DIALGA_ORIGIN),
     ANIM_CMD(PALKIA_ORIGIN),

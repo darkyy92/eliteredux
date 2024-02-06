@@ -1017,6 +1017,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_FEZANDIPITI] = _("Fezandipiti"),
 [SPECIES_OGERPON] = _("Ogerpon"),
 [SPECIES_PHANTOWL] = _("Phantowl"),
+[SPECIES_DUELUMBER] = _("Duelumber"),
 [SPECIES_ENAMORUS_THERIAN] = _("Enamorus"),
 [SPECIES_PALKIA_ORIGIN] = _("Palkia"),
 [SPECIES_DIALGA_ORIGIN] = _("Dialga"),

@@ -1,9 +1,15 @@
 const u8 gMonFootprint_Phantowl[] = INCBIN_U8("graphics/pokemon/phantowl/footprint.1bpp");
+const u8 gMonFootprint_Duelumber[] = INCBIN_U8("graphics/pokemon/duelumber/footprint.1bpp");
 const u8 gMonIcon_Phantowl[] = INCBIN_U8("graphics/pokemon/phantowl/icon.4bpp");
+const u8 gMonIcon_Duelumber[] = INCBIN_U8("graphics/pokemon/duelumber/icon.4bpp");
 const u32 gMonShinyPalette_Phantowl[] = INCBIN_U32("graphics/pokemon/phantowl/shiny.gbapal.lz");
+const u32 gMonShinyPalette_Duelumber[] = INCBIN_U32("graphics/pokemon/duelumber/shiny.gbapal.lz");
 const u32 gMonPalette_Phantowl[] = INCBIN_U32("graphics/pokemon/phantowl/normal.gbapal.lz");
+const u32 gMonPalette_Duelumber[] = INCBIN_U32("graphics/pokemon/duelumber/normal.gbapal.lz");
 const u32 gMonBackPic_Phantowl[] = INCBIN_U32("graphics/pokemon/phantowl/back.4bpp.lz");
+const u32 gMonBackPic_Duelumber[] = INCBIN_U32("graphics/pokemon/duelumber/back.4bpp.lz");
 const u32 gMonFrontPic_Phantowl[] = INCBIN_U32("graphics/pokemon/phantowl/front.4bpp.lz");
+const u32 gMonFrontPic_Duelumber[] = INCBIN_U32("graphics/pokemon/duelumber/front.4bpp.lz");
 const u8 gMonFootprint_Wyrdeer[] = INCBIN_U8("graphics/pokemon/wyrdeer/footprint.1bpp");
 const u8 gMonFootprint_Kleavor[] = INCBIN_U8("graphics/pokemon/kleavor/footprint.1bpp");
 const u8 gMonFootprint_Ursaluna[] = INCBIN_U8("graphics/pokemon/ursaluna/footprint.1bpp");
