@@ -5455,6 +5455,8 @@ static void Cmd_moveend(void)
     choicedMoveAtk = &gBattleStruct->choicedMove[gBattlerAttacker];
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
+    if (AbilityBattleEffects(ABILITYEFFECT_COPY_STATS, gBattlerAttacker, 0, 0, 0)) return;
+
     do
     {
         switch (gBattleScripting.moveendState)
@@ -6257,7 +6259,7 @@ static void Cmd_moveend(void)
 
         if (arg1 == 1 && effect == FALSE)
             gBattleScripting.moveendState = MOVEEND_COUNT;
-        if (arg1 == 2 && arg2 == gBattleScripting.moveendState)
+        if (arg1 == 2 && arg2 == gBattleScripting.moveendState && effect == FALSE)
             gBattleScripting.moveendState = MOVEEND_COUNT;
 
     } while (gBattleScripting.moveendState != MOVEEND_COUNT && effect == FALSE);
