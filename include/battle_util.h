@@ -25,6 +25,7 @@
 #define ABILITYEFFECT_MOVE_END_OTHER             14
 #define ABILITYEFFECT_NEUTRALIZINGGAS            15
 #define ABILITYEFFECT_AFTER_RECOIL               16
+#define ABILITYEFFECT_COPY_STATS                 17
 // Special cases
 #define ABILITYEFFECT_SWITCH_IN_TERRAIN          0xFE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
@@ -72,15 +73,33 @@ struct TypePower
     u16 effect;
 };
 
-enum ParadoxBoostState
+typedef enum
 {
     PARADOX_BOOST_NOT_ACTIVE = 0,
     PARADOX_BOOSTER_ENERGY = 1,
-    PARADOX_WEATHER_ACTIVE = 2
+    PARADOX_WEATHER_ACTIVE = 2,
+} ParadoxBoostSource;
+
+struct ParadoxBoost
+{
+    ParadoxBoostSource source:2;
+    u8 statId:3;
 };
 
-#define GET_PARADOX_STAT(battlerId, ability) ((GetAbilityState(battlerId, ability) & 0xF0) >> 4)
-#define PARADOX_STAT_VALUE(battlerId, source) ((GetHighestStatId(battlerId, TRUE) << 4) | source)
+struct StatCopyState
+{
+    bool8 inProgress:1;
+    u8 battler:2;
+    u8 stat:3;
+    bool8 announced:1;
+};
+
+union AbilityStates
+{
+    struct ParadoxBoost paradoxBoost;
+    struct StatCopyState statCopyState;
+    u32 intValue;
+};
 
 #define CUD_CHEW_CURRENT_TURN (1 << 15)
 
@@ -229,6 +248,8 @@ void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 u32 GetAbilityState(u8 battler, u16 ability);
 void SetAbilityState(u8 battler, u16 ability, u32 value);
+union AbilityStates GetAbilityStateAs(u8 battler, u16 ability);
+void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
 
