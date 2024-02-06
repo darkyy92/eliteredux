@@ -622,8 +622,9 @@
 #define ABILITY_MALICIOUS 600 // Lower's the foe's highest ATK and DEF stat.
 #define ABILITY_DEAD_POWER 601 // 1.5x ATK boost and 20% chance to curse on contact moves.
 #define ABILITY_BRAWLING_WYVERN 602 // All DRAGON type moves are affected by Iron Fist
+#define ABILITY_MYTHICAL_ARROWS 603 // Makes arrow moves SPECIAL and boost them by 30%
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_BRAWLING_WYVERN + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MYTHICAL_ARROWS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
