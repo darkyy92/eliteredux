@@ -38627,8 +38627,6 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-    
-
     [SPECIES_PHANTOWL] =
     {
     .baseHP        = 100,
