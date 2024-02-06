@@ -6227,7 +6227,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_OVERWHELM, ABILITY_DAZZLING, ABILITY_MOLD_BREAKER},
-    .innates = {ABILITY_FLUFFY, ABILITY_OVERCHARGE, ABILITY_OVERWHELM},
+    .innates = {ABILITY_FLUFFY, ABILITY_OVERCHARGE, ABILITY_TRANSISTOR},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
