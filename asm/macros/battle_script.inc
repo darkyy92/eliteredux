@@ -2163,6 +2163,10 @@
 	various \battler, VARIOUS_GET_BATTLER
 	.endm
 
+	.macro docopystatchange battler:req
+	various \battler, VARIOUS_DO_COPY_STAT_CHANGE
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

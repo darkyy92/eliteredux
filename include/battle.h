@@ -320,6 +320,7 @@ struct SavedStackData
 {
     u16 abilityOverride;
     u8 savedBattler;
+    u8 statChanger;
 };
 
 #define MAX_SCRIPT_STACK_COUNT 8
@@ -514,6 +515,13 @@ struct StolenItem
     u16 stolen:1;
 };
 
+typedef enum
+{
+    STAT_STAGE_CHECK_NOT_NEEDED = 0,
+    STAT_STAGE_CHECK_NEEDED = 1,
+    STAT_STAGE_CHECK_IN_PROGRESS = 2,
+} StatStageCheckState;
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -636,12 +644,14 @@ struct BattleStruct
     u8 quickClawBattlerId;
     struct StolenItem itemStolen[PARTY_SIZE];  // Player's team that had items stolen (two bytes per party member)
     u8 blunderPolicy:1; // should blunder policy activate
+    StatStageCheckState statStageCheckState:2;
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 moveInfoSpriteId;    // window gfx
     u8 enemyInfoSpriteId;    // window gfx
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     bool8 singleuseability[PARTY_SIZE][NUM_INNATE_PER_SPECIES + 1][2]; // For the sake of Instruct
+    u8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_NATURE_STATS];
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
@@ -738,6 +748,7 @@ struct BattleScripting
     u8 replaceEndWithEnd3;
     u8 limitMoveend;
     u8 storedMoveendState;
+    u8 checkStatStatus;
 };
 
 // rom_80A5C6C
@@ -941,7 +952,6 @@ extern u8 gSentPokesToOpponent[2];
 extern u16 gExpShareExp;
 extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];
 extern struct BattleScripting gBattleScripting;
-extern u8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_NATURE_STATS];
 extern struct BattleScripting gSavedBattleScripting;
 extern struct BattleStruct *gBattleStruct;
 extern u8 *gLinkBattleSendBuffer;

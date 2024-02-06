@@ -11418,6 +11418,37 @@ BattleScript_NosferatuActivated::
 BattleScript_NosferatuActivated_NothingToHeal:
     return
 
+BattleScript_PerformCopyStatEffects::
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	docopystatchange BS_ATTACKER
+	copybyte gBattlerAttacker, sSAVED_BATTLER 
+	return
+
+BattleScript_PerformCopyStatEffectsChangeStatDown::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatDownNoResult
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_SHORT
+BattleScript_PerformCopyStatEffectsChangeStatDownNoResult:
+	return
+
+BattleScript_PerformCopyStatEffectsChangeStatUp::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatUpNoResult
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_SHORT
+BattleScript_PerformCopyStatEffectsChangeStatUpNoResult:
+	return
+
+BattleScript_AbilityPopUpAndWait::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	return
+
 BattleScript_HydroCircuitAbsorbEffectActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp

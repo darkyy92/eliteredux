@@ -1735,7 +1735,8 @@ void BattleScriptPush(const u8 *bsPtr)
     struct SavedStackData savedStackData = 
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
-            .savedBattler = gBattleScripting.savedBattler 
+            .savedBattler = gBattleScripting.savedBattler,
+            .statChanger = gBattleScripting.statChanger,
         };
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
@@ -1746,7 +1747,8 @@ void BattleScriptPushCursor(void)
     struct SavedStackData savedStackData = 
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
-            .savedBattler = gBattleScripting.savedBattler 
+            .savedBattler = gBattleScripting.savedBattler,
+            .statChanger = gBattleScripting.statChanger,
         };
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
@@ -1761,6 +1763,7 @@ void BattleScriptPop(void)
         // Abilities typically get overwritten and then stored, so they will generally be one position ahead
         gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
         gBattleScripting.savedBattler = data->savedBattler;
+        gBattleScripting.statChanger = data->statChanger;
     }
 }
 
@@ -4580,6 +4583,11 @@ void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value) {
     SetSingleUseAbilityCounter(battler, ability, GetSingleUseAbilityCounter(battler, ability) + value);
 }
 
+union AbilityStates GetAbilityStateAs(u8 battler, u16 ability)
+{
+    return (union AbilityStates) { .intValue = GetAbilityState(battler, ability) };
+}
+
 u32 GetAbilityState(u8 battler, u16 ability) {
     
     switch (BattlerHasInnateOrAbility(battler, ability))
@@ -4591,6 +4599,11 @@ u32 GetAbilityState(u8 battler, u16 ability) {
         default:
             return -1;
     }
+}
+
+void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value)
+{
+    SetAbilityState(battler, ability, value.intValue);
 }
 
 void SetAbilityState(u8 battler, u16 ability, u32 value) {
@@ -6522,8 +6535,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
-                    SetAbilityState(battler, ABILITY_PROTOSYNTHESIS, PARADOX_STAT_VALUE(battler, PARADOX_WEATHER_ACTIVE));
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GET_PARADOX_STAT(gActiveBattler, ABILITY_PROTOSYNTHESIS));
+                    struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
+                    SetAbilityStateAs(battler, ABILITY_PROTOSYNTHESIS, (union AbilityStates) { .paradoxBoost = boost });
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
                     BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
@@ -6533,8 +6547,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                 {
-                    SetAbilityState(battler, ABILITY_QUARK_DRIVE, PARADOX_STAT_VALUE(battler, PARADOX_WEATHER_ACTIVE));
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GET_PARADOX_STAT(gActiveBattler, ABILITY_QUARK_DRIVE));
+                    struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = ABILITY_QUARK_DRIVE };
+                    SetAbilityStateAs(battler, ABILITY_QUARK_DRIVE, (union AbilityStates) { .paradoxBoost = boost });
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
                     BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
@@ -6552,6 +6567,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+
+            // Costar
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_COSTAR) && IsBattlerAlive(BATTLE_PARTNER(battler)))
+            {
+                u8 i;
+                bool8 anyChanged = FALSE;
+                for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+                {
+                    if (gBattleMons[battler].statStages[i] != gBattleMons[BATTLE_PARTNER(battler)].statStages[i])
+                    {
+                        gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
+                        anyChanged = TRUE;
+                    }
+                }
+
+                if (anyChanged)
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COSTAR;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    effect++;
+                }
+            }
+
             //Mold Breaker
             if(BattlerHasInnate(battler, ABILITY_MOLD_BREAKER)){
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_MOLD_BREAKER)])
@@ -10596,6 +10634,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Molten Blades
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_DEAD_POWER)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !(gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && IsMoveMakingContact(move, battler)
+             && (Random() % 100) < 20)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DEAD_POWER;
+                gBattleScripting.moveEffect = MOVE_EFFECT_CURSE;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
 		// Poison Touch
 		if (BattlerHasInnate(battler, ABILITY_POISON_TOUCH)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -11491,6 +11549,53 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
                 effect++;
+            }
+        }
+        break;
+    case ABILITYEFFECT_COPY_STATS:
+        if (gBattleStruct->statStageCheckState == STAT_STAGE_CHECK_NEEDED)
+        {
+            u8 i, statId, j;
+            bool8 found = FALSE;
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (BATTLER_HAS_ABILITY(i, ABILITY_EGOIST))
+                {
+                    bool8 foundForBattler = FALSE;
+                    for (statId = STAT_ATK; statId < NUM_NATURE_STATS; statId++)
+                    {
+                        u8 change = 0;
+                        for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+                        {
+                            if (GetBattlerSide(i) == GetBattlerSide(j)) continue;
+                            if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
+                            {
+                                found = foundForBattler = TRUE;
+                                SetAbilityStateAs(i, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                            }
+                        }
+                        if (foundForBattler) break;
+                    }
+                }
+            }
+
+            battler = IsAbilityOnField(ABILITY_SHARING_IS_CARING) - 1;
+            if ((s8)battler > 0)
+            {
+                found = TRUE;
+                SetAbilityStateAs(i, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+            }
+
+            if (found)
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffects;
+                effect++;
+            }
+            else
+            {
+                memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck) * MAX_BATTLERS_COUNT * NUM_NATURE_STATS);
+                gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
             }
         }
         break;
@@ -14852,6 +14957,9 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                     
             // Pure Power
             if (BATTLER_HAS_ABILITY(battler, ABILITY_PURE_POWER)) statBase *= 2;
+
+            // Dead Power
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEAD_POWER)) statBase = statBase * 3 / 2;
                     
             // Slow Start
             if (BATTLER_HAS_ABILITY(battler, ABILITY_SLOW_START)
@@ -14982,10 +15090,10 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             break;
     }
 
-    if (statEnum != STAT_SPEED && GET_PARADOX_STAT(battler, ABILITY_PROTOSYNTHESIS) == statEnum)
+    if (statEnum != STAT_SPEED && GetAbilityStateAs(battler, ABILITY_PROTOSYNTHESIS).paradoxBoost.statId == statEnum)
         statBase = statBase * 13 / 10;
 
-    if (statEnum != STAT_SPEED && GET_PARADOX_STAT(battler, ABILITY_QUARK_DRIVE) == statEnum)
+    if (statEnum != STAT_SPEED && GetAbilityStateAs(battler, ABILITY_QUARK_DRIVE).paradoxBoost.statId == statEnum)
         statBase = statBase * 13 / 10;
 
     #undef RUIN_CHECK

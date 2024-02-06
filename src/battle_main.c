@@ -4890,10 +4890,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
             speed = (speed * 150) / 100;
     }
     
-    if (GET_PARADOX_STAT(battlerId, ABILITY_PROTOSYNTHESIS) == STAT_SPEED)
+    if (GetAbilityStateAs(battlerId, ABILITY_PROTOSYNTHESIS).paradoxBoost.statId == STAT_SPEED)
         speed = speed * 3 / 2;
     
-    if (GET_PARADOX_STAT(battlerId, ABILITY_QUARK_DRIVE) == STAT_SPEED)
+    if (GetAbilityStateAs(battlerId, ABILITY_QUARK_DRIVE).paradoxBoost.statId == STAT_SPEED)
         speed = speed * 3 / 2;
 
     // other abilities
