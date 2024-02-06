@@ -10634,6 +10634,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        //Molten Blades
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_DEAD_POWER)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !(gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && IsMoveMakingContact(move, battler)
+             && (Random() % 100) < 20)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DEAD_POWER;
+                gBattleScripting.moveEffect = MOVE_EFFECT_CURSE;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
 		// Poison Touch
 		if (BattlerHasInnate(battler, ABILITY_POISON_TOUCH)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -14937,6 +14957,9 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                     
             // Pure Power
             if (BATTLER_HAS_ABILITY(battler, ABILITY_PURE_POWER)) statBase *= 2;
+
+            // Dead Power
+            if (BATTLER_HAS_ABILITY(battler, ABILITY_DEAD_POWER)) statBase = statBase * 3 / 2;
                     
             // Slow Start
             if (BATTLER_HAS_ABILITY(battler, ABILITY_SLOW_START)
