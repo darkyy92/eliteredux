@@ -574,14 +574,14 @@
 #define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
-#define ABILITY_EGOIST 555 // Placeholder
+#define ABILITY_EGOIST 555 // Raises its own stats when foes raise theirs.
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
 #define ABILITY_GUILT_TRIP 559 // Placeholder
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
 #define ABILITY_ZERO_TO_HERO 561 // Placeholder
-#define ABILITY_COSTAR 562 // Placeholder
+#define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
 #define ABILITY_COMMANDER 563 // Placeholder
 #define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
 #define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.

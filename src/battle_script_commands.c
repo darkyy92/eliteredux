@@ -10453,7 +10453,7 @@ static void Cmd_various(void)
                 
                 for (otherBattler = 0; otherBattler < MAX_BATTLERS_COUNT; otherBattler++)
                 {
-                    if (otherBattler == battler) continue;
+                    if (GetBattlerSide(otherBattler) == GetBattlerSide(battler)) continue;
                     if (gBattleStruct->statChangesToCheck[otherBattler][state.stat - 1] > 0)
                         change += gBattleStruct->statChangesToCheck[otherBattler][state.stat - 1];
                 }
@@ -11552,10 +11552,10 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
     if (gBattleMons[gActiveBattler].statStages[statId] > MAX_STAT_STAGE)
         gBattleMons[gActiveBattler].statStages[statId] = MAX_STAT_STAGE;
 
-    if (statValue && gBattleStruct->statStageCheckState != STAT_STAGE_CHECK_IN_PROGRESS)
+    if (statValue && gBattleStruct->statStageCheckState != STAT_STAGE_CHECK_IN_PROGRESS && statId <= NUM_NATURE_STATS)
     {
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NEEDED;
-        gBattleStruct->statChangesToCheck[battler][statId] += statValue;
+        gBattleStruct->statChangesToCheck[battler][statId - 1] += statValue;
     }
 
     if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_STAT_WONT_INCREASE && flags & STAT_BUFF_ALLOW_PTR)

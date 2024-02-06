@@ -6567,6 +6567,29 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+
+            // Costar
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_COSTAR) && IsBattlerAlive(BATTLE_PARTNER(battler)))
+            {
+                u8 i;
+                bool8 anyChanged = FALSE;
+                for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+                {
+                    if (gBattleMons[battler].statStages[i] != gBattleMons[BATTLE_PARTNER(battler)].statStages[i])
+                    {
+                        gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
+                        anyChanged = TRUE;
+                    }
+                }
+
+                if (anyChanged)
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COSTAR;
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                    effect++;
+                }
+            }
+
             //Mold Breaker
             if(BattlerHasInnate(battler, ABILITY_MOLD_BREAKER)){
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_MOLD_BREAKER)])
@@ -11524,7 +11547,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         u8 change = 0;
                         for (j = 0; j < MAX_BATTLERS_COUNT; j++)
                         {
-                            if (i == j) continue;
+                            if (GetBattlerSide(i) == GetBattlerSide(j)) continue;
                             if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
                             {
                                 found = foundForBattler = TRUE;
