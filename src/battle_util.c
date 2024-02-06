@@ -11516,7 +11516,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             bool8 found = FALSE;
             for (i = 0; i < MAX_BATTLERS_COUNT; i++)
             {
-                if (BATTLER_HAS_ABILITY(i, ABILITY_OPPORTUNIST))
+                if (BATTLER_HAS_ABILITY(i, ABILITY_EGOIST))
                 {
                     bool8 foundForBattler = FALSE;
                     for (statId = STAT_ATK; statId < NUM_NATURE_STATS; statId++)
@@ -11528,7 +11528,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
                             {
                                 found = foundForBattler = TRUE;
-                                SetAbilityStateAs(i, ABILITY_OPPORTUNIST, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                                SetAbilityStateAs(i, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
                             }
                         }
                         if (foundForBattler) break;

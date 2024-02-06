@@ -10446,7 +10446,7 @@ static void Cmd_various(void)
 
             if (!IsBattlerAlive(battler)) continue;
             
-            state = GetAbilityStateAs(battler, ABILITY_OPPORTUNIST).statCopyState;
+            state = GetAbilityStateAs(battler, ABILITY_EGOIST).statCopyState;
             if (!state.inProgress) continue;
             
             for (state.stat++; state.stat <= NUM_NATURE_STATS; state.stat++) {
@@ -10461,7 +10461,7 @@ static void Cmd_various(void)
                 {
                     if (!state.announced)
                     {
-                        gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST;
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_EGOIST;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AbilityPopUpAndWait;
                         state.announced = TRUE;
@@ -10477,7 +10477,7 @@ static void Cmd_various(void)
 
             if (state.stat > NUM_NATURE_STATS) state = (struct StatCopyState) {0};
 
-            SetAbilityStateAs(battler, ABILITY_OPPORTUNIST, (union AbilityStates) { .statCopyState = state });
+            SetAbilityStateAs(battler, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = state });
             return;
         }
 
