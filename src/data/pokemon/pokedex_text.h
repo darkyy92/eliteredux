@@ -4,6 +4,12 @@ const u8 gDummyPokedexText[] = _(
     "No detailed information is available\n"
     "at this time.");
 
+const u8 gPhantowlPokedexText[] = _(
+    "This is not a actually Pokemon.\n"
+    "It's really just a potato\n"
+    "Dont ask me why potato. Maybe because\n"
+    "I like potatos.");
+
 const u8 gBulbasaurPokedexText[] = _(
     "Bulbasaur can be seen napping in bright\n"
     "sunlight. There is a seed on its back.\n"

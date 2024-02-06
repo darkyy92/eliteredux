@@ -6,7 +6,7 @@
 // each bit corresponding to a TM or HM.
 const u32 gTMHMLearnsets[][4] =
 {
-	[SPECIES_NONE] = TMHM_LEARNSET (0, 0),
+	  [SPECIES_NONE] = TMHM_LEARNSET (0, 0),
     [SPECIES_BULBASAUR]   = TMHM_LEARNSET((TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
                                         | TMHM1(TM10_HIDDEN_POWER)
@@ -38824,4 +38824,33 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(HM06_ROCK_SMASH)
                                         | TMHM2(HM07_WATERFALL)
                                         | TMHM2(HM08_DIVE)),
+    [SPECIES_PHANTOWL]   = TMHM_LEARNSET (TMHM1(TM04_CALM_MIND)
+                                        | TMHM1(TM06_TOXIC)
+                                        | TMHM1(TM10_HIDDEN_POWER)
+                                        | TMHM1(TM11_SUNNY_DAY)
+                                        | TMHM1(TM15_HYPER_BEAM)
+                                        | TMHM1(TM17_PROTECT)
+                                        | TMHM1(TM18_RAIN_DANCE)
+                                        | TMHM1(TM21_FRUSTRATION)
+                                        | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM29_PSYCHIC)
+                                        | TMHM1(TM30_SHADOW_BALL)
+                                        | TMHM1(TM33_REFLECT)
+                                        | TMHM1(TM40_AERIAL_ACE)
+                                        | TMHM1(TM42_FACADE)
+                                        | TMHM1(TM43_SECRET_POWER)
+                                        | TMHM1(TM44_REST)
+                                        | TMHM1(TM45_ATTRACT)
+                                        | TMHM1(TM46_THIEF)
+                                        | TMHM1(TM47_STEEL_WING)
+                                        | TMHM1(TM49_SLEEP_TALK)
+                                        | TMHM1(TM51_ROOST)
+                                        | TMHM1(TM58_ENDURE),
+                                          TMHM2(TM67_RECYCLE)
+                                        | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM85_DREAM_EATER)
+                                        | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM100_CURSE)
+                                        | TMHM2(HM02_FLY)
+                                        | TMHM2(HM05_FLASH)),
 };

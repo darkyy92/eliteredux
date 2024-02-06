@@ -31,6 +31,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+    [SPECIES_PHANTOWL] =
+    {
+    .baseHP        = 100,
+    .baseAttack    = 50,
+    .baseDefense   = 70,
+    .baseSpeed     = 70,
+    .baseSpAttack  = 76, // nerf bc of Majestic Bird
+    .baseSpDefense = 96,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_FLYING,
+    .catchRate = 255,
+    .expYield = 158,
+    .evYield_HP    = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_FLYING,
+    .eggGroup2 = EGG_GROUP_FLYING,
+    .abilities = {ABILITY_TINTED_LENS, ABILITY_AERILATE, ABILITY_AIR_BLOWER},
+    .innates = {ABILITY_NOCTURNAL, ABILITY_INSOMNIA, ABILITY_MAJESTIC_BIRD},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_IVYSAUR] =
     {
     .baseHP        = 60,
