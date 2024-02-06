@@ -694,8 +694,8 @@ gBattleAnims_Moves::
 	.4byte Move_MIND_BLOWN
 	.4byte Move_PLASMA_FISTS
 	.4byte Move_PHOTON_GEYSER
-	.4byte Move_ZIPPY_ZAP
-	.4byte Move_SPLISHY_SPLASH
+	.4byte Move_ZING_ZAP @ MOVE_ZIPPY_ZAP
+	.4byte Move_SURF @ MOVE_SPLISHY_SPLASH
 	.4byte Move_FLOATY_FALL
 	.4byte Move_PIKA_PAPOW
 	.4byte Move_BOUNCY_BUBBLE
@@ -708,7 +708,7 @@ gBattleAnims_Moves::
 	.4byte Move_SPARKLY_SWIRL
 	.4byte Move_VEEVEE_VOLLEY
 	.4byte Move_DOUBLE_IRON_BASH
-	.4byte Move_DYNAMAX_CANNON
+	.4byte Move_HYPER_BEAM @ MOVE_DYNAMAX_CANNON
 	.4byte Move_SNIPE_SHOT
 	.4byte Move_JAW_LOCK
 	.4byte Move_STUFF_CHEEKS
@@ -716,69 +716,69 @@ gBattleAnims_Moves::
 	.4byte Move_TAR_SHOT
 	.4byte Move_MAGIC_POWDER
 	.4byte Move_DRAGON_DARTS
-	.4byte Move_TEATIME
+	.4byte Move_MILK_DRINK @ MOVE_TEATIME
 	.4byte Move_OCTOLOCK
 	.4byte Move_BOLT_BEAK
 	.4byte Move_FISHIOUS_REND
-	.4byte Move_COURT_CHANGE
+	.4byte Move_TRICK_ROOM @ MOVE_COURT_CHANGE
 	.4byte Move_CLANGOROUS_SOUL
 	.4byte Move_BODY_PRESS
-	.4byte Move_DECORATE
+	.4byte Move_FLOWER_SHIELD @ MOVE_DECORATE
 	.4byte Move_DRUM_BEATING
 	.4byte Move_SNAP_TRAP
 	.4byte Move_PYRO_BALL
-	.4byte Move_BEHEMOTH_BLADE
-	.4byte Move_BEHEMOTH_BASH
+	.4byte Move_SACRED_SWORD @ MOVE_BEHEMOTH_BLADE
+	.4byte Move_SUNSTEEL_STRIKE @ MOVE_BEHEMOTH_BASH
 	.4byte Move_AURA_WHEEL
 	.4byte Move_BREAKING_SWIPE
 	.4byte Move_BRANCH_POKE
 	.4byte Move_OVERDRIVE
 	.4byte Move_APPLE_ACID
 	.4byte Move_GRAV_APPLE
-	.4byte Move_SPIRIT_BREAK
+	.4byte Move_PSYCHIC @ MOVE_SPIRIT_BREAK
 	.4byte Move_STRANGE_STEAM
 	.4byte Move_LIFE_DEW
 	.4byte Move_OBSTRUCT
-	.4byte Move_FALSE_SURRENDER
+	.4byte Move_FEINT @ MOVE_FALSE_SURRENDER
 	.4byte Move_METEOR_ASSAULT
-	.4byte Move_ETERNA_BEAM
+	.4byte Move_HYPER_BEAM @ MOVE_ETERNA_BEAM
 	.4byte Move_STEEL_BEAM
-	.4byte Move_EXPANDING_FORCE
-	.4byte Move_STEEL_ROLLER
-	.4byte Move_SCALE_SHOT
+	.4byte Move_DAZZLING_GLEAM @ MOVE_EXPANDING_FORCE
+	.4byte Move_GYRO_BALL @ MOVE_STEEL_ROLLER
+	.4byte Move_FURY_ATTACK @ MOVE_SCALE_SHOT
 	.4byte Move_METEOR_BEAM
 	.4byte Move_SHELL_SIDE_ARM
-	.4byte Move_MISTY_EXPLOSION
-	.4byte Move_GRASSY_GLIDE
-	.4byte Move_RISING_VOLTAGE
+	.4byte Move_EXPLOSION @ MOVE_MISTY_EXPLOSION
+	.4byte Move_LEAF_TORNADO @ MOVE_GRASSY_GLIDE
+	.4byte Move_VOLT_TACKLE @ MOVE_RISING_VOLTAGE
 	.4byte Move_TERRAIN_PULSE
-	.4byte Move_SKITTER_SMACK
-	.4byte Move_BURNING_JEALOUSY
+	.4byte Move_SHADOW_SNEAK @ MOVE_SKITTER_SMACK
+	.4byte Move_OVERHEAT @ MOVE_BURNING_JEALOUSY
 	.4byte Move_LASH_OUT
 	.4byte Move_POLTERGEIST
-	.4byte Move_CORROSIVE_GAS
+	.4byte Move_POISON_GAS @ MOVE_CORROSIVE_GAS
 	.4byte Move_COACHING
-	.4byte Move_FLIP_TURN
-	.4byte Move_TRIPLE_AXEL
-	.4byte Move_DUAL_WINGBEAT
+	.4byte Move_U_TURN @ MOVE_FLIP_TURN
+	.4byte Move_TRIPLE_KICK @ MOVE_TRIPLE_AXEL
+	.4byte Move_WING_ATTACK @ MOVE_DUAL_WINGBEAT
 	.4byte Move_SCORCHING_SANDS
-	.4byte Move_JUNGLE_HEALING
-	.4byte Move_WICKED_BLOW
-	.4byte Move_SURGING_STRIKES
-	.4byte Move_THUNDER_CAGE
-	.4byte Move_DRAGON_ENERGY
-	.4byte Move_FREEZING_GLARE
-	.4byte Move_FIERY_WRATH
-	.4byte Move_THUNDEROUS_KICK
-	.4byte Move_GLACIAL_LANCE
-	.4byte Move_ASTRAL_BARRAGE
-	.4byte Move_EERIE_SPELL
-	.4byte Move_DEATHROLL
+	.4byte Move_AROMATHERAPY @ MOVE_JUNGLE_HEALING
+	.4byte Move_SUCKER_PUNCH @ MOVE_WICKED_BLOW
+	.4byte Move_LIQUIDATION @ MOVE_SURGING_STRIKES
+	.4byte Move_THUNDER @ MOVE_THUNDER_CAGE
+	.4byte Move_HYPER_BEAM @ MOVE_DRAGON_ENERGY
+	.4byte Move_PSYSHOCK @ MOVE_FREEZING_GLARE
+	.4byte Move_DARK_PULSE @ MOVE_FIERY_WRATH
+	.4byte Move_METEOR_ASSAULT @ MOVE_THUNDEROUS_KICK
+	.4byte Move_ICICLE_CRASH @ MOVE_GLACIAL_LANCE
+	.4byte Move_SHADOW_BALL @ MOVE_ASTRAL_BARRAGE
+	.4byte Move_SHADOW_BALL @ MOVE_EERIE_SPELL
+	.4byte Move_CRUNCH @ MOVE_DEATHROLL
 	.4byte Move_EXCALIBUR
 	.4byte Move_AQUA_FANG
 	.4byte Move_WAVE_CRASH
 	.4byte Move_SMITE
-	.4byte Move_OUTBURST
+	.4byte Move_EXPLOSION @ MOVE_OUTBURST
 	.4byte Move_SEIMSIC_FIST @ MOVE_SEISMIC_FIST
 	.4byte Move_IRON_FANGS
 	.4byte Move_SHADOW_FANGS
@@ -787,56 +787,56 @@ gBattleAnims_Moves::
 	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
 	.4byte Move_PLASMA_PULSE
-	.4byte Move_PRIMAL_BEAM
-	.4byte Move_DRACONIC_FANGS
-	.4byte Move_PIXIE_BEAM
-	.4byte Move_PIXIE_SLASH
-	.4byte Move_SEISMIC_BLADE
-	.4byte Move_MOUNTAIN_CHUNK
-	.4byte Move_ARCHER_SHOT
-	.4byte Move_FROST_BRAND
-	.4byte Move_FROST_BOLT
-	.4byte Move_GLACIER_CRASH
-	.4byte Move_SUPERSONIC_SHOT
-	.4byte Move_ZEPHYR_RUSH
-	.4byte Move_SHOCKING_JAB
-	.4byte Move_SHOCKING_EDGE
-	.4byte Move_LIGHTING_SRIKE
-	.4byte Move_VOLT_BOLT
-	.4byte Move_PSYCHOKINESIS
-	.4byte Move_FERTILE_FANGS
-	.4byte Move_SCATTER_BLAST
-	.4byte Move_JAGGED_PUNCH
+	.4byte Move_HYPER_BEAM @ MOVE_PRIMAL_BEAM
+	.4byte Move_BITE @ MOVE_DRACONIC_FANGS
+	.4byte Move_FLEUR_CANNON @ MOVE_PIXIE_BEAM
+	.4byte Move_SACRED_SWORD @ MOVE_PIXIE_SLASH
+	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
+	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
+	.4byte Move_THOUSAND_ARROWS @ MOVE_ARCHER_SHOT
+	.4byte Move_CUT @ MOVE_FROST_BRAND
+	.4byte Move_THOUSAND_ARROWS @ MOVE_FROST_BOLT
+	.4byte Move_ICICLE_CRASH @ MOVE_GLACIER_CRASH
+	.4byte Move_SUPERSONIC @ MOVE_SUPERSONIC_SHOT
+	.4byte Move_JUMP_KICK @ MOVE_ZEPHYR_RUSH
+	.4byte Move_POISON_JAB @ MOVE_SHOCKING_JAB
+	.4byte Move_ZING_ZAP @ MOVE_SHOCKING_EDGE
+	.4byte Move_THUNDER_SHOCK @ MOVE_LIGHTING_SRIKE
+	.4byte Move_VOLT_TACKLE @ MOVE_VOLT_BOLT
+	.4byte Move_STRENGTH @ MOVE_PSYCHOKINESIS
+	.4byte Move_LEECH_LIFE @ MOVE_FERTILE_FANGS
+	.4byte Move_ACCELEROCK @ MOVE_SCATTER_BLAST
+	.4byte Move_MACH_PUNCH @ MOVE_JAGGED_PUNCH
 	.4byte Move_CUTSIE_SLAP
-	.4byte Move_FAIRY_SPHERES
-	.4byte Move_BRAMBLE_BLAST
-	.4byte Move_ASTEROID_DOWNFALL
-	.4byte Move_AQUA_BASH
-	.4byte Move_TECTONIC_FANGS
-	.4byte Move_CUPID_SHOT
-	.4byte Move_CLAY_DART
-	.4byte Move_DIAMOND_ARROW
-	.4byte Move_DIAMOND_BLADE
-	.4byte Move_VENOM_BOLT
-	.4byte Move_FUMIGATION_BOMB
-	.4byte Move_BLACK_MAGIC
-	.4byte Move_FLAME_TONGUE
-	.4byte Move_BLAZING_ARROW
-	.4byte Move_ROCKET_PUNCH
-	.4byte Move_WEB_SHOT
-	.4byte Move_AURA_FORCE
-	.4byte Move_DRAKE_MISSILE
-	.4byte Move_LOTUS_SHOWER
-	.4byte Move_JAGGED_HORNS
-	.4byte Move_BLOOD_SHOT
-	.4byte Move_FLASH_FREEZE
-	.4byte Move_PHANTOM_GLOVES
-	.4byte Move_HOMING_FLETCH
-	.4byte Move_BITTER_MALICE
-	.4byte Move_INFERNAL_PARADE
-	.4byte Move_DEVIOUS_SHOT
-	.4byte Move_STARBURST
-	.4byte Move_CHEAP_SHOT
+	.4byte Move_DOUBLE_SLAP @ MOVE_FAIRY_SPHERES
+	.4byte Move_POISON_STING @ MOVE_BRAMBLE_BLAST
+	.4byte Move_SMACK_DOWN @ MOVE_ASTEROID_DOWNFALL
+	.4byte Move_AQUA_TAIL @ MOVE_AQUA_BASH
+	.4byte Move_BUG_BITE @ MOVE_TECTONIC_FANGS
+	.4byte Move_THOUSAND_ARROWS @ MOVE_CUPID_SHOT
+	.4byte Move_THOUSAND_ARROWS @ MOVE_CLAY_DART
+	.4byte Move_THOUSAND_ARROWS @ MOVE_DIAMOND_ARROW
+	.4byte Move_CUT @ MOVE_DIAMOND_BLADE
+	.4byte Move_POISON_STING @ MOVE_VENOM_BOLT
+	.4byte Move_ACID @ MOVE_FUMIGATION_BOMB
+	.4byte Move_DARK_PULSE @ MOVE_BLACK_MAGIC
+	.4byte Move_FIRE_LASH @ MOVE_FLAME_TONGUE
+	.4byte Move_FIRE_LASH @ MOVE_BLAZING_ARROW
+	.4byte Move_COMET_PUNCH @ MOVE_ROCKET_PUNCH
+	.4byte Move_STICKY_WEB @ MOVE_WEB_SHOT
+	.4byte Move_AURA_SPHERE @ MOVE_AURA_FORCE
+	.4byte Move_AURA_SPHERE @ MOVE_DRAKE_MISSILE
+	.4byte Move_PETAL_BLIZZARD @ MOVE_LOTUS_SHOWER
+	.4byte Move_HORN_ATTACK @ MOVE_JAGGED_HORNS
+	.4byte Move_ACID @ MOVE_BLOOD_SHOT
+	.4byte Move_FREEZE_DRY @ MOVE_FLASH_FREEZE
+	.4byte Move_SHADOW_CLAW @ MOVE_PHANTOM_GLOVES
+	.4byte Move_THOUSAND_ARROWS @ MOVE_HOMING_FLETCH
+	.4byte Move_DARK_PULSE @ MOVE_BITTER_MALICE
+	.4byte Move_WILL_O_WISP @ MOVE_INFERNAL_PARADE
+	.4byte Move_THOUSAND_ARROWS @ MOVE_DEVIOUS_SHOT
+	.4byte Move_CHARGE_BEAM @ MOVE_STARBURST
+	.4byte Move_SHADOW_FORCE @ MOVE_CHEAP_SHOT
 	.4byte Move_COUNT @ MOVE_TORRENT_FIST
 	.4byte Move_NONE @ MOVE_STAR_CRASH
 	.4byte Move_NONE @ MOVE_STONE_AXE
@@ -4017,69 +4017,6 @@ Move_BUG_BITE:
 	blendoff
 	end
 
-Move_PRIMAL_BEAM:
-	goto Move_HYPER_BEAM
-
-Move_DRACONIC_FANGS:
-    goto Move_BITE
-
-Move_PIXIE_BEAM:
-    goto Move_FLEUR_CANNON
-
-Move_PIXIE_SLASH:
-    goto Move_SACRED_SWORD
-
-Move_SEISMIC_BLADE:
-	goto Move_SACRED_SWORD
-
-Move_MOUNTAIN_CHUNK:
-    goto Move_ROCK_SLIDE
-
-Move_ARCHER_SHOT:
-   goto Move_THOUSAND_ARROWS
-
-Move_FROST_BRAND:
-   goto Move_CUT
-
-Move_FROST_BOLT:
-   goto Move_THOUSAND_ARROWS
-
-Move_GLACIER_CRASH:
-   goto Move_ICICLE_CRASH
-
-Move_SUPERSONIC_SHOT:
-   goto Move_SUPERSONIC
-
-Move_ZEPHYR_RUSH:
-   goto Move_JUMP_KICK
-
-Move_SHOCKING_JAB:
-   goto Move_POISON_JAB
-
-Move_SHOCKING_EDGE:
-   goto Move_ZING_ZAP
-
-Move_LIGHTING_SRIKE:
-   goto Move_THUNDER_SHOCK
-
-Move_VOLT_BOLT:
-   goto Move_VOLT_TACKLE
-
-Move_PSYCHOKINESIS:
-   goto Move_STRENGTH
-
-Move_FERTILE_FANGS:
-   goto Move_LEECH_LIFE
-
-Move_BRAMBLE_BLAST:
-   goto Move_POISON_STING
-
-Move_SCATTER_BLAST:
-   goto Move_ACCELEROCK
-
-Move_JAGGED_PUNCH:
-   goto Move_MACH_PUNCH
-
 Move_CUTSIE_SLAP:
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_PINK_HEART
@@ -4108,90 +4045,6 @@ CutsieSlapRight:
 	clearmonbg ANIM_TARGET
 	blendoff
 	end
-
-Move_FAIRY_SPHERES:
-   goto Move_DOUBLE_SLAP
-
-Move_ASTEROID_DOWNFALL:
-   goto Move_SMACK_DOWN
-
-Move_AQUA_BASH:
-   goto Move_AQUA_TAIL
-
-Move_TECTONIC_FANGS:
-   goto Move_BUG_BITE
-
-Move_CUPID_SHOT:
-   goto Move_THOUSAND_ARROWS
-
-Move_CLAY_DART:
-   goto Move_THOUSAND_ARROWS
-
-Move_DIAMOND_ARROW:
-   goto Move_THOUSAND_ARROWS
-
-Move_DIAMOND_BLADE:
-   goto Move_CUT
-
-Move_VENOM_BOLT:
-   goto Move_POISON_STING
-
-Move_FUMIGATION_BOMB:
-	goto Move_ACID
-
-Move_BLACK_MAGIC:
-	goto Move_DARK_PULSE
-
-Move_FLAME_TONGUE:
-	goto Move_FIRE_LASH
-
-Move_BLAZING_ARROW:
-	goto Move_FIRE_LASH
-
-Move_ROCKET_PUNCH:
-	goto Move_COMET_PUNCH
-
-Move_WEB_SHOT:
-	goto Move_STICKY_WEB
-
-Move_AURA_FORCE:
-	goto Move_AURA_SPHERE
-
-Move_DRAKE_MISSILE:
-	goto Move_AURA_SPHERE
-
-Move_LOTUS_SHOWER::
-	goto Move_PETAL_BLIZZARD
-
-Move_JAGGED_HORNS::
-	goto Move_HORN_ATTACK
-
-Move_BLOOD_SHOT::
-	goto Move_ACID
-
-Move_FLASH_FREEZE::
-	goto Move_FREEZE_DRY
-
-Move_PHANTOM_GLOVES::
-	goto Move_SHADOW_CLAW
-
-Move_HOMING_FLETCH::
-	goto Move_THOUSAND_ARROWS
-
-Move_BITTER_MALICE::
-	goto Move_DARK_PULSE
-
-Move_INFERNAL_PARADE::
-	goto Move_WILL_O_WISP
-
-Move_DEVIOUS_SHOT::
-	goto Move_THOUSAND_ARROWS
-
-Move_STARBURST::
-    goto Move_CHARGE_BEAM
-
-Move_CHEAP_SHOT::
-    goto Move_SHADOW_FORCE
 
 Move_CHARGE_BEAM:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2
@@ -13447,12 +13300,6 @@ PhotonGeyserBeam:
 	launchtemplate gPhotonGeyserBeam 0x83, 0x6, 0, -77, ANIM_TARGET, 180, 2, 0
 	return
 
-Move_ZIPPY_ZAP::
-	goto Move_ZING_ZAP
-
-Move_SPLISHY_SPLASH::
-	goto Move_SURF
-
 Move_FLOATY_FALL::
 	end @to do:
 
@@ -13517,9 +13364,6 @@ Move_DOUBLE_IRON_BASH::
 	end
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 8 @@@@@@@@@@@@@@@@@@@@@@@
-Move_DYNAMAX_CANNON::
-	goto Move_HYPER_BEAM
-
 Move_SNIPE_SHOT::
 	loadspritegfx ANIM_TAG_IMPACT_2
 	loadspritegfx ANIM_TAG_LEER
@@ -13669,9 +13513,6 @@ Move_DRAGON_DARTS::
 	waitforvisualfinish
 	end
 
-Move_TEATIME::
-	goto Move_MILK_DRINK
-
 Move_OCTOLOCK::
 	loadspritegfx ANIM_TAG_TENDRILS
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_TENDRILS, 0, 12, 12, 0x3D98    @Pinkish Red
@@ -13798,9 +13639,6 @@ FishousRendBubbles:
 	launchtemplate gSmallDriftingBubblesSpriteTemplate 0x4 0x2 0xA 0x0
 	return
 
-Move_COURT_CHANGE::
-	goto Move_TRICK_ROOM
-
 Move_CLANGOROUS_SOUL::
 	loadspritegfx ANIM_TAG_FOCUS_ENERGY @focus energy
 	loadspritegfx ANIM_TAG_WATER_ORB @blue
@@ -13853,9 +13691,6 @@ Move_BODY_PRESS::
 	launchtask AnimTask_SquishTarget 0x2 0x0
 	waitforvisualfinish
 	end
-
-Move_DECORATE::
-	goto Move_FLOWER_SHIELD
 
 Move_DRUM_BEATING::
 	loadspritegfx ANIM_TAG_MUSIC_NOTES
@@ -13948,12 +13783,6 @@ Move_PYRO_BALL::
 	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x1 0x7 0x0 0x043D
 	waitforvisualfinish
 	end
-
-Move_BEHEMOTH_BLADE::
-	goto Move_SACRED_SWORD
-
-Move_BEHEMOTH_BASH::
-	goto Move_SUNSTEEL_STRIKE
 
 Move_AURA_WHEEL::
 	loadspritegfx ANIM_TAG_IMPACT
@@ -14157,9 +13986,6 @@ SmallAppleShower:
 	delay 0x2
 	return
 
-Move_SPIRIT_BREAK::
-	goto Move_PSYCHIC
-
 Move_STRANGE_STEAM::
 	loadspritegfx ANIM_TAG_PINK_CLOUD
 	loadspritegfx ANIM_TAG_FINGER
@@ -14240,9 +14066,6 @@ Move_OBSTRUCT::
 	clearmonbg ANIM_ATK_PARTNER
 	end
 
-Move_FALSE_SURRENDER::
-	goto Move_FEINT
-
 Move_METEOR_ASSAULT::
 	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
 	loadspritegfx ANIM_TAG_METEOR
@@ -14281,9 +14104,6 @@ BasicExplosion:
 	playsewithpan SE_M_SELF_DESTRUCT, SOUND_PAN_TARGET
 	launchtemplate gExplosionSpriteTemplate, 0x83, 0x4 0x10 0x10 0x1 0x1
 	return
-
-Move_ETERNA_BEAM::
-	goto Move_HYPER_BEAM
 
 Move_STEEL_BEAM::
 	loadspritegfx ANIM_TAG_CLAW_SLASH
@@ -14344,15 +14164,6 @@ SetSteelBeamBackground:
 SetSteelBeamBgPlayer:
 	fadetobg BG_STEEL_BEAM_PLAYER
 
-Move_EXPANDING_FORCE::
-	goto Move_DAZZLING_GLEAM
-
-Move_STEEL_ROLLER::
-	goto Move_GYRO_BALL
-
-Move_SCALE_SHOT::
-	goto Move_FURY_ATTACK
-
 Move_METEOR_BEAM::
 	end @to do:
 
@@ -14401,18 +14212,6 @@ Move_SHELL_SIDE_ARM_SPECIAL: @ Modified Snipe Shot, placeholder
 	launchtask AnimTask_ShakeMon2 2 5 1 4 0 8, 1
 	waitforvisualfinish
 	end
-
-Move_MISTY_EXPLOSION::
-	goto Move_EXPLOSION
-
-Move_OUTBURST::
-	goto Move_EXPLOSION
-
-Move_GRASSY_GLIDE::
-	goto Move_LEAF_TORNADO
-
-Move_RISING_VOLTAGE::
-	goto Move_VOLT_TACKLE
 
 Move_TERRAIN_PULSE::
 	loadspritegfx ANIM_TAG_DRAGON_PULSE
@@ -14497,32 +14296,14 @@ TerrainPulseEnd:
 	clearmonbg ANIM_TARGET
 	end
 
-Move_SKITTER_SMACK::
-	goto Move_SHADOW_SNEAK
-
-Move_BURNING_JEALOUSY::
-	goto Move_OVERHEAT
-
 Move_LASH_OUT::
 	end @to do:
 
 Move_POLTERGEIST::
 	end @to do:
 
-Move_CORROSIVE_GAS::
-	goto Move_POISON_GAS
-
 Move_COACHING::
 	end @to do:
-
-Move_FLIP_TURN::
-	goto Move_U_TURN
-
-Move_TRIPLE_AXEL::
-	goto Move_TRIPLE_KICK
-
-Move_DUAL_WINGBEAT::
-	goto Move_WING_ATTACK
 
 Move_SCORCHING_SANDS::
 	loadspritegfx ANIM_TAG_MUD_SAND
@@ -14547,42 +14328,6 @@ Move_SCORCHING_SANDS::
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end
-
-Move_JUNGLE_HEALING::
-	goto Move_AROMATHERAPY
-
-Move_WICKED_BLOW::
-	goto Move_SUCKER_PUNCH
-
-Move_SURGING_STRIKES::
-	goto Move_LIQUIDATION
-
-Move_THUNDER_CAGE::
-	goto Move_THUNDER
-
-Move_DRAGON_ENERGY::
-	goto Move_HYPER_BEAM
-
-Move_FREEZING_GLARE::
-	goto Move_PSYSHOCK
-
-Move_FIERY_WRATH::
-	goto Move_DARK_PULSE
-
-Move_THUNDEROUS_KICK::
-	goto Move_METEOR_ASSAULT
-
-Move_GLACIAL_LANCE::
-	goto Move_ICICLE_CRASH
-
-Move_ASTRAL_BARRAGE::
-	goto Move_SHADOW_BALL
-
-Move_EERIE_SPELL::
-	goto Move_SHADOW_BALL
-
-Move_DEATHROLL::
-	goto Move_CRUNCH
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:
