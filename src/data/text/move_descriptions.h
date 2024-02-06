@@ -3490,6 +3490,10 @@ static const u8 sMoveTwoLineDescription_MoveAxeKick[] = _(
     "The user attacks by kicking\n"
     "May cause confusion and hurts when missing.");
 
+static const u8 sMoveTwoLineDescription_MoveBarbBarrage[] = _(
+    "The user launches countless toxic barbs\n"
+    "20% chance to poison");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4388,6 +4392,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_COMEUPPANCE - 1] = sMoveTwoLineDescription_MoveComeuppance,
     [MOVE_BLOOD_MOON - 1] = sMoveTwoLineDescription_MoveBloodMoon,
     [MOVE_AXE_KICK - 1] = sMoveTwoLineDescription_MoveAxeKick,
+    [MOVE_BARB_BARRAGE - 1] = sMoveTwoLineDescription_MoveBarbBarrage,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5285,6 +5290,7 @@ static const u8 sMoveFourLineDescription_MoveDoubleShock[] = _("The user dischar
 static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retaliates with much greater force against\nthe opponent that last inflicted damage on it.");
 static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes the full brunt of its spirit\nfrom a full moon that shines as red as blood.\nThis move can't be used twice in a row.");
 static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
+static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6182,4 +6188,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_COMEUPPANCE - 1] = sMoveFourLineDescription_MoveComeuppance,
     [MOVE_BLOOD_MOON - 1] = sMoveFourLineDescription_MoveBloodMoon,
     [MOVE_AXE_KICK - 1] = sMoveFourLineDescription_MoveAxeKick,
+    [MOVE_BARB_BARRAGE - 1] = sMoveFourLineDescription_MoveBarbBarrage,
 };
