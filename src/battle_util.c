@@ -4597,7 +4597,7 @@ u32 GetAbilityState(u8 battler, u16 ability) {
         case BATTLER_ABILITY:
             return gSpecialStatuses[battler].abilityState[0];
         default:
-            return -1;
+            return 0;
     }
 }
 

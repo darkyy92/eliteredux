@@ -10390,46 +10390,52 @@ static void Cmd_various(void)
     case VARIOUS_HANDLE_WEATHER_CHANGE:
         gBattlescriptCurrInstr += 3;
 
-        if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) & PARADOX_WEATHER_ACTIVE
-            && !(gBattleWeather & WEATHER_SUN_ANY))
+        if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PROTOSYNTHESIS))
         {
-            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
-            SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_BOOST_NOT_ACTIVE);
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
-        }
-        else if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_BOOST_NOT_ACTIVE
-            && (gBattleWeather & WEATHER_SUN_ANY))
-        {
-            struct ParadoxBoost boost = { .statId = GetHighestStatId(gActiveBattler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
-            gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
-            SetAbilityStateAs(gActiveBattler, ABILITY_PROTOSYNTHESIS, (union AbilityStates) { .paradoxBoost = boost });
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+            if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) & PARADOX_WEATHER_ACTIVE
+                && !(gBattleWeather & WEATHER_SUN_ANY))
+            {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+                SetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS, PARADOX_BOOST_NOT_ACTIVE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+            }
+            else if (GetAbilityState(gActiveBattler, ABILITY_PROTOSYNTHESIS) == PARADOX_BOOST_NOT_ACTIVE
+                && (gBattleWeather & WEATHER_SUN_ANY))
+            {
+                struct ParadoxBoost boost = { .statId = GetHighestStatId(gActiveBattler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PROTOSYNTHESIS;
+                SetAbilityStateAs(gActiveBattler, ABILITY_PROTOSYNTHESIS, (union AbilityStates) { .paradoxBoost = boost });
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+            }
         }
         return;
     case VARIOUS_HANDLE_TERRAIN_CHANGE:
         gBattlescriptCurrInstr += 3;
 
-        if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) & PARADOX_WEATHER_ACTIVE
-            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_QUARK_DRIVE))
         {
-            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
-            SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_BOOST_NOT_ACTIVE);
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
-        }
-        else if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_BOOST_NOT_ACTIVE
-            && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-        {
-            struct ParadoxBoost boost = { .statId = GetHighestStatId(gActiveBattler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
-            gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
-            SetAbilityStateAs(gActiveBattler, ABILITY_QUARK_DRIVE, (union AbilityStates) { .paradoxBoost = boost });
-            PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+            if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) & PARADOX_WEATHER_ACTIVE
+                && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+            {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+                SetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE, PARADOX_BOOST_NOT_ACTIVE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ParadoxBoostEnds;
+            }
+            else if (GetAbilityState(gActiveBattler, ABILITY_QUARK_DRIVE) == PARADOX_BOOST_NOT_ACTIVE
+                && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+            {
+                struct ParadoxBoost boost = { .statId = GetHighestStatId(gActiveBattler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
+                gBattleScripting.abilityPopupOverwrite = ABILITY_QUARK_DRIVE;
+                SetAbilityStateAs(gActiveBattler, ABILITY_QUARK_DRIVE, (union AbilityStates) { .paradoxBoost = boost });
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ParadoxBoostActivatesRet;
+            }
         }
         return;
     case VARIOUS_GET_BATTLER:
