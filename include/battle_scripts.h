@@ -260,7 +260,6 @@ extern const u8 BattleScript_TargetAbilityStatRaiseOnMoveEnd[];
 extern const u8 BattleScript_WaterCompactionActivated[];
 extern const u8 BattleScript_TargetsStatWasMaxedOut[];
 extern const u8 BattleScript_AttackerAbilityStatRaise[];
-extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth[];
 extern const u8 BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn[];
 extern const u8 BattleScript_AttackerAbilityStatRaiseEnd3[];
 extern const u8 BattleScript_PoisonHealActivates[];

@@ -75,9 +75,12 @@ struct TypePower
 enum ParadoxBoostState
 {
     PARADOX_BOOST_NOT_ACTIVE = 0,
-    PARADOX_BOOSTER_ENERGY,
-    PARADOX_WEATHER_ACTIVE,
+    PARADOX_BOOSTER_ENERGY = 1,
+    PARADOX_WEATHER_ACTIVE = 2
 };
+
+#define GET_PARADOX_STAT(battlerId, ability) ((GetAbilityState(battlerId, ability) & 0xF0) >> 4)
+#define PARADOX_STAT_VALUE(battlerId, source) ((GetHighestStatId(battlerId, TRUE) << 4) | source)
 
 #define CUD_CHEW_CURRENT_TURN (1 << 15)
 
@@ -227,7 +230,7 @@ void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 u32 GetAbilityState(u8 battler, u16 ability);
 void SetAbilityState(u8 battler, u16 ability, u32 value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
-u8 GetHighestStatId(u8 battlerId);
+u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

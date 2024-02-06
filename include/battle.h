@@ -12,6 +12,7 @@
 #include "battle_util2.h"
 #include "battle_bg.h"
 #include "pokeball.h"
+#include "pokemon.h"
 #include "battle_debug.h"
 
 #define GET_BATTLER_POSITION(battler)     (gBattlerPositions[battler])
@@ -315,13 +316,19 @@ struct BattleHistory
     u8 itemsNo;
 };
 
+struct SavedStackData
+{
+    u16 abilityOverride;
+    u8 savedBattler;
+};
+
 #define MAX_SCRIPT_STACK_COUNT 8
 struct BattleScriptsStack
 {
     const u8 *ptr[MAX_SCRIPT_STACK_COUNT];
     u8 size;
-    // This ends up stored as [{pointer0, ability1}, {pointer1, ability2}, {pointer2, ability3}, ...]
-    u16 abilityoverwrite[MAX_SCRIPT_STACK_COUNT];
+    // This ends up stored as [{pointer0, data1}, {pointer1, data2}, {pointer2, data3}, ...]
+    struct SavedStackData savedStackData[MAX_SCRIPT_STACK_COUNT];
     //u8 currentAbilityStack; // current index to use in the ability pop up
     //u8 abilityOverwriteNum; // number of abilities to overwrite
 };
@@ -934,6 +941,7 @@ extern u8 gSentPokesToOpponent[2];
 extern u16 gExpShareExp;
 extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];
 extern struct BattleScripting gBattleScripting;
+extern u8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_NATURE_STATS];
 extern struct BattleScripting gSavedBattleScripting;
 extern struct BattleStruct *gBattleStruct;
 extern u8 *gLinkBattleSendBuffer;

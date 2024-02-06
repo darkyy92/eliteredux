@@ -1623,11 +1623,8 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             else
                 gBattlerAbility = gBattlerTarget;
 
-            if(CompareStat(gBattlerAbility, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-                gBattleMons[gBattlerAbility].statStages[STAT_ATK]++;
-
-            if(CompareStat(gBattlerAbility, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-                gBattleMons[gBattlerAbility].statStages[STAT_DEF]++;
+            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_DEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
             
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_KingsWrathActivated;
@@ -1648,11 +1645,8 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             else
                 gBattlerAbility = gBattlerTarget;
 
-            if(CompareStat(gBattlerAbility, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-                gBattleMons[gBattlerAbility].statStages[STAT_SPATK]++;
-
-            if(CompareStat(gBattlerAbility, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-                gBattleMons[gBattlerAbility].statStages[STAT_SPDEF]++;
+            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_SPDEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
             
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_QueensMourningActivated;
@@ -1738,66 +1732,36 @@ void UpdateSentPokesToOpponentValue(u8 battler)
 
 void BattleScriptPush(const u8 *bsPtr)
 {
-    //u16 ability = gBattleScripting.abilityPopupOverwrite;
-    gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size] = gBattleScripting.abilityPopupOverwrite;
+    struct SavedStackData savedStackData = 
+        {
+            .abilityOverride = gBattleScripting.abilityPopupOverwrite,
+            .savedBattler = gBattleScripting.savedBattler 
+        };
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
-    /*if(ability != ABILITY_NONE){
-        //Ability Overwrite
-        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
-        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
-
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
-            MgbaClose();
-        }
-        #endif
-    }*/
 }
 
 void BattleScriptPushCursor(void)
 {
-    //u16 ability = gBattleScripting.abilityPopupOverwrite;
-    gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size] = gBattleScripting.abilityPopupOverwrite;
+    struct SavedStackData savedStackData = 
+        {
+            .abilityOverride = gBattleScripting.abilityPopupOverwrite,
+            .savedBattler = gBattleScripting.savedBattler 
+        };
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
-    /*if(ability != ABILITY_NONE){
-        //Ability Overwrite
-        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
-        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
-
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
-            MgbaClose();
-        }
-        #endif
-    }*/
 }
 
 void BattleScriptPop(void)
 {
-    //u16 ability = gBattleScripting.abilityPopupOverwrite;
     gBattlescriptCurrInstr = gBattleResources->battleScriptsStack->ptr[--gBattleResources->battleScriptsStack->size];
     if (gBattleResources->battleScriptsStack->size > 0)
     {
+        struct SavedStackData *data = &gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size - 1];
         // Abilities typically get overwritten and then stored, so they will generally be one position ahead
-        gBattleScripting.abilityPopupOverwrite = gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->size - 1];
+        gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
+        gBattleScripting.savedBattler = data->savedBattler;
     }
-    /*if(ability != ABILITY_NONE){
-        //Ability Overwrite
-        gBattleResources->battleScriptsStack->abilityoverwrite[gBattleResources->battleScriptsStack->abilityOverwriteNum++] = ability;
-        gBattleScripting.abilityPopupOverwrite = ABILITY_NONE;
-
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "BattleScriptPop abilityoverwrite: %d, stack: %d", ability, stack);
-            MgbaClose();
-        }
-        #endif
-    }*/
 }
 
 bool32 IsGravityPreventingMove(u32 move)
@@ -4874,21 +4838,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
             }
             break;
-        case ABILITY_FURNACE:
-            if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
-                && IsBattlerAlive(battler)
-                && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)
-                && !gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleMons[battler].statStages[STAT_SPEED]++;
-                SET_STATCHANGER(STAT_SPEED, 1, FALSE);
-                gBattlerAttacker = battler;
-                PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPEED);
-                BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth);
-                effect++;
-            }
-            break;
         case ABILITY_IMPOSTER:
             if (IsBattlerAlive(BATTLE_OPPOSITE(battler))
                 && !(gBattleMons[BATTLE_OPPOSITE(battler)].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
@@ -5033,50 +4982,42 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 // Set the switch-in ability as done
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOWNLOAD;
 
                 // Raise the chosen stat if it is lower than the maximum stat stage
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gBattleMons[battler].statStages[statId]++;
-                    SET_STATCHANGER(statId, 1, FALSE);
-                    gBattlerAttacker = battler;
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                    effect++;
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    if (result)
+                    {
+                        SetStatChanger(statId, 1);
+                        gBattlerAttacker = battler;
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                        effect++;
+                    }
                 }
             }
             break;
 		case ABILITY_MAJESTIC_MOTH:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
-                u32 statId = STAT_ATK;
-                u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-				u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-
-                if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                    statId = STAT_ATK;
-                else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                    statId = STAT_DEF;
-                else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                    statId = STAT_SPATK;
-                else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                    statId = STAT_SPDEF;
-                else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                    statId = STAT_SPEED;
+                u8 statId = GetHighestStatId(battler, TRUE);
 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAJESTIC_MOTH;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gBattleMons[battler].statStages[statId]++;
-                    SET_STATCHANGER(statId, 1, FALSE);
-                    gBattlerAttacker = battler;
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth);
-                    effect++;
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    if (result)
+                    {
+                        SetStatChanger(statId, 1);
+                        gBattlerAttacker = battler;
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                        effect++;
+                    }
                 }
             }
             break;
@@ -5085,34 +5026,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			&& IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
 			)
             {
-                u32 statId = STAT_ATK;
-                u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-				u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-
-                if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                    statId = STAT_ATK;
-                else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                    statId = STAT_DEF;
-                else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                    statId = STAT_SPATK;
-                else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                    statId = STAT_SPDEF;
-                else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                    statId = STAT_SPEED;
+                u8 statId = GetHighestStatId(battler, TRUE);
 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SEA_GUARDIAN;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gBattleMons[battler].statStages[statId]++;
-                    SET_STATCHANGER(statId, 1, FALSE);
-                    gBattlerAttacker = battler;
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                    effect++;
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    if (result)
+                    {
+                        SetStatChanger(statId, 1);
+                        gBattlerAttacker = battler;
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                        effect++;
+                    }
                 }
             }
             break;
@@ -5121,34 +5050,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			&& IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY)
 			)
             {
-                u32 statId = STAT_ATK;
-                u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-				u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-
-                if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                    statId = STAT_ATK;
-                else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                    statId = STAT_DEF;
-                else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                    statId = STAT_SPATK;
-                else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                    statId = STAT_SPDEF;
-                else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                    statId = STAT_SPEED;
+                u8 statId = GetHighestStatId(battler, TRUE);
 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SUN_WORSHIP;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gBattleMons[battler].statStages[statId]++;
-                    SET_STATCHANGER(statId, 1, FALSE);
-                    gBattlerAttacker = battler;
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                    effect++;
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    if (result)
+                    {
+                        SetStatChanger(statId, 1);
+                        gBattlerAttacker = battler;
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                        effect++;
+                    }
                 }
             }
             break;
@@ -5668,16 +5585,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     else
                         statId = STAT_SPATK;
 
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOWNLOAD;
+
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DOWNLOAD)] = TRUE;
 
                     if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                     {
-                        gBattleMons[battler].statStages[statId]++;
-                        SET_STATCHANGER(statId, 1, FALSE);
-                        gBattlerAttacker = battler;
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                        effect++;
+                        s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                        if (result)
+                        {
+                            SetStatChanger(statId, 1);
+                            gBattlerAttacker = battler;
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                            BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                            effect++;
+                        }
                     }
                 }
             }
@@ -5719,35 +5641,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BattlerHasInnate(battler, ABILITY_MAJESTIC_MOTH)){
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_MAJESTIC_MOTH)])
                 {
-                    u32 statId = STAT_ATK;
-                    u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-                    u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-                    u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-                    u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-                    u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-
-                    if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                        statId = STAT_ATK;
-                    else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                        statId = STAT_DEF;
-                    else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                        statId = STAT_SPATK;
-                    else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                        statId = STAT_SPDEF;
-                    else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                        statId = STAT_SPEED;
+                    u8 statId = GetHighestStatId(battler, TRUE);
 
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_MAJESTIC_MOTH)] = TRUE;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAJESTIC_MOTH;
 
                     if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                     {
-                        gBattleMons[battler].statStages[statId]++;
-                        SET_STATCHANGER(statId, 1, FALSE);
-                        gBattlerAttacker = battler;
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth);
-                        effect++;
+                        s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                        if (result)
+                        {
+                            SetStatChanger(statId, 1);
+                            gBattlerAttacker = battler;
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                            BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                            effect++;
+                        }
                     }
                 }
             }
@@ -5757,36 +5666,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SEA_GUARDIAN)]
                 && IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
                 {
-                    u32 statId = STAT_ATK;
-                    u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-                    u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-                    u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-                    u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-                    u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_SEA_GUARDIAN;
-                    gLastUsedAbility = ABILITY_SEA_GUARDIAN;
-
-                    if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                        statId = STAT_ATK;
-                    else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                        statId = STAT_DEF;
-                    else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                        statId = STAT_SPATK;
-                    else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                        statId = STAT_SPDEF;
-                    else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                        statId = STAT_SPEED;
+                    u8 statId = GetHighestStatId(battler, TRUE);
 
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SEA_GUARDIAN)] = TRUE;
 
                     if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                     {
-                        gBattleMons[battler].statStages[statId]++;
-                        SET_STATCHANGER(statId, 1, FALSE);
-                        gBattlerAttacker = battler;
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                        effect++;
+                        s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                        if (result)
+                        {
+                            SetStatChanger(statId, 1);
+                            gBattlerAttacker = battler;
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                            BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                            effect++;
+                        }
                     }
                 }
             }
@@ -5796,35 +5690,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SUN_WORSHIP)]
                 && IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
-                    u32 statId = STAT_ATK;
-                    u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
-                    u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
-                    u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
-                    u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
-                    u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SUN_WORSHIP;
-
-                    if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
-                        statId = STAT_ATK;
-                    else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
-                        statId = STAT_DEF;
-                    else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
-                        statId = STAT_SPATK;
-                    else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
-                        statId = STAT_SPDEF;
-                    else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
-                        statId = STAT_SPEED;
+                    u8 statId = GetHighestStatId(battler, TRUE);
 
                     gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SUN_WORSHIP)] = TRUE;
 
                     if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                     {
-                        gBattleMons[battler].statStages[statId]++;
-                        SET_STATCHANGER(statId, 1, FALSE);
-                        gBattlerAttacker = battler;
-                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                        effect++;
+                        s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                        if (result)
+                        {
+                            SetStatChanger(statId, 1);
+                            gBattlerAttacker = battler;
+                            PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                            BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                            effect++;
+                        }
                     }
                 }
             }
@@ -6642,8 +6522,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
-                    SetAbilityState(battler, ABILITY_PROTOSYNTHESIS, PARADOX_WEATHER_ACTIVE);
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
+                    SetAbilityState(battler, ABILITY_PROTOSYNTHESIS, PARADOX_STAT_VALUE(battler, PARADOX_WEATHER_ACTIVE));
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GET_PARADOX_STAT(gActiveBattler, ABILITY_PROTOSYNTHESIS));
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
                     BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
@@ -6653,23 +6533,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                 {
-                    SetAbilityState(battler, ABILITY_QUARK_DRIVE, PARADOX_WEATHER_ACTIVE);
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
+                    SetAbilityState(battler, ABILITY_QUARK_DRIVE, PARADOX_STAT_VALUE(battler, PARADOX_WEATHER_ACTIVE));
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, GET_PARADOX_STAT(gActiveBattler, ABILITY_QUARK_DRIVE));
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
                     BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
                 }
             }
 
-            if(BattlerHasInnate(battler, ABILITY_FURNACE)){
-                if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
+            if (CheckAndSetSwitchInAbility(battler, ABILITY_FURNACE)){
+                if ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
                 && IsBattlerAlive(battler)
-                && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)
-                && !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FURNACE)])
+                && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FURNACE)] = TRUE;
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
-                    SET_STATCHANGER(STAT_SPEED, 2, FALSE);
-                    gBattlerAttacker = battler;
+                    ChangeStatBuffs(battler, StatBuffValue(2), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    SetStatChanger(STAT_SPEED, 2);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPEED);
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
                     effect++;
@@ -6857,10 +6734,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_SPEED_BOOST:
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_SPEED_BOOST;
-				    gLastUsedAbility = ABILITY_SPEED_BOOST;
+                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPEED_BOOST;
                     gBattlerAttacker = battler;
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
@@ -7038,10 +6914,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BattlerHasInnate(gActiveBattler, ABILITY_SPEED_BOOST)){
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_SPEED_BOOST;
-				    gLastUsedAbility = ABILITY_SPEED_BOOST;
+                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPEED_BOOST;
                     gBattlerAttacker = battler;
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
@@ -7842,7 +7717,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                     SET_STATCHANGER(statId, 1, FALSE);
                     gMultiHitCounter = 0;
-                    gBattleMons[battler].statStages[statId]++;
+                    ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                 }
             }
@@ -7932,11 +7807,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && (CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(battler, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN))
 			 && (moveType == TYPE_FIRE || moveType == TYPE_FLYING))
             {
-				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-					gBattleMons[battler].statStages[STAT_DEF]++;
-				
-				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-					gBattleMons[battler].statStages[STAT_SPDEF]++;
+                ChangeStatBuffs(battler, StatBuffValue(1), STAT_DEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPDEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 				
                 gBattleScripting.animArg1 = 14 + STAT_DEF;
                 gBattleScripting.animArg2 = 0;
@@ -8148,7 +8020,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-				gBattleMons[battler].statStages[STAT_ATK]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
                 gBattleScripting.animArg2 = 0;
                 BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -9011,11 +8883,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			{
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INFLATABLE;
 				
-				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-					gBattleMons[battler].statStages[STAT_DEF]++;
-				
-				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-					gBattleMons[battler].statStages[STAT_SPDEF]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_DEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPDEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 				
 				gBattleScripting.animArg1 = 14 + STAT_DEF;
 				gBattleScripting.animArg2 = 0;
@@ -9222,7 +9091,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGER_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				gBattleMons[battler].statStages[STAT_ATK]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_ATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -9253,7 +9122,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				gBattleMons[battler].statStages[STAT_ATK]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_ATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -9284,7 +9153,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				gBattleMons[battler].statStages[STAT_SPATK]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_SPATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -9934,7 +9803,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-				gBattleMons[battler].statStages[STAT_ATK]++;
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
                 gBattleScripting.animArg2 = 0;
                 BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
@@ -10181,7 +10050,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gLastUsedAbility = ABILITY_GROWING_TOOTH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
-					gBattleMons[battler].statStages[STAT_ATK]++;
+					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 					gBattleScripting.animArg1 = 14 + STAT_ATK;
 					gBattleScripting.animArg2 = 0;
 					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
@@ -10222,7 +10091,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     //If the ability is an innate overwrite the popout
                     if(BattlerHasInnate(battler, abilityToCheck))
                         gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
+                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
@@ -10243,7 +10112,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARDENED_SHEATH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
-					gBattleMons[battler].statStages[STAT_ATK]++;
+					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
 					gBattleScripting.animArg1 = 14 + STAT_ATK;
 					gBattleScripting.animArg2 = 0;
 					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
@@ -10615,7 +10484,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             if(BattlerHasInnate(battler, abilityToCheck))
                                 gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
-                            gBattleMons[battler].statStages[stat]++;
+                            ChangeStatBuffs(battler, StatBuffValue(1), stat, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                             PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
 
                             gBattleScripting.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1;
@@ -10858,7 +10727,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     {
                         for(i = 1; i < NUM_STATS; i++){
                             if(gBattleMons[battler].statStages[i] < MAX_STAT_STAGE && i != STAT_DEF){
-                                gBattleMons[battler].statStages[i] += 1;
+                                ChangeStatBuffs(battler, StatBuffValue(1), i, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                                 effectActivated = TRUE;
                             }
                         }
@@ -15113,14 +14982,10 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             break;
     }
 
-    if (statEnum != STAT_SPEED
-        && GetAbilityState(battler, ABILITY_PROTOSYNTHESIS) > 0
-        && GetHighestStatId(battler) == statEnum)
+    if (statEnum != STAT_SPEED && GET_PARADOX_STAT(battler, ABILITY_PROTOSYNTHESIS) == statEnum)
         statBase = statBase * 13 / 10;
 
-    if (statEnum != STAT_SPEED
-        && GetAbilityState(battler, ABILITY_QUARK_DRIVE) > 0
-        && GetHighestStatId(battler) == statEnum)
+    if (statEnum != STAT_SPEED && GET_PARADOX_STAT(battler, ABILITY_QUARK_DRIVE) == statEnum)
         statBase = statBase * 13 / 10;
 
     #undef RUIN_CHECK
@@ -18112,17 +17977,22 @@ bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
         return FALSE;
 }
 
-u8 GetHighestStatId(u8 battlerId)
+u8 GetHighestStatId(u8 battlerId, u8 includeStatStages)
 {
-    u8 i, highestId = STAT_ATK;
-    u32 highestStat = gBattleMons[battlerId].attack;
+    u8 i;
+    u8 highestId = STAT_ATK;
+    u32 highestStat = 0;
 
-    for (i = STAT_DEF; i < NUM_STATS; i++)
+    for (i = STAT_ATK; i < NUM_STATS; i++)
     {
-        u16 *statVal = &gBattleMons[battlerId].attack + (i - 1);
-        if (*statVal > highestStat)
+        u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
+        if (includeStatStages)
         {
-            highestStat = *statVal;
+            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+        }
+        if (statVal > highestStat)
+        {
+            highestStat = statVal;
             highestId = i;
         }
     }
