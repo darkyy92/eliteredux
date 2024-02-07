@@ -29,6 +29,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_ABSORB},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_IVYSAUR] =
@@ -132,6 +133,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_BLAZE, ABILITY_IMMOLATE, ABILITY_SOLAR_POWER},
     .bodyColor = BODY_COLOR_RED,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_CHARMELEON] =
@@ -258,6 +260,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_WATER_VEIL},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_WARTORTLE] =
@@ -359,6 +362,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_NONE},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
+    .shopPrice = 200,
     },
 
 [SPECIES_METAPOD] =
@@ -462,6 +466,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_NONE},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
+    .shopPrice = 200,
     },
 
 [SPECIES_KAKUNA] =
@@ -566,6 +571,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_EARLY_BIRD},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
+    .shopPrice = 350,
     },
 
 [SPECIES_PIDGEOTTO] =
