@@ -122,6 +122,7 @@ struct DisableStruct
     bool8 protectedThisTurn;
     u8 disciplineCounter:4;
     u8 filler:4;
+    bool8 syrupBombIsShiny:1;
 };
 
 struct ProtectStruct

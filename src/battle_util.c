@@ -17959,3 +17959,8 @@ u8 GetHighestStatId(u8 battlerId)
     }
     return highestId;
 }
+
+bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
+{
+    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
+}
