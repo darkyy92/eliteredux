@@ -566,6 +566,7 @@ static const u8 sAbilityOleDescription[] = _("20% chance to evade\nphysical move
 static const u8 sAbilityMaliciousDescription[] = _("Lowers the foe's highest\nAttack and Defense stat.");
 static const u8 sAbilityDeadPowerDescription[] = _("1.5x Attack boost. 20% chance\nto curse on contact moves.");
 static const u8 sAbilityBrawlingWyvernDescription[] = _("Dragon type moves become\npunching moves.");
+static const u8 sAbilityMythicalArrowsDescription[] = _("Arrow moves do special damage\nand deal 30% more damage.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1170,6 +1171,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MALICIOUS] = _("Malicious"),
     [ABILITY_DEAD_POWER] = _("Dead Power"),
     [ABILITY_BRAWLING_WYVERN] = _("Brawling Wyvern"),
+    [ABILITY_MYTHICAL_ARROWS] = _("Mythical Arrows"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1775,4 +1777,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MALICIOUS] = sAbilityMaliciousDescription,
     [ABILITY_DEAD_POWER] = sAbilityDeadPowerDescription,
     [ABILITY_BRAWLING_WYVERN] = sAbilityBrawlingWyvernDescription,
+    [ABILITY_MYTHICAL_ARROWS] = sAbilityMythicalArrowsDescription,
 };

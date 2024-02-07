@@ -574,14 +574,14 @@
 #define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
-#define ABILITY_EGOIST 555 // Raises its own stats when foes raise theirs.
+#define ABILITY_EGOIST 555 // Placeholder
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
 #define ABILITY_GUILT_TRIP 559 // Placeholder
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
 #define ABILITY_ZERO_TO_HERO 561 // Placeholder
-#define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
+#define ABILITY_COSTAR 562 // Placeholder
 #define ABILITY_COMMANDER 563 // Placeholder
 #define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
 #define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.
@@ -596,7 +596,7 @@
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.
 #define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
-#define ABILITY_SHARING_IS_CARING 577 // Stat changes are shared between all battlers.
+#define ABILITY_SHARING_IS_CARING 577 // Placeholder
 #define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
 #define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
@@ -620,8 +620,9 @@
 #define ABILITY_MALICIOUS 598 // Lowers the foe's highest Attack and Defense stat.
 #define ABILITY_DEAD_POWER 599 // 1.5x Attack boost. 20% chance to curse on contact moves.
 #define ABILITY_BRAWLING_WYVERN 600 // Dragon type moves become punching moves.
+#define ABILITY_MYTHICAL_ARROWS 603 // Makes arrow moves SPECIAL and boost them by 30%
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_BRAWLING_WYVERN + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MYTHICAL_ARROWS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
