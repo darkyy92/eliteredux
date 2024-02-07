@@ -9964,11 +9964,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_ENERGY_WAVE] =
     {
-        .effect = EFFECT_MISTY_TERRAIN_BOOST,
-        .power = 120,
-        .type = TYPE_GRASS,
-        .accuracy = 120,
-        .pp = 10,
+        .effect = EFFECT_HIT,
+        .power = 110,
+        .type = TYPE_NORMAL,
+        .accuracy = 85,
+        .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,

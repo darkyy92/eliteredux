@@ -114,5 +114,4 @@ OldaleMartMons:
 
 OldaleTown_Mart_EventScript_Clerk_Text_0:
 # 50 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Sorry but I can't sell you any Pokémon\n"
-	.string "yet, you need your Pokedex.$"
+	.string "Sorry but I can't sell you any Pokémon yet, you need your Pokedex.$"
