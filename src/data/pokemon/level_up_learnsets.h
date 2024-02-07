@@ -21573,6 +21573,7 @@ static const struct LevelUpMove sAbraReduxLevelUpLearnset[] = {
 static const struct LevelUpMove sKadabraReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(0, MOVE_NIGHT_DAZE),
 	LEVEL_UP_MOVE(0, MOVE_POWER_TRIP),
+	LEVEL_UP_MOVE(0, MOVE_SMASHIN'_REALITIES),
 	LEVEL_UP_MOVE(1, MOVE_BEAT_UP),
 	LEVEL_UP_MOVE(1, MOVE_HAMMER_ARM),
 	LEVEL_UP_MOVE(1, MOVE_MACH_PUNCH),
