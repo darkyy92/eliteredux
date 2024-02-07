@@ -10511,7 +10511,7 @@ static void Cmd_various(void)
                 return;
             }
         }
-        memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck) * MAX_BATTLERS_COUNT * NUM_NATURE_STATS);
+        memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
         break;
     } // End of switch (gBattlescriptCurrInstr[2])
