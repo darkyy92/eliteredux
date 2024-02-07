@@ -3369,7 +3369,7 @@ static const u8 sMoveTwoLineDescription_MoveTripleDive[] = _(
 static const u8 sMoveTwoLineDescription_MoveJetPunch[] = _(
     "Not done yet.");
 
-static const u8 sMoveTwoLineDescription_MoveRagePunch[] = _(
+static const u8 sMoveTwoLineDescription_MoveRageFist[] = _(
     "Not done yet.");
 
 static const u8 sMoveTwoLineDescription_MoveWickedTorque[] = _(
@@ -4359,7 +4359,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_GIGATON_HAMMER - 1] = sMoveTwoLineDescription_MoveGigatonHammer,
     [MOVE_TRIPLE_DIVE - 1] = sMoveTwoLineDescription_MoveTripleDive,
     [MOVE_JET_PUNCH - 1] = sMoveTwoLineDescription_MoveJetPunch,
-    [MOVE_RAGE_PUNCH - 1] = sMoveTwoLineDescription_MoveRagePunch,
+    [MOVE_RAGE_FIST - 1] = sMoveTwoLineDescription_MoveRageFist,
     [MOVE_WICKED_TORQUE - 1] = sMoveTwoLineDescription_MoveWickedTorque,
     [MOVE_BLAZING_TORQUE - 1] = sMoveTwoLineDescription_MoveBlazingTorque,
     [MOVE_NOXIOUS_TORQUE - 1] = sMoveTwoLineDescription_MoveNoxiousTorque,
@@ -5257,7 +5257,7 @@ static const u8 sMoveFourLineDescription_MoveSoilDrain[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveGigatonHammer[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveTripleDive[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveJetPunch[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRagePunch[] = _("Not done yet.");
+static const u8 sMoveFourLineDescription_MoveRageFist[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveWickedTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveBlazingTorque[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveNoxiousTorque[] = _("Not done yet.");
@@ -6155,7 +6155,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_GIGATON_HAMMER - 1] = sMoveFourLineDescription_MoveGigatonHammer,
     [MOVE_TRIPLE_DIVE - 1] = sMoveFourLineDescription_MoveTripleDive,
     [MOVE_JET_PUNCH - 1] = sMoveFourLineDescription_MoveJetPunch,
-    [MOVE_RAGE_PUNCH - 1] = sMoveFourLineDescription_MoveRagePunch,
+    [MOVE_RAGE_FIST - 1] = sMoveFourLineDescription_MoveRageFist,
     [MOVE_WICKED_TORQUE - 1] = sMoveFourLineDescription_MoveWickedTorque,
     [MOVE_BLAZING_TORQUE - 1] = sMoveFourLineDescription_MoveBlazingTorque,
     [MOVE_NOXIOUS_TORQUE - 1] = sMoveFourLineDescription_MoveNoxiousTorque,

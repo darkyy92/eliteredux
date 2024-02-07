@@ -881,7 +881,7 @@ gBattleAnims_Moves::
 	.4byte Move_GIGATON_HAMMER
 	.4byte Move_NONE @ MOVE_TRIPLE_DIVE
 	.4byte Move_JET_PUNCH
-	.4byte Move_NONE @ MOVE_RAGE_PUNCH
+	.4byte Move_NONE @ MOVE_RAGE_FIST
 	.4byte Move_NONE @ MOVE_WICKED_TORQUE
 	.4byte Move_NONE @ MOVE_BLAZING_TORQUE
 	.4byte Move_NONE @ MOVE_NOXIOUS_TORQUE
