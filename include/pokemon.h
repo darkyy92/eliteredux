@@ -195,6 +195,7 @@ struct BaseStats
             u8 noFlip : 1;
             u8 flags;
  /* 0x16 */ u16 innates[NUM_INNATE_PER_SPECIES];
+ /* 0x15 */ u16 shopPrice;
 };
 
 #include "constants/battle_config.h"

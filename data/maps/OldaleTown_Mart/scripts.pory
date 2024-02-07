@@ -34,3 +34,28 @@ OldaleTown_Mart_Text_RestoreHPWithPotion: @ 81FC338
 	.string "restore its HP with a Potion.$"
 
 `
+
+script OldaleTown_Mart_EventScript_Clerk{
+	lock
+	faceplayer
+	if(flag(FLAG_ADVENTURE_STARTED)){
+		setvar(VAR_SHOP_TYPE, 3)
+		message(gText_HowMayIServeYou)
+		waitmessage
+		pokemart(OldaleMartMons)
+		setvar(VAR_SHOP_TYPE, 0)
+	}
+	else{
+		msgbox(format("Sorry but I can't sell you any Pokémon yet, you need your Pokedex."), MSGBOX_DEFAULT)
+	}
+	release
+	end
+}
+
+mart OldaleMartMons {
+	SPECIES_BULBASAUR
+	SPECIES_CHARMANDER
+	SPECIES_SQUIRTLE
+	SPECIES_CATERPIE
+	SPECIES_PIDGEY
+}

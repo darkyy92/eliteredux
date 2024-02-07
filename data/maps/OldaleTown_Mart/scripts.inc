@@ -66,3 +66,49 @@ OldaleTown_Mart_Text_RestoreHPWithPotion: @ 81FC338
 	.string "To prevent your Pokémon from fainting,\n"
 # 34 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "restore its HP with a Potion.$"
+
+OldaleTown_Mart_EventScript_Clerk::
+# 39 "data/maps/OldaleTown_Mart/scripts.pory"
+	lock
+# 40 "data/maps/OldaleTown_Mart/scripts.pory"
+	faceplayer
+# 41 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_SHOP_TYPE, 3
+# 42 "data/maps/OldaleTown_Mart/scripts.pory"
+	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_Clerk_2
+# 49 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox OldaleTown_Mart_EventScript_Clerk_Text_0, MSGBOX_DEFAULT
+OldaleTown_Mart_EventScript_Clerk_1:
+# 51 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+	end
+
+OldaleTown_Mart_EventScript_Clerk_2:
+# 43 "data/maps/OldaleTown_Mart/scripts.pory"
+	message gText_HowMayIServeYou
+# 44 "data/maps/OldaleTown_Mart/scripts.pory"
+	waitmessage
+# 45 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemart OldaleMartMons
+	goto OldaleTown_Mart_EventScript_Clerk_1
+
+
+	.align 2
+# 55 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleMartMons:
+# 56 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_BULBASAUR
+# 57 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_CHARMANDER
+# 58 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_SQUIRTLE
+# 59 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_CATERPIE
+# 60 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_PIDGEY
+	.2byte ITEM_NONE
+
+OldaleTown_Mart_EventScript_Clerk_Text_0:
+# 49 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "Sorry but I can't sell you any Pokémon\n"
+	.string "yet, you need your Pokedex.$"
