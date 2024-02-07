@@ -503,7 +503,7 @@ gBattleAnims_Moves::
 	.4byte Move_SLUDGE_WAVE
 	.4byte Move_QUIVER_DANCE
 	.4byte Move_HEAVY_SLAM
-	.4byte Move_SYCHRONOISE @ MOVE_SYNCHRONOISE
+	.4byte Move_SYNCHRONOISE
 	.4byte Move_ELECTRO_BALL
 	.4byte Move_SOAK
 	.4byte Move_FLAME_CHARGE
@@ -900,7 +900,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_SPIN_OUT
 	.4byte Move_NONE @ MOVE_SALT_CURE
 	.4byte Move_NONE @ MOVE_DOODLE
-	.4byte Move_NONE @ MOVE_FILET_AWAY
+	.4byte Move_NONE @ MOVE_FILLET_AWAY
 	.4byte Move_RAGING_BULL
 	.4byte Move_NONE @ MOVE_MAKE_IT_RAIN
 	.4byte Move_NONE @ MOVE_PSYBLADE
@@ -915,7 +915,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_BLOOD_MOON
 	.4byte Move_NONE @ MOVE_AXE_KICK
 	.4byte Move_NONE @ MOVE_BARB_BARRAGE
-	.4byte Move_NONE @ MOVE_SMASHIN'_REALITIES
+	.4byte Move_NONE @ MOVE_SMASHIN_REALITIES
 
 	.align 2
 gBattleAnims_StatusConditions::

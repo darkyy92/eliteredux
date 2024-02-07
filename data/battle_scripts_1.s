@@ -443,6 +443,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRemoveTerrainNoFail     @ EFFECT_REMOVE_TERRAIN_NO_FAIL
 	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
 	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
+	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -4512,13 +4513,23 @@ BattleScript_PowerHerbActivation:
 	return
 
 BattleScript_EffectTwoTurnSecondary::
-	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
+	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_EffectTwoTurnSecondarySecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_METEOR_BEAM
 	call BattleScriptFirstChargingTurn
 	argumenttomoveeffect
 	seteffectprimary
 	setmoveeffect 0
 	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_EffectTwoTurnSecondarySecondTurn
+	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
+	call BattleScript_PowerHerbActivation
+BattleScript_EffectTwoTurnSecondarySecondTurn:
+	attackcanceler
+	setmoveeffect MOVE_EFFECT_CHARGING
+	setbyte sB_ANIM_TURN, 1
+	clearstatusfromeffect BS_ATTACKER
+	orword gHitMarker, HITMARKER_NO_PPDEDUCT
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectTwoTurnsAttack::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
@@ -5532,6 +5543,10 @@ BattleScript_EffectDefenseUpHit::
 
 BattleScript_EffectAttackUpHit::
 	setmoveeffect MOVE_EFFECT_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+	goto BattleScript_EffectHit
+
+BattleScript_EffectSpecialAttackUpHit::
+	setmoveeffect MOVE_EFFECT_SP_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAllStatsUpHit::
