@@ -610,16 +610,18 @@
 #define ABILITY_IRON_SERPENT 588 // Ups “supereffective” by 33%.
 #define ABILITY_WEATHER_DOUBLE_BOOST 589 // Sun boosts Water. Rain boosts Fire.
 #define ABILITY_SWEEPING_EDGE_PLUS 590 // Sweeping Edge + Keen Edge.
-#define ABILITY_CELESTIAL_BLESSING 591 // Recovers 1/12 of its health each turn under Misty Terrain.
-#define ABILITY_MINION_CONTROL 592 // Moves hit an extra time for each healthy party member.
-#define ABILITY_MOLTEN_BLADES 593 // Keen Edge + Keen Edge moves have a 20% chance to burn.
-#define ABILITY_HAUNTING_FRENZY 594 // 20% chance to flinch the opponent. +1 speed on kill.
-#define ABILITY_NOISE_CANCEL 595 // Protects the party from sound- based moves.
-#define ABILITY_RADIO_JAM 596 // Sound-based moves inflict disable.
-#define ABILITY_OLE 597 // 20% chance to evade physical moves.
-#define ABILITY_MALICIOUS 598 // Lowers the foe's highest Attack and Defense stat.
-#define ABILITY_DEAD_POWER 599 // 1.5x Attack boost. 20% chance to curse on contact moves.
-#define ABILITY_BRAWLING_WYVERN 600 // Dragon type moves become punching moves.
+#define ABILITY_CELESTIAL_BLESSING 591 // Heal 1/12 of HP under Misty Terrain.
+#define ABILITY_CHILLING_TOUCH 592 // 30% chance to apply FRB on contact.
+#define ABILITY_TANCE_CHANGE_2 593 // Transforms as it battles (Physical to Special moves).
+#define ABILITY_MINION_CONTROL 594 // User controls it's minions, 1 extra hit per healthy party member.
+#define ABILITY_MOLTEN_BLADES 595 // Keen Edge + Keen Edge moves have a 20% chance to burn.
+#define ABILITY_HAUNTING_FRENZY 596 // 20% chance to flinch the opponent. +1 speed on kill.
+#define ABILITY_NOISE_CANCEL 597 // Protects the party from sound based moves.
+#define ABILITY_RADIO_JAM 598 // Sound based moves inflict disable.
+#define ABILITY_OLE 599 // 20% chance to evade physical moves.
+#define ABILITY_MALICIOUS 600 // Lower's the foe's highest ATK and DEF stat.
+#define ABILITY_DEAD_POWER 601 // 1.5x ATK boost and 20% chance to curse on contact moves.
+#define ABILITY_BRAWLING_WYVERN 602 // All DRAGON type moves are affected by Iron Fist
 #define ABILITY_MYTHICAL_ARROWS 603 // Makes arrow moves SPECIAL and boost them by 30%
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_MYTHICAL_ARROWS + 1)
