@@ -1130,3 +1130,11 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Route2_House/scripts.inc"
 
 	.include "data/maps/Route2_EastBuilding/scripts.inc"
+
+	.include "data/maps/PewterCity/scripts.inc"
+
+	.include "data/maps/PewterCity_House1/scripts.inc"
+
+	.include "data/maps/PewterCity_PokemonCenter_1F/scripts.inc"
+
+	.include "data/maps/Pewtercity_PokemonCenter_2F/scripts.inc"

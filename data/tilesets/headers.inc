@@ -896,3 +896,25 @@ gTileset_ViridianForest::
 	.4byte gMetatiles_ViridianForest
 	.4byte gMetatileAttributes_ViridianForest
 	.4byte NULL
+
+	.align 2
+gTileset_PewterCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PewterCity
+	.4byte gTilesetPalettes_PewterCity
+	.4byte gMetatiles_PewterCity
+	.4byte gMetatileAttributes_PewterCity
+	.4byte NULL
+
+	.align 2
+gTileset_RG_PokemonCenter_1F::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RG_PokemonCenter_1F
+	.4byte gTilesetPalettes_RG_PokemonCenter_1F
+	.4byte gMetatiles_RG_PokemonCenter_1F
+	.4byte gMetatileAttributes_RG_PokemonCenter_1F
+	.4byte NULL

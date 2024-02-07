@@ -605,3 +605,17 @@ gMetatiles_ViridianForest::
 	.align 1
 gMetatileAttributes_ViridianForest::
 	.incbin "data/tilesets/secondary/viridianforest/metatile_attributes.bin"
+	.align 1
+gMetatiles_PewterCity::
+	.incbin "data/tilesets/secondary/pewtercity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PewterCity::
+	.incbin "data/tilesets/secondary/pewtercity/metatile_attributes.bin"
+	.align 1
+gMetatiles_RG_PokemonCenter_1F::
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RG_PokemonCenter_1F::
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/metatile_attributes.bin"

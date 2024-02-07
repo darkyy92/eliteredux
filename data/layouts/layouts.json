@@ -4760,6 +4760,46 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route2_EastBuilding/border.bin",
       "blockdata_filepath": "data/layouts/Route2_EastBuilding/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTER_CITY",
+      "name": "PewterCity_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_PewterCity",
+      "border_filepath": "data/layouts/PewterCity/border.bin",
+      "blockdata_filepath": "data/layouts/PewterCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTER_CITY_HOUSE1",
+      "name": "PewterCity_House1_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/PewterCity_House1/border.bin",
+      "blockdata_filepath": "data/layouts/PewterCity_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTER_CITY_POKEMON_CENTER_1F",
+      "name": "PewterCity_PokemonCenter_1F_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_RG_PokemonCenter_1F",
+      "border_filepath": "data/layouts/PewterCity_PokemonCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/PewterCity_PokemonCenter_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTERCITY_POKEMON_CENTER_2F",
+      "name": "Pewtercity_PokemonCenter_2F_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_RG_PokemonCenter_1F",
+      "border_filepath": "data/layouts/Pewtercity_PokemonCenter_2F/border.bin",
+      "blockdata_filepath": "data/layouts/Pewtercity_PokemonCenter_2F/map.bin"
     }
   ]
 }

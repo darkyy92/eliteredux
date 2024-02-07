@@ -1849,3 +1849,43 @@ gTilesetPalettes_ViridianForest::
 	.align 2
 gTilesetTiles_ViridianForest::
 	.incbin "data/tilesets/secondary/viridianforest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PewterCity::
+	.incbin "data/tilesets/secondary/pewtercity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/pewtercity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PewterCity::
+	.incbin "data/tilesets/secondary/pewtercity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RG_PokemonCenter_1F::
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RG_PokemonCenter_1F::
+	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/tiles.4bpp.lz"

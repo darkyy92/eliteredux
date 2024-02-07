@@ -112,7 +112,11 @@
     "NewMap1",
     "Route2_ViridianForest_NorthEntrance",
     "Route2_House",
-    "Route2_EastBuilding"
+    "Route2_EastBuilding",
+    "PewterCity",
+    "PewterCity_House1",
+    "PewterCity_PokemonCenter_1F",
+    "Pewtercity_PokemonCenter_2F"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

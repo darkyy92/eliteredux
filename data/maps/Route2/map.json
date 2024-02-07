@@ -17,6 +17,11 @@
       "direction": "down",
       "offset": -12,
       "map": "MAP_VIRIDIAN_CITY"
+    },
+    {
+      "direction": "up",
+      "offset": -12,
+      "map": "MAP_PEWTER_CITY"
     }
   ],
   "object_events": [
