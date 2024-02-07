@@ -7602,7 +7602,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRIKER_BOOST | FLAG_DMG_2X_IN_AIR,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRIKER_BOOST,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_STRENGTH_SAP] =
@@ -10788,7 +10788,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .split = SPLIT_PHYSICAL,
     },
-    [MOVE_SMASHIN'_REALITIES] =
+    [MOVE_SMASHIN_REALITIES] =
     {
         .effect = EFFECT_PLACEHOLDER,
         .power = 0,
