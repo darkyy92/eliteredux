@@ -1217,8 +1217,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1:
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_0:
 # 47 "data/maps/MeteorFalls_HaxorusRoom/scripts.pory"
-	.string "Haxorus seems to want to join your\n"
-	.string "team, will you let this Haxorus join you?$"
+	.string "Haxorus seems to want to join your team, will you let this Haxorus join you?$"
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1:
 # 52 "data/maps/MeteorFalls_HaxorusRoom/scripts.pory"
@@ -1230,11 +1229,8 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_2:
 
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_Text_0:
 # 71 "data/maps/MeteorFalls_HaxorusRoom/scripts.pory"
-	.string "Do you want to check all the mega\n"
-	.string "stones?$"
+	.string "Do you want to check all the mega stones?$"
 
 EventScript_ObtainedItem_PC_Text_0:
 # 545 "data/maps/MeteorFalls_HaxorusRoom/scripts.pory"
-	.string "{PLAYER} obtained the\n"
-	.string "{STR_VAR_2} and transferred it to\l"
-	.string "the PC!$"
+	.string "{PLAYER} obtained the {STR_VAR_2} and transferred it to the PC!$"
