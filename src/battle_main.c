@@ -4814,12 +4814,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
             speed = (speed * 150) / 100;
     }
     
-    if (GetAbilityState(battlerId, ABILITY_PROTOSYNTHESIS) > 0
-        && GetHighestStatId(battlerId) == STAT_SPEED)
+    if (GetAbilityStateAs(battlerId, ABILITY_PROTOSYNTHESIS).paradoxBoost.statId == STAT_SPEED)
         speed = speed * 3 / 2;
     
-    if (GetAbilityState(battlerId, ABILITY_QUARK_DRIVE) > 0
-        && GetHighestStatId(battlerId) == STAT_SPEED)
+    if (GetAbilityStateAs(battlerId, ABILITY_QUARK_DRIVE).paradoxBoost.statId == STAT_SPEED)
         speed = speed * 3 / 2;
 
     // other abilities
@@ -4986,7 +4984,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     }
     
 	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || BattlerHasInnate(battlerId, ABILITY_BLITZ_BOXER))
-		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+		&& IS_IRON_FIST(battlerId, move)
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;

@@ -25,6 +25,7 @@
 #define ABILITYEFFECT_MOVE_END_OTHER             14
 #define ABILITYEFFECT_NEUTRALIZINGGAS            15
 #define ABILITYEFFECT_AFTER_RECOIL               16
+#define ABILITYEFFECT_COPY_STATS                 17
 // Special cases
 #define ABILITYEFFECT_SWITCH_IN_TERRAIN          0xFE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
@@ -72,12 +73,37 @@ struct TypePower
     u16 effect;
 };
 
-enum ParadoxBoostState
+typedef enum
 {
     PARADOX_BOOST_NOT_ACTIVE = 0,
-    PARADOX_BOOSTER_ENERGY,
-    PARADOX_WEATHER_ACTIVE,
+    PARADOX_BOOSTER_ENERGY = 1,
+    PARADOX_WEATHER_ACTIVE = 2,
+} ParadoxBoostSource;
+
+struct ParadoxBoost
+{
+    ParadoxBoostSource source:2;
+    u8 statId:3;
 };
+
+struct StatCopyState
+{
+    bool8 inProgress:1;
+    u8 battler:2;
+    u8 stat:3;
+    bool8 announced:1;
+};
+
+union AbilityStates
+{
+    struct ParadoxBoost paradoxBoost;
+    struct StatCopyState statCopyState;
+    u32 intValue;
+};
+
+#define CUD_CHEW_CURRENT_TURN (1 << 15)
+
+#define IS_IRON_FIST(attacker, moveToCheck) (gBattleMoves[moveToCheck].flags & FLAG_IRON_FIST_BOOST || (BATTLER_HAS_ABILITY(attacker, ABILITY_BRAWLING_WYVERN) && IS_MOVE_TYPE(moveToCheck, TYPE_DRAGON)))
 
 extern const struct TypePower gNaturalGiftTable[];
 
@@ -220,10 +246,12 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability);
 u8 GetSingleUseAbilityCounter(u8 battler, u16 ability);
 void SetSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
 void IncrementSingleUseAbilityCounter(u8 battler, u16 ability, u8 value);
-u8 GetAbilityState(u8 battler, u16 ability);
-void SetAbilityState(u8 battler, u16 ability, u8 value);
-void IncrementAbilityState(u8 battler, u16 ability, u8 value);
-u8 GetHighestStatId(u8 battlerId);
+u32 GetAbilityState(u8 battler, u16 ability);
+void SetAbilityState(u8 battler, u16 ability, u32 value);
+union AbilityStates GetAbilityStateAs(u8 battler, u16 ability);
+void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
+void IncrementAbilityState(u8 battler, u16 ability, u32 value);
+u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 
 // Ability checks

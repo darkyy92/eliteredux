@@ -2159,6 +2159,14 @@
 	various \battler, VARIOUS_HANDLE_TERRAIN_CHANGE
 	.endm
 
+	.macro getbattler battler:req
+	various \battler, VARIOUS_GET_BATTLER
+	.endm
+
+	.macro docopystatchange battler:req
+	various \battler, VARIOUS_DO_COPY_STAT_CHANGE
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2
@@ -2168,5 +2176,21 @@
 	.macro unswapbattlers battler1:req, battler2:req
 	copybyte \battler2, \battler1
 	copybyte \battler1, sSAVED_BATTLER
+	.endm
+
+	.macro checkburn
+	jumpifstatus BS_TARGET, STATUS1_BURN, BattleScript_AlreadyBurned
+	jumpiftype BS_TARGET, TYPE_FIRE, BattleScript_NotAffected
+	jumpifability BS_TARGET, ABILITY_WATER_VEIL, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_WATER_BUBBLE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_WATERS, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_THERMAL_EXCHANGE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
+	jumpifflowerveil BattleScript_FlowerVeilProtects
+	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	.endm
 

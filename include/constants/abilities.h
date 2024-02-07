@@ -569,23 +569,23 @@
 #define ABILITY_PURIFYING_SALT 547 // Immune to status conditions. Take half damage from Ghost.
 #define ABILITY_PROTOSYNTHESIS 548 // Boosts highest stat in Sun or with Booster Energy.
 #define ABILITY_QUARK_DRIVE 549 // Boosts highest stat in Electric Terrain or with Booster Energy.
-#define ABILITY_WIND_POWER 550 // Placeholder
+#define ABILITY_WIND_POWER 550 // Charges up when hit by wind moves or Tailwind starts.
 #define ABILITY_MOMENTUM_PLUS 551 // Non-contact moves use the Speed stat for damage.
 #define ABILITY_SPECIAL_SPEED_FORCE 552 // Special moves use 20% of its Speed stat additionally.
 #define ABILITY_GUARD_DOG 553 // Can't be forced out. Inverts Intimidate effects.
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
-#define ABILITY_EGOIST 555 // Placeholder
+#define ABILITY_EGOIST 555 // Raises its own stats when foes raise theirs.
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
 #define ABILITY_GUILT_TRIP 559 // Placeholder
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
 #define ABILITY_ZERO_TO_HERO 561 // Placeholder
-#define ABILITY_COSTAR 562 // Placeholder
+#define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
 #define ABILITY_COMMANDER 563 // Placeholder
-#define ABILITY_EJECT_PACK_ABILITY 564 // Placeholder
-#define ABILITY_VENGEFUL_SPIRIT 565 // Placeholder
-#define ABILITY_CUD_CHEW 566 // Placeholder
+#define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
+#define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.
+#define ABILITY_CUD_CHEW 566 // Eats berries again at the end of the next turn.
 #define ABILITY_ARMOR_TAIL 567 // Protects itself and ally from priority moves.
 #define ABILITY_MIND_CRUSH 568 // Biting moves use SpAtk and deal 50% more damage.
 #define ABILITY_SUPREME_OVERLORD 569 // Each fainted ally increases Attack and SpAtk by 10%.
@@ -594,9 +594,9 @@
 #define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
-#define ABILITY_THERMAL_EXCHANGE 575 // Placeholder
+#define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.
 #define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
-#define ABILITY_SHARING_IS_CARING 577 // Placeholder
+#define ABILITY_SHARING_IS_CARING 577 // Stat changes are shared between all battlers.
 #define ABILITY_TABLETS_OF_RUIN 578 // Lowers the Attack of other Pokemon by 25%.
 #define ABILITY_SWORD_OF_RUIN 579 // Lowers the Defense of other Pokemon by 25%.
 #define ABILITY_VESSEL_OF_RUIN 580 // Lowers the Special Attack of other Pokemon by 25%.
@@ -610,18 +610,16 @@
 #define ABILITY_IRON_SERPENT 588 // Ups “supereffective” by 33%.
 #define ABILITY_WEATHER_DOUBLE_BOOST 589 // Sun boosts Water. Rain boosts Fire.
 #define ABILITY_SWEEPING_EDGE_PLUS 590 // Sweeping Edge + Keen Edge.
-#define ABILITY_CELESTIAL_BLESSING 591 // Heal 1/12 of HP under Misty Terrain.
-#define ABILITY_CHILLING_TOUCH 592 // 30% chance to apply FRB on contact.
-#define ABILITY_TANCE_CHANGE_2 593 // Transforms as it battles (Physical to Special moves).
-#define ABILITY_MINION_CONTROL 594 // User controls it's minions, 1 extra hit per healthy party member.
-#define ABILITY_MOLTEN_BLADES 595 // Keen Edge + Keen Edge moves have a 20% chance to burn.
-#define ABILITY_HAUNTING_FRENZY 596 // 20% chance to flinch the opponent. +1 speed on kill.
-#define ABILITY_NOISE_CANCEL 597 // Protects the party from sound based moves.
-#define ABILITY_RADIO_JAM 598 // Sound based moves inflict disable.
-#define ABILITY_OLE 599 // 20% chance to evade physical moves.
-#define ABILITY_MALICIOUS 600 // Lower's the foe's highest ATK and DEF stat.
-#define ABILITY_DEAD_POWER 601 // 1.5x ATK boost and 20% chance to curse on contact moves.
-#define ABILITY_BRAWLING_WYVERN 602 // All DRAGON type moves are affected by Iron Fist
+#define ABILITY_CELESTIAL_BLESSING 591 // Recovers 1/12 of its health each turn under Misty Terrain.
+#define ABILITY_MINION_CONTROL 592 // Moves hit an extra time for each healthy party member.
+#define ABILITY_MOLTEN_BLADES 593 // Keen Edge + Keen Edge moves have a 20% chance to burn.
+#define ABILITY_HAUNTING_FRENZY 594 // 20% chance to flinch the opponent. +1 speed on kill.
+#define ABILITY_NOISE_CANCEL 595 // Protects the party from sound- based moves.
+#define ABILITY_RADIO_JAM 596 // Sound-based moves inflict disable.
+#define ABILITY_OLE 597 // 20% chance to evade physical moves.
+#define ABILITY_MALICIOUS 598 // Lowers the foe's highest Attack and Defense stat.
+#define ABILITY_DEAD_POWER 599 // 1.5x Attack boost. 20% chance to curse on contact moves.
+#define ABILITY_BRAWLING_WYVERN 600 // Dragon type moves become punching moves.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_BRAWLING_WYVERN + 1)
 
