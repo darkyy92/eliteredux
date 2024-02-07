@@ -418,6 +418,8 @@ static void Overworld_ResetStateAfterWhiteOut(void)
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
     FlagClear(FLAG_SYS_INVERSE_BATTLE);
+    gSpecialVar_0x8003 = 0;
+    gSpecialVar_0x8004 = 0;
     #if VAR_TERRAIN != 0
         VarSet(VAR_TERRAIN, 0);
     #endif

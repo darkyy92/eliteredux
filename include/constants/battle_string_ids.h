@@ -728,8 +728,9 @@
 #define STRINGID_PARADOX_BOOST_TERRAIN                757
 #define STRINGID_COSTAR                               758
 #define STRINGID_OVERFLOWINGWITHSPACEPOWER            759
+#define STRINGID_PLAYERGOTBP                          760
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_OVERFLOWINGWITHSPACEPOWER + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PLAYERGOTBP + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
