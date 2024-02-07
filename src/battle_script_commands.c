@@ -7444,12 +7444,10 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-    if(gSpecialVar_0x8004 == 0)
-        gSpecialVar_0x8004 = 1;
+    if(VarGet(VAR_TRAINER_PRIZE_BP) == 0) 
+        VarSet(VAR_TRAINER_PRIZE_BP, 1);
     GiveFrontierBattlePoints();
-    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 3, gSpecialVar_0x8004);
-    gSpecialVar_0x8003 = 0;
-    gSpecialVar_0x8004 = 0;
+    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 3, VarGet(VAR_TRAINER_PRIZE_BP));
     gBattlescriptCurrInstr++;
 }
 
