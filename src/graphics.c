@@ -1668,7 +1668,9 @@ const u32 gBuyMenuFrame_Gfx[] = INCBIN_U32("graphics/interface/mart_frame.4bpp.l
 const u32 gMenuMoneyPal[] = INCBIN_U32("graphics/interface/mart_frame.gbapal.lz");
 const u32 gBuyMenuFrame_Tilemap[] = INCBIN_U32("graphics/interface/mart_frame.bin.lz");
 
-const u32 gMenuMoneyGfx[] = INCBIN_U32("graphics/interface/money.4bpp.lz");
+const u32 gMenuMoneyGfx[]        = INCBIN_U32("graphics/interface/money.4bpp.lz");
+const u32 gMenuBattlePointsGfx[] = INCBIN_U32("graphics/interface/battepoints.4bpp.lz");
+const u32 gMenuCoinsGfx[]        = INCBIN_U32("graphics/interface/coins.4bpp.lz");
 
 // Pokeblock
 

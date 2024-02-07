@@ -9985,6 +9985,8 @@ extern const u32 gStatusPal_Icons[];
 extern const u32 gBuyMenuFrame_Gfx[];
 extern const u32 gBuyMenuFrame_Tilemap[];
 extern const u32 gMenuMoneyGfx[];
+extern const u32 gMenuBattlePointsGfx[];
+extern const u32 gMenuCoinsGfx[];
 extern const u32 gMenuMoneyPal[];
 
 extern const u32 gBattleInterface_BallStatusBarGfx[];
