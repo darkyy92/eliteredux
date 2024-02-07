@@ -7602,7 +7602,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRIKER_BOOST,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRIKER_BOOST | FLAG_DMG_2X_IN_AIR,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_STRENGTH_SAP] =
@@ -8774,7 +8774,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_METEOR_BEAM] =
     {
-        .effect = EFFECT_TWO_TURN_SECONDARY,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 120,
         .type = TYPE_ROCK,
         .accuracy = 100,
@@ -10778,6 +10778,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_BARB_BARRAGE] =
+    {
+        .effect = EFFECT_PLACEHOLDER,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .split = SPLIT_PHYSICAL,
+    },
+    [MOVE_SMASHIN'_REALITIES] =
     {
         .effect = EFFECT_PLACEHOLDER,
         .power = 0,
