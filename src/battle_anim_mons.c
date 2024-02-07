@@ -845,6 +845,16 @@ u8 GetBattlerAtPosition(u8 position)
     return i;
 }
 
+struct Pokemon *GetSideParty(u32 side)
+{
+    return (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+}
+
+struct Pokemon *GetBattlerParty(u32 battler)
+{
+    return GetSideParty(GetBattlerSide(battler));
+}
+
 bool8 IsBattlerSpritePresent(u8 battlerId)
 {
     if (IsContest())
@@ -1623,7 +1633,7 @@ s16 CloneBattlerSpriteWithBlend(u8 animBattler)
     return -1;
 }
 
-void obj_delete_but_dont_free_vram(struct Sprite *sprite)
+void DestroySpriteWithActiveSheet(struct Sprite *sprite)
 {
     sprite->usingSheet = TRUE;
     DestroySprite(sprite);
@@ -2425,7 +2435,7 @@ static void sub_80A8DFC(struct Sprite *sprite)
     if (--sprite->data[0] == 0)
     {
         gTasks[sprite->data[1]].data[5]--;
-        obj_delete_but_dont_free_vram(sprite);
+        DestroySpriteWithActiveSheet(sprite);
     }
 }
 

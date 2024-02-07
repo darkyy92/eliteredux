@@ -23,4 +23,6 @@
 #define RGB_CYAN       RGB(0, 31, 31)
 #define RGB_WHITEALPHA (RGB_WHITE | RGB_ALPHA)
 
+#define RGB_LIME_GREEN  RGB(222, 230, 49)
+
 #endif // GUARD_RGB_H

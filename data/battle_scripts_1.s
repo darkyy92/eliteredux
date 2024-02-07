@@ -388,7 +388,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectStuffCheeks             @ EFFECT_STUFF_CHEEKS
 	.4byte BattleScript_EffectDefenseDownHit          @ EFFECT_GRAV_APPLE
 	.4byte BattleScript_EffectEvasionUpHit            @ EFFECT_EVASION_UP_HIT
-	.4byte BattleScript_EffectDoubleIronBash          @ EFFECT_DOUBLE_IRON_BASH
 	.4byte BattleScript_EffectGlitzyGlow              @ EFFECT_GLITZY_GLOW
 	.4byte BattleScript_EffectBaddyBad                @ EFFECT_BADDY_BAD
 	.4byte BattleScript_EffectSappySeed               @ EFFECT_SAPPY_SEED
@@ -443,6 +442,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectKarma                   @ EFFECT_KARMA
 	.4byte BattleScript_EffectRemoveTerrainNoFail     @ EFFECT_REMOVE_TERRAIN_NO_FAIL
 	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
+	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
+	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -624,14 +625,7 @@ BattleScript_BeakBlastSetUp::
 	end2
 
 BattleScript_BeakBlastBurn::
-	jumpifstatus BS_TARGET, STATUS1_BURN, BattleScript_AlreadyBurned
-	jumpiftype BS_TARGET, TYPE_FIRE, BattleScript_NotAffected
-	jumpifability BS_TARGET, ABILITY_WATER_VEIL, BattleScript_WaterVeilPrevents
-	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
-	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
-	jumpifflowerveil BattleScript_FlowerVeilProtects
-	//jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
-	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_BeakBlastBurnReturn
+	checkburn
 	setmoveeffect MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER
 	seteffectprimary
 BattleScript_BeakBlastBurnReturn:
@@ -1076,16 +1070,6 @@ BattleScript_EffectGlitzyGlow:
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectDoubleIronBash:
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
-	setmultihitcounter 2
-	initmultihitstring
-	sethword sMULTIHIT_EFFECT, MOVE_EFFECT_FLINCH
-	goto BattleScript_MultiHitLoop
-
 BattleScript_EffectEvasionUpHit:
 	setmoveeffect MOVE_EFFECT_EVS_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 	goto BattleScript_EffectHit
@@ -1472,6 +1456,14 @@ BattleScript_MoveEffectBugBite::
 	bicword gHitMarker, HITMARKER_NO_ANIMATIONS
 	setbyte sBERRY_OVERRIDE, FALSE
 	return
+
+BattleScript_CudChew::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	setbyte sBERRY_OVERRIDE, TRUE   @ override the requirements for eating berries
+	consumeberry BS_ATTACKER, TRUE  @ consume the berry, then restore the item from changedItems
+	setbyte sBERRY_OVERRIDE, FALSE
+	end3
 
 BattleScript_EffectCoreEnforcer:
 	setmoveeffect MOVE_EFFECT_CORE_ENFORCER | MOVE_EFFECT_CERTAIN
@@ -4520,6 +4512,25 @@ BattleScript_PowerHerbActivation:
 	removeitem BS_ATTACKER
 	return
 
+BattleScript_EffectTwoTurnSecondary::
+	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_EffectTwoTurnSecondarySecondTurn
+	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_METEOR_BEAM
+	call BattleScriptFirstChargingTurn
+	argumenttomoveeffect
+	seteffectprimary
+	setmoveeffect 0
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_EffectTwoTurnSecondarySecondTurn
+	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
+	call BattleScript_PowerHerbActivation
+BattleScript_EffectTwoTurnSecondarySecondTurn:
+	attackcanceler
+	setmoveeffect MOVE_EFFECT_CHARGING
+	setbyte sB_ANIM_TURN, 1
+	clearstatusfromeffect BS_ATTACKER
+	orword gHitMarker, HITMARKER_NO_PPDEDUCT
+	goto BattleScript_HitFromAccCheck
+
 BattleScript_EffectTwoTurnsAttack::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
@@ -4530,6 +4541,7 @@ BattleScript_EffectTwoTurnsAttack::
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_RAZOR_WIND
 BattleScript_EffectTwoTurnsAttackContinue:
 	call BattleScriptFirstChargingTurn
+BattleScript_EffectTwoTurnsAttackCheckSkipCharge:
 	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
@@ -4552,6 +4564,7 @@ BattleScript_EffectGeomancy:
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_GeomancySecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_GEOMANCY
 	call BattleScriptFirstChargingTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_GeomancySecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 BattleScript_GeomancySecondTurn:
@@ -5167,14 +5180,20 @@ BattleScript_EffectPerishSong::
 	setbyte gBattlerTarget, 0
 BattleScript_PerishSongLoop::
 	jumpifability BS_TARGET, ABILITY_SOUNDPROOF, BattleScript_PerishSongBlocked
+	jumpifability BS_TARGET, ABILITY_NOISE_CANCEL, BattleScript_PerishSongBlocked
+	jumpifability BS_TARGET, ABILITY_NOISE_CANCEL, BattleScript_PerishSongBlocked
 	jumpifpranksterblocked BS_TARGET, BattleScript_PerishSongNotAffected
 BattleScript_PerishSongLoopIncrement::
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_PerishSongLoop
 	goto BattleScript_MoveEnd
 
+BattleScript_PerishSongBlockedPartner::
+	getbattler BS_TARGET_PARTNER
+	goto BattleScript_PerishSongBlockedContinue
 BattleScript_PerishSongBlocked::
 	copybyte sBATTLER, gBattlerTarget
+BattleScript_PerishSongBlockedContinue:
 	printstring STRINGID_PKMNSXBLOCKSY2
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_PerishSongLoopIncrement
@@ -5526,6 +5545,10 @@ BattleScript_EffectAttackUpHit::
 	setmoveeffect MOVE_EFFECT_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
 	goto BattleScript_EffectHit
 
+BattleScript_EffectSpecialAttackUpHit::
+	setmoveeffect MOVE_EFFECT_SP_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+	goto BattleScript_EffectHit
+
 BattleScript_EffectAllStatsUpHit::
 	setmoveeffect MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER
 	goto BattleScript_EffectHit
@@ -5579,9 +5602,7 @@ BattleScript_EffectSkullBash::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SkullBashEnd::
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
 
 BattleScript_EffectTwister:
 BattleScript_FlinchEffect:
@@ -5619,9 +5640,7 @@ BattleScript_SolarbeamDecideTurn::
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SOLAR_BEAM
 	call BattleScriptFirstChargingTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
 BattleScript_SolarbeamOnFirstTurn::
 	orword gHitMarker, HITMARKER_CHARGING
 	setmoveeffect MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
@@ -5964,31 +5983,13 @@ BattleScript_EffectWillOWisp::
 	attackstring
 	ppreduce
 	jumpifsubstituteblocks BattleScript_ButItFailed
-	jumpifstatus BS_TARGET, STATUS1_BURN, BattleScript_AlreadyBurned
-	jumpiftype BS_TARGET, TYPE_FIRE, BattleScript_NotAffected
-	jumpifability BS_TARGET, ABILITY_WATER_VEIL, BattleScript_WaterVeilPrevents
-	jumpifability BS_TARGET, ABILITY_WATER_BUBBLE, BattleScript_WaterVeilPrevents
-	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
-	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
-	jumpifflowerveil BattleScript_FlowerVeilProtects
-	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
-	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
-	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
-	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
+	checkburn
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
 	jumpifsafeguard BattleScript_SafeguardProtected
 	attackanimation
 	waitanimation
 	setmoveeffect MOVE_EFFECT_BURN
 	seteffectprimary
-	goto BattleScript_MoveEnd
-
-BattleScript_WaterVeilPrevents::
-	call BattleScript_AbilityPopUp
-	copybyte gEffectBattler, gBattlerTarget
-	call BattleScript_AbilityPopUp
-	setbyte cMULTISTRING_CHOOSER, B_MSG_ABILITY_PREVENTS_MOVE_STATUS
-	call BattleScript_BRNPrevention
 	goto BattleScript_MoveEnd
 
 BattleScript_AlreadyBurned::
@@ -8998,6 +8999,21 @@ BattleScript_CheckWindRiderPartnerActivated:
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
 	goto BattleScript_CheckWindRiderEnd
 
+BattleScript_CheckWindPower::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_WIND_POWER
+	jumpifability BS_ABILITY_BATTLER, ABILITY_WIND_RIDER, BattleScript_CheckWindPower_HasAbility
+	return
+BattleScript_CheckWindPower_HasAbility::
+	jumpifstatus3 BS_ABILITY_BATTLER, STATUS3_CHARGED_UP, BattleScript_CheckWindPower_AlreadyCharged
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	swapbattlers gBattlerAttacker, gBattlerTarget
+	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
+	unswapbattlers gBattlerAttacker, gBattlerTarget
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_CheckWindPower_AlreadyCharged::
+	return
 
 BattleScript_PastelVeilActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -9005,15 +9021,12 @@ BattleScript_PastelVeilActivated::
 	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_PASTELVEILACTIVATED
 	waitmessage B_WAIT_TIME_LONG
-	sethword sABILITY_OVERWRITE, 0
 	end3
 	
 BattleScript_ElectromorphosisActivates::
-	sethword sABILITY_OVERWRITE, ABILITY_ELECTROMORPHOSIS
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
 	waitmessage B_WAIT_TIME_LONG
-	sethword sABILITY_OVERWRITE, 0
 	return
 	
 BattleScript_NorthWindActivated::
@@ -9039,6 +9052,7 @@ BattleScript_AttackerUsedAnExtraMove::
 	copybyte sSAVED_MOVEEND_STATE, sMOVEEND_STATE
 	setbyte sLIMIT_MOVEEND, MOVEEND_ABILITIES_ATTACKER
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
@@ -9047,6 +9061,7 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	waitmessage B_WAIT_TIME_SHORT
 	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_DefenderEffectSpeedDownHit::
@@ -9258,6 +9273,7 @@ BattleScript_MoodyEnd:
 	
 BattleScript_EmergencyExit::
 	pause 5
+BattleScript_EmergencyExitPopupNoPause::
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_LONG
 BattleScript_EmergencyExitNoPopUp::
@@ -10357,11 +10373,6 @@ BattleScript_AttackerAbilityStatRaiseEnd3::
 	call BattleScript_AttackerAbilityStatRaise
 	end3
 
-BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth::
-	sethword sABILITY_OVERWRITE, ABILITY_MAJESTIC_MOTH
-	call BattleScript_AttackerAbilityStatRaise
-	end3
-
 BattleScript_SwitchInAbilityMsg::
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
@@ -11432,6 +11443,37 @@ BattleScript_NosferatuActivated::
 BattleScript_NosferatuActivated_NothingToHeal:
     return
 
+BattleScript_PerformCopyStatEffects::
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	docopystatchange BS_ATTACKER
+	copybyte gBattlerAttacker, sSAVED_BATTLER 
+	return
+
+BattleScript_PerformCopyStatEffectsChangeStatDown::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatDownNoResult
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_SHORT
+BattleScript_PerformCopyStatEffectsChangeStatDownNoResult:
+	return
+
+BattleScript_PerformCopyStatEffectsChangeStatUp::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatUpNoResult
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_SHORT
+BattleScript_PerformCopyStatEffectsChangeStatUpNoResult:
+	return
+
+BattleScript_AbilityPopUpAndWait::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	return
+
 BattleScript_HydroCircuitAbsorbEffectActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
@@ -11456,7 +11498,6 @@ BattleScript_SweetDreamsActivates::
 	end3
 	
 BattleScript_HauntedSpiritActivated::
-	sethword sABILITY_OVERWRITE, ABILITY_HAUNTED_SPIRIT
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNBECAMECURSED
 	waitmessage B_WAIT_TIME_LONG

@@ -2313,6 +2313,13 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
+        if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_NOISE_CANCEL, moveNum) ||
+            (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_NOISE_CANCEL, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+            if(TestMoveFlags(moveNum, FLAG_SOUND)){
+                abilityNullifiesDamage = TRUE;
+            }
+        }
+
         if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_QUEENLY_MAJESTY, moveNum) ||
             (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_QUEENLY_MAJESTY, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
             if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
@@ -2519,6 +2526,14 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
 
     //Soundproof
     if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || BattlerHasInnate(targetId, ABILITY_SOUNDPROOF)){
+        if(TestMoveFlags(moveNum, FLAG_SOUND)){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Noise Cancel
+    if(gBattleMons[targetId].ability == ABILITY_NOISE_CANCEL || BattlerHasInnate(targetId, ABILITY_NOISE_CANCEL) ||
+    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_NOISE_CANCEL && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_NOISE_CANCEL) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(TestMoveFlags(moveNum, FLAG_SOUND)){
             moveNullified = TRUE;
         }

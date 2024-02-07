@@ -57,7 +57,7 @@ static void ScriptCmd_waitbgfadein(void);
 static void ScriptCmd_changebg(void);
 static void ScriptCmd_playsewithpan(void);
 static void ScriptCmd_setpan(void);
-static void ScriptCmd_panse_1B(void);
+static void ScriptCmd_panse(void);
 static void ScriptCmd_loopsewithpan(void);
 static void ScriptCmd_waitplaysewithpan(void);
 static void ScriptCmd_setbldcnt(void);
@@ -70,9 +70,9 @@ static void ScriptCmd_jumpifcontest(void);
 static void ScriptCmd_fadetobgfromset(void);
 static void ScriptCmd_panse_26(void);
 static void ScriptCmd_panse_27(void);
-static void ScriptCmd_monbgprio_28(void);
-static void ScriptCmd_monbgprio_29(void);
-static void ScriptCmd_monbgprio_2A(void);
+static void ScriptCmd_splitbgprio(void);
+static void ScriptCmd_splitbgprio_all(void);
+static void ScriptCmd_splitbgprio_foes(void);
 static void ScriptCmd_invisible(void);
 static void ScriptCmd_visible(void);
 static void ScriptCmd_doublebattle_2D(void);
@@ -1568,6 +1568,16 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_OmegaSymbol, 0x0200, ANIM_TAG_OMEGA_SYMBOL},
     {gBattleAnimSpriteGfx_PrimalParticles, 0x0180, ANIM_TAG_PRIMAL_PARTICLES},
     {gBattleAnimSpriteGfx_Orbs, 0x0180, ANIM_TAG_STEEL_BEAM},
+    {gBattleAnimSpriteGfx_AuraSphere, 0x200, ANIM_TAG_POLTERGEIST},
+    {gBattleAnimSpriteGfx_Teapot, 0x1800, ANIM_TAG_TEAPOT},
+    {gBattleAnimSpriteGfx_WoodHammerHammer, 0x800, ANIM_TAG_WOOD_HAMMER_HAMMER},
+    {gBattleAnimSpriteGfx_Snowflakes, 0x0700, ANIM_TAG_SNOWFLAKES},
+    {gBattleAnimSpriteGfx_SyrupBlob, 0x400, ANIM_TAG_SYRUP_BLOB_RED},
+    {gBattleAnimSpriteGfx_SyrupShell, 0x2000, ANIM_TAG_SYRUP_SHELL_RED},
+    {gBattleAnimSpriteGfx_SyrupBlob, 0x400, ANIM_TAG_SYRUP_BLOB_YELLOW},
+    {gBattleAnimSpriteGfx_SyrupShell, 0x2000, ANIM_TAG_SYRUP_SHELL_YELLOW},
+    {gBattleAnimSpriteGfx_SyrupSplat, 0x400, ANIM_TAG_SYRUP_SPLAT_RED},
+    {gBattleAnimSpriteGfx_SyrupSplat, 0x400, ANIM_TAG_SYRUP_SPLAT_YELLOW},
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -2019,6 +2029,15 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_OmegaSymbol, ANIM_TAG_OMEGA_SYMBOL},
     {gBattleAnimSpritePal_PrimalParticles, ANIM_TAG_PRIMAL_PARTICLES},
     {gBattleAnimSpritePal_SteelBeam, ANIM_TAG_STEEL_BEAM},
+    {gBattleAnimSpritePal_Teapot, ANIM_TAG_TEAPOT},
+    {gBattleAnimSpritePal_WoodHammerHammer, ANIM_TAG_WOOD_HAMMER_HAMMER},
+    {gBattleAnimSpritePal_RainDrops, ANIM_TAG_SNOWFLAKES},
+    {gBattleAnimSpritePal_SyrupRed, ANIM_TAG_SYRUP_BLOB_RED},
+    {gBattleAnimSpritePal_SyrupRed, ANIM_TAG_SYRUP_SHELL_RED},
+    {gBattleAnimSpritePal_SyrupYellow, ANIM_TAG_SYRUP_BLOB_YELLOW},
+    {gBattleAnimSpritePal_SyrupYellow, ANIM_TAG_SYRUP_SHELL_YELLOW},
+    {gBattleAnimSpritePal_SyrupRed, ANIM_TAG_SYRUP_SPLAT_RED},
+    {gBattleAnimSpritePal_SyrupYellow, ANIM_TAG_SYRUP_SPLAT_YELLOW},
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
@@ -2135,7 +2154,7 @@ static void (* const sScriptCmdTable[])(void) =
     ScriptCmd_changebg,
     ScriptCmd_playsewithpan,
     ScriptCmd_setpan,
-    ScriptCmd_panse_1B,
+    ScriptCmd_panse,
     ScriptCmd_loopsewithpan,
     ScriptCmd_waitplaysewithpan,
     ScriptCmd_setbldcnt,
@@ -2148,9 +2167,9 @@ static void (* const sScriptCmdTable[])(void) =
     ScriptCmd_fadetobgfromset,
     ScriptCmd_panse_26,
     ScriptCmd_panse_27,
-    ScriptCmd_monbgprio_28,
-    ScriptCmd_monbgprio_29,
-    ScriptCmd_monbgprio_2A,
+    ScriptCmd_splitbgprio,
+    ScriptCmd_splitbgprio_all,
+    ScriptCmd_splitbgprio_foes,
     ScriptCmd_invisible,
     ScriptCmd_visible,
     ScriptCmd_doublebattle_2D,
@@ -3405,7 +3424,7 @@ static void ScriptCmd_setpan(void)
 #define tCurrentPan     data[4]
 #define tFrameCounter   data[8]
 
-static void ScriptCmd_panse_1B(void)
+static void ScriptCmd_panse(void)
 {
     u16 songNum;
     s8 currentPanArg, incrementPan, incrementPanArg, currentPan, targetPan;
@@ -3714,7 +3733,7 @@ static void ScriptCmd_jumpifcontest(void)
         sBattleAnimScriptPtr += 4;
 }
 
-static void ScriptCmd_monbgprio_28(void)
+static void ScriptCmd_splitbgprio(void)
 {
     u8 wantedBattler;
     u8 battlerId;
@@ -3736,7 +3755,7 @@ static void ScriptCmd_monbgprio_28(void)
     }
 }
 
-static void ScriptCmd_monbgprio_29(void)
+static void ScriptCmd_splitbgprio_all(void)
 {
     sBattleAnimScriptPtr++;
     if (!IsContest())
@@ -3746,7 +3765,7 @@ static void ScriptCmd_monbgprio_29(void)
     }
 }
 
-static void ScriptCmd_monbgprio_2A(void)
+static void ScriptCmd_splitbgprio_foes(void)
 {
     u8 wantedBattler;
     u8 battlerPosition;
