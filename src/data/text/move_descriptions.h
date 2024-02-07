@@ -3434,7 +3434,7 @@ static const u8 sMoveTwoLineDescription_MoveDoodle[] = _(
     "Changes the Abilities of the user\n"
     "and its ally Pokémon to that of the target.");
 
-static const u8 sMoveTwoLineDescription_MoveFiletAway[] = _(
+static const u8 sMoveTwoLineDescription_MoveFilletAway[] = _(
     "The user sharply boosts its Attack, Sp. Atk,\n"
     "and Speed stats by using its own HP.");
 
@@ -3492,7 +3492,9 @@ static const u8 sMoveTwoLineDescription_MoveAxeKick[] = _(
 
 static const u8 sMoveTwoLineDescription_MoveBarbBarrage[] = _(
     "The user launches countless toxic barbs\n"
-    "20% chance to poison\n"
+    "20% chance to poison");
+
+static const u8 sMoveTwoLineDescription_MoveSmashinRealities[] = _(
     "smashes the realities around it.\n"
     "Removes weather and terrain");
 
@@ -4384,7 +4386,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SPIN_OUT - 1] = sMoveTwoLineDescription_MoveSpinOut,
     [MOVE_SALT_CURE - 1] = sMoveTwoLineDescription_MoveSaltCure,
     [MOVE_DOODLE - 1] = sMoveTwoLineDescription_MoveDoodle,
-    [MOVE_FILET_AWAY - 1] = sMoveTwoLineDescription_MoveFiletAway,
+    [MOVE_FILLET_AWAY - 1] = sMoveTwoLineDescription_MoveFilletAway,
     [MOVE_RAGING_BULL - 1] = sMoveTwoLineDescription_MoveRagingBull,
     [MOVE_MAKE_IT_RAIN - 1] = sMoveTwoLineDescription_MoveMakeItRain,
     [MOVE_PSYBLADE - 1] = sMoveTwoLineDescription_MovePsyblade,
@@ -5283,7 +5285,7 @@ static const u8 sMoveFourLineDescription_MoveSpicyExtract[] = _("The user emits 
 static const u8 sMoveFourLineDescription_MoveSpinOut[] = _("The user spins furiously by straining its legs,\ninflicting damage on the target.\nThis also harshly lowers the user's Speed stat.");
 static const u8 sMoveFourLineDescription_MoveSaltCure[] = _("The user salt cures the target,\ninflicting damage every turn.\nSteel and Water types are more strongly affected by this move.");
 static const u8 sMoveFourLineDescription_MoveDoodle[] = _("The user captures the very essence\nof the target in a sketch.\nThis changes the Abilities of the user\nand its ally Pokémon to that of the target.");
-static const u8 sMoveFourLineDescription_MoveFiletAway[] = _("The user sharply boosts its Attack, Sp. Atk,\nand Speed stats by using its own HP.");
+static const u8 sMoveFourLineDescription_MoveFilletAway[] = _("The user sharply boosts its Attack, Sp. Atk,\nand Speed stats by using its own HP.");
 static const u8 sMoveFourLineDescription_MoveRagingBull[] = _("The user performs a tackle like a raging bull.\nThis move's type depends on the user's form.\nIt can also break barriers,\nsuch as Light Screen and Reflect.");
 static const u8 sMoveFourLineDescription_MoveMakeItRain[] = _("The user attacks by throwing out a mass of coins.\nThis also lowers the user's Sp. Atk stat.\nMoney is earned after the battle.");
 static const u8 sMoveFourLineDescription_MovePsyblade[] = _("The user rends the target with an ethereal blade.\nThis move's power is boosted by 50%\nif the user is on Electric Terrain.");
@@ -5298,7 +5300,7 @@ static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retalia
 static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes the full brunt of its spirit\nfrom a full moon that shines as red as blood.\nThis move can't be used twice in a row.");
 static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
 static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
-static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that it\nsmashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
+static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that\nit smashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6182,7 +6184,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SPIN_OUT - 1] = sMoveFourLineDescription_MoveSpinOut,
     [MOVE_SALT_CURE - 1] = sMoveFourLineDescription_MoveSaltCure,
     [MOVE_DOODLE - 1] = sMoveFourLineDescription_MoveDoodle,
-    [MOVE_FILET_AWAY - 1] = sMoveFourLineDescription_MoveFiletAway,
+    [MOVE_FILLET_AWAY - 1] = sMoveFourLineDescription_MoveFilletAway,
     [MOVE_RAGING_BULL - 1] = sMoveFourLineDescription_MoveRagingBull,
     [MOVE_MAKE_IT_RAIN - 1] = sMoveFourLineDescription_MoveMakeItRain,
     [MOVE_PSYBLADE - 1] = sMoveFourLineDescription_MovePsyblade,

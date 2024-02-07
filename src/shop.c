@@ -287,15 +287,8 @@ static u8 CreateShopMenu(u8 martType)
 
     ScriptContext2_Enable();
     sMartInfo.martType = martType;
-    
-    /*if (sMartInfo.martType != MART_TYPE_MONS)
-        VarSet(VAR_SHOP_TYPE, sMartInfo.martType);
-    else if(VarGet(VAR_SHOP_TYPE) == MART_TYPE_MONS)
-        sMartInfo.martType = MART_TYPE_MONS;*/
 
-    VarSet(VAR_SHOP_TYPE, MART_TYPE_MONS);
-
-    switch(VarGet(VAR_SHOP_TYPE)){
+    switch(sMartInfo.martType){
         case MART_TYPE_NORMAL:
             winTemplate = sShopMenuWindowTemplates[0];
             winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
@@ -535,7 +528,7 @@ static void BuyMenuBuildListMenuTemplate(void)
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *name)
 {
-    switch(VarGet(VAR_SHOP_TYPE)){
+    switch(sMartInfo.martType){
         case MART_TYPE_NORMAL:
             CopyItemName(item, name);
         break;
@@ -571,7 +564,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
 
     if (item != LIST_CANCEL)
     {
-        switch(VarGet(VAR_SHOP_TYPE)){
+        switch(sMartInfo.martType){
             case MART_TYPE_NORMAL:
                 description = ItemId_GetDescription(item);
             break;
@@ -586,7 +579,6 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
                 StringExpandPlaceholders(gStringVar4, sText_Title_PokemonDescription);
 
                 description = gStringVar4;
-                //StringCopy(*description, gStringVar4);
             break;
         }
     }
@@ -599,12 +591,14 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     BuyMenuPrint(2, description, 3, 1, 0, 0);
 }
 
+const u8 sText_BuyMenuPrintPriceInList_BattlePoints[] = _("{STR_VAR_1}");
+
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
 {
     u8 x;
     if (itemId != LIST_CANCEL)
     {
-        switch(VarGet(VAR_SHOP_TYPE)){
+        switch(sMartInfo.martType){
             case MART_TYPE_NORMAL:
                 if ((ItemId_GetPocket(itemId) == POCKET_TM_HM) && (CheckBagHasItem(itemId, 1) == TRUE))
                 {
@@ -613,30 +607,27 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 }
                 else
                 {
-                ConvertIntToDecimalStringN(
-                    gStringVar1,
-                    ItemId_GetPrice(itemId) >> GetPriceReduction(POKENEWS_SLATEPORT),
-                    STR_CONV_MODE_LEFT_ALIGN,
-                    5);
-                    StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+                    ConvertIntToDecimalStringN(gStringVar1, ItemId_GetPrice(itemId) >> GetPriceReduction(POKENEWS_SLATEPORT), STR_CONV_MODE_LEFT_ALIGN, 5);
+                    if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
+                        StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+                    else
+                        StringExpandPlaceholders(gStringVar4, sText_BuyMenuPrintPriceInList_BattlePoints);
                 }
             break;
             case MART_TYPE_DECOR:
             case MART_TYPE_DECOR2:
-                ConvertIntToDecimalStringN(
-                    gStringVar1,
-                    gDecorations[itemId].price,
-                    STR_CONV_MODE_LEFT_ALIGN,
-                    5);
+                ConvertIntToDecimalStringN(gStringVar1, gDecorations[itemId].price, STR_CONV_MODE_LEFT_ALIGN, 5);
+                if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
                     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+                else
+                    StringExpandPlaceholders(gStringVar4, sText_BuyMenuPrintPriceInList_BattlePoints);
             break;
             case MART_TYPE_MONS:
-                ConvertIntToDecimalStringN(
-                    gStringVar1,
-                    gBaseStats[itemId].shopPrice,
-                    STR_CONV_MODE_LEFT_ALIGN,
-                    5);
+                ConvertIntToDecimalStringN(gStringVar1, gBaseStats[itemId].shopPrice, STR_CONV_MODE_LEFT_ALIGN, 5);
+                if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
                     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+                else
+                    StringExpandPlaceholders(gStringVar4, sText_BuyMenuPrintPriceInList_BattlePoints);
             break;
         }
 
@@ -686,7 +677,7 @@ static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
     if (*spriteIdPtr != SPRITE_NONE)
         return;
 
-    switch(VarGet(VAR_SHOP_TYPE)){
+    switch(sMartInfo.martType){
         case MART_TYPE_NORMAL:
             spriteId = AddItemIconSprite(iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE, item);
             if (spriteId != MAX_SPRITES)
@@ -703,7 +694,11 @@ static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
                 *spriteIdPtr = spriteId;
         break;
         case MART_TYPE_MONS:
-            if (item > 0){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "BuyMenuAddItemIcon iconSlot: %d, item: %d", iconSlot, item);
+            MgbaClose();
+
+            if (item > SPECIES_NONE && item < NUM_SPECIES){
                 LoadMonIconPalette(item);
                 spriteId = CreateMonIconNoPersonality(item, SpriteCallbackDummy, 0, 0, 0);
                 if (spriteId != MAX_SPRITES)
@@ -786,7 +781,17 @@ static void BuyMenuDrawGraphics(void)
     BuyMenuDrawMapGraphics();
     BuyMenuCopyMenuBgToBg1TilemapBuffer();
     AddMoneyLabelObject(19, 11);
-    PrintMoneyAmountInMoneyBoxWithBorder(0, 1, 13, GetMoney(&gSaveBlock1Ptr->money));
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            PrintMoneyAmountInMoneyBoxWithBorder(0, 1, 13, GetMoney(&gSaveBlock1Ptr->money));
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+            PrintMoneyAmountInMoneyBoxWithBorder(0, 1, 13, gSaveBlock2Ptr->frontier.battlePoints);
+        break;
+        case MART_MONEY_TYPE_CASINO_COINS:
+            PrintMoneyAmountInMoneyBoxWithBorder(0, 1, 13, gSaveBlock1Ptr->coins);
+        break;
+    }
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -988,9 +993,27 @@ static bool8 BuyMenuCheckForOverlapWithMenuBg(int x, int y)
     return FALSE;
 }
 
+const u8 gText_Var1AndYouWantedVar2BP[] = _("{STR_VAR_1}? And you wanted {STR_VAR_2}\nThat will be {STR_VAR_3} BP.");
+const u8 gText_Var1IsItThatllBeVar2BP[] = _("{STR_VAR_1}, is it?\nThat'll be {STR_VAR_2} BP. Do you want it?");
+const u8 gText_Var1AndYouWantedVar2Coins[] = _("{STR_VAR_1}? And you wanted {STR_VAR_2}\nThat will be {STR_VAR_3} Coins.");
+const u8 gText_Var1IsItThatllBeVar2Coins[] = _("{STR_VAR_1}, is it?\nThat'll be {STR_VAR_2} Coins. Do you want it?");
+
 static void Task_BuyMenu(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u32 money;
+    
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            money = gSaveBlock1Ptr->money;
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+            money = gSaveBlock2Ptr->frontier.battlePoints;
+        break;
+        case MART_MONEY_TYPE_CASINO_COINS:
+            money = gSaveBlock1Ptr->coins;
+        break;
+    }
 
     if (!gPaletteFade.active)
     {
@@ -1012,14 +1035,14 @@ static void Task_BuyMenu(u8 taskId)
             BuyMenuRemoveScrollIndicatorArrows();
             BuyMenuPrintCursor(tListTaskId, 2);
 
-            if (VarGet(VAR_SHOP_TYPE) == MART_TYPE_NORMAL)
+            if (sMartInfo.martType == MART_TYPE_NORMAL)
                 sShopData->totalCost = (ItemId_GetPrice(itemId) >> GetPriceReduction(POKENEWS_SLATEPORT));
-            else if(VarGet(VAR_SHOP_TYPE) == MART_TYPE_DECOR || VarGet(VAR_SHOP_TYPE) == MART_TYPE_DECOR2)
+            else if(sMartInfo.martType == MART_TYPE_DECOR || sMartInfo.martType == MART_TYPE_DECOR2)
                 sShopData->totalCost = gDecorations[itemId].price;
-            else// if(VarGet(VAR_SHOP_TYPE) == MART_TYPE_MONS)
+            else// if(sMartInfo.martType == MART_TYPE_MONS)
                 sShopData->totalCost = gBaseStats[itemId].shopPrice;
 
-            if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
+            if (!IsEnoughMoney(&money, sShopData->totalCost))
             {
                 if((ItemId_GetPocket(itemId) == POCKET_TM_HM) && (CheckBagHasItem(itemId, 1) == TRUE))
                 {
@@ -1032,7 +1055,7 @@ static void Task_BuyMenu(u8 taskId)
             }
             else
             {
-                if (VarGet(VAR_SHOP_TYPE) == MART_TYPE_NORMAL){
+                if (sMartInfo.martType == MART_TYPE_NORMAL){
                     CopyItemName(itemId, gStringVar1);
                     if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
                     {
@@ -1054,7 +1077,7 @@ static void Task_BuyMenu(u8 taskId)
                         BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
                     }
                 }
-                else if(VarGet(VAR_SHOP_TYPE) == MART_TYPE_DECOR|| VarGet(VAR_SHOP_TYPE) == MART_TYPE_DECOR2){
+                else if(sMartInfo.martType == MART_TYPE_DECOR|| sMartInfo.martType == MART_TYPE_DECOR2){
                     StringCopy(gStringVar1, gDecorations[itemId].name);
                     ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
 
@@ -1065,10 +1088,16 @@ static void Task_BuyMenu(u8 taskId)
 
                     BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
                 }
-                else{ // if(VarGet(VAR_SHOP_TYPE) == MART_TYPE_MONS)
+                else{ // if(sMartInfo.martType == MART_TYPE_MONS)
                     StringCopy(gStringVar1, gSpeciesNames[itemId]);
                     ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
-                    StringExpandPlaceholders(gStringVar4, gText_Var1IsItThatllBeVar2);
+                    if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
+                        StringExpandPlaceholders(gStringVar4, gText_Var1IsItThatllBeVar2);
+                    else if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_BATTLE_POINTS)
+                        StringExpandPlaceholders(gStringVar4, gText_Var1IsItThatllBeVar2BP);
+                    else
+                        StringExpandPlaceholders(gStringVar4, gText_Var1IsItThatllBeVar2Coins);
+
                     BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
                 }
             }
@@ -1093,7 +1122,17 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
     BuyMenuPrintItemQuantityAndPrice(taskId);
     ScheduleBgCopyTilemapToVram(0);
 
-    maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / sShopData->totalCost;
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / sShopData->totalCost;
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+            maxQuantity = gSaveBlock2Ptr->frontier.battlePoints / sShopData->totalCost;
+        break;
+        case MART_MONEY_TYPE_CASINO_COINS:
+            maxQuantity = gSaveBlock1Ptr->coins / sShopData->totalCost;
+        break;
+    }
 
     if (maxQuantity > 99)
     {
@@ -1154,7 +1193,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 
     PutWindowTilemap(1);
 
-    switch(VarGet(VAR_SHOP_TYPE)){
+    switch(sMartInfo.martType){
         case MART_TYPE_NORMAL:
             if (AddBagItem(tItemId, tItemCount) == TRUE)
             {
@@ -1198,9 +1237,24 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 static void BuyMenuSubtractMoney(u8 taskId)
 {
     IncrementGameStat(GAME_STAT_SHOPPED);
-    RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
-    PlaySE(SE_SHOP);
-    PrintMoneyAmountInMoneyBox(0, GetMoney(&gSaveBlock1Ptr->money), 0);
+
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
+            PlaySE(SE_SHOP);
+            PrintMoneyAmountInMoneyBox(0, GetMoney(&gSaveBlock1Ptr->money), 0);
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+            gSaveBlock2Ptr->frontier.battlePoints = gSaveBlock2Ptr->frontier.battlePoints - sShopData->totalCost;
+            PlaySE(SE_SHOP);
+            PrintMoneyAmountInMoneyBox(0, gSaveBlock2Ptr->frontier.battlePoints, 0);
+        break;
+        case MART_MONEY_TYPE_CASINO_COINS:
+            gSaveBlock1Ptr->coins = gSaveBlock1Ptr->coins - sShopData->totalCost;
+            PlaySE(SE_SHOP);
+            PrintMoneyAmountInMoneyBox(0, gSaveBlock1Ptr->coins, 0);
+        break;
+    }
 
     if (sMartInfo.martType == MART_TYPE_NORMAL)
     {
@@ -1331,7 +1385,8 @@ static void RecordItemPurchase(u8 taskId)
 
 void CreatePokemartMenu(const u16 *itemsForSale)
 {
-    CreateShopMenu(MART_TYPE_NORMAL);
+    CreateShopMenu(VarGet(VAR_SHOP_TYPE));
+    VarSet(VAR_SHOP_TYPE, 0);
     SetShopItemsForSale(itemsForSale);
     ClearItemPurchases();
     SetShopMenuCallback(EnableBothScriptContexts);

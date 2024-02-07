@@ -23189,7 +23189,7 @@ static const struct LevelUpMove sTatsugiriLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sAnnihilapeLevelUpLearnset[] = {
-	LEVEL_UP_MOVE(0, MOVE_RAGE_PUNCH),
+	LEVEL_UP_MOVE(0, MOVE_RAGE_FIST),
 	LEVEL_UP_MOVE( 0, MOVE_SHADOW_PUNCH),
 	LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
 	LEVEL_UP_MOVE( 1, MOVE_LEER),

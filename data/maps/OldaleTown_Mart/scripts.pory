@@ -40,10 +40,11 @@ script OldaleTown_Mart_EventScript_Clerk{
 	faceplayer
 	if(flag(FLAG_ADVENTURE_STARTED)){
 		setvar(VAR_SHOP_TYPE, 3)
+		setvar(VAR_SHOP_MONEY_TYPE, 1)
 		message(gText_HowMayIServeYou)
 		waitmessage
 		pokemart(OldaleMartMons)
-		setvar(VAR_SHOP_TYPE, 0)
+		setvar(VAR_SHOP_MONEY_TYPE, 0)
 	}
 	else{
 		msgbox(format("Sorry but I can't sell you any Pokémon yet, you need your Pokedex."), MSGBOX_DEFAULT)

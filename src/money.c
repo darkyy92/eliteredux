@@ -7,6 +7,7 @@
 #include "menu.h"
 #include "window.h"
 #include "sprite.h"
+#include "shop.h"
 #include "strings.h"
 #include "decompress.h"
 
@@ -59,6 +60,20 @@ static const struct SpriteTemplate sSpriteTemplate_MoneyLabel =
 static const struct CompressedSpriteSheet sSpriteSheet_MoneyLabel =
 {
     .data = gMenuMoneyGfx,
+    .size = 256,
+    .tag = MONEY_LABEL_TAG,
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_BattlePointsLabel =
+{
+    .data = gMenuBattlePointsGfx,
+    .size = 256,
+    .tag = MONEY_LABEL_TAG,
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_CoinsLabel =
+{
+    .data = gMenuCoinsGfx,
     .size = 256,
     .tag = MONEY_LABEL_TAG,
 };
@@ -135,20 +150,28 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
     PrintMoneyAmount(windowId, 0x20, 1, amount, speed);
 }
 
+const u8 sText_PrintMoneyAmount_BattlePoints[] = _("{STR_VAR_1}");
+
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 {
     u8 *txtPtr;
     s32 strLength;
 
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 7);
-
     strLength = 7 - StringLength(gStringVar1);
     txtPtr = gStringVar4;
-
     while (strLength-- > 0)
         *(txtPtr++) = 0x77;
 
-    StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+        case MART_MONEY_TYPE_CASINO_COINS:
+            StringExpandPlaceholders(txtPtr, sText_PrintMoneyAmount_BattlePoints);
+        break;
+    }
     AddTextPrinterParameterized(windowId, 1, gStringVar4, x, y, speed, NULL);
 }
 
@@ -186,7 +209,18 @@ void HideMoneyBox(void)
 
 void AddMoneyLabelObject(u16 x, u16 y)
 {
-    LoadCompressedSpriteSheet(&sSpriteSheet_MoneyLabel);
+    switch(VarGet(VAR_SHOP_MONEY_TYPE)){
+        case MART_MONEY_TYPE_NORMAL:
+            LoadCompressedSpriteSheet(&sSpriteSheet_MoneyLabel);
+        break;
+        case MART_MONEY_TYPE_BATTLE_POINTS:
+            LoadCompressedSpriteSheet(&sSpriteSheet_BattlePointsLabel);
+        break;
+        case MART_MONEY_TYPE_CASINO_COINS:
+            LoadCompressedSpriteSheet(&sSpriteSheet_CoinsLabel);
+        break;
+    }
+
     LoadCompressedSpritePalette(&sSpritePalette_MoneyLabel);
     sMoneyLabelSpriteId = CreateSprite(&sSpriteTemplate_MoneyLabel, x, y, 0);
 }

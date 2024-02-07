@@ -73,42 +73,46 @@ OldaleTown_Mart_EventScript_Clerk::
 # 40 "data/maps/OldaleTown_Mart/scripts.pory"
 	faceplayer
 # 41 "data/maps/OldaleTown_Mart/scripts.pory"
-	setvar VAR_SHOP_TYPE, 3
-# 42 "data/maps/OldaleTown_Mart/scripts.pory"
 	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_Clerk_2
-# 49 "data/maps/OldaleTown_Mart/scripts.pory"
+# 50 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox OldaleTown_Mart_EventScript_Clerk_Text_0, MSGBOX_DEFAULT
 OldaleTown_Mart_EventScript_Clerk_1:
-# 51 "data/maps/OldaleTown_Mart/scripts.pory"
+# 52 "data/maps/OldaleTown_Mart/scripts.pory"
 	release
 	end
 
 OldaleTown_Mart_EventScript_Clerk_2:
+# 42 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_SHOP_TYPE, 3
 # 43 "data/maps/OldaleTown_Mart/scripts.pory"
-	message gText_HowMayIServeYou
+	setvar VAR_SHOP_MONEY_TYPE, 1
 # 44 "data/maps/OldaleTown_Mart/scripts.pory"
-	waitmessage
+	message gText_HowMayIServeYou
 # 45 "data/maps/OldaleTown_Mart/scripts.pory"
+	waitmessage
+# 46 "data/maps/OldaleTown_Mart/scripts.pory"
 	pokemart OldaleMartMons
+# 47 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_SHOP_MONEY_TYPE, 0
 	goto OldaleTown_Mart_EventScript_Clerk_1
 
 
 	.align 2
-# 55 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleMartMons:
 # 56 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte SPECIES_BULBASAUR
+OldaleMartMons:
 # 57 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte SPECIES_CHARMANDER
+	.2byte SPECIES_BULBASAUR
 # 58 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte SPECIES_SQUIRTLE
+	.2byte SPECIES_CHARMANDER
 # 59 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte SPECIES_CATERPIE
+	.2byte SPECIES_SQUIRTLE
 # 60 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte SPECIES_CATERPIE
+# 61 "data/maps/OldaleTown_Mart/scripts.pory"
 	.2byte SPECIES_PIDGEY
 	.2byte ITEM_NONE
 
 OldaleTown_Mart_EventScript_Clerk_Text_0:
-# 49 "data/maps/OldaleTown_Mart/scripts.pory"
+# 50 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "Sorry but I can't sell you any Pokémon\n"
 	.string "yet, you need your Pokedex.$"
