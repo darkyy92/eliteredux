@@ -9037,6 +9037,7 @@ BattleScript_AttackerUsedAnExtraMove::
 	copybyte sSAVED_MOVEEND_STATE, sMOVEEND_STATE
 	setbyte sLIMIT_MOVEEND, MOVEEND_ABILITIES_ATTACKER
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
@@ -9045,6 +9046,7 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	waitmessage B_WAIT_TIME_SHORT
 	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_DefenderEffectSpeedDownHit::
