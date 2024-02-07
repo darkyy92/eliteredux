@@ -14310,12 +14310,15 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
     }
 	
 	// Iron Fist / Power Fists
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST)  || 
-       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) ||
-       BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA)){
-		if (IS_IRON_FIST(battlerAtk, move))
-           MulModifier(&modifier, UQ_4_12(1.3));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_FIST) && IS_IRON_FIST(battlerAtk, move))
+        MulModifier(&modifier, UQ_4_12(1.3));
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) && IS_IRON_FIST(battlerAtk, move))
+        MulModifier(&modifier, UQ_4_12(1.3));
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA) && IS_IRON_FIST(battlerAtk, move))
+        MulModifier(&modifier, UQ_4_12(1.3));
+
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MYTHICAL_ARROWS) && gBattleMoves[move].flags2 & FLAG_ARROW_BASED)
+        MulModifier(&modifier, UQ_4_12(1.3));
 	
 	// Striker
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRIKER)){
@@ -15946,7 +15949,12 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         defStatToUse = STAT_SPDEF;
     }
 
-    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) && IS_IRON_FIST(battlerAtk, move)) 
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POWER_FISTS) && IS_IRON_FIST(battlerAtk, move))
+    {
+        defStatToUse = STAT_SPDEF;
+    }
+
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MYTHICAL_ARROWS) && gBattleMoves[move].flags2 & FLAG_ARROW_BASED)
     {
         defStatToUse = STAT_SPDEF;
     }
