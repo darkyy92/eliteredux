@@ -192,11 +192,11 @@ static void LoadOptionsData()
     else{
         sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = 2;
     }
-    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE] = gSaveBlock2Ptr->innaterandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE]  = gSaveBlock2Ptr->innaterandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE] = gSaveBlock2Ptr->abilityRandomizedMode;
-    sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS] = gSaveBlock2Ptr->individualColors;
-    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
-    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE] = gSaveBlock2Ptr->typeRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS]       = gSaveBlock2Ptr->individualColors;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE]    = gSaveBlock2Ptr->moveRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE]    = gSaveBlock2Ptr->typeRandomizedMode;
 }
 
 // This is our main initialization function if you want to call the menu from elsewhere
@@ -455,7 +455,6 @@ struct OptionData
 };
 
 struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
-    
     [SETTING_DIFFICULTY] =
     {
         .title = _("Difficulty"),

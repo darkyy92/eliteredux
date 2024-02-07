@@ -1543,4 +1543,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LUXRAY_REDUX] = sLuxrayReduxLevelUpLearnset,
     
     [SPECIES_CASCOON_PRIMAL] = sCascoonLevelUpLearnset,
+
+    [SPECIES_DUELUMBER] = sDuelumberLevelUpLearnset,
+    [SPECIES_PHANTOWL] = sPhantowlLevelUpLearnset,
 };

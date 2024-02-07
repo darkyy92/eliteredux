@@ -1,7 +1,16 @@
-AbandonedShip_Deck_MapScripts:: @ 823799A
-	map_script MAP_SCRIPT_ON_TRANSITION, AbandonedShip_Deck_OnTransition
-	.byte 0
+# 1 "data/maps/AbandonedShip_Deck/scripts.pory"
 
+# 2 "data/maps/AbandonedShip_Deck/scripts.pory"
+AbandonedShip_Deck_MapScripts:: @ 823799A
+# 3 "data/maps/AbandonedShip_Deck/scripts.pory"
+	map_script MAP_SCRIPT_ON_TRANSITION, AbandonedShip_Deck_OnTransition
+# 4 "data/maps/AbandonedShip_Deck/scripts.pory"
+	.byte 0
+# 5 "data/maps/AbandonedShip_Deck/scripts.pory"
+
+# 6 "data/maps/AbandonedShip_Deck/scripts.pory"
 AbandonedShip_Deck_OnTransition: @ 82379A0
+# 7 "data/maps/AbandonedShip_Deck/scripts.pory"
 	setflag FLAG_LANDMARK_ABANDONED_SHIP
+# 8 "data/maps/AbandonedShip_Deck/scripts.pory"
 	end

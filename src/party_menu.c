@@ -4632,8 +4632,13 @@ static bool8 IsHPRecoveryItem(u16 item)
 {
     const u8 *effect;
 
-    if (item == ITEM_ENIGMA_BERRY)
+    if (item == ITEM_ENIGMA_BERRY){
+        #ifndef FREE_ENIGMA_BERRY
         effect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+        #else
+        effect = 0;
+        #endif
+    }
     else
         effect = gItemEffectTable[item - ITEM_POTION];
 
@@ -5135,8 +5140,13 @@ void ItemUseCB_PPRecovery(u8 taskId, TaskFunc task)
     const u8 *effect;
     u16 item = gSpecialVar_ItemId;
 
-    if (item == ITEM_ENIGMA_BERRY)
+    if (item == ITEM_ENIGMA_BERRY){
+        #ifndef FREE_ENIGMA_BERRY
         effect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+        #else
+        effect = 0;
+        #endif
+    }
     else
         effect = gItemEffectTable[item - ITEM_POTION];
 
@@ -6379,8 +6389,13 @@ u8 GetItemEffectType(u16 item)
         return ITEM_EFFECT_NONE;
 
     // Read the item's effect properties.
-    if (item == ITEM_ENIGMA_BERRY)
+    if (item == ITEM_ENIGMA_BERRY){
+        #ifndef FREE_ENIGMA_BERRY
         itemEffect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+        #else
+        itemEffect = 0;
+        #endif
+    }
     else
         itemEffect = gItemEffectTable[item - ITEM_POTION];
 
@@ -7710,12 +7725,7 @@ void DoItemFormChange (u16 newSpecies)
 
 #define tState        	  data[0]
 #define tMonId        	  data[1]
-#define tnewHPIV       	  data[2]
-#define tnewAtkIV    	  data[3]
-#define tnewDefIV    	  data[4]
-#define tnewSpAtkIV    	  data[5]
-#define tnewSpDefIV    	  data[6]
-#define tnewSpdIV    	  data[7]
+#define tHpType       	  data[2]
 #define tOldFunc    	  8
 
 void Task_TypeGems(u8 taskId)
@@ -7777,12 +7787,7 @@ void Task_TypeGems(u8 taskId)
             tState++;
         break;
     case 5:
-        SetMonData(&gPlayerParty[tMonId], MON_DATA_HP_IV, 	    &tnewHPIV);
-		SetMonData(&gPlayerParty[tMonId], MON_DATA_ATK_IV, 	    &tnewAtkIV);
-		SetMonData(&gPlayerParty[tMonId], MON_DATA_DEF_IV, 	    &tnewDefIV);
-		SetMonData(&gPlayerParty[tMonId], MON_DATA_SPATK_IV, 	&tnewSpAtkIV);
-		SetMonData(&gPlayerParty[tMonId], MON_DATA_SPDEF_IV, 	&tnewSpDefIV);
-		SetMonData(&gPlayerParty[tMonId], MON_DATA_SPEED_IV, 	&tnewSpdIV);
+        SetMonData(&gPlayerParty[tMonId], MON_DATA_HP_TYPE, &tHpType);
         RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -7795,157 +7800,14 @@ void ItemUseCB_TypeGems(u8 taskId, TaskFunc task)
 
     tState = 0;
     tMonId = gPartyMenu.slotId;
-    switch(ItemId_GetSecondaryId(gSpecialVar_ItemId)){
-		case TYPE_BUG:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_DARK:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_DRAGON:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_ELECTRIC:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_FIGHTING:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 30;
-		break;
-		case TYPE_FIRE:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 30;
-		break;
-		case TYPE_FLYING:
-			tnewHPIV	= 30;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_GHOST:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_GRASS:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_GROUND:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_ICE:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_POISON:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_PSYCHIC:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 30;
-		break;
-		case TYPE_ROCK:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 30;
-		break;
-		case TYPE_STEEL:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 30;
-			tnewSpdIV	= 31;
-		break;
-		case TYPE_WATER:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 30;
-			tnewDefIV	= 30;
-			tnewSpAtkIV	= 30;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-		default:
-			tnewHPIV	= 31;
-			tnewAtkIV	= 31;
-			tnewDefIV	= 31;
-			tnewSpAtkIV	= 31;
-			tnewSpDefIV	= 31;
-			tnewSpdIV	= 31;
-		break;
-	}
+    tHpType = ItemId_GetSecondaryId(gSpecialVar_ItemId);
     SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
     gTasks[taskId].func = Task_TypeGems;
 }
 
 #undef tState
 #undef tMonId
-#undef tnewHPIV
-#undef tnewAtkIV
-#undef tnewDefIV
-#undef tnewSpAtkIV
-#undef tnewSpDefIV
-#undef tnewSpdIV
-#undef tOldIVs
+#undef tHpType
 #undef tOldFunc
 
 void SetArceusForm(struct Pokemon *mon)

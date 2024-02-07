@@ -137,6 +137,7 @@ struct BattleTowerPokemon
     /*0x1C*/u32 personality;
     /*0x20*/u8 nickname[POKEMON_NAME_LENGTH + 1];
     /*0x2B*/u8 friendship;
+    /*0x2D*/u8 hpType;
 };
 
 struct PokemonStorage

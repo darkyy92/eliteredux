@@ -10366,7 +10366,18 @@ extern const u32 gBattleAnimSpriteGfx_PowerGem[];
 extern const u32 gBattleAnimSpriteGfx_StoneEdge[];
 extern const u32 gBattleAnimSpriteGfx_StealthRock[];
 extern const u32 gBattleAnimSpriteGfx_PoisonJab[];
-
+extern const u32 gBattleAnimSpriteGfx_SpinningBall[];
+extern const u32 gBattleAnimSpritePal_SpinningBall[];
+extern const u32 gBattleAnimSpritePal_SpinningBall2[];
+extern const u32 gBattleAnimSpriteGfx_WoodHammerHammer[];
+extern const u32 gBattleAnimSpritePal_WoodHammerHammer[];
+extern const u32 gBattleAnimSpriteGfx_Snowflakes[];
+extern const u32 gBattleAnimSpritePal_Snowflakes[];
+extern const u32 gBattleAnimSpriteGfx_SyrupBlob[];
+extern const u32 gBattleAnimSpriteGfx_SyrupShell[];
+extern const u32 gBattleAnimSpriteGfx_SyrupSplat[];
+extern const u32 gBattleAnimSpritePal_SyrupRed[];
+extern const u32 gBattleAnimSpritePal_SyrupYellow[];
 extern const u32 gBattleAnimSpritePal_Bone[];
 extern const u32 gBattleAnimSpritePal_Spark[];
 extern const u32 gBattleAnimSpritePal_Pencil[];
@@ -10848,6 +10859,8 @@ extern const u32 gBattleAnimSpriteGfx_Tornado[];
 extern const u32 gBattleAnimSpritePal_Tornado[];
 extern const u32 gBattleAnimSpriteGfx_ZMoveSymbol[];
 extern const u32 gBattleAnimSpritePal_ZMoveSymbol[];
+extern const u32 gBattleAnimSpriteGfx_Teapot[];
+extern const u32 gBattleAnimSpritePal_Teapot[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
@@ -11574,5 +11587,17 @@ extern const u32 gMonPalette_Dewleon[];
 extern const u32 gMonShinyPalette_Dewleon[];
 extern const u8  gMonIcon_Dewleon[];
 
+extern const u8 gMonFootprint_Phantowl[];
+extern const u8 gMonFootprint_Duelumber[];
+extern const u8 gMonIcon_Phantowl[];
+extern const u8 gMonIcon_Duelumber[];
+extern const u32 gMonShinyPalette_Phantowl[];
+extern const u32 gMonShinyPalette_Duelumber[];
+extern const u32 gMonPalette_Phantowl[];
+extern const u32 gMonPalette_Duelumber[];
+extern const u32 gMonBackPic_Phantowl[];
+extern const u32 gMonBackPic_Duelumber[];
+extern const u32 gMonFrontPic_Phantowl[];
+extern const u32 gMonFrontPic_Duelumber[];
 
 #endif //GUARD_GRAPHICS_H

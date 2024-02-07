@@ -27,7 +27,7 @@ struct LoadedSaveData
     struct ItemSlot berries[BAG_BERRIES_COUNT];
     struct ItemSlot medicine[BAG_MEDICINE_COUNT];
     struct ItemSlot battle[BAG_BATTLE_COUNT];
-    struct ItemSlot megaStones[BAG_MEGASTONES_COUNT_NEW];
+    struct ItemSlot megaStones[BAG_MEGASTONES_COUNT];
     struct MailStruct mail[MAIL_COUNT];
 };
 

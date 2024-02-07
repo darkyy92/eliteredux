@@ -49,7 +49,7 @@ static void mevent_srv_init_common(struct mevent_srv_common * svr, const void * 
     svr->wonder_card = AllocZeroed(sizeof(struct WonderCard));
     svr->wonder_news = AllocZeroed(sizeof(struct WonderNews));
     svr->recvBuffer = AllocZeroed(ME_SEND_BUF_SIZE);
-    svr->mevent_unk1442cc = AllocZeroed(sizeof(struct MEventStruct_Unk1442CC));
+    svr->mevent_unk1442cc = AllocZeroed(sizeof(struct MysteryGiftLinkGameData));
     svr->cmdBuffer = cmdBuffer;
     svr->cmdidx = 0;
     mevent_srv_sub_init(&svr->manager, sendPlayerNo, recvPlayerNo);
@@ -116,7 +116,7 @@ static u32 common_mainseq_3(struct mevent_srv_common * svr)
     return 1;
 }
 
-static u32 common_mainseq_4(struct mevent_srv_common * svr)
+static u32 common_Client_Run(struct mevent_srv_common * svr)
 {
     // process command
     const struct mevent_cmd * cmd = &svr->cmdBuffer[svr->cmdidx];
@@ -151,19 +151,19 @@ static u32 common_mainseq_4(struct mevent_srv_common * svr)
         // get_1442CC
         AGB_ASSERT(cmd->flag == FALSE);
         AGB_ASSERT(cmd->parameter == NULL);
-        memcpy(svr->mevent_unk1442cc, svr->recvBuffer, sizeof(struct MEventStruct_Unk1442CC));
+        memcpy(svr->mevent_unk1442cc, svr->recvBuffer, sizeof(struct MysteryGiftLinkGameData));
         break;
     case 6:
         // check_header__pass_false
         AGB_ASSERT(cmd->flag == FALSE);
         AGB_ASSERT(cmd->parameter == NULL);
-        svr->param = sub_801B6A0(svr->mevent_unk1442cc, FALSE);
+        svr->param = MysteryGift_ValidateLinkGameData(svr->mevent_unk1442cc, FALSE);
         break;
     case 30:
         // check_header__pass_true
         AGB_ASSERT(cmd->flag == FALSE);
         AGB_ASSERT(cmd->parameter == NULL);
-        svr->param = sub_801B6A0(svr->mevent_unk1442cc, TRUE);
+        svr->param = MysteryGift_ValidateLinkGameData(svr->mevent_unk1442cc, TRUE);
         break;
     case 4:
         // jump_if_eq
@@ -177,7 +177,7 @@ static u32 common_mainseq_4(struct mevent_srv_common * svr)
         // check_crc
         AGB_ASSERT(cmd->flag == FALSE);
         ptr = mevent_first_if_not_null_else_second(cmd->parameter, svr->wonder_card);
-        svr->param = sub_801B6EC(ptr, svr->mevent_unk1442cc, ptr);
+        svr->param = MysteryGift_CompareCardFlags(ptr, svr->mevent_unk1442cc, ptr);
         break;
     case 8:
         // read_word
@@ -188,15 +188,15 @@ static u32 common_mainseq_4(struct mevent_srv_common * svr)
     case 9:
         AGB_ASSERT(cmd->flag == FALSE);
         ptr = mevent_first_if_not_null_else_second(cmd->parameter, &svr->sendWord);
-        svr->param = sub_801B708(ptr, svr->mevent_unk1442cc, ptr);
+        svr->param = MysteryGift_CheckStamps(ptr, svr->mevent_unk1442cc, ptr);
         break;
     case 10:
         AGB_ASSERT(cmd->parameter == NULL);
-        svr->param = MEventStruct_Unk1442CC_GetValueNFrom_unk_20(svr->mevent_unk1442cc, cmd->flag);
+        svr->param = MysteryGift_GetCardStatFromLinkData(svr->mevent_unk1442cc, cmd->flag);
         break;
     case 11:
         AGB_ASSERT(cmd->flag == FALSE);
-        svr->param = MEventStruct_Unk1442CC_CompareField_unk_16(svr->mevent_unk1442cc, cmd->parameter);
+        svr->param = MysteryGift_DoesQuestionnaireMatch(svr->mevent_unk1442cc, cmd->parameter);
         break;
     case 12:
         AGB_ASSERT(cmd->flag == FALSE);
@@ -282,7 +282,7 @@ static u32 (*const func_tbl[])(struct mevent_srv_common *) = {
     common_mainseq_1,
     common_mainseq_2,
     common_mainseq_3,
-    common_mainseq_4
+    common_Client_Run
 };
 
 static u32 mevent_srv_exec_common(struct mevent_srv_common * svr)

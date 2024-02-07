@@ -29,6 +29,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_ABSORB},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_IVYSAUR] =
@@ -132,6 +133,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_BLAZE, ABILITY_IMMOLATE, ABILITY_SOLAR_POWER},
     .bodyColor = BODY_COLOR_RED,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_CHARMELEON] =
@@ -258,6 +260,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_WATER_VEIL},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
+    .shopPrice = 500,
     },
 
 [SPECIES_WARTORTLE] =
@@ -359,6 +362,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_NONE},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
+    .shopPrice = 200,
     },
 
 [SPECIES_METAPOD] =
@@ -462,6 +466,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_SWARM, ABILITY_SHIELD_DUST, ABILITY_NONE},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
+    .shopPrice = 200,
     },
 
 [SPECIES_KAKUNA] =
@@ -566,6 +571,7 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_EARLY_BIRD},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
+    .shopPrice = 350,
     },
 
 [SPECIES_PIDGEOTTO] =
@@ -38624,6 +38630,58 @@ const struct BaseStats gBaseStats[] =
     .abilities = {ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR},
     .innates = {ABILITY_RETRIBUTION_BLOW, ABILITY_WONDER_SKIN, ABILITY_NORTH_WIND},
     .bodyColor = BODY_COLOR_WHITE,
+    .noFlip = FALSE,
+    },
+
+    
+
+    [SPECIES_PHANTOWL] =
+    {
+    .baseHP        = 100,
+    .baseAttack    = 50,
+    .baseDefense   = 70,
+    .baseSpeed     = 70,
+    .baseSpAttack  = 76, // nerf bc of Majestic Bird
+    .baseSpDefense = 96,
+    .type1 = TYPE_PSYCHIC,
+    .type2 = TYPE_FLYING,
+    .catchRate = 255,
+    .expYield = 158,
+    .evYield_HP    = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_FLYING,
+    .eggGroup2 = EGG_GROUP_FLYING,
+    .abilities = {ABILITY_TINTED_LENS, ABILITY_AERILATE, ABILITY_AIR_BLOWER},
+    .innates = {ABILITY_NOCTURNAL, ABILITY_INSOMNIA, ABILITY_MAJESTIC_BIRD},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
+    [SPECIES_DUELUMBER] =
+    {
+    .baseHP        = 70,
+    .baseAttack    = 110,
+    .baseDefense   = 125,
+    .baseSpeed     = 30,
+    .baseSpAttack  = 30,
+    .baseSpDefense = 65,
+    .type1 = TYPE_ROCK,
+    .type2 = TYPE_ROCK,
+    .catchRate = 255,
+    .expYield = 144,
+    .evYield_Defense   = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_FAST,
+    .eggGroup1 = EGG_GROUP_MINERAL,
+    .eggGroup2 = EGG_GROUP_MINERAL,
+    .abilities = {ABILITY_JUGGERNAUT, ABILITY_ROCK_HEAD, ABILITY_WATER_COMPACTION},
+    .innates = {ABILITY_RAW_WOOD, ABILITY_FORT_KNOX, ABILITY_STURDY},
+    .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
 };

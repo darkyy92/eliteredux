@@ -5401,6 +5401,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset = 16
     },
+    [SPECIES_PHANTOWL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DUELUMBER] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_ENAMORUS_THERIAN] =
     {
         .size = 0,
@@ -5689,7 +5699,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_SCEPTILE_MEGA] =
     {
         .size = 0,
-        .y_offset = 3,
+        .y_offset = 0,
     },
     [SPECIES_BLAZIKEN_MEGA] =
     {
@@ -5719,7 +5729,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_AGGRON_MEGA] =
     {
         .size = 0,
-        .y_offset = 7,
+        .y_offset = 0,
     },
     [SPECIES_MEDICHAM_MEGA] =
     {

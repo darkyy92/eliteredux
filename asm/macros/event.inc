@@ -1801,6 +1801,16 @@
 	.2byte \number
 	.endm
 
+	.macro questmenu case:req, questId:req
+    .byte 0xec
+    .byte \case
+    .byte \questId
+    .endm
+    
+    .macro openquestmenu
+    questmenu 0 0
+    .endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

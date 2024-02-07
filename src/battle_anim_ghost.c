@@ -10,7 +10,9 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/moves.h"
+#include "item_icon.h"
 
+static void AnimPoltergeistItem(struct Sprite *sprite);
 static void AnimConfuseRayBallBounce(struct Sprite *);
 static void AnimConfuseRayBallBounce_Step1(struct Sprite *);
 static void AnimConfuseRayBallBounce_Step2(struct Sprite *);
@@ -231,7 +233,7 @@ static const union AnimCmd sAnim_GrudgeFlame[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd *const sAnims_GrudgeFlame[] =
+const union AnimCmd *const gAnims_GrudgeFlame[] =
 {
     sAnim_GrudgeFlame,
 };
@@ -241,7 +243,7 @@ const struct SpriteTemplate gGrudgeFlameSpriteTemplate =
     .tileTag = ANIM_TAG_PURPLE_FLAME,
     .paletteTag = ANIM_TAG_PURPLE_FLAME,
     .oam = &gOamData_AffineOff_ObjBlend_16x32,
-    .anims = sAnims_GrudgeFlame,
+    .anims = gAnims_GrudgeFlame,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimGrudgeFlame,
@@ -268,6 +270,17 @@ const struct SpriteTemplate gFlashCannonBallMovementTemplate =
     .images = NULL,
     .affineAnims = gAffineAnims_ShadowBall,
     .callback = AnimShadowBall
+};
+
+const struct SpriteTemplate gPoltergeistEffectTemplate =
+{
+    .tileTag = ANIM_TAG_POLTERGEIST,
+    .paletteTag = ANIM_TAG_POLTERGEIST,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_ShadowBall,
+    .callback = AnimPoltergeistItem,
 };
 
 static void AnimConfuseRayBallBounce(struct Sprite *sprite)
@@ -620,7 +633,7 @@ static void AnimTask_NightmareClone_Step(u8 taskId)
             break;
         if (task->data[1] <= 80)
             break;
-        obj_delete_but_dont_free_vram(&gSprites[task->data[0]]);
+        DestroySpriteWithActiveSheet(&gSprites[task->data[0]]);
         task->data[4] = 1;
         break;
     case 1:
@@ -776,7 +789,7 @@ static void AnimTask_SpiteTargetShadow_Step3(u8 taskId)
         break;
     case 2:
         gSprites[task->data[14]].invisible = TRUE;
-        obj_delete_but_dont_free_vram(&gSprites[task->data[0]]);
+        DestroySpriteWithActiveSheet(&gSprites[task->data[0]]);
         FreeSpritePaletteByTag(ANIM_TAG_BENT_SPOON);
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -1394,4 +1407,37 @@ static void AnimMonMoveCircular_Step(struct Sprite *sprite)
         gSprites[sprite->data[5]].y -= 8;
         sprite->callback = DestroySpriteAndMatrix;
     }
+}
+
+void AnimTask_PoltergeistItem(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    u8 x = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X);
+    u8 y = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y) + (GetBattlerSpriteCoordAttr(gBattleAnimTarget, BATTLER_COORD_ATTR_HEIGHT) / 2);
+
+    task->data[0] = AddItemIconSprite(ANIM_TAG_ITEM_BAG, ANIM_TAG_ITEM_BAG, gLastUsedItem);
+    gSprites[task->data[0]].x = x + 4;
+    gSprites[task->data[0]].y = y + 4;
+    gSprites[task->data[0]].data[0] = x + 4;
+    gSprites[task->data[0]].data[1] = y + 4;
+    gSprites[task->data[0]].callback = AnimPoltergeistItem;
+
+    task->data[1] = CreateSprite(&gPoltergeistEffectTemplate, x, y, 1);
+    gSprites[task->data[1]].data[0] = x;
+    gSprites[task->data[1]].data[1] = y;
+
+    gAnimVisualTaskCount += 2;
+
+    DestroyAnimVisualTask(taskId);
+}
+
+static void AnimPoltergeistItem(struct Sprite *sprite)
+{
+    sprite->data[2] += 4;
+
+    sprite->x = sprite->data[0] + Sin(sprite->data[2], 24);
+    sprite->y = sprite->data[1] + (Cos(sprite->data[2], 24) - 24);
+
+    if (sprite->data[2] == 256)
+        DestroyAnimSprite(sprite);
 }

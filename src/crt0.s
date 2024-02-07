@@ -88,13 +88,13 @@ GPIOPortReadEnable: @ 80000C8
 	.4byte gBallSpriteSheets
 	.4byte gBallSpritePalettes
 
-	.4byte 0x000000a8 @ offsetof(struct SaveBlock2, gcnLinkFlags)
+	.4byte 0x000000a8 @ ?
 	.4byte 0x00000864 @ ?
 	.4byte 0x0000089b @ ?
 
 	.byte 0x1e, 0x1e, 0x10, 0x40
 
-	.4byte 0x0000322e @ offsetof(struct SaveBlock1, ? part-way into unk_322C)
+	.4byte 0x0000322e @ offsetof(struct SaveBlock1, ? part-way into mysteryGift)
 	.4byte 0x00000498 @ offsetof(struct SaveBlock1, pcItems)
 	.4byte 0x000031a8 @ offsetof(struct SaveBlock1, giftRibbons)
 	.4byte 0x000031f8 @ offsetof(struct SaveBlock1, enigmaBerry)

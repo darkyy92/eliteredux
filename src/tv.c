@@ -1356,10 +1356,10 @@ void PutFanClubSpecialOnTheAir(void)
     StringCopy(show->fanClubSpecial.idolName, name);
     StorePlayerIdInNormalShow(show);
     show->fanClubSpecial.language = gGameLanguage;
-    if (show->fanClubSpecial.language == LANGUAGE_JAPANESE || gSaveBlock1Ptr->linkBattleRecords.languages[0] == LANGUAGE_JAPANESE)
+    if (show->fanClubSpecial.language == LANGUAGE_JAPANESE)
+    {
         show->fanClubSpecial.idolNameLanguage = LANGUAGE_JAPANESE;
-    else
-        show->fanClubSpecial.idolNameLanguage = gSaveBlock1Ptr->linkBattleRecords.languages[0];
+    }
 }
 
 void ContestLiveUpdates_Init(u8 round1Placing)
@@ -2325,11 +2325,10 @@ bool8 ShouldHideFanClubInterviewer(void)
         return TRUE;
 
     TryReplaceOldTVShowOfKind(TVSHOW_FAN_CLUB_SPECIAL);
+    #ifndef FREE_LINK_BATTLE_RECORDS
     if (gSpecialVar_Result == TRUE)
         return TRUE;
-
-    if (gSaveBlock1Ptr->linkBattleRecords.entries[0].name[0] == EOS)
-        return TRUE;
+    #endif
     
     return FALSE;
 }

@@ -3121,13 +3121,12 @@ static u8 CreateJudgeSpeechBubbleSprite(void)
 static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 index)
 {
     u8 spriteId;
+    bool8 isShiny = FALSE;
+    bool8 isAplha = FALSE;
     species = SanitizeSpecies(species);
 
     HandleLoadSpecialPokePic(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites.ptr[0], species, personality);
-    if (gSaveBlock2Ptr->individualColors)
-        LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20, personality);
-    else
-        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20);
+    LoadHueShiftedMonPalette(GetMonSpritePal(species, personality, isShiny), 0x120, 0x20, personality, isAplha);
     SetMultiuseSpriteTemplateToPokemon(species, 0);
 
     spriteId = CreateSprite(&gMultiuseSpriteTemplate, 0x70, GetBattlerSpriteFinal_Y(2, species, FALSE), 30);

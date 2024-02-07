@@ -288,6 +288,9 @@ const u32 gBattleAnimSpritePal_Tornado[] = INCBIN_U32("graphics/battle_anims/spr
 const u32 gBattleAnimSpriteGfx_ZMoveSymbol[] = INCBIN_U32("graphics/battle_anims/sprites/new/z_move_symbol.4bpp.lz");
 const u32 gBattleAnimSpritePal_ZMoveSymbol[] = INCBIN_U32("graphics/battle_anims/sprites/new/z_move_symbol.gbapal.lz");
 
+const u32 gBattleAnimSpriteGfx_Teapot[] = INCBIN_U32("graphics/battle_anims/sprites/new/teapot.4bpp.lz");
+const u32 gBattleAnimSpritePal_Teapot[] = INCBIN_U32("graphics/battle_anims/sprites/new/teapot.gbapal.lz");
+
 
 // Battle anims
 const u32 gBattleAnimSpriteGfx_Bubble[] = INCBIN_U32("graphics/battle_anims/sprites/bubble.4bpp.lz");
@@ -447,9 +450,21 @@ const u32 gBattleAnimSpritePal_StealthRock[] = INCBIN_U32("graphics/battle_anims
 const u32 gBattleAnimSpriteGfx_PoisonJab[] = INCBIN_U32("graphics/battle_anims/sprites/poison_jab.4bpp.lz");
 const u32 gBattleAnimSpritePal_PoisonJab[] = INCBIN_U32("graphics/battle_anims/sprites/poison_jab.gbapal.lz");
 
-const u32 gUnknownGfx_C06D98[] = INCBIN_U32("graphics/unknown/unknown_C06D98.4bpp.lz");
-const u32 gUnknownPal_C06D98[] = INCBIN_U32("graphics/unknown/unknown_C06D98.gbapal.lz");
-const u32 gUnknownPal_C06D98_2[] = INCBIN_U32("graphics/unknown/unknown_C06D98_2.gbapal.lz");
+const u32 gBattleAnimSpriteGfx_SpinningBall[] = INCBIN_U32("graphics/unknown/unknown_C06D98.4bpp.lz");
+const u32 gBattleAnimSpritePal_SpinningBall[] = INCBIN_U32("graphics/unknown/unknown_C06D98.gbapal.lz");
+const u32 gBattleAnimSpritePal_SpinningBall2[] = INCBIN_U32("graphics/unknown/unknown_C06D98_2.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_WoodHammerHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer_hammer.4bpp.lz");
+const u32 gBattleAnimSpritePal_WoodHammerHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer_hammer.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_Snowflakes[] = INCBIN_U32("graphics/battle_anims/sprites/snowflakes.4bpp.lz");
+const u32 gBattleAnimSpritePal_Snowflakes[] = INCBIN_U32("graphics/battle_anims/sprites/snowflakes.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_SyrupBlob[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_blob.4bpp.lz");
+const u32 gBattleAnimSpriteGfx_SyrupShell[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_shell.4bpp.lz");
+const u32 gBattleAnimSpriteGfx_SyrupSplat[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_splat.4bpp.lz");
+const u32 gBattleAnimSpritePal_SyrupRed[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_red.gbapal.lz");
+const u32 gBattleAnimSpritePal_SyrupYellow[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_yellow.gbapal.lz");
 
 // old battle interface data, unused
 

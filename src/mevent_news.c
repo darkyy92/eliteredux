@@ -12,7 +12,7 @@ static void sub_801DCCC(struct MysteryEventStruct *);
 
 void GenerateRandomNews(u32 a0)
 {
-    struct MysteryEventStruct *r5 = sub_801B044();
+    struct MysteryEventStruct *r5 = GetSavedWonderNewsMetadata();
 
     r5->unk_0_0 = a0;
     switch (a0)
@@ -29,9 +29,9 @@ void GenerateRandomNews(u32 a0)
     }
 }
 
-void sub_801DBC0(void)
+void WonderNews_Reset(void)
 {
-    struct MysteryEventStruct *r5 = sub_801B044();
+    struct MysteryEventStruct *r5 = GetSavedWonderNewsMetadata();
 
     r5->unk_0_0 = 0;
     r5->unk_0_2 = 0;
@@ -43,7 +43,7 @@ void sub_801DBC0(void)
 void sub_801DBDC(void)
 {
     u16 *r4 = GetVarPointer(VAR_0x402E);
-    struct MysteryEventStruct *r2 = sub_801B044();
+    struct MysteryEventStruct *r2 = GetSavedWonderNewsMetadata();
     struct MysteryEventStruct r0 = *r2;
 
     if ((u8)r0.unk_0_5 > 4 && ++(*r4) > 0x1f3)
@@ -57,7 +57,7 @@ void sub_801DBDC(void)
 u16 sub_801DC20(void)
 {
     u16 *r6 = &gSpecialVar_Result;
-    struct MysteryEventStruct *r4 = sub_801B044();
+    struct MysteryEventStruct *r4 = GetSavedWonderNewsMetadata();
     u16 r5;
 
     if (!IsMysteryEventEnabled() || !ValidateReceivedWonderNews())

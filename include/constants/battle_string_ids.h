@@ -727,8 +727,9 @@
 #define STRINGID_PARADOX_BOOST_ITEM                   756
 #define STRINGID_PARADOX_BOOST_TERRAIN                757
 #define STRINGID_COSTAR                               758
+#define STRINGID_OVERFLOWINGWITHSPACEPOWER            759
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_COSTAR + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_OVERFLOWINGWITHSPACEPOWER + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -779,6 +780,7 @@
 #define B_MSG_TURN1_PHANTOM_FORCE  8
 #define B_MSG_TURN1_GEOMANCY       9
 #define B_MSG_TURN1_FREEZE_SHOCK   10
+#define B_MSG_TURN1_METEOR_BEAM    11
 
 // gMoveWeatherChangeStringIds
 #define B_MSG_STARTED_RAIN      0

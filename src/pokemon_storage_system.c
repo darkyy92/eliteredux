@@ -4007,6 +4007,7 @@ static void CreateDisplayMonSprite(void)
 
 static void LoadDisplayMonGfx(u16 species, u32 pid)
 {
+    bool8 isAlpha = FALSE;
     if (sStorage->displayMonSprite == NULL)
         return;
 
@@ -4014,8 +4015,7 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
-        if (gSaveBlock2Ptr->individualColors == TRUE)
-            HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality);
+        HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality, isAlpha);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
         sStorage->displayMonSprite->invisible = FALSE;
@@ -6416,26 +6416,17 @@ static void RefreshDisplayMon(void)
 static void SetMovingMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
-        sStorage->movingMon = gPlayerParty[sCursorPosition];
+        gPlayerParty[position] = sStorage->movingMon;
     else
-        BoxMonAtToMon(boxId, position, &sStorage->movingMon);
-
-    PurgeMonOrBoxMon(boxId, position);
-    sMovingMonOrigBoxId = boxId;
-    sMovingMonOrigBoxPos = position;
+        SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
 }
 
 static void SetPlacedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
-    {
         gPlayerParty[position] = sStorage->movingMon;
-    }
     else
-    {
-        BoxMonRestorePP(&sStorage->movingMon.box);
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
-    }
 }
 
 static void PurgeMonOrBoxMon(u8 boxId, u8 position)
@@ -7092,6 +7083,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
         if (sStorage->displayMonSpecies != SPECIES_NONE)
         {
             u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+            bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
             sanityIsBadEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
             if (sanityIsBadEgg)
                 sStorage->displayMonIsEgg = TRUE;
@@ -7109,7 +7101,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-            sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, otId, sStorage->displayMonPersonality);
+            sStorage->displayMonPalette = GetMonSpritePal(sStorage->displayMonSpecies, sStorage->displayMonPersonality, isShiny);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
             sStorage->displayMonItemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
         }
@@ -10298,9 +10290,10 @@ void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
     u32 pid = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+    bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
 
     // Update front sprite
     sStorage->displayMonSpecies = species;
-    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
+    sStorage->displayMonPalette = GetMonSpritePal(species, pid, isShiny);
     LoadDisplayMonGfx(species, pid);
 }

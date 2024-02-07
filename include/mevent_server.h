@@ -20,7 +20,7 @@ struct mevent_srv_common
     void * recvBuffer;
     struct WonderCard * wonder_card;
     struct WonderNews * wonder_news;
-    struct MEventStruct_Unk1442CC * mevent_unk1442cc;
+    struct MysteryGiftLinkGameData * mevent_unk1442cc;
     const void * sendBuffer1;
     u32 sendBuffer1Size;
     const void * sendBuffer2;

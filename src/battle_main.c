@@ -733,6 +733,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
 
     if (IsEnigmaBerryValid() == TRUE)
     {
+        #ifndef FREE_ENIGMA_BERRY
         for (i = 0; i < BERRY_NAME_LENGTH; i++)
             battleBerry->name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
         battleBerry->name[i] = EOS;
@@ -740,8 +741,13 @@ static void SetPlayerBerryDataInBattleStruct(void)
         for (i = 0; i < BERRY_ITEM_EFFECT_COUNT; i++)
             battleBerry->itemEffect[i] = gSaveBlock1Ptr->enigmaBerry.itemEffect[i];
 
+        #ifndef FREE_ENIGMA_BERRY
         battleBerry->holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+        battleBerry->holdEffect = 0;
+        #endif
         battleBerry->holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+        #endif
     }
     else
     {
@@ -768,6 +774,7 @@ static void SetAllPlayersBerryData(void)
     {
         if (IsEnigmaBerryValid() == TRUE)
         {
+            #ifndef FREE_ENIGMA_BERRY
             for (i = 0; i < BERRY_NAME_LENGTH; i++)
             {
                 gEnigmaBerries[0].name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
@@ -786,6 +793,7 @@ static void SetAllPlayersBerryData(void)
             gEnigmaBerries[2].holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
             gEnigmaBerries[0].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
             gEnigmaBerries[2].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+            #endif
         }
         else
         {
@@ -2045,30 +2053,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                 }
 
-                //Sets Ivs for Hidden Power Customization
-                for (j = 0; j < NUM_STATS; j++){
-                    switch(j){
-                        case 0:
-                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 1:
-                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 2:
-                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 3:
-                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 4:
-                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 5:
-                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
-                        break;
-                        }
-                }
-
                 CalculateMonStats(&party[i]);
 
                 break;
@@ -2122,30 +2106,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                 }
 
-                //Sets Ivs for Hidden Power Customization
-                for (j = 0; j < NUM_STATS; j++){
-                    switch(j){
-                        case 0:
-                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 1:
-                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 2:
-                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 3:
-                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 4:
-                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 5:
-                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
-                        break;
-                        }
-                }
-
                 CalculateMonStats(&party[i]);
 
                 break;
@@ -2194,30 +2154,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                 }
 
-                //Sets Ivs for Hidden Power Customization
-                for (j = 0; j < NUM_STATS; j++){
-                    switch(j){
-                        case 0:
-                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 1:
-                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 2:
-                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 3:
-                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 4:
-                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 5:
-                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
-                        break;
-                        }
-                }
-
                 CalculateMonStats(&party[i]);
 
                 break;
@@ -2225,6 +2161,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemCustomMoves *partyData;
+                u8 hpType;
                 if(isDoubleBattle && gSaveBlock2Ptr->doubleBattleMode == TRUE){
                     // In doubles if you are on elite mode the game will try to use a Double Elite Party if there is no exclusive party it uses the 
                     // Elite Single Party if there is Elite Single Party it will try to use Double Normal Party if there is no Normal Double Party it will try to
@@ -2284,6 +2221,17 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 SetMonData(&party[i], MON_DATA_SPEED_DOWN, &partyData[i].zeroSpeedIvs);
+                
+                if (partyData[i].hpType) {
+                    SetMonData(&party[i], MON_DATA_HP_TYPE, &partyData[i].hpType);
+                }
+                else {
+                    do {
+                        hpType = Random() % NUMBER_OF_MON_TYPES;
+                    } while (hpType == TYPE_MYSTERY);
+                    
+                    SetMonData(&party[i], MON_DATA_HP_TYPE, &hpType);
+                }
 
                 #ifdef DEBUG_BUILD
                 if(FlagGet(FLAG_SYS_AUTOWIN))
@@ -2318,30 +2266,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                             break;
                         }
                     }
-                }
-
-                //Sets Ivs for Hidden Power Customization
-                for (j = 0; j < NUM_STATS; j++){
-                    switch(j){
-                        case 0:
-                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 1:
-                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 2:
-                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 3:
-                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 4:
-                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
-                        break;
-                        case 5:
-                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
-                        break;
-                        }
                 }
 
                 CalculateMonStats(&party[i]); // called twice; fix in future
@@ -5911,18 +5835,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
 
     if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV, NULL) & 1) << 0)
-                     | ((GetMonData(mon, MON_DATA_ATK_IV, NULL) & 1) << 1)
-                     | ((GetMonData(mon, MON_DATA_DEF_IV, NULL) & 1) << 2)
-                     | ((GetMonData(mon, MON_DATA_SPEED_IV, NULL) & 1) << 3)
-                     | ((GetMonData(mon, MON_DATA_SPATK_IV, NULL) & 1) << 4)
-                     | ((GetMonData(mon, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
-
-        ateType = (15 * typeBits) / 63 + 1;
-        if (ateType >= TYPE_MYSTERY)
-            ateType++;
-
-        return ateType;
+        return GetMonData(mon, MON_DATA_HP_TYPE, NULL);
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
@@ -6043,18 +5956,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        u8 typeBits  = ((gBattleMons[battlerAtk].hpIV & 1) << 0)
-                     | ((gBattleMons[battlerAtk].attackIV & 1) << 1)
-                     | ((gBattleMons[battlerAtk].defenseIV & 1) << 2)
-                     | ((gBattleMons[battlerAtk].speedIV & 1) << 3)
-                     | ((gBattleMons[battlerAtk].spAttackIV & 1) << 4)
-                     | ((gBattleMons[battlerAtk].spDefenseIV & 1) << 5);
-
-        ateType = (15 * typeBits) / 63 + 1;
-        if (ateType >= TYPE_MYSTERY)
-            ateType++;
-
-        return ateType;
+        return gBattleMons[gBattlerAttacker].hpType;
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
@@ -6177,17 +6079,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        u8 typeBits  = ((gBattleMons[battlerAtk].hpIV & 1) << 0)
-                     | ((gBattleMons[battlerAtk].attackIV & 1) << 1)
-                     | ((gBattleMons[battlerAtk].defenseIV & 1) << 2)
-                     | ((gBattleMons[battlerAtk].speedIV & 1) << 3)
-                     | ((gBattleMons[battlerAtk].spAttackIV & 1) << 4)
-                     | ((gBattleMons[battlerAtk].spDefenseIV & 1) << 5);
-
-        gBattleStruct->dynamicMoveType = (15 * typeBits) / 63 + 1;
-        if (gBattleStruct->dynamicMoveType >= TYPE_MYSTERY)
-            gBattleStruct->dynamicMoveType++;
-        gBattleStruct->dynamicMoveType |= 0xC0;
+        gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].hpType | 0xC0;
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {

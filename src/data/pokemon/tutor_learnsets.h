@@ -153,6 +153,12 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][MAX_TUTOR_MOVE_COUNT] = {
+	[SPECIES_DUELUMBER] = {
+		//MOVE_SPLASH,
+	},
+	[SPECIES_PHANTOWL] = {
+		//MOVE_SPLASH,
+	},
 	[SPECIES_DODUO_REDUX] = {
 		//MOVE_SPLASH,
 	},

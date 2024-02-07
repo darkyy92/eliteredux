@@ -167,7 +167,7 @@
 #define MON_DATA_VICTORY_RIBBON    69
 #define MON_DATA_ARTIST_RIBBON     70
 #define MON_DATA_EFFORT_RIBBON     71
-#define MON_DATA_FATEFUL_ENCOUNTER 72 // was 79
+#define MON_DATA_IS_EVENT_MON 72 // was 79
 #define MON_DATA_EVENT_LEGAL       75
 #define MON_DATA_KNOWN_MOVES       76
 #define MON_DATA_RIBBON_COUNT      77
@@ -180,6 +180,9 @@
 #define MON_DATA_NATURE            84 // New
 #define MON_DATA_SPEED_DOWN        85 // New
 #define MON_DATA_EXIOLITE          86 // New
+#define MON_DATA_IS_ALPHA          87 // New
+#define MON_DATA_IS_SHINY          88 // New
+#define MON_DATA_HP_TYPE           89 // New
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0

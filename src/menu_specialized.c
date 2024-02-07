@@ -1022,11 +1022,12 @@ void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, 
         u16 species = GetBoxOrPartyMonData(boxId, monId, MON_DATA_SPECIES2, NULL);
         u32 trainerId = GetBoxOrPartyMonData(boxId, monId, MON_DATA_OT_ID, NULL);
         u32 personality = GetBoxOrPartyMonData(boxId, monId, MON_DATA_PERSONALITY, NULL);
+        bool8 isShiny = GetBoxOrPartyMonData(boxId, monId, MON_DATA_IS_SHINY, NULL);
+        bool8 isAlpha = GetBoxOrPartyMonData(boxId, monId, MON_DATA_IS_ALPHA, NULL);
 
         LoadSpecialPokePic(&gMonFrontPicTable[species], tilesDst, species, personality, TRUE);
-        LZ77UnCompWram(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), palDst);
-        if (gSaveBlock2Ptr->individualColors)
-            HueShiftMonPalette((u16*) palDst, personality);
+        LZ77UnCompWram(GetMonSpritePal(species, personality, isShiny), palDst);
+        HueShiftMonPalette((u16*) palDst, personality, isAlpha);
     }
 }
 

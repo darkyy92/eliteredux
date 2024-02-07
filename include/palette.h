@@ -18,6 +18,13 @@
 #define PALETTES_OBJECTS 0xFFFF0000
 #define PALETTES_ALL     (PALETTES_BG | PALETTES_OBJECTS)
 
+#define PLTT_ID(n) ((n) * 16)
+#define BG_PLTT_OFFSET 0x000
+#define OBJ_PLTT_OFFSET 0x100
+#define BG_PLTT_ID(n) (BG_PLTT_OFFSET + PLTT_ID(n))
+#define OBJ_PLTT_ID(n) (OBJ_PLTT_OFFSET + PLTT_ID(n))
+#define OBJ_PLTT_ID2(n) (PLTT_ID((n) + 16))
+
 enum
 {
     FAST_FADE_IN_FROM_WHITE,
@@ -53,8 +60,8 @@ extern u16 gPlttBufferUnfaded[];
 extern u16 gPlttBufferFaded[];
 
 void LoadCompressedPalette(const u32 *, u16, u16);
-void HueShiftMonPalette(u16*, u32);
-void LoadHueShiftedMonPalette(const u32 *, u16, u16, u32);
+void HueShiftMonPalette(u16*, u32, bool8);
+void LoadHueShiftedMonPalette(const u32 *, u16, u16, u32, bool8);
 void LoadPalette(const void *, u16, u16);
 void FillPalette(u16, u16, u16);
 void TransferPlttBuffer(void);

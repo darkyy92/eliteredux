@@ -2492,17 +2492,13 @@ void TryShinyAnimation(u8 battler, struct Pokemon *mon)
     u32 shinyValue;
     u8 taskCirc, taskDgnl;
 
-    isShiny = FALSE;
     gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = TRUE;
     otId = GetMonData(mon, MON_DATA_OT_ID);
     personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
 
     if (IsBattlerSpriteVisible(battler))
     {
-        shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-        if (shinyValue < getShinyOdds())
-            isShiny = TRUE;
-
         if (isShiny)
         {
             if (GetSpriteTileStartByTag(ANIM_TAG_GOLD_STARS) == 0xFFFF)

@@ -521,6 +521,8 @@ void ConditionGraphDrawMonPic(s16 index, u8 arg1)
     u32 personality, tid;
     struct PokenavSub11 *structPtr = GetSubstructPtr(POKENAV_SUBSTRUCT_CONDITION_GRAPH);
     struct PokenavSub18 *monListPtr = GetSubstructPtr(POKENAV_SUBSTRUCT_MON_LIST);
+    bool8 isShiny;
+    bool8 isAlpha;
 
     if (index == (IsConditionMenuSearchMode() != 0 ? monListPtr->listCount : monListPtr->listCount - 1))
         return;
@@ -528,12 +530,13 @@ void ConditionGraphDrawMonPic(s16 index, u8 arg1)
     boxId = monListPtr->monData[index].boxId;
     monId = monListPtr->monData[index].monId;
     species = GetBoxOrPartyMonData(boxId, monId, MON_DATA_SPECIES2, NULL);
+    isShiny = GetBoxOrPartyMonData(boxId, monId, MON_DATA_IS_SHINY, NULL);
+    isAlpha = GetBoxOrPartyMonData(boxId, monId, MON_DATA_IS_ALPHA, NULL);
     tid = GetBoxOrPartyMonData(boxId, monId, MON_DATA_OT_ID, NULL);
     personality = GetBoxOrPartyMonData(boxId, monId, MON_DATA_PERSONALITY, NULL);
     LoadSpecialPokePic(&gMonFrontPicTable[species], structPtr->monPicGfx[arg1], species, personality, TRUE);
-    LZ77UnCompWram(GetMonSpritePalFromSpeciesAndPersonality(species, tid, personality), structPtr->monPal[arg1]);
-    if (gSaveBlock2Ptr->individualColors)
-        HueShiftMonPalette((u16*) structPtr->monPal[arg1], personality);
+    LZ77UnCompWram(GetMonSpritePal(species, personality, isShiny), structPtr->monPal[arg1]);
+    HueShiftMonPalette((u16*) structPtr->monPal[arg1], personality, isAlpha);
 }
 
 u16 GetMonListCount(void)

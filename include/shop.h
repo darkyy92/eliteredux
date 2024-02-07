@@ -8,6 +8,7 @@ enum
     MART_TYPE_NORMAL, // normal mart
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2,
+    MART_TYPE_MONS,
 };
 
 // shop view window NPC info enum

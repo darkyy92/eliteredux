@@ -34,7 +34,7 @@ static u32 CB2_HandleMatchCallOptionsInput(struct Pokenav3Struct *);
 static u32 CB2_HandleCheckPageInput(struct Pokenav3Struct *);
 static u32 CB2_HandleCallInput(struct Pokenav3Struct *);
 static u32 sub_81CAD20(s32);
-static bool32 sub_81CB1D0(void);
+static bool32 ShouldDoNearbyMessage(void);
 
 #include "data/text/match_call_messages.h"
 
@@ -156,7 +156,7 @@ static u32 CB2_HandleMatchCallOptionsInput(struct Pokenav3Struct *state)
                 SetPokenavMode(POKENAV_MODE_FORCE_CALL_EXIT);
 
             state->callback = CB2_HandleCallInput;
-            if (sub_81CB1D0())
+            if (ShouldDoNearbyMessage())
                 return POKENAV_MC_FUNC_NEARBY_MSG;
 
             return POKENAV_MC_FUNC_CALL_MSG;
@@ -312,6 +312,7 @@ u16 GetMatchCallMapSec(int index)
 
 bool32 ShouldDrawRematchPokeballIcon(int index)
 {
+    #ifndef FREE_MATCH_CALL
     struct Pokenav3Struct *state = GetSubstructPtr(POKENAV_SUBSTRUCT_MATCH_CALL_MAIN);
     if (!state->matchCallEntries[index].isSpecialTrainer)
         index = state->matchCallEntries[index].headerId;
@@ -322,6 +323,9 @@ bool32 ShouldDrawRematchPokeballIcon(int index)
         return FALSE;
 
     return gSaveBlock1Ptr->trainerRematches[index] != 0;
+    #else
+    return FALSE;
+    #endif
 }
 
 int GetMatchCallTrainerPic(int index)
@@ -463,8 +467,10 @@ int GetIndexDeltaOfNextCheckPageUp(int index)
     return 0;
 }
 
-bool32 unref_sub_81CB16C(void)
+// Unused
+bool32 HasRematchEntry(void)
 {
+    #ifndef FREE_MATCH_CALL
     int i;
 
     for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
@@ -482,12 +488,13 @@ bool32 unref_sub_81CB16C(void)
                 return TRUE;
         }
     }
-
+    #endif
     return FALSE;
 }
 
-static bool32 sub_81CB1D0(void)
+static bool32 ShouldDoNearbyMessage(void)
 {
+    #ifndef FREE_MATCH_CALL
     struct Pokenav3Struct *state = GetSubstructPtr(POKENAV_SUBSTRUCT_MATCH_CALL_MAIN);
     int selection = GetSelectedPokenavListIndex();
     if (!state->matchCallEntries[selection].isSpecialTrainer)
@@ -510,6 +517,6 @@ static bool32 sub_81CB1D0(void)
             }
         }
     }
-
+    #endif
     return FALSE;
 }

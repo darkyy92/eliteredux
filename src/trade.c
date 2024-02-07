@@ -4686,7 +4686,7 @@ static void CB2_SaveAndEndTrade(void)
             IncrementGameStat(GAME_STAT_POKEMON_TRADES);
         if (gWirelessCommType)
         {
-            RecordIdOfWonderCardSenderByEventType(2, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
+            MysteryGift_TryIncrementStat(2, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
         }
         SetContinueGameWarpStatusToDynamicWarp();
         sub_8153380();

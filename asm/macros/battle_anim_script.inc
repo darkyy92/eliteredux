@@ -144,13 +144,13 @@
 	.byte \pan
 	.endm
 
-	.macro panse_1B se:req, param1:req, param2:req, param3:req, param4:req
+	.macro panse se:req, currentPan:req, targetPan:req, incrementPan:req, delay:req
 	.byte 0x1b
 	.2byte \se
-	.byte \param1
-	.byte \param2
-	.byte \param3
-	.byte \param4
+	.byte \currentPan
+	.byte \targetPan
+	.byte \incrementPan
+	.byte \delay
 	.endm
 
 	.macro loopsewithpan se:req, pan:req, wait:req, times:req
@@ -233,16 +233,16 @@
 	.byte \param4
 	.endm
 
-	.macro monbgprio_28 battler:req
+	.macro splitbgprio battler:req
 	.byte 0x28
 	.byte \battler
 	.endm
 
-	.macro monbgprio_29
+	.macro splitbgprio_all
 	.byte 0x29
 	.endm
 
-	.macro monbgprio_2A battler:req
+	.macro splitbgprio_foes battler:req
 	.byte 0x2a
 	.byte \battler
 	.endm

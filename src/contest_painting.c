@@ -365,10 +365,11 @@ static void VBlankCB_ContestPainting(void)
 
 static void InitContestMonPixels(u16 species, u8 whichSprite)
 {
-    const void *pal = GetMonSpritePalFromSpeciesAndPersonality(species, gContestPaintingWinner->trainerId, gContestPaintingWinner->personality);
+    bool8 isShiny = FALSE;
+    bool8 isAlpha = FALSE;
+    const void *pal = GetMonSpritePal(species, gContestPaintingWinner->personality, isShiny);
     LZDecompressVram(pal, gContestPaintingMonPalette);
-    if (gSaveBlock2Ptr->individualColors)
-        HueShiftMonPalette(gContestPaintingMonPalette, gContestPaintingWinner->personality);
+    HueShiftMonPalette(gContestPaintingMonPalette, gContestPaintingWinner->personality, isAlpha);
     if (whichSprite == 0)
     {
         HandleLoadSpecialPokePic(

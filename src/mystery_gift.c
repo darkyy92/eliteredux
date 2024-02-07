@@ -812,7 +812,7 @@ static bool32 HandleLoadWonderCardOrNews(u8 * state, bool32 cardOrNews)
     case 0:
         if (cardOrNews == 0)
         {
-            InitWonderCardResources(GetSavedWonderCard(), sav1_get_mevent_buffer_2());
+            InitWonderCardResources(GetSavedWonderCard(), GetSavedWonderCardMetadata());
         }
         else
         {
@@ -850,7 +850,7 @@ static bool32 DestroyNewsOrCard(bool32 cardOrNews)
     }
     else
     {
-        DestroyWonderNews();
+        ClearSavedWonderNewsAndRelated();
     }
     return TRUE;
 }
@@ -873,7 +873,7 @@ static bool32 TearDownCardOrNews_ReturnToTopMenu(bool32 cardOrNews, bool32 arg1)
     {
         if (FadeOutFromWonderNews(arg1) != 0)
         {
-            DestroyWonderNewsResources();
+            ClearSavedWonderNewsAndRelatedResources();
             return TRUE;
         }
         else
@@ -1480,7 +1480,7 @@ void task00_mystery_gift(u8 taskId)
         u32 result;
         if (data->IsCardOrNews == 0)
         {
-            if (WonderCard_Test_Unk_08_6())
+            if (IsSendingSavedWonderCardAllowed())
             {
                 result = HandleMysteryGiftListMenu(&data->textState, &data->curPromptWindowId, data->IsCardOrNews, FALSE);
             }
@@ -1491,7 +1491,7 @@ void task00_mystery_gift(u8 taskId)
         }
         else
         {
-            if (WonderNews_Test_Unk_02())
+            if (IsSendingSavedWonderNewsAllowed())
             {
                 result = HandleMysteryGiftListMenu(&data->textState, &data->curPromptWindowId, data->IsCardOrNews, FALSE);
             }

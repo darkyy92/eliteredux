@@ -52,6 +52,7 @@
 #include "constants/maps.h"
 #include "union_room.h"
 #include "constants/rgb.h"
+#include "quests.h"
 
 // Menu actions
 enum
@@ -71,6 +72,7 @@ enum
     MENU_ACTION_PYRAMID_BAG,
 	MENU_ACTION_DEXNAV,
     MENU_ACTION_ACCESS_PC,
+    MENU_ACTION_QUEST_MENU,
 	MENU_ACTION_DEBUG,
 	MENU_ACTION_UI_TEST,
 };
@@ -119,6 +121,7 @@ static bool8 StartMenuDexNavCallback(void);
 static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuIntroOptionMenuCallback(void);
 static bool8 StartMenuUiTestMenuCallback(void);
+static bool8 QuestMenuCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -182,8 +185,9 @@ static const struct WindowTemplate sPyramidFloorWindowTemplate_2 = {0, 1, 1, 0xA
 static const struct WindowTemplate sPyramidFloorWindowTemplate_1 = {0, 1, 1, 0xC, 4, 0xF, 8};
 
 
-static const u8 gText_MenuDebug[] = _("DEBUG");
+static const u8 gText_MenuDebug[] = _("Debug");
 static const u8 gText_UiTestMenu[] = _("Test Menu");
+static const u8 sText_QuestMenu[] = _("Quests");
 
 static const struct MenuAction sStartMenuItems[] =
 {
@@ -204,6 +208,7 @@ static const struct MenuAction sStartMenuItems[] =
 	{gText_AccessPC, {.u8_void = StartMenuStorageCallback}},
 	{gText_MenuDebug, {.u8_void = StartMenuDebugCallback}},
 	{gText_UiTestMenu, {.u8_void = StartMenuIntroOptionMenuCallback}},
+	{sText_QuestMenu, {.u8_void = QuestMenuCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -396,6 +401,9 @@ static void BuildNormalStartMenu(void)
 	}
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
+    if (FlagGet(FLAG_SYS_QUEST_MENU_GET))
+        AddStartMenuAction(MENU_ACTION_QUEST_MENU);
+    
     //AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 
@@ -620,7 +628,7 @@ static bool32 InitStartMenuStep(void)
             sInitStartMenuData[0]++;
         break;
     case 5:
-        sStartMenuCursorPos = sub_81983AC(GetStartMenuWindowId(), 1, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
+        sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), 1, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
         CopyWindowToVram(GetStartMenuWindowId(), TRUE);
         return TRUE;
     }
@@ -1641,4 +1649,10 @@ static void ShowGameVersionWindow(void)
 
     AddTextPrinterParameterized(sSafariBallsWindowId, FONT_SMALL, gStringVar4, 0, 0, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
+}
+
+static bool8 QuestMenuCallback(void)
+{
+    CreateTask(Task_OpenQuestMenuFromStartMenu, 0);
+    return TRUE;
 }

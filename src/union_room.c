@@ -1513,11 +1513,11 @@ static void Task_ExchangeCards(u8 taskId)
             if (GetLinkPlayerCount() == 2)
             {
                 recvBuff = gBlockRecvBuffer[GetMultiplayerId() ^ 1];
-                MEventHandleReceivedWonderCard(recvBuff[48]);
+                MysteryGift_TryEnableStatsByFlagId(recvBuff[48]);
             }
             else
             {
-                ResetReceivedWonderCardFlag();
+                MysteryGift_DisableStats();
             }
 
             ResetBlockReceivedFlags();
@@ -1612,7 +1612,7 @@ static void CreateTrainerCardInBuffer(void *dest, bool32 setWonderCard)
 
 static void Task_StartActivity(u8 taskId)
 {
-    ResetReceivedWonderCardFlag();
+    MysteryGift_DisableStats();
     switch (gPlayerCurrActivity)
     {
     case ACTIVITY_BATTLE_SINGLE:

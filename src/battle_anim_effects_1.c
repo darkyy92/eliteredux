@@ -24,6 +24,9 @@ struct {
     s16 targetY;
 } static EWRAM_DATA sFrenzyPlantRootData = {0}; // Debug? Written to but never read.
 
+static void AnimWoodHammerHammer(struct Sprite *);
+static void AnimWoodHammerHammer_WaitForPunch(struct Sprite *);
+static void AnimWoodHammerHammer_WaitForDestruction(struct Sprite *);
 static void AnimMovePowderParticle_Step(struct Sprite *);
 static void AnimSolarbeamSmallOrb(struct Sprite *);
 static void AnimSolarbeamSmallOrb_Step(struct Sprite *);
@@ -97,7 +100,6 @@ static void AnimSlashSlice(struct Sprite *);
 static void AnimFalseSwipeSlice(struct Sprite *);
 static void AnimFalseSwipeSlice_Step1(struct Sprite *);
 static void AnimFalseSwipeSlice_Step2(struct Sprite *);
-static void AnimFalseSwipeSlice_Step3(struct Sprite *);
 static void AnimFalseSwipePositionedSlice(struct Sprite *);
 static void AnimEndureEnergy_Step(struct Sprite *);
 static void AnimSharpenSphere(struct Sprite *);
@@ -2447,6 +2449,39 @@ const struct SpriteTemplate gFollowMeFingerSpriteTemplate =
     .callback = AnimFollowMeFinger,
 };
 
+const union AffineAnimCmd gTeaAffineAnimCmds1[] =
+{
+        AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
+        AFFINEANIMCMD_FRAME(0x1E, 0x1E, 0, 8),
+        AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gTeaAffineAnimCmds2[] =
+{
+        AFFINEANIMCMD_FRAME(0x0, 0x0, -3, 11),
+        AFFINEANIMCMD_FRAME(0x0, 0x0, 3, 11),
+        AFFINEANIMCMD_LOOP(2),
+        AFFINEANIMCMD_FRAME(0xFFE2, 0xFFE2, 0, 8),
+        AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gTeaAffineAnimTable[] =
+{
+        gTeaAffineAnimCmds1,
+        gTeaAffineAnimCmds2,
+};
+
+const struct SpriteTemplate gTeapotSpriteTemplate =
+{
+        .tileTag = ANIM_TAG_TEAPOT,
+        .paletteTag = ANIM_TAG_TEAPOT,
+        .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+        .anims = gDummySpriteAnimTable,
+        .images = NULL,
+        .affineAnims = gTeaAffineAnimTable,
+        .callback = AnimMetronomeFinger,
+};
+
 const union AnimCmd gTauntFingerAnimCmds1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -2873,6 +2908,60 @@ const struct SpriteTemplate gWoodHammerSmallSpriteTemplate =
     .callback = AnimWoodHammerSmall,
 };
 
+#define WOOD_HAMMER_SCALE_STEP 5
+#define WOOD_HAMMER_CC_ROTATION_STEP 2
+#define WOOD_HAMMER_BACKWARDS_DURATION 40
+#define WOOD_HAMMER_ROTATED_AMOUNT (WOOD_HAMMER_CC_ROTATION_STEP * WOOD_HAMMER_BACKWARDS_DURATION)
+#define WOOD_HAMMER_SCALED_AMOUNT (WOOD_HAMMER_SCALE_STEP * WOOD_HAMMER_BACKWARDS_DURATION)
+
+const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_BackwardsRotateAndScale[] =
+{
+    AFFINEANIMCMD_FRAME(WOOD_HAMMER_SCALE_STEP, WOOD_HAMMER_SCALE_STEP, WOOD_HAMMER_CC_ROTATION_STEP, WOOD_HAMMER_BACKWARDS_DURATION),
+    AFFINEANIMCMD_END
+};
+
+const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_BackwardsRotateAndScaleFlipped[] =
+{
+    AFFINEANIMCMD_FRAME(-0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(-WOOD_HAMMER_SCALE_STEP, WOOD_HAMMER_SCALE_STEP, -WOOD_HAMMER_CC_ROTATION_STEP, WOOD_HAMMER_BACKWARDS_DURATION),
+    AFFINEANIMCMD_END
+};
+
+const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_PunchClockwise[] =
+{
+    AFFINEANIMCMD_FRAME(0x100 + WOOD_HAMMER_SCALED_AMOUNT, 0x100 + WOOD_HAMMER_SCALED_AMOUNT, WOOD_HAMMER_ROTATED_AMOUNT, 0),
+    AFFINEANIMCMD_FRAME(0, 0, -16, 7),
+    AFFINEANIMCMD_END
+};
+
+const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_PunchCounterClockwise[] =
+{
+    AFFINEANIMCMD_FRAME(-0x100 - WOOD_HAMMER_SCALED_AMOUNT, 0x100 + WOOD_HAMMER_SCALED_AMOUNT, -WOOD_HAMMER_ROTATED_AMOUNT, 0),
+    AFFINEANIMCMD_FRAME(0, 0, 16, 7),
+    AFFINEANIMCMD_END
+};
+
+// Animations 0, 2 are for the player side attacking
+// Animations 1, 3 are for the opponent side attacking (flipped)
+const union AffineAnimCmd *const gWoodHammerHammerAffineAnims[] =
+{
+    gWoodHammerHammerAffineAnimCmd_BackwardsRotateAndScale,
+    gWoodHammerHammerAffineAnimCmd_BackwardsRotateAndScaleFlipped,
+    gWoodHammerHammerAffineAnimCmd_PunchClockwise,
+    gWoodHammerHammerAffineAnimCmd_PunchCounterClockwise,
+};
+
+const struct SpriteTemplate gWoodHammerHammerSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WOOD_HAMMER_HAMMER,
+    .paletteTag = ANIM_TAG_WOOD_HAMMER_HAMMER,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
 const struct SpriteTemplate gJudgmentGrayOutwardSpikesTemplate =
 {
     .tileTag = ANIM_TAG_GREEN_SPIKE,
@@ -2989,6 +3078,65 @@ static void AnimWoodHammerSmall(struct Sprite *sprite)
     sprite->callback = TranslateSpriteLinearFixedPoint;
     StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
 }
+
+#define HAMMER_X_OFFSET 40
+#define HAMMER_PUNCH_WAIT_FRAMES 37
+
+static void AnimWoodHammerHammer(struct Sprite *sprite)
+{
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    {
+        sprite->x += HAMMER_X_OFFSET;
+        StartSpriteAffineAnim(sprite, 1);
+    }
+    else
+    {
+        sprite->x -= HAMMER_X_OFFSET;
+        StartSpriteAffineAnim(sprite, 0);
+    }
+    sprite->data[6] = HAMMER_PUNCH_WAIT_FRAMES;
+    sprite->callback = AnimWoodHammerHammer_WaitForPunch;
+}
+
+static void AnimWoodHammerHammer_WaitForPunch(struct Sprite *sprite)
+{
+    if (!sprite->affineAnimEnded)
+        return;
+
+    if (sprite->data[6] != 0)
+    {
+        sprite->data[6]--;
+        if (sprite->data[6] & 1)
+        {
+            if ((sprite->data[6] / 2) & 1)
+                sprite->x2++;
+            else
+                sprite->x2--;
+        }
+        return;
+    }
+
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    {
+        StartSpriteAffineAnim(sprite, 3);
+    }
+    else
+    {
+        StartSpriteAffineAnim(sprite, 2);
+    }
+    sprite->callback = AnimWoodHammerHammer_WaitForDestruction;
+}
+
+static void AnimWoodHammerHammer_WaitForDestruction(struct Sprite *sprite)
+{
+    if (sprite->affineAnimEnded)
+    {
+        DestroySpriteAndMatrix(sprite);
+    }
+}
+
+#undef HAMMER_X_OFFSET
+#undef HAMMER_PUNCH_WAIT_FRAMES
 
 // Animates the falling particles that horizontally wave back and forth.
 // Used by Sleep Powder, Stun Spore, and Poison Powder.
@@ -5868,7 +6016,7 @@ static void AnimFalseSwipeSlice_Step2(struct Sprite* sprite)
     sprite->callback = AnimFalseSwipeSlice_Step3;
 }
 
-static void AnimFalseSwipeSlice_Step3(struct Sprite* sprite)
+void AnimFalseSwipeSlice_Step3(struct Sprite* sprite)
 {
     if (++sprite->data[0] > 1)
     {
@@ -6271,41 +6419,6 @@ static void AnimHornHit_Step(struct Sprite* sprite)
         DestroyAnimSprite(sprite);
 }
 
-void AnimTask_DoubleTeam(u8 taskId)
-{
-    u16 i;
-    int obj;
-    u16 r3;
-    u16 r4;
-    struct Task* task = &gTasks[taskId];
-    task->data[0] = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-    task->data[1] = AllocSpritePalette(ANIM_TAG_BENT_SPOON);
-    r3 = (task->data[1] * 16) + 0x100;
-    r4 = (gSprites[task->data[0]].oam.paletteNum + 16) << 4;
-    for (i = 1; i < 16; i++)
-        gPlttBufferUnfaded[r3 + i] = gPlttBufferUnfaded[r4 + i];
-
-    BlendPalette(r3, 16, 11, RGB(0, 0, 0));
-    task->data[3] = 0;
-    i = 0;
-    while (i < 2 && (obj = CloneBattlerSpriteWithBlend(0)) >= 0)
-    {
-        gSprites[obj].oam.paletteNum = task->data[1];
-        gSprites[obj].data[0] = 0;
-        gSprites[obj].data[1] = i << 7;
-        gSprites[obj].data[2] = taskId;
-        gSprites[obj].callback = AnimDoubleTeam;
-        task->data[3]++;
-        i++;
-    }
-
-    task->func = AnimTask_DoubleTeam_Step;
-    if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
-        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
-    else
-        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
-}
-
 static void AnimTask_DoubleTeam_Step(u8 taskId)
 {
     struct Task* task = &gTasks[taskId];
@@ -6321,26 +6434,119 @@ static void AnimTask_DoubleTeam_Step(u8 taskId)
     }
 }
 
-static void AnimDoubleTeam(struct Sprite* sprite)
+// Double Team and Ally Switch.
+#define tBattlerSpriteId    data[0]
+#define tSpoonPal           data[1]
+#define tBlendSpritesCount  data[3]
+#define tBattlerId          data[4]
+#define tIsAllySwitch       data[5]
+
+#define sCounter            data[0]
+#define sSinIndex           data[1]
+#define sTaskId             data[2]
+#define sCounter2           data[3]
+#define sSinAmplitude       data[4]
+#define sSinIndexMod        data[5]
+#define sBattlerFlank       data[6]
+
+void PrepareDoubleTeamAnim(u32 taskId, u32 animBattler, bool32 forAllySwitch)
 {
-    if (++sprite->data[3] > 1)
+    s32 i, spriteId;
+    u16 palOffsetBattler, palOffsetSpoon;
+    struct Task *task = &gTasks[taskId];
+
+    task->tBattlerSpriteId = GetAnimBattlerSpriteId(animBattler);
+    task->tSpoonPal = AllocSpritePalette(ANIM_TAG_BENT_SPOON);
+    task->tBattlerId = GetAnimBattlerId(animBattler);
+    task->tIsAllySwitch = forAllySwitch;
+    palOffsetSpoon = OBJ_PLTT_ID(task->tSpoonPal);
+    palOffsetBattler = OBJ_PLTT_ID2(gSprites[task->tBattlerSpriteId].oam.paletteNum);
+    for (i = 1; i < 16; i++)
+        gPlttBufferUnfaded[palOffsetSpoon + i] = gPlttBufferUnfaded[palOffsetBattler + i];
+
+    BlendPalette(palOffsetSpoon, 16, 11, RGB_BLACK);
+    task->tBlendSpritesCount = 0;
+    for (i = 0; i < ((forAllySwitch == TRUE) ? 1 : 2); i++)
     {
-        sprite->data[3] = 0;
-        sprite->data[0]++;
+        spriteId = CloneBattlerSpriteWithBlend(animBattler);
+        if (spriteId < 0)
+            break;
+        gSprites[spriteId].oam.paletteNum = task->tSpoonPal;
+        gSprites[spriteId].sCounter = 0;
+        gSprites[spriteId].sSinIndex = i << 7;
+        gSprites[spriteId].sTaskId = taskId;
+        // Which direction
+        if (gBattleAnimAttacker & BIT_FLANK)
+            gSprites[spriteId].sBattlerFlank = (animBattler != ANIM_ATTACKER);
+        else
+            gSprites[spriteId].sBattlerFlank = (animBattler == ANIM_ATTACKER);
+        gSprites[spriteId].callback = AnimDoubleTeam;
+        task->tBlendSpritesCount++;
     }
 
-    if (sprite->data[0] > 64)
+    task->func = AnimTask_DoubleTeam_Step;
+    if (GetBattlerSpriteBGPriorityRank(task->tBattlerId) == 1)
+        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
+    else
+        ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
+}
+
+static void AnimDoubleTeam(struct Sprite *sprite)
+{
+    if (++sprite->sCounter2 > 1)
     {
-        gTasks[sprite->data[2]].data[3]--;
-        obj_delete_but_dont_free_vram(sprite);
+        sprite->sCounter2 = 0;
+        sprite->sCounter++;
+    }
+
+    if (sprite->sCounter > 64)
+    {
+        gTasks[sprite->sTaskId].tBlendSpritesCount--;
+        // If Ally Switch - destroy the mon sprites, they'll be created again later.
+        if (gTasks[sprite->sTaskId].tIsAllySwitch && gTasks[sprite->sTaskId].tBattlerId == BATTLE_PARTNER(gBattlerAttacker))
+        {
+            DestroySprite(&gSprites[gBattlerSpriteIds[gBattlerAttacker]]);
+            DestroySprite(&gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattlerAttacker)]]);
+        }
+        DestroySpriteWithActiveSheet(sprite);
     }
     else
     {
-        sprite->data[4] = gSineTable[sprite->data[0]] / 6;
-        sprite->data[5] = gSineTable[sprite->data[0]] / 13;
-        sprite->data[1] = (sprite->data[1] + sprite->data[5]) & 0xFF;
-        sprite->x2 = Sin(sprite->data[1], sprite->data[4]);
+        sprite->sSinAmplitude = gSineTable[sprite->sCounter] / 6;
+        sprite->sSinIndexMod = gSineTable[sprite->sCounter] / 13;
+        sprite->sSinIndex = (sprite->sSinIndex + sprite->sSinIndexMod) & 0xFF;
+        sprite->x2 = Sin(sprite->sSinIndex, sprite->sSinAmplitude);
+        if (gTasks[sprite->sTaskId].tIsAllySwitch)
+        {
+            if (sprite->sBattlerFlank)
+                sprite->x2 = abs(sprite->x2);
+            else
+                sprite->x2 = -(abs(sprite->x2));
+        }
     }
+}
+
+void AnimTask_DoubleTeam(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATTACKER, FALSE);
+}
+
+void AnimTask_AllySwitchAttacker(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATTACKER, TRUE);
+    gSprites[gBattlerSpriteIds[gBattlerAttacker]].invisible = TRUE;
+    gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattlerAttacker)]].invisible = TRUE;
+    // Edge case: Partner's sprite is invisible(i.e. after using Dig).
+    if (gBattleSpritesDataPtr->battlerData[BATTLE_PARTNER(gBattlerAttacker)].invisible)
+    {
+        gBattleSpritesDataPtr->battlerData[BATTLE_PARTNER(gBattlerAttacker)].invisible = FALSE;
+        gBattleSpritesDataPtr->battlerData[gBattlerAttacker].invisible = TRUE;
+    }
+}
+
+void AnimTask_AllySwitchPartner(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATK_PARTNER, TRUE);
 }
 
 static void AnimSuperFang(struct Sprite* sprite)

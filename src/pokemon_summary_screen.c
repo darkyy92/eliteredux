@@ -71,6 +71,8 @@
 #define CONFIG_FATEFUL_ENCOUNTER_MARK                   TRUE
 // Make sure gBallIconTable in src/data/item_icon_table.h is ordered correctly.  Default does not match RHH
 
+//HueShiftMonPalette
+
 enum {
     PSS_PAGE_INFO,
     PSS_PAGE_ABILITY,
@@ -167,7 +169,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u8 nature;
         u8 ppBonuses;
         u8 sanity;
-        bool8 fatefulEncounter;
+        bool8 isEventMon;
         u8 OTName[17];
         u32 OTID;
         u8 sheen;
@@ -1001,7 +1003,7 @@ static const u32 * const sPageTilemaps[] =
 };
 
 const u8 sText_Shiny[] = _("{SUM_SHINY}");
-const u8 sText_Pokerus[] = _("{SUM_IMMUNE}");
+const u8 sText_Alpha[] = _("{SUM_ALPHA}");
 const u8 sText_Fateful[] = _("{SUM_FATEFUL}");
 const u8 sText_NatureUp[] = _("{SUM_UP}");
 const u8 sText_NatureDown[] = _("{SUM_DOWN}");
@@ -1617,7 +1619,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         break;
     default:
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
-        sum->fatefulEncounter = GetMonData(mon, MON_DATA_EVENT_LEGAL);
+        sum->isEventMon = GetMonData(mon, MON_DATA_IS_EVENT_MON);
         if (sum->isEgg)
         {
             sMonSummaryScreen->minPageIndex = PSS_PAGE_MEMO;
@@ -3363,6 +3365,7 @@ static void PrintNotEggInfo(void)
     u8 x;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    bool8 isAlpha = GetMonData(mon, MON_DATA_IS_ALPHA);
 
     GetMonNickname(mon, gStringVar1);
     PrintNarrowTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, gStringVar1, 20, 2, 0, 1);
@@ -3383,16 +3386,18 @@ static void PrintNotEggInfo(void)
             break;
         }
     }
+
     if (IsMonShiny(mon))
         PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Shiny, 62, 18, 0, PSS_COLOR_SHINY_STARS);
+    
     #if CONFIG_FATEFUL_ENCOUNTER_MARK
-    if (summary->fatefulEncounter)
+    if (summary->isEventMon)
         PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Fateful, 52, 18, 0, PSS_COLOR_FATEFUL_TRIANGLE);
-    if (!CheckPartyPokerus(mon, 0) && CheckPartyHasHadPokerus(mon, 0))
-        PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Pokerus, 43, 18, 0, PSS_COLOR_POKERUS_CURED);
+    if(isAlpha)
+        PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Alpha, 43, 18, 0, PSS_COLOR_SHINY_STARS);
     #else
-    if (!CheckPartyPokerus(mon, 0) && CheckPartyHasHadPokerus(mon, 0))
-        PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Pokerus, 52, 18, 0, PSS_COLOR_POKERUS_CURED);
+    if(isAlpha)
+        PrintTextOnWindow(PSS_LABEL_PANE_LEFT_TOP, sText_Alpha, 52, 18, 0, PSS_COLOR_SHINY_STARS);
     #endif
 
     if (sMonSummaryScreen->summary.item == ITEM_NONE)
@@ -3597,7 +3602,7 @@ static void BufferMonTrainerMemo(void)
         }
         else if (sum->metGame == VERSION_GAMECUBE)
         {
-            GetMapNameOrre(metLocationString, sum->metLocation, sum->fatefulEncounter);
+            GetMapNameOrre(metLocationString, sum->metLocation, sum->isEventMon);
         }
         else
         {
@@ -3614,7 +3619,7 @@ static void BufferMonTrainerMemo(void)
                  else
                     text = gText_TrainerMemo_ReceivedFrom; //Duking's Plusle
             }
-            else if (sum->fatefulEncounter && sum->metLocation == 0 && (sum->species == SPECIES_EEVEE || sum->species == SPECIES_VAPOREON || sum->species == SPECIES_JOLTEON || sum->species == SPECIES_FLAREON || sum->species == SPECIES_ESPEON || sum->species == SPECIES_UMBREON))
+            else if (sum->isEventMon && sum->metLocation == 0 && (sum->species == SPECIES_EEVEE || sum->species == SPECIES_VAPOREON || sum->species == SPECIES_JOLTEON || sum->species == SPECIES_FLAREON || sum->species == SPECIES_ESPEON || sum->species == SPECIES_UMBREON))
             {
                 DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, sum->OTName);
                 text = gText_TrainerMemo_ObtainedFromDad; //XD starter
@@ -5643,7 +5648,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
         (*state)++;
         return 0xFF;
     case 1:
-        pal = GetMonSpritePalStructFromOtIdPersonality(summary->species2, summary->OTID, summary->pid);
+        pal = GetMonSpritePalStruct(mon);
         LoadCompressedSpritePalette(pal);
         SetMultiuseSpriteTemplateToPokemon(pal->tag, 1);
         (*state)++;
@@ -5668,12 +5673,19 @@ static u8 CreateMonSprite(struct Pokemon *unused)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u8 spriteId = CreateSprite(&gMultiuseSpriteTemplate, 40, 85, 5);
+    u32 personality = GetMonData(unused, MON_DATA_PERSONALITY);
+    bool8 isAlpha = GetMonData(unused, MON_DATA_IS_ALPHA);
+    u16 paletteOffset;
 
     FreeSpriteOamMatrix(&gSprites[spriteId]);
     gSprites[spriteId].data[0] = summary->species2;
     gSprites[spriteId].data[2] = 0;
     gSprites[spriteId].callback = SpriteCB_Pokemon;
     gSprites[spriteId].oam.priority = 0;
+
+    paletteOffset = 0x100 + (gSprites[spriteId].oam.paletteNum * 16);
+    HueShiftMonPalette(&gPlttBufferUnfaded[paletteOffset], personality, isAlpha);
+    HueShiftMonPalette(&gPlttBufferFaded[paletteOffset],   personality, isAlpha);
 
     if (!IsMonSpriteNotFlipped(summary->species2))
         gSprites[spriteId].hFlip = TRUE;

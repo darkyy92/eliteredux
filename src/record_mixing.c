@@ -1161,8 +1161,9 @@ static void ReceiveApprenticeData(struct Apprentice *mixApprentice, size_t recor
     }
 }
 
-static void sub_80E8578(struct RecordMixingHallRecords *dst, void *hallRecords, size_t recordSize, u32 arg3, s32 linkPlayerCount)
+static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *hallRecords, size_t recordSize, u32 arg3, s32 linkPlayerCount)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     s32 i, j, k, l;
     s32 var_68;
 
@@ -1228,9 +1229,10 @@ static void sub_80E8578(struct RecordMixingHallRecords *dst, void *hallRecords, 
                 dst->hallRecords2P[j][k + 3] = gUnknown_03001168[k]->twoPlayers[j];
         }
     }
+    #endif
 }
 
-static void sub_80E8880(struct RankingHall1P *arg0, struct RankingHall1P *arg1)
+static void FillWinStreakRecords1P(struct RankingHall1P *arg0, struct RankingHall1P *arg1)
 {
     s32 i, j;
 
@@ -1255,7 +1257,7 @@ static void sub_80E8880(struct RankingHall1P *arg0, struct RankingHall1P *arg1)
     }
 }
 
-static void sub_80E88CC(struct RankingHall2P *arg0, struct RankingHall2P *arg1)
+static void FillWinStreakRecords2P(struct RankingHall2P *arg0, struct RankingHall2P *arg1)
 {
     s32 i, j;
 
@@ -1280,28 +1282,32 @@ static void sub_80E88CC(struct RankingHall2P *arg0, struct RankingHall2P *arg1)
     }
 }
 
-static void sub_80E8924(struct RecordMixingHallRecords *arg0)
+static void SaveHighestWinStreakRecords(struct RecordMixingHallRecords *arg0)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     s32 i, j;
 
     for (i = 0; i < HALL_FACILITIES_COUNT; i++)
     {
         for (j = 0; j < 2; j++)
-            sub_80E8880(gSaveBlock2Ptr->hallRecords1P[i][j], arg0->hallRecords1P[i][j]);
+            FillWinStreakRecords1P(gSaveBlock2Ptr->hallRecords1P[i][j], arg0->hallRecords1P[i][j]);
     }
     for (j = 0; j < 2; j++)
-        sub_80E88CC(gSaveBlock2Ptr->hallRecords2P[j], arg0->hallRecords2P[j]);
+        FillWinStreakRecords2P(gSaveBlock2Ptr->hallRecords2P[j], arg0->hallRecords2P[j]);
+    #endif
 }
 
 static void ReceiveRankingHallRecords(struct PlayerHallRecords *hallRecords, size_t recordSize, u32 arg2)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     u8 linkPlayerCount = GetLinkPlayerCount();
     struct RecordMixingHallRecords *largeStructPtr = AllocZeroed(sizeof(struct RecordMixingHallRecords));
 
-    sub_80E8578(largeStructPtr, hallRecords, recordSize, arg2, linkPlayerCount);
-    sub_80E8924(largeStructPtr);
+    GetNewHallRecords(largeStructPtr, hallRecords, recordSize, arg2, linkPlayerCount);
+    SaveHighestWinStreakRecords(largeStructPtr);
 
     Free(largeStructPtr);
+    #endif
 }
 
 static void GetRecordMixingDaycareMail(struct RecordMixingDaycareMail *dst)

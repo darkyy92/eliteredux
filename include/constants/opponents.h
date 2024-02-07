@@ -794,100 +794,94 @@
 #define TRAINER_WINONA_2                    790
 #define TRAINER_WINONA_3                    791
 #define TRAINER_WINONA_4                    792
-#define TRAINER_WINONA_5                    793
-#define TRAINER_TATE_AND_LIZA_2             794
-#define TRAINER_TATE_AND_LIZA_3             795
-#define TRAINER_TATE_AND_LIZA_4             796
-#define TRAINER_TATE_AND_LIZA_5             797
-#define TRAINER_JUAN_2                      798
-#define TRAINER_JUAN_3                      799
-#define TRAINER_JUAN_4                      800
-#define TRAINER_JUAN_5                      801
-#define TRAINER_ANGELO                      802
-#define TRAINER_DARIUS                      803
-#define TRAINER_STEVEN                      804
-#define TRAINER_ANABEL                      805
-#define TRAINER_TUCKER                      806
-#define TRAINER_SPENSER                     807
-#define TRAINER_GRETA                       808
-#define TRAINER_NOLAND                      809
-#define TRAINER_LUCY                        810
-#define TRAINER_BRANDON                     811
-#define TRAINER_ANDRES_2                    812
-#define TRAINER_ANDRES_3                    813
-#define TRAINER_ANDRES_4                    814
-#define TRAINER_ANDRES_5                    815
-#define TRAINER_CORY_2                      816
-#define TRAINER_CORY_3                      817
-#define TRAINER_CORY_4                      818
-#define TRAINER_CORY_5                      819
-#define TRAINER_PABLO_2                     820
-#define TRAINER_PABLO_3                     821
-#define TRAINER_PABLO_4                     822
-#define TRAINER_PABLO_5                     823
-#define TRAINER_KOJI_2                      824
-#define TRAINER_KOJI_3                      825
-#define TRAINER_KOJI_4                      826
-#define TRAINER_KOJI_5                      827
-#define TRAINER_CRISTIN_2                   828
-#define TRAINER_CRISTIN_3                   829
-#define TRAINER_CRISTIN_4                   830
-#define TRAINER_CRISTIN_5                   831
-#define TRAINER_FERNANDO_2                  832
-#define TRAINER_FERNANDO_3                  833
-#define TRAINER_FERNANDO_4                  834
-#define TRAINER_FERNANDO_5                  835
-#define TRAINER_SAWYER_2                    836
-#define TRAINER_SAWYER_3                    837
-#define TRAINER_SAWYER_4                    838
-#define TRAINER_SAWYER_5                    839
-#define TRAINER_GABRIELLE_2                 840
-#define TRAINER_GABRIELLE_3                 841
-#define TRAINER_GABRIELLE_4                 842
-#define TRAINER_GABRIELLE_5                 843
-#define TRAINER_THALIA_2                    844
-#define TRAINER_THALIA_3                    845
-#define TRAINER_THALIA_4                    846
-#define TRAINER_THALIA_5                    847
-#define TRAINER_MARIELA                     848
-#define TRAINER_ALVARO                      849
-#define TRAINER_EVERETT                     850
-#define TRAINER_RED                         851
-#define TRAINER_LEAF                        852
-#define TRAINER_BRENDAN_PLACEHOLDER         853
-#define TRAINER_MAY_PLACEHOLDER             854
-#define TRAINER_STEVEN_GRANITE_CAVE         855
-#define TRAINER_MEGANIUMITE_VERDANTURF_MEADOW 856
-#define TRAINER_FERALIGATRITEX_ROUTE105     857
-#define TRAINER_TYPHLOSIONITE_ASHEN_WOODS   858
+#define TRAINER_WINONA_5                               793
+#define TRAINER_TATE_AND_LIZA_2                        794
+#define TRAINER_TATE_AND_LIZA_3                        795
+#define TRAINER_TATE_AND_LIZA_4                        796
+#define TRAINER_TATE_AND_LIZA_5                        797
+#define TRAINER_JUAN_2                                 798
+#define TRAINER_JUAN_3                                 799
+#define TRAINER_JUAN_4                                 800
+#define TRAINER_JUAN_5                                 801
+#define TRAINER_ANGELO                                 802
+#define TRAINER_DARIUS                                 803
+#define TRAINER_STEVEN                                 804
+#define TRAINER_ANABEL                                 805
+#define TRAINER_TUCKER                                 806
+#define TRAINER_SPENSER                                807
+#define TRAINER_GRETA                                  808
+#define TRAINER_NOLAND                                 809
+#define TRAINER_LUCY                                   810
+#define TRAINER_BRANDON                                811
+#define TRAINER_ANDRES_2                               812
+#define TRAINER_ANDRES_3                               813
+#define TRAINER_ANDRES_4                               814
+#define TRAINER_ANDRES_5                               815
+#define TRAINER_CORY_2                                 816
+#define TRAINER_CORY_3                                 817
+#define TRAINER_CORY_4                                 818
+#define TRAINER_CORY_5                                 819
+#define TRAINER_PABLO_2                                820
+#define TRAINER_PABLO_3                                821
+#define TRAINER_PABLO_4                                822
+#define TRAINER_PABLO_5                                823
+#define TRAINER_KOJI_2                                 824
+#define TRAINER_KOJI_3                                 825
+#define TRAINER_KOJI_4                                 826
+#define TRAINER_KOJI_5                                 827
+#define TRAINER_CRISTIN_2                              828
+#define TRAINER_CRISTIN_3                              829
+#define TRAINER_CRISTIN_4                              830
+#define TRAINER_CRISTIN_5                              831
+#define TRAINER_FERNANDO_2                             832
+#define TRAINER_FERNANDO_3                             833
+#define TRAINER_FERNANDO_4                             834
+#define TRAINER_FERNANDO_5                             835
+#define TRAINER_SAWYER_2                               836
+#define TRAINER_SAWYER_3                               837
+#define TRAINER_SAWYER_4                               838
+#define TRAINER_SAWYER_5                               839
+#define TRAINER_GABRIELLE_2                            840
+#define TRAINER_GABRIELLE_3                            841
+#define TRAINER_GABRIELLE_4                            842
+#define TRAINER_GABRIELLE_5                            843
+#define TRAINER_THALIA_2                               844
+#define TRAINER_THALIA_3                               845
+#define TRAINER_THALIA_4                               846
+#define TRAINER_THALIA_5                               847
+#define TRAINER_MARIELA                                848
+#define TRAINER_ALVARO                                 849
+#define TRAINER_EVERETT                                850
+#define TRAINER_RED                                    851
+#define TRAINER_LEAF                                   852
+#define TRAINER_BRENDAN_PLACEHOLDER                    853
+#define TRAINER_MAY_PLACEHOLDER                        854
+#define TRAINER_STEVEN_GRANITE_CAVE                    855
+#define TRAINER_MEGANIUMITE_VERDANTURF_MEADOW          856
+#define TRAINER_FERALIGATRITEX_ROUTE105                857
+#define TRAINER_TYPHLOSIONITE_ASHEN_WOODS              858
 #define TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR 859
-#define TRAINER_SHEDINJITE_ABANDONED_SHIP   860
-#define TRAINER_CROBATITE_DEWFORD_MANOR     861
-#define TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER 862
-#define TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF 863
+#define TRAINER_SHEDINJITE_ABANDONED_SHIP              860
+#define TRAINER_CROBATITE_DEWFORD_MANOR                861
+#define TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER      862
+#define TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF            863
+#define TRAINER_NEW_TEST                               864
+#define TRAINER_DRAGONITENITE_SAGE_1                   865
+#define TRAINER_DRAGONITENITE_SAGE_2                   866
+#define TRAINER_DRAGONITENITE_SAGE_3                   867
+#define TRAINER_HITMONSTONE_BLACKBELT_1                868
+#define TRAINER_HITMONSTONE_BLACKBELT_2                869
+#define TRAINER_HITMONSTONE_BLACKBELT_3                870
+#define TRAINER_GRANBULLITE_ROUTE123                   871
+#define TRAINER_CALVIN_E4                              872
+#define TRAINER_BANEFUL_PETALBURG_WOODS                873
+#define TRAINER_STEVEN_ROUTE118                        874
+#define TRAINER_YDA_MTPYRE                             875
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_OLD_TRAINERS_COUNT can be increased but will take up additional saveblock space
-
-#define TRAINERS_COUNT                      860
-#define MAX_OLD_TRAINERS_COUNT              864
+#define TRAINERS_COUNT                                 1600
+#define MAX_OLD_TRAINERS_COUNT                         TRAINERS_COUNT + 1
 
 // Trainers after this have to use the flag in the trainer structure
-
-#define TRAINER_NEW_TEST                    MAX_OLD_TRAINERS_COUNT + 1
-#define TRAINER_DRAGONITENITE_SAGE_1        MAX_OLD_TRAINERS_COUNT + 2
-#define TRAINER_DRAGONITENITE_SAGE_2        MAX_OLD_TRAINERS_COUNT + 3
-#define TRAINER_DRAGONITENITE_SAGE_3        MAX_OLD_TRAINERS_COUNT + 4
-#define TRAINER_HITMONSTONE_BLACKBELT_1     MAX_OLD_TRAINERS_COUNT + 5
-#define TRAINER_HITMONSTONE_BLACKBELT_2     MAX_OLD_TRAINERS_COUNT + 6
-#define TRAINER_HITMONSTONE_BLACKBELT_3     MAX_OLD_TRAINERS_COUNT + 7
-#define TRAINER_GRANBULLITE_ROUTE123        MAX_OLD_TRAINERS_COUNT + 8
-#define TRAINER_CALVIN_E4                   MAX_OLD_TRAINERS_COUNT + 9
-#define TRAINER_BANEFUL_PETALBURG_WOODS     MAX_OLD_TRAINERS_COUNT + 10
-#define TRAINER_STEVEN_ROUTE118             MAX_OLD_TRAINERS_COUNT + 11
-#define TRAINER_YDA_MTPYRE                  MAX_OLD_TRAINERS_COUNT + 12
-
 #define TRAINER_OLDPLAYER             2000
 
 

@@ -5407,6 +5407,16 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_PHANTOWL] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_DUELUMBER] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_ENAMORUS_THERIAN] =
     {
         .size = 0,

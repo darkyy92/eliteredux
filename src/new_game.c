@@ -171,7 +171,6 @@ void NewGameInitData(void)
     ClearSav1();
     ClearMailData();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
-    gSaveBlock2Ptr->gcnLinkFlags = 0;
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
@@ -213,12 +212,14 @@ void NewGameInitData(void)
     ResetAllApprenticeData();
     ClearRankingHallRecords();
     InitMatchCallCounters();
-    sub_801AFD8();
+    ClearMysteryGift();
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
     RandomizeBerryEncounters();
 	gSaveBlock1Ptr->dexNavChain = 0;
+    memset(&gSaveBlock2Ptr->questStatus, 0, sizeof(gSaveBlock2Ptr->questStatus));
+    gSaveBlock2Ptr->activeQuest = 0;
 }
 
 static void ResetMiniGamesRecords(void)

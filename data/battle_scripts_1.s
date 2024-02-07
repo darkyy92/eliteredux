@@ -442,6 +442,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectKarma                   @ EFFECT_KARMA
 	.4byte BattleScript_EffectRemoveTerrainNoFail     @ EFFECT_REMOVE_TERRAIN_NO_FAIL
 	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
+	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -4510,6 +4511,15 @@ BattleScript_PowerHerbActivation:
 	removeitem BS_ATTACKER
 	return
 
+BattleScript_EffectTwoTurnSecondary::
+	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
+	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_METEOR_BEAM
+	call BattleScriptFirstChargingTurn
+	argumenttomoveeffect
+	seteffectprimary
+	setmoveeffect 0
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
+
 BattleScript_EffectTwoTurnsAttack::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
@@ -4520,6 +4530,7 @@ BattleScript_EffectTwoTurnsAttack::
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_RAZOR_WIND
 BattleScript_EffectTwoTurnsAttackContinue:
 	call BattleScriptFirstChargingTurn
+BattleScript_EffectTwoTurnsAttackCheckSkipCharge:
 	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
@@ -4542,6 +4553,7 @@ BattleScript_EffectGeomancy:
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_GeomancySecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_GEOMANCY
 	call BattleScriptFirstChargingTurn
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_GeomancySecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 BattleScript_GeomancySecondTurn:
@@ -5575,9 +5587,7 @@ BattleScript_EffectSkullBash::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SkullBashEnd::
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
 
 BattleScript_EffectTwister:
 BattleScript_FlinchEffect:
@@ -5615,9 +5625,7 @@ BattleScript_SolarbeamDecideTurn::
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SOLAR_BEAM
 	call BattleScriptFirstChargingTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
+	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
 BattleScript_SolarbeamOnFirstTurn::
 	orword gHitMarker, HITMARKER_CHARGING
 	setmoveeffect MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
@@ -9029,6 +9037,7 @@ BattleScript_AttackerUsedAnExtraMove::
 	copybyte sSAVED_MOVEEND_STATE, sMOVEEND_STATE
 	setbyte sLIMIT_MOVEEND, MOVEEND_ABILITIES_ATTACKER
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
@@ -9037,6 +9046,7 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	waitmessage B_WAIT_TIME_SHORT
 	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT, 0, NULL
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
+	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_DefenderEffectSpeedDownHit::

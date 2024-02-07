@@ -845,6 +845,16 @@ u8 GetBattlerAtPosition(u8 position)
     return i;
 }
 
+struct Pokemon *GetSideParty(u32 side)
+{
+    return (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+}
+
+struct Pokemon *GetBattlerParty(u32 battler)
+{
+    return GetSideParty(GetBattlerSide(battler));
+}
+
 bool8 IsBattlerSpritePresent(u8 battlerId)
 {
     if (IsContest())
@@ -1623,7 +1633,7 @@ s16 CloneBattlerSpriteWithBlend(u8 animBattler)
     return -1;
 }
 
-void obj_delete_but_dont_free_vram(struct Sprite *sprite)
+void DestroySpriteWithActiveSheet(struct Sprite *sprite)
 {
     sprite->usingSheet = TRUE;
     DestroySprite(sprite);
@@ -2070,15 +2080,14 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     u8 spriteId;
     u16 sheet = LoadSpriteSheet(&sSpriteSheet_MoveEffectMons[id]);
     u16 palette = AllocSpritePalette(sSpriteTemplate_MoveEffectMons[id].paletteTag);
+    bool8 isShiny = FALSE;
+    bool8 isAlpha = FALSE;
 
     if (gMonSpritesGfxPtr != NULL && gMonSpritesGfxPtr->buffer == NULL)
         gMonSpritesGfxPtr->buffer = AllocZeroed(0x2000);
     if (!isBackpic)
     {
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20, personality);
-        else
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadHueShiftedMonPalette(GetMonSpritePal(species, personality, isShiny), (palette * 0x10) + 0x100, 0x20, personality, isAlpha);
         LoadSpecialPokePic(&gMonFrontPicTable[species],
                            gMonSpritesGfxPtr->buffer,
                            species,
@@ -2087,10 +2096,7 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     }
     else
     {
-        if (gSaveBlock2Ptr->individualColors)
-            LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20, personality);
-        else
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, trainerId, personality), (palette * 0x10) + 0x100, 0x20);
+        LoadHueShiftedMonPalette(GetMonSpritePal(species, personality, isShiny), (palette * 0x10) + 0x100, 0x20, personality, isAlpha);
         LoadSpecialPokePic(&gMonBackPicTable[species],
                            gMonSpritesGfxPtr->buffer,
                            species,
@@ -2429,7 +2435,7 @@ static void sub_80A8DFC(struct Sprite *sprite)
     if (--sprite->data[0] == 0)
     {
         gTasks[sprite->data[1]].data[5]--;
-        obj_delete_but_dont_free_vram(sprite);
+        DestroySpriteWithActiveSheet(sprite);
     }
 }
 
