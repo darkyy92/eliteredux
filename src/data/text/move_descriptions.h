@@ -3492,11 +3492,13 @@ static const u8 sMoveTwoLineDescription_MoveAxeKick[] = _(
 
 static const u8 sMoveTwoLineDescription_MoveBarbBarrage[] = _(
     "The user launches countless toxic barbs\n"
-    "20% chance to poison");
-
-static const u8 sMoveTwoLineDescription_MoveSmashin'Realities[] = _(
+    "20% chance to poison\n"
     "smashes the realities around it.\n"
     "Removes weather and terrain");
+
+static const u8 sMoveTwoLineDescription_MoveSmashinRealities[] = _(
+    "Smashes the realities.\n"
+    "Removes weather and terrain.");
 
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
@@ -4397,7 +4399,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_BLOOD_MOON - 1] = sMoveTwoLineDescription_MoveBloodMoon,
     [MOVE_AXE_KICK - 1] = sMoveTwoLineDescription_MoveAxeKick,
     [MOVE_BARB_BARRAGE - 1] = sMoveTwoLineDescription_MoveBarbBarrage,
-    [MOVE_SMASHIN'_REALITIES - 1] = sMoveTwoLineDescription_MoveSmashin'Realities,
+    [MOVE_SMASHIN_REALITIES - 1] = sMoveTwoLineDescription_MoveSmashinRealities,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5296,7 +5298,7 @@ static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retalia
 static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes the full brunt of its spirit\nfrom a full moon that shines as red as blood.\nThis move can't be used twice in a row.");
 static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
 static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
-static const u8 sMoveFourLineDescription_MoveSmashin'Realities[] = _("A move so paranormal that\nit smashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
+static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that it\nsmashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6195,5 +6197,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_BLOOD_MOON - 1] = sMoveFourLineDescription_MoveBloodMoon,
     [MOVE_AXE_KICK - 1] = sMoveFourLineDescription_MoveAxeKick,
     [MOVE_BARB_BARRAGE - 1] = sMoveFourLineDescription_MoveBarbBarrage,
-    [MOVE_SMASHIN'_REALITIES - 1] = sMoveFourLineDescription_MoveSmashin'Realities,
+    [MOVE_SMASHIN_REALITIES - 1] = sMoveFourLineDescription_MoveSmashinRealities,
 };

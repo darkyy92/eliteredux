@@ -31307,12 +31307,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_KADABRA_REDUX] =
     {
-    .baseHP        =  40,
-    .baseAttack    = 120,
-    .baseDefense   =  105,
-    .baseSpeed     = 30,
-    .baseSpAttack  = 35,
-    .baseSpDefense =  70,
+    .baseHP        =   40,
+    .baseAttack    =  120,
+    .baseDefense   =   105,
+    .baseSpeed     =  30,
+    .baseSpAttack  =  35,
+    .baseSpDefense =   70,
     .type1 = TYPE_DARK,
     .type2 = TYPE_FIGHTING,
     .catchRate = 100,

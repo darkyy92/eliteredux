@@ -915,7 +915,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_BLOOD_MOON
 	.4byte Move_NONE @ MOVE_AXE_KICK
 	.4byte Move_NONE @ MOVE_BARB_BARRAGE
-	.4byte Move_NONE @ MOVE_SMASHIN'_REALITIES
+	.4byte Move_NONE @ MOVE_SMASHIN_REALITIES
 
 	.align 2
 gBattleAnims_StatusConditions::

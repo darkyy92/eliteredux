@@ -10788,7 +10788,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .split = SPLIT_PHYSICAL,
     },
-    [MOVE_SMASHIN'_REALITIES] =
+    [MOVE_SMASHIN_REALITIES] =
     {
         .effect = EFFECT_PLACEHOLDER,
         .power = 0,
