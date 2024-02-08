@@ -10810,13 +10810,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_COMEUPPANCE] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_METAL_BURST,
         .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .type = TYPE_DARK,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_DEPENDS,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_BLOOD_MOON] =
