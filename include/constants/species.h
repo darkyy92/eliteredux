@@ -1527,7 +1527,7 @@
 #define SPECIES_ENAMORUS_THERIAN            FORMS_START + 344
 
 // Custom Megas
-#define CUSTOM_MEGA_START                   FORMS_START + 400
+#define CUSTOM_MEGA_START                   FORMS_START + 600
 
 #define SPECIES_MILOTIC_MEGA                CUSTOM_MEGA_START + 1
 #define SPECIES_BUTTERFREE_MEGA             CUSTOM_MEGA_START + 2
