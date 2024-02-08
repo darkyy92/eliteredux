@@ -2038,6 +2038,20 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
+    if (moveId == gLastChosenMove[gActiveBattler] && gBattleMoves[moveId].effect == EFFECT_EVERY_OTHER_TURN)
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+        {
+            gProtectStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
+        }
+        else
+        {
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANTSELECTTWICE;
+            gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedGeneric;
+            limitations++;
+        }
+    }
+
     return limitations;
 }
 
@@ -3381,6 +3395,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BATTLER_COUNT:  // done
+            gLastChosenMove[gActiveBattler] = gChosenMove;
             gBattleStruct->turnEffectsTracker = 0;
             gBattleStruct->turnEffectsBattlerId++;
             break;

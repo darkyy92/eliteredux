@@ -279,6 +279,7 @@ static const u8 sText_TheWallShattered[] = _("The wall shattered!");
 static const u8 sText_ButNoEffect[] = _("But it had no effect!");
 static const u8 sText_PkmnHasNoMovesLeft[] = _("{B_ACTIVE_NAME_WITH_PREFIX} has no\nmoves left!\p");
 static const u8 sText_PkmnMoveIsDisabled[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE}\nis disabled!\p");
+static const u8 sText_CantUseTwiceInARow[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s can't use\n{B_CURRENT_MOVE} twice in a row!\p");
 static const u8 sText_PkmnCantUseMoveTorment[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the same\nmove in a row due to the Torment!\p");
 static const u8 sText_PkmnCantUseMoveTaunt[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use\n{B_CURRENT_MOVE} after the Taunt!\p");
 static const u8 sText_PkmnCantUseMoveSealed[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the\nsealed {B_CURRENT_MOVE}!\p");
@@ -1138,6 +1139,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNMADESUBSTITUTE - 12] = sText_PkmnMadeSubstitute,
     [STRINGID_PKMNHASSUBSTITUTE - 12] = sText_PkmnHasSubstitute,
     [STRINGID_SUBSTITUTEDAMAGED - 12] = sText_SubstituteDamaged,
+    [STRINGID_CANT_USE_TWICE_IN_A_ROW - 12] = sText_CantUseTwiceInARow,
     [STRINGID_PKMNSUBSTITUTEFADED - 12] = sText_PkmnSubstituteFaded,
     [STRINGID_PKMNMUSTRECHARGE - 12] = sText_PkmnMustRecharge,
     [STRINGID_PKMNRAGEBUILDING - 12] = sText_PkmnRageBuilding,
@@ -2077,6 +2079,11 @@ const u16 gCureStatusOnExitStringIds[] =
     STRINGID_NATURAL_CURE_EXITS,
     STRINGID_SELF_REPAIR_EXITS,
     STRINGID_NATURAL_RECOVERY_EXITS,
+};
+
+const u16 gCantSelectMove[] =
+{
+    [B_MSG_CANTSELECTTWICE] = STRINGID_CANT_USE_TWICE_IN_A_ROW,
 };
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");

@@ -445,6 +445,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
 	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
 	.4byte BattleScript_EffectArgumentHit			  @ EFFECT_ARGUMENT_HIT
+	.4byte BattleScript_EffectHit			          @ EFFECT_EVERY_OTHER_TURN
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -10868,6 +10869,10 @@ BattleScript_SelectingNotAllowedMoveGorillaTactics::
 
 BattleScript_SelectingNotAllowedMoveAssaultVest::
 	printselectionstring STRINGID_ASSAULTVESTDOESNTALLOW
+	endselectionscript
+
+BattleScript_SelectingNotAllowedGeneric::
+	printfromtable gBattlePalaceFlavorTextTable
 	endselectionscript
 
 BattleScript_HangedOnMsg::

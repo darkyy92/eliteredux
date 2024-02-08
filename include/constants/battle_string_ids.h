@@ -729,8 +729,9 @@
 #define STRINGID_COSTAR                               758
 #define STRINGID_OVERFLOWINGWITHSPACEPOWER            759
 #define STRINGID_PLAYERGOTBP                          760
+#define STRINGID_CANT_USE_TWICE_IN_A_ROW              761
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PLAYERGOTBP + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_CANT_USE_TWICE_IN_A_ROW + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -999,5 +1000,8 @@
 #define B_MSG_TERRAINPREVENTS_MISTY     0
 #define B_MSG_TERRAINPREVENTS_ELECTRIC  1
 #define B_MSG_TERRAINPREVENTS_PSYCHIC   2
+
+// gCantSelectMove
+#define B_MSG_CANTSELECTTWICE 0
 
 #endif // GUARD_CONSTANTS_BATTLE_STRING_IDS_H
