@@ -4288,6 +4288,7 @@ static void Cmd_jumpbasedontype(void)
 {
     u8 battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     u8 type = gBattlescriptCurrInstr[2];
+    if (type == TYPE_CURRENT_MOVE) type = gBattleMoves[gCurrentMove].type;
     const u8* jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
 
     // jumpiftype
@@ -8408,6 +8409,7 @@ static void Cmd_various(void)
     u32 side, bits;
     u8 increase;
     u8 statId;
+    u8 byteValue;
 
     if (gBattleControllerExecFlags)
         return;
@@ -9565,10 +9567,21 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     case VARIOUS_LOSE_TYPE:
+        byteValue = gBattlescriptCurrInstr[3] == TYPE_CURRENT_MOVE ? gBattleMoves[gCurrentMove].type : gBattlescriptCurrInstr[3];
         for (i = 0; i < 3; i++)
         {
-            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == gBattlescriptCurrInstr[3])
+            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == byteValue)
                 *(u8*)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+        }
+        switch (byteValue)
+        {
+            case TYPE_ELECTRIC:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BURNUP_ELECTRIC;
+                break;
+
+            default:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BURNUP_FIRE;
+                break;
         }
         gBattlescriptCurrInstr += 4;
         return;

@@ -1298,7 +1298,7 @@ BattleScript_EffectBurnUp:
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpiftype BS_ATTACKER, TYPE_FIRE, BattleScript_BurnUpWorks
+	jumpiftype BS_ATTACKER, TYPE_CURRENT_MOVE, BattleScript_BurnUpWorks
 	goto BattleScript_ButItFailedPpReduce
 BattleScript_BurnUpWorks:
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
@@ -1322,8 +1322,8 @@ BattleScript_BurnUpWorks:
 	goto BattleScript_MoveEnd
 
 BattleScript_BurnUpRemoveType::
-	losetype BS_ATTACKER, TYPE_FIRE
-	printstring STRINGID_ATTACKERLOSTFIRETYPE
+	losetype BS_ATTACKER, TYPE_CURRENT_MOVE
+	printfromtable gBurnUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
 	

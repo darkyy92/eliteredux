@@ -2324,7 +2324,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 9;
             break;
         case EFFECT_BURN_UP:
-            if (!IS_BATTLER_OF_TYPE(battlerAtk, TYPE_FIRE))
+            if (!IS_BATTLER_OF_TYPE(battlerAtk, gBattleMoves[move].type))
                 score -= 10;
             break;
         case EFFECT_DEFOG:

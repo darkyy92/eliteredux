@@ -704,6 +704,7 @@ static const u8 sText_BugBite[] = _("{B_ATK_NAME_WITH_PREFIX} stole and ate\n{B_
 static const u8 sText_IllusionWoreOff[] = _("{B_DEF_NAME_WITH_PREFIX}'s Illusion wore off!");
 static const u8 sText_AttackerCuredTargetStatus[] = _("{B_ATK_NAME_WITH_PREFIX} cured\n{B_DEF_NAME_WITH_PREFIX}'s problem!");
 static const u8 sText_AttackerLostFireType[] = _("{B_ATK_NAME_WITH_PREFIX} burned itself out!");
+static const u8 sText_AttackerLostElectricType[] = _("{B_ATK_NAME_WITH_PREFIX} used up\nall its electricity!");
 static const u8 sText_HealerCure[] = _("{B_ATK_NAME_WITH_PREFIX}'s Healer\ncured {B_SCR_ACTIVE_NAME_WITH_PREFIX}'s problem!");
 static const u8 sText_ReceiverAbilityTakeOver[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nwas taken over!");
 static const u8 sText_PkmnAbsorbingPower[] = _("{B_ATK_NAME_WITH_PREFIX} is absorbing power!");
@@ -1001,6 +1002,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SCRIPTINGABILITYSTATRAISE - 12] = sText_ScriptingAbilityRaisedStat,
     [STRINGID_HEALERCURE - 12] = sText_HealerCure,
     [STRINGID_ATTACKERLOSTFIRETYPE - 12] = sText_AttackerLostFireType,
+    [STRINGID_ATTACKERLOSTELECTRICTYPE - 12] = sText_AttackerLostElectricType,
     [STRINGID_ATTACKERCUREDTARGETSTATUS - 12] = sText_AttackerCuredTargetStatus,
     [STRINGID_ILLUSIONWOREOFF - 12] = sText_IllusionWoreOff,
     [STRINGID_BUGBITE - 12] = sText_BugBite,
@@ -1774,6 +1776,12 @@ const u16 gUproarAwakeStringIds[] =
     [B_MSG_UPROAR_KEPT_AWAKE]  = STRINGID_UPROARKEPTPKMNAWAKE,
     [B_MSG_STAYED_AWAKE_USING] = STRINGID_PKMNSTAYEDAWAKEUSING,
 };
+
+const u16 gBurnUpStringIds[] = 
+{
+    [B_MSG_BURNUP_FIRE] = STRINGID_ATTACKERLOSTFIRETYPE,
+    [B_MSG_BURNUP_ELECTRIC] = STRINGID_ATTACKERLOSTELECTRICTYPE,
+}
 
 const u16 gStatUpStringIds[] =
 {
