@@ -5352,7 +5352,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_ABILITY_NUM:
         #ifdef REMOVE_RIBBONS
-            SET8(boxMon->markings);
+            SET8(boxMon->abilityNum);
         #else
             SET32(boxMon->abilityNum);
 	    #endif
