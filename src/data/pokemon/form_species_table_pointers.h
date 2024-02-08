@@ -797,4 +797,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_PALKIA_ORIGIN] = sPalkiaFormSpeciesIdTable,
 
     [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormSpeciesIdTable,
+    [SPECIES_KINGAMBIT_REDUX] = sKingambitFormSpeciesIdTable,
+
 };
