@@ -38685,6 +38685,38 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+    [SPECIES_CASTFORM_SANDY] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 115,
+        .baseDefense   = 80,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 90,
+        .type1 = TYPE_BUG,
+        .type2 = TYPE_FAIRY,
+        .catchRate = 255,
+        .expYield = 600,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 255,
+        .friendship = 100,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = { ABILITY_STATIC, ABILITY_FLASH_FIRE, ABILITY_RIPEN },
+        .innates = { ABILITY_NONE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PINK,
+        .noFlip = FALSE,
+    },
+
     [SPECIES_KINGAMBIT_REDUX] =
     {
         .baseHP        = 100,

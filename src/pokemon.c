@@ -3098,6 +3098,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_OGERPON - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PHANTOWL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DUELUMBER - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_CASTFORM_SANDY - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_KINGAMBIT_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS_THERIAN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PALKIA_ORIGIN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
@@ -9905,7 +9906,7 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else if (species <= REDUX_FORMS_START)
         return TRUE;
-    else if (species < SPECIES_KINGAMBIT_REDUX + 1)
+    else if (species < SPECIES_CASTFORM_SANDY + 1)
         return FALSE;
     else
         return TRUE;
