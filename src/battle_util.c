@@ -16387,6 +16387,11 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if (gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         MulModifier(&finalModifier, UQ_4_12(2.0));
 
+    if (typeEffectivenessModifier >= UQ_4_12(2.0) && gBattleMoves[move].effect == EFFECT_SUPEREFFECTIVE_BOOST)
+    {
+        MulModifier(&finalModifier, UQ_4_12(4.0/3.0));
+    }
+
     dmg = ApplyModifier(finalModifier, dmg);
     if (dmg == 0)
         dmg = 1;
