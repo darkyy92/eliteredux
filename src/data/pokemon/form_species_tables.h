@@ -1543,3 +1543,8 @@ static const u16 sEnamorusFormSpeciesIdTable[] = {
     SPECIES_ENAMORUS_THERIAN,
     FORM_SPECIES_END,
 };
+static const u16 sKingambitFormSpeciesIdTable[] = {
+    SPECIES_KINGAMBIT,
+    SPECIES_KINGAMBIT_REDUX,
+    FORM_SPECIES_END,
+};

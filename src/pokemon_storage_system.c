@@ -44,6 +44,8 @@
 #include "constants/songs.h"
 #include "constants/abilities.h"
 #include "constants/hold_effects.h"
+#include "mgba_printf/mini_printf.h"
+#include "mgba_printf/mgba.h"
 
 /*
     NOTE: This file is large. Some general groups of functions have
@@ -6416,9 +6418,13 @@ static void RefreshDisplayMon(void)
 static void SetMovingMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
-        gPlayerParty[position] = sStorage->movingMon;
+        sStorage->movingMon = gPlayerParty[sCursorPosition];
     else
-        SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
+        BoxMonAtToMon(boxId, position, &sStorage->movingMon);
+
+    PurgeMonOrBoxMon(boxId, position);
+    sMovingMonOrigBoxId = boxId;
+    sMovingMonOrigBoxPos = position;
 }
 
 static void SetPlacedMonData(u8 boxId, u8 position)

@@ -5411,6 +5411,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_KINGAMBIT_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_ENAMORUS_THERIAN] =
     {
         .size = 0,

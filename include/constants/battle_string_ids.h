@@ -729,13 +729,19 @@
 #define STRINGID_COSTAR                               758
 #define STRINGID_OVERFLOWINGWITHSPACEPOWER            759
 #define STRINGID_PLAYERGOTBP                          760
+#define STRINGID_CANT_USE_TWICE_IN_A_ROW              761
+#define STRINGID_ATTACKERLOSTELECTRICTYPE             762
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PLAYERGOTBP + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_ATTACKERLOSTELECTRICTYPE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
 // They are assigned to the MULTISTRING_CHOOSER byte of gBattleCommunication
 // and read when e.g. the command printfromtable is used.
+
+// gBurnUpStringIds
+#define B_MSG_BURNUP_FIRE 0
+#define B_MSG_BURNUP_ELECTRIC 1
 
 // gStatUpStringIds
 #define B_MSG_ATTACKER_STAT_ROSE 0
@@ -999,5 +1005,8 @@
 #define B_MSG_TERRAINPREVENTS_MISTY     0
 #define B_MSG_TERRAINPREVENTS_ELECTRIC  1
 #define B_MSG_TERRAINPREVENTS_PSYCHIC   2
+
+// gCantSelectMove
+#define B_MSG_CANTSELECTTWICE 0
 
 #endif // GUARD_CONSTANTS_BATTLE_STRING_IDS_H

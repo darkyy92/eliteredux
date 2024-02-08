@@ -65,6 +65,13 @@
 
 #define BATTLER_HEALING_BLOCKED(battlerId) (gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(battlerId, ABILITY_PERMANENCE))
 
+enum MiscMoveEffects
+{
+    MISC_EFFECT_SUPEREFFECTIVE_BOOST = 1,
+    MISC_EFFECT_FAINTED_MON_BOOST,
+    MISC_EFFECT_ELECTRIC_TERRAIN_BOOST,
+};
+
 // for Natural Gift and Fling
 struct TypePower
 {

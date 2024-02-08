@@ -2038,6 +2038,20 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
+    if (moveId == gLastChosenMove[gActiveBattler] && gBattleMoves[moveId].effect == EFFECT_EVERY_OTHER_TURN)
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+        {
+            gProtectStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
+        }
+        else
+        {
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CANTSELECTTWICE;
+            gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedGeneric;
+            limitations++;
+        }
+    }
+
     return limitations;
 }
 
@@ -3381,6 +3395,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BATTLER_COUNT:  // done
+            gLastChosenMove[gActiveBattler] = gChosenMove;
             gBattleStruct->turnEffectsTracker = 0;
             gBattleStruct->turnEffectsBattlerId++;
             break;
@@ -11594,7 +11609,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             else
             {
-                memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck) * MAX_BATTLERS_COUNT * NUM_NATURE_STATS);
+                memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
                 gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
             }
         }
@@ -14220,6 +14235,18 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(gBattlerAttacker))
             basePower = basePower * 13 / 10;
         break;
+    case EFFECT_MISC_HIT:
+        switch (gBattleMoves[move].argument)
+        {
+            case MISC_EFFECT_FAINTED_MON_BOOST:
+                basePower *= 1 + gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
+                break;
+            case MISC_EFFECT_ELECTRIC_TERRAIN_BOOST:
+                if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
+                    basePower = basePower * 3 / 2;
+                break;
+        }
+        break;
     }
 
     // move-specific base power changes
@@ -16371,6 +16398,11 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         MulModifier(&finalModifier, UQ_4_12(2.0));
     if (gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         MulModifier(&finalModifier, UQ_4_12(2.0));
+
+    if (typeEffectivenessModifier >= UQ_4_12(2.0) && gBattleMoves[move].effect == EFFECT_MISC_HIT && gBattleMoves[move].argument == MISC_EFFECT_SUPEREFFECTIVE_BOOST)
+    {
+        MulModifier(&finalModifier, UQ_4_12(4.0/3.0));
+    }
 
     dmg = ApplyModifier(finalModifier, dmg);
     if (dmg == 0)

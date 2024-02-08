@@ -279,6 +279,7 @@ static const u8 sText_TheWallShattered[] = _("The wall shattered!");
 static const u8 sText_ButNoEffect[] = _("But it had no effect!");
 static const u8 sText_PkmnHasNoMovesLeft[] = _("{B_ACTIVE_NAME_WITH_PREFIX} has no\nmoves left!\p");
 static const u8 sText_PkmnMoveIsDisabled[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE}\nis disabled!\p");
+static const u8 sText_CantUseTwiceInARow[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s can't use\n{B_CURRENT_MOVE} twice in a row!\p");
 static const u8 sText_PkmnCantUseMoveTorment[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the same\nmove in a row due to the Torment!\p");
 static const u8 sText_PkmnCantUseMoveTaunt[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use\n{B_CURRENT_MOVE} after the Taunt!\p");
 static const u8 sText_PkmnCantUseMoveSealed[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the\nsealed {B_CURRENT_MOVE}!\p");
@@ -703,6 +704,7 @@ static const u8 sText_BugBite[] = _("{B_ATK_NAME_WITH_PREFIX} stole and ate\n{B_
 static const u8 sText_IllusionWoreOff[] = _("{B_DEF_NAME_WITH_PREFIX}'s Illusion wore off!");
 static const u8 sText_AttackerCuredTargetStatus[] = _("{B_ATK_NAME_WITH_PREFIX} cured\n{B_DEF_NAME_WITH_PREFIX}'s problem!");
 static const u8 sText_AttackerLostFireType[] = _("{B_ATK_NAME_WITH_PREFIX} burned itself out!");
+static const u8 sText_AttackerLostElectricType[] = _("{B_ATK_NAME_WITH_PREFIX} used up\nall its electricity!");
 static const u8 sText_HealerCure[] = _("{B_ATK_NAME_WITH_PREFIX}'s Healer\ncured {B_SCR_ACTIVE_NAME_WITH_PREFIX}'s problem!");
 static const u8 sText_ReceiverAbilityTakeOver[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nwas taken over!");
 static const u8 sText_PkmnAbsorbingPower[] = _("{B_ATK_NAME_WITH_PREFIX} is absorbing power!");
@@ -1000,6 +1002,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SCRIPTINGABILITYSTATRAISE - 12] = sText_ScriptingAbilityRaisedStat,
     [STRINGID_HEALERCURE - 12] = sText_HealerCure,
     [STRINGID_ATTACKERLOSTFIRETYPE - 12] = sText_AttackerLostFireType,
+    [STRINGID_ATTACKERLOSTELECTRICTYPE - 12] = sText_AttackerLostElectricType,
     [STRINGID_ATTACKERCUREDTARGETSTATUS - 12] = sText_AttackerCuredTargetStatus,
     [STRINGID_ILLUSIONWOREOFF - 12] = sText_IllusionWoreOff,
     [STRINGID_BUGBITE - 12] = sText_BugBite,
@@ -1138,6 +1141,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNMADESUBSTITUTE - 12] = sText_PkmnMadeSubstitute,
     [STRINGID_PKMNHASSUBSTITUTE - 12] = sText_PkmnHasSubstitute,
     [STRINGID_SUBSTITUTEDAMAGED - 12] = sText_SubstituteDamaged,
+    [STRINGID_CANT_USE_TWICE_IN_A_ROW - 12] = sText_CantUseTwiceInARow,
     [STRINGID_PKMNSUBSTITUTEFADED - 12] = sText_PkmnSubstituteFaded,
     [STRINGID_PKMNMUSTRECHARGE - 12] = sText_PkmnMustRecharge,
     [STRINGID_PKMNRAGEBUILDING - 12] = sText_PkmnRageBuilding,
@@ -1773,6 +1777,12 @@ const u16 gUproarAwakeStringIds[] =
     [B_MSG_STAYED_AWAKE_USING] = STRINGID_PKMNSTAYEDAWAKEUSING,
 };
 
+const u16 gBurnUpStringIds[] = 
+{
+    [B_MSG_BURNUP_FIRE] = STRINGID_ATTACKERLOSTFIRETYPE,
+    [B_MSG_BURNUP_ELECTRIC] = STRINGID_ATTACKERLOSTELECTRICTYPE,
+};
+
 const u16 gStatUpStringIds[] =
 {
     [B_MSG_ATTACKER_STAT_ROSE] = STRINGID_ATTACKERSSTATROSE,
@@ -2077,6 +2087,11 @@ const u16 gCureStatusOnExitStringIds[] =
     STRINGID_NATURAL_CURE_EXITS,
     STRINGID_SELF_REPAIR_EXITS,
     STRINGID_NATURAL_RECOVERY_EXITS,
+};
+
+const u16 gCantSelectMove[] =
+{
+    [B_MSG_CANTSELECTTWICE] = STRINGID_CANT_USE_TWICE_IN_A_ROW,
 };
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");

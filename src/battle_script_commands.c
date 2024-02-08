@@ -4289,6 +4289,8 @@ static void Cmd_jumpbasedontype(void)
     u8 battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     u8 type = gBattlescriptCurrInstr[2];
     const u8* jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
+    
+    if (type == TYPE_CURRENT_MOVE) type = gBattleMoves[gCurrentMove].type;
 
     // jumpiftype
     if (gBattlescriptCurrInstr[3])
@@ -7444,12 +7446,10 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 
 static void Cmd_getmoneyreward(void)
 {
-    if(gSpecialVar_0x8004 == 0)
-        gSpecialVar_0x8004 = 1;
+    if(VarGet(VAR_TRAINER_PRIZE_BP) == 0) 
+        VarSet(VAR_TRAINER_PRIZE_BP, 1);
     GiveFrontierBattlePoints();
-    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 3, gSpecialVar_0x8004);
-    gSpecialVar_0x8003 = 0;
-    gSpecialVar_0x8004 = 0;
+    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 3, VarGet(VAR_TRAINER_PRIZE_BP));
     gBattlescriptCurrInstr++;
 }
 
@@ -8410,6 +8410,7 @@ static void Cmd_various(void)
     u32 side, bits;
     u8 increase;
     u8 statId;
+    u8 byteValue;
 
     if (gBattleControllerExecFlags)
         return;
@@ -9567,10 +9568,21 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     case VARIOUS_LOSE_TYPE:
+        byteValue = gBattlescriptCurrInstr[3] == TYPE_CURRENT_MOVE ? gBattleMoves[gCurrentMove].type : gBattlescriptCurrInstr[3];
         for (i = 0; i < 3; i++)
         {
-            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == gBattlescriptCurrInstr[3])
+            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == byteValue)
                 *(u8*)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+        }
+        switch (byteValue)
+        {
+            case TYPE_ELECTRIC:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BURNUP_ELECTRIC;
+                break;
+
+            default:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BURNUP_FIRE;
+                break;
         }
         gBattlescriptCurrInstr += 4;
         return;
@@ -10513,7 +10525,7 @@ static void Cmd_various(void)
                 return;
             }
         }
-        memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck) * MAX_BATTLERS_COUNT * NUM_NATURE_STATS);
+        memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
         break;
     } // End of switch (gBattlescriptCurrInstr[2])

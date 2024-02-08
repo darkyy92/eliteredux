@@ -11591,15 +11591,21 @@ extern const u8  gMonIcon_Dewleon[];
 
 extern const u8 gMonFootprint_Phantowl[];
 extern const u8 gMonFootprint_Duelumber[];
+extern const u8 gMonFootprint_Kingambit_Redux[];
 extern const u8 gMonIcon_Phantowl[];
 extern const u8 gMonIcon_Duelumber[];
+extern const u8 gMonIcon_Kingambit_Redux[];
 extern const u32 gMonShinyPalette_Phantowl[];
 extern const u32 gMonShinyPalette_Duelumber[];
+extern const u32 gMonShinyPalette_Kingambit_Redux[];
 extern const u32 gMonPalette_Phantowl[];
 extern const u32 gMonPalette_Duelumber[];
+extern const u32 gMonPalette_Kingambit_Redux[];
 extern const u32 gMonBackPic_Phantowl[];
 extern const u32 gMonBackPic_Duelumber[];
+extern const u32 gMonBackPic_Kingambit_Redux[];
 extern const u32 gMonFrontPic_Phantowl[];
 extern const u32 gMonFrontPic_Duelumber[];
+extern const u32 gMonFrontPic_Kingambit_Redux[];
 
 #endif //GUARD_GRAPHICS_H

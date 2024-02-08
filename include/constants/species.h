@@ -1527,7 +1527,7 @@
 #define SPECIES_ENAMORUS_THERIAN            FORMS_START + 344
 
 // Custom Megas
-#define CUSTOM_MEGA_START                   FORMS_START + 400
+#define CUSTOM_MEGA_START                   FORMS_START + 600
 
 #define SPECIES_MILOTIC_MEGA                CUSTOM_MEGA_START + 1
 #define SPECIES_BUTTERFREE_MEGA             CUSTOM_MEGA_START + 2
@@ -1647,6 +1647,9 @@
 #define SPECIES_HOUNDOOM_REDUX              REDUX_FORMS_START + 55
 #define SPECIES_DODUO_REDUX                 REDUX_FORMS_START + 56
 #define SPECIES_DODRIO_REDUX                REDUX_FORMS_START + 57
+#define SPECIES_KINGAMBIT_REDUX             REDUX_FORMS_START + 58
+#define SPECIES_KINGAMBIT_REDUX_MEGA        REDUX_FORMS_START + 59
+
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 
 #define SPECIES_EGG                         LAST_REDUX_FORM + 1

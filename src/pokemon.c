@@ -3098,6 +3098,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_OGERPON - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PHANTOWL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DUELUMBER - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_KINGAMBIT_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS_THERIAN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PALKIA_ORIGIN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DIALGA_ORIGIN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
@@ -5170,8 +5171,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
 }
 
 #define SET8(lhs) (lhs) = *data
-#define SET16(lhs) (lhs) = data[0] + (data[1] << 8)
-#define SET32(lhs) (lhs) = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24)
+#define SET16(lhs) (lhs) = *((u16*)data)
+#define SET32(lhs) (lhs) = *((u32*)data)
 
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
 {
@@ -5351,7 +5352,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_ABILITY_NUM:
         #ifdef REMOVE_RIBBONS
-            SET8(boxMon->markings);
+            SET8(boxMon->abilityNum);
         #else
             SET32(boxMon->abilityNum);
 	    #endif
@@ -9904,7 +9905,7 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else if (species <= REDUX_FORMS_START)
         return TRUE;
-    else if (species < SPECIES_DODRIO_REDUX)
+    else if (species < SPECIES_KINGAMBIT_REDUX + 1)
         return FALSE;
     else
         return TRUE;

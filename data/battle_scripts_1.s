@@ -444,6 +444,9 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
 	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
 	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
+	.4byte BattleScript_EffectArgumentHit			  @ EFFECT_ARGUMENT_HIT
+	.4byte BattleScript_EffectHit			          @ EFFECT_EVERY_OTHER_TURN
+	.4byte BattleScript_EffectHit                     @ EFFECT_MISC_HIT
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -1296,7 +1299,7 @@ BattleScript_EffectBurnUp:
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpiftype BS_ATTACKER, TYPE_FIRE, BattleScript_BurnUpWorks
+	jumpiftype BS_ATTACKER, TYPE_CURRENT_MOVE, BattleScript_BurnUpWorks
 	goto BattleScript_ButItFailedPpReduce
 BattleScript_BurnUpWorks:
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
@@ -1320,8 +1323,8 @@ BattleScript_BurnUpWorks:
 	goto BattleScript_MoveEnd
 
 BattleScript_BurnUpRemoveType::
-	losetype BS_ATTACKER, TYPE_FIRE
-	printstring STRINGID_ATTACKERLOSTFIRETYPE
+	losetype BS_ATTACKER, TYPE_CURRENT_MOVE
+	printfromtable gBurnUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
 	
@@ -4257,6 +4260,8 @@ BattleScript_MoveMissedDoDamage::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
+	argumenttomoveeffect
+	seteffectwithchance
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 .if B_CRASH_IF_TARGET_IMMUNE >= GEN_4
 	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE
@@ -6785,7 +6790,6 @@ BattleScript_LocalBattleWonBP::
 	end2
 BattleScript_LocalBattleWonReward::
 	goto BattleScript_LocalBattleWonBP
-	jumpifbyte CMP_EQUAL, gSpecialVar_0x8003, 1, BattleScript_LocalBattleWonBP
 	getmoneyreward
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage B_WAIT_TIME_LONG
@@ -10870,6 +10874,10 @@ BattleScript_SelectingNotAllowedMoveAssaultVest::
 	printselectionstring STRINGID_ASSAULTVESTDOESNTALLOW
 	endselectionscript
 
+BattleScript_SelectingNotAllowedGeneric::
+	printfromtable gBattlePalaceFlavorTextTable
+	endselectionscript
+
 BattleScript_HangedOnMsg::
 	playanimation BS_TARGET, B_ANIM_HANGED_ON, NULL
 	printstring STRINGID_PKMNHUNGONWITHX
@@ -11788,3 +11796,7 @@ BattleScript_SeedSowerDoLeech:
 	unswapbattlers gBattlerAttacker, gBattlerTarget
 BattleScript_SeedSowerEnd:
 	end3
+
+BattleScript_EffectArgumentHit::
+	argumenttomoveeffect
+	goto BattleScript_EffectHit

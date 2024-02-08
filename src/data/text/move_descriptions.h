@@ -3498,10 +3498,6 @@ static const u8 sMoveTwoLineDescription_MoveSmashinRealities[] = _(
     "smashes the realities around it.\n"
     "Removes weather and terrain");
 
-static const u8 sMoveTwoLineDescription_MoveSmashinRealities[] = _(
-    "Smashes the realities.\n"
-    "Removes weather and terrain.");
-
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {

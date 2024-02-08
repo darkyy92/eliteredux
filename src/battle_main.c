@@ -193,6 +193,7 @@ EWRAM_DATA const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
 EWRAM_DATA const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
 EWRAM_DATA u16 gLastPrintedMoves[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastMoves[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u16 gLastChosenMove[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastLandedMoves[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastHitByType[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastResultingMoves[MAX_BATTLERS_COUNT] = {0};
@@ -3243,6 +3244,7 @@ static void BattleStartClearSetData(void)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
+        gLastChosenMove[i] = 0;
         gStatuses3[i] = 0;
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
@@ -3425,6 +3427,7 @@ void SwitchInClearSetData(void)
     gLastResultingMoves[gActiveBattler] = 0;
     gLastPrintedMoves[gActiveBattler] = 0;
     gLastHitBy[gActiveBattler] = 0xFF;
+    gLastChosenMove[gActiveBattler] = 0;
 
     gBattleStruct->lastTakenMove[gActiveBattler] = 0;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
@@ -3527,6 +3530,7 @@ void FaintClearSetData(void)
     gLastResultingMoves[gActiveBattler] = 0;
     gLastPrintedMoves[gActiveBattler] = 0;
     gLastHitBy[gActiveBattler] = 0xFF;
+    gLastChosenMove[gActiveBattler] = 0;
 
     gBattleStruct->choicedMove[gActiveBattler] = 0;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
