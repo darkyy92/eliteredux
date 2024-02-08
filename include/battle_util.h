@@ -69,6 +69,7 @@ enum MiscMoveEffects
 {
     MISC_EFFECT_SUPEREFFECTIVE_BOOST = 1,
     MISC_EFFECT_FAINTED_MON_BOOST,
+    MISC_EFFECT_ELECTRIC_TERRAIN_BOOST,
 };
 
 // for Natural Gift and Fling

@@ -14241,6 +14241,10 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             case MISC_EFFECT_FAINTED_MON_BOOST:
                 basePower *= 1 + gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
                 break;
+            case MISC_EFFECT_ELECTRIC_TERRAIN_BOOST:
+                if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
+                    basePower = basePower * 3 / 2;
+                break;
         }
         break;
     }
