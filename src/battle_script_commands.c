@@ -4288,8 +4288,9 @@ static void Cmd_jumpbasedontype(void)
 {
     u8 battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     u8 type = gBattlescriptCurrInstr[2];
-    if (type == TYPE_CURRENT_MOVE) type = gBattleMoves[gCurrentMove].type;
     const u8* jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
+    
+    if (type == TYPE_CURRENT_MOVE) type = gBattleMoves[gCurrentMove].type;
 
     // jumpiftype
     if (gBattlescriptCurrInstr[3])

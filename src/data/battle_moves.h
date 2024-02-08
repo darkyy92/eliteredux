@@ -10411,14 +10411,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SOIL_DRAIN] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_ABSORB,
+        .power = 75,
+        .type = TYPE_GROUND,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .split = SPLIT_SPECIAL,
     },
     [MOVE_GIGATON_HAMMER] =
     {
@@ -10602,14 +10603,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_LAST_RESPECTS] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_MISC_HIT,
+        .power = 50,
+        .type = TYPE_GHOST,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
+        .argument = MISC_EFFECT_FAINTED_MON_BOOST,
     },
     [MOVE_LUMINA_CRASH] =
     {
@@ -10740,7 +10743,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_COLLISION_COURSE] =
     {
-        .effect = EFFECT_SUPEREFFECTIVE_BOOST,
+        .effect = EFFECT_MISC_HIT,
         .power = 100,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -10749,10 +10752,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
+        .argument = MISC_EFFECT_SUPEREFFECTIVE_BOOST,
     },
     [MOVE_ELECTRO_DRIFT] =
     {
-        .effect = EFFECT_SUPEREFFECTIVE_BOOST,
+        .effect = EFFECT_MISC_HIT,
         .power = 100,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
@@ -10761,6 +10765,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
+        .argument = MISC_EFFECT_SUPEREFFECTIVE_BOOST,
     },
     [MOVE_POUNCE] =
     {

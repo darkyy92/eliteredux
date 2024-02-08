@@ -446,7 +446,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
 	.4byte BattleScript_EffectArgumentHit			  @ EFFECT_ARGUMENT_HIT
 	.4byte BattleScript_EffectHit			          @ EFFECT_EVERY_OTHER_TURN
-	.4byte BattleScript_EffectHit                     @ EFFECT_SUPEREFFECTIVE_BOOST
+	.4byte BattleScript_EffectHit                     @ EFFECT_MISC_HIT
 	
 
 BattleScript_EffectAttackUpUserAlly:

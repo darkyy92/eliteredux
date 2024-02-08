@@ -14235,6 +14235,14 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(gBattlerAttacker))
             basePower = basePower * 13 / 10;
         break;
+    case EFFECT_MISC_HIT:
+        switch (gBattleMoves[move].argument)
+        {
+            case MISC_EFFECT_FAINTED_MON_BOOST:
+                basePower *= 1 + gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
+                break;
+        }
+        break;
     }
 
     // move-specific base power changes
@@ -16387,7 +16395,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if (gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         MulModifier(&finalModifier, UQ_4_12(2.0));
 
-    if (typeEffectivenessModifier >= UQ_4_12(2.0) && gBattleMoves[move].effect == EFFECT_SUPEREFFECTIVE_BOOST)
+    if (typeEffectivenessModifier >= UQ_4_12(2.0) && gBattleMoves[move].effect == EFFECT_MISC_HIT && gBattleMoves[move].argument == MISC_EFFECT_SUPEREFFECTIVE_BOOST)
     {
         MulModifier(&finalModifier, UQ_4_12(4.0/3.0));
     }
