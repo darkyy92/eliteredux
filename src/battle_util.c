@@ -61,7 +61,6 @@ functions instead of at the top of the file with the other declarations.
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
 static bool8 DoesMoveBoostStats(u16 move);
-bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -4659,7 +4658,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     }
 
     //This is the stuff that has to be changed for each ability
-    if(hasTarget && canUseExtraMove(battler, gBattlerTarget)){
+    if(hasTarget && CanUseExtraMove(battler, gBattlerTarget)){
         gTempMove = gCurrentMove;
         gCurrentMove = extraMove;
         gMultiHitCounter = 0;
@@ -4679,9 +4678,21 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     return FALSE;
 }
 
-static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
+static u8 CheckAndSetOncePerTurnAbility(u8 battler, u16 ability)
 {
-    if (!canUseExtraMove(battler, gBattlerTarget)) return;
+    if (!gSpecialStatuses[battler].turnAbilityTriggers[GetBattlerInnateNum(battler, ability)])
+    {
+        gSpecialStatuses[battler].turnAbilityTriggers[GetBattlerInnateNum(battler, ability)]++;
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+static u16 UseAttackerFollowUpMove(u8 battler, u16 ability, u16 extraMove, u8 movePower, u8 moveEffectPercentChance, u8 extraMoveSecondaryEffect)
+{
     gTempMove = gCurrentMove;
     gCurrentMove = extraMove;
     VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
@@ -4693,9 +4704,7 @@ static void UseAttackerFollowUpMove(u8 *effect, u8 battler, u16 ability, u16 ext
 
     gBattleScripting.abilityPopupOverwrite = ability;
 
-    gBattleScripting.replaceEndWithEnd3++;
-    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMove);
-    (*effect)++;
+    return extraMove;
 }
 
 static void AbilityHealMonStatus(u8 *effect, u8 battler, u16 ability) {
@@ -9394,7 +9403,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)       &&
                 !gRetaliationInProgress                          &&
-                canUseExtraMove(battler, gBattlerAttacker)       && //gBattlerAttacer is the target in this instance
+                CanUseExtraMove(battler, gBattlerAttacker)       && //gBattlerAttacer is the target in this instance
                 (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) &&
                 TARGET_TURN_DAMAGED){
                 activateAbilty = TRUE;
@@ -9434,7 +9443,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
                 !gRetaliationInProgress                     &&
-                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                CanUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
                 IsMoveMakingContact(move, gBattlerAttacker) &&
                 TARGET_TURN_DAMAGED){
                 activateAbilty = TRUE;
@@ -9474,7 +9483,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
                 !gRetaliationInProgress                     &&
-                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                CanUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
                 IsMoveMakingContact(move, gBattlerAttacker) &&
                 TARGET_TURN_DAMAGED){
                 activateAbilty = TRUE;
@@ -9514,7 +9523,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //Checks if the ability is triggered
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
                 !gRetaliationInProgress                     &&
-                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                CanUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
                 IsMoveMakingContact(move, gBattlerAttacker) &&
                 TARGET_TURN_DAMAGED){
                 activateAbilty = TRUE;
@@ -10121,11 +10130,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
 			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-			 && gBattleMoves[move].type == TYPE_FIGHTING
-             && !gSpecialStatuses[gActiveBattler].turnAbilityTriggers[GetBattlerInnateNum(battler, abilityToCheck)]){
-                activateAbilty = TRUE;
-                gSpecialStatuses[gActiveBattler].turnAbilityTriggers[GetBattlerInnateNum(battler, abilityToCheck)]++;
-            }
+			 && gBattleMoves[move].type == TYPE_FIGHTING)
+                activateAbilty = CheckAndSetOncePerTurnAbility(battler, ABILITY_SPINNING_TOP);
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
@@ -10220,88 +10226,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}*/
-
-        //Volcano Rage
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_VOLCANO_RAGE)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
-            }
-        }
-
-        //Frost Burn
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_FROST_BURN)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
-            }
-        }
-
-        //Pryo Shells
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_PYRO_SHELLS)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
-            }
-        }
-
-        //Thundercall
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_THUNDERCALL)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
-            }
-        }
-
-        //Weather Cast
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST)){
-            switch (move) {
-                case MOVE_SUNNY_DAY:
-                case MOVE_RAIN_DANCE:
-                case MOVE_SANDSTORM:
-                case MOVE_HAIL:
-                    UseAttackerFollowUpMove(&effect, battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
-                    break;
-            }
-        }
-
-        //Aftershock
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_AFTERSHOCK)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                gBattleMoves[move].power){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
-            }
-        }
-
-        //High Tide
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_HIGH_TIDE)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                (GetTypeBeforeUsingMove(move, battler) == TYPE_WATER)){
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_HIGH_TIDE, MOVE_SURF, 50, 0, 0);
-            }
-        }
-
-        //Two Step
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_TWO_STEP)){
-
-            //Checks if the ability is triggered
-            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                gBattleMoves[move].flags & FLAG_DANCE) {
-                UseAttackerFollowUpMove(&effect, battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
-            }
-        }
 		
 		//Electric Burst
 		if (BATTLER_HAS_ABILITY(battler, ABILITY_ELECTRIC_BURST)){
@@ -11613,6 +11537,88 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
             }
         }
+        break;
+        case ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE:
+            #define CHECK_ABILITY(ability) (BATTLER_HAS_ABILITY(battler, ability) && CheckAndSetOncePerTurnAbility(battler, ability))
+            //Volcano Rage
+            if(CHECK_ABILITY(ABILITY_VOLCANO_RAGE)){
+
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
+                    return UseAttackerFollowUpMove(battler, ABILITY_VOLCANO_RAGE, MOVE_ERUPTION, 50, 0, 0);
+                }
+            }
+
+            //Frost Burn
+            if(CHECK_ABILITY(ABILITY_FROST_BURN)){
+
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
+                    return UseAttackerFollowUpMove(battler, ABILITY_FROST_BURN, MOVE_ICE_BEAM, 40, 0, 0);
+                }
+            }
+
+            //Pryo Shells
+            if(CHECK_ABILITY(ABILITY_PYRO_SHELLS)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
+                    return UseAttackerFollowUpMove(battler, ABILITY_PYRO_SHELLS, MOVE_OUTBURST, 50, 0, 0);
+                }
+            }
+
+            //Thundercall
+            if(CHECK_ABILITY(ABILITY_THUNDERCALL)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
+                    return UseAttackerFollowUpMove(battler, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
+                }
+            }
+
+            //Weather Cast
+            if(CHECK_ABILITY(ABILITY_FORECAST)){
+                switch (move) {
+                    case MOVE_SUNNY_DAY:
+                    case MOVE_RAIN_DANCE:
+                    case MOVE_SANDSTORM:
+                    case MOVE_HAIL:
+                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
+                }
+            }
+
+            //Aftershock
+            if(CHECK_ABILITY(ABILITY_AFTERSHOCK)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    gBattleMoves[move].power){
+                    return UseAttackerFollowUpMove(battler, ABILITY_AFTERSHOCK, MOVE_MAGNITUDE, 65, 0, 0);
+                }
+            }
+
+            //High Tide
+            if(CHECK_ABILITY(ABILITY_HIGH_TIDE)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    (GetTypeBeforeUsingMove(move, battler) == TYPE_WATER)){
+                    return UseAttackerFollowUpMove(battler, ABILITY_HIGH_TIDE, MOVE_SURF, 50, 0, 0);
+                }
+            }
+
+            //Two Step
+            if(CHECK_ABILITY(ABILITY_TWO_STEP)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    gBattleMoves[move].flags & FLAG_DANCE) {
+                    return UseAttackerFollowUpMove(battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
+                }
+            }
+            #undef CHECK_ABILITY
         break;
     }
 
@@ -18094,7 +18100,7 @@ bool8 isWonderRoomActive(void){
         return FALSE;
 }
 
-bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
+bool8 CanUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
     if(IsBattlerAlive(sBattlerAttacker)                         &&
        IsBattlerAlive(sBattlerTarget)                           &&
        sBattlerAttacker != sBattlerTarget                       &&
