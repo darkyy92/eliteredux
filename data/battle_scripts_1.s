@@ -444,6 +444,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit				      @ EFFECT_TEN_HITS
 	.4byte BattleScript_EffectTwoTurnSecondary	      @ EFFECT_TWO_TURN_SECONDARY
 	.4byte BattleScript_EffectSpecialAttackUpHit      @ EFFECT_SPECIAL_ATTACK_UP_HIT
+	.4byte BattleScript_EffectArgumentHit			  @ EFFECT_ARGUMENT_HIT
 	
 
 BattleScript_EffectAttackUpUserAlly:
@@ -11787,3 +11788,7 @@ BattleScript_SeedSowerDoLeech:
 	unswapbattlers gBattlerAttacker, gBattlerTarget
 BattleScript_SeedSowerEnd:
 	end3
+
+BattleScript_EffectArgumentHit::
+	argumenttomoveeffect
+	goto BattleScript_EffectHit
