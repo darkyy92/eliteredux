@@ -4259,6 +4259,8 @@ BattleScript_MoveMissedDoDamage::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
+	argumenttomoveeffect
+	seteffectwithchance
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 .if B_CRASH_IF_TARGET_IMMUNE >= GEN_4
 	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE
