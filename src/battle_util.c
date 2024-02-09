@@ -6079,6 +6079,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect++;
         }
 
+        // Double spikes on entry
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_WATCH_YOUR_STEP))
+        {
+            u8 targetSide = GetBattlerSide(BATTLE_OPPOSITE(battler));
+            if (gSideTimers[targetSide].spikesAmount < 3)
+            {
+                gSideTimers[targetSide].spikesAmount = min(gSideTimers[targetSide].spikesAmount + 2, 3);
+                gSideStatuses[targetSide] |= SIDE_STATUS_SPIKES;
+                BattleScriptPushCursorAndCallback(BattleScript_DoubleSpikesOnEntry);
+                effect++;
+            }
+        }
+
         //Totem Boost
         if(FlagGet(FLAG_TOTEM_BATTLE) 
             && GetBattlerSide(battler) != B_SIDE_PLAYER 
@@ -13516,6 +13529,10 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     u32 i;
     u16 basePower = gBattleMoves[move].power;
     u32 weight, hpFraction, speed;
+
+    if (gSpecialStatuses[battlerAtk].parentalBondTrigger == ABILITY_MINION_CONTROL
+        && gSpecialStatuses[battlerAtk].parentalBondOn < gSpecialStatuses[battlerAtk].parentalBondInitialCount)
+        return 10;
 
     switch (gBattleMoves[move].effect)
     {

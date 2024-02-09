@@ -9219,6 +9219,15 @@ BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd:
 	restoretarget
 	return
 
+BattleScript_DoubleSpikesOnEntry::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	playmoveanimation BS_ATTACKER, MOVE_SPIKES
+	waitanimation
+	printstring STRINGID_HEAVYSPIKESSCATTERED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_DefenderSetsToxicSpikeLayer::
 	savetarget
 	swapbattlers gBattlerAttacker, gBattlerTarget

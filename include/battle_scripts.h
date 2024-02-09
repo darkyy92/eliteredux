@@ -494,6 +494,7 @@ extern const u8 BattleScript_DefenderEffectSpeedDownHit[];
 extern const u8 BattleScript_FungalInfectionActivates[];
 extern const u8 BattleScript_DefenderSetsSpikeLayer_LooseQuills[];
 extern const u8 BattleScript_DefenderSetsSpikeLayer_Scrapyard[];
+extern const u8 BattleScript_DoubleSpikesOnEntry[];
 extern const u8 BattleScript_SeedSower[];
 extern const u8 BattleScript_DefenderSetsToxicSpikeLayer[];
 extern const u8 BattleScript_PickUpActivate[];
