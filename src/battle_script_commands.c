@@ -11325,7 +11325,7 @@ u8 StatBuffValue(s8 change)
 
 s8 ChangeStatBuffsImplicit(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr)
 {
-    return ChangeStatBuffs((flags | MOVE_EFFECT_AFFECTS_USER) ? gBattlerAttacker : gBattlerTarget, statValue, statId, flags, BS_ptr);
+    return ChangeStatBuffs((flags & MOVE_EFFECT_AFFECTS_USER) ? gBattlerAttacker : gBattlerTarget, statValue, statId, flags, BS_ptr);
 }
 
 s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr)
