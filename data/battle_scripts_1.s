@@ -9060,10 +9060,6 @@ BattleScript_AttackerUsedAnExtraMove::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
-	copybyte sSAVED_MOVEEND_STATE, sMOVEEND_STATE
-	setbyte sLIMIT_MOVEEND, MOVEEND_ABILITIES_ATTACKER
-	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
-	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
