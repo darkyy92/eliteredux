@@ -6247,24 +6247,21 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ATTACKER_FOLLOWUP_MOVE:
-            if (CanUseExtraMove(gBattlerAttacker, gBattlerTarget))
+            if (AbilityBattleEffects(ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE, gBattlerAttacker, 0, 0, gChosenMove))
             {
-                u16 extraMove = AbilityBattleEffects(ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE, gBattlerAttacker, 0, 0, gChosenMove);
-                if (extraMove)
-                {
-                    gHitMarker |= (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING);
-                    gBattleScripting.animTargetsHit = 0;
-                    gBattleScripting.moveendState = 0;
-                    gSpecialStatuses[gBattlerTarget].sturdied = 0;
-                    gSpecialStatuses[gBattlerTarget].focusBanded = 0; // Delete this line to make Focus Band last for the duration of the whole move turn.
-                    gSpecialStatuses[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
-                    gSpecialStatuses[gBattlerAttacker].multiHitOn = FALSE;
-                    MoveValuesCleanUp();
+                gHitMarker |= (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING);
+                gBattleScripting.animTargetsHit = 0;
+                gBattleScripting.moveendState = 0;
+                gSpecialStatuses[gBattlerTarget].sturdied = 0;
+                gSpecialStatuses[gBattlerTarget].focusBanded = 0; // Delete this line to make Focus Band last for the duration of the whole move turn.
+                gSpecialStatuses[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
+                gSpecialStatuses[gBattlerAttacker].multiHitOn = FALSE;
+                MoveValuesCleanUp();
 
-                    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                    return;
-                }
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                return;
             }
+
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
@@ -14898,10 +14895,10 @@ static void Cmd_trycastformdatachange(void)
     u8 form;
 
     gBattlescriptCurrInstr++;
-    /*if (ShouldChangeFormHpBased(gBattleScripting.battler))
+    if (ShouldChangeFormHpBased(gBattleScripting.battler))
     {
         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
-    }*/
+    }
 }
 
 static void Cmd_settypebasedhalvers(void) // water and mud sport
