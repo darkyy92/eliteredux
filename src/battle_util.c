@@ -11034,8 +11034,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     case MOVE_RAIN_DANCE:
                     case MOVE_SANDSTORM:
                     case MOVE_HAIL:
-                        gBattlerTarget = BATTLE_OPPOSITE(gBattlerAttacker);
-                        if (!IsBattlerAlive(gBattlerTarget)) gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+                        gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
                         if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
                         return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
                 }
