@@ -8684,7 +8684,7 @@ static void Cmd_various(void)
         gSpecialStatuses[gActiveBattler].intimidatedMon = FALSE;
         gSpecialStatuses[gActiveBattler].scaredMon = FALSE;
         gSpecialStatuses[gActiveBattler].traced = FALSE;
-        gSpecialStatuses[gActiveBattler].switchInAbilityDone = FALSE;
+        memset(&gSpecialStatuses[gActiveBattler].switchInAbilityDone, 0, sizeof(gSpecialStatuses[gActiveBattler].switchInAbilityDone));
         break;
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
         if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId || gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId)

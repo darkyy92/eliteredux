@@ -262,6 +262,7 @@ void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
+void UpdateAbilityStateIndices(u8 battler, u16 oldAbilities[], u16 newAbilities[]);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
