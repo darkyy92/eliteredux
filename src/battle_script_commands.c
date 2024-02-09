@@ -2614,6 +2614,12 @@ static void Cmd_healthbarupdate(void)
     gBattlescriptCurrInstr += 2;
 }
 
+void IncrementTimesTookDamage(u8 battler)
+{
+    u8* timesDamaged = &gBattleStruct->timesDamaged[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)];
+    *timesDamaged = min(100, *timesDamaged + 1);
+}
+
 static void Cmd_datahpupdate(void)
 {
     u32 moveType;
@@ -2726,6 +2732,7 @@ static void Cmd_datahpupdate(void)
                         gProtectStructs[gActiveBattler].physicalBattlerId = gBattlerTarget;
                         gSpecialStatuses[gActiveBattler].physicalBattlerId = gBattlerTarget;
                     }
+                    IncrementTimesTookDamage(gActiveBattler);
                 }
                 else if (!IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE))
                 {
@@ -2741,6 +2748,7 @@ static void Cmd_datahpupdate(void)
                         gProtectStructs[gActiveBattler].specialBattlerId = gBattlerTarget;
                         gSpecialStatuses[gActiveBattler].specialBattlerId = gBattlerTarget;
                     }
+                    IncrementTimesTookDamage(gActiveBattler);
                 }
             }
             gHitMarker &= ~(HITMARKER_PASSIVE_DAMAGE);

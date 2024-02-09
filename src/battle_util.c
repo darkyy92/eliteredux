@@ -13734,6 +13734,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
                 if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
                     basePower = basePower * 3 / 2;
                 break;
+            case MISC_EFFECT_TOOK_DAMAGE_BOOST:
+                basePower *= 1 + min(6, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
+                break;
         }
         break;
     }

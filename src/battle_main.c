@@ -5953,7 +5953,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     
     if (move == MOVE_RAGING_BULL)
     {
-        switch (species)
+        switch (gBattleMons[battlerAtk].species)
         {
             case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
                 return TYPE_FIGHTING;
@@ -6089,7 +6089,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 
     if (move == MOVE_RAGING_BULL)
     {
-        switch (species)
+        switch (gBattleMons[battlerAtk].species)
         {
             case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
                 gBattleStruct->dynamicMoveType = TYPE_FIGHTING | 0x80;

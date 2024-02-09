@@ -10461,14 +10461,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_RAGE_FIST] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_MISC_HIT,
+        .power = 50,
+        .type = TYPE_GHOST,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MAKES_CONTACT | FLAG_IRON_FIST_BOOST,
         .split = SPLIT_PHYSICAL,
+        .argument = MISC_EFFECT_TOOK_DAMAGE_BOOST,
     },
     [MOVE_WICKED_TORQUE] =
     {
