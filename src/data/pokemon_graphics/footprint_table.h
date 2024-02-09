@@ -941,6 +941,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_PHANTOWL] = gMonFootprint_Phantowl,
     [SPECIES_DUELUMBER] = gMonFootprint_Duelumber,
     [SPECIES_KINGAMBIT_REDUX] = gMonFootprint_Kingambit_Redux,
+    [SPECIES_CASTFORM_SANDY] = gMonFootprint_Castform_Sandy,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

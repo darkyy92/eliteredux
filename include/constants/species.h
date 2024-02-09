@@ -1649,6 +1649,7 @@
 #define SPECIES_DODRIO_REDUX                REDUX_FORMS_START + 57
 #define SPECIES_KINGAMBIT_REDUX             REDUX_FORMS_START + 58
 #define SPECIES_KINGAMBIT_REDUX_MEGA        REDUX_FORMS_START + 59
+#define SPECIES_CASTFORM_SANDY              REDUX_FORMS_START + 60
 
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 

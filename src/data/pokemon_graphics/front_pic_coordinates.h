@@ -5417,6 +5417,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_CASTFORM_SANDY] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_KINGAMBIT_REDUX] =
     {
         .size = 0,
