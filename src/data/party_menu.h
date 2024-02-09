@@ -856,6 +856,9 @@ enum
     MENU_FIELD_MOVES,
 };
 
+#define MENU_SUB_EVOLUTION (MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT + 1)
+#define MENU_EVOLUTIONS    (MENU_SUB_EVOLUTION + 1)
+
 enum
 {
     FIELD_MOVE_CUT,
@@ -907,21 +910,23 @@ struct
     [MENU_TRADE1] = {gText_Trade4, CursorCb_Trade1},
     [MENU_TRADE2] = {gText_Trade4, CursorCb_Trade2},
     [MENU_TOSS] = {gMenuText_Toss, CursorCb_Toss},
-    [MENU_SUB_FIELD_MOVES] = {gText_FieldMoves, CursorCb_FieldMovesSubMenu},
-    [MENU_FIELD_MOVES + FIELD_MOVE_CUT] = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_FLASH] = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH] = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_STRENGTH] = {gMoveNames[MOVE_STRENGTH], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_SURF] = {gMoveNames[MOVE_SURF], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_FLY] = {gMoveNames[MOVE_FLY], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_DIVE] = {gMoveNames[MOVE_DIVE], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_WATERFALL] = {gMoveNames[MOVE_WATERFALL], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT] = {gMoveNames[MOVE_TELEPORT], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_DIG] = {gMoveNames[MOVE_DIG], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_SECRET_POWER] = {gMoveNames[MOVE_SECRET_POWER], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK] = {gMoveNames[MOVE_MILK_DRINK], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED] = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
-    [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
+    [MENU_SUB_FIELD_MOVES]                        = {gText_FieldMoves, CursorCb_FieldMovesSubMenu},
+    [MENU_FIELD_MOVES + FIELD_MOVE_CUT]           = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_FLASH]         = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH]    = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_STRENGTH]      = {gMoveNames[MOVE_STRENGTH], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_SURF]          = {gMoveNames[MOVE_SURF], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_FLY]           = {gMoveNames[MOVE_FLY], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_DIVE]          = {gMoveNames[MOVE_DIVE], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_WATERFALL]     = {gMoveNames[MOVE_WATERFALL], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT]      = {gMoveNames[MOVE_TELEPORT], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_DIG]           = {gMoveNames[MOVE_DIG], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_SECRET_POWER]  = {gMoveNames[MOVE_SECRET_POWER], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK]    = {gMoveNames[MOVE_MILK_DRINK], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED]   = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT]   = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
+    [MENU_SUB_EVOLUTION]   = {gText_Evolution, CursorCb_EvolutionSubMenu},
+    [MENU_EVOLUTIONS]      = {gSpeciesNames[1],  CursorCb_Evolution},
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
@@ -955,6 +960,7 @@ enum
     ACTIONS_SPIN_TRADE,
     ACTIONS_TAKEITEM_TOSS,
     ACTIONS_FIELDMOVE_SUB,
+    ACTIONS_EVOLUTION_SUB,
 };
 
 static const u8 *const sPartyMenuActions[] =

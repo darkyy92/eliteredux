@@ -77,6 +77,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/weather.h"
 #include "data/pokemon/form_species_tables.h"
 #include "constants/abilities.h"
 #include "constants/hold_effects.h"
@@ -268,6 +269,7 @@ static void Task_HandleCancelParticipationYesNoInput(u8);
 static bool8 ShouldUseChooseMonText(void);
 static void SetPartyMonFieldSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonFieldMoveSelectionActions(struct Pokemon*, u8);
+static void SetPartyMonEvolutionSelectionActions(struct Pokemon*, u8);
 static u8 GetPartyMenuActionsTypeInBattle(struct Pokemon*);
 static u8 GetPartySlotEntryStatus(s8);
 static void Task_UpdateHeldItemSprite(u8);
@@ -350,6 +352,8 @@ static void Task_DisplayLevelUpStatsPg2(u8);
 static void DisplayLevelUpStatsPg2(u8);
 static void Task_TryLearnNewMoves(u8);
 static void PartyMenuTryEvolution(u8);
+static void PartyMenuTryEvolutionFromSubMenu(u8);
+static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num);
 static void DisplayMonNeedsToReplaceMove(u8);
 static void DisplayMonLearnedMove(u8, u16);
 static void UseSacredAsh(u8);
@@ -415,11 +419,13 @@ static void CursorCb_Trade1(u8);
 static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_FieldMovesSubMenu(u8);
+static void CursorCb_EvolutionSubMenu(u8);
 static void CursorCb_FieldMove(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
+static void CursorCb_Evolution(u8 taskId);
 void SetArceusForm(struct Pokemon *mon);
 u16 GetArceusForm(struct Pokemon *mon);
 u16 GetSilvallyForm(struct Pokemon *mon);
@@ -2658,7 +2664,21 @@ static u8 DisplaySelectionWindow(u8 windowType)
             sPartyMenuInternal->actions[i] == MENU_TM_MOVES  ||
             sPartyMenuInternal->actions[i] == MENU_TUTOR_MOVES)
             fontColorsId = 6;
-        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
+
+        if(sPartyMenuInternal->actions[i] < MENU_EVOLUTIONS)
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
+        else{
+            struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+            u8 j = (sPartyMenuInternal->actions[i] - MENU_EVOLUTIONS);
+            u16 targetspecies = GetEvolutionForMon(mon, j);
+
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "MENU_EVOLUTIONS %d targetspecies %d", MENU_EVOLUTIONS, targetspecies);
+            MgbaClose();
+
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, gSpeciesNames[targetspecies]);
+        }
+        
     }
 
     InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
@@ -2735,20 +2755,23 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
 {
     u8 i;
 
-    if (action == ACTIONS_NONE)
-    {
-        SetPartyMonFieldSelectionActions(mons, slotId);
-    }
-    else if (action == ACTIONS_FIELDMOVE_SUB)
-    {
-        sPartyMenuInternal->numActions = 0;
-        SetPartyMonFieldMoveSelectionActions(mons, slotId);
-    }
-    else
-    {
-        sPartyMenuInternal->numActions = sPartyMenuActionCounts[action];
-        for (i = 0; i < sPartyMenuInternal->numActions; i++)
-            sPartyMenuInternal->actions[i] = sPartyMenuActions[action][i];
+    switch(action){
+        case ACTIONS_NONE:
+            SetPartyMonFieldSelectionActions(mons, slotId);
+        break;
+        case ACTIONS_FIELDMOVE_SUB:
+            sPartyMenuInternal->numActions = 0;
+            SetPartyMonFieldMoveSelectionActions(mons, slotId);
+        break;
+        case ACTIONS_EVOLUTION_SUB:
+            sPartyMenuInternal->numActions = 0;
+            SetPartyMonEvolutionSelectionActions(mons, slotId);
+        break;
+        default:
+            sPartyMenuInternal->numActions = sPartyMenuActionCounts[action];
+            for (i = 0; i < sPartyMenuInternal->numActions; i++)
+                sPartyMenuInternal->actions[i] = sPartyMenuActions[action][i];
+        break;
     }
 }
 
@@ -2781,10 +2804,75 @@ static void SetPartyMonFieldMoveSelectionActions(struct Pokemon *mons, u8 slotId
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
+static void SetPartyMonEvolutionSelectionActions(struct Pokemon *mons, u8 slotId)
+{
+    u32 i,j, targetspecies;
+    u32 species = GetMonData(&mons[slotId], MON_DATA_SPECIES, NULL);
+
+    // Add Evolutions to action list
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        targetspecies = GetEvolutionForMon(&mons[slotId], i);
+
+        if (targetspecies != SPECIES_NONE && targetspecies != species)
+        {
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_EVOLUTIONS + i);
+        }
+    }
+
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
+}
+
+static void CursorCb_Evolution(u8 taskId)
+{
+    u8 evolutionNum = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_EVOLUTIONS;
+    u16 targetSpecies = GetEvolutionForMon(&gPlayerParty[gPartyMenu.slotId], evolutionNum);
+
+    PlaySE(SE_SELECT);
+    if (targetSpecies != SPECIES_NONE)
+    {
+        gPartyMenu.exitCallback = CB2_ReturnToPartyMenuFromFlyMap;
+        PartyMenuTryEvolutionFromSubMenu(taskId);
+    }
+    else
+    {
+        DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    }
+}
+
+static void PartyMenuTryEvolutionFromSubMenu(u8 taskId)
+{
+    u8 evolutionNum = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_EVOLUTIONS;
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetEvolutionForMon(&gPlayerParty[gPartyMenu.slotId], evolutionNum);
+
+    if (targetSpecies != SPECIES_NONE)
+    {
+        FreePartyPointers();
+        gCB2_AfterEvolution = gPartyMenu.exitCallback;
+        BeginEvolutionScene(mon, targetSpecies, 1, gPartyMenu.slotId);
+        DestroyTask(taskId);
+    }
+    else
+    {
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        }
+        else{
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        }
+    }
+}
+
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
     u16 move;
+    u16 species 		    = GetMonData(&mons[slotId], MON_DATA_SPECIES,  		 NULL);
+    u8 level                = GetMonData(&mons[slotId], MON_DATA_LEVEL,          NULL);
+    u16 targetSpecies;
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
@@ -2809,6 +2897,12 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         //Tutor Moves
 		if (GetMonData(&mons[slotId], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfTutorMoves(&mons[slotId]) > 0 && enablePokemonChanges())
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TUTOR_MOVES);
+
+        //Evolution
+        targetSpecies = GetEvolutionForMon(&mons[slotId], 0);
+
+        if (targetSpecies != SPECIES_NONE && targetSpecies != species)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_EVOLUTION);
     }
     if(enablePokemonChanges())
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_FIELD_MOVES);
@@ -2941,7 +3035,16 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
             break;
         default:
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[2]);
-            sCursorOptions[sPartyMenuInternal->actions[input]].func(taskId);
+
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "sPartyMenuInternal->actions[input] %d input %d", sPartyMenuInternal->actions[input], input);
+            MgbaClose();
+
+            if(sPartyMenuInternal->actions[input] < MENU_EVOLUTIONS)
+                sCursorOptions[sPartyMenuInternal->actions[input]].func(taskId);
+            else
+                sCursorOptions[MENU_EVOLUTIONS].func(taskId);
+
             break;
         }
     }
@@ -3716,6 +3819,18 @@ static void CursorCb_FieldMovesSubMenu(u8 taskId)
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_FIELDMOVE_SUB);
+    DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
+    DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+static void CursorCb_EvolutionSubMenu(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_EVOLUTION_SUB);
     DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
     DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
     gTasks[taskId].data[0] = 0xFF;
@@ -6077,6 +6192,154 @@ static void PartyMenuTryEvolution(u8 taskId)
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
         }
     }
+}
+
+static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
+    u8 i, j;
+	u16 species 		    = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 level 			    = GetMonData(mon, MON_DATA_LEVEL, NULL);
+	u8 friendship 		    = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    u16 heldItem 		    = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    u32 personality         = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    u16 upperPersonality    = personality >> 16;
+    u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
+    u16 *targetFormId;
+    u16 targetSpecies, currentMap;
+
+    i = num;
+	
+    switch(gEvolutionTable[species][i].method)
+    {
+    case EVO_FRIENDSHIP:
+        if (friendship >= 220)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_FRIENDSHIP_DAY:
+        RtcCalcLocalTime();
+        if (IsCurrentlyDay() && friendship >= 220)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_DUSK:
+        RtcCalcLocalTime();
+        if(IsCurrentlyDusk() && gEvolutionTable[species][i].param <= level)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_DAY:
+        RtcCalcLocalTime();
+        if (IsCurrentlyDay() && gEvolutionTable[species][i].param <= level && !(IsCurrentlyDusk() && species == SPECIES_ROCKRUFF))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        break;
+    case EVO_LEVEL_NIGHT:
+        RtcCalcLocalTime();
+        if (!IsCurrentlyDay() && gEvolutionTable[species][i].param <= level && !(IsCurrentlyDusk() && species == SPECIES_ROCKRUFF))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_FRIENDSHIP_NIGHT:
+        RtcCalcLocalTime();
+        if (!IsCurrentlyDay() && friendship >= 220)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_ITEM_HOLD_NIGHT:
+        RtcCalcLocalTime();
+        if (!IsCurrentlyDay() && heldItem == gEvolutionTable[species][i].param)
+        {
+            heldItem = 0;
+            SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        }
+    break;
+    case EVO_ITEM_HOLD_DAY:
+        RtcCalcLocalTime();
+        if (IsCurrentlyDay() && heldItem == gEvolutionTable[species][i].param)
+        {
+            heldItem = 0;
+            SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        }
+    break;
+    case EVO_LEVEL:
+        if (gEvolutionTable[species][i].param <= level)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        break;
+    case EVO_LEVEL_FEMALE:
+        if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_FEMALE)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_MALE:
+        if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_MALE)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_ATK_GT_DEF:
+        if (gEvolutionTable[species][i].param <= level && (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0)))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_ATK_EQ_DEF:
+        if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, 0) == GetMonData(mon, MON_DATA_DEF, 0))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_ATK_LT_DEF:
+        if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, 0) < GetMonData(mon, MON_DATA_DEF, 0))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_SILCOON:
+        if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) <= 4)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+     break;
+    case EVO_LEVEL_CASCOON:
+        if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) > 4)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_LEVEL_NINJASK:
+        if (gEvolutionTable[species][i].param <= level)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_BEAUTY:
+        if (gEvolutionTable[species][i].param <= beauty)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_MOVE:
+        if (MonKnowsMove(mon, gEvolutionTable[species][i].param))
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_MOVE_TYPE:
+        for (j = 0; j < 4; j++)
+        {
+            if (gBattleMoves[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == gEvolutionTable[species][i].param)
+                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        }
+    break;
+    case EVO_SPECIFIC_MON_IN_PARTY:
+        for (j = 0; j < PARTY_SIZE; j++)
+        {
+            if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) == gEvolutionTable[species][i].param)
+                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+        }
+    break;
+    case EVO_LEVEL_DARK_TYPE_MON_IN_PARTY:
+        if (gEvolutionTable[species][i].param <= level)
+        {
+            for (j = 0; j < PARTY_SIZE; j++)
+            {
+                u16 partyspecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
+                if (gBaseStats[partyspecies].type1 == TYPE_DARK
+                    || gBaseStats[partyspecies].type2 == TYPE_DARK)
+                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            }
+        }
+    break;
+    case EVO_LEVEL_RAIN:
+        j = GetCurrentWeather();
+        if (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+    case EVO_SPECIFIC_MAP:
+        currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
+        if (currentMap == gEvolutionTable[species][i].param)
+            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+    break;
+	}
+
+	return SPECIES_NONE;
 }
 
 static void DisplayMonNeedsToReplaceMove(u8 taskId)
