@@ -115,6 +115,10 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sRolePlayBannedAbilities[] =
@@ -144,6 +148,10 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sRolePlayBannedAttackerAbilities[] =
@@ -164,6 +172,10 @@ static const u16 sRolePlayBannedAttackerAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sWorrySeedBannedAbilities[] =
@@ -184,6 +196,10 @@ static const u16 sWorrySeedBannedAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sGastroAcidBannedAbilities[] =
@@ -204,6 +220,10 @@ static const u16 sGastroAcidBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_STANCE_CHANGE,
     ABILITY_ZEN_MODE,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sEntrainmentBannedAttackerAbilities[] =
@@ -225,6 +245,10 @@ static const u16 sEntrainmentBannedAttackerAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
@@ -244,6 +268,10 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_CROWNED_KING,
+    ABILITY_EJECT_PACK_ABILITY,
+    ABILITY_CHEATING_DEATH,
+    ABILITY_GALLANTRY,
+    ABILITY_WISHMAKER,
 };
 
 static const u16 sTwoStrikeMoves[] =
@@ -1143,6 +1171,10 @@ static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
     [ABILITY_AS_ONE_ICE_RIDER] = 1,
     [ABILITY_AS_ONE_SHADOW_RIDER] = 1,
     [ABILITY_CROWNED_KING] = 1,
+    [ABILITY_EJECT_PACK_ABILITY] = 1,
+    [ABILITY_CHEATING_DEATH] = 1,
+    [ABILITY_GALLANTRY] = 1,
+    [ABILITY_WISHMAKER] = 1,
 };
 
 static const u8 sHoldEffectToType[][2] =
@@ -4335,12 +4367,14 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             if (gBattleMons[battler].species == forms[i][2]
                 && gBattleMons[battler].hp > gBattleMons[battler].maxHP / forms[i][3])
             {
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][1]);
                 gBattleMons[battler].species = forms[i][1];
                 return TRUE;
             }
             if (gBattleMons[battler].species == forms[i][1]
                 && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / forms[i][3])
             {
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][2]);
                 gBattleMons[battler].species = forms[i][2];
                 return TRUE;
             }
@@ -4353,6 +4387,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_DARMANITAN_ZEN_MODE);
             gBattleMons[battler].species = SPECIES_DARMANITAN_ZEN_MODE;
 			return TRUE;
 	}
@@ -4363,6 +4398,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		gBattleMons[battler].hp != 0){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_DARMANITAN_ZEN_MODE_GALARIAN);
             gBattleMons[battler].species = SPECIES_DARMANITAN_ZEN_MODE_GALARIAN;
 			return TRUE;
 	}
@@ -4378,6 +4414,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM_RAINY);
             gBattleMons[battler].species = SPECIES_CASTFORM_RAINY;
 			return TRUE;
         }
@@ -4385,6 +4422,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM_SUNNY);
             gBattleMons[battler].species = SPECIES_CASTFORM_SUNNY;
 			return TRUE;
         }
@@ -4392,11 +4430,13 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM_SNOWY);
             gBattleMons[battler].species = SPECIES_CASTFORM_SNOWY;
 			return TRUE;
         }else if(!(gBattleWeather & (WEATHER_ANY)) && gBattleMons[battler].species != SPECIES_CASTFORM){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM);
             gBattleMons[battler].species = SPECIES_CASTFORM;
 			return TRUE;
         }
@@ -4413,6 +4453,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FLOWER_GIFT;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CHERRIM_SUNSHINE);
             gBattleMons[battler].species = SPECIES_CHERRIM_SUNSHINE;
 			return TRUE;
 		}
@@ -4424,6 +4465,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FLOWER_GIFT;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CHERRIM);
             gBattleMons[battler].species = SPECIES_CHERRIM;
 			return TRUE;
 		}
@@ -4436,6 +4478,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZERO_TO_HERO;
             gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_PALAFIN_HERO);
             gBattleMons[battler].species = SPECIES_PALAFIN_HERO;
 			return TRUE;
 		}
@@ -4680,9 +4723,25 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
 
 static u8 CheckAndSetOncePerTurnAbility(u8 battler, u16 ability)
 {
-    if (!gSpecialStatuses[battler].turnAbilityTriggers[GetBattlerInnateNum(battler, ability)])
+    u8 index;
+
+    switch (BattlerHasInnateOrAbility(battler, ability))
     {
-        gSpecialStatuses[battler].turnAbilityTriggers[GetBattlerInnateNum(battler, ability)]++;
+        case BATTLER_INNATE:
+            index = GetBattlerInnateNum(battler, ability) + 1;
+            break;
+        
+        case BATTLER_ABILITY:
+            index = 0;
+            break;
+        
+        default:
+            return;
+    }
+
+    if (!gSpecialStatuses[battler].turnAbilityTriggers[index])
+    {
+        gSpecialStatuses[battler].turnAbilityTriggers[index]++;
         return TRUE;
     }
     else
@@ -6264,6 +6323,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
+                    UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_ZYGARDE_COMPLETE);
                     gBattleMons[battler].species = SPECIES_ZYGARDE_COMPLETE;
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                     effect++;
@@ -6288,11 +6348,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     if (gBattleMons[battler].species == SPECIES_MORPEKO)
                     {
+                        UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_MORPEKO_HANGRY);
                         gBattleMons[battler].species = SPECIES_MORPEKO_HANGRY;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3NoPopup);
                     }
                     else if (gBattleMons[battler].species == SPECIES_MORPEKO_HANGRY)
                     {
+                        UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_MORPEKO);
                         gBattleMons[battler].species = SPECIES_MORPEKO;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3NoPopup);
                     }
@@ -7364,8 +7426,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
                 case ABILITY_CROWNED_KING:
+                case ABILITY_EJECT_PACK_ABILITY:
+                case ABILITY_CHEATING_DEATH:
+                case ABILITY_GALLANTRY:
+                case ABILITY_WISHMAKER:
                     break;
                 default:
+                    UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_MUMMY);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -7397,8 +7464,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
                 case ABILITY_CROWNED_KING:
+                case ABILITY_EJECT_PACK_ABILITY:
+                case ABILITY_CHEATING_DEATH:
+                case ABILITY_GALLANTRY:
+                case ABILITY_WISHMAKER:
                     break;
                 default:
+                    UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_LINGERING_AROMA);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -7432,9 +7504,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_AS_ONE_ICE_RIDER:
                 case ABILITY_AS_ONE_SHADOW_RIDER:
                 case ABILITY_CROWNED_KING:
+                case ABILITY_EJECT_PACK_ABILITY:
+                case ABILITY_CHEATING_DEATH:
+                case ABILITY_GALLANTRY:
+                case ABILITY_WISHMAKER:
                     break;
                 default:
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
+                    UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_WANDERING_SPIRIT);
+                    UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, gLastUsedAbility);
                     gBattleMons[gBattlerAttacker].ability = gBattleMons[gBattlerTarget].ability;
                     gBattleMons[gBattlerTarget].ability = gLastUsedAbility;
                     RecordAbilityBattle(gBattlerAttacker, gBattleMons[gBattlerAttacker].ability);
@@ -7754,6 +7832,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GORGING)
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
+                    UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CRAMORANT);
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (!BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
                     {
@@ -7768,6 +7847,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GULPING)
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
+                    UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CRAMORANT);
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (!BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
                     {
@@ -11031,6 +11111,10 @@ bool32 IsNeutralizingGasBannedAbility(u32 ability)
     case ABILITY_AS_ONE_ICE_RIDER:
     case ABILITY_AS_ONE_SHADOW_RIDER:
     case ABILITY_CROWNED_KING:
+    case ABILITY_EJECT_PACK_ABILITY:
+    case ABILITY_CHEATING_DEATH:
+    case ABILITY_GALLANTRY:
+    case ABILITY_WISHMAKER:
         return TRUE;
     default:
         return FALSE;
@@ -17524,17 +17608,70 @@ bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
     return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
 }
 
-void UpdateAbilityStateIndices(u8 battler, u16 oldAbilities[], u16 newAbilities[])
+u16 GetInnateInSlot(u16 species, u8 position, u32 personality, u8 isPlayer)
+{
+    return isPlayer ? RandomizeInnate(gBaseStats[species].innates[position], species, personality) : gBaseStats[species].innates[position];
+}
+
+void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies)
+{
+    u32 personality = gBattleMons[battler].personality;
+    bool8 isPlayer = GetBattlerSide(battler) == B_SIDE_PLAYER;
+    u16 newAbilities[] = { 
+        gBaseStats[newSpecies].abilities[gBattleMons[battler].abilityNum],
+        GetInnateInSlot(newSpecies, 0, personality, isPlayer),
+        GetInnateInSlot(newSpecies, 1, personality, isPlayer),
+        GetInnateInSlot(newSpecies, 2, personality, isPlayer),
+        };
+    UpdateAbilityStateIndices(battler, newAbilities);
+}
+
+void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility)
+{
+    u16 species = gBattleMons[battler].species;
+    u32 personality = gBattleMons[battler].personality;
+    bool8 isPlayer = GetBattlerSide(battler) == B_SIDE_PLAYER;
+    u16 newAbilities[] = { 
+        newAbility,
+        GetInnateInSlot(species, 0, personality, isPlayer),
+        GetInnateInSlot(species, 1, personality, isPlayer),
+        GetInnateInSlot(species, 2, personality, isPlayer),
+        };
+    UpdateAbilityStateIndices(battler, newAbilities);
+}
+
+void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[])
 {
     u8 i, j;
+    u8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1] = {0};
+    u8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1] = {0};
+    u32 abilityState[NUM_INNATE_PER_SPECIES + 1] = {0};
+    u16 species = gBattleMons[battler].species;
+    u32 personality = gBattleMons[battler].personality;
+    bool8 isPlayer = GetBattlerSide(battler) == B_SIDE_PLAYER;
+    u16 oldAbilities[] = { 
+        gBattleMons[battler].ability,
+        GetInnateInSlot(species, 0, personality, isPlayer),
+        GetInnateInSlot(species, 1, personality, isPlayer),
+        GetInnateInSlot(species, 2, personality, isPlayer),
+        };
+
     for (i = 0; i < NUM_INNATE_PER_SPECIES + 1; i++)
     {
         for (j = 0; j < NUM_INNATE_PER_SPECIES + 1; j++)
         {
-            if (oldAbilities[i] == oldAbilities[j])
+            if (newAbilities[i] == oldAbilities[j])
             {
                 break;
             }
         }
+        if (j >= NUM_INNATE_PER_SPECIES + 1) continue;
+        switchInAbilityDone[i] = gSpecialStatuses[battler].switchInAbilityDone[i];
+        turnAbilityTriggers[i] = gSpecialStatuses[battler].turnAbilityTriggers[i];
+        abilityState[i] = gSpecialStatuses[battler].abilityState[i];
     }
+
+    memcpy(&gSpecialStatuses[battler].switchInAbilityDone, &switchInAbilityDone, sizeof(gSpecialStatuses[battler].switchInAbilityDone));
+    memcpy(&gSpecialStatuses[battler].turnAbilityTriggers, &turnAbilityTriggers, sizeof(gSpecialStatuses[battler].turnAbilityTriggers));
+    memcpy(&gSpecialStatuses[battler].abilityState, &abilityState, sizeof(gSpecialStatuses[battler].abilityState));
 }
