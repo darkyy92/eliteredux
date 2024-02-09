@@ -188,6 +188,7 @@ const u8 gText_FlyToWhere[] = _("Fly to where?");
 const u8 gMenuText_Use[] = _("Use");
 const u8 gMenuText_Toss[] = _("Toss");
 const u8 gText_FieldMoves[] = _("Field Moves");
+const u8 gText_LearnMoves[] = _("Learn Moves");
 const u8 gMenuText_Register[] = _("Register");
 const u8 gMenuText_Give[] = _("Give");
 const u8 gMenuText_CheckTag[] = _("Check Tag");
@@ -2514,6 +2515,9 @@ const u8 gText_SideQuestReward_27[] = _("Reward 27");
 const u8 gText_SideQuestReward_28[] = _("Reward 28");
 const u8 gText_SideQuestReward_29[] = _("Reward 29");
 const u8 gText_SideQuestReward_30[] = _("Reward 30");
+
+// Evolution party screen option
+const u8 gText_Evolution[] = _("Evolve");
 
 // Tutorial NPC in Littleroot
 /*const u8 gText_TutorialTalkToNurseJoy[]          = _("Talk to Nurse Joy!");
