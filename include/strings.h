@@ -219,6 +219,7 @@ extern const u8 gMenuText_Confirm[];
 extern const u8 gMenuText_Show[];
 extern const u8 gMenuText_Give2[];
 extern const u8 gText_FieldMoves[];
+extern const u8 gText_LearnMoves[];
 
 extern const u8 gText_WithdrawPokemon[];
 extern const u8 gText_WithdrawMonDescription[];

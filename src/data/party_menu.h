@@ -829,6 +829,7 @@ static const u16 sUnusedData[] =
 enum
 {
     MENU_SUMMARY,
+	MENU_SUB_MOVES,
 	MENU_MOVES,
 	MENU_EGG_MOVES,
 	MENU_TM_MOVES,
@@ -887,7 +888,8 @@ struct
 } static const sCursorOptions[] =
 {
     [MENU_SUMMARY] = {gText_Summary5, CursorCb_Summary},
-	[MENU_MOVES] = {gText_Moves, CursorCb_ChangeMoves},
+    [MENU_SUB_MOVES]   = {gText_LearnMoves, CursorCb_LearnMovesSubMenu},
+	[MENU_MOVES]       = {gText_Moves, CursorCb_ChangeMoves},
 	[MENU_EGG_MOVES]   = {gText_Egg_Moves, CursorCb_ChangeEggMoves},
 	[MENU_TM_MOVES]    = {gText_TM_Moves, CursorCb_ChangeTMMoves},
 	[MENU_TUTOR_MOVES] = {gText_Tutor_Moves, CursorCb_ChangeTutorMoves},
@@ -961,6 +963,7 @@ enum
     ACTIONS_TAKEITEM_TOSS,
     ACTIONS_FIELDMOVE_SUB,
     ACTIONS_EVOLUTION_SUB,
+    ACTIONS_MOVES_SUB,
 };
 
 static const u8 *const sPartyMenuActions[] =
