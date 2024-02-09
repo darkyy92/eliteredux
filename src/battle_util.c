@@ -4772,6 +4772,8 @@ static u16 UseAttackerFollowUpMove(u8 battler, u16 ability, u16 extraMove, u8 mo
 
     gBattleScripting.abilityPopupOverwrite = ability;
 
+    SetTypeBeforeUsingMove(extraMove, battler);
+
     return extraMove;
 }
 
@@ -11011,6 +11013,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
         case ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE:
             #define CHECK_ABILITY(ability) (BATTLER_HAS_ABILITY(battler, ability) && CheckAndSetOncePerTurnAbility(battler, ability))
+
+            //Weather Cast
+            if(CHECK_ABILITY(ABILITY_FORECAST)){
+                switch (move) {
+                    case MOVE_SUNNY_DAY:
+                    case MOVE_RAIN_DANCE:
+                    case MOVE_SANDSTORM:
+                    case MOVE_HAIL:
+                        gBattlerTarget = BATTLE_OPPOSITE(gBattlerAttacker);
+                        if (!IsBattlerAlive(gBattlerTarget)) gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+                        if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
+                }
+            }
+
+            if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+
             //Volcano Rage
             if(CHECK_ABILITY(ABILITY_VOLCANO_RAGE)){
 
@@ -11046,17 +11065,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                     (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
                     return UseAttackerFollowUpMove(battler, ABILITY_THUNDERCALL, MOVE_SMITE, 20, 0, 0);
-                }
-            }
-
-            //Weather Cast
-            if(CHECK_ABILITY(ABILITY_FORECAST)){
-                switch (move) {
-                    case MOVE_SUNNY_DAY:
-                    case MOVE_RAIN_DANCE:
-                    case MOVE_SANDSTORM:
-                    case MOVE_HAIL:
-                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
                 }
             }
 
@@ -13725,6 +13733,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             case MISC_EFFECT_ELECTRIC_TERRAIN_BOOST:
                 if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
                     basePower = basePower * 3 / 2;
+                break;
+            case MISC_EFFECT_TOOK_DAMAGE_BOOST:
+                basePower *= 1 + min(6, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
                 break;
         }
         break;
@@ -17579,7 +17590,6 @@ bool8 isWonderRoomActive(void){
 bool8 CanUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
     if(IsBattlerAlive(sBattlerAttacker)                         &&
        IsBattlerAlive(sBattlerTarget)                           &&
-       sBattlerAttacker != sBattlerTarget                       &&
        !gProtectStructs[sBattlerAttacker].confusionSelfDmg      &&
        !gProtectStructs[sBattlerAttacker].extraMoveUsed         &&
        !gProtectStructs[sBattlerAttacker].flinchImmobility      &&
