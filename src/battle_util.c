@@ -4407,6 +4407,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
     if ((gBattleMons[battler].species == SPECIES_CASTFORM       ||
          gBattleMons[battler].species == SPECIES_CASTFORM_RAINY ||
          gBattleMons[battler].species == SPECIES_CASTFORM_SUNNY ||
+         gBattleMons[battler].species == SPECIES_CASTFORM_SANDY ||
          gBattleMons[battler].species == SPECIES_CASTFORM_SNOWY) && 
 	    BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST) &&
 		gBattleMons[battler].hp != 0){
@@ -4432,6 +4433,14 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             gBattlerAttacker = battler;
             UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM_SNOWY);
             gBattleMons[battler].species = SPECIES_CASTFORM_SNOWY;
+			return TRUE;
+        }
+		else if (gBattleWeather & (WEATHER_SANDSTORM_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SANDY)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CASTFORM_SANDY);
+            gBattleMons[battler].species = SPECIES_CASTFORM_SANDY;
 			return TRUE;
         }else if(!(gBattleWeather & (WEATHER_ANY)) && gBattleMons[battler].species != SPECIES_CASTFORM){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
@@ -16795,6 +16804,7 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
         {SPECIES_CASTFORM_RAINY,                SPECIES_CASTFORM,             TRUE},
         {SPECIES_CASTFORM_SNOWY,                SPECIES_CASTFORM,             TRUE},
         {SPECIES_CASTFORM_SUNNY,                SPECIES_CASTFORM,             TRUE},
+        {SPECIES_CASTFORM_SANDY,                SPECIES_CASTFORM,             TRUE},
         {SPECIES_DARMANITAN_ZEN_MODE_GALARIAN,  SPECIES_DARMANITAN_GALARIAN,  TRUE},
     };
 
