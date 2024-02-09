@@ -1403,6 +1403,7 @@ static bool32 NoTargetPresent(u32 move)
 
 static bool32 TryAegiFormChange(void)
 {
+    u16 newSpecies;
     // Only Aegislash with Stance Change can transform, transformed mons cannot.
     if (!BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_STANCE_CHANGE)
         || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
@@ -1416,18 +1417,18 @@ static bool32 TryAegiFormChange(void)
         if (gBattleMoves[gCurrentMove].power == 0)
             return FALSE;
         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
+        newSpecies = SPECIES_AEGISLASH_BLADE;
         break;
     case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
         if (gCurrentMove != MOVE_KINGS_SHIELD)
             return FALSE;
         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH;
+        newSpecies = SPECIES_AEGISLASH;
         break;
     case SPECIES_AEGISLASH_BLADE_REDUX: // Special -> Physical
         if (gBattleMoves[gCurrentMove].split == SPLIT_PHYSICAL){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
-            gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_REDUX;
+            newSpecies = SPECIES_AEGISLASH_REDUX;
         }
         else
             return FALSE;
@@ -1435,13 +1436,15 @@ static bool32 TryAegiFormChange(void)
     case SPECIES_AEGISLASH_REDUX: // Physical -> Special
         if (gBattleMoves[gCurrentMove].split == SPLIT_SPECIAL){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
-            gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE_REDUX;
+            newSpecies = SPECIES_AEGISLASH_BLADE_REDUX;
         }
         else
             return FALSE;
     break;
     }
 
+    UpdateAbilityStateIndicesForNewSpecies(gBattlerAttacker, newSpecies);
+    gBattleMons[gBattlerAttacker].species = newSpecies;
     BattleScriptPushCursor();
     gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
     return TRUE;
@@ -2665,6 +2668,7 @@ static void Cmd_datahpupdate(void)
         }
         else if (DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
         {
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_MIMIKYU_BUSTED);
             gBattleMons[gActiveBattler].species = SPECIES_MIMIKYU_BUSTED;
             BattleScriptPush(gBattlescriptCurrInstr + 2);
             gBattlescriptCurrInstr = BattleScript_TargetFormChange;
@@ -3883,11 +3887,13 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 {
                     if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA)
                     {
+                        UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_MELOETTA_PIROUETTE);
                         gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_PIROUETTE;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
                     }
                     else if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_PIROUETTE)
                     {
+                        UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_MELOETTA);
                         gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
                     }
@@ -6994,6 +7000,13 @@ static void Cmd_switchineffects(void)
     // Neutralizing Gas announces itself before hazards
     if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS && gSpecialStatuses[gActiveBattler].announceNeutralizingGas == 0)
     {
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (IsBattlerAlive(i) && !IsNeutralizingGasBannedAbility(gBattleMons[i].ability))
+            {
+                UpdateAbilityStateIndicesForNewAbility(i, ABILITY_NONE);
+            }
+        }
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_NEUTRALIZING_GAS;
         gSpecialStatuses[gActiveBattler].announceNeutralizingGas = TRUE;
         gBattlerAbility = gActiveBattler;
@@ -8561,6 +8574,7 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 8;
         return;
     case VARIOUS_TRACE_ABILITY:
+        UpdateAbilityStateIndicesForNewAbility(gActiveBattler, gBattleStruct->tracedAbility[gActiveBattler]);
         gBattleMons[gActiveBattler].ability = gBattleStruct->tracedAbility[gActiveBattler];
         RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
         break;
@@ -9150,6 +9164,7 @@ static void Cmd_various(void)
             if (gBattleMons[gBattlerTarget].ability == ABILITY_NEUTRALIZING_GAS)
                 gSpecialStatuses[gBattlerTarget].neutralizingGasRemoved = TRUE;
 
+            UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, ABILITY_SIMPLE);
             gBattleMons[gBattlerTarget].ability = ABILITY_SIMPLE;
             gBattlescriptCurrInstr += 7;
         }
@@ -9168,6 +9183,7 @@ static void Cmd_various(void)
         }
         else
         {
+            UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, gBattleMons[gBattlerAttacker].ability);
             gBattleMons[gBattlerTarget].ability = gBattleMons[gBattlerAttacker].ability;
             gBattlescriptCurrInstr += 7;
         }
@@ -9342,6 +9358,8 @@ static void Cmd_various(void)
                 megaSpecies = GetWishMegaEvolutionSpecies(gBattleStruct->mega.evolvedSpecies[gActiveBattler], gBattleMons[gActiveBattler].moves[0], gBattleMons[gActiveBattler].moves[1], gBattleMons[gActiveBattler].moves[2], gBattleMons[gActiveBattler].moves[3]);
             }
 
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, megaSpecies);
+
             gBattleMons[gActiveBattler].species = megaSpecies;
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gActiveBattler].species);
 
@@ -9387,6 +9405,8 @@ static void Cmd_various(void)
 
             // Checks Primal Reversion
             primalSpecies = GetPrimalReversionSpecies(gBattleStruct->mega.primalRevertedSpecies[gActiveBattler], gBattleMons[gActiveBattler].item);
+
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, primalSpecies);
 
             gBattleMons[gActiveBattler].species = primalSpecies;
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gActiveBattler].species);
@@ -10124,6 +10144,7 @@ static void Cmd_various(void)
         {
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].species);
             gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerAttacker]] = gBattleMons[gBattlerAttacker].species;
+            UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_GRENINJA_ASH);
             gBattleMons[gBattlerAttacker].species = SPECIES_GRENINJA_ASH;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BattleBondActivatesOnMoveEndAttacker;
@@ -14175,6 +14196,7 @@ static void Cmd_trycopyability(void) // role play
     }
     else
     {
+        UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, defAbility);
         gBattleMons[gBattlerAttacker].ability = defAbility;
         gLastUsedAbility = defAbility;
         gBattlescriptCurrInstr += 5;
@@ -14350,6 +14372,10 @@ static void Cmd_tryswapabilities(void) // skill swap
     else
     {
         u16 abilityAtk = gBattleMons[gBattlerAttacker].ability;
+
+        UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, gBattleMons[gBattlerTarget].ability);
+        UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, abilityAtk);
+
         gBattleMons[gBattlerAttacker].ability = gBattleMons[gBattlerTarget].ability;
         gBattleMons[gBattlerTarget].ability = abilityAtk;
 
@@ -15879,6 +15905,7 @@ static void Cmd_tryworryseed(void)
     }
     else
     {
+        UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, ABILITY_INSOMNIA);
         gBattleMons[gBattlerTarget].ability = ABILITY_INSOMNIA;
         gBattlescriptCurrInstr += 5;
     }
