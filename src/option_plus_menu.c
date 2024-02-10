@@ -50,6 +50,9 @@ enum
     MENUITEM_CUSTOM_SHINY_RATE,
     MENUITEM_CUSTOM_INDIVIDUAL_COLORS,
     MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE,
+    MENUITEM_CUSTOM_AUTOMATIC_EVGAIN,
+    MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN,
+    MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION,
     //MENUITEM_CUSTOM_SANDBOX_MODE,
     //MENUITEM_CUSTOM_HP_BAR,
     //MENUITEM_CUSTOM_EXP_BAR,
@@ -170,7 +173,7 @@ static void DrawChoices_TextSpeed(int selection, int y);
 static void DrawChoices_BarSpeed(int selection, int y);
 static void DrawChoices_BattleScene(int selection, int y);
 static void DrawChoices_PermanentRepel(int selection, int y);
-static void DrawChoices_DamageDone(int selection, int y);
+static void DrawChoices_EnableDisableCustom(int selection, int y);
 static void DrawChoices_AskForNickname(int selection, int y);
 static void DrawChoices_Sound(int selection, int y);
 static void DrawChoices_ButtonMode(int selection, int y);
@@ -227,21 +230,24 @@ struct // MENU_CUSTOM
     int (*processInput)(int selection);
 } static const sItemFunctionsCustom[MENUITEM_CUSTOM_COUNT] =
 {
-    [MENUITEM_CUSTOM_AUTO_RUN]           = {DrawChoices_AutoRun,          ProcessInput_Options_Two},
-    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = {DrawChoices_PermanentRepel,   ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = {DrawChoices_DamageDone,       ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_ENABLE_EVS]         = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_PLAYER_AI]          = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_SHINY_RATE]         = {DrawChoices_ShinyRate,        ProcessInput_Options_Three},
-    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]  = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE] = {DrawChoices_DoubleBattleMode, ProcessInput_Options_Two},
-    //[MENUITEM_CUSTOM_SANDBOX_MODE]      = {DrawChoices_AskForNickname, ProcessInput_Options_Two},
-    //[MENUITEM_CUSTOM_HP_BAR]            = {DrawChoices_BarSpeed,       ProcessInput_Options_Eleven},
-    //[MENUITEM_CUSTOM_EXP_BAR]           = {DrawChoices_BarSpeed,       ProcessInput_Options_Eleven},
-    //[MENUITEM_CUSTOM_FONT]              = {DrawChoices_Font,           ProcessInput_Options_Two}, 
-    //[MENUITEM_CUSTOM_MATCHCALL]         = {DrawChoices_MatchCall,      ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_CANCEL]            = {NULL, NULL},
+    [MENUITEM_CUSTOM_AUTO_RUN]            = {DrawChoices_AutoRun,             ProcessInput_Options_Two},
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]   = {DrawChoices_PermanentRepel,      ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]      = {DrawChoices_EnableDisableCustom, ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]    = {DrawChoices_AskForNickname,      ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_ENABLE_EVS]          = {DrawChoices_AskForNickname,      ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_PLAYER_AI]           = {DrawChoices_AskForNickname,      ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_SHINY_RATE]          = {DrawChoices_ShinyRate,           ProcessInput_Options_Three},
+    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]   = {DrawChoices_AskForNickname,      ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE]  = {DrawChoices_DoubleBattleMode,    ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_AUTOMATIC_EVGAIN]    = {DrawChoices_EnableDisableCustom, ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN]   = {DrawChoices_EnableDisableCustom, ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION] = {DrawChoices_EnableDisableCustom, ProcessInput_Options_Two},
+    //[MENUITEM_CUSTOM_SANDBOX_MODE]      = {DrawChoices_AskForNickname,      ProcessInput_Options_Two},
+    //[MENUITEM_CUSTOM_HP_BAR]            = {DrawChoices_BarSpeed,            ProcessInput_Options_Eleven},
+    //[MENUITEM_CUSTOM_EXP_BAR]           = {DrawChoices_BarSpeed,            ProcessInput_Options_Eleven},
+    //[MENUITEM_CUSTOM_FONT]              = {DrawChoices_Font,                ProcessInput_Options_Two}, 
+    //[MENUITEM_CUSTOM_MATCHCALL]         = {DrawChoices_MatchCall,           ProcessInput_Options_Two},
+    [MENUITEM_CUSTOM_CANCEL]              = {NULL, NULL},
 };
 
 // Menu left side option names text
@@ -257,6 +263,9 @@ static const u8 sText_ShinyRate[]        = _("Shiny Rate");
 static const u8 sText_IndividualColors[] = _("Individual Colors");
 static const u8 sText_SandboxMode[]      = _("Sandbox Mode");
 static const u8 sText_DoubleBattleMode[] = _("Double Battles");
+static const u8 sText_AutomaticEvGain[]  = _("Auto Ev Gain");
+static const u8 sText_AutomaticExpGain[] = _("Auto Exp Gain");
+static const u8 sText_AutomaticEvo[]     = _("Auto Evolution");
 
 //doubleBattleMode
 const u8 gText_Font[] = _("FONT");  //tx_optionsPlus
@@ -275,21 +284,24 @@ static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 
 static const u8 *const sOptionMenuItemsNamesCustom[MENUITEM_CUSTOM_COUNT] =
 {
-    [MENUITEM_CUSTOM_AUTO_RUN]           = sText_AutoRun,
-    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_PermanentRepel,
-    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = sText_DamageDone,
-    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = sText_AskForNickname,
-    [MENUITEM_CUSTOM_ENABLE_EVS]         = sText_EnableEvs,
-    [MENUITEM_CUSTOM_PLAYER_AI]          = sText_PlayerAI,
-    [MENUITEM_CUSTOM_SHINY_RATE]         = sText_ShinyRate,
-    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]  = sText_IndividualColors,
-    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE] = sText_DoubleBattleMode,
+    [MENUITEM_CUSTOM_AUTO_RUN]            = sText_AutoRun,
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]   = sText_PermanentRepel,
+    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]      = sText_DamageDone,
+    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]    = sText_AskForNickname,
+    [MENUITEM_CUSTOM_ENABLE_EVS]          = sText_EnableEvs,
+    [MENUITEM_CUSTOM_PLAYER_AI]           = sText_PlayerAI,
+    [MENUITEM_CUSTOM_SHINY_RATE]          = sText_ShinyRate,
+    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]   = sText_IndividualColors,
+    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE]  = sText_DoubleBattleMode,
+    [MENUITEM_CUSTOM_AUTOMATIC_EVGAIN]    = sText_AutomaticEvGain,
+    [MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN]   = sText_AutomaticExpGain,
+    [MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION] = sText_AutomaticEvo,
     //[MENUITEM_CUSTOM_SANDBOX_MODE]      = sText_SandboxMode,
     //[MENUITEM_CUSTOM_HP_BAR]            = sText_HpBar,
     //[MENUITEM_CUSTOM_EXP_BAR]           = sText_ExpBar,
     //[MENUITEM_CUSTOM_FONT]              = gText_Font,
     //[MENUITEM_CUSTOM_MATCHCALL]         = gText_OptionMatchCalls,
-    [MENUITEM_CUSTOM_CANCEL]             = gText_OptionMenuSave,
+    [MENUITEM_CUSTOM_CANCEL]              = gText_OptionMenuSave,
 };
 
 static const u8 *const OptionTextRight(u8 menuItem)
@@ -321,22 +333,25 @@ static bool8 CheckConditions(int selection)
     case MENU_CUSTOM:
         switch(selection)
         {
-        case MENUITEM_CUSTOM_AUTO_RUN:           return TRUE;
-        //case MENUITEM_CUSTOM_PERMANENT_REPEL:    return TRUE;
-        case MENUITEM_CUSTOM_DISPLAY_DAMAGE:     return TRUE;
-        case MENUITEM_CUSTOM_ASK_FOR_NICKNAME:   return TRUE;
-        case MENUITEM_CUSTOM_ENABLE_EVS:         return TRUE;
-        case MENUITEM_CUSTOM_PLAYER_AI:          return TRUE;
-        case MENUITEM_CUSTOM_SHINY_RATE:         return TRUE;
-        case MENUITEM_CUSTOM_INDIVIDUAL_COLORS:  return TRUE;
-        case MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE: return TRUE;
+        case MENUITEM_CUSTOM_AUTO_RUN:            return TRUE;
+        //case MENUITEM_CUSTOM_PERMANENT_REPEL:   return TRUE;
+        case MENUITEM_CUSTOM_DISPLAY_DAMAGE:      return TRUE;
+        case MENUITEM_CUSTOM_ASK_FOR_NICKNAME:    return TRUE;
+        case MENUITEM_CUSTOM_ENABLE_EVS:          return TRUE;
+        case MENUITEM_CUSTOM_PLAYER_AI:           return TRUE;
+        case MENUITEM_CUSTOM_SHINY_RATE:          return TRUE;
+        case MENUITEM_CUSTOM_INDIVIDUAL_COLORS:   return TRUE;
+        case MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE:  return TRUE;
+        case MENUITEM_CUSTOM_AUTOMATIC_EVGAIN:    return TRUE;
+        case MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN:   return TRUE;
+        case MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION: return TRUE;
         //case MENUITEM_CUSTOM_SANDBOX_MODE:      return TRUE;
         //case MENUITEM_CUSTOM_HP_BAR:            return TRUE;
         //case MENUITEM_CUSTOM_EXP_BAR:           return TRUE;
         //case MENUITEM_CUSTOM_FONT:              return TRUE;
         //case MENUITEM_CUSTOM_MATCHCALL:         return TRUE;
-        case MENUITEM_CUSTOM_CANCEL:             return TRUE;
-        case MENUITEM_CUSTOM_COUNT:              return TRUE;
+        case MENUITEM_CUSTOM_CANCEL:              return TRUE;
+        case MENUITEM_CUSTOM_COUNT:               return TRUE;
         }
     }
 }
@@ -408,23 +423,35 @@ static const u8 sText_Desc_OverworldCallsOff[]     = _("You will not receive cal
 static const u8 sText_Desc_DoubleBattleMode_On[]   = _("Enable Double Battle Mode.");
 static const u8 sText_Desc_DoubleBattleMode_Off[]  = _("Disable Double Battle Mode.");
 
+static const u8 sText_Desc_AutomaticEvGain_On[]     = _("Pokémon will gain Evs in battle\ndepending on the defeated foe.");
+static const u8 sText_Desc_AutomaticEvGain_Off[]    = _("Pokémon will not gain any Evs, only\nusing the summary screen.");
+
+static const u8 sText_Desc_AutomaticExpGain_On[]     = _("Pokémon will gain Exp in battle\nand level up there too.");
+static const u8 sText_Desc_AutomaticExpGain_Off[]    = _("Pokémon will not gain any Exp and\nwill only level up with a Candy Box.");
+
+static const u8 sText_Desc_AutomaticEvolution_On[]   = _("Pokémon will automatically evolve\nafter reaching the criteria.");
+static const u8 sText_Desc_AutomaticEvolution_Off[]  = _("Pokémon will not evolve unless you\nmanually evolve it in the party menu.");
+
 static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][2] =
 {
-    [MENUITEM_CUSTOM_AUTO_RUN]           = {sText_Desc_AutoRun_Off,           sText_Desc_AutoRun_On},
-    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = {sText_Desc_Permanent_Repel_Off,   sText_Desc_Permanent_Repel_On},
-    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = {sText_Desc_Display_Damage_Off,    sText_Desc_Display_Damage_On},
-    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = {sText_Desc_Ask_For_Nickname_Off,  sText_Desc_Ask_For_Nickname_On},
-    [MENUITEM_CUSTOM_ENABLE_EVS]         = {sText_Desc_Disable_Evs,           sText_Desc_Enable_Evs},
-    [MENUITEM_CUSTOM_PLAYER_AI]          = {sText_Desc_Player_AI_Disabled,    sText_Desc_Player_AI_Enabled},
-    [MENUITEM_CUSTOM_SHINY_RATE]         = {sText_Desc_Shiny_Rate,            sText_Empty},
-    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]  = {sText_Desc_Individual_Colors_Off, sText_Desc_Individual_Colors_On},
-    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE] = {sText_Desc_DoubleBattleMode_Off, sText_Desc_DoubleBattleMode_On},
-    //[MENUITEM_CUSTOM_SANDBOX_MODE]      = {sText_Desc_Sandbox_Off,           sText_Desc_Sandbox_On},
-    //[MENUITEM_CUSTOM_HP_BAR]            = {sText_Desc_BattleHPBar,           sText_Empty},
-    //[MENUITEM_CUSTOM_EXP_BAR]           = {sText_Desc_BattleExpBar,          sText_Empty},
-    //[MENUITEM_CUSTOM_FONT]              = {sText_Desc_FontType,              sText_Desc_FontType},
-    //[MENUITEM_CUSTOM_MATCHCALL]         = {sText_Desc_OverworldCallsOn,      sText_Desc_OverworldCallsOff},
-    [MENUITEM_CUSTOM_CANCEL]            = {sText_Desc_Save,                  sText_Empty},
+    [MENUITEM_CUSTOM_AUTO_RUN]            = {sText_Desc_AutoRun_Off,            sText_Desc_AutoRun_On},
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]   = {sText_Desc_Permanent_Repel_Off,    sText_Desc_Permanent_Repel_On},
+    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]      = {sText_Desc_Display_Damage_Off,     sText_Desc_Display_Damage_On},
+    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]    = {sText_Desc_Ask_For_Nickname_Off,   sText_Desc_Ask_For_Nickname_On},
+    [MENUITEM_CUSTOM_ENABLE_EVS]          = {sText_Desc_Disable_Evs,            sText_Desc_Enable_Evs},
+    [MENUITEM_CUSTOM_PLAYER_AI]           = {sText_Desc_Player_AI_Disabled,     sText_Desc_Player_AI_Enabled},
+    [MENUITEM_CUSTOM_SHINY_RATE]          = {sText_Desc_Shiny_Rate,             sText_Empty},
+    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]   = {sText_Desc_Individual_Colors_Off,  sText_Desc_Individual_Colors_On},
+    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE]  = {sText_Desc_DoubleBattleMode_Off,   sText_Desc_DoubleBattleMode_On},
+    [MENUITEM_CUSTOM_AUTOMATIC_EVGAIN]    = {sText_Desc_AutomaticEvGain_Off,    sText_Desc_AutomaticEvGain_On},
+    [MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN]   = {sText_Desc_AutomaticExpGain_Off,   sText_Desc_AutomaticExpGain_On},
+    [MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION] = {sText_Desc_AutomaticEvolution_Off, sText_Desc_AutomaticEvolution_On},
+    //[MENUITEM_CUSTOM_SANDBOX_MODE]      = {sText_Desc_Sandbox_Off,            sText_Desc_Sandbox_On},
+    //[MENUITEM_CUSTOM_HP_BAR]            = {sText_Desc_BattleHPBar,            sText_Empty},
+    //[MENUITEM_CUSTOM_EXP_BAR]           = {sText_Desc_BattleExpBar,           sText_Empty},
+    //[MENUITEM_CUSTOM_FONT]              = {sText_Desc_FontType,               sText_Desc_FontType},
+    //[MENUITEM_CUSTOM_MATCHCALL]         = {sText_Desc_OverworldCallsOn,       sText_Desc_OverworldCallsOff},
+    [MENUITEM_CUSTOM_CANCEL]              = {sText_Desc_Save,                   sText_Empty},
 };
 
 // Disabled Descriptions
@@ -444,15 +471,18 @@ static const u8 *const sOptionMenuItemDescriptionsDisabledMain[MENUITEM_MAIN_COU
 static const u8 sText_Desc_Disabled_BattleHPBar[]   = _("Only active if xyz.");
 static const u8 *const sOptionMenuItemDescriptionsDisabledCustom[MENUITEM_CUSTOM_COUNT] =
 {
-    [MENUITEM_CUSTOM_AUTO_RUN]           = sText_Empty,
-    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_Empty,
-    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = sText_Empty,
-    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = sText_Empty,
-    [MENUITEM_CUSTOM_ENABLE_EVS]         = sText_Empty,
-    [MENUITEM_CUSTOM_PLAYER_AI]          = sText_Empty,
-    [MENUITEM_CUSTOM_SHINY_RATE]         = sText_Empty,
-    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]  = sText_Empty,
-    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE] = sText_Empty,
+    [MENUITEM_CUSTOM_AUTO_RUN]            = sText_Empty,
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]   = sText_Empty,
+    [MENUITEM_CUSTOM_DISPLAY_DAMAGE]      = sText_Empty,
+    [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]    = sText_Empty,
+    [MENUITEM_CUSTOM_ENABLE_EVS]          = sText_Empty,
+    [MENUITEM_CUSTOM_PLAYER_AI]           = sText_Empty,
+    [MENUITEM_CUSTOM_SHINY_RATE]          = sText_Empty,
+    [MENUITEM_CUSTOM_INDIVIDUAL_COLORS]   = sText_Empty,
+    [MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE]  = sText_Empty,
+    [MENUITEM_CUSTOM_AUTOMATIC_EVGAIN]    = sText_Empty,
+    [MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN]   = sText_Empty,
+    [MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION] = sText_Empty,
     //[MENUITEM_CUSTOM_SANDBOX_MODE]      = sText_Empty,
     //[MENUITEM_CUSTOM_HP_BAR]            = sText_Desc_Disabled_BattleHPBar,
     //[MENUITEM_CUSTOM_EXP_BAR]           = sText_Empty,
@@ -698,15 +728,18 @@ void CB2_InitOptionPlusMenu(void)
         sOptions->sel[MENUITEM_MAIN_BUTTONMODE]  = gSaveBlock2Ptr->optionsButtonMode;
         sOptions->sel[MENUITEM_MAIN_FRAMETYPE]   = gSaveBlock2Ptr->optionsWindowFrameType;
         
-        sOptions->sel_custom[MENUITEM_CUSTOM_AUTO_RUN]           = gSaveBlock2Ptr->autoRun;
-        //sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL]    = gSaveBlock2Ptr->permanentRepel;
-        sOptions->sel_custom[MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = gSaveBlock2Ptr->damageDone;
-        sOptions->sel_custom[MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = gSaveBlock2Ptr->askForNickname;
-        sOptions->sel_custom[MENUITEM_CUSTOM_ENABLE_EVS]         = gSaveBlock2Ptr->enableEvs;
-        sOptions->sel_custom[MENUITEM_CUSTOM_PLAYER_AI]          = gSaveBlock2Ptr->playerAI;
-        sOptions->sel_custom[MENUITEM_CUSTOM_SHINY_RATE]         = gSaveBlock2Ptr->shinyrate;
-        sOptions->sel_custom[MENUITEM_CUSTOM_INDIVIDUAL_COLORS]  = gSaveBlock2Ptr->individualColors;
-        sOptions->sel_custom[MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE] = gSaveBlock2Ptr->doubleBattleMode;
+        sOptions->sel_custom[MENUITEM_CUSTOM_AUTO_RUN]            = gSaveBlock2Ptr->autoRun;
+        //sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL]   = gSaveBlock2Ptr->permanentRepel;
+        sOptions->sel_custom[MENUITEM_CUSTOM_DISPLAY_DAMAGE]      = gSaveBlock2Ptr->damageDone;
+        sOptions->sel_custom[MENUITEM_CUSTOM_ASK_FOR_NICKNAME]    = gSaveBlock2Ptr->askForNickname;
+        sOptions->sel_custom[MENUITEM_CUSTOM_ENABLE_EVS]          = gSaveBlock2Ptr->enableEvs;
+        sOptions->sel_custom[MENUITEM_CUSTOM_PLAYER_AI]           = gSaveBlock2Ptr->playerAI;
+        sOptions->sel_custom[MENUITEM_CUSTOM_SHINY_RATE]          = gSaveBlock2Ptr->shinyrate;
+        sOptions->sel_custom[MENUITEM_CUSTOM_INDIVIDUAL_COLORS]   = gSaveBlock2Ptr->individualColors;
+        sOptions->sel_custom[MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE]  = gSaveBlock2Ptr->doubleBattleMode;
+        sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVGAIN]    = gSaveBlock2Ptr->automaticEVGain;
+        sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN]   = gSaveBlock2Ptr->automaticExpGain;
+        sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION] = gSaveBlock2Ptr->automaticEvolution;
         //sOptions->sel_custom[MENUITEM_CUSTOM_SANDBOX_MODE]      = gSaveBlock2Ptr->sandboxMode;
 
         //sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR]            = gSaveBlock2Ptr->optionsBattleSceneOff; //To change
@@ -907,11 +940,14 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->shinyrate                      = sOptions->sel_custom[MENUITEM_CUSTOM_SHINY_RATE];
     gSaveBlock2Ptr->individualColors               = sOptions->sel_custom[MENUITEM_CUSTOM_INDIVIDUAL_COLORS];
     gSaveBlock2Ptr->doubleBattleMode               = sOptions->sel_custom[MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE];
-    //gSaveBlock2Ptr->sandboxMode                    = sOptions->sel_custom[MENUITEM_CUSTOM_SANDBOX_MODE];
-    /*gSaveBlock2Ptr->optionsBattleSceneOff      = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];    //To change
-    gSaveBlock2Ptr->optionsBattleSceneOff        = sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR];   //To change
-    gSaveBlock2Ptr->optionsBattleSceneOff        = sOptions->sel_custom[MENUITEM_CUSTOM_FONT];      //To change
-    gSaveBlock2Ptr->optionsBattleSceneOff        = sOptions->sel_custom[MENUITEM_CUSTOM_MATCHCALL]; //To change*/
+    gSaveBlock2Ptr->automaticEVGain                = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVGAIN];
+    gSaveBlock2Ptr->automaticExpGain               = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN];
+    gSaveBlock2Ptr->automaticEvolution             = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION];
+    //gSaveBlock2Ptr->sandboxMode                  = sOptions->sel_custom[MENUITEM_CUSTOM_SANDBOX_MODE];
+    /*gSaveBlock2Ptr->optionsBattleSceneOff        = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];    //To change
+    gSaveBlock2Ptr->optionsBattleSceneOff          = sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR];   //To change
+    gSaveBlock2Ptr->optionsBattleSceneOff          = sOptions->sel_custom[MENUITEM_CUSTOM_FONT];      //To change
+    gSaveBlock2Ptr->optionsBattleSceneOff          = sOptions->sel_custom[MENUITEM_CUSTOM_MATCHCALL]; //To change*/
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -1175,7 +1211,7 @@ static void DrawChoices_PermanentRepel(int selection, int y)
     DrawOptionMenuChoice(gText_AutoRunEnabled, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutoRunEnabled, 198), y, styles[1], active);
 }
 
-static void DrawChoices_DamageDone(int selection, int y)
+static void DrawChoices_EnableDisableCustom(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_CUSTOM_DISPLAY_DAMAGE);
     u8 styles[2] = {0};

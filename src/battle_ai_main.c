@@ -839,7 +839,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 break;
             case ABILITY_JUSTIFIED:
                 if (moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
-                    RETURN_SCORE_MINUS(10);
+                    RETURN_SCORE_MINUS(20);
                 break;
             case ABILITY_RATTLED:
                 if (!IS_MOVE_STATUS(move)
@@ -1041,7 +1041,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //Justified
         if(BattlerHasInnate(battlerDef, ABILITY_JUSTIFIED) && 
             moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
-            RETURN_SCORE_MINUS(10);
+            RETURN_SCORE_MINUS(20);
 
         //Rattled
         if(BattlerHasInnate(battlerDef, ABILITY_RATTLED) && !IS_MOVE_STATUS(move) &&
@@ -2210,10 +2210,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_PAIN_SPLIT:
             if (gBattleMons[battlerAtk].hp > (gBattleMons[battlerAtk].hp + gBattleMons[battlerDef].hp) / 2)
                 score -= 10;
-            break;
-        
-        case EFFECT_CONVERSION_2:
-            //TODO
             break;
         case EFFECT_LOCK_ON:
             if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS
@@ -3770,10 +3766,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           && AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_ROCKY_HELMET)
             score -= 2;
         break;
-    case EFFECT_CONVERSION:
-        if (!IS_BATTLER_OF_TYPE(battlerAtk, gBattleMoves[gBattleMons[battlerAtk].moves[0]].type))
-            score++;
-        break;
     case EFFECT_FLINCH_HIT:
         score += ShouldTryToFlinch(battlerAtk, battlerDef, AI_DATA->abilities[battlerAtk], AI_DATA->abilities[battlerDef], move);
         break;
@@ -4753,6 +4745,12 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPATK, &score);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPDEF, &score);
+        break;
+    case EFFECT_CONVERSION:
+    case EFFECT_CONVERSION_2:
+    case EFFECT_GEAR_UP:
+        IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);
+        IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPATK, &score);
         break;
     case EFFECT_SHELL_SMASH:
         if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_RESTORE_STATS)

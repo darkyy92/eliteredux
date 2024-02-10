@@ -1941,7 +1941,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 30,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
         .flags = FLAG_SNATCH_AFFECTED,
@@ -2131,7 +2131,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 30,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
         .split = SPLIT_STATUS,
@@ -4512,7 +4512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FLING] =
     {
-        .effect = EFFECT_FLING,
+        .effect = EFFECT_PLACEHOLDER
         .power = 1,
         .type = TYPE_DARK,
         .accuracy = 100,
@@ -7712,7 +7712,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 0,
         .type = TYPE_STEEL,
         .accuracy = 0,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
         .flags = FLAG_SNATCH_AFFECTED,
@@ -10468,7 +10468,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MAKES_CONTACT | FLAG_IRON_FIST_BOOST,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_IRON_FIST_BOOST,
         .split = SPLIT_PHYSICAL,
         .argument = MISC_EFFECT_TOOK_DAMAGE_BOOST,
     },
@@ -10583,14 +10583,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_GLAIVE_RUSH] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_ARGUMENT_HIT,
+        .power = 120,
+        .type = TYPE_DRAGON,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
+        .argument = MOVE_EFFECT_GLAIVE_RUSH | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_SILK_TRAP] =
     {
@@ -10919,5 +10921,15 @@ const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
         .numStatsLowered = 2,
         .statsLowered = {STAT_ATK, STAT_DEF, 0},
         .targetBoth = FALSE,
+    },
+    [I_CLONE_MALICIOUS] = {
+        .ability = ABILITY_MALICIOUS,
+        .numStatsLowered = 2,
+        .statsLowered = { 
+            STAT_HIGHEST_ATTACKING | STAT_USE_STAT_BOOSTS_IN_CALC,
+            STAT_HIGHEST_DEFENDING | STAT_USE_STAT_BOOSTS_IN_CALC,
+            0
+        },
+        .targetBoth = TRUE,
     },
 };

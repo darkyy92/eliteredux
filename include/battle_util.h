@@ -26,7 +26,8 @@
 #define ABILITYEFFECT_NEUTRALIZINGGAS            15
 #define ABILITYEFFECT_AFTER_RECOIL               16
 #define ABILITYEFFECT_COPY_STATS                 17
-#define ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE              18
+#define ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE     18
+#define ABILITYEFFECT_MOVE_END_EITHER            19
 // Special cases
 #define ABILITYEFFECT_SWITCH_IN_TERRAIN          0xFE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
@@ -262,11 +263,15 @@ union AbilityStates GetAbilityStateAs(u8 battler, u16 ability);
 void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
+u8 GetHighestAttackingStatId(u8 battlerId, u8 includeStatStages);
+u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages);
+u8 TranslateStatId(u8 statId, u8 battlerId);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[]);
 void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility);
 void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
 bool32 IsNeutralizingGasBannedAbility(u32 ability);
+bool8 CanBeDisabled(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

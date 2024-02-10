@@ -858,8 +858,7 @@ Common_EventScript_TryRemoveMon::
 
 @ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign:: @ 8272B6A
-	.string "“Selected items for your convenience!”\n"
-	.string "Pokémon Mart$"
+	.string "Pokemon Adoption Center$"
 
 gText_PokemonCenterSign:: @ 8272B9E
 	.string "“Rejuvenate your tired partners!”\n"

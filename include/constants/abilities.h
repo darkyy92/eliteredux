@@ -180,7 +180,7 @@
 #define ABILITY_CHEEK_POUCH 167 // Eating Berries restores 33% HP.
 #define ABILITY_PROTEAN 168 // Changes type to used move.
 #define ABILITY_FUR_COAT 169 // Halves damage from physical moves against this Pokémon.
-#define ABILITY_MAGICIAN 170 // Steals the foe's held item on contact.
+#define ABILITY_MAGICIAN 170 // Steals the foe's held item on non-contact.
 #define ABILITY_BULLETPROOF 171 // Protects from projectiles, ball and bomb moves.
 #define ABILITY_COMPETITIVE 172 // Lowered stats up Sp. Atk by two levels.
 #define ABILITY_STRONG_JAW 173 // Boosts biting moves by 50%.
@@ -353,7 +353,7 @@
 #define ABILITY_SOUL_EATER 331 // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_SOUL_LINKER 332 // Receives any damage inflicted, shares all damage taken.
 #define ABILITY_SWEET_DREAMS 333 // Heals 1/8 HP when sleeping, immune to Bad Dreams.
-#define ABILITY_BAD_LUCK 334 // Foes can't land crits and foe's moves have -5% accuracy.
+#define ABILITY_BAD_LUCK 334 // Foes can't land crits, have -5% accuracy, and deal min damage.
 #define ABILITY_HAUNTED_SPIRIT 335 // When the Pokemon faints, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST 336 // Ups Electric moves by 35% but gets 10% recoil damage.
 #define ABILITY_RAW_WOOD 337 // Halves incoming Grass-type damage. Boosts Grass-type moves by 20%.
@@ -591,7 +591,7 @@
 #define ABILITY_SUPREME_OVERLORD 569 // Each fainted ally increases Attack and SpAtk by 10%.
 #define ABILITY_ILL_WILL 570 // Placeholder
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
-#define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
+#define ABILITY_WATCH_YOUR_STEP 572 // Spreads two layers of Spikes on switch-in.
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.

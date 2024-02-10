@@ -3488,39 +3488,7 @@ void FaintClearSetData(void)
     gMoveSelectionCursor[gActiveBattler] = 0;
 
     memset(&gDisableStructs[gActiveBattler], 0, sizeof(struct DisableStruct));
-
-    gProtectStructs[gActiveBattler].protected = FALSE;
-    gProtectStructs[gActiveBattler].spikyShielded = FALSE;
-    gProtectStructs[gActiveBattler].kingsShielded = FALSE;
-    gProtectStructs[gActiveBattler].angelsWrathProtected = FALSE;
-    gProtectStructs[gActiveBattler].banefulBunkered = FALSE;
-    gProtectStructs[gActiveBattler].obstructed = FALSE;
-    gProtectStructs[gActiveBattler].endured = FALSE;
-    gProtectStructs[gActiveBattler].noValidMoves = FALSE;
-    gProtectStructs[gActiveBattler].helpingHand = FALSE;
-    gProtectStructs[gActiveBattler].bounceMove = FALSE;
-    gProtectStructs[gActiveBattler].stealMove = FALSE;
-    gProtectStructs[gActiveBattler].prlzImmobility = FALSE;
-    gProtectStructs[gActiveBattler].confusionSelfDmg = FALSE;
-    gProtectStructs[gActiveBattler].extraMoveUsed = FALSE;
-    gProtectStructs[gActiveBattler].targetAffected = FALSE;
-    gProtectStructs[gActiveBattler].chargingTurn = FALSE;
-    gProtectStructs[gActiveBattler].fleeFlag = 0;
-    gProtectStructs[gActiveBattler].usedImprisonedMove = FALSE;
-    gProtectStructs[gActiveBattler].loveImmobility = FALSE;
-    gProtectStructs[gActiveBattler].usedDisabledMove = FALSE;
-    gProtectStructs[gActiveBattler].usedTauntedMove = FALSE;
-    gProtectStructs[gActiveBattler].flag2Unknown = FALSE;
-    gProtectStructs[gActiveBattler].flinchImmobility = FALSE;
-    gProtectStructs[gActiveBattler].notFirstStrike = FALSE;
-    gProtectStructs[gActiveBattler].usedHealBlockedMove = FALSE;
-    gProtectStructs[gActiveBattler].usesBouncedMove = FALSE;
-    gProtectStructs[gActiveBattler].usedGravityPreventedMove = FALSE;
-    gProtectStructs[gActiveBattler].usedThroatChopPreventedMove = FALSE;
-    gProtectStructs[gActiveBattler].statRaised = FALSE;
-    gProtectStructs[gActiveBattler].statFell = FALSE;
-    gProtectStructs[gActiveBattler].pranksterElevated = FALSE;
-    gDisableStructs[gActiveBattler].hasBeenOnBattle = FALSE;
+    memset(&gProtectStructs[gActiveBattler], 0, sizeof(struct ProtectStruct));
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 
@@ -3962,8 +3930,6 @@ static void TryDoEventsBeforeFirstTurn(void)
         if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
             return;
     }
-    if (AbilityBattleEffects(ABILITYEFFECT_INTIMIDATE1, 0, 0, 0, 0) != 0)
-        return;
     if (AbilityBattleEffects(ABILITYEFFECT_TRACE1, 0, 0, 0, 0) != 0)
         return;
     // Check all switch in items having effect from the fastest mon to slowest.

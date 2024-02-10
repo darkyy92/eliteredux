@@ -49,7 +49,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SCIZOR] = sScizorFormSpeciesIdTable,
     [SPECIES_HERACROSS] = sHeracrossFormSpeciesIdTable,
     [SPECIES_CORSOLA] = sCorsolaFormSpeciesIdTable,
-    [SPECIES_TYRANITAR] = sTyranitarFormSpeciesIdTable,
+    [SPECIES_TYRANITAR_REDUX] = sTyranitarFormSpeciesIdTable,
     [SPECIES_SCEPTILE] = sSceptileFormSpeciesIdTable,
     [SPECIES_BLAZIKEN] = sBlazikenFormSpeciesIdTable,
     [SPECIES_SWAMPERT] = sSwampertFormSpeciesIdTable,
@@ -798,5 +798,11 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormSpeciesIdTable,
     [SPECIES_KINGAMBIT_REDUX] = sKingambitFormSpeciesIdTable,
+
+    [SPECIES_LARVITAR_REDUX] = sLarvitarFormSpeciesIdTable,
+
+    [SPECIES_PUPITAR_REDUX] = sPupitarFormSpeciesIdTable,
+
+    [SPECIES_TYRANITAR_MEGA_REDUX] = sTyranitarFormSpeciesIdTable,
 
 };

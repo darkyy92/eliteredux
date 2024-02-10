@@ -171,6 +171,7 @@ struct ProtectStruct
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
+    u8 glaiveRush:1;
 };
 
 struct SpecialStatus
@@ -193,7 +194,8 @@ struct SpecialStatus
     u8 berryReduced:1;
     u8 gemBoost:1;
     u8 rototillerAffected:1;  // to be affected by rototiller
-    u8 parentalBondOn:2;
+    u8 parentalBondOn:3;
+    u8 parentalBondInitialCount:3;
     u8 multiHitOn:1;
     u8 gemParam;
     u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
