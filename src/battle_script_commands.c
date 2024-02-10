@@ -302,6 +302,7 @@ static bool8 sub_804F344(void);
 static void PutMonIconOnLvlUpBox(void);
 static void PutLevelAndGenderOnLvlUpBox(void);
 static bool32 CriticalCapture(u32 odds);
+static bool8 DisableLastUsedMove(u8 battlerTarget);
 
 static void SpriteCB_MonIconOnLvlUpBox(struct Sprite* sprite);
 
@@ -3945,6 +3946,13 @@ void SetMoveEffect(bool32 primary, u32 certain)
 
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
+                break;
+            case MOVE_EFFECT_DISABLE:
+                if (CanBeDisabled(gBattlerTarget))
+                {
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_MoveWasDisabledMessage;
+                }
                 break;
             }
         }
@@ -12878,32 +12886,44 @@ static void Cmd_mirrorcoatdamagecalculator(void) // a copy of atkA1 with the phy
 
 static void Cmd_disablelastusedattack(void)
 {
-    s32 i;
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    if (DisableLastUsedMove(gBattlerTarget))
     {
-        if (gBattleMons[gBattlerTarget].moves[i] == gLastMoves[gBattlerTarget])
-            break;
-    }
-    if (gDisableStructs[gBattlerTarget].disabledMove == 0
-        && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
-    {
-        PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].moves[i])
-
-        gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
-        if (B_DISABLE_TURNS == GEN_3)
-            gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 2;
-        else if (B_DISABLE_TURNS == GEN_4)
-            gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 4;
-        else
-            gDisableStructs[gBattlerTarget].disableTimer = 4;
-        gDisableStructs[gBattlerTarget].disableTimerStartValue = gDisableStructs[gBattlerTarget].disableTimer; // used to save the random amount of turns?
         gBattlescriptCurrInstr += 5;
     }
     else
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
+}
+
+static bool8 DisableLastUsedMove(u8 battler)
+{
+    s32 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (gBattleMons[battler].moves[i] == gLastMoves[battler])
+            break;
+    }
+    if (gDisableStructs[battler].disabledMove == 0
+        && i != MAX_MON_MOVES && gBattleMons[battler].pp[i] != 0)
+    {
+        PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[battler].moves[i])
+
+        gDisableStructs[battler].disabledMove = gBattleMons[battler].moves[i];
+        if (B_DISABLE_TURNS == GEN_3)
+            gDisableStructs[battler].disableTimer = (Random() & 3) + 2;
+        else if (B_DISABLE_TURNS == GEN_4)
+            gDisableStructs[battler].disableTimer = (Random() & 3) + 4;
+        else
+            gDisableStructs[battler].disableTimer = 4;
+
+        gDisableStructs[battler].disableTimerStartValue = gDisableStructs[battler].disableTimer; // used to save the random amount of turns?
+        
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 static void Cmd_trysetencore(void)

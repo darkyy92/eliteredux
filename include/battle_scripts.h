@@ -552,6 +552,7 @@ extern const u8 BattleScript_MonkeyBusinessActivated[];
 extern const u8 BattleScript_FearMongerActivated[];
 extern const u8 BattleScript_GeneratorActivates[];
 extern const u8 BattleScript_EffectSoothingAroma[];
+extern const u8 BattleScript_MoveWasDisabledMessage[];
 
 extern const u8 BattleScript_Archmage_Effect_Type_Electric[];
 extern const u8 BattleScript_Archmage_Effect_Type_Fairy[];
@@ -559,8 +560,6 @@ extern const u8 BattleScript_Archmage_Effect_Type_Grass[];
 extern const u8 BattleScript_Archmage_Effect_Type_Psychic[];
 extern const u8 BattleScript_Archmage_Effect_Type_Normal[];
 extern const u8 BattleScript_Archmage_Effect_Type_Rock[];
-extern const u8 BattleScript_Archmage_Effect_Type_Ghost[];
-extern const u8 BattleScript_Archmage_Effect_Type_Fighting[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

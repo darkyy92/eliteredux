@@ -4746,9 +4746,13 @@ BattleScript_EffectDisable::
 	disablelastusedattack BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+	call BattleScript_MoveWasDisabledMessage
+	goto BattleScript_MoveEnd
+	
+BattleScript_MoveWasDisabledMessage::
 	printstring STRINGID_PKMNMOVEWASDISABLED
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
+	return
 
 BattleScript_EffectLevelDamage::
 	attackcanceler
@@ -11568,21 +11572,6 @@ BattleScript_Archmage_Effect_Type_Rock::
 	printstring STRINGID_POINTEDSTONESFLOAT
 	waitmessage B_WAIT_TIME_LONG
 	return
-
-BattleScript_Archmage_Effect_Type_Ghost::
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNMOVEWASDISABLED
-	waitmessage B_WAIT_TIME_LONG
-	return
-
-BattleScript_Archmage_Effect_Type_Fighting::
-	call BattleScript_AbilityPopUp
-	setgraphicalstatchangevalues
-	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	waitanimation
-	printstring STRINGID_LASTABILITYRAISEDSTAT
-	waitmessage B_WAIT_TIME_LONG
-	return	
 	
 BattleScript_HurtsUser:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE

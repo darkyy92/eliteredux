@@ -267,6 +267,7 @@ void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[]);
 void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility);
 void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
 bool32 IsNeutralizingGasBannedAbility(u32 ability);
+bool8 CanBeDisabled(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

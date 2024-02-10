@@ -372,7 +372,8 @@
 #define MOVE_EFFECT_SPD_PLUS_1_DEF_MINUS_1 72
 #define MOVE_EFFECT_ATTRACT                73
 #define MOVE_EFFECT_CURSE                  74
-#define NUM_MOVE_EFFECTS                   75
+#define MOVE_EFFECT_DISABLE                75
+#define NUM_MOVE_EFFECTS                   76
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
