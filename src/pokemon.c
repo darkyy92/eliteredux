@@ -6817,7 +6817,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
-    if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK)
+    if (((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK) || !gSaveBlock2Ptr->automaticEvolution)
         return SPECIES_NONE;
 
     /*Old code with Eviolite preventing evolutions

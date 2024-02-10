@@ -940,9 +940,9 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->shinyrate                      = sOptions->sel_custom[MENUITEM_CUSTOM_SHINY_RATE];
     gSaveBlock2Ptr->individualColors               = sOptions->sel_custom[MENUITEM_CUSTOM_INDIVIDUAL_COLORS];
     gSaveBlock2Ptr->doubleBattleMode               = sOptions->sel_custom[MENUITEM_CUSTOM_DOUBLE_BATTLE_MODE];
-    gSaveBlock2Ptr->automaticEVGain         = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVGAIN];
-    gSaveBlock2Ptr->automaticExpGain                 = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN];
-    gSaveBlock2Ptr->automaticEvolution      = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION];
+    gSaveBlock2Ptr->automaticEVGain                = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVGAIN];
+    gSaveBlock2Ptr->automaticExpGain               = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EXPGAIN];
+    gSaveBlock2Ptr->automaticEvolution             = sOptions->sel_custom[MENUITEM_CUSTOM_AUTOMATIC_EVOLUTION];
     //gSaveBlock2Ptr->sandboxMode                  = sOptions->sel_custom[MENUITEM_CUSTOM_SANDBOX_MODE];
     /*gSaveBlock2Ptr->optionsBattleSceneOff        = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];    //To change
     gSaveBlock2Ptr->optionsBattleSceneOff          = sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR];   //To change
