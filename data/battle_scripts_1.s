@@ -173,7 +173,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectStomp                   @ EFFECT_FLINCH_MINIMIZE_HIT
 	.4byte BattleScript_EffectSolarbeam               @ EFFECT_SOLARBEAM
 	.4byte BattleScript_EffectThunder                 @ EFFECT_THUNDER
-	.4byte BattleScript_EffectTeleport                @ EFFECT_TELEPORT
+	.4byte BattleScript_EffectBatonPass               @ EFFECT_SWITCH_ARGUMENT
 	.4byte BattleScript_EffectBeatUp                  @ EFFECT_BEAT_UP
 	.4byte BattleScript_EffectSemiInvulnerable        @ EFFECT_SEMI_INVULNERABLE
 	.4byte BattleScript_EffectDefenseCurl             @ EFFECT_DEFENSE_CURL
@@ -450,6 +450,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFilletAway			  @ EFFECT_FILLET_AWAY
 	.4byte BattleScript_EffectCourtChange			  @ EFFECT_COURT_CHANGE
 	.4byte BattleScript_EffectChillyReception		  @ EFFECT_CHILLY_RECEPTION
+	.4byte BattleScript_EffectShedTail				  @ EFFECT_SHED_TAIL
+	.4byte BattleScript_EffectGhastlyEcho			  @ EFFECT_GHASTLY_ECHO
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -3052,11 +3054,63 @@ BattleScript_EffectHitEscape:
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	jumpifmovehadnoeffect BattleScript_MoveEnd
-	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 	moveendto MOVEEND_ATTACKER_VISIBLE
 	moveendfrom MOVEEND_TARGET_VISIBLE
 	goto BattleScript_MoveSwitch
+
+
+BattleScript_EffectGhastlyEcho:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	jumpifmovehadnoeffect BattleScript_MoveEnd
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendto MOVEEND_ATTACKER_VISIBLE
+	moveendfrom MOVEEND_TARGET_VISIBLE
+	jumpifbattleend BattleScript_MoveEnd
+	jumpifbyte CMP_NOT_EQUAL gBattleOutcome 0, BattleScript_MoveEnd
+	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_MoveEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd
+	printstring STRINGID_PKMNWENTBACK
+	waitmessage B_WAIT_TIME_SHORT
+	openpartyscreen BS_ATTACKER, BattleScript_MoveEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 2
+	returntoball BS_ATTACKER
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	trytoclearprimalweather
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	setghastlyecho BS_ATTACKER
+	switchineffects BS_ATTACKER
+	end
+
+BattleScript_AnnounceGhastlyEcho::
+	printstring STRINGID_GHASTLY_ECHO
+	waitmessage B_WAIT_TIME_LONG
+	return
 
 BattleScript_EffectPlaceholder:
 	attackcanceler
@@ -5784,33 +5838,6 @@ BattleScript_EffectThunder:
 BattleScript_EffectHurricane:
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	goto BattleScript_EffectHit
-
-BattleScript_EffectTeleport:
-	attackcanceler
-	attackstring
-	ppreduce
-.if B_TELEPORT_BEHAVIOR >= GEN_7
-	canteleport BS_ATTACKER
-	jumpifbyte CMP_EQUAL, gBattleCommunication, TRUE, BattleScript_EffectTeleportNew
-	goto BattleScript_ButItFailed
-.else
-	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_ButItFailed
-.endif
-BattleScript_EffectTeleportTryToRunAway:
-	getifcantrunfrombattle BS_ATTACKER
-	jumpifbyte CMP_EQUAL, gBattleCommunication, 1, BattleScript_ButItFailed
-	jumpifbyte CMP_EQUAL, gBattleCommunication, 2, BattleScript_PrintAbilityMadeIneffective
-	attackanimation
-	waitanimation
-	printstring STRINGID_PKMNFLEDFROMBATTLE
-	waitmessage B_WAIT_TIME_LONG
-	setoutcomeonteleport BS_ATTACKER
-	goto BattleScript_MoveEnd
-
-BattleScript_EffectTeleportNew:
-	getbattlerside BS_ATTACKER
-	jumpifbyte CMP_EQUAL, gBattleCommunication, B_SIDE_OPPONENT, BattleScript_EffectTeleportTryToRunAway
-	goto BattleScript_SwitchOrFail
 
 .if B_BEAT_UP_DMG < GEN_5
 BattleScript_EffectBeatUp::

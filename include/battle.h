@@ -124,6 +124,7 @@ struct DisableStruct
     u8 disciplineCounter:4;
     u8 filler:4;
     bool8 syrupBombIsShiny:1;
+    u8 ghastlyEchoTimer:2;
 };
 
 struct ProtectStruct
@@ -188,7 +189,6 @@ struct SpecialStatus
     u8 focusSashed:1;
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
-    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3; //8
     u8 berryReduced:1;
@@ -211,7 +211,12 @@ struct SpecialStatus
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
+};
+
+struct BattlerState
+{
     u8 abilityState[NUM_INNATE_PER_SPECIES + 1];
+    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer
@@ -949,6 +954,7 @@ extern u8 gBattleCommunication[BATTLE_COMMUNICATION_ENTRIES_COUNT];
 extern u8 gBattleOutcome;
 extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
+extern struct BattlerState gBattlerState[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
 extern struct WishFutureKnock gWishFutureKnock;
 extern u16 gIntroSlideFlags;

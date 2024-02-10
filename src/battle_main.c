@@ -218,6 +218,7 @@ EWRAM_DATA u8 gBattleCommunication[BATTLE_COMMUNICATION_ENTRIES_COUNT] = {0};
 EWRAM_DATA u8 gBattleOutcome = 0;
 EWRAM_DATA struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA struct BattlerState gBattlerState[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gBattleWeather = 0;
 EWRAM_DATA struct WishFutureKnock gWishFutureKnock = {0};
 EWRAM_DATA u16 gIntroSlideFlags = 0;
@@ -3241,6 +3242,7 @@ static void BattleStartClearSetData(void)
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gWishFutureKnock, 0, sizeof(gWishFutureKnock));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
+    memcpy(&gBattlerState, 0, sizeof(gBattlerState));
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
@@ -3408,6 +3410,7 @@ void SwitchInClearSetData(void)
     gMoveSelectionCursor[gActiveBattler] = 0;
 
     memset(&gDisableStructs[gActiveBattler], 0, sizeof(struct DisableStruct));
+    memcpy(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
 
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
@@ -3489,6 +3492,7 @@ void FaintClearSetData(void)
 
     memset(&gDisableStructs[gActiveBattler], 0, sizeof(struct DisableStruct));
     memset(&gProtectStructs[gActiveBattler], 0, sizeof(struct ProtectStruct));
+    memcpy(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 
@@ -5222,7 +5226,6 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleMons[gActiveBattler].status2 &= ~(STATUS2_SUBSTITUTE);
 
         gSpecialStatuses[gActiveBattler].parentalBondOn = 0;
-        memset(&gSpecialStatuses[gActiveBattler].turnAbilityTriggers, 0, sizeof(gSpecialStatuses[gActiveBattler].turnAbilityTriggers));
     }
 
     gSideStatuses[0] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);

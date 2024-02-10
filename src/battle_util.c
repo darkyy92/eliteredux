@@ -2745,6 +2745,7 @@ enum
     ENDTURN_BLEED,
     ENDTURN_NIGHTMARES,
     ENDTURN_CURSE,
+    ENDTURN_SALT_CURE,
     ENDTURN_WRAP,
     ENDTURN_OCTOLOCK,
     ENDTURN_UPROAR,
@@ -2758,6 +2759,7 @@ enum
     ENDTURN_EMBARGO,
     ENDTURN_LOCK_ON,
     ENDTURN_CHARGE,
+    ENDTURN_GHASTLY_ECHO,
     ENDTURN_COILED_UP,
     ENDTURN_LASER_FOCUS,
     ENDTURN_TAUNT,
@@ -2772,7 +2774,6 @@ enum
     ENDTURN_PLASMA_FISTS,
     ENDTURN_TOXIC_WASTE_DAMAGE,
     ENDTURN_BATTLER_COUNT,
-    ENDTURN_SALT_CURE,
 };
 
 // Ingrain, Leech Seed, Strength Sap and Aqua Ring
@@ -3264,6 +3265,11 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_CHARGE:  // charge
             if (gDisableStructs[gActiveBattler].chargeTimer && --gDisableStructs[gActiveBattler].chargeTimer == 0)
                 gStatuses3[gActiveBattler] &= ~STATUS3_CHARGED_UP;
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_GHASTLY_ECHO:
+            if (gDisableStructs[gActiveBattler].ghastlyEchoTimer && --gDisableStructs[gActiveBattler].ghastlyEchoTimer == 0)
+                gStatuses4[gActiveBattler] &= ~STATUS4_GHASTLY_ECHO;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_COILED_UP:
@@ -4611,17 +4617,17 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
     switch (BattlerHasInnateOrAbility(battlerId, ability))
     {
         case BATTLER_INNATE:
-            if(!gSpecialStatuses[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1]){
-                gSpecialStatuses[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1] = TRUE;
+            if(!gBattlerState[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1]){
+                gBattlerState[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
                 gBattlerAttacker = battlerId;
                 return TRUE;
             }
             return FALSE;
         case BATTLER_ABILITY:
-            if(!gSpecialStatuses[battlerId].switchInAbilityDone[0]){
+            if(!gBattlerState[battlerId].switchInAbilityDone[0]){
+                gBattlerState[battlerId].switchInAbilityDone[0] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
-                gSpecialStatuses[battlerId].switchInAbilityDone[0] = TRUE;
                 gBattlerAttacker = battlerId;
                 return TRUE;
             }
@@ -4673,9 +4679,9 @@ u32 GetAbilityState(u8 battler, u16 ability) {
     switch (BattlerHasInnateOrAbility(battler, ability))
     {
         case BATTLER_INNATE:
-            return gSpecialStatuses[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1];
+            return gBattlerState[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1];
         case BATTLER_ABILITY:
-            return gSpecialStatuses[battler].abilityState[0];
+            return gBattlerState[battler].abilityState[0];
         default:
             return 0;
     }
@@ -4691,10 +4697,10 @@ void SetAbilityState(u8 battler, u16 ability, u32 value) {
     switch (BattlerHasInnateOrAbility(battler, ability))
     {
         case BATTLER_INNATE:
-            gSpecialStatuses[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1] = value;
+            gBattlerState[battler].abilityState[GetBattlerInnateNum(battler, ability) + 1] = value;
             return;
         case BATTLER_ABILITY:
-            gSpecialStatuses[battler].abilityState[0] = value;
+            gBattlerState[battler].abilityState[0] = value;
             return;
         default:
             return;
@@ -14002,6 +14008,8 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
     // various effecs
     if (gProtectStructs[battlerAtk].helpingHand)
         MulModifier(&modifier, UQ_4_12(1.5));
+    if (gStatuses4[battlerAtk] & STATUS4_GHASTLY_ECHO)
+        MulModifier(&modifier, UQ_4_12(1.5));
     if (gStatuses3[battlerAtk] & STATUS3_CHARGED_UP && moveType == TYPE_ELECTRIC)
         MulModifier(&modifier, UQ_4_12(2.0));
     if (gStatuses3[battlerAtk] & STATUS3_ME_FIRST)
@@ -17317,12 +17325,12 @@ void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[])
             }
         }
         if (j >= NUM_INNATE_PER_SPECIES + 1) continue;
-        switchInAbilityDone[i] = gSpecialStatuses[battler].switchInAbilityDone[i];
+        switchInAbilityDone[i] = gBattlerState[battler].switchInAbilityDone[i];
         turnAbilityTriggers[i] = gSpecialStatuses[battler].turnAbilityTriggers[i];
-        abilityState[i] = gSpecialStatuses[battler].abilityState[i];
+        abilityState[i] = gBattlerState[battler].abilityState[i];
     }
 
-    memcpy(&gSpecialStatuses[battler].switchInAbilityDone, &switchInAbilityDone, sizeof(gSpecialStatuses[battler].switchInAbilityDone));
+    memcpy(&gBattlerState[battler].switchInAbilityDone, &switchInAbilityDone, sizeof(gBattlerState[battler].switchInAbilityDone));
     memcpy(&gSpecialStatuses[battler].turnAbilityTriggers, &turnAbilityTriggers, sizeof(gSpecialStatuses[battler].turnAbilityTriggers));
-    memcpy(&gSpecialStatuses[battler].abilityState, &abilityState, sizeof(gSpecialStatuses[battler].abilityState));
+    memcpy(&gBattlerState[battler].abilityState, &abilityState, sizeof(gBattlerState[battler].abilityState));
 }

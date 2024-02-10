@@ -8771,7 +8771,6 @@ static void Cmd_various(void)
         gSpecialStatuses[gActiveBattler].intimidatedMon = FALSE;
         gSpecialStatuses[gActiveBattler].scaredMon = FALSE;
         gSpecialStatuses[gActiveBattler].traced = FALSE;
-        memset(&gSpecialStatuses[gActiveBattler].switchInAbilityDone, 0, sizeof(gSpecialStatuses[gActiveBattler].switchInAbilityDone));
         break;
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
         if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId || gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId)
@@ -10662,6 +10661,19 @@ static void Cmd_various(void)
         gSideStatuses[0] |= (gSideStatuses[1] & SIDE_STATUS_SWAPPABLE);
         gSideStatuses[1] &= ~SIDE_STATUS_SWAPPABLE;
         gSideStatuses[1] |= (u32Value & SIDE_STATUS_SWAPPABLE);
+        break;
+    case VARIOUS_GHASTLY_ECHO:
+        if (!(gStatuses4[gActiveBattler] & STATUS4_GHASTLY_ECHO)
+            && !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUNDPROOF)
+            && !IsAbilityOnSide(gActiveBattler, ABILITY_NOISE_CANCEL))
+        {
+            gStatuses4[gActiveBattler] |= STATUS4_GHASTLY_ECHO;
+            gDisableStructs[gActiveBattler].ghastlyEchoTimer = 2;
+            gBattlescriptCurrInstr += 3;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AnnounceGhastlyEcho;
+            return;
+        }
         break;
     } // End of switch (gBattlescriptCurrInstr[2])
 

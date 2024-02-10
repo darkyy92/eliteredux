@@ -1219,7 +1219,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_TELEPORT] =
     {
-        .effect = EFFECT_TELEPORT,
+        .effect = EFFECT_SWITCH_ARGUMENT,
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 0,
@@ -10000,7 +10000,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_REVIVAL_BLESSING] =
     {
-        .effect = EFFECT_RECOIL_HP_25,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 50,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -10048,15 +10048,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SHED_TAIL] =
     {
-        .effect = EFFECT_RECOIL_HP_25,
-        .power = 50,
+        .effect = EFFECT_SHED_TAIL,
+        .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 1,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .split = SPLIT_STATUS,
     },
     [MOVE_BERRY_SMASH] =
     {
@@ -10294,25 +10293,26 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_GHASTLY_ECHO] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_GHASTLY_ECHO,
+        .power = 60,
+        .type = TYPE_GHOST,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SOUND,
+        .split = SPLIT_SPECIAL,
     },
     [MOVE_CHILLY_RECEPTION] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_CHILLY_RECEPTION,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_ICE,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_ALL_BATTLERS,
+        .split = SPLIT_STATUS,
     },
     [MOVE_ICE_SPINNER] =
     {

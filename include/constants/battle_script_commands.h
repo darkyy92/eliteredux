@@ -233,6 +233,7 @@
 #define VARIOUS_DO_COPY_STAT_CHANGE             153
 #define VARIOUS_TRY_LOSE_HALF_MAX_HP            154
 #define VARIOUS_SWAP_SIDE_EFFECTS               155
+#define VARIOUS_GHASTLY_ECHO                    156
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
