@@ -12000,67 +12000,42 @@ static void Cmd_forcerandomswitch(void)
     }
 }
 
-static void Cmd_tryconversiontypechange(void) // randomly changes user's type to one of its moves' type
+static void Cmd_tryconversiontypechange(void)
 {
-    u8 validMoves = 0;
-    u8 moveChecked;
-    u8 moveType;
+    u8 i;
+    u16 move;
+    u8 type;
+    u8 type2;
+    struct BattlePokemon* mon;
 
-    while (validMoves < MAX_MON_MOVES)
+    for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (gBattleMons[gBattlerAttacker].moves[validMoves] == 0)
-            break;
+        move = gBattleMons[gBattlerAttacker].moves[i];
+        if (!move) continue;
 
-        validMoves++;
-    }
+        type = gBattleMoves[move].type;
+        if (type == TYPE_MYSTERY) continue;
+        type2 = gBattleMoves[move].type2;
+        if (!type2 || type2 == TYPE_MYSTERY) type2 = type;
 
-    for (moveChecked = 0; moveChecked < validMoves; moveChecked++)
-    {
-        moveType = gBattleMoves[gBattleMons[gBattlerAttacker].moves[moveChecked]].type;
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, type);
 
-        if (moveType == TYPE_MYSTERY)
-        {
-            if (IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
-                moveType = TYPE_GHOST;
-            else
-                moveType = TYPE_NORMAL;
-        }
-        if (moveType != gBattleMons[gBattlerAttacker].type1
-            && moveType != gBattleMons[gBattlerAttacker].type2
-            && moveType != gBattleMons[gBattlerAttacker].type3)
-        {
-            break;
-        }
-    }
-
-    if (moveChecked == validMoves)
-    {
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-    }
-    else
-    {
-        do
-        {
-
-            while ((moveChecked = Random() & (MAX_MON_MOVES - 1)) >= validMoves);
-
-            moveType = gBattleMoves[gBattleMons[gBattlerAttacker].moves[moveChecked]].type;
-
-            if (moveType == TYPE_MYSTERY)
-            {
-                if (IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
-                    moveType = TYPE_GHOST;
-                else
-                    moveType = TYPE_NORMAL;
-            }
-        }
-        while (moveType == gBattleMons[gBattlerAttacker].type1 || moveType == gBattleMons[gBattlerAttacker].type2 || moveType == gBattleMons[gBattlerAttacker].type3);
-
-        SET_BATTLER_TYPE(gBattlerAttacker, moveType);
-        PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
-
+        mon = &gBattleMons[gBattlerAttacker];
+        if (mon->type1 == type
+            && mon->type2 == type2
+            && mon->type3 == TYPE_MYSTERY)
+                break;
+        
+        mon->type1 = type;
+        mon->type2 = type2;
+        mon->type3 = TYPE_MYSTERY;
+        
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, type);
         gBattlescriptCurrInstr += 5;
+        return;
     }
+    
+    gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
 
 static void Cmd_givepaydaymoney(void)
@@ -13051,6 +13026,7 @@ static void Cmd_settypetorandomresistance(void) // conversion 2
             }
         }
 
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, i);
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
 }

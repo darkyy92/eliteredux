@@ -3973,11 +3973,39 @@ BattleScript_EffectConversion::
 	attackcanceler
 	attackstring
 	ppreduce
-	tryconversiontypechange BattleScript_ButItFailed
+	tryconversiontypechange BattleScript_EffectConversionFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNCHANGEDTYPE
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_EffectConversionBoost
+
+BattleScript_EffectConversionFailed:
+	printstring STRINGID_PKMNALREADYTYPE
+	waitmessage B_WAIT_TIME_LONG
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_EffectConversionPlayAnim
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
+BattleScript_EffectConversionPlayAnim:
+	attackanimation
+	waitanimation
+BattleScript_EffectConversionBoost:
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_EffectConversionSucceeded
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
+BattleScript_EffectConversionSucceeded::
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_ATTACKER, BIT_SPATK | BIT_SPEED, 0
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_EffectConversionSucceededTrySpeed
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectConversionSucceededTrySpeed
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectConversionSucceededTrySpeed::
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_EffectConversionEnds
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectConversionEnds
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectConversionEnds::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectFlinchHit::
@@ -4841,12 +4869,12 @@ BattleScript_EffectConversion2::
 	attackcanceler
 	attackstring
 	ppreduce
-	settypetorandomresistance BattleScript_ButItFailed
+	settypetorandomresistance BattleScript_EffectConversionFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNCHANGEDTYPE
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
+	goto BattleScript_EffectConversionBoost
 
 BattleScript_EffectLockOn::
 	attackcanceler
