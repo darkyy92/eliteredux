@@ -9100,12 +9100,14 @@ BattleScript_HurtTarget:
 	return
 
 BattleScript_AttackerUsedAnExtraMove::
+	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
+	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
