@@ -2269,6 +2269,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_RADIANCE, moveNum) ||
                   (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_RADIANCE, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
                     abilityNullifiesDamage = TRUE;
+
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_JUSTIFIED, moveNum))
+                    abilityNullifiesDamage = TRUE;
             break;
             case TYPE_GHOST:
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_PURIFYING_SALT, moveNum))

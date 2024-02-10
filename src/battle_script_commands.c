@@ -10458,10 +10458,7 @@ static void Cmd_various(void)
     case VARIOUS_RAISE_HIGHEST_ATTACKING_STAT:
         increase = gBattlescriptCurrInstr[3];
 
-        if (gBattleMons[gActiveBattler].attack >= gBattleMons[gActiveBattler].spAttack)
-            statId = STAT_ATK;
-        else
-            statId = STAT_SPATK;
+        statId = GetHighestAttackingStatId(gActiveBattler, TRUE);
 
         SET_STATCHANGER(statId, increase, FALSE);
 
