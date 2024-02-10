@@ -591,7 +591,7 @@
 #define ABILITY_SUPREME_OVERLORD 569 // Each fainted ally increases Attack and SpAtk by 10%.
 #define ABILITY_ILL_WILL 570 // Placeholder
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
-#define ABILITY_TWO_SPIKES_ON_ENTRY 572 // Placeholder
+#define ABILITY_WATCH_YOUR_STEP 572 // Spreads two layers of Spikes on switch-in.
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.

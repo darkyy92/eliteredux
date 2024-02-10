@@ -26,6 +26,7 @@
 #define ABILITYEFFECT_NEUTRALIZINGGAS            15
 #define ABILITYEFFECT_AFTER_RECOIL               16
 #define ABILITYEFFECT_COPY_STATS                 17
+#define ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE              18
 // Special cases
 #define ABILITYEFFECT_SWITCH_IN_TERRAIN          0xFE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
@@ -70,6 +71,7 @@ enum MiscMoveEffects
     MISC_EFFECT_SUPEREFFECTIVE_BOOST = 1,
     MISC_EFFECT_FAINTED_MON_BOOST,
     MISC_EFFECT_ELECTRIC_TERRAIN_BOOST,
+    MISC_EFFECT_TOOK_DAMAGE_BOOST,
 };
 
 // for Natural Gift and Fling
@@ -125,6 +127,7 @@ void HandleAction_WatchesCarefully(void);
 void HandleAction_SafariZoneBallThrow(void);
 void HandleAction_ThrowPokeblock(void);
 void HandleAction_GoNear(void);
+bool8 CanUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget);
 void HandleAction_SafariZoneRun(void);
 void HandleAction_WallyBallThrow(void);
 void HandleAction_TryFinish(void);
@@ -260,6 +263,10 @@ void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
+void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[]);
+void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility);
+void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
+bool32 IsNeutralizingGasBannedAbility(u32 ability);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

@@ -731,8 +731,9 @@
 #define STRINGID_PLAYERGOTBP                          760
 #define STRINGID_CANT_USE_TWICE_IN_A_ROW              761
 #define STRINGID_ATTACKERLOSTELECTRICTYPE             762
+#define STRINGID_HEAVYSPIKESSCATTERED                 763
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_ATTACKERLOSTELECTRICTYPE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_HEAVYSPIKESSCATTERED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

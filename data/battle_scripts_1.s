@@ -2644,6 +2644,7 @@ BattleScript_EffectEntrainment:
 	setlastusedability BS_TARGET
 	printstring STRINGID_PKMNACQUIREDABILITY
 	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSimpleBeam:
@@ -9060,10 +9061,6 @@ BattleScript_AttackerUsedAnExtraMove::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
 	waitmessage B_WAIT_TIME_SHORT
-	copybyte sSAVED_MOVEEND_STATE, sMOVEEND_STATE
-	setbyte sLIMIT_MOVEEND, MOVEEND_ABILITIES_ATTACKER
-	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
-	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
@@ -9221,6 +9218,15 @@ BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd:
 	unswapbattlers gBattlerAttacker, gBattlerTarget
 	restoretarget
 	return
+
+BattleScript_DoubleSpikesOnEntry::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	playmoveanimation BS_ATTACKER, MOVE_SPIKES
+	waitanimation
+	printstring STRINGID_HEAVYSPIKESSCATTERED
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_DefenderSetsToxicSpikeLayer::
 	savetarget

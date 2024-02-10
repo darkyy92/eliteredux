@@ -3498,6 +3498,10 @@ static const u8 sMoveTwoLineDescription_MoveSmashinRealities[] = _(
     "smashes the realities around it.\n"
     "Removes weather and terrain");
 
+static const u8 sMoveTwoLineDescription_MoveThornyGarden[] = _(
+    "Thorns surround the foe.\n"
+    "Hurts foes on switch in.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4398,6 +4402,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_AXE_KICK - 1] = sMoveTwoLineDescription_MoveAxeKick,
     [MOVE_BARB_BARRAGE - 1] = sMoveTwoLineDescription_MoveBarbBarrage,
     [MOVE_SMASHIN_REALITIES - 1] = sMoveTwoLineDescription_MoveSmashinRealities,
+    [MOVE_THORNY_GARDEN - 1] = sMoveTwoLineDescription_MoveThornyGarden,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5297,6 +5302,7 @@ static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes
 static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
 static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
 static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that\nit smashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
+static const u8 sMoveFourLineDescription_MoveThornyGarden[] = _("Levitating thorns\nsurround the foe.\nThis hurts foes on\nswitch in.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6196,4 +6202,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_AXE_KICK - 1] = sMoveFourLineDescription_MoveAxeKick,
     [MOVE_BARB_BARRAGE - 1] = sMoveFourLineDescription_MoveBarbBarrage,
     [MOVE_SMASHIN_REALITIES - 1] = sMoveFourLineDescription_MoveSmashinRealities,
+    [MOVE_THORNY_GARDEN - 1] = sMoveFourLineDescription_MoveThornyGarden,
 };

@@ -171,6 +171,7 @@ struct ProtectStruct
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
+    u8 parroting:1;
 };
 
 struct SpecialStatus
@@ -187,14 +188,14 @@ struct SpecialStatus
     u8 focusSashed:1;
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
-    u8 switchInAbilityDone:1;
-    bool8 switchInInnateDone[NUM_INNATE_PER_SPECIES];
+    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3; //8
     u8 berryReduced:1;
     u8 gemBoost:1;
     u8 rototillerAffected:1;  // to be affected by rototiller
-    u8 parentalBondOn:2;
+    u8 parentalBondOn:3;
+    u8 parentalBondInitialCount:3;
     u8 multiHitOn:1;
     u8 gemParam;
     u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
@@ -653,6 +654,7 @@ struct BattleStruct
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     bool8 singleuseability[PARTY_SIZE][NUM_INNATE_PER_SPECIES + 1][2]; // For the sake of Instruct
     u8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_NATURE_STATS];
+    u8 timesDamaged[PARTY_SIZE][2];
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \

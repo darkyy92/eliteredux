@@ -5176,8 +5176,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
 }
 
 #define SET8(lhs) (lhs) = *data
-#define SET16(lhs) (lhs) = *((u16*)data)
-#define SET32(lhs) (lhs) = *((u32*)data)
+#define SET16(lhs) (lhs) = data[0] + (data[1] << 8)
+#define SET32(lhs) (lhs) = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24)
 
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
 {
@@ -6821,7 +6821,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
-    if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK)
+    if (((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK) || !gSaveBlock2Ptr->automaticEvolution)
         return SPECIES_NONE;
 
     /*Old code with Eviolite preventing evolutions
@@ -7405,7 +7405,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (totalEVs >= MAX_TOTAL_EVS)
+        if (totalEVs >= MAX_TOTAL_EVS || !gSaveBlock2Ptr->automaticEVGain)
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))

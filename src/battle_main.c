@@ -3924,13 +3924,13 @@ static void TryDoEventsBeforeFirstTurn(void)
         }
     }
     if (!gBattleStruct->overworldWeatherDone
-        && AbilityBattleEffects(0, 0, 0, ABILITYEFFECT_SWITCH_IN_WEATHER, 0) != 0)
+        && AbilityBattleEffects(ABILITYEFFECT_SWITCH_IN_WEATHER, 0, 0, TRUE, 0) != 0)
     {
         gBattleStruct->overworldWeatherDone = TRUE;
         return;
     }
 
-    if (!gBattleStruct->terrainDone && AbilityBattleEffects(0, 0, 0, ABILITYEFFECT_SWITCH_IN_TERRAIN, 0) != 0)
+    if (!gBattleStruct->terrainDone && AbilityBattleEffects(ABILITYEFFECT_SWITCH_IN_TERRAIN, 0, 0, TRUE, 0) != 0)
     {
         gBattleStruct->terrainDone = TRUE;
         return;
@@ -5256,9 +5256,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleMons[gActiveBattler].status2 &= ~(STATUS2_SUBSTITUTE);
 
         gSpecialStatuses[gActiveBattler].parentalBondOn = 0;
-        for (i = 0; i < NUM_INNATE_PER_SPECIES + 1; i++) {
-            gSpecialStatuses[gActiveBattler].turnAbilityTriggers[i] = 0;
-        }
+        memset(&gSpecialStatuses[gActiveBattler].turnAbilityTriggers, 0, sizeof(gSpecialStatuses[gActiveBattler].turnAbilityTriggers));
     }
 
     gSideStatuses[0] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
@@ -5837,6 +5835,19 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
     if (move == MOVE_STRUGGLE)
         return TYPE_NORMAL;
 
+    if (move == MOVE_RAGING_BULL)
+    {
+        switch (species)
+        {
+            case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
+                return TYPE_FIGHTING;
+            case SPECIES_TAUROS_PALDEAN_BLAZE_BREED:
+                return TYPE_FIRE;
+            case SPECIES_TAUROS_PALDEAN_AQUA_BREED:
+                return TYPE_WATER;
+        }
+    }
+
     if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
         return GetMonData(mon, MON_DATA_HP_TYPE, NULL);
@@ -5939,6 +5950,19 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 
     if (move == MOVE_STRUGGLE)
         return TYPE_NORMAL;
+    
+    if (move == MOVE_RAGING_BULL)
+    {
+        switch (gBattleMons[battlerAtk].species)
+        {
+            case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
+                return TYPE_FIGHTING;
+            case SPECIES_TAUROS_PALDEAN_BLAZE_BREED:
+                return TYPE_FIRE;
+            case SPECIES_TAUROS_PALDEAN_AQUA_BREED:
+                return TYPE_WATER;
+        }
+    }
 
     if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
     {
@@ -6063,6 +6087,22 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     gBattleStruct->ateBoost[battlerAtk] = 0;
     gSpecialStatuses[battlerAtk].gemBoost = FALSE;
 
+    if (move == MOVE_RAGING_BULL)
+    {
+        switch (gBattleMons[battlerAtk].species)
+        {
+            case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
+                gBattleStruct->dynamicMoveType = TYPE_FIGHTING | 0x80;
+                break;
+            case SPECIES_TAUROS_PALDEAN_BLAZE_BREED:
+                gBattleStruct->dynamicMoveType = TYPE_FIRE | 0x80;
+                break;
+            case SPECIES_TAUROS_PALDEAN_AQUA_BREED:
+                gBattleStruct->dynamicMoveType = TYPE_WATER | 0x80;
+                break;
+        }
+    }
+
     if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
     {
         if (WEATHER_HAS_EFFECT)
@@ -6169,7 +6209,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = 0x80 | ateType;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-	else if(gBattleMoves[move].type == TYPE_ROCK && attackerAbility == ABILITY_CRYSTALLIZE && (ateType = TYPE_ICE)){
+	else if(gBattleMoves[move].type == TYPE_ROCK && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_CRYSTALLIZE, attackerAbility) && (ateType = TYPE_ICE)){
 		ateType = TYPE_ICE;
 		gBattleStruct->dynamicMoveType = 0x80 | ateType;
 		gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -6195,55 +6235,6 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_DARK;
     }
-	
-	//Innates
-	//Immolate
-	if(BattlerHasInnate(battlerAtk, ABILITY_IMMOLATE)){
-		if(gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
-				ateType = TYPE_FIRE;
-				gBattleStruct->dynamicMoveType = 0x80 | ateType;
-				gBattleStruct->ateBoost[battlerAtk] = 1;
-			}
-	}
-    //Solar Flare
-	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE)){
-		if(gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
-				ateType = TYPE_FIRE;
-				gBattleStruct->dynamicMoveType = 0x80 | ateType;
-				gBattleStruct->ateBoost[battlerAtk] = 1;
-			}
-	}
-	//Crystallize
-	if(BattlerHasInnate(battlerAtk, ABILITY_CRYSTALLIZE)){
-		if(gBattleMoves[move].type == TYPE_ROCK){
-			ateType = TYPE_ICE;
-			gBattleStruct->dynamicMoveType = 0x80 | ateType;
-			gBattleStruct->ateBoost[battlerAtk] = 1;
-		}
-	}
-	//Fight Spirit
-	if(BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT)){
-		if(gBattleMoves[move].type == TYPE_NORMAL
-             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
-             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
-             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH){
-				ateType = TYPE_FIGHTING;
-				gBattleStruct->dynamicMoveType = 0x80 | ateType;
-				gBattleStruct->ateBoost[battlerAtk] = 1;
-			}
-	}
 
     // Check if a gem should activate.
     GET_MOVE_TYPE(move, moveType);

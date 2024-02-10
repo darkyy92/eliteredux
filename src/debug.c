@@ -1629,10 +1629,9 @@ static void DebugAction_Util_ResetParty(u8 taskId)
     bool8 makeShiny = TRUE;
 
     //Make Aplha
-    SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
-    SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeShiny);
+    //SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
+    //SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeShiny);
 
-/*
     // Party Mons
     for(i = 0; i < gPlayerPartyCount; i++)
     {
@@ -1652,7 +1651,7 @@ static void DebugAction_Util_ResetParty(u8 taskId)
                 ZeroBoxMonAt(i, j);
             }
         }
-    }*/
+    }
     
     PlaySE(SE_USE_ITEM);
     HealPlayerParty();

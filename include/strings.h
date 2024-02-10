@@ -219,6 +219,7 @@ extern const u8 gMenuText_Confirm[];
 extern const u8 gMenuText_Show[];
 extern const u8 gMenuText_Give2[];
 extern const u8 gText_FieldMoves[];
+extern const u8 gText_LearnMoves[];
 
 extern const u8 gText_WithdrawPokemon[];
 extern const u8 gText_WithdrawMonDescription[];
@@ -3840,5 +3841,8 @@ extern const u8 gText_SideQuestReward_27[];
 extern const u8 gText_SideQuestReward_28[];
 extern const u8 gText_SideQuestReward_29[];
 extern const u8 gText_SideQuestReward_30[];
+
+// Evolution party screen option
+extern const u8 gText_Evolution[];
 
 #endif // GUARD_STRINGS_H
