@@ -4512,7 +4512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FLING] =
     {
-        .effect = EFFECT_FLING,
+        .effect = EFFECT_PLACEHOLDER
         .power = 1,
         .type = TYPE_DARK,
         .accuracy = 100,
