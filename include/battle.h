@@ -171,7 +171,7 @@ struct ProtectStruct
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
-    u8 parroting:1;
+    u8 glaiveRush:1;
 };
 
 struct SpecialStatus

@@ -3954,6 +3954,9 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gBattlescriptCurrInstr = BattleScript_MoveWasDisabledMessage;
                 }
                 break;
+            case MOVE_EFFECT_GLAIVE_RUSH:
+                gProtectStructs[gBattlerAttacker].glaiveRush = TRUE;
+                break;
             }
         }
     }

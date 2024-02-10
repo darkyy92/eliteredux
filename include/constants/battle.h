@@ -373,7 +373,8 @@
 #define MOVE_EFFECT_ATTRACT                73
 #define MOVE_EFFECT_CURSE                  74
 #define MOVE_EFFECT_DISABLE                75
-#define NUM_MOVE_EFFECTS                   76
+#define MOVE_EFFECT_GLAIVE_RUSH            76
+#define NUM_MOVE_EFFECTS                   77
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
