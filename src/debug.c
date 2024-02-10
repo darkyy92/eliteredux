@@ -1156,6 +1156,13 @@ static void Debug_InitDebugBattleData(void)
 #ifdef BATTLE_ENGINE
     for (i = 0; i < 17; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
+
+    sDebugBattleData->aiFlags[0] = TRUE; // AI_FLAG_CHECK_BAD_MOVE
+    sDebugBattleData->aiFlags[1] = TRUE; // AI_FLAG_TRY_TO_FAINT
+    sDebugBattleData->aiFlags[2] = TRUE; // AI_FLAG_CHECK_VIABILITY
+    sDebugBattleData->aiFlags[16] = TRUE; // AI_FLAG_CHECK_FOE
+    sDebugBattleData->aiFlags[15] = TRUE; // AI_FLAG_SMART_SWITCHING
+    sDebugBattleData->aiFlags[8] = TRUE; // AI_FLAG_HP_AWARE
 #else
     for (i = 0; i < 10; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
