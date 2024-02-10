@@ -11615,7 +11615,7 @@ BattleScript_BerserkDNA::
 	printstring STRINGID_BERSERKDNA
 	raisehighestattackingstat BS_ATTACKER, 2, BattleScript_BerserkDNAStatMaxed
 	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
 BattleScript_BerserkDNAStatMaxed:
 	chosenstatus2animation BS_ATTACKER, STATUS2_CONFUSION
@@ -11629,7 +11629,7 @@ BattleScript_BerserkDNANoConfusion::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_BERSERKDNA
 	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
 BattleScript_BerserkDNAStatMaxedNoConfusion:
 	end3
