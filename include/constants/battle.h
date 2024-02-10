@@ -180,6 +180,7 @@
 #define STATUS4_ELECTRIFIED             (1 << 0)
 #define STATUS4_PLASMA_FISTS            (1 << 1)
 #define STATUS4_COILED                  (1 << 2)
+#define STATUS4_SALT_CURE               (1 << 3)
 
 #define HITMARKER_x10                   (1 << 4)
 #define HITMARKER_SKIP_DMG_TRACK        (1 << 5)
@@ -374,7 +375,8 @@
 #define MOVE_EFFECT_CURSE                  74
 #define MOVE_EFFECT_DISABLE                75
 #define MOVE_EFFECT_GLAIVE_RUSH            76
-#define NUM_MOVE_EFFECTS                   77
+#define MOVE_EFFECT_SALT_CURE              77
+#define NUM_MOVE_EFFECTS                   78
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

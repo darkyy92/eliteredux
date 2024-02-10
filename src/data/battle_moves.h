@@ -4512,7 +4512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FLING] =
     {
-        .effect = EFFECT_PLACEHOLDER
+        .effect = EFFECT_PLACEHOLDER,
         .power = 1,
         .type = TYPE_DARK,
         .accuracy = 100,
@@ -10667,14 +10667,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SALT_CURE] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_ARGUMENT_HIT,
+        .power = 40,
+        .type = TYPE_ROCK,
+        .accuracy = 100,
+        .pp = 15,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
+        .argument = MOVE_EFFECT_SALT_CURE,
     },
     [MOVE_DOODLE] =
     {
@@ -10689,13 +10691,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FILLET_AWAY] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_FILLET_AWAY,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_USER,
+        .flags = FLAG_SNATCH_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_RAGING_BULL] =

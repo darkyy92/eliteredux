@@ -231,6 +231,7 @@
 #define VARIOUS_HANDLE_TERRAIN_CHANGE           151
 #define VARIOUS_GET_BATTLER                     152
 #define VARIOUS_DO_COPY_STAT_CHANGE             153
+#define VARIOUS_TRY_LOSE_HALF_MAX_HP            154
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

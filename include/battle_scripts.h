@@ -124,6 +124,7 @@ extern const u8 BattleScript_MoveUsedIsInLove[];
 extern const u8 BattleScript_MoveUsedIsInLoveCantAttack[];
 extern const u8 BattleScript_NightmareTurnDmg[];
 extern const u8 BattleScript_CurseTurnDmg[];
+extern const u8 BattleScript_SaltCureTurnDmg[];
 extern const u8 BattleScript_TargetPRLZHeal[];
 extern const u8 BattleScript_TargetWokeUp[];
 extern const u8 BattleScript_TargetBurnHeal[];

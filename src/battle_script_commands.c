@@ -3957,6 +3957,9 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_GLAIVE_RUSH:
                 gProtectStructs[gBattlerAttacker].glaiveRush = TRUE;
                 break;
+            case MOVE_EFFECT_SALT_CURE:
+                gStatuses4[gBattlerTarget] |= STATUS4_SALT_CURE;
+                break;
             }
         }
     }
@@ -8514,6 +8517,7 @@ static void Cmd_various(void)
     u8 increase;
     u8 statId;
     u8 byteValue;
+    u32 u32Value;
 
     if (gBattleControllerExecFlags)
         return;
@@ -10636,6 +10640,22 @@ static void Cmd_various(void)
         memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
         break;
+    case VARIOUS_TRY_LOSE_HALF_MAX_HP:
+        u32Value = gBattleMons[gActiveBattler].maxHP / 2;
+
+        if (!u32Value)
+            u32Value = 1;
+
+        if (gBattleMons[gActiveBattler].hp > u32Value)
+        {
+            gBattleMoveDamage = u32Value;
+            gBattlescriptCurrInstr += 7;
+        }
+        else
+        {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

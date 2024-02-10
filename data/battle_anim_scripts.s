@@ -968,6 +968,7 @@ gBattleAnims_General::
 	.4byte General_PrimalReversion          @ B_ANIM_PRIMAL_REVERSION
 	.4byte General_ItemHealsHP              @ B_ANIM_ITEM_HEAL
 	.4byte General_BeakBlastSetUp           @ B_ANIM_BEAK_BLAST_SETUP
+	.4byte Status_Freeze           			@ B_ANIM_SALT_CURE_DAMAGE
 
 	.align 2
 gBattleAnims_Special::

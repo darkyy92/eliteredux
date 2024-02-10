@@ -2163,8 +2163,13 @@
 	various \battler, VARIOUS_GET_BATTLER
 	.endm
 
-	.macro docopystatchange battler:req
-	various \battler, VARIOUS_DO_COPY_STAT_CHANGE
+	.macro docopystatchange
+	various BS_ATTACKER, VARIOUS_DO_COPY_STAT_CHANGE
+	.endm
+
+	.macro trylosehalfmaxhp battler:req, ptr:req
+	various \battler, VARIOUS_TRY_LOSE_HALF_MAX_HP
+	.4byte \ptr
 	.endm
 
 	.macro swapbattlers battler1:req, battler2:req

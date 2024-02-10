@@ -733,8 +733,10 @@
 #define STRINGID_ATTACKERLOSTELECTRICTYPE             762
 #define STRINGID_HEAVYSPIKESSCATTERED                 763
 #define STRINGID_PKMNALREADYTYPE                      764
+#define STRINGID_PKMNCUTHPRAISEDSTATS                 765
+#define STRINGID_PKMNAFFLICTEDBYSALTCURE              766
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNALREADYTYPE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNCUTHPRAISEDSTATS + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
