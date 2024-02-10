@@ -15626,7 +15626,8 @@ static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType,
     // Add a random factor.
     if (randomFactor)
     {
-        dmg *= 100 - (Random() % 16);
+        s32 roll = BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK) ? 15 : Random() % 16;
+        dmg *= 100 - roll;
         dmg /= 100;
     }
 

@@ -353,7 +353,7 @@
 #define ABILITY_SOUL_EATER 331 // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_SOUL_LINKER 332 // Receives any damage inflicted, shares all damage taken.
 #define ABILITY_SWEET_DREAMS 333 // Heals 1/8 HP when sleeping, immune to Bad Dreams.
-#define ABILITY_BAD_LUCK 334 // Foes can't land crits and foe's moves have -5% accuracy.
+#define ABILITY_BAD_LUCK 334 // Foes can't land crits, have -5% accuracy, and deal min damage.
 #define ABILITY_HAUNTED_SPIRIT 335 // When the Pokemon faints, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST 336 // Ups Electric moves by 35% but gets 10% recoil damage.
 #define ABILITY_RAW_WOOD 337 // Halves incoming Grass-type damage. Boosts Grass-type moves by 20%.
