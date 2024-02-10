@@ -10585,7 +10585,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_ARGUMENT_HIT,
         .power = 120,
-        .type = TYPE_DRAGON
+        .type = TYPE_DRAGON,
         .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 100,
