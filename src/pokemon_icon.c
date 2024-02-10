@@ -1135,6 +1135,10 @@ const u8 *const gMonIconTable[] =
     [SPECIES_OGERPON] = gMonIcon_Ogerpon,
     [SPECIES_PHANTOWL] = gMonIcon_Phantowl,
     [SPECIES_DUELUMBER] = gMonIcon_Duelumber,
+    [SPECIES_TYRANITAR_MEGA_REDUX] = gMonIcon_Tyranitar_Mega_Redux,
+    [SPECIES_TYRANITAR_REDUX] = gMonIcon_Tyranitar_Redux,
+    [SPECIES_PUPITAR_REDUX] = gMonIcon_Pupitar_Redux,
+    [SPECIES_LARVITAR_REDUX] = gMonIcon_Larvitar_Redux,
     [SPECIES_CASTFORM_SANDY] = gMonIcon_Castform_Sandy,
     [SPECIES_KINGAMBIT_REDUX] = gMonIcon_Kingambit_Redux,
     [SPECIES_ENAMORUS_THERIAN] = gMonIcon_Enamorus_Therian,
@@ -3014,6 +3018,10 @@ const u8 gMonIconPaletteIndices[] =
     //New Mons
     [SPECIES_PHANTOWL] = 2,
     [SPECIES_DUELUMBER] = 1,
+    [SPECIES_TYRANITAR_MEGA_REDUX] = 2,
+    [SPECIES_TYRANITAR_REDUX] = 2,
+    [SPECIES_PUPITAR_REDUX] = 2,
+    [SPECIES_LARVITAR_REDUX] = 2,
     [SPECIES_CASTFORM_SANDY] = 2,
 
     [SPECIES_EGG] = 1,
