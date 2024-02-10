@@ -180,7 +180,7 @@
 #define ABILITY_CHEEK_POUCH 167 // Eating Berries restores 33% HP.
 #define ABILITY_PROTEAN 168 // Changes type to used move.
 #define ABILITY_FUR_COAT 169 // Halves damage from physical moves against this Pokémon.
-#define ABILITY_MAGICIAN 170 // Steals the foe's held item on contact.
+#define ABILITY_MAGICIAN 170 // Steals the foe's held item on non-contact.
 #define ABILITY_BULLETPROOF 171 // Protects from projectiles, ball and bomb moves.
 #define ABILITY_COMPETITIVE 172 // Lowered stats up Sp. Atk by two levels.
 #define ABILITY_STRONG_JAW 173 // Boosts biting moves by 50%.
