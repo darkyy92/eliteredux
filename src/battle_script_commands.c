@@ -10656,6 +10656,13 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         }
         return;
+    case VARIOUS_SWAP_SIDE_EFFECTS:
+        u32Value = gSideStatuses[0] & SIDE_STATUS_SWAPPABLE;
+        gSideStatuses[0] &= ~SIDE_STATUS_SWAPPABLE;
+        gSideStatuses[0] |= (gSideStatuses[1] & SIDE_STATUS_SWAPPABLE);
+        gSideStatuses[1] &= ~SIDE_STATUS_SWAPPABLE;
+        gSideStatuses[1] |= (u32Value & SIDE_STATUS_SWAPPABLE);
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

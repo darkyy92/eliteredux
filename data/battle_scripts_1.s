@@ -448,7 +448,17 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit			          @ EFFECT_EVERY_OTHER_TURN
 	.4byte BattleScript_EffectHit                     @ EFFECT_MISC_HIT
 	.4byte BattleScript_EffectFilletAway			  @ EFFECT_FILLET_AWAY
+	.4byte BattleScript_EffectCourtChange			  @ EFFECT_COURT_CHANGE
 	
+BattleScript_EffectCourtChange:
+	attackcanceler
+	attackstring
+	ppreduce
+	attackanimation
+	swapsideeffects
+	printstring STRINGID_PKMN_SWITCHED_FIELD_EFFECTS
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp

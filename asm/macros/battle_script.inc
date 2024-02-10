@@ -2172,6 +2172,10 @@
 	.4byte \ptr
 	.endm
 
+	.macro swapsideeffects
+	various BS_ATTACKER, VARIOUS_SWAP_SIDE_EFFECTS
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

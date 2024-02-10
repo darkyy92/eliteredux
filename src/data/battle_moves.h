@@ -6260,7 +6260,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_WATER_PLEDGE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 90,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -6272,7 +6272,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FIRE_PLEDGE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 90,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -6284,7 +6284,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_GRASS_PLEDGE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_PLACEHOLDER,
         .power = 90,
         .type = TYPE_GRASS,
         .accuracy = 100,
