@@ -1992,6 +1992,20 @@ bool32 HasMoveEffect(u32 battlerId, u16 moveEffect)
     return FALSE;
 }
 
+bool32 HasMoveEffectAndArgument(u32 battlerId, u16 moveEffect, u16 argument)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battlerId);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].effect == moveEffect && gBattleMoves[moves[i]].argument == argument)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 bool32 HasMove(u32 battlerId, u32 move)
 {
     s32 i;

@@ -92,6 +92,7 @@ bool32 HasMoveWithSplit(u32 battler, u32 split);
 bool32 HasMoveWithType(u32 battler, u8 type);
 bool32 HasMoveWithTypeAndSplit(u32 battler, u8 type, u8 split);
 bool32 HasMoveEffect(u32 battlerId, u16 moveEffect);
+bool32 HasMoveEffectAndArgument(u32 battlerId, u16 moveEffect, u16 argument);
 bool32 HasMoveWithLowAccuracy(u8, u8, u8, bool32, u16, u16, u16, u16);
 bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags);
 bool32 IsAromaVeilProtectedMove(u16 move);

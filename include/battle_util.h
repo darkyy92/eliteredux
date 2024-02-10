@@ -75,6 +75,11 @@ enum MiscMoveEffects
     MISC_EFFECT_TOOK_DAMAGE_BOOST,
 };
 
+enum MiscSwitchEffects
+{
+    MISC_EFFECT_SWITCH_HELPING_HAND = 1,
+};
+
 // for Natural Gift and Fling
 struct TypePower
 {
