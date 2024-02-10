@@ -3098,6 +3098,10 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_OGERPON - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PHANTOWL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DUELUMBER - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_TYRANITAR_MEGA_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_TYRANITAR_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_PUPITAR_REDUX - 1]  = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_LARVITAR_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_CASTFORM_SANDY - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_KINGAMBIT_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS_THERIAN - 1] = ANIM_V_SQUISH_AND_BOUNCE,
@@ -6817,7 +6821,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
-    if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK)
+    if (((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE) && mode != EVO_MODE_ITEM_CHECK) || !gSaveBlock2Ptr->automaticEvolution)
         return SPECIES_NONE;
 
     /*Old code with Eviolite preventing evolutions
@@ -7401,7 +7405,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (totalEVs >= MAX_TOTAL_EVS)
+        if (totalEVs >= MAX_TOTAL_EVS || !gSaveBlock2Ptr->automaticEVGain)
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))
@@ -9907,6 +9911,14 @@ bool8 isSpeciesPlaceholderMon(u16 species){
     else if (species <= REDUX_FORMS_START)
         return TRUE;
     else if (species < SPECIES_CASTFORM_SANDY + 1)
+        return FALSE;
+    else if (species < SPECIES_LARVITAR_REDUX + 1)
+        return FALSE;
+    else if (species < SPECIES_PUPITAR_REDUX + 1)
+        return FALSE;
+    else if (species < SPECIES_TYRANITAR_REDUX + 1)
+        return FALSE;
+    else if (species < SPECIES_TYRANITAR_MEGA_REDUX + 1)
         return FALSE;
     else
         return TRUE;

@@ -16,6 +16,26 @@ static const union AnimCmd sAnim_DUELUMBER_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_TYRANITAR_MEGA_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_TYRANITAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_PUPITAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+static const union AnimCmd sAnim_LARVITAR_REDUX_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_CASTFORM_SANDY_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -35,6 +55,26 @@ static const union AnimCmd *const sAnims_PHANTOWL[] ={
 static const union AnimCmd *const sAnims_DUELUMBER[] ={
     sAnim_GeneralFrame0,
     sAnim_DUELUMBER_1,
+};
+
+static const union AnimCmd *const sAnims_TYRANITAR_MEGA_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TYRANITAR_MEGA_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_TYRANITAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_TYRANITAR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_PUPITAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_PUPITAR_REDUX_1,
+};
+
+static const union AnimCmd *const sAnims_LARVITAR_REDUX[] ={
+    sAnim_GeneralFrame0,
+    sAnim_LARVITAR_REDUX_1,
 };
 
 static const union AnimCmd *const sAnims_CASTFORM_SANDY[] ={
@@ -19421,6 +19461,10 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(MAROWAK_ALOLAN),
     ANIM_CMD(DUELUMBER),
     ANIM_CMD(ENAMORUS_THERIAN),
+    ANIM_CMD(TYRANITAR_MEGA_REDUX),
+    ANIM_CMD(TYRANITAR_REDUX),
+    ANIM_CMD(PUPITAR_REDUX),
+    ANIM_CMD(LARVITAR_REDUX),
     ANIM_CMD(CASTFORM_SANDY),
     ANIM_CMD(KINGAMBIT_REDUX),
     ANIM_CMD(DIALGA_ORIGIN),

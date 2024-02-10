@@ -1650,6 +1650,10 @@
 #define SPECIES_KINGAMBIT_REDUX             REDUX_FORMS_START + 58
 #define SPECIES_KINGAMBIT_REDUX_MEGA        REDUX_FORMS_START + 59
 #define SPECIES_CASTFORM_SANDY              REDUX_FORMS_START + 60
+#define SPECIES_LARVITAR_REDUX              REDUX_FORMS_START + 61
+#define SPECIES_PUPITAR_REDUX               REDUX_FORMS_START + 62
+#define SPECIES_TYRANITAR_REDUX             REDUX_FORMS_START + 63
+#define SPECIES_TYRANITAR_MEGA_REDUX        REDUX_FORMS_START + 64
 
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 

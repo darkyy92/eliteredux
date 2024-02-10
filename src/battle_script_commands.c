@@ -4390,7 +4390,7 @@ static void Cmd_getexp(void)
         else
         {
             // Print Exp gain message once, only after KO, and only if something can gain Exp
-            if (!PartyIsMaxLevel())
+            if (!PartyIsMaxLevel() && gSaveBlock2Ptr->automaticExpGain)
                 PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
 
             gBattleScripting.getexpState++;
@@ -4458,7 +4458,7 @@ static void Cmd_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-            if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
+            if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL || !gSaveBlock2Ptr->automaticExpGain)
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);

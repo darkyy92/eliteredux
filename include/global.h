@@ -571,10 +571,11 @@ struct SaveBlock2
     u16 individualColors:1;
     u16 doubleBattleMode:1;
     u16 optionsButtonMode:3;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    u16 disableAutomaticEVGain:1;
-    u16 disableExpGain:1;
+    u16 automaticEVGain:1;
+    u16 automaticExpGain:1;
     u16 permanentMegaMode:1;
-    u16 filler:4;
+    u16 automaticEvolution:1;
+    u16 filler:3;
     u8 questStatus[SIDE_QUEST_FLAGS_COUNT];
     //u8 unlockedQuests[SIDE_QUEST_FLAGS_COUNT];
     //u8 completedQuests[SIDE_QUEST_FLAGS_COUNT];

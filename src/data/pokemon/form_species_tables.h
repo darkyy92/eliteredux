@@ -354,6 +354,8 @@ static const u16 sHoundoomFormSpeciesIdTable[] = {
 
 static const u16 sTyranitarFormSpeciesIdTable[] = {
     SPECIES_TYRANITAR,
+    SPECIES_TYRANITAR_MEGA_REDUX,
+    SPECIES_TYRANITAR_REDUX,
     SPECIES_TYRANITAR_MEGA,
     FORM_SPECIES_END,
 };
@@ -1547,5 +1549,15 @@ static const u16 sEnamorusFormSpeciesIdTable[] = {
 static const u16 sKingambitFormSpeciesIdTable[] = {
     SPECIES_KINGAMBIT,
     SPECIES_KINGAMBIT_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sLarvitarFormSpeciesIdTable[] = {
+    SPECIES_LARVITAR,
+    SPECIES_LARVITAR_REDUX,
+    FORM_SPECIES_END,
+};
+static const u16 sPupitarFormSpeciesIdTable[] = {
+    SPECIES_PUPITAR,
+    SPECIES_PUPITAR_REDUX,
     FORM_SPECIES_END,
 };
