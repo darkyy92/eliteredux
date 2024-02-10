@@ -7401,7 +7401,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (totalEVs >= MAX_TOTAL_EVS)
+        if (totalEVs >= MAX_TOTAL_EVS || !gSaveBlock2Ptr->automaticEVGain)
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))
