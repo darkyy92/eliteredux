@@ -12099,6 +12099,7 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     switch(ability){
         case ABILITY_INTIMIDATE:
         case ABILITY_SCARE:
+        case ABILITY_FEARMONGER:
             //Abilities that are immune to this effect
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPPY)      ||
                BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
@@ -12121,7 +12122,7 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
             return TRUE;
     }
 
-    switch(stat){
+    switch(TranslateStatId(stat, battler)){
         case STAT_ATK:
             if(BATTLER_HAS_ABILITY(battler, ABILITY_HYPER_CUTTER))
                 return TRUE;
@@ -12175,7 +12176,7 @@ static void Cmd_battlemacros(void)
             numStats = gIntimidateCloneData[numAbility].numStatsLowered;
 
             for(i = 0; i < numStats; i++){
-                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
+                statToLower = TranslateStatId(gIntimidateCloneData[numAbility].statsLowered[i], opposingBattler);
                 if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
                     if (!ChangeStatBuffs(opposingBattler, StatBuffValue(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_GUARD_DOG) ? 1 : -1), statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL)) continue;
                     statslowered++;
@@ -12227,7 +12228,7 @@ static void Cmd_battlemacros(void)
 
                 if(gIntimidateCloneData[numAbility].targetBoth || targetNum == 0) {
                     for(i = 0; i < numStats; i++){
-                        statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
+                        statToLower = TranslateStatId(gIntimidateCloneData[numAbility].statsLowered[i], opposingBattler);
                         if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(opposingBattler, statToLower, ability) && ability != ABILITY_NONE){
                             if (!ChangeStatBuffs(opposingBattler, StatBuffValue(BATTLER_HAS_ABILITY(opposingBattler, ABILITY_GUARD_DOG) ? 1 : -1), statToLower, STAT_BUFF_DONT_SET_BUFFERS, NULL)) continue;
                             statslowered++;

@@ -10920,4 +10920,14 @@ const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
         .statsLowered = {STAT_ATK, STAT_DEF, 0},
         .targetBoth = FALSE,
     },
+    [I_CLONE_MALICIOUS] = {
+        .ability = ABILITY_MALICIOUS,
+        .numStatsLowered = 2,
+        .statsLowered = { 
+            STAT_HIGHEST_ATTACKING | STAT_USE_STAT_BOOSTS_IN_CALC,
+            STAT_HIGHEST_DEFENDING | STAT_USE_STAT_BOOSTS_IN_CALC,
+            0
+        },
+        .targetBoth = TRUE,
+    },
 };

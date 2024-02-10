@@ -4841,6 +4841,46 @@ u8 ShouldApplyOnHitAffect()
     return DidMoveHit() && IsBattlerAlive(gBattlerTarget);
 }
 
+bool8 UseIntimidateClone(u8 battler, u16 abilityToCheck)
+{
+    u8 numAbility, numStats, statToLower, i, target;
+    bool8 canLowerStat = FALSE;
+    for(numAbility = 0; i < NUM_INTIMIDATE_CLONES; i++){
+        if(gIntimidateCloneData[numAbility].ability == abilityToCheck)
+            break;
+    }
+
+    if (numAbility >= NUM_INTIMIDATE_CLONES) return FALSE;
+    
+    numStats = gIntimidateCloneData[numAbility].numStatsLowered;
+
+    for(i = 0; i < numStats; i++){
+        statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
+        target = BATTLE_OPPOSITE(battler);
+        //Target 1
+        if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
+            canLowerStat = TRUE;
+            break;
+        }
+
+        //Target 2
+        if(IsDoubleBattle()){
+            target = BATTLE_PARTNER(target);
+            if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
+                canLowerStat = TRUE;
+                break;
+            }
+        }
+    }
+
+    if(canLowerStat){ //Ability effect can be triggered
+        BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatedNew);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -5539,154 +5579,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         // Intimidate
         if(CheckAndSetSwitchInAbility(battler, ABILITY_INTIMIDATE)){
-            u16 abilityToCheck = ABILITY_INTIMIDATE; //For easier copypaste
-            u8 numAbility, numStats, statToLower, i, target;
-            bool8 canLowerStat = FALSE;
-            for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
-                if(gIntimidateCloneData[i].ability == abilityToCheck)
-                    break;
-            }
-
-            numAbility = i;
-            numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-
-            for(i = 0; i < numStats; i++){
-                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
-                target = BATTLE_OPPOSITE(battler);
-                //Target 1
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                    canLowerStat = TRUE;
-                    break;
-                }
-
-                //Target 2
-                if(IsDoubleBattle()){
-                    target = BATTLE_PARTNER(target);
-                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                        canLowerStat = TRUE;
-                        break;
-                    }
-                }
-            }
-
-            if(canLowerStat){ //Ability effect can be triggered
-                BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatedNew);
-                effect++;
-            }
+            effect += UseIntimidateClone(battler, ABILITY_INTIMIDATE);
         }
         
         // Scare
         if(CheckAndSetSwitchInAbility(battler, ABILITY_SCARE)){
-            u16 abilityToCheck = ABILITY_SCARE; //For easier copypaste
-            u8 numAbility, numStats, statToLower, i, target;
-            bool8 canLowerStat = FALSE;
-            for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
-                if(gIntimidateCloneData[i].ability == abilityToCheck)
-                    break;
-            }
-
-            numAbility = i;
-            numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-
-            for(i = 0; i < numStats; i++){
-                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
-                target = BATTLE_OPPOSITE(battler);
-                //Target 1
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                    canLowerStat = TRUE;
-                    break;
-                }
-
-                //Target 2
-                if(IsDoubleBattle()){
-                    target = BATTLE_PARTNER(target);
-                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                        canLowerStat = TRUE;
-                        break;
-                    }
-                }
-            }
-
-            if(canLowerStat){ //Ability effect can be triggered
-                BattleScriptPushCursorAndCallback(BattleScript_ScareActivated);
-                effect++;
-            }
+            effect += UseIntimidateClone(battler, ABILITY_SCARE);
         }
         
         // Fearmonger
         if(CheckAndSetSwitchInAbility(battler, ABILITY_FEARMONGER) || CheckAndSetSwitchInAbility(battler, ABILITY_YUKI_ONNA)){
-            u16 abilityToCheck = gLastUsedAbility;
-            u8 numAbility, numStats, statToLower, i, target;
-            bool8 canLowerStat = FALSE;
-            for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
-                if(gIntimidateCloneData[i].ability == ABILITY_FEARMONGER)
-                    break;
-            }
-
-            numAbility = i;
-            numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-
-            for(i = 0; i < numStats; i++){
-                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
-                target = BATTLE_OPPOSITE(battler);
-                //Target 1
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                    canLowerStat = TRUE;
-                    break;
-                }
-
-                //Target 2
-                if(IsDoubleBattle()){
-                    target = BATTLE_PARTNER(target);
-                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                        canLowerStat = TRUE;
-                        break;
-                    }
-                }
-            }
-
-            if(canLowerStat){ //Ability effect can be triggered
-                BattleScriptPushCursorAndCallback(BattleScript_FearMongerActivated);
-                effect++;
-            }
+            effect += UseIntimidateClone(battler, ABILITY_FEARMONGER);
         }
         
         // Monkey Business
         if(CheckAndSetSwitchInAbility(battler, ABILITY_MONKEY_BUSINESS)){
-            u16 abilityToCheck = ABILITY_MONKEY_BUSINESS; //For easier copypaste
-            u8 numAbility, numStats, statToLower, i, target;
-            bool8 canLowerStat = FALSE;
-            for(i = 0; i < NUM_INTIMIDATE_CLONES; i++){
-                if(gIntimidateCloneData[i].ability == abilityToCheck)
-                    break;
-            }
-
-            numAbility = i;
-            numStats = gIntimidateCloneData[numAbility].numStatsLowered;
-
-            for(i = 0; i < numStats; i++){
-                statToLower = gIntimidateCloneData[numAbility].statsLowered[i];
-                target = BATTLE_OPPOSITE(battler);
-                //Target 1
-                if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                    canLowerStat = TRUE;
-                    break;
-                }
-
-                //Target 2
-                if(IsDoubleBattle()){
-                    target = BATTLE_PARTNER(target);
-                    if(!IsBattlerImmuneToLowerStatsFromIntimidateClone(target, statToLower, abilityToCheck)){
-                        canLowerStat = TRUE;
-                        break;
-                    }
-                }
-            }
-
-            if(canLowerStat){ //Ability effect can be triggered
-                BattleScriptPushCursorAndCallback(BattleScript_MonkeyBusinessActivated);
-                effect++;
-            }
+            effect += UseIntimidateClone(battler, ABILITY_MONKEY_BUSINESS);
+        }
+        
+        // Monkey Business
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_MALICIOUS)){
+            effect += UseIntimidateClone(battler, ABILITY_MALICIOUS);
         }
         
         // Water Veil
@@ -17627,6 +17540,58 @@ u8 GetHighestStatId(u8 battlerId, u8 includeStatStages)
         }
     }
     return highestId;
+}
+
+u8 GetHighestAttackingStatId(u8 battlerId, u8 includeStatStages)
+{
+    u8 i;
+    u8 highestId = STAT_ATK;
+    u32 highestStat = 0;
+
+    for (i = STAT_ATK; i > STAT_SPATK; i += STAT_SPATK - STAT_ATK)
+    {
+        u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
+        if (includeStatStages)
+        {
+            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+        }
+        if (statVal > highestStat)
+        {
+            highestStat = statVal;
+            highestId = i;
+        }
+    }
+    return highestId;
+}
+
+u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
+{
+    u8 i;
+    u8 highestId = STAT_DEF;
+    u32 highestStat = 0;
+
+    for (i = STAT_DEF; i > STAT_SPDEF; i += STAT_SPDEF - STAT_DEF)
+    {
+        u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
+        if (includeStatStages)
+        {
+            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+        }
+        if (statVal > highestStat)
+        {
+            highestStat = statVal;
+            highestId = i;
+        }
+    }
+    return highestId;
+}
+
+u8 TranslateStatId(u8 statId, u8 battlerId)
+{
+    if (statId & STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if (statId & STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if (statId & STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    return statId;
 }
 
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef)

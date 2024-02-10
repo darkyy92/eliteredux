@@ -82,6 +82,10 @@
 #define STAT_SPDEF   5
 #define STAT_ACC     6 // Only in battles.
 #define STAT_EVASION 7 // Only in battles.
+#define STAT_HIGHEST_ATTACKING 0x50
+#define STAT_HIGHEST_DEFENDING 0x52
+#define STAT_HIGHEST_TOTAL 0x54
+#define STAT_USE_STAT_BOOSTS_IN_CALC 0x1
 
 #define NUM_NATURE_STATS NUM_STATS - 1 // excludes HP
 #define NUM_BATTLE_STATS NUM_STATS + 2 // includes Accuracy and Evasion

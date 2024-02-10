@@ -8817,33 +8817,6 @@ BattleScript_BattlerEnvelopedItselfInAVeil::
 	end3
 
 BattleScript_IntimidateActivatedNew::
-	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
-	copybyte gBattlerAbility, gBattlerAttacker
-	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
-	end3
-
-BattleScript_ScareActivated::
-	sethword sABILITY_OVERWRITE, ABILITY_SCARE
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
-	copybyte gBattlerAbility, gBattlerAttacker
-	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
-	end3
-
-BattleScript_MonkeyBusinessActivated::
-	sethword sABILITY_OVERWRITE, ABILITY_MONKEY_BUSINESS
-	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
-	copybyte gBattlerAbility, gBattlerAttacker
-	call BattleScript_AbilityPopUp
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1, 0, BattleScript_IntimidateCloneActivated_Target_1
-	battlemacros MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_2, 0, BattleScript_IntimidateCloneActivated_Target_2
-	end3
-
-BattleScript_FearMongerActivated::
 	battlemacros MACROS_SAVE_ABILITY_TO_VARIABLE, 0, NULL
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
