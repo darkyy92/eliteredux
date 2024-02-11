@@ -10649,14 +10649,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SPICY_EXTRACT] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_SPICY_EXTRACT,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_GRASS,
         .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .pp = 15,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .split = SPLIT_STATUS,
+        .argument = MOVE_EFFECT_CONFUSION,
     },
     [MOVE_SPIN_OUT] =
     {

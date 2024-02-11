@@ -9593,7 +9593,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         }
                     break;
                     case TYPE_GROUND: // 30% chance to trap.
-                        if(!(gBattleMons[gBattlerOpponent].status2 & STATUS2_ESCAPE_PREVENTION)){
+                        if(!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION)){
                             if(BattlerHasInnate(battler, abilityToCheck))
                                 gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 

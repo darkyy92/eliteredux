@@ -580,7 +580,7 @@
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
 #define ABILITY_GUILT_TRIP 559 // Placeholder
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
-#define ABILITY_ZERO_TO_HERO 561 // Placeholder
+#define ABILITY_ZERO_TO_HERO 561 // Changes forms after switching out.
 #define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
 #define ABILITY_COMMANDER 563 // Placeholder
 #define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
