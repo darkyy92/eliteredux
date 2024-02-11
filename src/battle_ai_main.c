@@ -4190,11 +4190,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             {
                 score += 3;
             }
-            else if (gBattleMons[battlerAtk].hp > 1) // Only spam endure for Flail/Reversal if you're not at Min Health
-            {
-                if (HasMoveEffect(battlerAtk, EFFECT_FLAIL) || HasMoveEffect(battlerAtk, EFFECT_ENDEAVOR))
-                    score += 3;
-            }
         }
         break;
 
@@ -5087,10 +5082,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_FLAIL:
         if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0)  // Ai goes first
         {
-            if (GetHealthPercentage(battlerAtk) < 20)
+            if (GetHealthPercentage(battlerAtk) < 50)
                 score++;
-            else if (GetHealthPercentage(battlerAtk) < 8)
-                score += 2;
         }
         break;
     case EFFECT_SHORE_UP:
@@ -5410,7 +5403,6 @@ static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             case EFFECT_RESTORE_HP:
             case EFFECT_REST:
             case EFFECT_DESTINY_BOND:
-            case EFFECT_FLAIL:
             case EFFECT_ENDURE:
             case EFFECT_MORNING_SUN:
             case EFFECT_SYNTHESIS:

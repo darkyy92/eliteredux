@@ -2116,7 +2116,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FLAIL] =
     {
         .effect = EFFECT_FLAIL,
-        .power = 1,
+        .power = 80,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
@@ -2164,7 +2164,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_REVERSAL] =
     {
         .effect = EFFECT_FLAIL,
-        .power = 1,
+        .power = 80,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 15,
@@ -6308,14 +6308,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_STRUGGLE_BUG] =
     {
-        .effect = EFFECT_SPECIAL_ATTACK_DOWN_HIT,
-        .power = 50,
+        .effect = EFFECT_FLAIL,
+        .power = 80,
         .type = TYPE_BUG,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 15,
         .secondaryEffectChance = 100,
-        .target = MOVE_TARGET_BOTH,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
+        .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
     },
     [MOVE_BULLDOZE] =
