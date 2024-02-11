@@ -12008,3 +12008,44 @@ BattleScript_EffectRevivalBlessingSendOut:
 	waitstate
 	switchineffects BS_SCRIPTING
 	goto BattleScript_MoveEnd
+
+BattleScript_RainbowStart::
+	printstring STRINGID_ARAINBOWAPPEAREDONSIDE
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_EFFECT_BATTLER, B_ANIM_RAINBOW
+	waitanimation
+	return
+
+BattleScript_RainbowDisappeared::
+	printstring STRINGID_THERAINBOWDISAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_SeaOfFireStart::
+	printstring STRINGID_SEAOFFIREENVELOPEDSIDE
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_EFFECT_BATTLER, B_ANIM_SEA_OF_FIRE
+	waitanimation
+	return
+
+BattleScript_HurtByTheSeaOfFire::
+	printstring STRINGID_HURTBYTHESEAOFFIRE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoTurnDmg
+
+BattleScript_TheSeaOfFireDisappeared::
+	printstring STRINGID_THESEAOFFIREDISAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_SwampStart::
+	printstring STRINGID_SWAMPENVELOPEDSIDE
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_EFFECT_BATTLER, B_ANIM_SWAMP
+	waitanimation
+	return
+
+BattleScript_TheSwampDisappeared::
+	printstring STRINGID_THESWAMPDISAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	end2

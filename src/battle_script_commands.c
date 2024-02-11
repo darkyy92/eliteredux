@@ -3150,42 +3150,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
      // Just in case this flag is still set
     gBattleScripting.moveEffect &= ~(MOVE_EFFECT_CERTAIN);
 
-    if (gBattleScripting.moveEffect & MOVE_EFFECT_ORDER_UP)
-    {
-        gBattleScripting.moveEffect &= ~MOVE_EFFECT_ORDER_UP;
-        if (gBattleMons[gBattlerAttacker].species == SPECIES_DONDOZO
-            && GetAbilityState(BATTLE_PARTNER(gBattlerAttacker), ABILITY_COMMANDER) > 0)
-        {
-            switch (gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].species)
-            {
-                case SPECIES_TATSUGIRI_CURLY:
-                    gBattleScripting.moveEffect |= MOVE_EFFECT_ATK_PLUS_1;
-                    break;
-                case SPECIES_TATSUGIRI_DROOPY:
-                    gBattleScripting.moveEffect |= MOVE_EFFECT_DEF_PLUS_1;
-                    break;
-                case SPECIES_TATSUGIRI_STRETCHY:
-                    gBattleScripting.moveEffect |= MOVE_EFFECT_SPD_PLUS_1;
-                    break;
-            }
-        }
-    }
-    else if (gBattleScripting.moveEffect & MOVE_EFFECT_BURN_IF_STATUS_UP)
-    {
-        bool8 anyStatus;
-        u8 i;
-        gBattleScripting.moveEffect &= ~MOVE_EFFECT_BURN_IF_STATUS_UP;
-        for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
-        {
-            if (gBattleMons[gEffectBattler].statStages[i] > DEFAULT_STAT_STAGE)
-            {
-                gBattleScripting.moveEffect |= MOVE_EFFECT_BURN;
-                break;
-            }
-        }
-
-    }
-
     if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || BattlerHasInnate(gEffectBattler, ABILITY_SHIELD_DUST)) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= 9)
         INCREMENT_RESET_RETURN
@@ -3468,6 +3432,138 @@ void SetMoveEffect(bool32 primary, u32 certain)
             u8 side;
             switch (gBattleScripting.moveEffect)
             {
+            case MOVE_EFFECT_ORDER_UP:
+                if (gBattleMons[gBattlerAttacker].species == SPECIES_DONDOZO
+                    && GetAbilityState(BATTLE_PARTNER(gBattlerAttacker), ABILITY_COMMANDER) > 0)
+                {
+                    switch (gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].species)
+                    {
+                        case SPECIES_TATSUGIRI_CURLY:
+                            gBattleScripting.moveEffect = MOVE_EFFECT_ATK_PLUS_1 | affectsUser;
+                            SetMoveEffect(primary, certain);
+                            break;
+                        case SPECIES_TATSUGIRI_DROOPY:
+                            gBattleScripting.moveEffect = MOVE_EFFECT_DEF_PLUS_1 | affectsUser;
+                            SetMoveEffect(primary, certain);
+                            break;
+                        case SPECIES_TATSUGIRI_STRETCHY:
+                            gBattleScripting.moveEffect = MOVE_EFFECT_SPD_PLUS_1 | affectsUser;
+                            SetMoveEffect(primary, certain);
+                            break;
+                        default:
+                            gBattlescriptCurrInstr++;
+                            break;
+                    }
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_BURN_IF_STATUS_UP:
+                {
+                    bool8 anyStatus;
+                    u8 i;
+                    gBattleScripting.moveEffect &= ~MOVE_EFFECT_BURN_IF_STATUS_UP;
+                    for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+                    {
+                        if (gBattleMons[gEffectBattler].statStages[i] > DEFAULT_STAT_STAGE)
+                        {
+                            gBattleScripting.moveEffect = MOVE_EFFECT_BURN | affectsUser;
+                            SetMoveEffect(primary, certain);
+                            break;
+                        }
+                    }
+                    if (i >= NUM_BATTLE_STATS)
+                    {
+                        gBattlescriptCurrInstr++;
+                    }
+                }
+                break;
+            case MOVE_EFFECT_WATER_PLEDGE:
+                if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_RAINBOW | MOVE_EFFECT_AFFECTS_USER;
+                    SetMoveEffect(primary, certain);
+                }
+                else if (TERRAIN_HAS_EFFECT && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_SWAMP;
+                    SetMoveEffect(primary, certain);
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_FIRE_PLEDGE:
+                if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_RAIN_ANY)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_RAINBOW | MOVE_EFFECT_AFFECTS_USER;
+                    SetMoveEffect(primary, certain);
+                }
+                else if (TERRAIN_HAS_EFFECT && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_FIRE_SEA;
+                    SetMoveEffect(primary, certain);
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_GRASS_PLEDGE:
+                if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_FIRE_SEA;
+                    SetMoveEffect(primary, certain);
+                }
+                else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_RAIN_ANY)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_SWAMP;
+                    SetMoveEffect(primary, certain);
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_RAINBOW:
+                if (!gSideTimers[GetBattlerSide(gEffectBattler)].rainbowTimer)
+                {
+                    gSideTimers[GetBattlerSide(gEffectBattler)].rainbowTimer = 4;
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_RainbowStart;
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_SWAMP:
+                if (!gSideTimers[GetBattlerSide(gEffectBattler)].swampTimer)
+                {
+                    gSideTimers[GetBattlerSide(gEffectBattler)].swampTimer = 4;
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_SwampStart;
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            case MOVE_EFFECT_FIRE_SEA:
+                if (!gSideTimers[GetBattlerSide(gEffectBattler)].fireSeaTimer)
+                {
+                    gSideTimers[GetBattlerSide(gEffectBattler)].fireSeaTimer = 4;
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_SeaOfFireStart;
+                }
+                else
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                break;
             case MOVE_EFFECT_CONFUSION:
                 if (!CanBeConfused(gEffectBattler))
                 {

@@ -2259,6 +2259,9 @@ enum
     ENDTURN_ION_DELUGE,
     ENDTURN_FAIRY_LOCK,
     ENDTURN_RETALIATE,
+    ENDTURN_RAINBOW,
+    ENDTURN_SEA_OF_FIRE,
+    ENDTURN_SWAMP,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -2723,6 +2726,91 @@ u8 DoFieldEndTurnEffects(void)
                 gSideTimers[B_SIDE_OPPONENT].retaliateTimer--;
             gBattleStruct->turnCountersTracker++;
             break;
+        case ENDTURN_RAINBOW:
+            while (gBattleStruct->turnSideTracker < 2)
+            {
+                u8 side = gBattleStruct->turnSideTracker;
+                if (gSideTimers[side].rainbowTimer)
+                {
+                    for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
+                    {
+                        if (GetBattlerSide(gBattlerAttacker) == side)
+                            break;
+                    }
+
+                    if (gSideTimers[side].rainbowTimer > 0 && --gSideTimers[side].rainbowTimer == 0)
+                    {
+                        BattleScriptExecute(BattleScript_RainbowDisappeared);
+                        effect++;
+                    }
+                }
+                gBattleStruct->turnSideTracker++;
+                if (effect != 0)
+                    break;
+            }
+            if (!effect)
+            {
+                gBattleStruct->turnCountersTracker++;
+                gBattleStruct->turnSideTracker = 0;
+            }
+            break;
+        case ENDTURN_SEA_OF_FIRE:
+            while (gBattleStruct->turnSideTracker < 2)
+            {
+                u8 side = gBattleStruct->turnSideTracker;
+
+                if (gSideTimers[side].fireSeaTimer)
+                {
+                    for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
+                    {
+                        if (GetBattlerSide(gBattlerAttacker) == side)
+                            break;
+                    }
+
+                    if (gSideTimers[side].fireSeaTimer > 0 && --gSideTimers[side].fireSeaTimer == 0)
+                    {
+                        BattleScriptExecute(BattleScript_TheSeaOfFireDisappeared);
+                        effect++;
+                    }
+                }
+                gBattleStruct->turnSideTracker++;
+                if (effect != 0)
+                    break;
+            }
+            if (!effect)
+            {
+                gBattleStruct->turnCountersTracker++;
+                gBattleStruct->turnSideTracker = 0;
+            }
+            break;
+        case ENDTURN_SWAMP:
+            while (gBattleStruct->turnSideTracker < 2)
+            {
+                u8 side = gBattleStruct->turnSideTracker;
+                if (gSideTimers[side].swampTimer)
+                {
+                    for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
+                    {
+                        if (GetBattlerSide(gBattlerAttacker) == side)
+                            break;
+                    }
+
+                    if (gSideTimers[side].swampTimer > 0 && --gSideTimers[side].swampTimer == 0)
+                    {
+                        BattleScriptExecute(BattleScript_TheSwampDisappeared);
+                        effect++;
+                    }
+                }
+                gBattleStruct->turnSideTracker++;
+                if (effect != 0)
+                    break;
+            }
+            if (!effect)
+            {
+                gBattleStruct->turnCountersTracker++;
+                gBattleStruct->turnSideTracker = 0;
+            }
+            break;
         case ENDTURN_FIELD_COUNT:
             effect++;
             break;
@@ -2774,6 +2862,7 @@ enum
     ENDTURN_SLOW_START,
     ENDTURN_PLASMA_FISTS,
     ENDTURN_TOXIC_WASTE_DAMAGE,
+    ENDTURN_SEA_OF_FIRE_DAMAGE,
     ENDTURN_BATTLER_COUNT,
 };
 
@@ -2993,6 +3082,22 @@ u8 DoBattlerEndTurnEffects(void)
                     BattleScriptExecute(BattleScript_PoisonTurnDmg);
                     effect++;
                 }
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_SEA_OF_FIRE_DAMAGE:
+            if (IsBattlerAlive(gActiveBattler) && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FIRE) && gSideTimers[GetBattlerSide(gActiveBattler)].fireSeaTimer)
+            {
+                MAGIC_GUARD_CHECK;
+				FLARE_BOOST_CHECK;
+
+                gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BtlController_EmitStatusAnimation(0, FALSE, STATUS1_BURN);
+                MarkBattlerForControllerExec(gActiveBattler);
+                BattleScriptExecute(BattleScript_HurtByTheSeaOfFire);
+                effect++;
             }
             gBattleStruct->turnEffectsTracker++;
             break;

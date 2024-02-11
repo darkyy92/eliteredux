@@ -387,11 +387,11 @@
 	.byte 0x44
 	.endm
 
-	.macro playanimation battler:req, param1:req, param2:req
+	.macro playanimation battler:req, animId:req, argPtr=NULL
 	.byte 0x45
 	.byte \battler
-	.byte \param1
-	.4byte \param2
+	.byte \animId
+	.4byte \argPtr
 	.endm
 
 	.macro playanimation2 battler:req, param1:req, param2:req

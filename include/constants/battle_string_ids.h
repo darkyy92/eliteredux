@@ -740,8 +740,16 @@
 #define STRINGID_SHEDITSTAIL                          769
 #define STRINGID_GHASTLY_ECHO                         770
 #define STRINGID_PKMNREVIVEDREADYTOFIGHT              771
+#define STRINGID_THESWAMPDISAPPEARED                  772
+#define STRINGID_SWAMPENVELOPEDSIDE                   773
+#define STRINGID_THESEAOFFIREDISAPPEARED              774
+#define STRINGID_HURTBYTHESEAOFFIRE                   775
+#define STRINGID_SEAOFFIREENVELOPEDSIDE               776
+#define STRINGID_WAITINGFORPARTNERSMOVE               777
+#define STRINGID_THERAINBOWDISAPPEARED                778
+#define STRINGID_ARAINBOWAPPEAREDONSIDE               779
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNREVIVEDREADYTOFIGHT + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_ARAINBOWAPPEAREDONSIDE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

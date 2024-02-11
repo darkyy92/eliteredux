@@ -11637,5 +11637,8 @@ extern const u32 gMonFrontPic_Pupitar_Redux[];
 extern const u32 gMonFrontPic_Larvitar_Redux[];
 extern const u32 gMonFrontPic_Castform_Sandy[];
 extern const u32 gMonFrontPic_Kingambit_Redux[];
+extern const u32 gBattleAnimBgImage_Rainbow[];
+extern const u32 gBattleAnimBGPalette_Rainbow[];
+extern const u32 gBattleAnimBgTilemap_Rainbow[];
 
 #endif //GUARD_GRAPHICS_H

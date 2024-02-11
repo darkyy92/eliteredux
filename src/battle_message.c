@@ -855,6 +855,14 @@ static const u8 sText_ParadoxBoostItem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s 
 static const u8 sText_ParadoxBoostSun[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the harsh sunlight!");
 static const u8 sText_ParadoxBoostElectricTerrain[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} reacts\nto the electric terrain!");
 static const u8 sText_Costar[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} copied\nits ally's stat changes!");
+static const u8 sText_ARainbowAppearedOnSide[] = _("A rainbow appeared in the sky\non {B_ATK_TEAM2} team's side!");
+static const u8 sText_TheRainbowDisappeared[] = _("The rainbow on {B_ATK_TEAM2}\nside disappeared!");
+static const u8 sText_WaitingForPartnersMove[] = _("{B_ATK_NAME_WITH_PREFIX} is waiting\nfor {B_ATK_PARTNER_NAME}'s move…{PAUSE 16}");
+static const u8 sText_SeaOfFireEnvelopedSide[] = _("A sea of fire enveloped\n{B_DEF_TEAM2} team!");
+static const u8 sText_HurtByTheSeaOfFire[] = _("{B_ATK_TEAM1} {B_ATK_NAME_WITH_PREFIX} was hurt\nby the sea of fire!");
+static const u8 sText_TheSeaOfFireDisappeared[] = _("The sea of fire around {B_ATK_TEAM2}\nteam disappeared!");
+static const u8 sText_SwampEnvelopedSide[] = _("A swamp enveloped\n{B_DEF_TEAM2} team!");
+static const u8 sText_TheSwampDisappeared[] = _("The swamp around {B_ATK_TEAM2}\nteam disappeared!");
 
 static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got its move disabled!");
 static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
@@ -1600,6 +1608,14 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PARADOX_BOOST_WEATHER - 12] = sText_ParadoxBoostSun,
     [STRINGID_PARADOX_BOOST_TERRAIN - 12] = sText_ParadoxBoostElectricTerrain,
     [STRINGID_COSTAR - 12] = sText_Costar,
+    [STRINGID_THESWAMPDISAPPEARED - 12] = sText_TheSwampDisappeared,
+    [STRINGID_SWAMPENVELOPEDSIDE - 12] = sText_SwampEnvelopedSide,
+    [STRINGID_THESEAOFFIREDISAPPEARED - 12] = sText_TheSeaOfFireDisappeared,
+    [STRINGID_HURTBYTHESEAOFFIRE - 12] = sText_HurtByTheSeaOfFire,
+    [STRINGID_SEAOFFIREENVELOPEDSIDE - 12] = sText_SeaOfFireEnvelopedSide,
+    [STRINGID_WAITINGFORPARTNERSMOVE - 12] = sText_WaitingForPartnersMove,
+    [STRINGID_THERAINBOWDISAPPEARED - 12] = sText_TheRainbowDisappeared,
+    [STRINGID_ARAINBOWAPPEAREDONSIDE - 12] = sText_ARainbowAppearedOnSide,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

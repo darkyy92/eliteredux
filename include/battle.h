@@ -244,6 +244,9 @@ struct SideTimer
     u8 luckyChantBattlerId;
     u8 retaliateTimer;
     u8 spiderWebTimer;
+    u8 swampTimer;
+    u8 fireSeaTimer;
+    u8 rainbowTimer;
 };
 
 struct FieldTimer

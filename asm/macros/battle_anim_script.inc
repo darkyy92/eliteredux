@@ -215,16 +215,16 @@
 	.byte \param2
 	.endm
 
-	.macro panse_26 se:req, param1:req, param2:req, param3:req, param4:req
+	.macro panse_adjustnone se:req, currentPan:req, targetPan:req, incrementPan:req, delay:req
 	.byte 0x26
 	.2byte \se
-	.byte \param1
-	.byte \param2
-	.byte \param3
-	.byte \param4
+	.byte \currentPan
+	.byte \targetPan
+	.byte \incrementPan
+	.byte \delay
 	.endm
 
-	.macro panse_27 se:req, param1:req, param2:req, param3:req, param4:req
+	.macro panse_adjustall se:req, param1:req, param2:req, param3:req, param4:req
 	.byte 0x27
 	.2byte \se
 	.byte \param1
