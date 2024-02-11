@@ -5525,7 +5525,7 @@ BattleScript_EffectRapidSpin::
 	seteffectwithchance
 	setstatchanger STAT_SPEED, 1, FALSE
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_EffectRapidSpinEnd
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectRdragonapidSpinEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectRapidSpinEnd
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printfromtable gStatUpStringIds

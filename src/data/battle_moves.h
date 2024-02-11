@@ -10631,14 +10631,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_ORDER_UP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_ARGUMENT_HIT,
+        .power = 80,
+        .type = TYPE_DRAGON,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
+        .argument = MOVE_EFFECT_ORDER_UP | MOVE_EFFECT_AFFECTS_USER,
     },
     [MOVE_SPICY_EXTRACT] =
     {

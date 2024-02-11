@@ -3146,6 +3146,27 @@ void SetMoveEffect(bool32 primary, u32 certain)
      // Just in case this flag is still set
     gBattleScripting.moveEffect &= ~(MOVE_EFFECT_CERTAIN);
 
+    if (gBattleScripting.moveEffect & MOVE_EFFECT_ORDER_UP)
+    {
+        gBattleScripting.moveEffect &= ~MOVE_EFFECT_ORDER_UP;
+        if (gBattleMons[gBattlerAttacker].species == SPECIES_DONDOZO
+            && GetAbilityState(BATTLE_PARTNER(gBattlerAttacker), ABILITY_COMMANDER) > 0)
+        {
+            switch (gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].species)
+            {
+                case SPECIES_TATSUGIRI_CURLY:
+                    gBattleScripting.moveEffect |= MOVE_EFFECT_ATK_PLUS_1;
+                    break;
+                case SPECIES_TATSUGIRI_DROOPY:
+                    gBattleScripting.moveEffect |= MOVE_EFFECT_DEF_PLUS_1;
+                    break;
+                case SPECIES_TATSUGIRI_STRETCHY:
+                    gBattleScripting.moveEffect |= MOVE_EFFECT_SPD_PLUS_1;
+                    break;
+            }
+        }
+    }
+
     if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || BattlerHasInnate(gEffectBattler, ABILITY_SHIELD_DUST)) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= 9)
         INCREMENT_RESET_RETURN

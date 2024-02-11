@@ -378,7 +378,8 @@
 #define MOVE_EFFECT_DISABLE                75
 #define MOVE_EFFECT_GLAIVE_RUSH            76
 #define MOVE_EFFECT_SALT_CURE              77
-#define NUM_MOVE_EFFECTS                   78
+#define MOVE_EFFECT_ORDER_UP               78
+#define NUM_MOVE_EFFECTS                   79
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
