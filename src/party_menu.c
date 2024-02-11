@@ -272,6 +272,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonFieldMoveSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonEvolutionSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonLearnMoveSelectionActions(struct Pokemon*, u8);
+static void SetPartyMonHeldItemSelectionActions(struct Pokemon*, u8);
 static u8 GetPartyMenuActionsTypeInBattle(struct Pokemon*);
 static u8 GetPartySlotEntryStatus(s8);
 static void Task_UpdateHeldItemSprite(u8);
@@ -406,6 +407,8 @@ static void CursorCb_Switch(u8);
 static void CursorCb_Cancel1(u8);
 static void CursorCb_Item(u8);
 static void CursorCb_Give(u8);
+static void CursorCb_GiveMegaStone(u8);
+static void CursorCb_GiveMegaStone2(u8);
 static void CursorCb_TakeItem(u8);
 static void CursorCb_MoveItem(u8);
 static void CursorCb_Mail(u8);
@@ -421,6 +424,7 @@ static void CursorCb_Trade1(u8);
 static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_LearnMovesSubMenu(u8);
+static void CursorCb_HeldItemSubMenu(u8);
 static void CursorCb_FieldMovesSubMenu(u8);
 static void CursorCb_EvolutionSubMenu(u8);
 static void CursorCb_FieldMove(u8);
@@ -1824,11 +1828,23 @@ static void DisplayGaveHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keep
     ScheduleBgCopyTilemapToVram(2);
 }
 
-static void DisplayTookHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keepOpen)
+enum {
+    MESSAGE_RECEIVEDITEM,
+    MESSAGE_GIVEMEGASTONE,
+};
+
+static void DisplayTookHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keepOpen, u8 message)
 {
     GetMonNickname(mon, gStringVar1);
     CopyItemName(item, gStringVar2);
-    StringExpandPlaceholders(gStringVar4, gText_ReceivedItemFromPkmn);
+    switch(message){
+        case MESSAGE_RECEIVEDITEM:
+            StringExpandPlaceholders(gStringVar4, gText_ReceivedItemFromPkmn);
+        break;
+        case MESSAGE_GIVEMEGASTONE:
+            StringExpandPlaceholders(gStringVar4, gText_PkmnWasGivenItem);
+        break;
+    }
     DisplayPartyMenuMessage(gStringVar4, keepOpen);
     ScheduleBgCopyTilemapToVram(2);
 }
@@ -2650,7 +2666,8 @@ static u8 DisplaySelectionWindow(u8 windowType)
     struct WindowTemplate window;
     u8 cursorDimension;
     u8 fontAttribute;
-    u8 i;
+    u8 i, j, k;
+    u8 font = FONT_SMALL_NARROW;
 
     switch (windowType)
     {
@@ -2691,14 +2708,34 @@ static u8 DisplaySelectionWindow(u8 windowType)
             fontColorsId = 3; //Normal Color
 
 
-        if(sPartyMenuInternal->actions[i] < MENU_EVOLUTIONS)
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
+        if(sPartyMenuInternal->actions[i] == MENU_MEGA_STONE || sPartyMenuInternal->actions[i] == MENU_MEGA_STONE_2){
+            struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+            u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+            u16 megaEvoItem = ITEM_NONE;
+
+            for (k = 0; k < EVOS_PER_MON; k++)
+            {
+                if(sPartyMenuInternal->actions[i] == MENU_MEGA_STONE_2)
+                    j = EVOS_PER_MON - k;
+                else
+                    j = k;
+
+                if (gEvolutionTable[species][j].method == EVO_MEGA_EVOLUTION){
+                    megaEvoItem = gEvolutionTable[species][j].param;
+                    break;
+                }
+            }
+
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0xFF, ItemId_GetName(megaEvoItem));
+        }
+        else if(sPartyMenuInternal->actions[i] < MENU_EVOLUTIONS)
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
         else{
             struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
             u8 j = (sPartyMenuInternal->actions[i] - MENU_EVOLUTIONS);
             u16 targetspecies = GetEvolutionForMon(mon, j);
 
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, gSpeciesNames[targetspecies]);
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, gSpeciesNames[targetspecies]);
         }
         
     }
@@ -2793,6 +2830,10 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
             sPartyMenuInternal->numActions = 0;
             SetPartyMonLearnMoveSelectionActions(mons, slotId);
         break;
+        case ACTIONS_ITEMS_SUB:
+            sPartyMenuInternal->numActions = 0;
+            SetPartyMonHeldItemSelectionActions(mons, slotId);
+        break;
         default:
             sPartyMenuInternal->numActions = sPartyMenuActionCounts[action];
             for (i = 0; i < sPartyMenuInternal->numActions; i++)
@@ -2866,6 +2907,59 @@ static void SetPartyMonLearnMoveSelectionActions(struct Pokemon *mons, u8 slotId
     //Tutor Moves
 	if (GetMonData(&mons[slotId], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfTutorMoves(&mons[slotId]) > 0 && enablePokemonChanges())
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TUTOR_MOVES);
+
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
+}
+
+
+static void SetPartyMonHeldItemSelectionActions(struct Pokemon *mons, u8 slotId)
+{
+    u32 i,j;
+    u16 species  = GetMonData(&mons[slotId], MON_DATA_SPECIES, NULL);
+    u16 helditem = GetMonData(&mons[slotId], MON_DATA_HELD_ITEM, NULL);
+    bool8 canMegaEvolve = FALSE;
+    bool8 canMegaEvolve2 = FALSE;
+    u16 megaEvoItem = ITEM_NONE;
+    u16 megaEvoItem2 = ITEM_NONE;
+
+    if(helditem != ITEM_NONE){
+        //Take Item
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_ITEM);
+        //Move Item
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MOVE_ITEM);
+    }
+    else{
+        //Give Item
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_GIVE);
+    }
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (gEvolutionTable[species][i].method == EVO_MEGA_EVOLUTION){
+            canMegaEvolve = TRUE;
+            megaEvoItem = gEvolutionTable[species][i].param;
+            break;
+        }
+    }
+
+    //Give Mega Stone
+	if (canMegaEvolve && CheckBagHasItem(megaEvoItem, 1) && megaEvoItem != ITEM_NONE && helditem != megaEvoItem)
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MEGA_STONE);
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        j = EVOS_PER_MON - i;
+
+        if (gEvolutionTable[species][j].method == EVO_MEGA_EVOLUTION){
+            canMegaEvolve2 = TRUE;
+            megaEvoItem2 = gEvolutionTable[species][j].param;
+            break;
+        }
+    }
+
+    //Give Mega Stone
+    if (canMegaEvolve2 && CheckBagHasItem(megaEvoItem2, 1) && megaEvoItem2 != ITEM_NONE && megaEvoItem2 != megaEvoItem && helditem != megaEvoItem2)
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MEGA_STONE_2);
 
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
@@ -3464,6 +3558,63 @@ static void CursorCb_Give(u8 taskId)
     Task_ClosePartyMenu(taskId);
 }
 
+static void CursorCb_GiveMegaStone(u8 taskId)
+{
+    u8 i;
+    u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES, NULL);
+    u16 helditem = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HELD_ITEM, NULL);
+    u16 megaEvoItem;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (gEvolutionTable[species][i].method == EVO_MEGA_EVOLUTION){
+            megaEvoItem = gEvolutionTable[species][i].param;
+            break;
+        }
+    }
+
+    PlaySE(SE_SELECT);
+    RemoveBagItem(megaEvoItem, 1);
+    if(helditem != ITEM_NONE)
+        AddBagItem(helditem, 1);
+
+    GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], megaEvoItem);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    ScheduleBgCopyTilemapToVram(2);
+    DisplayTookHeldItemMessage(&gPlayerParty[gPartyMenu.slotId], megaEvoItem, TRUE, MESSAGE_GIVEMEGASTONE);
+    gTasks[taskId].func = Task_UpdateHeldItemSprite;
+}
+
+static void CursorCb_GiveMegaStone2(u8 taskId)
+{
+    u8 i, j;
+    u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES, NULL);
+    u16 helditem = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HELD_ITEM, NULL);
+    u16 megaEvoItem;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        j = EVOS_PER_MON - i;
+
+        if (gEvolutionTable[species][j].method == EVO_MEGA_EVOLUTION){
+            megaEvoItem = gEvolutionTable[species][j].param;
+            break;
+        }
+    }
+
+    PlaySE(SE_SELECT);
+    RemoveBagItem(megaEvoItem, 1);
+    if(helditem != ITEM_NONE)
+        AddBagItem(helditem, 1);
+    GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], megaEvoItem);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    ScheduleBgCopyTilemapToVram(2);
+    DisplayTookHeldItemMessage(&gPlayerParty[gPartyMenu.slotId], megaEvoItem, TRUE, MESSAGE_GIVEMEGASTONE);
+    gTasks[taskId].func = Task_UpdateHeldItemSprite;
+}
+
 static void CB2_SelectBagItemToGive(void)
 {
     if (InBattlePyramid() == FALSE)
@@ -3664,7 +3815,7 @@ static void CursorCb_TakeItem(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         break;
     default: // Took item
-        DisplayTookHeldItemMessage(mon, item, TRUE);
+        DisplayTookHeldItemMessage(mon, item, TRUE, MESSAGE_RECEIVEDITEM);
         break;
     }
     ScheduleBgCopyTilemapToVram(2);
@@ -3859,6 +4010,18 @@ static void CursorCb_LearnMovesSubMenu(u8 taskId)
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_MOVES_SUB);
+    DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
+    DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+static void CursorCb_HeldItemSubMenu(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_ITEMS_SUB);
     DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
     DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
     gTasks[taskId].data[0] = 0xFF;
