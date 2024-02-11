@@ -10327,14 +10327,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_TIDY_UP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_TIDY_UP,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .split = SPLIT_STATUS,
     },
     [MOVE_POPULATION_BOMB] =
     {
