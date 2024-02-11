@@ -1123,12 +1123,12 @@ BattleScript_EffectDecorate:
 	ppreduce
 	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_ATK, 12, BattleScript_DecorateBoost
 	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_SPATK, 12, BattleScript_DecorateBoost
-	goto BattleScript_ButItFailed
+	jumpifstatus2 BS_TARGET, STATUS2_FOCUS_ENERGY, BattleScript_ButItFailed
 BattleScript_DecorateBoost:
 	attackanimation
 	waitanimation
 	setbyte sSTAT_ANIM_PLAYED, FALSE
-	playstatchangeanimation BS_TARGET, BIT_ATK | BIT_SPATK, 0x0
+	playstatchangeanimation BS_TARGET, BIT_ATK | BIT_SPATK, STAT_CHANGE_BY_TWO
 	setstatchanger STAT_ATK, 2, FALSE
 	statbuffchange STAT_BUFF_ALLOW_PTR | STAT_BUFF_NOT_PROTECT_AFFECTED, BattleScript_DecorateBoostSpAtk
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DecorateBoostSpAtk
@@ -1136,9 +1136,14 @@ BattleScript_DecorateBoost:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DecorateBoostSpAtk:
 	setstatchanger STAT_SPATK, 2, FALSE
-	statbuffchange STAT_BUFF_ALLOW_PTR | STAT_BUFF_NOT_PROTECT_AFFECTED, BattleScript_MoveEnd
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_MoveEnd
+	statbuffchange STAT_BUFF_ALLOW_PTR | STAT_BUFF_NOT_PROTECT_AFFECTED, BattleScript_DecorateBoostCrit
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DecorateBoostCrit
 	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DecorateBoostCrit:
+	jumpifstatus2 BS_TARGET, STATUS2_FOCUS_ENERGY, BattleScript_MoveEnd
+	setfocusenergy
+	printfromtable gFocusEnergyUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 

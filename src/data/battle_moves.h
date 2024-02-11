@@ -9527,19 +9527,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SCATTER_BLAST] =
     {
-        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
         .power = 80,
         .type = TYPE_GROUND,
         .accuracy = 100,
         .pp = 10,
-        .secondaryEffectChance = 100,
+        .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
         .split = SPLIT_SPECIAL,
     },
     [MOVE_JAGGED_PUNCH] =
     {
-        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .effect = EFFECT_BLEED_HIT,
         .power = 75,
         .type = TYPE_ROCK,
         .accuracy = 90,
@@ -9666,7 +9666,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_DIAMOND_BLADE] =
     {
-        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .effect = EFFECT_BLEED_HIT,
         .power = 80,
         .type = TYPE_ROCK,
         .accuracy = 100,
