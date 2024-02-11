@@ -13303,14 +13303,14 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         switch (gBattleMoves[move].argument)
         {
             case MISC_EFFECT_FAINTED_MON_BOOST:
-                basePower *= 1 + gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
+                basePower += 10 * gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
                 break;
             case MISC_EFFECT_ELECTRIC_TERRAIN_BOOST:
                 if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
                     basePower = basePower * 3 / 2;
                 break;
             case MISC_EFFECT_TOOK_DAMAGE_BOOST:
-                basePower *= 1 + min(6, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
+                basePower += 20 * min(3, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
                 break;
         }
         break;
@@ -15142,7 +15142,16 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
 
     // check crit
     if (isCrit)
-        dmg = ApplyModifier((B_CRIT_MULTIPLIER >= GEN_6 ? UQ_4_12(1.5) : UQ_4_12(2.0)), dmg);
+    {
+        if (gBattleMoves[move].effect == EFFECT_MISC_HIT && gBattleMoves[move].argument == MISC_EFFECT_INCREASED_CRIT_DAMAGE)
+        {
+            dmg = ApplyModifier(UQ_4_12(2.0), dmg);
+        }
+        else
+        {
+            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+        }
+    }
 
     #define CHECK_WEATHER_DOUBLE_BOOST(boost, drop) (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_WEATHER_DOUBLE_BOOST) ? UQ_4_12(boost) : UQ_4_12(drop))
 
@@ -15666,6 +15675,8 @@ void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef,
     if (gBattleMoves[move].effect == EFFECT_SLUDGE && defType == TYPE_WATER)
         mod = UQ_4_12(2.0);
     if (gBattleMoves[move].effect == EFFECT_POISON_GAS && defType == TYPE_FLYING)
+        mod = UQ_4_12(2.0);
+    if (move == MOVE_GIGATON_HAMMER && defType == TYPE_STEEL)
         mod = UQ_4_12(2.0);
     if (moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(battlerDef) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);

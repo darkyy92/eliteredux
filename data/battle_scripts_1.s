@@ -458,6 +458,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectPoisonHit				  @ EFFECT_SLUDGE
 	.4byte BattleScript_EffectToxicHit				  @ EFFECT_POISON_GAS
 	.4byte BattleScript_EffectParalyzeIgnoreType	  @ EFFECT_PARALYZE_IGNORE_TYPE
+	.4byte BattleScript_EffectSuperFangHaze			  @ EFFECT_SUPER_FANG_HAZE
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -4254,6 +4255,21 @@ BattleScript_EffectSuperFang::
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
 	calculatesetdamage
 	goto BattleScript_HitFromAtkAnimation
+	
+BattleScript_EffectSuperFangHaze::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	typecalc
+	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
+	calculatesetdamage
+	call BattleScript_HitFromAtkAnimationReturn
+	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+	normalisebuffs
+	printstring STRINGID_STATCHANGESGONE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectDragonRage::
 	attackcanceler

@@ -12818,6 +12818,7 @@ static void Cmd_calculatesetdamage(void)
             randDamage = (Random() % 101);
             baseDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
         break;
+        case EFFECT_SUPER_FANG_HAZE:
         case EFFECT_SUPER_FANG:
             //Inflicts damage equal to half of the target's current HP.
             baseDamage = gBattleMons[gBattlerTarget].hp / 2;
