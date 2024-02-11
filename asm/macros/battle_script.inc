@@ -2167,8 +2167,9 @@
 	various BS_ATTACKER, VARIOUS_DO_COPY_STAT_CHANGE
 	.endm
 
-	.macro trylosehalfmaxhp battler:req, ptr:req
-	various \battler, VARIOUS_TRY_LOSE_HALF_MAX_HP
+	.macro trylosepercenthp battler:req, percent:req, ptr:req
+	various \battler, VARIOUS_TRY_LOSE_PERCENT_HP
+	.byte \percent
 	.4byte \ptr
 	.endm
 

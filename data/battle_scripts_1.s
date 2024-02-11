@@ -457,6 +457,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpecialDefenseDownHit   @ EFFECT_ACID
 	.4byte BattleScript_EffectPoisonHit				  @ EFFECT_SLUDGE
 	.4byte BattleScript_EffectToxicHit				  @ EFFECT_POISON_GAS
+	.4byte BattleScript_EffectParalyzeIgnoreType	  @ EFFECT_PARALYZE_IGNORE_TYPE
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -3497,7 +3498,7 @@ BattleScript_EffectPoisonHit:
 	setmoveeffect MOVE_EFFECT_POISON
 	goto BattleScript_EffectHit
 
-BattleScript_EffectToxicHit
+BattleScript_EffectToxicHit:
 	setmoveeffect MOVE_EFFECT_TOXIC
 	goto BattleScript_EffectHit
 
@@ -4501,6 +4502,35 @@ BattleScript_EffectPoison::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectParalyzeIgnoreType:
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifability BS_TARGET, ABILITY_LIMBER, BattleScript_LimberProtected
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_LeafGuardProtects
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_LeafGuardProtects
+	jumpifflowerveil BattleScript_FlowerVeilProtects
+	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
+	jumpifsubstituteblocks BattleScript_ButItFailed
+	jumpifmove MOVE_GLARE, BattleScript_BattleScript_EffectParalyzeNoTypeCalc
+	typecalc
+BattleScript_BattleScript_EffectParalyzeNoTypeCalc:
+	jumpifmovehadnoeffect BattleScript_ButItFailed
+	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_AlreadyParalyzed
+	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
+	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+	jumpifsafeguard BattleScript_SafeguardProtected
+	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_PARALYSIS | MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES
+	seteffectprimary
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectParalyze:
 	attackcanceler
 	attackstring
@@ -4512,11 +4542,7 @@ BattleScript_EffectParalyze:
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifshieldsdown BS_TARGET, BattleScript_LeafGuardProtects
 	jumpifsubstituteblocks BattleScript_ButItFailed
-.if B_GLARE_GHOST >= GEN_4
-	jumpifmove MOVE_GLARE, BattleScript_BattleScript_EffectParalyzeNoTypeCalc
-.endif
 	typecalc
-BattleScript_BattleScript_EffectParalyzeNoTypeCalc:
 	jumpifmovehadnoeffect BattleScript_ButItFailed
 	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_AlreadyParalyzed
 	tryparalyzetype BS_ATTACKER, BS_TARGET, BattleScript_NotAffected
@@ -5763,7 +5789,7 @@ BattleScript_EffectFilletAway::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_EffectFilletAway_TryLoseHp
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
 BattleScript_EffectFilletAway_TryLoseHp:
-	trylosehalfmaxhp BS_ATTACKER, BattleScript_ButItFailed
+	trylosepercenthp BS_ATTACKER, 33, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	healthbarupdate BS_ATTACKER

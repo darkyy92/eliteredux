@@ -3120,6 +3120,9 @@ void SetMoveEffect(bool32 primary, u32 certain)
     bool32 statusChanged = FALSE;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR || BattlerHasInnate(gBattlerTarget, ABILITY_MIRROR_ARMOR));
     u32 flags = 0;
+    bool8 ignoreTypeImmunities = gBattleScripting.moveEffect & MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
+
+    gBattleScripting.moveEffect &= ~MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
 
     switch (gBattleScripting.moveEffect) // Set move effects which happen later on
     {
@@ -3318,6 +3321,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 else
                     break;
             }
+            if (ignoreTypeImmunities) break;
             if (!CanParalyzeType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
@@ -8538,8 +8542,6 @@ static void Cmd_various(void)
     u32 side, bits;
     u8 increase;
     u8 statId;
-    u8 byteValue;
-    u32 u32Value;
 
     if (gBattleControllerExecFlags)
         return;
@@ -9703,13 +9705,14 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     case VARIOUS_LOSE_TYPE:
-        byteValue = gBattlescriptCurrInstr[3] == TYPE_CURRENT_MOVE ? gBattleMoves[gCurrentMove].type : gBattlescriptCurrInstr[3];
+    {
+        u8 typeToLose = gBattlescriptCurrInstr[3] == TYPE_CURRENT_MOVE ? gBattleMoves[gCurrentMove].type : gBattlescriptCurrInstr[3];
         for (i = 0; i < 3; i++)
         {
-            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == byteValue)
+            if (*(u8*)(&gBattleMons[gActiveBattler].type1 + i) == typeToLose)
                 *(u8*)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
         }
-        switch (byteValue)
+        switch (typeToLose)
         {
             case TYPE_ELECTRIC:
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BURNUP_ELECTRIC;
@@ -9721,6 +9724,7 @@ static void Cmd_various(void)
         }
         gBattlescriptCurrInstr += 4;
         return;
+    }
     case VARIOUS_PSYCHO_SHIFT:
         i = TRUE;
         if (gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS)
@@ -10661,29 +10665,34 @@ static void Cmd_various(void)
         memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;
         break;
-    case VARIOUS_TRY_LOSE_HALF_MAX_HP:
-        u32Value = gBattleMons[gActiveBattler].maxHP / 2;
+    case VARIOUS_TRY_LOSE_PERCENT_HP:
+    {
+        u8 percentHp = gBattlescriptCurrInstr[3];
+        u32 hpLost = gBattleMons[gActiveBattler].maxHP * percentHp / 100;
 
-        if (!u32Value)
-            u32Value = 1;
+        if (!hpLost)
+            hpLost = 1;
 
-        if (gBattleMons[gActiveBattler].hp > u32Value)
+        if (gBattleMons[gActiveBattler].hp > hpLost)
         {
-            gBattleMoveDamage = u32Value;
-            gBattlescriptCurrInstr += 7;
+            gBattleMoveDamage = hpLost;
+            gBattlescriptCurrInstr += 8;
         }
         else
         {
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
         }
         return;
+    }
     case VARIOUS_SWAP_SIDE_EFFECTS:
-        u32Value = gSideStatuses[0] & SIDE_STATUS_SWAPPABLE;
+    {
+        u32 temp = gSideStatuses[0] & SIDE_STATUS_SWAPPABLE;
         gSideStatuses[0] &= ~SIDE_STATUS_SWAPPABLE;
         gSideStatuses[0] |= (gSideStatuses[1] & SIDE_STATUS_SWAPPABLE);
         gSideStatuses[1] &= ~SIDE_STATUS_SWAPPABLE;
-        gSideStatuses[1] |= (u32Value & SIDE_STATUS_SWAPPABLE);
+        gSideStatuses[1] |= (temp & SIDE_STATUS_SWAPPABLE);
         break;
+    }
     case VARIOUS_GHASTLY_ECHO:
         if (!(gStatuses4[gActiveBattler] & STATUS4_GHASTLY_ECHO)
             && !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUNDPROOF)
@@ -11511,6 +11520,7 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
     bool8 dontSetBuffers = flags & STAT_BUFF_DONT_SET_BUFFERS;
 
     flags &= ~STAT_BUFF_DONT_SET_BUFFERS;
+    flags &= ~MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
 
     if (BS_ptr == NULL)
     {

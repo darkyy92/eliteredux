@@ -954,7 +954,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_STUN_SPORE] =
     {
-        .effect = EFFECT_PARALYZE,
+        .effect = EFFECT_PARALYZE_IGNORE_TYPE,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 75,
@@ -1662,7 +1662,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_GLARE] =
     {
-        .effect = EFFECT_PARALYZE,
+        .effect = EFFECT_PARALYZE_IGNORE_TYPE,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -8784,14 +8784,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_STEEL_ROLLER] =
     {
-        .effect = EFFECT_REMOVE_TERRAIN,
-        .power = 130,
+        .effect = EFFECT_REMOVE_TERRAIN_NO_FAIL,
+        .power = 80,
         .type = TYPE_STEEL,
         .accuracy = 100,
-        .pp = 5,
+        .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_FIELD_BASED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_SCALE_SHOT] =
@@ -9529,12 +9529,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SCATTER_BLAST] =
     {
-        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
-        .power = 80,
+        .effect = EFFECT_STEALTH_ROCK_HIT,
+        .power = 65,
         .type = TYPE_GROUND,
-        .accuracy = 100,
-        .pp = 10,
-        .secondaryEffectChance = 10,
+        .accuracy = 90,
+        .pp = 15,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
         .split = SPLIT_SPECIAL,
@@ -10324,7 +10324,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_FIELD_BASED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_TIDY_UP] =
@@ -10857,7 +10857,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_RECOIL_IF_MISS,
         .power = 120,
-        .type = TYPE_FIGHTING,
+        .type = TYPE_DARK,
         .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 30,

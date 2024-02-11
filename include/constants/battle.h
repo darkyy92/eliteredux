@@ -381,6 +381,7 @@
 #define MOVE_EFFECT_ORDER_UP               78
 #define NUM_MOVE_EFFECTS                   79
 
+#define MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES 0x2000
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
 
