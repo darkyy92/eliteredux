@@ -10800,11 +10800,47 @@ static void Cmd_various(void)
     }
     case VARIOUS_SWAP_SIDE_EFFECTS:
     {
-        u32 temp = gSideStatuses[0] & SIDE_STATUS_SWAPPABLE;
+        u32 temp;
+        u32 tempFlags = gSideStatuses[0] & SIDE_STATUS_SWAPPABLE;
         gSideStatuses[0] &= ~SIDE_STATUS_SWAPPABLE;
         gSideStatuses[0] |= (gSideStatuses[1] & SIDE_STATUS_SWAPPABLE);
         gSideStatuses[1] &= ~SIDE_STATUS_SWAPPABLE;
-        gSideStatuses[1] |= (temp & SIDE_STATUS_SWAPPABLE);
+        gSideStatuses[1] |= tempFlags;
+
+        SWAP(gSideTimers[0].reflectTimer, gSideTimers[1].reflectTimer, temp)
+        SWAP(gSideTimers[0].lightscreenTimer, gSideTimers[1].lightscreenTimer, temp)
+        SWAP(gSideTimers[0].mistTimer, gSideTimers[1].mistTimer, temp)
+        SWAP(gSideTimers[0].safeguardTimer, gSideTimers[1].safeguardTimer, temp)
+        SWAP(gSideTimers[0].reflectTimer, gSideTimers[1].reflectTimer, temp)
+        SWAP(gSideTimers[0].spikesAmount, gSideTimers[1].spikesAmount, temp)
+        SWAP(gSideTimers[0].toxicSpikesAmount, gSideTimers[1].toxicSpikesAmount, temp)
+        SWAP(gSideTimers[0].stealthRockAmount, gSideTimers[1].stealthRockAmount, temp)
+        SWAP(gSideTimers[0].stickyWebAmount, gSideTimers[1].stickyWebAmount, temp)
+        SWAP(gSideTimers[0].auroraVeilTimer, gSideTimers[1].auroraVeilTimer, temp)
+        SWAP(gSideTimers[0].tailwindTimer, gSideTimers[1].tailwindTimer, temp)
+        SWAP(gSideTimers[0].luckyChantTimer, gSideTimers[1].luckyChantTimer, temp)
+        SWAP(gSideTimers[0].spiderWebTimer, gSideTimers[1].spiderWebTimer, temp)
+        SWAP(gSideTimers[0].swampTimer, gSideTimers[1].swampTimer, temp)
+        SWAP(gSideTimers[0].fireSeaTimer, gSideTimers[1].fireSeaTimer, temp)
+        SWAP(gSideTimers[0].rainbowTimer, gSideTimers[1].rainbowTimer, temp)
+
+        #define UPDATE_COURTCHANGED_BATTLER(structField) \
+        {                                                \
+            temp = gSideTimers[0].structField;         \
+            gSideTimers[0].structField = BATTLE_OPPOSITE(gSideTimers[1].structField); \
+            gSideTimers[1].structField = BATTLE_OPPOSITE(temp); \
+        }
+
+        UPDATE_COURTCHANGED_BATTLER(reflectBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(lightscreenBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(mistBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(safeguardBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(auroraVeilBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(tailwindBattlerId);
+        UPDATE_COURTCHANGED_BATTLER(luckyChantBattlerId);
+
+        #undef UPDATE_COURTCHANGED_BATTLER
+
         break;
     }
     case VARIOUS_GHASTLY_ECHO:
