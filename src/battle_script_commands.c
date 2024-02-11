@@ -4133,6 +4133,9 @@ static void Cmd_seteffectwithchance(void)
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
         percentChance = percentChance * 2;
 
+    if (gSideTimers[GetBattlerSide(gBattlerAttacker)].rainbowTimer)
+        percentChance = percentChance * 2;
+
     //Pyromancy boost
     if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY || BattlerHasInnate(gBattlerAttacker, ABILITY_PYROMANCY))
              && moveType == TYPE_FIRE

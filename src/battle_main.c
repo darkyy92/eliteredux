@@ -4839,6 +4839,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
         speed *= 2;
 
+    if (gSideTimers[GET_BATTLER_SIDE2(battlerId)].swampTimer)
+        speed /= 4;
+
     if (calcType == TOTAL_SPEED_SECONDARY) return speed;
 
     // item effects

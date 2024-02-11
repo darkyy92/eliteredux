@@ -12310,7 +12310,15 @@ case ITEMEFFECT_KINGSROCK:
         case HOLD_EFFECT_FLINCH:
             #if B_SERENE_GRACE_BOOST >= GEN_5
                 if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
+                {
                     atkHoldEffectParam *= 2;
+                    atkHoldEffectParam = min(100, atkHoldEffectParam);
+                }
+                if (gSideTimers[GetBattlerSide(gBattlerAttacker)].rainbowTimer)
+                {
+                    atkHoldEffectParam *= 2;
+                    atkHoldEffectParam = min(100, atkHoldEffectParam);
+                }
             #endif
             if (gBattleMoveDamage != 0  // Need to have done damage
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
