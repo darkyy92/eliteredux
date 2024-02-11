@@ -10000,15 +10000,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_REVIVAL_BLESSING] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 50,
+        .effect = EFFECT_REVIVAL_BLESSING,
+        .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
         .pp = 1,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .split = SPLIT_STATUS,
     },
     [MOVE_WHIRLING_STRIKES] =
     {

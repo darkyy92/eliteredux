@@ -452,6 +452,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectChillyReception		  @ EFFECT_CHILLY_RECEPTION
 	.4byte BattleScript_EffectShedTail				  @ EFFECT_SHED_TAIL
 	.4byte BattleScript_EffectGhastlyEcho			  @ EFFECT_GHASTLY_ECHO
+	.4byte BattleScript_EffectRevivalBlessing		  @ EFFECT_REVIVAL_BLESSING
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -11906,3 +11907,21 @@ BattleScript_SeedSowerEnd:
 BattleScript_EffectArgumentHit::
 	argumenttomoveeffect
 	goto BattleScript_EffectHit
+
+BattleScript_EffectRevivalBlessing::
+	attackcanceler
+	attackstring
+	ppreduce
+	tryrevivalblessing BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	printstring STRINGID_PKMNREVIVEDREADYTOFIGHT
+	waitmessage B_WAIT_TIME_LONG
+	jumpifbyte CMP_EQUAL, gBattleCommunication, TRUE, BattleScript_EffectRevivalBlessingSendOut
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectRevivalBlessingSendOut:
+	switchinanim BS_SCRIPTING, FALSE
+	waitstate
+	switchineffects BS_SCRIPTING
+	goto BattleScript_MoveEnd

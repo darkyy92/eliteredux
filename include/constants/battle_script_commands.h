@@ -234,6 +234,7 @@
 #define VARIOUS_TRY_LOSE_HALF_MAX_HP            154
 #define VARIOUS_SWAP_SIDE_EFFECTS               155
 #define VARIOUS_GHASTLY_ECHO                    156
+#define VARIOUS_TRY_REVIVAL_BLESSING            157
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

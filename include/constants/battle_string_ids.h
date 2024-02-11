@@ -739,8 +739,9 @@
 #define STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE        768
 #define STRINGID_SHEDITSTAIL                          769
 #define STRINGID_GHASTLY_ECHO                         770
+#define STRINGID_PKMNREVIVEDREADYTOFIGHT              771
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_GHASTLY_ECHO + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNREVIVEDREADYTOFIGHT + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
