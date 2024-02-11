@@ -15661,7 +15661,11 @@ void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef,
         mod = UQ_4_12(2.0); // super-effective
     if (gBattleMoves[move].effect == EFFECT_EXCALIBUR && defType == TYPE_DRAGON)
         mod = UQ_4_12(2.0); // super-effective
-    if (gBattleMoves[move].effect == EFFECT_ACID && defType == TYPE_POISON)
+    if (gBattleMoves[move].effect == EFFECT_ACID && defType == TYPE_STEEL)
+        mod = UQ_4_12(2.0);
+    if (gBattleMoves[move].effect == EFFECT_SLUDGE && defType == TYPE_WATER)
+        mod = UQ_4_12(2.0);
+    if (gBattleMoves[move].effect == EFFECT_POISON_GAS && defType == TYPE_FLYING)
         mod = UQ_4_12(2.0);
     if (moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(battlerDef) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);

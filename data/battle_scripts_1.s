@@ -455,6 +455,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRevivalBlessing		  @ EFFECT_REVIVAL_BLESSING
 	.4byte BattleScript_EffectTidyUp				  @ EFFECT_TIDY_UP
 	.4byte BattleScript_EffectSpecialDefenseDownHit   @ EFFECT_ACID
+	.4byte BattleScript_EffectPoisonHit				  @ EFFECT_SLUDGE
+	.4byte BattleScript_EffectToxicHit				  @ EFFECT_POISON_GAS
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -3493,6 +3495,10 @@ BattleScript_CantMakeAsleep::
 
 BattleScript_EffectPoisonHit:
 	setmoveeffect MOVE_EFFECT_POISON
+	goto BattleScript_EffectHit
+
+BattleScript_EffectToxicHit
+	setmoveeffect MOVE_EFFECT_TOXIC
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAbsorb::
