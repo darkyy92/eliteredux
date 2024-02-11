@@ -9403,7 +9403,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             u16 abilityToCheck = ABILITY_ARCHMAGE; //For easier copypaste
 
             //Checks if the ability is triggered
-            if(DidMoveHit() && gBattleMoves[move].split != SPLIT_STATUS){
+            if(DidMoveHit() && gBattleMoves[move].split != SPLIT_STATUS && (Random() % 100) < 30){
                 activateAbilty = TRUE;
             }
 
@@ -9582,7 +9582,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                     break;
                     case TYPE_DRAGON: // 30% chance to lower the opponents attack by 1.
-                        if(IsBattlerAlive(gBattlerTarget) && CompareStat(battler, STAT_ATK, MIN_STAT_STAGE, CMP_GREATER_THAN)){
+                        if(IsBattlerAlive(gBattlerTarget) && CompareStat(gBattlerTarget, STAT_ATK, MIN_STAT_STAGE, CMP_GREATER_THAN)){
                             if(BattlerHasInnate(battler, abilityToCheck))
                                 gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
@@ -9593,7 +9593,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         }
                     break;
                     case TYPE_GROUND: // 30% chance to trap.
+                        if(!(gBattleMons[gBattlerOpponent].status2 & STATUS2_ESCAPE_PREVENTION)){
+                            if(BattlerHasInnate(battler, abilityToCheck))
+                                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
+                            gBattleScripting.moveEffect = MOVE_EFFECT_PREVENT_ESCAPE;
+                            gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                            effect++;
+                        }
                     break;
                     case TYPE_STEEL: // 30% chance to increase the user's defense.
                         if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)){
