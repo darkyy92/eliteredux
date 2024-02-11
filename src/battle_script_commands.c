@@ -3170,6 +3170,21 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
         }
     }
+    else if (gBattleScripting.moveEffect & MOVE_EFFECT_BURN_IF_STATUS_UP)
+    {
+        bool8 anyStatus;
+        u8 i;
+        gBattleScripting.moveEffect &= ~MOVE_EFFECT_BURN_IF_STATUS_UP;
+        for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+        {
+            if (gBattleMons[gEffectBattler].statStages[i] > DEFAULT_STAT_STAGE)
+            {
+                gBattleScripting.moveEffect |= MOVE_EFFECT_BURN;
+                break;
+            }
+        }
+
+    }
 
     if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || BattlerHasInnate(gEffectBattler, ABILITY_SHIELD_DUST)) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= 9)

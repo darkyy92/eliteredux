@@ -379,7 +379,8 @@
 #define MOVE_EFFECT_GLAIVE_RUSH            76
 #define MOVE_EFFECT_SALT_CURE              77
 #define MOVE_EFFECT_ORDER_UP               78
-#define NUM_MOVE_EFFECTS                   79
+#define MOVE_EFFECT_BURN_IF_STATUS_UP      79
+#define NUM_MOVE_EFFECTS                   80
 
 #define MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES 0x2000
 #define MOVE_EFFECT_AFFECTS_USER        0x4000

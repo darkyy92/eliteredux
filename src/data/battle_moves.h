@@ -8893,15 +8893,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_BURNING_JEALOUSY] =
     {
-        .effect = EFFECT_BURN_HIT,
+        .effect = EFFECT_ARGUMENT_HIT,
         .power = 70,
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 5,
-        .secondaryEffectChance = 50,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_BOTH,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
+        .argument = MOVE_EFFECT_BURN_IF_STATUS_UP,
     },
     [MOVE_LASH_OUT] =
     {
