@@ -454,6 +454,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGhastlyEcho			  @ EFFECT_GHASTLY_ECHO
 	.4byte BattleScript_EffectRevivalBlessing		  @ EFFECT_REVIVAL_BLESSING
 	.4byte BattleScript_EffectTidyUp				  @ EFFECT_TIDY_UP
+	.4byte BattleScript_EffectSpecialDefenseDownHit   @ EFFECT_ACID
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
