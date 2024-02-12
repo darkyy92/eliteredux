@@ -3844,5 +3844,7 @@ extern const u8 gText_SideQuestReward_30[];
 
 // Evolution party screen option
 extern const u8 gText_Evolution[];
+extern const u8 gText_GiveMegaStone[];
+extern const u8 gText_GiveMegaStone2[];
 
 #endif // GUARD_STRINGS_H
