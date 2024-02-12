@@ -329,8 +329,6 @@ struct BattleHistory
 struct SavedStackData
 {
     u16 abilityOverride;
-    u8 savedBattler;
-    u8 statChanger;
 };
 
 #define MAX_SCRIPT_STACK_COUNT 8
