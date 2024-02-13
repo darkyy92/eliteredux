@@ -3242,7 +3242,7 @@ static void BattleStartClearSetData(void)
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gWishFutureKnock, 0, sizeof(gWishFutureKnock));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
-    memcpy(&gBattlerState, 0, sizeof(gBattlerState));
+    memset(&gBattlerState, 0, sizeof(gBattlerState));
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
@@ -3410,7 +3410,7 @@ void SwitchInClearSetData(void)
     gMoveSelectionCursor[gActiveBattler] = 0;
 
     memset(&gDisableStructs[gActiveBattler], 0, sizeof(struct DisableStruct));
-    memcpy(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
+    memset(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
 
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
@@ -3492,7 +3492,7 @@ void FaintClearSetData(void)
 
     memset(&gDisableStructs[gActiveBattler], 0, sizeof(struct DisableStruct));
     memset(&gProtectStructs[gActiveBattler], 0, sizeof(struct ProtectStruct));
-    memcpy(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
+    memset(&gBattlerState[gActiveBattler], 0, sizeof(gBattlerState[gActiveBattler]));
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 

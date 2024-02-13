@@ -214,7 +214,7 @@ struct SpecialStatus
 
 struct BattlerState
 {
-    u8 abilityState[NUM_INNATE_PER_SPECIES + 1];
+    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
     bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
 };
 
