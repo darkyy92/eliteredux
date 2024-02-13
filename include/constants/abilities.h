@@ -578,7 +578,7 @@
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
-#define ABILITY_GUILT_TRIP 559 // Placeholder
+#define ABILITY_GUILT_TRIP 559 // Sharply lowers attacker's Attack and SpAtk when fainting.
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
 #define ABILITY_ZERO_TO_HERO 561 // Changes forms after switching out.
 #define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.

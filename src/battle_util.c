@@ -8211,6 +8211,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 		
+		// Guilt Trip
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_GUILT_TRIP)){
+            if (ShouldApplyOnHitAffect(gBattlerAttacker)
+                && (CompareStat(gBattlerAttacker, STAT_ATK, MIN_STAT_STAGE, CMP_GREATER_THAN)
+                    || CompareStat(gBattlerAttacker, STAT_SPATK, MIN_STAT_STAGE, CMP_GREATER_THAN)))
+            {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GUILT_TRIP;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_GuiltTrip;
+                effect++;
+            }
+        }
+		
 		// Innards Out
 		if(BattlerHasInnate(battler, ABILITY_INNARDS_OUT)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
