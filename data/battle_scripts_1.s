@@ -9647,10 +9647,11 @@ BattleScript_AbilitySelfDamage::
 	end3
 	
 BattleScript_HealerActivates::
-	sethword sABILITY_OVERWRITE, ABILITY_HEALER
 	call BattleScript_AbilityPopUp
-	curestatus BS_SCRIPTING
-	updatestatusicon BS_SCRIPTING
+	curestatus BS_ABILITY_PARTNER
+	updatestatusicon BS_ABILITY_PARTNER
+	curestatus BS_ABILITY_BATTLER
+	updatestatusicon BS_ABILITY_BATTLER
 	printstring STRINGID_HEALERCURE
 	waitmessage B_WAIT_TIME_LONG
 	end3

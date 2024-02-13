@@ -6369,16 +6369,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
-            case ABILITY_HEALER:
-                gBattleScripting.battler = BATTLE_PARTNER(battler);
-                if (IsBattlerAlive(gBattleScripting.battler)
-                    && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
-                    && (Random() % 100) < 30)
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_HealerActivates);
-                    effect++;
-                }
-                break;
             case ABILITY_SCHOOLING:
                 if (gBattleMons[battler].level < 20)
                     break;
@@ -6586,14 +6576,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Healer
-			if(BattlerHasInnate(gActiveBattler, ABILITY_HEALER)){
-                gBattleScripting.battler = BATTLE_PARTNER(battler);
-                if (IsBattlerAlive(gBattleScripting.battler)
-                    && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
-                    && (Random() % 100) < 30)
+			if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HEALER) && (Random() % 100) < 30) {
+                if (IsBattlerAlive(BATTLE_PARTNER(gActiveBattler)) && gBattleMons[BATTLE_PARTNER(gActiveBattler)].status1 & STATUS1_ANY)                    
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_HEALER;
+                    gEffectBattler = gActiveBattler;
+                    gBattleScripting.battler = BATTLE_PARTNER(gActiveBattler);
                     BattleScriptPushCursorAndCallback(BattleScript_HealerActivates);
                     effect++;
+                }
+                else if (IsBattlerAlive(gActiveBattler) && gBattleMons[gActiveBattler].status1 & STATUS1_ANY)                    
+                {
+                    AbilityHealMonStatus(&effect, gActiveBattler, ABILITY_HEALER);
                 }
 			}
 			
@@ -17395,9 +17389,9 @@ u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
 
 u8 TranslateStatId(u8 statId, u8 battlerId)
 {
-    if (statId & STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if (statId & STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if (statId & STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_ATTACKING) == STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_DEFENDING) == STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_TOTAL) == STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
     return statId;
 }
 
