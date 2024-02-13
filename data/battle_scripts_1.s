@@ -4900,6 +4900,7 @@ BattleScript_EffectEncore::
 	attackstring
 	ppreduce
 	jumpifability BS_TARGET_SIDE, ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_LeafGuardProtects
 	trysetencore BattleScript_ButItFailed
 	attackanimation
 	waitanimation
@@ -6203,6 +6204,7 @@ BattleScript_EffectTorment::
 	ppreduce
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
 	jumpifability BS_TARGET_SIDE, ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_LeafGuardProtects
 	settorment BattleScript_ButItFailed
 	attackanimation
 	waitanimation

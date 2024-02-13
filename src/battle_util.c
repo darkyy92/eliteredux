@@ -9495,7 +9495,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         }
                     break;
                     case TYPE_NORMAL: // 30% chance to encore.
-                    if (gDisableStructs[gBattlerTarget].encoreTimer  == 0)
+                    if (gDisableStructs[gBattlerTarget].encoreTimer == 0
+                        && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
+                        && !BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_OBLIVIOUS))
                     {
                         u8 i;
                         for (i = 0; i < MAX_MON_MOVES; i++)
