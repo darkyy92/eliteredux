@@ -183,7 +183,6 @@ struct SpecialStatus
     u8 intimidatedMon:1;
     u8 scaredMon:1;
     u8 traced:1;
-    u8 ppNotAffectedByPressure:1;
     u8 flag40:1;
     u8 focusBanded:1; //8
     u8 focusSashed:1;

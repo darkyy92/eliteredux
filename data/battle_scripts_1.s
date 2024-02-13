@@ -10653,6 +10653,14 @@ BattleScript_SwitchInAbilityMsg::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_PressureRemoveStats::
+	call BattleScript_AbilityPopUp
+	printfromtable gSwitchInAbilityStringIds
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_STATBUFFSGONE
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_ParadoxBoostActivates::
 	call BattleScript_AbilityPopUp
 	printfromtable gParadoxBoostSourceIds

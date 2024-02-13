@@ -138,9 +138,6 @@ void HandleAction_ActionFinished(void);
 u8 GetBattlerForBattleScript(u8 caseId);
 bool8 IsSleepDisabled(u8 battlerId);
 bool8 IsSleepClauseDisablingMove(u8 battlerId, u16 move);
-void PressurePPLose(u8 target, u8 attacker, u16 move);
-void PressurePPLoseOnUsingPerishSong(u8 attacker);
-void PressurePPLoseOnUsingImprison(u8 attacker);
 void MarkAllBattlersForControllerExec(void); // unused
 bool32 IsBattlerMarkedForControllerExec(u8 battlerId);
 void MarkBattlerForControllerExec(u8 battlerId);

@@ -748,8 +748,9 @@
 #define STRINGID_WAITINGFORPARTNERSMOVE               777
 #define STRINGID_THERAINBOWDISAPPEARED                778
 #define STRINGID_ARAINBOWAPPEAREDONSIDE               779
+#define STRINGID_STATBUFFSGONE                        780
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_ARAINBOWAPPEAREDONSIDE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_STATBUFFSGONE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
