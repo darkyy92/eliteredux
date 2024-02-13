@@ -15538,46 +15538,14 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     return dmg;
 }
 
-s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor)
-{
-    s32 dmg;
-    u16 typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, FALSE);
-    bool8 updateFlags = FALSE;
-
-    // Don't calculate damage if the move has no effect on target.
-    if (typeEffectivenessModifier == UQ_4_12(0))
-        return 0;
-    
-    gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, 0, battlerAtk, battlerDef, moveType, updateFlags);
-
-    // long dmg basic formula
-    dmg = ((gBattleMons[battlerAtk].level * 2) / 5) + 2;
-    dmg *= gBattleMovePower;
-    dmg *= CalcAttackStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags);
-    dmg /= CalcDefenseStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags);
-    dmg = (dmg / 50) + 2;
-
-    // Calculate final modifiers.
-    dmg = CalcFinalDmg(dmg, move, battlerAtk, battlerDef, moveType, typeEffectivenessModifier, isCrit, updateFlags);
-
-    // Add a random factor.
-    dmg *= 100 - randomFactor;
-    dmg /= 100;
-
-    if (dmg == 0)
-        dmg = 1;
-
-    return dmg;
-}
-
-static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower,
-                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, u16 typeEffectivenessModifier)
+s32 DoMoveDamageCalcInternal(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower,
+                            bool32 isCrit, bool32 updateFlags, u16 typeEffectivenessModifier)
 {
     s32 dmg;
 
     // Don't calculate damage if the move has no effect on target.
     if (typeEffectivenessModifier == UQ_4_12(0))
-        return 0;
+        return -1;
 
     gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, fixedBasePower, battlerAtk, battlerDef, moveType, updateFlags);
 
@@ -15590,6 +15558,31 @@ static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType,
 
     // Calculate final modifiers.
     dmg = CalcFinalDmg(dmg, move, battlerAtk, battlerDef, moveType, typeEffectivenessModifier, isCrit, updateFlags);
+
+    return dmg;
+}
+
+static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower,
+                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, u16* typeEffectivenessModifier)
+{
+    s32 dmg;
+    *typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, updateFlags);
+    dmg = DoMoveDamageCalcInternal(move, battlerAtk, battlerDef, moveType, fixedBasePower, isCrit, updateFlags, *typeEffectivenessModifier);
+
+    if (gBattleMoves[move].type2)
+    {
+        u8 type2 = gBattleMoves[move].type2;
+        u16 typeEffectivenessModifier2 = CalcTypeEffectivenessMultiplier(move, type2, battlerAtk, battlerDef, updateFlags);
+        s32 dmg2 = DoMoveDamageCalcInternal(move, battlerAtk, battlerDef, type2, fixedBasePower, isCrit, updateFlags, typeEffectivenessModifier2);
+
+        if (dmg2 > dmg)
+        {
+            *typeEffectivenessModifier = typeEffectivenessModifier2;
+            dmg = dmg2;
+        }
+    }
+
+    if (dmg < 0) return 0;
 
     // Add a random factor.
     if (randomFactor)
@@ -15605,17 +15598,34 @@ static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType,
     return dmg;
 }
 
+s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor)
+{
+    u16* typeEffectivenessModifier;
+    s32 dmg = DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, isCrit, FALSE, FALSE, typeEffectivenessModifier);
+
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK)) randomFactor = 16;
+
+    // Add a random factor.
+    dmg *= 100 - randomFactor;
+    dmg /= 100;
+
+    if (dmg == 0)
+        dmg = 1;
+
+    return dmg;
+}
+
 s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags)
 {
+    u16* typeEffectiveness;
     return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, fixedBasePower, isCrit, randomFactor,
-                            updateFlags, CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, updateFlags));
+                            updateFlags, typeEffectiveness);
 }
 
 // for AI - get move damage and effectiveness with one function call
 s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 *typeEffectivenessModifier)
 {
-    *typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, FALSE);
-    return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE, *typeEffectivenessModifier);
+    return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE, typeEffectivenessModifier);
 }
 
 void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities)
@@ -16017,10 +16027,6 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier);
-        if (!BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NORMALIZE)) {
-            if(gBattleMoves[move].type2 != TYPE_NORMAL && gBattleMoves[move].type2 < NUMBER_OF_MON_TYPES)
-                modifier = CalcTypeEffectivenessMultiplierInternal(move, gBattleMoves[move].type2, battlerAtk, battlerDef, recordAbilities, modifier);
-        }
     }
 
     if (recordAbilities)

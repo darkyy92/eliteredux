@@ -1829,17 +1829,6 @@ u8 TypeEffectiveness(struct ChooseMoveStruct *moveInfo, u8 targetId)
 			MulModifier(&mod, mod2);
 		}
 
-        if(gBattleMoves[move].type2 != TYPE_NORMAL && gBattleMoves[move].type2 < NUMBER_OF_MON_TYPES){
-			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[move].type2][gBattleMons[targetId].type1];
-			MulModifier(&mod, mod3);
-
-			if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-			{
-				u16 mod4 = sTypeEffectivenessTable[gBattleMoves[move].type2][gBattleMons[targetId].type2];
-				MulModifier(&mod, mod4);
-            }
-        }
-
 		// 10 - normal effectiveness
 		// 24 - super effective
 		// 25 - not very effective
