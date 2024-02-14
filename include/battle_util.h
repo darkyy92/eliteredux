@@ -26,7 +26,8 @@
 #define ABILITYEFFECT_NEUTRALIZINGGAS            15
 #define ABILITYEFFECT_AFTER_RECOIL               16
 #define ABILITYEFFECT_COPY_STATS                 17
-#define ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE              18
+#define ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE     18
+#define ABILITYEFFECT_MOVE_END_EITHER            19
 // Special cases
 #define ABILITYEFFECT_SWITCH_IN_TERRAIN          0xFE
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          0xFF
@@ -72,6 +73,7 @@ enum MiscMoveEffects
     MISC_EFFECT_FAINTED_MON_BOOST,
     MISC_EFFECT_ELECTRIC_TERRAIN_BOOST,
     MISC_EFFECT_TOOK_DAMAGE_BOOST,
+    MISC_EFFECT_INCREASED_CRIT_DAMAGE,
 };
 
 // for Natural Gift and Fling
@@ -136,9 +138,6 @@ void HandleAction_ActionFinished(void);
 u8 GetBattlerForBattleScript(u8 caseId);
 bool8 IsSleepDisabled(u8 battlerId);
 bool8 IsSleepClauseDisablingMove(u8 battlerId, u16 move);
-void PressurePPLose(u8 target, u8 attacker, u16 move);
-void PressurePPLoseOnUsingPerishSong(u8 attacker);
-void PressurePPLoseOnUsingImprison(u8 attacker);
 void MarkAllBattlersForControllerExec(void); // unused
 bool32 IsBattlerMarkedForControllerExec(u8 battlerId);
 void MarkBattlerForControllerExec(u8 battlerId);
@@ -262,11 +261,15 @@ union AbilityStates GetAbilityStateAs(u8 battler, u16 ability);
 void SetAbilityStateAs(u8 battler, u16 ability, union AbilityStates value);
 void IncrementAbilityState(u8 battler, u16 ability, u32 value);
 u8 GetHighestStatId(u8 battlerId, u8 includeStatStages);
+u8 GetHighestAttackingStatId(u8 battlerId, u8 includeStatStages);
+u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages);
+u8 TranslateStatId(u8 statId, u8 battlerId);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[]);
 void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility);
 void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
 bool32 IsNeutralizingGasBannedAbility(u32 ability);
+bool8 CanBeDisabled(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

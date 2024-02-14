@@ -226,7 +226,7 @@ void SoundTask_PlayDoubleCry(u8 taskId)
     {
         if (gBattleAnimArgs[1] == 0xFF)
             PlayCry3(species, pan, 9);
-        else
+        else // DOUBLE_CRY_ROAR
             PlayCry3(species, pan, 7);
 
         gTasks[taskId].func = SoundTask_PlayDoubleCry_Step;
@@ -256,7 +256,7 @@ static void SoundTask_PlayDoubleCry_Step(u8 taskId)
                 DestroyAnimVisualTask(taskId);
             }
         }
-        else
+        else // DOUBLE_CRY_ROAR
         {
             if (!IsCryPlaying())
             {

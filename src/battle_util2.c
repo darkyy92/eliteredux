@@ -108,15 +108,15 @@ void SwitchPartyOrderInGameMulti(u8 battlerId, u8 arg1)
     {
         s32 i;
 
-        // gBattleStruct->field_60[0][i]
+        // gBattleStruct->battlerPartyOrders[0][i]
 
         for (i = 0; i < (int)ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
-            gBattlePartyCurrentOrder[i] = *(0 * 3 + i + (u8*)(gBattleStruct->field_60));
+            gBattlePartyCurrentOrder[i] = *(0 * 3 + i + (u8*)(gBattleStruct->battlerPartyOrders));
 
         SwitchPartyMonSlots(GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[battlerId]), GetPartyIdFromBattlePartyId(arg1));
 
         for (i = 0; i < (int)ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
-            *(0 * 3 + i + (u8*)(gBattleStruct->field_60)) = gBattlePartyCurrentOrder[i];
+            *(0 * 3 + i + (u8*)(gBattleStruct->battlerPartyOrders)) = gBattlePartyCurrentOrder[i];
     }
 }
 

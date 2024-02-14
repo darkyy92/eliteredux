@@ -126,6 +126,8 @@ enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT,
 };
 enum { // Battle 0 Type
+    DEBUG_BATTLE_0_MENU_ITEM_BOX,
+    DEBUG_BATTLE_0_MENU_ITEM_BOXDOUBLE,
     DEBUG_BATTLE_0_MENU_ITEM_WILD,
 #ifdef BATTLE_ENGINE
     DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE,
@@ -483,6 +485,8 @@ static const u8 sDebugText_FlagsVars_SwitchAutowin[] =          _("Toggle {STR_V
 static const u8 sDebugText_FlagsVars_SwitchmGBAPrint[] =        _("Toggle {STR_VAR_1}mGBA Print OFF");
 static const u8 sDebugText_FlagsVars_SwitchRandomPrint[] =      _("Toggle {STR_VAR_1}Randomized Mode OFF");
 // Battle
+static const u8 sDebugText_Battle_0_Box[] =         _("Box…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_Battle_0_BoxDouble[] =   _("Box Double…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_Wild[] =        _("Wild…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_WildDouble[] =  _("Wild Double…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_Single[] =      _("Single…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -672,6 +676,8 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
 };
 static const struct ListMenuItem sDebugMenu_Items_Battle_0[] =
 {
+    [DEBUG_BATTLE_0_MENU_ITEM_BOX]         = {sDebugText_Battle_0_Box,        DEBUG_BATTLE_0_MENU_ITEM_BOX},
+    [DEBUG_BATTLE_0_MENU_ITEM_BOXDOUBLE]   = {sDebugText_Battle_0_BoxDouble,  DEBUG_BATTLE_0_MENU_ITEM_BOXDOUBLE},
     [DEBUG_BATTLE_0_MENU_ITEM_WILD]        = {sDebugText_Battle_0_Wild,       DEBUG_BATTLE_0_MENU_ITEM_WILD},
     #ifdef BATTLE_ENGINE
     [DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE] = {sDebugText_Battle_0_WildDouble, DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE},
@@ -1150,6 +1156,13 @@ static void Debug_InitDebugBattleData(void)
 #ifdef BATTLE_ENGINE
     for (i = 0; i < 17; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
+
+    sDebugBattleData->aiFlags[0] = TRUE; // AI_FLAG_CHECK_BAD_MOVE
+    sDebugBattleData->aiFlags[1] = TRUE; // AI_FLAG_TRY_TO_FAINT
+    sDebugBattleData->aiFlags[2] = TRUE; // AI_FLAG_CHECK_VIABILITY
+    sDebugBattleData->aiFlags[16] = TRUE; // AI_FLAG_CHECK_FOE
+    sDebugBattleData->aiFlags[15] = TRUE; // AI_FLAG_SMART_SWITCHING
+    sDebugBattleData->aiFlags[8] = TRUE; // AI_FLAG_HP_AWARE
 #else
     for (i = 0; i < 10; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
@@ -1470,12 +1483,21 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
 static void Debug_InitializeBattle(u8 taskId)
 {
     u32 i;
+    bool8 boxToUse = 0;
     gBattleTypeFlags = 0;
 
     // Set main battle flags
     switch (sDebugBattleData->battleType)
     {
     case DEBUG_BATTLE_0_MENU_ITEM_WILD:
+        break;
+    case DEBUG_BATTLE_0_MENU_ITEM_BOX:
+        gBattleTypeFlags = (BATTLE_TYPE_TRAINER);
+        boxToUse = 1;
+        break;
+    case DEBUG_BATTLE_0_MENU_ITEM_BOXDOUBLE:
+        gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TRAINER);
+        boxToUse = 1;
         break;
     case DEBUG_BATTLE_0_MENU_ITEM_SINGLE:
         gBattleTypeFlags = (BATTLE_TYPE_TRAINER);
@@ -1491,12 +1513,27 @@ static void Debug_InitializeBattle(u8 taskId)
     // Set terrain
     gBattleTerrain = sDebugBattleData->battleTerrain;
 
-    // Populate enemy party
-    for (i = 0; i < PARTY_SIZE; i++)
+    if (boxToUse)
     {
-        ZeroMonData(&gEnemyParty[i]);
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES))
-            gEnemyParty[i] = gPlayerParty[i];
+        struct Pokemon pokemon = {0};
+        // Populate enemy party
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            ZeroMonData(&gEnemyParty[i]);
+            BoxMonAtToMon(boxToUse - 1, i, &pokemon);
+            if (GetMonData(&pokemon, MON_DATA_SANITY_HAS_SPECIES))
+                gEnemyParty[i] = pokemon;
+        }
+    }
+    else
+    {
+        // Populate enemy party
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            ZeroMonData(&gEnemyParty[i]);
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES))
+                gEnemyParty[i] = gPlayerParty[i];
+        }
     }
 
     // Set AI flags

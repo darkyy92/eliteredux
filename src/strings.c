@@ -2517,7 +2517,9 @@ const u8 gText_SideQuestReward_29[] = _("Reward 29");
 const u8 gText_SideQuestReward_30[] = _("Reward 30");
 
 // Evolution party screen option
-const u8 gText_Evolution[] = _("Evolve");
+const u8 gText_Evolution[]      = _("Evolve");
+const u8 gText_GiveMegaStone[]  = _("Mega Stone");
+const u8 gText_GiveMegaStone2[] = _("Mega Stone 2");
 
 // Tutorial NPC in Littleroot
 /*const u8 gText_TutorialTalkToNurseJoy[]          = _("Talk to Nurse Joy!");

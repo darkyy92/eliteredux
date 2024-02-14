@@ -124,6 +124,7 @@ struct DisableStruct
     u8 disciplineCounter:4;
     u8 filler:4;
     bool8 syrupBombIsShiny:1;
+    u8 ghastlyEchoTimer:2;
 };
 
 struct ProtectStruct
@@ -171,7 +172,7 @@ struct ProtectStruct
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
-    u8 parroting:1;
+    u8 glaiveRush:1;
 };
 
 struct SpecialStatus
@@ -182,13 +183,11 @@ struct SpecialStatus
     u8 intimidatedMon:1;
     u8 scaredMon:1;
     u8 traced:1;
-    u8 ppNotAffectedByPressure:1;
     u8 flag40:1;
     u8 focusBanded:1; //8
     u8 focusSashed:1;
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
-    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3; //8
     u8 berryReduced:1;
@@ -211,7 +210,12 @@ struct SpecialStatus
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
-    u8 abilityState[NUM_INNATE_PER_SPECIES + 1];
+};
+
+struct BattlerState
+{
+    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
+    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer
@@ -239,6 +243,9 @@ struct SideTimer
     u8 luckyChantBattlerId;
     u8 retaliateTimer;
     u8 spiderWebTimer;
+    u8 swampTimer;
+    u8 fireSeaTimer;
+    u8 rainbowTimer;
 };
 
 struct FieldTimer
@@ -321,8 +328,6 @@ struct BattleHistory
 struct SavedStackData
 {
     u16 abilityOverride;
-    u8 savedBattler;
-    u8 statChanger;
 };
 
 #define MAX_SCRIPT_STACK_COUNT 8
@@ -549,9 +554,9 @@ struct BattleStruct
     u8 field_52;
     u8 sentInPokes;
     bool8 selectionScriptFinished[MAX_BATTLERS_COUNT];
-    u8 field_58[4];
+    u8 battlerPartyIndexes[4];
     u8 monToSwitchIntoId[MAX_BATTLERS_COUNT];
-    u8 field_60[4][3];
+    u8 battlerPartyOrders[4][3];
     u8 runTries;
     u8 caughtMonNick[POKEMON_NAME_LENGTH + 1];
     u8 safariGoNearCounter;
@@ -949,6 +954,7 @@ extern u8 gBattleCommunication[BATTLE_COMMUNICATION_ENTRIES_COUNT];
 extern u8 gBattleOutcome;
 extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
+extern struct BattlerState gBattlerState[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
 extern struct WishFutureKnock gWishFutureKnock;
 extern u16 gIntroSlideFlags;

@@ -387,11 +387,11 @@
 	.byte 0x44
 	.endm
 
-	.macro playanimation battler:req, param1:req, param2:req
+	.macro playanimation battler:req, animId:req, argPtr=NULL
 	.byte 0x45
 	.byte \battler
-	.byte \param1
-	.4byte \param2
+	.byte \animId
+	.4byte \argPtr
 	.endm
 
 	.macro playanimation2 battler:req, param1:req, param2:req
@@ -2163,8 +2163,27 @@
 	various \battler, VARIOUS_GET_BATTLER
 	.endm
 
-	.macro docopystatchange battler:req
-	various \battler, VARIOUS_DO_COPY_STAT_CHANGE
+	.macro docopystatchange
+	various BS_ATTACKER, VARIOUS_DO_COPY_STAT_CHANGE
+	.endm
+
+	.macro trylosepercenthp battler:req, percent:req, ptr:req
+	various \battler, VARIOUS_TRY_LOSE_PERCENT_HP
+	.byte \percent
+	.4byte \ptr
+	.endm
+
+	.macro swapsideeffects
+	various BS_ATTACKER, VARIOUS_SWAP_SIDE_EFFECTS
+	.endm
+
+	.macro setghastlyecho battler:req
+	various \battler, VARIOUS_GHASTLY_ECHO
+	.endm
+
+	.macro tryrevivalblessing, jumpInstr:req
+	various 0, VARIOUS_TRY_REVIVAL_BLESSING
+	.4byte \jumpInstr
 	.endm
 
 	.macro swapbattlers battler1:req, battler2:req

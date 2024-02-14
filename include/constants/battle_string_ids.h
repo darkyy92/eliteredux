@@ -732,8 +732,25 @@
 #define STRINGID_CANT_USE_TWICE_IN_A_ROW              761
 #define STRINGID_ATTACKERLOSTELECTRICTYPE             762
 #define STRINGID_HEAVYSPIKESSCATTERED                 763
+#define STRINGID_PKMNALREADYTYPE                      764
+#define STRINGID_PKMNCUTHPRAISEDSTATS                 765
+#define STRINGID_PKMNAFFLICTEDBYSALTCURE              766
+#define STRINGID_PKMN_SWITCHED_FIELD_EFFECTS          767
+#define STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE        768
+#define STRINGID_SHEDITSTAIL                          769
+#define STRINGID_GHASTLY_ECHO                         770
+#define STRINGID_PKMNREVIVEDREADYTOFIGHT              771
+#define STRINGID_THESWAMPDISAPPEARED                  772
+#define STRINGID_SWAMPENVELOPEDSIDE                   773
+#define STRINGID_THESEAOFFIREDISAPPEARED              774
+#define STRINGID_HURTBYTHESEAOFFIRE                   775
+#define STRINGID_SEAOFFIREENVELOPEDSIDE               776
+#define STRINGID_WAITINGFORPARTNERSMOVE               777
+#define STRINGID_THERAINBOWDISAPPEARED                778
+#define STRINGID_ARAINBOWAPPEAREDONSIDE               779
+#define STRINGID_STATBUFFSGONE                        780
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_HEAVYSPIKESSCATTERED + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_STATBUFFSGONE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

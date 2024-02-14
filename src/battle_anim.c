@@ -68,8 +68,8 @@ static void ScriptCmd_monbg_22(void);
 static void ScriptCmd_clearmonbg_23(void);
 static void ScriptCmd_jumpifcontest(void);
 static void ScriptCmd_fadetobgfromset(void);
-static void ScriptCmd_panse_26(void);
-static void ScriptCmd_panse_27(void);
+static void ScriptCmd_panse_adjustnone(void);
+static void ScriptCmd_panse_adjustall(void);
 static void ScriptCmd_splitbgprio(void);
 static void ScriptCmd_splitbgprio_all(void);
 static void ScriptCmd_splitbgprio_foes(void);
@@ -2123,6 +2123,7 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_AURA_SPHERE] = {gBattleAnimBgImage_FocusBlast, gBattleAnimBgPalette_AuraSphere, gBattleAnimBgTilemap_FocusBlast},
     [BG_STEEL_BEAM_OPPONENT] = {gBattleAnimBgImage_Highspeed, gBattleAnimBgPalette_SteelBeam, gBattleAnimBgTilemap_HighspeedOpponent},
     [BG_STEEL_BEAM_PLAYER] = {gBattleAnimBgImage_Highspeed, gBattleAnimBgPalette_SteelBeam, gBattleAnimBgTilemap_HighspeedPlayer},
+    [BG_RAINBOW] = {gBattleAnimBgImage_Rainbow, gBattleAnimBGPalette_Rainbow, gBattleAnimBgTilemap_Rainbow},
 };
 
 static void (* const sScriptCmdTable[])(void) =
@@ -2165,8 +2166,8 @@ static void (* const sScriptCmdTable[])(void) =
     ScriptCmd_clearmonbg_23,
     ScriptCmd_jumpifcontest,
     ScriptCmd_fadetobgfromset,
-    ScriptCmd_panse_26,
-    ScriptCmd_panse_27,
+    ScriptCmd_panse_adjustnone,
+    ScriptCmd_panse_adjustall,
     ScriptCmd_splitbgprio,
     ScriptCmd_splitbgprio_all,
     ScriptCmd_splitbgprio_foes,
@@ -2243,6 +2244,9 @@ void LaunchBattleAnimation(const u8 *const animsTable[], u16 tableId, bool8 isMo
         case B_ANIM_WISH_HEAL:
         case B_ANIM_MEGA_EVOLUTION:
         case B_ANIM_GULP_MISSILE:
+        case B_ANIM_RAINBOW:
+        case B_ANIM_SWAMP:
+        case B_ANIM_SEA_OF_FIRE:
             hideHpBoxes = TRUE;
             break;
         default:
@@ -3496,7 +3500,7 @@ void Task_PanFromInitialToTarget(u8 taskId)
     }
 }
 
-static void ScriptCmd_panse_26(void)
+static void ScriptCmd_panse_adjustnone(void)
 {
     u16 songId;
     s8 currentPan, targetPan, incrementPan;
@@ -3523,7 +3527,7 @@ static void ScriptCmd_panse_26(void)
     sBattleAnimScriptPtr += 6;
 }
 
-static void ScriptCmd_panse_27(void)
+static void ScriptCmd_panse_adjustall(void)
 {
     u16 songId;
     s8 targetPanArg, incrementPanArg, currentPanArg, currentPan, targetPan, incrementPan;

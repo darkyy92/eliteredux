@@ -18,6 +18,7 @@
 #include "main.h"
 #include "m4a.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "random.h"
@@ -32,6 +33,7 @@
 #include "constants/battle_anim.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/party_menu.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "trainer_hill.h"
@@ -1648,7 +1650,12 @@ static void OpponentHandleChoosePokemon(void)
 {
     s32 chosenMonId;
 
-    if (*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) == PARTY_SIZE)
+    // Choosing Revival Blessing target
+    if ((gBattleResources->bufferA[gActiveBattler][1] & 0xF) == PARTY_ACTION_CHOOSE_FAINTED_MON)
+    {
+        chosenMonId = gSelectedMonPartyId = GetFirstFaintedPartyIndex(gActiveBattler);
+    }
+    else if (*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) == PARTY_SIZE)
     {
         chosenMonId = GetMostSuitableMonToSwitchInto(); // switch after party mon is KO'ed?
 

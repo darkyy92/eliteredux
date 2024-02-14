@@ -26,6 +26,8 @@
 #include "constants/battle_anim.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "party_menu.h"
+#include "constants/party_menu.h"
 
 // this file's functions
 static void PlayerPartnerHandleGetMonData(void);
@@ -1560,7 +1562,17 @@ static void PlayerPartnerHandleChooseItem(void)
 
 static void PlayerPartnerHandleChoosePokemon(void)
 {
-    s32 chosenMonId = GetMostSuitableMonToSwitchInto();
+    s32 chosenMonId;
+    
+    // Choosing Revival Blessing target
+    if ((gBattleResources->bufferA[gActiveBattler][1] & 0xF) == PARTY_ACTION_CHOOSE_FAINTED_MON)
+    {
+        chosenMonId = gSelectedMonPartyId = GetFirstFaintedPartyIndex(gActiveBattler);
+    }
+    else
+    {
+        chosenMonId = GetMostSuitableMonToSwitchInto();
+    }
 
     if (chosenMonId == 6) // just switch to the next mon
     {

@@ -18,6 +18,7 @@ enum{
     I_CLONE_SCARE,
     I_CLONE_FEARMONGER,
     I_CLONE_MONKEY_BUSSINESS,
+    I_CLONE_MALICIOUS,
     NUM_INTIMIDATE_CLONES
 };
 
@@ -54,6 +55,7 @@ u32 IsLeafGuardProtected(u32 battler);
 bool32 IsShieldsDownProtected(u32 battler);
 u32 IsAbilityStatusProtected(u32 battler);
 bool32 TryResetBattlerStatChanges(u8 battler);
+bool32 TryResetBattlerStatBuffs(u8 battler);
 bool32 CanCamouflage(u8 battlerId);
 u16 GetNaturePowerMove(void);
 u16 GetSecretPowerMoveEffect(void);
@@ -66,6 +68,7 @@ void SetStatChanger(u8 statId, s8 change);
 u8 StatBuffValue(s8 change);
 s8 ChangeStatBuffsImplicit(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr);
 s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr);
+u8 GetFirstFaintedPartyIndex(u8 battler);
 
 extern void (* const gBattleScriptingCommandsTable[])(void);
 extern const u8 gBattlePalaceNatureToMoveGroupLikelihood[NUM_NATURES][4];

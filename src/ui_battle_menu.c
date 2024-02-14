@@ -1684,12 +1684,19 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     //Sets move power depending on the mon ability/stats
     movePower = CalcMoveBasePowerAfterModifiers(move, 0, sMenuDataPtr->battlerId, target, moveType, FALSE);
 
-    //MoveType2
-    if(gBattleMoves[move].type2 != TYPE_MYSTERY && gBattleMoves[move].type2 != TYPE_NORMAL)
-        moveType2 = gBattleMoves[move].type2;
+    moveType2 = gBattleMoves[move].type2;
+    if (moveType2)
+    {
+        u32 movePower2 = CalcMoveBasePowerAfterModifiers(move, 0, sMenuDataPtr->battlerId, target, moveType2, FALSE);
+        if (movePower2 > movePower)
+        {
+            moveType = moveType2;
+            movePower = movePower2;
+        }
+    }
 
     //Check Stab
-    if((IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType) || (IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType2) && moveType2 != TYPE_MYSTERY)) && !isStatusMove)
+    if(IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType) && !isStatusMove)
         isStab = TRUE;
     
     //Move Name

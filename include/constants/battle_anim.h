@@ -515,6 +515,7 @@
 #define BG_AURA_SPHERE                          77
 #define BG_STEEL_BEAM_OPPONENT                  78
 #define BG_STEEL_BEAM_PLAYER                    79
+#define BG_RAINBOW                              80
 
 // table ids for general animations (gBattleAnims_General)
 #define B_ANIM_CASTFORM_CHANGE          0
@@ -551,6 +552,10 @@
 #define B_ANIM_PRIMAL_REVERSION         31
 #define B_ANIM_ITEM_HEAL                32 // Leftovers and berries
 #define B_ANIM_BEAK_BLAST_SETUP         33
+#define B_ANIM_SALT_CURE_DAMAGE         34
+#define B_ANIM_RAINBOW                  35
+#define B_ANIM_SEA_OF_FIRE              36
+#define B_ANIM_SWAMP                    37
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0

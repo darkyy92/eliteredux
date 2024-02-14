@@ -1829,29 +1829,6 @@ u8 TypeEffectiveness(struct ChooseMoveStruct *moveInfo, u8 targetId)
 			MulModifier(&mod, mod2);
 		}
 
-		if (gBattleMoves[move].effect == EFFECT_TWO_TYPED_MOVE)
-		{
-			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[move].argument][gBattleMons[targetId].type1];
-			MulModifier(&mod, mod3);
-
-			if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-			{
-				u16 mod4 = sTypeEffectivenessTable[gBattleMoves[move].argument][gBattleMons[targetId].type2];
-				MulModifier(&mod, mod4);
-			}
-		}
-
-        if(gBattleMoves[move].type2 != TYPE_NORMAL && gBattleMoves[move].type2 < NUMBER_OF_MON_TYPES){
-			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[move].type2][gBattleMons[targetId].type1];
-			MulModifier(&mod, mod3);
-
-			if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-			{
-				u16 mod4 = sTypeEffectivenessTable[gBattleMoves[move].type2][gBattleMons[targetId].type2];
-				MulModifier(&mod, mod4);
-            }
-        }
-
 		// 10 - normal effectiveness
 		// 24 - super effective
 		// 25 - not very effective
@@ -2268,6 +2245,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             case TYPE_DARK:
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_RADIANCE, moveNum) ||
                   (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_RADIANCE, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
+                    abilityNullifiesDamage = TRUE;
+
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_JUSTIFIED, moveNum))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_GHOST:

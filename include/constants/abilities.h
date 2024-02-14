@@ -180,7 +180,7 @@
 #define ABILITY_CHEEK_POUCH 167 // Eating Berries restores 33% HP.
 #define ABILITY_PROTEAN 168 // Changes type to used move.
 #define ABILITY_FUR_COAT 169 // Halves damage from physical moves against this Pokémon.
-#define ABILITY_MAGICIAN 170 // Steals the foe's held item on contact.
+#define ABILITY_MAGICIAN 170 // Steals the foe's held item on non-contact.
 #define ABILITY_BULLETPROOF 171 // Protects from projectiles, ball and bomb moves.
 #define ABILITY_COMPETITIVE 172 // Lowered stats up Sp. Atk by two levels.
 #define ABILITY_STRONG_JAW 173 // Boosts biting moves by 50%.
@@ -353,7 +353,7 @@
 #define ABILITY_SOUL_EATER 331 // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_SOUL_LINKER 332 // Receives any damage inflicted, shares all damage taken.
 #define ABILITY_SWEET_DREAMS 333 // Heals 1/8 HP when sleeping, immune to Bad Dreams.
-#define ABILITY_BAD_LUCK 334 // Foes can't land crits and foe's moves have -5% accuracy.
+#define ABILITY_BAD_LUCK 334 // Foes can't land crits, have -5% accuracy, and deal min damage.
 #define ABILITY_HAUNTED_SPIRIT 335 // When the Pokemon faints, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST 336 // Ups Electric moves by 35% but gets 10% recoil damage.
 #define ABILITY_RAW_WOOD 337 // Halves incoming Grass-type damage. Boosts Grass-type moves by 20%.
@@ -578,9 +578,9 @@
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
 #define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
-#define ABILITY_GUILT_TRIP 559 // Placeholder
+#define ABILITY_GUILT_TRIP 559 // Sharply lowers attacker's Attack and SpAtk when fainting.
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
-#define ABILITY_ZERO_TO_HERO 561 // Placeholder
+#define ABILITY_ZERO_TO_HERO 561 // Changes forms after switching out.
 #define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
 #define ABILITY_COMMANDER 563 // Placeholder
 #define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
