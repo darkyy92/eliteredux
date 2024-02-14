@@ -946,6 +946,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_PUPITAR_REDUX] = gMonFootprint_Pupitar_Redux,
     [SPECIES_TYRANITAR_REDUX] = gMonFootprint_Tyranitar_Redux,
     [SPECIES_TYRANITAR_MEGA_REDUX] = gMonFootprint_Tyranitar_Mega_Redux,
+    [SPECIES_URSALUNA_MEGA] = gMonFootprint_Ursaluna_Mega,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

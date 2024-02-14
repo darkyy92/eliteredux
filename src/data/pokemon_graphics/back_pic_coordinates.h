@@ -5411,6 +5411,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_URSALUNA_MEGA] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_TYRANITAR_MEGA_REDUX] =
     {
         .size = 0,
