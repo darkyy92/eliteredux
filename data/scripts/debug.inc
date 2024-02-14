@@ -159,6 +159,18 @@ Debug_Script_6::
 	additem ITEM_SWALOTITE
 	additem ITEM_LANTURNITE
 	additem ITEM_LAPRASITE_X
+	additem ITEM_KINGAMBITITE_R
+	additem ITEM_GARCHOMPITE_R
+	additem ITEM_SKARMORITE_R
+	additem ITEM_MACHAMPITE_R
+	additem ITEM_ALAKAZITE_R
+	additem ITEM_BEEDRILLITE_R
+	additem ITEM_HOUNDOOMINITE_R
+	additem ITEM_MAWILITE_R
+	additem ITEM_SABLENITE_R
+	additem ITEM_FROSLASSITE
+	additem ITEM_SCRAFTITE
+	additem ITEM_RIBOMBITE
 	end
 
 Debug_Script_7::

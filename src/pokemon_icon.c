@@ -1135,6 +1135,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_OGERPON] = gMonIcon_Ogerpon,
     [SPECIES_PHANTOWL] = gMonIcon_Phantowl,
     [SPECIES_DUELUMBER] = gMonIcon_Duelumber,
+    [SPECIES_URSALUNA_MEGA] = gMonIcon_Ursaluna_Mega,
     [SPECIES_TYRANITAR_MEGA_REDUX] = gMonIcon_Tyranitar_Mega_Redux,
     [SPECIES_TYRANITAR_REDUX] = gMonIcon_Tyranitar_Redux,
     [SPECIES_PUPITAR_REDUX] = gMonIcon_Pupitar_Redux,
@@ -3018,6 +3019,7 @@ const u8 gMonIconPaletteIndices[] =
     //New Mons
     [SPECIES_PHANTOWL] = 2,
     [SPECIES_DUELUMBER] = 1,
+    [SPECIES_URSALUNA_MEGA] = 2,
     [SPECIES_TYRANITAR_MEGA_REDUX] = 2,
     [SPECIES_TYRANITAR_REDUX] = 2,
     [SPECIES_PUPITAR_REDUX] = 2,
