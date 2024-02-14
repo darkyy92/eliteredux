@@ -805,4 +805,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_TYRANITAR_MEGA_REDUX] = sTyranitarFormSpeciesIdTable,
 
+    [SPECIES_URSALUNA_MEGA] = sUrsalunaFormSpeciesIdTable,
+
 };

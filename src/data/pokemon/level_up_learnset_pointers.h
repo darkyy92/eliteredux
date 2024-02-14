@@ -1550,6 +1550,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_PUPITAR_REDUX] = sPupitar_ReduxLevelUpLearnset,
     [SPECIES_TYRANITAR_REDUX] = sTyranitar_ReduxLevelUpLearnset,
     [SPECIES_TYRANITAR_MEGA_REDUX] = sTyranitar_Mega_ReduxLevelUpLearnset,
+    [SPECIES_URSALUNA_MEGA] = sUrsaluna_MegaLevelUpLearnset,
     [SPECIES_DUELUMBER] = sDuelumberLevelUpLearnset,
     [SPECIES_PHANTOWL] = sPhantowlLevelUpLearnset,
 };

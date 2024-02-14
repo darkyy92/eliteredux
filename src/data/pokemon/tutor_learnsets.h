@@ -153,6 +153,8 @@ const u16 gTutorMoves[] =
 };
 
 const u16 gNewTutorLearnsets[NUM_SPECIES][MAX_TUTOR_MOVE_COUNT] = {
+	[SPECIES_URSALUNA_MEGA] = {
+	},
 	[SPECIES_TYRANITAR_MEGA_REDUX] = {
 	},
 	[SPECIES_TYRANITAR_REDUX] = {

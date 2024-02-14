@@ -1018,6 +1018,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
 [SPECIES_OGERPON] = _("Ogerpon"),
 [SPECIES_PHANTOWL] = _("Phantowl"),
 [SPECIES_DUELUMBER] = _("Duelumber"),
+[SPECIES_URSALUNA_MEGA] = _("Ursaluna"),
 [SPECIES_TYRANITAR_MEGA_REDUX] = _("Tyranitar"),
 [SPECIES_TYRANITAR_REDUX] = _("Tyranitar"),
 [SPECIES_PUPITAR_REDUX] = _("Pupitar"),
