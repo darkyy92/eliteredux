@@ -9518,6 +9518,36 @@ extern const u32 gItemIcon_JawFossil[];
 extern const u32 gItemIconPalette_JawFossil[];
 extern const u32 gItemIcon_SailFossil[];
 extern const u32 gItemIconPalette_SailFossil[];
+
+extern const u32 gItemIcon_Alakazite_R[];
+extern const u32 gItemIconPalette_Alakazite_R[];
+extern const u32 gItemIcon_Beedrillite_R[];
+extern const u32 gItemIconPalette_Beedrillite_R[];
+extern const u32 gItemIcon_Breloomite[];
+extern const u32 gItemIconPalette_Breloomite[];
+extern const u32 gItemIcon_Bruxishite[];
+extern const u32 gItemIconPalette_Bruxishite[];
+extern const u32 gItemIcon_Dragonitenite[];
+extern const u32 gItemIconPalette_Dragonitenite[];
+extern const u32 gItemIcon_Empoleonite[];
+extern const u32 gItemIconPalette_Empoleonite[];
+extern const u32 gItemIcon_Feraligatrite_X[];
+extern const u32 gItemIconPalette_Feraligatrite_X[];
+extern const u32 gItemIcon_Feraligatrite_Y[];
+extern const u32 gItemIconPalette_Feraligatrite_Y[];
+extern const u32 gItemIcon_Froslassite[];
+extern const u32 gItemIconPalette_Froslassite[];
+
+extern const u32 gItemIcon_GenericMegaStone[];
+extern const u32 gItemIconPalette_Garchompite_R[];
+extern const u32 gItemIconPalette_Granbullite[];
+extern const u32 gItemIconPalette_Gyaradosite_Y[];
+extern const u32 gItemIconPalette_Haxorusite[];
+extern const u32 gItemIconPalette_Hitmonchanite[];
+extern const u32 gItemIconPalette_Hitmonlite[];
+extern const u32 gItemIconPalette_Hitmontopite[];
+extern const u32 gItemIconPalette_Houndoomite_R[];
+extern const u32 gItemIconPalette_Infernapenite[];
 // Gen 7 Items
 extern const u32 gItemIcon_ProtectivePads[];
 extern const u32 gItemIconPalette_ProtectivePads[];

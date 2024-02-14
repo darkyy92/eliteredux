@@ -807,6 +807,54 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_SLOWKINGITE)
                 return SPECIES_SLOWKING_MEGA;
         break;
+        case SPECIES_RIBOMBEE:
+            if(item == ITEM_RIBOMBITE)
+                return SPECIES_RIBOMBEE_MEGA;
+        break;
+        case SPECIES_SCRAFTY:
+            if(item == ITEM_SCRAFTITE)
+                return SPECIES_SCRAFTY_MEGA;
+        break;
+        case SPECIES_FROSLASS:
+            if(item == ITEM_FROSLASSITE)
+                return SPECIES_FROSLASS_MEGA;
+        break;
+        case SPECIES_SABLEYE_REDUX:
+            if(item == ITEM_SABLENITE_R)
+                return SPECIES_SABLEYE_MEGA_REDUX;
+        break;
+        case SPECIES_MAWILE_REDUX:
+            if(item == ITEM_MAWILITE_R)
+                return SPECIES_MAWILE_MEGA_REDUX;
+        break;
+        case SPECIES_HOUNDOOM_REDUX:
+            if(item == ITEM_HOUNDOOMINITE_R)
+                return SPECIES_HOUNDOOM_MEGA_REDUX;
+        break;
+        case SPECIES_BEEDRILL_REDUX:
+            if(item == ITEM_BEEDRILLITE_R)
+                return SPECIES_BEEDRILL_MEGA_REDUX;
+        break;
+        case SPECIES_ALAKAZAM_REDUX:
+            if(item == ITEM_ALAKAZITE_R)
+                return SPECIES_ALAKAZAM_MEGA_REDUX;
+        break;
+        case SPECIES_MACHAMP_REDUX:
+            if(item == ITEM_MACHAMPITE_R)
+                return SPECIES_MACHAMP_MEGA_REDUX;
+        break;
+        case SPECIES_SKARMORY_REDUX:
+            if(item == ITEM_SKARMORITE_R)
+                return SPECIES_SKARMORY_MEGA_REDUX;
+        break;
+        case SPECIES_GARCHOMP_REDUX:
+            if(item == ITEM_GARCHOMPITE_R)
+                return SPECIES_GARCHOMP_MEGA_REDUX;
+        break;
+        /*case SPECIES_KINGAMBIT_REDUX:
+            if(item == ITEM_KINGAMBITITE_R)
+                return SPECIES_KINGAMBIT_REDUX_MEGA;
+        break;*/
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){
                 if(GetMonData(&gPlayerParty[num], MON_DATA_MOVE1 + i) == MOVE_DRAGON_ASCENT)
