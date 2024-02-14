@@ -15599,8 +15599,8 @@ static s32 DoMoveDamageCalc(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType,
 
 s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor)
 {
-    u16* typeEffectivenessModifier;
-    s32 dmg = DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, isCrit, FALSE, FALSE, typeEffectivenessModifier);
+    u16 typeEffectivenessModifier;
+    s32 dmg = DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, 0, isCrit, FALSE, FALSE, &typeEffectivenessModifier);
 
     if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK)) randomFactor = 16;
 
@@ -15616,9 +15616,9 @@ s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveTy
 
 s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags)
 {
-    u16* typeEffectiveness;
+    u16 typeEffectiveness;
     return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, fixedBasePower, isCrit, randomFactor,
-                            updateFlags, typeEffectiveness);
+                            updateFlags, &typeEffectiveness);
 }
 
 // for AI - get move damage and effectiveness with one function call
