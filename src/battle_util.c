@@ -13531,7 +13531,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Mind Crush
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRONG_JAW) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MIND_CRUSH) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
         MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Pixilate
