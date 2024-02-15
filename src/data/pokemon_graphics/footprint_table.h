@@ -947,6 +947,12 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_TYRANITAR_REDUX] = gMonFootprint_Tyranitar_Redux,
     [SPECIES_TYRANITAR_MEGA_REDUX] = gMonFootprint_Tyranitar_Mega_Redux,
     [SPECIES_URSALUNA_MEGA] = gMonFootprint_Ursaluna_Mega,
+    [SPECIES_SCIZOR_MEGA_REDUX] = gMonFootprint_Scizor_Mega_Redux,
+    [SPECIES_SCIZOR_REDUX] = gMonFootprint_Scizor_Redux,
+    [SPECIES_LARVITAR_REDUX_2] = gMonFootprint_Larvitar_Redux_2,
+    [SPECIES_PUPITAR_REDUX_2] = gMonFootprint_Pupitar_Redux_2,
+    [SPECIES_TYRANITAR_REDUX_2] = gMonFootprint_Tyranitar_Redux_2,
+    [SPECIES_TYRANITAR_MEGA_REDUX_2] = gMonFootprint_Tyranitar_Mega_Redux_2,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

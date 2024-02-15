@@ -3098,6 +3098,12 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_OGERPON - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_PHANTOWL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DUELUMBER - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_TYRANITAR_MEGA_REDUX_2 - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_TYRANITAR_REDUX_2 - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_PUPITAR_REDUX_2 - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_LARVITAR_REDUX_2 - 1] = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_SCIZOR_REDUX - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_SCIZOR_MEGA_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_URSALUNA_MEGA - 1]  = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_TYRANITAR_MEGA_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_TYRANITAR_REDUX - 1] = ANIM_V_SQUISH_AND_BOUNCE,
@@ -9923,6 +9929,18 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else if (species < SPECIES_URSALUNA_MEGA + 1)
         return FALSE;
+    else if (species < SPECIES_SCIZOR_MEGA_REDUX + 1)
+        return FALSE;
+    else if (species < SPECIES_SCIZOR_REDUX + 1)
+        return FALSE;
+    else if (species < SPECIES_LARVITAR_REDUX_2 + 1)
+        return FALSE;
+    else if (species < SPECIES_PUPITAR_REDUX_2 + 1)
+        return FALSE;
+    else if (species < SPECIES_TYRANITAR_REDUX_2 + 1)
+        return FALSE;
+    else if (species < SPECIES_TYRANITAR_MEGA_REDUX_2 + 1)
+        return FALSE; 
     else
         return TRUE;
 }

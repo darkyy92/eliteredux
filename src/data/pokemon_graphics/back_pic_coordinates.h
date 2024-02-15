@@ -5411,6 +5411,36 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_TYRANITAR_MEGA_REDUX_2] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_TYRANITAR_REDUX_2] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_PUPITAR_REDUX_2] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_LARVITAR_REDUX_2] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SCIZOR_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
+    [SPECIES_SCIZOR_MEGA_REDUX] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_URSALUNA_MEGA] =
     {
         .size = 0,
