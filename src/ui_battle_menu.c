@@ -2642,7 +2642,6 @@ static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
     struct Pokemon *party, *targetParty;
     u16 targetCurrentHp = gBattleMons[target].hp;
     bool8 isCrit = FALSE;
-    u16 typeEffectivenessModifier;
     u16 move = gBattleMons[battler].moves[moveIndex];
     const s8 *natureMod;
     
@@ -2654,21 +2653,19 @@ static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
     //Sets move type depending on the mon ability/stats
     SetTypeBeforeUsingMove(move, battler);
     GET_MOVE_TYPE(move, moveType);
-    
-    typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, target, FALSE);
+
+    //Max and Min Damage
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamage = minDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = maxDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
 
     if(!IsBattlerAlive(battler) || 
        !IsBattlerAlive(target)  || 
        gBattleMoves[move].split == SPLIT_STATUS || 
        gBattleMoves[move].power <= 2            || 
-       typeEffectivenessModifier == UQ_4_12(0)){
+       sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage == 0){
         sMenuDataPtr->damageCalculation[battler][target][moveIndex].noDamage = TRUE;
         return;
     }
-
-    //Max and Min Damage
-    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamage = minDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
-    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = maxDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
 
     // Min Damage Percentage
     percentage = (minDamage * MAX_PERCENT_2) / targetCurrentHp; 

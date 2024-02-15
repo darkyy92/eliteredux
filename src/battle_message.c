@@ -469,27 +469,11 @@ static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} reg
 
 static const u8 sText_AttackerBecameInfected[] = _("{B_ATK_NAME_WITH_PREFIX} became\ninfected!");
 
-const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
-{
-    gText_HP3, gText_Attack, gText_Defense,
-    gText_Speed, gText_SpAtk, gText_SpDef,
-    sText_Accuracy, sText_Evasiveness
-};
-
 static const u8 sText_PokeblockWasTooSpicy[] = _("was too spicy!");
 static const u8 sText_PokeblockWasTooDry[] = _("was too dry!");
 static const u8 sText_PokeblockWasTooSweet[] = _("was too sweet!");
 static const u8 sText_PokeblockWasTooBitter[] = _("was too bitter!");
 static const u8 sText_PokeblockWasTooSour[] = _("was too sour!");
-
-const u8 * const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
-{
-    [FLAVOR_SPICY]  = sText_PokeblockWasTooSpicy,
-    [FLAVOR_DRY]    = sText_PokeblockWasTooDry,
-    [FLAVOR_SWEET]  = sText_PokeblockWasTooSweet,
-    [FLAVOR_BITTER] = sText_PokeblockWasTooBitter,
-    [FLAVOR_SOUR]   = sText_PokeblockWasTooSour
-};
 
 static const u8 sText_PlayerUsedItem[] = _("{B_PLAYER_NAME} used\n{B_LAST_ITEM}!");
 static const u8 sText_WallyUsedItem[] = _("Wally used\n{B_LAST_ITEM}!");
@@ -1632,12 +1616,18 @@ const u16 gMentalHerbCureStringIds[] =
 
 const u16 gTerrainStringIds[] =
 {
-    STRINGID_TERRAINBECOMESMISTY, STRINGID_TERRAINBECOMESGRASSY, STRINGID_TERRAINBECOMESELECTRIC, STRINGID_TERRAINBECOMESPSYCHIC
+    [B_MSG_TERRAINBECOMESMISTY] = STRINGID_TERRAINBECOMESMISTY,
+    [B_MSG_TERRAINBECOMESGRASSY] = STRINGID_TERRAINBECOMESGRASSY,
+    [B_MSG_TERRAINBECOMESELECTRIC] = STRINGID_TERRAINBECOMESELECTRIC,
+    [B_MSG_TERRAINBECOMESPSYCHIC] = STRINGID_TERRAINBECOMESPSYCHIC,
 };
 
 const u16 gTerrainEndingStringIds[] = 
 {
-    STRINGID_MISTYTERRAINENDS, STRINGID_GRASSYTERRAINENDS, STRINGID_ELECTRICTERRAINENDS, STRINGID_PSYCHICTERRAINENDS
+    [B_MSG_MISTYTERRAINENDS] = STRINGID_MISTYTERRAINENDS,
+    [B_MSG_GRASSYTERRAINENDS] = STRINGID_GRASSYTERRAINENDS,
+    [B_MSG_ELECTRICTERRAINENDS] = STRINGID_ELECTRICTERRAINENDS,
+    [B_MSG_PSYCHICTERRAINENDS] = STRINGID_PSYCHICTERRAINENDS,
 };
 
 const u16 gTerrainPreventsStringIds[] =
@@ -1649,17 +1639,20 @@ const u16 gTerrainPreventsStringIds[] =
 
 const u16 gMagicCoatBounceStringIds[] =
 {
-    STRINGID_PKMNMOVEBOUNCED, STRINGID_PKMNMOVEBOUNCEDABILITY
+    [B_MSG_PKMNMOVEBOUNCED] = STRINGID_PKMNMOVEBOUNCED,
+    [B_MSG_PKMNMOVEBOUNCEDABILITY] = STRINGID_PKMNMOVEBOUNCEDABILITY
 };
 
 const u16 gHealingWishStringIds[] =
 {
-    STRINGID_HEALINGWISHCAMETRUE, STRINGID_LUNARDANCECAMETRUE
+    [B_MSG_HEALINGWISHCAMETRUE] = STRINGID_HEALINGWISHCAMETRUE,
+    [B_MSG_LUNARDANCECAMETRUE] = STRINGID_LUNARDANCECAMETRUE
 };
 
 const u16 gDmgHazardsStringIds[] =
 {
-    STRINGID_PKMNHURTBYSPIKES, STRINGID_STEALTHROCKDMG
+    [B_MSG_PKMNHURTBYSPIKES] = STRINGID_PKMNHURTBYSPIKES,
+    [B_MSG_STEALTHROCKDMG] = STRINGID_STEALTHROCKDMG
 };
 
 const u16 gSwitchInAbilityStringIds[] =
@@ -1857,14 +1850,14 @@ const u16 gFirstTurnOfTwoStringIds[] =
 // Index copied from move's index in sTrappingMoves
 const u16 gWrappedStringIds[] =
 {
-    STRINGID_PKMNSQUEEZEDBYBIND,     // MOVE_BIND
-    STRINGID_PKMNWRAPPEDBY,          // MOVE_WRAP
-    STRINGID_PKMNTRAPPEDINVORTEX,    // MOVE_FIRE_SPIN
-    STRINGID_PKMNCLAMPED,            // MOVE_CLAMP
-    STRINGID_PKMNTRAPPEDINVORTEX,    // MOVE_WHIRLPOOL
-    STRINGID_PKMNTRAPPEDBYSANDTOMB,  // MOVE_SAND_TOMB
-    STRINGID_TRAPPEDBYSWIRLINGMAGMA, // MOVE_MAGMA_STORM
-    STRINGID_INFESTATION,            // MOVE_INFESTATION
+    [B_MSG_PKMNSQUEEZEDBYBIND] = STRINGID_PKMNSQUEEZEDBYBIND,     // MOVE_BIND
+    [B_MSG_PKMNWRAPPEDBY] = STRINGID_PKMNWRAPPEDBY,          // MOVE_WRAP
+    [B_MSG_FIRESPINTRAP] = STRINGID_PKMNTRAPPEDINVORTEX,    // MOVE_FIRE_SPIN
+    [B_MSG_PKMNCLAMPED] = STRINGID_PKMNCLAMPED,            // MOVE_CLAMP
+    [B_MSG_PKMNTRAPPEDINVORTEX] = STRINGID_PKMNTRAPPEDINVORTEX,    // MOVE_WHIRLPOOL
+    [B_MSG_PKMNTRAPPEDBYSANDTOMB] = STRINGID_PKMNTRAPPEDBYSANDTOMB,  // MOVE_SAND_TOMB
+    [B_MSG_TRAPPEDBYSWIRLINGMAGMA] = STRINGID_TRAPPEDBYSWIRLINGMAGMA, // MOVE_MAGMA_STORM
+    [B_MSG_INFESTATION] = STRINGID_INFESTATION,            // MOVE_INFESTATION
 };
 
 const u16 gMistUsedStringIds[] =
@@ -1996,27 +1989,6 @@ const u16 gBallEscapeStringIds[] =
     [BALL_3_SHAKES_FAIL] = STRINGID_SHOOTSOCLOSE
 };
 
-// Overworld weathers that don't have an associated battle weather default to "It is raining."
-const u16 gWeatherStartsStringIds[] =
-{
-    [WEATHER_NONE]               = STRINGID_ITISRAINING,
-    [WEATHER_SUNNY_CLOUDS]       = STRINGID_ITISRAINING,
-    [WEATHER_SUNNY]              = STRINGID_ITISRAINING,
-    [WEATHER_RAIN]               = STRINGID_ITISRAINING,
-    [WEATHER_SNOW]               = STRINGID_ITISRAINING,
-    [WEATHER_RAIN_THUNDERSTORM]  = STRINGID_ITISRAINING,
-    [WEATHER_FOG_HORIZONTAL]     = STRINGID_ITISRAINING,
-    [WEATHER_VOLCANIC_ASH]       = STRINGID_ITISRAINING,
-    [WEATHER_SANDSTORM]          = STRINGID_SANDSTORMISRAGING,
-    [WEATHER_FOG_DIAGONAL]       = STRINGID_ITISRAINING,
-    [WEATHER_UNDERWATER]         = STRINGID_ITISRAINING,
-    [WEATHER_SHADE]              = STRINGID_ITISRAINING,
-    [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTSTRONG,
-    [WEATHER_DOWNPOUR]           = STRINGID_ITISRAINING,
-    [WEATHER_UNDERWATER_BUBBLES] = STRINGID_ITISRAINING,
-    [WEATHER_ABNORMAL]           = STRINGID_ITISRAINING
-};
-
 const u16 gInobedientStringIds[] =
 {
     [B_MSG_LOAFING]            = STRINGID_PKMNLOAFING,
@@ -2037,16 +2009,6 @@ const u16 gSafariPokeblockResultStringIds[] =
     [B_MSG_MON_CURIOUS]    = STRINGID_PKMNCURIOUSABOUTX,
     [B_MSG_MON_ENTHRALLED] = STRINGID_PKMNENTHRALLEDBYX,
     [B_MSG_MON_IGNORED]    = STRINGID_PKMNIGNOREDX
-};
-
-const u16 gTrainerItemCuredStatusStringIds[] =
-{
-    [AI_HEAL_CONFUSION] = STRINGID_PKMNSITEMSNAPPEDOUT,
-    [AI_HEAL_PARALYSIS] = STRINGID_PKMNSITEMCUREDPARALYSIS,
-    [AI_HEAL_FREEZE]    = STRINGID_PKMNSITEMDEFROSTEDIT,
-    [AI_HEAL_BURN]      = STRINGID_PKMNSITEMHEALEDBURN,
-    [AI_HEAL_POISON]    = STRINGID_PKMNSITEMCUREDPOISON,
-    [AI_HEAL_SLEEP]     = STRINGID_PKMNSITEMWOKEIT
 };
 
 const u16 gBerryEffectStringIds[] =
@@ -2099,30 +2061,33 @@ const u16 gCaughtMonStringIds[] =
 
 const u16 gRoomsStringIds[] =
 {
-    STRINGID_PKMNTWISTEDDIMENSIONS, STRINGID_TRICKROOMENDS,
-    STRINGID_SWAPSDEFANDSPDEFOFALLPOKEMON, STRINGID_WONDERROOMENDS,
-    STRINGID_HELDITEMSLOSEEFFECTS, STRINGID_MAGICROOMENDS,
-    STRINGID_HELDITEMSLOSEEFFECTS, STRINGID_MAGICROOMENDS,
-    STRINGID_INVERSEROOMACTIVATED, STRINGID_INVERSEROOMENDS,
-    STRINGID_EMPTYSTRING3
+    [B_MSG_TRICKROOMSTARTS] = STRINGID_PKMNTWISTEDDIMENSIONS,
+    [B_MSG_TRICKROOMENDS] = STRINGID_TRICKROOMENDS,
+    [B_MSG_WONDERROOMSTARTS] = STRINGID_SWAPSDEFANDSPDEFOFALLPOKEMON,
+    [B_MSG_WONDERROOMENDS] = STRINGID_WONDERROOMENDS,
+    [B_MSG_MAGICROOMSTARTS] = STRINGID_HELDITEMSLOSEEFFECTS,
+    [B_MSG_MAGICROOMENDS] = STRINGID_MAGICROOMENDS,
+    [B_MSG_INVERSEROOMSTARTS] = STRINGID_INVERSEROOMACTIVATED,
+    [B_MSG_INVERSEROOMENDS] = STRINGID_INVERSEROOMENDS,
+    [B_MSG_ROOMEMPTYSTRING] = STRINGID_EMPTYSTRING3
 };
 
 const u16 gStatusConditionsStringIds[] =
 {
-    STRINGID_PKMNWASPOISONED,
-    STRINGID_PKMNBADLYPOISONED,
-    STRINGID_PKMNWASBURNED,
-    STRINGID_PKMNWASPARALYZED,
-    STRINGID_PKMNFELLASLEEP,
-    STRINGID_PKMNGOTFROSTBITE,
-    STRINGID_PKMNSTARTBLEED,
+    [B_MSG_PKMNWASPOISONED] = STRINGID_PKMNWASPOISONED,
+    [B_MSG_PKMNBADLYPOISONED] = STRINGID_PKMNBADLYPOISONED,
+    [B_MSG_PKMNWASBURNED] = STRINGID_PKMNWASBURNED,
+    [B_MSG_PKMNWASPARALYZED] = STRINGID_PKMNWASPARALYZED,
+    [B_MSG_PKMNFELLASLEEP] = STRINGID_PKMNFELLASLEEP,
+    [B_MSG_PKMNGOTFROSTBITE] = STRINGID_PKMNGOTFROSTBITE,
+    [B_MSG_PKMNSTARTBLEED] = STRINGID_PKMNSTARTBLEED,
 };
 
 const u16 gCureStatusOnExitStringIds[] =
 {
-    STRINGID_NATURAL_CURE_EXITS,
-    STRINGID_SELF_REPAIR_EXITS,
-    STRINGID_NATURAL_RECOVERY_EXITS,
+    [B_MSG_NATURAL_CURE_EXITS] = STRINGID_NATURAL_CURE_EXITS,
+    [B_MSG_SELF_REPAIR_EXITS] = STRINGID_SELF_REPAIR_EXITS,
+    [B_MSG_NATURAL_RECOVERY_EXITS] = STRINGID_NATURAL_RECOVERY_EXITS,
 };
 
 const u16 gCantSelectMove[] =
@@ -2153,13 +2118,6 @@ const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
 const u8 gText_BattleSwitchWhich5[] = _("-");
 
-// Unused
-static const u8 * const sStatNamesTable2[] =
-{
-    gText_HP3, gText_SpAtk, gText_Attack,
-    gText_SpDef, gText_Defense, gText_Speed
-};
-
 const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
 const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Left: $" "{HIGHLIGHT DARK_GRAY}");
 const u8 gText_Sleep[] = _("sleep");
@@ -2185,43 +2143,11 @@ const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Draw");
 static const u8 sText_SpaceIs[] = _(" is");
 static const u8 sText_ApostropheS[] = _("'s");
 
-// For displaying names of invalid moves
-static const u8 sATypeMove_Table[][NUMBER_OF_MON_TYPES - 1] =
-{
-    [TYPE_NORMAL]   _("a Normal move"),
-    [TYPE_FIGHTING] _("a Fighting move"),
-    [TYPE_FLYING]   _("a Flying move"),
-    [TYPE_POISON]   _("a Poison move"),
-    [TYPE_GROUND]   _("a Ground move"),
-    [TYPE_ROCK]     _("a Rock move"),
-    [TYPE_BUG]      _("a Bug move"),
-    [TYPE_GHOST]    _("a Ghost move"),
-    [TYPE_STEEL]    _("a Steel move"),
-    [TYPE_MYSTERY]  _("a ??? move"),
-    [TYPE_FIRE]     _("a Fire move"),
-    [TYPE_WATER]    _("a Water move"),
-    [TYPE_GRASS]    _("a Grass move"),
-    [TYPE_ELECTRIC] _("an Electric move"),
-    [TYPE_PSYCHIC]  _("a Psychic move"),
-    [TYPE_ICE]      _("an Ice move"),
-    [TYPE_DRAGON]   _("a Dragon move"),
-    [TYPE_DARK]     _("a Dark move"),
-    [TYPE_FAIRY]    _("a Fairy move"),
-};
-
 const u8 gText_BattleTourney[] = _("Battle Tourney");
 static const u8 sText_Round1[] = _("Round 1");
 static const u8 sText_Round2[] = _("Round 2");
 static const u8 sText_Semifinal[] = _("Semifinal");
 static const u8 sText_Final[] = _("Final");
-
-const u8 *const gRoundsStringTable[DOME_ROUNDS_COUNT] =
-{
-    [DOME_ROUND1]    = sText_Round1,
-    [DOME_ROUND2]    = sText_Round2,
-    [DOME_SEMIFINAL] = sText_Semifinal,
-    [DOME_FINAL]     = sText_Final
-};
 
 const u8 gText_TheGreatNewHope[] = _("The great new hope!\p");
 const u8 gText_WillChampionshipDreamComeTrue[] = _("Will the championship dream come true?!\p");
@@ -2296,6 +2222,94 @@ static const u8 sText_Your1[] = _("Your");
 static const u8 sText_Opposing1[] = _("The opposing");
 static const u8 sText_Your2[] = _("your");
 static const u8 sText_Opposing2[] = _("the opposing");
+
+// END OF GENERATED
+
+const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
+{
+    gText_HP3, gText_Attack, gText_Defense,
+    gText_Speed, gText_SpAtk, gText_SpDef,
+    sText_Accuracy, sText_Evasiveness
+};
+
+const u8 * const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
+{
+    [FLAVOR_SPICY]  = sText_PokeblockWasTooSpicy,
+    [FLAVOR_DRY]    = sText_PokeblockWasTooDry,
+    [FLAVOR_SWEET]  = sText_PokeblockWasTooSweet,
+    [FLAVOR_BITTER] = sText_PokeblockWasTooBitter,
+    [FLAVOR_SOUR]   = sText_PokeblockWasTooSour
+};
+
+// Overworld weathers that don't have an associated battle weather default to "It is raining."
+const u16 gWeatherStartsStringIds[] =
+{
+    [WEATHER_NONE]               = STRINGID_ITISRAINING,
+    [WEATHER_SUNNY_CLOUDS]       = STRINGID_ITISRAINING,
+    [WEATHER_SUNNY]              = STRINGID_ITISRAINING,
+    [WEATHER_RAIN]               = STRINGID_ITISRAINING,
+    [WEATHER_SNOW]               = STRINGID_ITISRAINING,
+    [WEATHER_RAIN_THUNDERSTORM]  = STRINGID_ITISRAINING,
+    [WEATHER_FOG_HORIZONTAL]     = STRINGID_ITISRAINING,
+    [WEATHER_VOLCANIC_ASH]       = STRINGID_ITISRAINING,
+    [WEATHER_SANDSTORM]          = STRINGID_SANDSTORMISRAGING,
+    [WEATHER_FOG_DIAGONAL]       = STRINGID_ITISRAINING,
+    [WEATHER_UNDERWATER]         = STRINGID_ITISRAINING,
+    [WEATHER_SHADE]              = STRINGID_ITISRAINING,
+    [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTSTRONG,
+    [WEATHER_DOWNPOUR]           = STRINGID_ITISRAINING,
+    [WEATHER_UNDERWATER_BUBBLES] = STRINGID_ITISRAINING,
+    [WEATHER_ABNORMAL]           = STRINGID_ITISRAINING
+};
+
+const u16 gTrainerItemCuredStatusStringIds[] =
+{
+    [AI_HEAL_CONFUSION] = STRINGID_PKMNSITEMSNAPPEDOUT,
+    [AI_HEAL_PARALYSIS] = STRINGID_PKMNSITEMCUREDPARALYSIS,
+    [AI_HEAL_FREEZE]    = STRINGID_PKMNSITEMDEFROSTEDIT,
+    [AI_HEAL_BURN]      = STRINGID_PKMNSITEMHEALEDBURN,
+    [AI_HEAL_POISON]    = STRINGID_PKMNSITEMCUREDPOISON,
+    [AI_HEAL_SLEEP]     = STRINGID_PKMNSITEMWOKEIT
+};
+
+const u8 *const gRoundsStringTable[DOME_ROUNDS_COUNT] =
+{
+    [DOME_ROUND1]    = sText_Round1,
+    [DOME_ROUND2]    = sText_Round2,
+    [DOME_SEMIFINAL] = sText_Semifinal,
+    [DOME_FINAL]     = sText_Final
+};
+
+// Unused
+static const u8 * const sStatNamesTable2[] =
+{
+    gText_HP3, gText_SpAtk, gText_Attack,
+    gText_SpDef, gText_Defense, gText_Speed
+};
+
+// For displaying names of invalid moves
+static const u8 sATypeMove_Table[][NUMBER_OF_MON_TYPES - 1] =
+{
+    [TYPE_NORMAL]   _("a Normal move"),
+    [TYPE_FIGHTING] _("a Fighting move"),
+    [TYPE_FLYING]   _("a Flying move"),
+    [TYPE_POISON]   _("a Poison move"),
+    [TYPE_GROUND]   _("a Ground move"),
+    [TYPE_ROCK]     _("a Rock move"),
+    [TYPE_BUG]      _("a Bug move"),
+    [TYPE_GHOST]    _("a Ghost move"),
+    [TYPE_STEEL]    _("a Steel move"),
+    [TYPE_MYSTERY]  _("a ??? move"),
+    [TYPE_FIRE]     _("a Fire move"),
+    [TYPE_WATER]    _("a Water move"),
+    [TYPE_GRASS]    _("a Grass move"),
+    [TYPE_ELECTRIC] _("an Electric move"),
+    [TYPE_PSYCHIC]  _("a Psychic move"),
+    [TYPE_ICE]      _("an Ice move"),
+    [TYPE_DRAGON]   _("a Dragon move"),
+    [TYPE_DARK]     _("a Dark move"),
+    [TYPE_FAIRY]    _("a Fairy move"),
+};
 
 // This is four lists of moves which use a different attack string in Japanese
 // to the default. See the documentation for ChooseTypeOfMoveUsedString for more detail.
