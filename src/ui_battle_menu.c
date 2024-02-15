@@ -2662,7 +2662,7 @@ static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
        !IsBattlerAlive(target)  || 
        gBattleMoves[move].split == SPLIT_STATUS || 
        gBattleMoves[move].power <= 2            || 
-       sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = 0){
+       sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage == 0){
         sMenuDataPtr->damageCalculation[battler][target][moveIndex].noDamage = TRUE;
         return;
     }
