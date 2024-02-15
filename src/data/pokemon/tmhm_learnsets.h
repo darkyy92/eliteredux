@@ -31257,12 +31257,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM25_THUNDER),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)),
-		[SPECIES_TADBULB]	= TMHM_LEARNSET((TMHM1(TM25_THUNDER)
-																				| TMHM1(TM25_THUNDER)),
-																				(TMHM2(TM90_SUBSTITUTE)
-																				| TMHM2(TM94_SUCKER_PUNCH)
-																				| TMHM2(TM72_VOLT_SWITCH))),
-		[SPECIES_TADBULB]	= TMHM_LEARNSET((TMHM1(TM25_THUNDER)
+		[SPECIES_TADBULB]	= TMHM_LEARNSET((TMHM1(TM24_THUNDERBOLT)
 																				| TMHM1(TM25_THUNDER)),
 																				(TMHM2(TM90_SUBSTITUTE)
 																				| TMHM2(TM94_SUCKER_PUNCH)
