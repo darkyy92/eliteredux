@@ -13602,11 +13602,11 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
     }
 	
 	// Steely Spirit
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STEELY_SPIRIT) && moveType == TYPE_STEEL)
+	if(IsAbilityOnSide(battlerAtk, ABILITY_STEELY_SPIRIT) && moveType == TYPE_STEEL)
         MulModifier(&modifier, UQ_4_12(1.3));
 	
 	// Airborne
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AIRBORNE) && moveType == TYPE_FLYING)
+	if(IsAbilityOnSide(battlerAtk, ABILITY_AIRBORNE) && moveType == TYPE_FLYING)
         MulModifier(&modifier, UQ_4_12(1.3));
 	
 	// Transistor
@@ -13801,18 +13801,6 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
 		// Power Spot
 		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_POWER_SPOT)){
 			MulModifier(&modifier, UQ_4_12(1.3));
-		}
-		
-		// Steely Spirit
-		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_STEELY_SPIRIT)){
-			if (moveType == TYPE_STEEL)
-                MulModifier(&modifier, UQ_4_12(1.3));
-		}
-		
-		// Steely Spirit
-		if(BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_AIRBORNE)){
-			if (moveType == TYPE_FLYING)
-                MulModifier(&modifier, UQ_4_12(1.3));
 		}
     }
 	
