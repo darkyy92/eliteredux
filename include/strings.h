@@ -2228,6 +2228,8 @@ extern const u8 gText_PkmnTransferredSomeonesPCBoxFull[];
 extern const u8 gText_PkmnTransferredLanettesPCBoxFull[];
 extern const u8 gText_PkmnTransferredSomeonesPC[];
 extern const u8 gText_PkmnTransferredLanettesPC[];
+extern const u8 gText_NoMoreRoomForPokemon[];
+extern const u8 gText_NicknameThisPokemon[];
 
 // hall of fame
 extern const u8 gText_LeagueChamp[];
