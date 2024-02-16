@@ -98,6 +98,9 @@ enum
     SIDE_INFO_STICKY_WEB,
     SIDE_INFO_SAFEGUARD,
     SIDE_INFO_MIST,
+    SIDE_INFO_RAINBOW,
+    SIDE_INFO_SEA_OF_FIRE,
+    SIDE_INFO_SWAMP,
     NUM_SIDE_INFO,
 };
 
@@ -553,6 +556,18 @@ void UI_Battle_Menu_Init(MainCallback callback)
                 if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_MIST)
                     isExtraInfoShown = TRUE;
             break;
+            case SIDE_INFO_RAINBOW:
+                if(gSideTimers[B_SIDE_PLAYER].rainbowTimer)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SEA_OF_FIRE:
+                if(gSideTimers[B_SIDE_PLAYER].fireSeaTimer)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SWAMP:
+                if(gSideTimers[B_SIDE_PLAYER].swampTimer)
+                    isExtraInfoShown = TRUE;
+            break;
         }
 
         if(isExtraInfoShown){
@@ -603,6 +618,18 @@ void UI_Battle_Menu_Init(MainCallback callback)
             break;
             case SIDE_INFO_MIST:
                 if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_MIST)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_RAINBOW:
+                if(gSideTimers[B_SIDE_OPPONENT].rainbowTimer)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SEA_OF_FIRE:
+                if(gSideTimers[B_SIDE_OPPONENT].fireSeaTimer)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SWAMP:
+                if(gSideTimers[B_SIDE_OPPONENT].swampTimer)
                     isExtraInfoShown = TRUE;
             break;
         }
@@ -3301,6 +3328,18 @@ const u8 sText_Title_Side_Mist[]                           = _("Safeguard");
 const u8 sText_Title_Side_Mist_Description[]               = _("A white mist that prevents any\n"
                                                                "Pokémon on this side from having\n"
                                                                "any of it's stat lowered.");
+const u8 sText_Title_Side_Rainbow[]                           = _("Rainbow");
+const u8 sText_Title_Side_Rainbow_Description[]               = _("A splendid rainbow boosts the\n"
+                                                               "chance of secondary effects for\n"
+                                                               "all Pokémon on this side.");
+const u8 sText_Title_Side_FireSea[]                           = _("Sea of Fire");
+const u8 sText_Title_Side_FireSea_Description[]               = _("A sea of fire damages non-Fire\n"
+                                                               "Pokémon on this side for 12.5%\n"
+                                                               "of their maximum HP each turn.");
+const u8 sText_Title_Side_Swamp[]                           = _("Swamp");
+const u8 sText_Title_Side_Swamp_Description[]               = _("A deep swamp reduces the speed\n"
+                                                               "stat of Pokémon on this side\n"
+                                                               "by 75%.");
 
 static void PrintSideTab(u8 side){
     u8 i, j;
@@ -3519,6 +3558,57 @@ static void PrintSideTab(u8 side){
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Side_Mist_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_RAINBOW:
+                StringCopy(gStringVar1, sText_Title_Side_Rainbow);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].rainbowTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Rainbow_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_SEA_OF_FIRE:
+                StringCopy(gStringVar1, sText_Title_Side_FireSea);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].fireSeaTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_FireSea_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_SWAMP:
+                StringCopy(gStringVar1, sText_Title_Side_Swamp);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].swampTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Swamp_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
 
                 printedInfo = TRUE;
