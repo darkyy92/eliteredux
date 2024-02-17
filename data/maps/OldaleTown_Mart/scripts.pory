@@ -60,3 +60,21 @@ mart OldaleMartMons {
 	SPECIES_CATERPIE
 	SPECIES_PIDGEY
 }
+
+script General_Adoption_Center_Script{
+	lock
+	faceplayer
+	if(flag(FLAG_ADVENTURE_STARTED)){
+		setvar(VAR_SHOP_TYPE, 3)
+		setvar(VAR_SHOP_MONEY_TYPE, 1)
+		message(gText_HowMayIServeYou)
+		waitmessage
+		pokemart(0)
+		msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	}
+	else{
+		msgbox(format("Sorry but I can't sell you any Pokémon yet, you need your Pokedex."), MSGBOX_DEFAULT)
+	}
+	release
+	end
+}

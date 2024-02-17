@@ -327,13 +327,194 @@ static void SetShopMenuCallback(void (* callback)(void))
     sMartInfo.callback = callback;
 }
 
+// 0 Badges
+static const u16 sAdoptionCenterInventory_ZeroBadges[] = {
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 1 Badge
+static const u16 sAdoptionCenterInventory_OneBadges[] = {
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 2 Badges
+static const u16 sAdoptionCenterInventory_TwoBadges[] = {
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 3 Badges
+static const u16 sAdoptionCenterInventory_ThreeBadges[] = {
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 4 Badges
+static const u16 sAdoptionCenterInventory_FourBadges[] = {
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 5 Badges
+static const u16 sAdoptionCenterInventory_FiveBadges[] = {
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 6 Badges
+static const u16 sAdoptionCenterInventory_SixBadges[] = {
+    SPECIES_DEINO_REDUX,
+    SPECIES_GIBLE_REDUX,
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 7 Badges
+static const u16 sAdoptionCenterInventory_SevenBadges[] = {
+    SPECIES_DEINO_REDUX,
+    SPECIES_GIBLE_REDUX,
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+// 8 Badges
+static const u16 sAdoptionCenterInventory_EightBadges[] = {
+    SPECIES_DEINO_REDUX,
+    SPECIES_GIBLE_REDUX,
+    SPECIES_GROWLITHE_REDUX,
+    SPECIES_SABLEYE_REDUX,
+    SPECIES_MAWILE_REDUX,
+    SPECIES_DODUO_REDUX,
+    SPECIES_SKARMORY_REDUX,
+    SPECIES_PAWNIARD_REDUX,
+    SPECIES_MACHOP_REDUX,
+    SPECIES_SOLOSIS_REDUX,
+    SPECIES_ABRA_REDUX,
+    SPECIES_PANSAGE_REDUX,
+    SPECIES_PANSEAR_REDUX,
+    SPECIES_PANPOUR_REDUX,
+    SPECIES_NONE,
+};
+
+static const u16 *const sAdoptionCenterInventories[] = 
+{
+    sAdoptionCenterInventory_ZeroBadges,  // 0 Badges
+    sAdoptionCenterInventory_OneBadges,   // 1 Badge
+    sAdoptionCenterInventory_TwoBadges,   // 2 Badges
+    sAdoptionCenterInventory_ThreeBadges, // 3 Badges
+    sAdoptionCenterInventory_FourBadges,  // 4 Badges
+    sAdoptionCenterInventory_FiveBadges,  // 5 Badges
+    sAdoptionCenterInventory_SixBadges,   // 6 Badges
+    sAdoptionCenterInventory_SevenBadges, // 7 Badges
+    sAdoptionCenterInventory_EightBadges  // 8 Badges
+};
+
+static u8 GetNumberOfBadges(void)
+{
+    if(FlagGet(FLAG_BADGE08_GET))
+        return 8;
+    else if(FlagGet(FLAG_BADGE07_GET))
+        return 7;
+    else if(FlagGet(FLAG_BADGE06_GET))
+        return 6;
+    else if(FlagGet(FLAG_BADGE05_GET))
+        return 5;
+    else if(FlagGet(FLAG_BADGE04_GET))
+        return 4;
+    else if(FlagGet(FLAG_BADGE03_GET))
+        return 3;
+    else if(FlagGet(FLAG_BADGE02_GET))
+        return 2;
+    else if(FlagGet(FLAG_BADGE01_GET))
+        return 1;
+    else
+        return 0;
+}
+
 static void SetShopItemsForSale(const u16 *items)
 {
     u16 i = 0;
 
-    sMartInfo.itemList = items;
-    sMartInfo.itemCount = 0;
+    if (items == NULL){
+        switch(sMartInfo.martType){
+            case MART_TYPE_MONS:
+                sMartInfo.itemList = sAdoptionCenterInventories[GetNumberOfBadges()];
+            break;
+        }
+    }
+    else
+        sMartInfo.itemList = items;
 
+    sMartInfo.itemCount = 0;
     while (sMartInfo.itemList[i])
     {
         sMartInfo.itemCount++;
@@ -572,13 +753,16 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
             case MART_TYPE_DECOR2:
                 description = gDecorations[item].description;
             break;
-            case MART_TYPE_MONS:
+            case MART_TYPE_MONS:{
+                u16 dexnum = SpeciesToNationalPokedexNum(item);
+
                 StringCopy(gStringVar1, gSpeciesNames[item]);
-                StringCopy(gStringVar2, gPokedexEntries[item].categoryName);
+                StringCopy(gStringVar2, gPokedexEntries[dexnum].categoryName);
                 ConvertIntToDecimalStringN(gStringVar3, GetLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
                 StringExpandPlaceholders(gStringVar4, sText_Title_PokemonDescription);
 
                 description = gStringVar4;
+            }
             break;
         }
     }
@@ -622,12 +806,18 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 else
                     StringExpandPlaceholders(gStringVar4, sText_BuyMenuPrintPriceInList_BattlePoints);
             break;
-            case MART_TYPE_MONS:
-                ConvertIntToDecimalStringN(gStringVar1, gBaseStats[itemId].shopPrice, STR_CONV_MODE_LEFT_ALIGN, 5);
+            case MART_TYPE_MONS:{
+                u8 price = gBaseStats[itemId].shopPrice;
+
+                if(price == 0)
+                    price = 5;
+                ConvertIntToDecimalStringN(gStringVar1, price, STR_CONV_MODE_LEFT_ALIGN, 5);
                 if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
                     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
                 else
                     StringExpandPlaceholders(gStringVar4, sText_BuyMenuPrintPriceInList_BattlePoints);
+            }
+
             break;
         }
 
@@ -1039,8 +1229,14 @@ static void Task_BuyMenu(u8 taskId)
                 sShopData->totalCost = (ItemId_GetPrice(itemId) >> GetPriceReduction(POKENEWS_SLATEPORT));
             else if(sMartInfo.martType == MART_TYPE_DECOR || sMartInfo.martType == MART_TYPE_DECOR2)
                 sShopData->totalCost = gDecorations[itemId].price;
-            else// if(sMartInfo.martType == MART_TYPE_MONS)
-                sShopData->totalCost = gBaseStats[itemId].shopPrice;
+            else// if(sMartInfo.martType == MART_TYPE_MONS){
+            {
+                u8 price = gBaseStats[itemId].shopPrice;
+
+                if(price == 0)
+                    price = 5;
+                sShopData->totalCost = price;
+            }
 
             if (!IsEnoughMoney(&money, sShopData->totalCost))
             {

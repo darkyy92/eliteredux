@@ -112,6 +112,37 @@ OldaleMartMons:
 	.2byte SPECIES_PIDGEY
 	.2byte ITEM_NONE
 
+General_Adoption_Center_Script::
+# 65 "data/maps/OldaleTown_Mart/scripts.pory"
+	lock
+# 66 "data/maps/OldaleTown_Mart/scripts.pory"
+	faceplayer
+# 67 "data/maps/OldaleTown_Mart/scripts.pory"
+	goto_if_set FLAG_ADVENTURE_STARTED, General_Adoption_Center_Script_2
+# 76 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox OldaleTown_Mart_EventScript_Clerk_Text_0, MSGBOX_DEFAULT
+General_Adoption_Center_Script_1:
+# 78 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+	end
+
+General_Adoption_Center_Script_2:
+# 68 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_SHOP_TYPE, 3
+# 69 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_SHOP_MONEY_TYPE, 1
+# 70 "data/maps/OldaleTown_Mart/scripts.pory"
+	message gText_HowMayIServeYou
+# 71 "data/maps/OldaleTown_Mart/scripts.pory"
+	waitmessage
+# 72 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemart 0
+# 73 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	goto General_Adoption_Center_Script_1
+
+
 OldaleTown_Mart_EventScript_Clerk_Text_0:
 # 50 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Sorry but I can't sell you any Pokémon yet, you need your Pokedex.$"
+	.string "Sorry but I can't sell you any Pokémon\n"
+	.string "yet, you need your Pokedex.$"

@@ -1,7 +1,6 @@
 General_Pokemart_Script::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BADGE01_GET, General_Pokemart_Script_No_Badges
 	message gText_HowMayIServeYou
 	waitmessage
 	pokemart PokeMart_No_Badges
