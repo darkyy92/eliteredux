@@ -4279,7 +4279,7 @@ static void Cmd_tryfaintmon(void)
              && gBattleMons[gBattlerAttacker].hp != 0
              && gCurrentMove != MOVE_STRUGGLE)
             {
-                u8 moveIndex = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
+                u8 moveIndex = gBattleStruct->chosenMovePositions[gBattlerAttacker];
 
                 gBattleMons[gBattlerAttacker].pp[moveIndex] = 0;
                 BattleScriptPush(gBattlescriptCurrInstr);
