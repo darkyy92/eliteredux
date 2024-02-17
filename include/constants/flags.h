@@ -675,12 +675,12 @@
 #define FLAG_HIDDEN_ITEM_DEWFORD_MANOR_DREAD_PLATE           658
 #define FLAG_MOVE_RELEARNER                                  659 // Used to distinguish between the actual move relearner and the Moves option in the party menu. 659
 //Debug Flags
-#define FLAG_SYS_NO_COLLISION                                       660 //DEBUG
-#define FLAG_SYS_NO_ENCOUNTER                                       661 //DEBUG
-#define FLAG_SYS_NO_TRAINER_SEE                                     662 //DEBUG
-#define FLAG_SYS_NO_BAG_USE                                         663 //DEBUG
-#define FLAG_SYS_NO_CATCHING                                        664 //DEBUG
-#define FLAG_SYS_PC_FROM_DEBUG_MENU                                 665 //DEBUG
+#define FLAG_SYS_NO_COLLISION                                       660 // DEBUG
+#define FLAG_SYS_NO_ENCOUNTER                                       661 // DEBUG
+#define FLAG_SYS_NO_TRAINER_SEE                                     662 // DEBUG
+#define FLAG_SYS_NO_BAG_USE                                         663 // DEBUG
+#define FLAG_SYS_NO_CATCHING                                        664 // DEBUG
+#define FLAG_SYS_PC_FROM_DEBUG_MENU                                 665 // DEBUG
 #define FLAG_SYS_MOVE_INFO                                          666 // Battle Interface
 #define FLAG_IS_DAYNIGHT_INVERTED                                   667 // Ported from ROWE
 #define FLAG_SYS_AUTOWIN                                            668 // DEBUG
@@ -1338,133 +1338,123 @@
 
 // Towns and Cities
 #define FLAG_VISITED_LITTLEROOT_TOWN                                2905
-#define FLAG_VISITED_OLDALE_TOWN                                    (SYSTEM_FLAGS + 0x10)
-#define FLAG_VISITED_DEWFORD_TOWN                                   (SYSTEM_FLAGS + 0x11)
-#define FLAG_VISITED_LAVARIDGE_TOWN                                 (SYSTEM_FLAGS + 0x12)
-#define FLAG_VISITED_FALLARBOR_TOWN                                 (SYSTEM_FLAGS + 0x13)
-#define FLAG_VISITED_VERDANTURF_TOWN                                (SYSTEM_FLAGS + 0x14)
-#define FLAG_VISITED_PACIFIDLOG_TOWN                                (SYSTEM_FLAGS + 0x15)
-#define FLAG_VISITED_PETALBURG_CITY                                 (SYSTEM_FLAGS + 0x16)
-#define FLAG_VISITED_SLATEPORT_CITY                                 (SYSTEM_FLAGS + 0x17)
-#define FLAG_VISITED_MAUVILLE_CITY                                  (SYSTEM_FLAGS + 0x18)
-#define FLAG_VISITED_RUSTBORO_CITY                                  (SYSTEM_FLAGS + 0x19)
-#define FLAG_VISITED_FORTREE_CITY                                   (SYSTEM_FLAGS + 0x1A)
-#define FLAG_VISITED_LILYCOVE_CITY                                  (SYSTEM_FLAGS + 0x1B)
-#define FLAG_VISITED_MOSSDEEP_CITY                                  (SYSTEM_FLAGS + 0x1C)
-#define FLAG_VISITED_SOOTOPOLIS_CITY                                (SYSTEM_FLAGS + 0x1D)
-#define FLAG_VISITED_EVER_GRANDE_CITY                               (SYSTEM_FLAGS + 0x1E)
-#define FLAG_IS_CHAMPION                                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
-#define FLAG_NURSE_UNION_ROOM_REMINDER                              (SYSTEM_FLAGS + 0x20)
-#define FLAG_SYS_DEXNAV_SEARCH                                      (SYSTEM_FLAGS + 0x21)
-#define FLAG_SHINY_CREATION                                         (SYSTEM_FLAGS + 0x22) // force creation of a shiny mon
-#define FLAG_SYS_DETECTOR_MODE                                      (SYSTEM_FLAGS + 0x23) // allow player to find hidden mons
-#define FLAG_SYS_DEXNAV_GET                                         (SYSTEM_FLAGS + 0x24) // dexnav shows in start menu
-#define FLAG_USED_CANDY_BOX                                         (SYSTEM_FLAGS + 0x25)
-#define FLAG_TRAINER_NEW_TEST                                       (SYSTEM_FLAGS + 0x26) // New trainer example
-#define FLAG_UPDATED_MEGA_STONE_POCKET                              (SYSTEM_FLAGS + 0x27)
-#define FLAG_SYS_USE_FLASH                                          (SYSTEM_FLAGS + 0x28)
-#define FLAG_SYS_USE_STRENGTH                                       (SYSTEM_FLAGS + 0x29)
-#define FLAG_SYS_WEATHER_CTRL                                       (SYSTEM_FLAGS + 0x2A)
-#define FLAG_SYS_CYCLING_ROAD                                       (SYSTEM_FLAGS + 0x2B)
-#define FLAG_SYS_SAFARI_MODE                                        (SYSTEM_FLAGS + 0x2C)
-#define FLAG_SYS_CRUISE_MODE                                        (SYSTEM_FLAGS + 0x2D)
-#define FLAG_SYS_RECEIVED_KEYSTONE                                  (SYSTEM_FLAGS + 0x2E) // Must be set to enable Mega Evolution
-#define FLAG_SYS_INVERSE_BATTLE                                     (SYSTEM_FLAGS + 0x2F) // Set for inverse battles
-#define FLAG_SYS_TV_HOME                                            (SYSTEM_FLAGS + 0x30)
-#define FLAG_SYS_TV_WATCH                                           (SYSTEM_FLAGS + 0x31)
-#define FLAG_SYS_TV_START                                           (SYSTEM_FLAGS + 0x32)
-#define FLAG_SYS_CHANGED_DEWFORD_TREND                              (SYSTEM_FLAGS + 0x33)
-#define FLAG_SYS_MIX_RECORD                                         (SYSTEM_FLAGS + 0x34)
-#define FLAG_SYS_CLOCK_SET                                          (SYSTEM_FLAGS + 0x35)
-#define FLAG_SYS_NATIONAL_DEX                                       (SYSTEM_FLAGS + 0x36)
-#define FLAG_SYS_QUEST_MENU_GET                                     (SYSTEM_FLAGS + 0x37) // add QUESTS to start menu
-#define FLAG_ALPHA_CREATION                                         (SYSTEM_FLAGS + 0x38)
-#define FLAG_QUEST_MENU_ACTIVE                                      (SYSTEM_FLAGS + 0x39)
-#define FLAG_SYS_SHOAL_TIDE                                         (SYSTEM_FLAGS + 0x3A)
-#define FLAG_SYS_RIBBON_GET                                         (SYSTEM_FLAGS + 0x3B)
-#define FLAG_LANDMARK_FLOWER_SHOP                                   (SYSTEM_FLAGS + 0x3C)
-#define FLAG_LANDMARK_MR_BRINEY_HOUSE                               (SYSTEM_FLAGS + 0x3D)
-#define FLAG_LANDMARK_ABANDONED_SHIP                                (SYSTEM_FLAGS + 0x3E)
-#define FLAG_LANDMARK_SEASHORE_HOUSE                                (SYSTEM_FLAGS + 0x3F)
-#define FLAG_LANDMARK_NEW_MAUVILLE                                  (SYSTEM_FLAGS + 0x40)
-#define FLAG_LANDMARK_OLD_LADY_REST_SHOP                            (SYSTEM_FLAGS + 0x41)
-#define FLAG_LANDMARK_TRICK_HOUSE                                   (SYSTEM_FLAGS + 0x42)
-#define FLAG_LANDMARK_WINSTRATE_FAMILY                              (SYSTEM_FLAGS + 0x43)
-#define FLAG_LANDMARK_GLASS_WORKSHOP                                (SYSTEM_FLAGS + 0x44)
-#define FLAG_LANDMARK_LANETTES_HOUSE                                (SYSTEM_FLAGS + 0x45)
-#define FLAG_LANDMARK_POKEMON_DAYCARE                               (SYSTEM_FLAGS + 0x46)
-#define FLAG_LANDMARK_SEAFLOOR_CAVERN                               (SYSTEM_FLAGS + 0x47)
-#define FLAG_LANDMARK_BATTLE_FRONTIER                               (SYSTEM_FLAGS + 0x48)
-#define FLAG_LANDMARK_SOUTHERN_ISLAND                               (SYSTEM_FLAGS + 0x49)
-#define FLAG_LANDMARK_FIERY_PATH                                    (SYSTEM_FLAGS + 0x4A)
-#define FLAG_SYS_PC_LANETTE                                         (SYSTEM_FLAGS + 0x4B)
-#define FLAG_SYS_MYSTERY_EVENT_ENABLE                               (SYSTEM_FLAGS + 0x4C)
-#define FLAG_SYS_ENC_UP_ITEM                                        (SYSTEM_FLAGS + 0x4D)
-#define FLAG_SYS_ENC_DOWN_ITEM                                      (SYSTEM_FLAGS + 0x4E)
-#define FLAG_SYS_BRAILLE_DIG                                        (SYSTEM_FLAGS + 0x4F)
-#define FLAG_SYS_REGIROCK_PUZZLE_COMPLETED                          (SYSTEM_FLAGS + 0x50)
-#define FLAG_SYS_BRAILLE_REGICE_COMPLETED                           (SYSTEM_FLAGS + 0x51)
-#define FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED                         (SYSTEM_FLAGS + 0x52)
-#define FLAG_ENABLE_SHIP_SOUTHERN_ISLAND                            (SYSTEM_FLAGS + 0x53)
-#define FLAG_LANDMARK_POKEMON_LEAGUE                                (SYSTEM_FLAGS + 0x54)
-#define FLAG_LANDMARK_ISLAND_CAVE                                   (SYSTEM_FLAGS + 0x55)
-#define FLAG_LANDMARK_DESERT_RUINS                                  (SYSTEM_FLAGS + 0x56)
-#define FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE                          (SYSTEM_FLAGS + 0x57)
-#define FLAG_LANDMARK_SCORCHED_SLAB                                 (SYSTEM_FLAGS + 0x58)
-#define FLAG_LANDMARK_ANCIENT_TOMB                                  (SYSTEM_FLAGS + 0x59)
-#define FLAG_LANDMARK_TUNNELERS_REST_HOUSE                          (SYSTEM_FLAGS + 0x5A)
-#define FLAG_LANDMARK_HUNTERS_HOUSE                                 (SYSTEM_FLAGS + 0x5B)
-#define FLAG_LANDMARK_SEALED_CHAMBER                                (SYSTEM_FLAGS + 0x5C)
-#define FLAG_SYS_TV_LATIAS_LATIOS                                   (SYSTEM_FLAGS + 0x5D)
-#define FLAG_LANDMARK_SKY_PILLAR                                    (SYSTEM_FLAGS + 0x5E)
-#define FLAG_SYS_SHOAL_ITEM                                         (SYSTEM_FLAGS + 0x5F)
-#define FLAG_SYS_B_DASH                                             (SYSTEM_FLAGS + 0x60) // RECEIVED Running Shoes
-#define FLAG_SYS_CTRL_OBJ_DELETE                                    (SYSTEM_FLAGS + 0x61)
-#define FLAG_SYS_RESET_RTC_ENABLE                                   (SYSTEM_FLAGS + 0x62)
-#define FLAG_LANDMARK_BERRY_MASTERS_HOUSE                           (SYSTEM_FLAGS + 0x63)
-#define FLAG_SYS_TOWER_SILVER                                       (SYSTEM_FLAGS + 0x64)
-#define FLAG_SYS_TOWER_GOLD                                         (SYSTEM_FLAGS + 0x65)
-#define FLAG_SYS_DOME_SILVER                                        (SYSTEM_FLAGS + 0x66)
-#define FLAG_SYS_DOME_GOLD                                          (SYSTEM_FLAGS + 0x67)
-#define FLAG_SYS_PALACE_SILVER                                      (SYSTEM_FLAGS + 0x68)
-#define FLAG_SYS_PALACE_GOLD                                        (SYSTEM_FLAGS + 0x69)
-#define FLAG_SYS_ARENA_SILVER                                       (SYSTEM_FLAGS + 0x6A)
-#define FLAG_SYS_ARENA_GOLD                                         (SYSTEM_FLAGS + 0x6B)
-#define FLAG_SYS_FACTORY_SILVER                                     (SYSTEM_FLAGS + 0x6C)
-#define FLAG_SYS_FACTORY_GOLD                                       (SYSTEM_FLAGS + 0x6D)
-#define FLAG_SYS_PIKE_SILVER                                        (SYSTEM_FLAGS + 0x6E)
-#define FLAG_SYS_PIKE_GOLD                                          (SYSTEM_FLAGS + 0x6F)
-#define FLAG_SYS_PYRAMID_SILVER                                     (SYSTEM_FLAGS + 0x70)
-#define FLAG_SYS_PYRAMID_GOLD                                       (SYSTEM_FLAGS + 0x71)
-#define FLAG_SYS_FRONTIER_PASS                                      (SYSTEM_FLAGS + 0x72)
-#define FLAG_MAP_SCRIPT_CHECKED_DEOXYS                              (SYSTEM_FLAGS + 0x73)
-#define FLAG_DEOXYS_ROCK_COMPLETE                                   (SYSTEM_FLAGS + 0x74)
-#define FLAG_ENABLE_SHIP_BIRTH_ISLAND                               (SYSTEM_FLAGS + 0x75)
-#define FLAG_ENABLE_SHIP_FARAWAY_ISLAND                             (SYSTEM_FLAGS + 0x76)
-#define FLAG_SHOWN_BOX_WAS_FULL_MESSAGE                             (SYSTEM_FLAGS + 0x77)
-#define FLAG_ARRIVED_ON_FARAWAY_ISLAND                              (SYSTEM_FLAGS + 0x78)
-#define FLAG_ARRIVED_AT_MARINE_CAVE_EMERGE_SPOT                     (SYSTEM_FLAGS + 0x79)
-#define FLAG_ARRIVED_AT_TERRA_CAVE_ENTRANCE                         (SYSTEM_FLAGS + 0x7A)
-#define FLAG_SYS_MYSTERY_GIFT_ENABLE                                (SYSTEM_FLAGS + 0x7B)
-#define FLAG_ENTERED_MIRAGE_TOWER                                   (SYSTEM_FLAGS + 0x7C) // Appears to be written but never read?
-#define FLAG_LANDMARK_ALTERING_CAVE                                 (SYSTEM_FLAGS + 0x7D)
-#define FLAG_LANDMARK_DESERT_UNDERPASS                              (SYSTEM_FLAGS + 0x7E)
-#define FLAG_LANDMARK_ARTISAN_CAVE                                  (SYSTEM_FLAGS + 0x7F)
-#define FLAG_ENABLE_SHIP_NAVEL_ROCK                                 (SYSTEM_FLAGS + 0x80)
-#define FLAG_ARRIVED_AT_NAVEL_ROCK                                  (SYSTEM_FLAGS + 0x81)
-#define FLAG_LANDMARK_TRAINER_HILL                                  (SYSTEM_FLAGS + 0x82)
-#define FLAG_DEBUG_GODMODE                                          (SYSTEM_FLAGS + 0x83) // Debug
-#define FLAG_RECEIVED_POKEDEX_FROM_BIRCH                            (SYSTEM_FLAGS + 0x84)
-#define FLAG_LANDMARK_DEWFORD_MEADOW                                (SYSTEM_FLAGS + 0x85)
-#define FLAG_LANDMARK_DEWFORD_MANOR                                 (SYSTEM_FLAGS + 0x86)
-#define FLAG_LANDMARK_VERDANT_MEADOW                                (SYSTEM_FLAGS + 0x87)
-#define FLAG_LANDMARK_EMBER_PATH                                    (SYSTEM_FLAGS + 0x88)
-#define FLAG_LANDMARK_ASHEN_WOODS                                   (SYSTEM_FLAGS + 0x89)
-#define FLAG_LANDMARK_SANDSTREWN_RUINS                              (SYSTEM_FLAGS + 0x8A)
-#define FLAG_TRAINER_BANEFUL_PETALBURG_WOODS                        (SYSTEM_FLAGS + 0x8B) // Primal Cascoon battle
-#define FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED                   (SYSTEM_FLAGS + 0x8C)
-#define FLAG_TRAINER_YDA_MTPYRE                                     (SYSTEM_FLAGS + 141)
-#define FLAG_UNUSED_0x91F                                           3021 // Unused Flag
+#define FLAG_VISITED_OLDALE_TOWN                                    2906
+#define FLAG_VISITED_DEWFORD_TOWN                                   2907
+#define FLAG_VISITED_LAVARIDGE_TOWN                                 2908
+#define FLAG_VISITED_FALLARBOR_TOWN                                 2909
+#define FLAG_VISITED_VERDANTURF_TOWN                                2910
+#define FLAG_VISITED_PACIFIDLOG_TOWN                                2911
+#define FLAG_VISITED_PETALBURG_CITY                                 2912
+#define FLAG_VISITED_SLATEPORT_CITY                                 2913
+#define FLAG_VISITED_MAUVILLE_CITY                                  2914
+#define FLAG_VISITED_RUSTBORO_CITY                                  2915
+#define FLAG_VISITED_FORTREE_CITY                                   2916
+#define FLAG_VISITED_LILYCOVE_CITY                                  2917
+#define FLAG_VISITED_MOSSDEEP_CITY                                  2918
+#define FLAG_VISITED_SOOTOPOLIS_CITY                                2919
+#define FLAG_VISITED_EVER_GRANDE_CITY                               2920
+
+#define FLAG_IS_CHAMPION                                            2921 // Seems to be related to linking.
+#define FLAG_NURSE_UNION_ROOM_REMINDER                              2922
+#define FLAG_SYS_DEXNAV_SEARCH                                      2923
+#define FLAG_SHINY_CREATION                                         2924 // force creation of a shiny mon
+#define FLAG_SYS_DETECTOR_MODE                                      2925 // allow player to find hidden mons
+#define FLAG_SYS_DEXNAV_GET                                         2926 // dexnav shows in start menu
+#define FLAG_USED_CANDY_BOX                                         2927
+#define FLAG_TRAINER_NEW_TEST                                       2928 // New trainer example
+#define FLAG_UPDATED_MEGA_STONE_POCKET                              2929
+#define FLAG_SYS_USE_FLASH                                          2930
+#define FLAG_SYS_USE_STRENGTH                                       2931
+#define FLAG_SYS_WEATHER_CTRL                                       2932
+#define FLAG_SYS_CYCLING_ROAD                                       2933
+#define FLAG_SYS_SAFARI_MODE                                        2934
+#define FLAG_SYS_CRUISE_MODE                                        2935
+#define FLAG_SYS_RECEIVED_KEYSTONE                                  2936 // Must be set to enable Mega Evolution
+#define FLAG_SYS_INVERSE_BATTLE                                     2937 // Set for inverse battles
+#define FLAG_SYS_TV_HOME                                            2938
+#define FLAG_SYS_TV_WATCH                                           2939
+#define FLAG_SYS_TV_START                                           2940
+#define FLAG_SYS_CHANGED_DEWFORD_TREND                              2941
+#define FLAG_SYS_MIX_RECORD                                         2942
+#define FLAG_SYS_CLOCK_SET                                          2943
+#define FLAG_SYS_NATIONAL_DEX                                       2944
+#define FLAG_SYS_QUEST_MENU_GET                                     2945 // add QUESTS to start menu
+#define FLAG_ALPHA_CREATION                                         2946
+#define FLAG_QUEST_MENU_ACTIVE                                      2947
+#define FLAG_SYS_SHOAL_TIDE                                         2948
+#define FLAG_SYS_RIBBON_GET                                         2949
+#define FLAG_LANDMARK_FLOWER_SHOP                                   2950
+#define FLAG_LANDMARK_MR_BRINEY_HOUSE                               2951
+#define FLAG_LANDMARK_ABANDONED_SHIP                                2952
+#define FLAG_LANDMARK_SEASHORE_HOUSE                                2953
+#define FLAG_LANDMARK_NEW_MAUVILLE                                  2954
+#define FLAG_LANDMARK_OLD_LADY_REST_SHOP                            2955
+#define FLAG_LANDMARK_TRICK_HOUSE                                   2956
+#define FLAG_LANDMARK_WINSTRATE_FAMILY                              2957
+#define FLAG_LANDMARK_GLASS_WORKSHOP                                2958
+#define FLAG_LANDMARK_LANETTES_HOUSE                                2959
+#define FLAG_LANDMARK_POKEMON_DAYCARE                               2960
+#define FLAG_LANDMARK_SEAFLOOR_CAVERN                               2961
+#define FLAG_LANDMARK_BATTLE_FRONTIER                               2962
+#define FLAG_LANDMARK_SOUTHERN_ISLAND                               2963
+#define FLAG_LANDMARK_FIERY_PATH                                    2964
+#define FLAG_SYS_PC_LANETTE                                         2965
+#define FLAG_SYS_MYSTERY_EVENT_ENABLE                               2966
+#define FLAG_SYS_ENC_UP_ITEM                                        2967
+#define FLAG_SYS_ENC_DOWN_ITEM                                      2968
+#define FLAG_SYS_BRAILLE_DIG                                        2969
+#define FLAG_SYS_REGIROCK_PUZZLE_COMPLETED                          2970
+#define FLAG_SYS_BRAILLE_REGICE_COMPLETED                           2971
+#define FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED                         2972
+#define FLAG_ENABLE_SHIP_SOUTHERN_ISLAND                            2973
+#define FLAG_LANDMARK_POKEMON_LEAGUE                                2974
+#define FLAG_LANDMARK_ISLAND_CAVE                                   2975
+#define FLAG_LANDMARK_DESERT_RUINS                                  2976
+#define FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE                          2977
+#define FLAG_LANDMARK_SCORCHED_SLAB                                 2978
+#define FLAG_LANDMARK_ANCIENT_TOMB                                  2979
+#define FLAG_LANDMARK_TUNNELERS_REST_HOUSE                          2980
+#define FLAG_LANDMARK_HUNTERS_HOUSE                                 2981
+#define FLAG_LANDMARK_SEALED_CHAMBER                                2982
+#define FLAG_SYS_TV_LATIAS_LATIOS                                   2983
+#define FLAG_LANDMARK_SKY_PILLAR                                    2984
+#define FLAG_SYS_SHOAL_ITEM                                         2985
+#define FLAG_SYS_B_DASH                                             2986 // RECEIVED Running Shoes
+#define FLAG_SYS_CTRL_OBJ_DELETE                                    2987
+#define FLAG_SYS_RESET_RTC_ENABLE                                   2988
+#define FLAG_LANDMARK_BERRY_MASTERS_HOUSE                           2989
+#define FLAG_SYS_TOWER_SILVER                                       2990
+#define FLAG_SYS_TOWER_GOLD                                         2991
+#define FLAG_SYS_DOME_SILVER                                        2992
+#define FLAG_SYS_DOME_GOLD                                          2993
+#define FLAG_SYS_PALACE_SILVER                                      2994
+#define FLAG_SYS_PALACE_GOLD                                        2995
+#define FLAG_SYS_ARENA_SILVER                                       2996
+#define FLAG_SYS_ARENA_GOLD                                         2997
+#define FLAG_SYS_FACTORY_SILVER                                     2998
+#define FLAG_SYS_FACTORY_GOLD                                       2999
+#define FLAG_SYS_PIKE_SILVER                                        3000
+#define FLAG_SYS_PIKE_GOLD                                          3001
+#define FLAG_SYS_PYRAMID_SILVER                                     3002
+#define FLAG_SYS_PYRAMID_GOLD                                       3003
+#define FLAG_SYS_FRONTIER_PASS                                      3004
+#define FLAG_MAP_SCRIPT_CHECKED_DEOXYS                              3005
+#define FLAG_DEOXYS_ROCK_COMPLETE                                   3006
+#define FLAG_ENABLE_SHIP_BIRTH_ISLAND                               3007
+#define FLAG_ENABLE_SHIP_FARAWAY_ISLAND                             3008
+#define FLAG_SHOWN_BOX_WAS_FULL_MESSAGE                             3009
+#define FLAG_ARRIVED_ON_FARAWAY_ISLAND                              3010
+#define FLAG_ARRIVED_AT_MARINE_CAVE_EMERGE_SPOT                     3011
+#define FLAG_ARRIVED_AT_TERRA_CAVE_ENTRANCE                         3012
+#define FLAG_SYS_MYSTERY_GIFT_ENABLE                                3013
+#define FLAG_ENTERED_MIRAGE_TOWER                                   3014 // Appears to be written but never read?
+#define FLAG_LANDMARK_ALTERING_CAVE                                 3015
+#define FLAG_LANDMARK_DESERT_UNDERPASS                              3016
+#define FLAG_LANDMARK_ARTISAN_CAVE                                  3017
+#define FLAG_ENABLE_SHIP_NAVEL_ROCK                                 3018
+#define FLAG_ARRIVED_AT_NAVEL_ROCK                                  3019
+#define FLAG_LANDMARK_TRAINER_HILL                                  3020
+#define FLAG_DEBUG_GODMODE                                          3021 // Debug
 
 // Daily Flags
 // These flags are cleared once per day
@@ -1496,6 +1486,17 @@
 #define FLAG_DAILY_REMATCH_TATE_AND_LIZA                            3046
 #define FLAG_DAILY_REMATCH_JUAN                                     3047
 #define DAILY_FLAGS_END                                             3048
+
+#define FLAG_RECEIVED_POKEDEX_FROM_BIRCH                            3049
+#define FLAG_LANDMARK_DEWFORD_MEADOW                                3050
+#define FLAG_LANDMARK_DEWFORD_MANOR                                 3051
+#define FLAG_LANDMARK_VERDANT_MEADOW                                3052
+#define FLAG_LANDMARK_EMBER_PATH                                    3053
+#define FLAG_LANDMARK_ASHEN_WOODS                                   3054
+#define FLAG_LANDMARK_SANDSTREWN_RUINS                              3055
+#define FLAG_TRAINER_BANEFUL_PETALBURG_WOODS                        3056 // Primal Cascoon battle
+#define FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED                   3057
+#define FLAG_TRAINER_YDA_MTPYRE                                     3058
 
 #define FLAGS_COUNT                                                 6135 //Added 3000 new flags
 
