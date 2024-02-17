@@ -7,7 +7,6 @@ const u8 gMonFootprint_Tyranitar_Mega_Redux[] = INCBIN_U8("graphics/pokemon/tyra
 const u8 gMonFootprint_Tyranitar_Redux[] = INCBIN_U8("graphics/pokemon/tyranitar/redux/footprint.1bpp");
 const u8 gMonFootprint_Pupitar_Redux[] = INCBIN_U8("graphics/pokemon/pupitar/redux/footprint.1bpp");
 const u8 gMonFootprint_Larvitar_Redux[] = INCBIN_U8("graphics/pokemon/larvitar/redux/footprint.1bpp");
-const u8 gMonFootprint_Castform_Sandy[] = INCBIN_U8("graphics/pokemon/castform/sandy/footprint.1bpp");
 const u8 gMonFootprint_Kingambit_Redux[] = INCBIN_U8("graphics/pokemon/kingambit/redux/footprint.1bpp");
 const u8 gMonIcon_Phantowl[] = INCBIN_U8("graphics/pokemon/phantowl/icon.4bpp");
 const u8 gMonIcon_Duelumber[] = INCBIN_U8("graphics/pokemon/duelumber/icon.4bpp");

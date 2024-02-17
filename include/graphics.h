@@ -11652,7 +11652,6 @@ extern const u8 gMonFootprint_Duelumber[];
 extern const u8 gMonFootprint_Scizor_Redux[];
 extern const u8 gMonFootprint_Scizor_Mega_Redux[];
 extern const u8 gMonFootprint_Ursaluna_Mega[];
-extern const u8 gMonFootprint_Castform_Sandy[];
 extern const u8 gMonFootprint_Kingambit_Redux[];
 extern const u8 gMonIcon_Phantowl[];
 extern const u8 gMonIcon_Duelumber[];
