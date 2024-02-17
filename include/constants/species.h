@@ -1657,10 +1657,6 @@
 #define SPECIES_URSALUNA_MEGA               REDUX_FORMS_START + 65
 #define SPECIES_SCIZOR_MEGA_REDUX           REDUX_FORMS_START + 66
 #define SPECIES_SCIZOR_REDUX                REDUX_FORMS_START + 67
-#define SPECIES_LARVITAR_REDUX_2            REDUX_FORMS_START + 68
-#define SPECIES_PUPITAR_REDUX_2             REDUX_FORMS_START + 69
-#define SPECIES_TYRANITAR_REDUX_2           REDUX_FORMS_START + 70
-#define SPECIES_TYRANITAR_MEGA_REDUX_2      REDUX_FORMS_START + 71
 
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 

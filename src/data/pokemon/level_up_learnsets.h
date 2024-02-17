@@ -86,34 +86,6 @@ static const struct LevelUpMove sDuelumberLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-static const struct LevelUpMove sTyranitar_Mega_Redux_2LevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sTyranitar_Redux_2LevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sPupitar_Redux_2LevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sLarvitar_Redux_2LevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
-    LEVEL_UP_MOVE( 5, MOVE_GROWL),
-    LEVEL_UP_MOVE(10, MOVE_EMBER),
-    LEVEL_UP_END
-};
-
 static const struct LevelUpMove sScizor_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_GROWL),

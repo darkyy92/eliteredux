@@ -49,7 +49,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SCIZOR_MEGA_REDUX] = sScizorFormSpeciesIdTable,
     [SPECIES_HERACROSS] = sHeracrossFormSpeciesIdTable,
     [SPECIES_CORSOLA] = sCorsolaFormSpeciesIdTable,
-    [SPECIES_TYRANITAR_REDUX] = sTyranitarFormSpeciesIdTable,
+    [SPECIES_TYRANITAR] = sTyranitarFormSpeciesIdTable,
     [SPECIES_SCEPTILE] = sSceptileFormSpeciesIdTable,
     [SPECIES_BLAZIKEN] = sBlazikenFormSpeciesIdTable,
     [SPECIES_SWAMPERT] = sSwampertFormSpeciesIdTable,
@@ -800,21 +800,12 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_KINGAMBIT_REDUX] = sKingambitFormSpeciesIdTable,
 
     [SPECIES_LARVITAR_REDUX] = sLarvitarFormSpeciesIdTable,
-
     [SPECIES_PUPITAR_REDUX] = sPupitarFormSpeciesIdTable,
-
+    [SPECIES_TYRANITAR_REDUX] = sTyranitarFormSpeciesIdTable,
     [SPECIES_TYRANITAR_MEGA_REDUX] = sTyranitarFormSpeciesIdTable,
 
     [SPECIES_URSALUNA_MEGA] = sUrsalunaFormSpeciesIdTable,
 
     [SPECIES_SCIZOR_REDUX] = sScizorFormSpeciesIdTable,
-
-    [SPECIES_LARVITAR_REDUX_2] = sLarvitarFormSpeciesIdTable,
-
-    [SPECIES_PUPITAR_REDUX_2] = sPupitarFormSpeciesIdTable,
-
-    [SPECIES_TYRANITAR_REDUX_2] = sTyranitarFormSpeciesIdTable,
-
-    [SPECIES_TYRANITAR_MEGA_REDUX_2] = sTyranitarFormSpeciesIdTable,
 
 };
