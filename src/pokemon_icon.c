@@ -1139,6 +1139,12 @@ const u8 *const gMonIconTable[] =
     [SPECIES_SCIZOR_MEGA_REDUX] = gMonIcon_Scizor_Mega_Redux,
     [SPECIES_URSALUNA_MEGA] = gMonIcon_Ursaluna_Mega,
     [SPECIES_CASTFORM_SANDY] = gMonIcon_Castform_Sandy,
+
+    [SPECIES_LARVITAR_REDUX]       = gMonIcon_Larvitar_Redux,
+    [SPECIES_PUPITAR_REDUX]        = gMonIcon_Pupitar_Redux,
+    [SPECIES_TYRANITAR_REDUX]      = gMonIcon_Tyranitar_Redux,
+    [SPECIES_TYRANITAR_MEGA_REDUX] = gMonIcon_Tyranitar_Mega_Redux,
+
     [SPECIES_KINGAMBIT_REDUX] = gMonIcon_Kingambit_Redux,
     [SPECIES_ENAMORUS_THERIAN] = gMonIcon_Enamorus_Therian,
     [SPECIES_PALKIA_ORIGIN] = gMonIcon_Palkia_Origin_Forme,
@@ -3024,8 +3030,8 @@ const u8 gMonIconPaletteIndices[] =
 
     [SPECIES_LARVITAR_REDUX] = 0,
     [SPECIES_PUPITAR_REDUX] = 2,
-    [SPECIES_TYRANITAR_REDUX] = 2,
-    [SPECIES_TYRANITAR_MEGA_REDUX] = 2,
+    [SPECIES_TYRANITAR_REDUX] = 1,
+    [SPECIES_TYRANITAR_MEGA_REDUX] = 1,
 
     [SPECIES_EGG] = 1,
 };
