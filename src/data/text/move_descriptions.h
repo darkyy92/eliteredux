@@ -3502,6 +3502,74 @@ static const u8 sMoveTwoLineDescription_MoveThornyGarden[] = _(
     "Thorns surround the foe.\n"
     "Hurts foes on switch in.");
 
+static const u8 sMoveTwoLineDescription_MoveMatchaGotcha[] = _(
+    "Fires a blast of tea.\n"
+    "May burn and heals 50% dmg dealt.");
+
+static const u8 sMoveTwoLineDescription_MoveSyrupBomb[] = _(
+    "an explosion of sticky candy syrup.\n"
+    "3 turns of speed reductions by -1");
+
+static const u8 sMoveTwoLineDescription_MoveIvyCudgel[] = _(
+    "The user strikes with an ivy-wrapped cudgel.\n"
+    "type changes depending on the mask. +1 crit");
+
+static const u8 sMoveTwoLineDescription_MoveElectroShot[] = _(
+    "gathers electricity for a\n"
+    "high-voltage shot. +1 SPA");
+
+static const u8 sMoveTwoLineDescription_MoveFlickleBeam[] = _(
+    "shoots a beam of light to inflict damage.\n"
+    "30% chance to double damage when there are more heads");
+
+static const u8 sMoveTwoLineDescription_MoveBurningBulwark[] = _(
+    "The user's intensely hot fur\n"
+    "protects from attacks.");
+
+static const u8 sMoveTwoLineDescription_MoveThunderclap[] = _(
+    "Attack first with a jolt of electricity.\n"
+    "Fails if the target is not readying an attack.");
+
+static const u8 sMoveTwoLineDescription_MoveTachyonCutter[] = _(
+    "Launches particle blades at the target twice in a row.\n"
+    "Never misses.");
+
+static const u8 sMoveTwoLineDescription_MoveHardPress[] = _(
+    "The target is crushed.\n"
+    "Damage based on target's current health.");
+
+static const u8 sMoveTwoLineDescription_MoveDragonCheer[] = _(
+    "Raises crit by one stage\n"
+    "for all allies. +2 if DRAGON");
+
+static const u8 sMoveTwoLineDescription_MoveAlluringVoice[] = _(
+    "Attacks the target using its angelic voice\n"
+    "May confuse the target.");
+
+static const u8 sMoveTwoLineDescription_MoveMightyCleave[] = _(
+    "Wields a light blade.\n"
+    "Hits through protect.");
+
+static const u8 sMoveTwoLineDescription_MoveTemperFlare[] = _(
+    "Attacks desperately, Doubles dmg\n"
+    "if it missed the previous turn");
+
+static const u8 sMoveTwoLineDescription_MoveSupercellSlam[] = _(
+    "Tackles with it's shock\n"
+    "body. Hurts on miss.");
+
+static const u8 sMoveTwoLineDescription_MovePsychicNoise[] = _(
+    "Attacks with sound\n"
+    "waves. Target can't heal.");
+
+static const u8 sMoveTwoLineDescription_MoveUpperHand[] = _(
+    "Predicts and counter\n"
+    "attacks. attack may fail");
+
+static const u8 sMoveTwoLineDescription_MoveMalignantChain[] = _(
+    "The user pours toxins into the target.\n"
+    "Badly poisons the target");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4403,6 +4471,23 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_BARB_BARRAGE - 1] = sMoveTwoLineDescription_MoveBarbBarrage,
     [MOVE_SMASHIN_REALITIES - 1] = sMoveTwoLineDescription_MoveSmashinRealities,
     [MOVE_THORNY_GARDEN - 1] = sMoveTwoLineDescription_MoveThornyGarden,
+    [MOVE_MATCHA_GOTCHA - 1] = sMoveTwoLineDescription_MoveMatchaGotcha,
+    [MOVE_SYRUP_BOMB - 1] = sMoveTwoLineDescription_MoveSyrupBomb,
+    [MOVE_IVY_CUDGEL - 1] = sMoveTwoLineDescription_MoveIvyCudgel,
+    [MOVE_ELECTRO_SHOT - 1] = sMoveTwoLineDescription_MoveElectroShot,
+    [MOVE_FLICKLE_BEAM - 1] = sMoveTwoLineDescription_MoveFlickleBeam,
+    [MOVE_BURNING_BULWARK - 1] = sMoveTwoLineDescription_MoveBurningBulwark,
+    [MOVE_THUNDERCLAP - 1] = sMoveTwoLineDescription_MoveThunderclap,
+    [MOVE_TACHYON_CUTTER - 1] = sMoveTwoLineDescription_MoveTachyonCutter,
+    [MOVE_HARD_PRESS - 1] = sMoveTwoLineDescription_MoveHardPress,
+    [MOVE_DRAGON_CHEER - 1] = sMoveTwoLineDescription_MoveDragonCheer,
+    [MOVE_ALLURING_VOICE - 1] = sMoveTwoLineDescription_MoveAlluringVoice,
+    [MOVE_MIGHTY_CLEAVE - 1] = sMoveTwoLineDescription_MoveMightyCleave,
+    [MOVE_TEMPER_FLARE - 1] = sMoveTwoLineDescription_MoveTemperFlare,
+    [MOVE_SUPERCELL_SLAM - 1] = sMoveTwoLineDescription_MoveSupercellSlam,
+    [MOVE_PSYCHIC_NOISE - 1] = sMoveTwoLineDescription_MovePsychicNoise,
+    [MOVE_UPPER_HAND - 1] = sMoveTwoLineDescription_MoveUpperHand,
+    [MOVE_MALIGNANT_CHAIN - 1] = sMoveTwoLineDescription_MoveMalignantChain,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5303,6 +5388,23 @@ static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by 
 static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
 static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that\nit smashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
 static const u8 sMoveFourLineDescription_MoveThornyGarden[] = _("Levitating thorns\nsurround the foe.\nThis hurts foes on\nswitch in.");
+static const u8 sMoveFourLineDescription_MoveMatchaGotcha[] = _("The user fires a blast of tea\nThe user's HP is restored by up to half\nthe damage taken by the target.\nThis may also leave the target with a burn.");
+static const u8 sMoveFourLineDescription_MoveSyrupBomb[] = _("The user sets off an explosion\nof sticky candy syrup, which coats\nthe target and causes the target's Speed\nstat to drop each turn for three turns.");
+static const u8 sMoveFourLineDescription_MoveIvyCudgel[] = _("The user strikes with an ivy-wrapped cudgel.\nThis move's type changes depending on the mask\nworn by the user, and it has a heightened\nchance of landing a critical hit.");
+static const u8 sMoveFourLineDescription_MoveElectroShot[] = _("The user gathers electricity on the first turn,\nboosting its Sp. Atk stat, then fires a high-voltage\nshot on the next turn. The shot\nwill be fired immediately in rain.");
+static const u8 sMoveFourLineDescription_MoveFlickleBeam[] = _("The user shoots a beam of light\nto inflict damage. Sometimes all the user's\nheads shoot beams in unison,\ndoubling the move's power.");
+static const u8 sMoveFourLineDescription_MoveBurningBulwark[] = _("The user's intensely hot fur protects\nit from attacks and also burns\nany attacker that makes\ndirect contact with it.");
+static const u8 sMoveFourLineDescription_MoveThunderclap[] = _("This move enables the user to attack\nfirst with a jolt of electricity.\nThis move fails if the\ntarget is not readying an attack.");
+static const u8 sMoveFourLineDescription_MoveTachyonCutter[] = _("The user attacks by launching\nparticle blades at the target\ntwice in a row. This attack never misses.");
+static const u8 sMoveFourLineDescription_MoveHardPress[] = _("The target is crushed with an arm, a claw,\nor the like to inflict damage.\nThe more HP the target has left,\nthe greater the move's power.");
+static const u8 sMoveFourLineDescription_MoveDragonCheer[] = _("The user raises its allies' morale\nwith a draconic cry so that their future\nattacks have a heightened chance of\nlanding critical hits. This rouses Dragon types more.");
+static const u8 sMoveFourLineDescription_MoveAlluringVoice[] = _("The user attacks the target using\nits angelic voice. This also confuses the\ntarget if its stats have been\nboosted during the turn.");
+static const u8 sMoveFourLineDescription_MoveMightyCleave[] = _("The user wields the light that has\naccumulated atop its head to cleave the target.\nThis move hits even if\nthe target protects itself.");
+static const u8 sMoveFourLineDescription_MoveTemperFlare[] = _("Spurred by desperation,\nthe user attacks the target.\nThis move's power is doubled if\nthe user's previous move failed.");
+static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user electrifies its body and drops\nonto the target to inflict damage.\nIf this move misses,\nthe user takes damage instead.");
+static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attacks the target with\nunpleasant sound waves. For two turns,\nthe target is prevented from recovering HP\nthrough moves, Abilities, or held items.");
+static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to the target's movement\nand strikes, making the target flinch.\nThis move fails if the target\nis not readying a priority move.");
+static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6203,4 +6305,21 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_BARB_BARRAGE - 1] = sMoveFourLineDescription_MoveBarbBarrage,
     [MOVE_SMASHIN_REALITIES - 1] = sMoveFourLineDescription_MoveSmashinRealities,
     [MOVE_THORNY_GARDEN - 1] = sMoveFourLineDescription_MoveThornyGarden,
+    [MOVE_MATCHA_GOTCHA - 1] = sMoveFourLineDescription_MoveMatchaGotcha,
+    [MOVE_SYRUP_BOMB - 1] = sMoveFourLineDescription_MoveSyrupBomb,
+    [MOVE_IVY_CUDGEL - 1] = sMoveFourLineDescription_MoveIvyCudgel,
+    [MOVE_ELECTRO_SHOT - 1] = sMoveFourLineDescription_MoveElectroShot,
+    [MOVE_FLICKLE_BEAM - 1] = sMoveFourLineDescription_MoveFlickleBeam,
+    [MOVE_BURNING_BULWARK - 1] = sMoveFourLineDescription_MoveBurningBulwark,
+    [MOVE_THUNDERCLAP - 1] = sMoveFourLineDescription_MoveThunderclap,
+    [MOVE_TACHYON_CUTTER - 1] = sMoveFourLineDescription_MoveTachyonCutter,
+    [MOVE_HARD_PRESS - 1] = sMoveFourLineDescription_MoveHardPress,
+    [MOVE_DRAGON_CHEER - 1] = sMoveFourLineDescription_MoveDragonCheer,
+    [MOVE_ALLURING_VOICE - 1] = sMoveFourLineDescription_MoveAlluringVoice,
+    [MOVE_MIGHTY_CLEAVE - 1] = sMoveFourLineDescription_MoveMightyCleave,
+    [MOVE_TEMPER_FLARE - 1] = sMoveFourLineDescription_MoveTemperFlare,
+    [MOVE_SUPERCELL_SLAM - 1] = sMoveFourLineDescription_MoveSupercellSlam,
+    [MOVE_PSYCHIC_NOISE - 1] = sMoveFourLineDescription_MovePsychicNoise,
+    [MOVE_UPPER_HAND - 1] = sMoveFourLineDescription_MoveUpperHand,
+    [MOVE_MALIGNANT_CHAIN - 1] = sMoveFourLineDescription_MoveMalignantChain,
 };
