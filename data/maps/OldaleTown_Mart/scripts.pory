@@ -73,7 +73,7 @@ script General_Adoption_Center_Script{
 		msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
 	}
 	else{
-		msgbox(format("Sorry but I can't sell you any Pokémon yet, you need your Pokedex."), MSGBOX_DEFAULT)
+		msgbox(format("Sorry but I can't sell you any Pokémon yet, you need a Pokedex."), MSGBOX_DEFAULT)
 	}
 	release
 	end
