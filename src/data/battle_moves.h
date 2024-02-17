@@ -11000,13 +11000,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_HARD_PRESS] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_WRING_OUT,
         .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .type = TYPE_STEEL,
+        .accuracy = 100,
+        .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_DRAGON_CHEER] =
