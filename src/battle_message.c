@@ -793,6 +793,9 @@ static const u8 sText_WaitingForPartnersMove[] = _("{B_ATK_NAME_WITH_PREFIX} is 
 static const u8 sText_TheRainbowDisappeared[] = _("The rainbow on {B_ATK_TEAM2}\nside disappeared!");
 static const u8 sText_ARainbowAppearedOnSide[] = _("A rainbow appeared in the sky\non {B_ATK_TEAM2} team's side!");
 static const u8 sText_StatBuffsGone[] = _("All stat buffs were\neliminated!");
+static const u8 sText_BlewAwayCreepingThorns[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nCreeping Thorns!");
+static const u8 sText_CreepingThornsDmg[] = _("Vicious thorns dug into\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}!");
+static const u8 sText_ViciousThornsUsed[] = _("Vicious thorns sprout around\n{B_DEF_TEAM2} team!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s Ability\nprevents switching!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -1684,6 +1687,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_THERAINBOWDISAPPEARED - 12] = sText_TheRainbowDisappeared,
     [STRINGID_ARAINBOWAPPEAREDONSIDE - 12] = sText_ARainbowAppearedOnSide,
     [STRINGID_STATBUFFSGONE - 12] = sText_StatBuffsGone,
+    [STRINGID_BLEWAWAYCREEPINGTHORNS - 12] = sText_BlewAwayCreepingThorns,
+    [STRINGID_HURTBYCREEPINGTHORNS - 12] = sText_CreepingThornsDmg,
+    [STRINGID_VICIOUSTHORNSUSED - 12] = sText_ViciousThornsUsed,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1735,6 +1741,7 @@ const u16 gDmgHazardsStringIds[] =
 {
     [B_MSG_PKMNHURTBYSPIKES] = STRINGID_PKMNHURTBYSPIKES,
     [B_MSG_STEALTHROCKDMG] = STRINGID_STEALTHROCKDMG,
+    [B_MSG_CREEPINGTHORNSDMG] = STRINGID_HURTBYCREEPINGTHORNS,
 };
 
 const u16 gSwitchInAbilityStringIds[] = 
@@ -2186,6 +2193,18 @@ const u8* const gRefereeStringsTable[] =
     [B_MSG_REF_OPPONENT_WON] = sText_RefOpponentWon,
     [B_MSG_REF_DRAW] = sText_RefDraw,
     [B_MSG_REF_COMMENCE_BATTLE] = sText_RefCommenceBattle,
+};
+
+const u16 gStealthRocksSet[] = 
+{
+    [B_MSG_STEALTH_ROCK_SET] = STRINGID_POINTEDSTONESFLOAT,
+    [B_MSG_CREEPING_THORNS_SET] = STRINGID_VICIOUSTHORNSUSED,
+};
+
+const u16 gStealthRockFree[] = 
+{
+    [B_MSG_STEALTH_ROCK_FREE] = STRINGID_PKMNBLEWAWAYSTEALTHROCK,
+    [B_MSG_CREEPING_THORNS_FREE] = STRINGID_BLEWAWAYCREEPINGTHORNS,
 };
 
 // END OF GENERATED

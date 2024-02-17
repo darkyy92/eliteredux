@@ -917,7 +917,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_AXE_KICK
 	.4byte Move_BARB_BARRAGE
 	.4byte Move_NONE @ MOVE_SMASHIN_REALITIES
-	.4byte Move_NONE @ MOVE_THORNY_GARDEN
+	.4byte Move_NONE @ MOVE_CREEPING_THORNS
 
 	.align 2
 gBattleAnims_StatusConditions::

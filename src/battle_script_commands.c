@@ -7215,7 +7215,7 @@ static void Cmd_switchineffects(void)
             gBattleMoveDamage = 1;
 
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
-        SetDmgHazardsBattlescript(gActiveBattler, 0);
+        SetDmgHazardsBattlescript(gActiveBattler, B_MSG_PKMNHURTBYSPIKES);
     }
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
@@ -7226,10 +7226,10 @@ static void Cmd_switchineffects(void)
 		&& !BattlerHasInnate(gActiveBattler, ABILITY_IMPENETRABLE))
     {
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
-        gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, gActiveBattler);
+        gBattleMoveDamage = GetStealthHazardDamage(gSideTimers[GetBattlerSide(gActiveBattler)].stealthRockType, gActiveBattler);
 
         if (gBattleMoveDamage != 0)
-            SetDmgHazardsBattlescript(gActiveBattler, 1);
+            SetDmgHazardsBattlescript(gActiveBattler, gSideTimers[GetBattlerSide(gActiveBattler)].stealthRockType == TYPE_GRASS ? B_MSG_CREEPINGTHORNSDMG : B_MSG_STEALTHROCKDMG);
     }
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES)
@@ -8485,7 +8485,16 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
             DEFOG_CLEAR(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
         DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
+        switch (sideTimer->stealthRockType)
+        {
+            case TYPE_ROCK:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STEALTH_ROCK_FREE;
+                break;
+            case TYPE_GRASS:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CREEPING_THORNS_FREE;
+                break;
+        }
+        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockType, BattleScript_StealthRockFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
     }
@@ -10753,7 +10762,7 @@ static void Cmd_various(void)
         SWAP(gSideTimers[0].reflectTimer, gSideTimers[1].reflectTimer, temp)
         SWAP(gSideTimers[0].spikesAmount, gSideTimers[1].spikesAmount, temp)
         SWAP(gSideTimers[0].toxicSpikesAmount, gSideTimers[1].toxicSpikesAmount, temp)
-        SWAP(gSideTimers[0].stealthRockAmount, gSideTimers[1].stealthRockAmount, temp)
+        SWAP(gSideTimers[0].stealthRockType, gSideTimers[1].stealthRockType, temp)
         SWAP(gSideTimers[0].stickyWebAmount, gSideTimers[1].stickyWebAmount, temp)
         SWAP(gSideTimers[0].auroraVeilTimer, gSideTimers[1].auroraVeilTimer, temp)
         SWAP(gSideTimers[0].tailwindTimer, gSideTimers[1].tailwindTimer, temp)
@@ -11496,6 +11505,7 @@ static void Cmd_checkcondition(void)
             if (!(gSideStatuses[targetSide] & SIDE_STATUS_STEALTH_ROCK))
             {
                 gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
+                gSideTimers[targetSide].stealthRockType = TYPE_ROCK;
                 appliedEffect = TRUE;
             }
         break;
@@ -13045,6 +13055,7 @@ static void Cmd_trytoapplymoveeffect(void)
                 && !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK))
                 {
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_STEALTH_ROCK;
+                    gSideTimers[GetBattlerSide(gBattlerTarget)].stealthRockType = TYPE_GRASS;
                     appliedEffect = TRUE;
                 }
             }
@@ -14025,7 +14036,7 @@ static void Cmd_rapidspinfree(void)
     else if (gSideStatuses[atkSide] & SIDE_STATUS_STEALTH_ROCK)
     {
         gSideStatuses[atkSide] &= ~(SIDE_STATUS_STEALTH_ROCK);
-        gSideTimers[atkSide].stealthRockAmount = 0;
+        gSideTimers[atkSide].stealthRockType = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StealthRockFree;
     }
@@ -14753,7 +14764,8 @@ static void Cmd_setstealthrock(void)
     else
     {
         gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
-        gSideTimers[targetSide].stealthRockAmount = 1;
+        gSideTimers[targetSide].stealthRockType = gBattleMoves[gCurrentMove].type;
+        gBattleCommunication[MULTISTRING_CHOOSER] = gBattleMoves[gCurrentMove].type == TYPE_GRASS ? B_MSG_CREEPING_THORNS_SET : B_MSG_STEALTH_ROCK_SET;
         gBattlescriptCurrInstr += 5;
     }
 }

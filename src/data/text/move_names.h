@@ -898,7 +898,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_AXE_KICK] = _("Axe Kick"),
     [MOVE_BARB_BARRAGE] = _("Barb Barrage"),
     [MOVE_SMASHIN_REALITIES] = _("SmashReality"),
-    [MOVE_THORNY_GARDEN] = _("Thorn Garden"),
+    [MOVE_CREEPING_THORNS] = _("CreepngThrns"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1803,5 +1803,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_AXE_KICK] = _("Axe Kick"),
     [MOVE_BARB_BARRAGE] = _("Barb Barrage"),
     [MOVE_SMASHIN_REALITIES] = _("Smashin' Realities"),
-    [MOVE_THORNY_GARDEN] = _("Thorny Garden"),
+    [MOVE_CREEPING_THORNS] = _("Creeping Thorns"),
 };

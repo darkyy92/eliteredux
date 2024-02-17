@@ -539,7 +539,7 @@ static u32 CalculateHazardDamage(void)
     }
 
     if (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
-        stealthHazardDmg = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, gActiveBattler);
+        stealthHazardDmg = GetStealthHazardDamage(gSideTimers[GetBattlerSide(gActiveBattler)].stealthRockType, gActiveBattler);
 
     totalHazardDmg = spikesDmg + stealthHazardDmg;
     

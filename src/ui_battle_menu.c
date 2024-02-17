@@ -95,6 +95,7 @@ enum
     SIDE_INFO_SPIKES,
     SIDE_INFO_TOXIC_SPIKES,
     SIDE_INFO_STEALTH_ROCK,
+    SIDE_INFO_CREEPING_THORNS,
     SIDE_INFO_STICKY_WEB,
     SIDE_INFO_SAFEGUARD,
     SIDE_INFO_MIST,
@@ -541,7 +542,11 @@ void UI_Battle_Menu_Init(MainCallback callback)
                     isExtraInfoShown = TRUE;
             break;
             case SIDE_INFO_STEALTH_ROCK:
-                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_STEALTH_ROCK)
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_STEALTH_ROCK && gSideTimers[B_SIDE_PLAYER].stealthRockType == TYPE_ROCK)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_CREEPING_THORNS:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_STEALTH_ROCK && gSideTimers[B_SIDE_PLAYER].stealthRockType == TYPE_GRASS)
                     isExtraInfoShown = TRUE;
             break;
             case SIDE_INFO_STICKY_WEB:
@@ -605,7 +610,11 @@ void UI_Battle_Menu_Init(MainCallback callback)
                     isExtraInfoShown = TRUE;
             break;
             case SIDE_INFO_STEALTH_ROCK:
-                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_STEALTH_ROCK)
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_STEALTH_ROCK && gSideTimers[B_SIDE_OPPONENT].stealthRockType == TYPE_ROCK)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_CREEPING_THORNS:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_STEALTH_ROCK && gSideTimers[B_SIDE_OPPONENT].stealthRockType == TYPE_GRASS)
                     isExtraInfoShown = TRUE;
             break;
             case SIDE_INFO_STICKY_WEB:
@@ -3316,6 +3325,10 @@ const u8 sText_Title_Side_Stealth_Rock[]                   = _("Stealth Rock");
 const u8 sText_Title_Side_Stealth_Rock_Description[]       = _("Pokémon who switch in receive dmg,\n"
                                                                "the amount varies depending by the\n"
                                                                "effectiveness of Rock against it.");
+const u8 sText_Title_Side_Creeping_Thorns[]                = _("Creeping Thorns");
+const u8 sText_Title_Side_Creeping_Thorns_Description[]    = _("Pokémon who switch in receive dmg,\n"
+                                                               "the amount varies depending by the\n"
+                                                               "effectiveness of Grass against it.");
 const u8 sText_Title_Side_Sticky_Web[]                     = _("Sticky Web");
 const u8 sText_Title_Side_Sticky_Web_Description[]         = _("Pokémon who switch into the field\n"
                                                                "get their Speed stat lowered by\n"
@@ -3514,6 +3527,16 @@ static void PrintSideTab(u8 side){
 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Side_Stealth_Rock_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_CREEPING_THORNS:
+                StringCopy(gStringVar1, sText_Title_Side_Creeping_Thorns);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Creeping_Thorns_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
 
                 printedInfo = TRUE;
