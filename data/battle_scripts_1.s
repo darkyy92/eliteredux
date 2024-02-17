@@ -2858,7 +2858,7 @@ BattleScript_EffectStealthRock:
 	setstealthrock BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	printstring STRINGID_POINTEDSTONESFLOAT
+	printfromtable gStealthRocksSet
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
@@ -8001,7 +8001,7 @@ BattleScript_StickyWebFree::
 	return
 
 BattleScript_StealthRockFree::
-	printstring STRINGID_PKMNBLEWAWAYSTEALTHROCK
+	printfromtable gStealthRockFree
 	waitmessage B_WAIT_TIME_LONG
 	return
 

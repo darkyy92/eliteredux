@@ -10895,16 +10895,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .split = SPLIT_PHYSICAL,
     },
-    [MOVE_THORNY_GARDEN] =
+    [MOVE_CREEPING_THORNS] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_STEALTH_ROCK,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_GRASS,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 20,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_OPPONENTS_FIELD,
+        .flags = FLAG_MAGIC_COAT_AFFECTED,
+        .split = SPLIT_STATUS,
     },
     [MOVE_MATCHA_GOTCHA] =
     {

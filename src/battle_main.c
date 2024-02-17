@@ -4830,7 +4830,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         speed *= 2;
 
     // paralysis drop
-    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && ability != ABILITY_QUICK_FEET)
+    if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && !BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_QUICK_FEET, ability))
         speed /= (B_PARALYSIS_SPEED >= GEN_7 ? 2 : 4);
 
     if (calcType == TOTAL_SPEED_PRIMARY) return speed;

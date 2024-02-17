@@ -6005,6 +6005,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         if (CheckAndSetSwitchInAbility(battler, ABILITY_FURNACE)){
             if ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
+            && gSideTimers[GetBattlerSide(gActiveBattler)].stealthRockType == TYPE_ROCK
             && IsBattlerAlive(battler)
             && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -9450,6 +9451,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             if(BattlerHasInnate(battler, abilityToCheck))
                                 gBattleScripting.abilityPopupOverwrite = abilityToCheck;
                             gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
+                            gSideTimers[GetBattlerSide(gBattlerTarget)].stealthRockType= TYPE_ROCK;
                             gBattlescriptCurrInstr = BattleScript_Archmage_Effect_Type_Rock;
                             gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
                             effect++;
@@ -9756,6 +9758,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         if(effectActivated){
                             gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
+                            gSideTimers[GetBattlerSide(gBattlerTarget)].stealthRockType = TYPE_ROCK;
                             gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_TOXIC_SPIKES);
                             gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_SPIKES);
                             gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STICKY_WEB);
@@ -16071,6 +16074,7 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
 {
     u8 type1 = gBattleMons[battlerId].type1;
     u8 type2 = gBattleMons[battlerId].type2;
+    u8 type3 = gBattleMons[battlerId].type3;
     u32 maxHp = gBattleMons[battlerId].maxHP;
     s32 dmg = 0;
     u16 modifier = UQ_4_12(1.0);
@@ -16078,6 +16082,8 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
     MulModifier(&modifier, GetTypeModifier(hazardType, type1));
     if (type2 != type1)
         MulModifier(&modifier, GetTypeModifier(hazardType, type2));
+    if (type3 != TYPE_MYSTERY && type3 != type1 && type3 != type2)
+        MulModifier(&modifier, GetTypeModifier(hazardType, type3));
 
     switch (modifier)
     {

@@ -233,7 +233,7 @@ struct SideTimer
     u8 followmePowder:1; // Rage powder, does not affect grass type pokemon.
     u8 spikesAmount;
     u8 toxicSpikesAmount;
-    u8 stealthRockAmount;
+    u8 stealthRockType;
     u8 stickyWebAmount;
     u8 auroraVeilTimer;
     u8 auroraVeilBattlerId;
