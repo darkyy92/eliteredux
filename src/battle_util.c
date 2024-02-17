@@ -8139,6 +8139,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_ILL_WILL))
+        {
+            u8 moveIndex = gBattleStruct->chosenMovePositions[gBattlerAttacker];
+            if (ShouldApplyOnHitAffect(gBattlerAttacker)
+                && !IsBattlerAlive(battler)
+                && gBattleMons[gBattlerAttacker].pp[moveIndex]
+                && gCurrentMove != MOVE_STRUGGLE)
+            {
+                gBattleMons[gBattlerAttacker].pp[moveIndex] = 0;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ILL_WILL;
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].moves[moveIndex])
+                BtlController_EmitSetMonData(0, moveIndex + REQUEST_PPMOVE1_BATTLE, 0, 1, &gBattleMons[gActiveBattler].pp[moveIndex]);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_IllWillTakesPp;
+                effect++;
+            }
+        }
 		
 		// Innards Out
 		if(BattlerHasInnate(battler, ABILITY_INNARDS_OUT)){

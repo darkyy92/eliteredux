@@ -8285,6 +8285,13 @@ BattleScript_GrudgeTakesPp::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_IllWillTakesPp::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ILL_WILL_LOST_PP
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+
 BattleScript_MagicCoatBounce::
 	attackstring
 	ppreduce

@@ -589,7 +589,7 @@
 #define ABILITY_ARMOR_TAIL 567 // Protects itself and ally from priority moves.
 #define ABILITY_MIND_CRUSH 568 // Biting moves use SpAtk and deal 50% more damage.
 #define ABILITY_SUPREME_OVERLORD 569 // Each fainted ally increases Attack and SpAtk by 10%.
-#define ABILITY_ILL_WILL 570 // Placeholder
+#define ABILITY_ILL_WILL 570 // Deletes the PP of the move that faints this Pokemon.
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
 #define ABILITY_WATCH_YOUR_STEP 572 // Spreads two layers of Spikes on switch-in.
 #define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
