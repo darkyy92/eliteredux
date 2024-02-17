@@ -1881,6 +1881,10 @@
 	.macro removeterrain
 	various BS_ATTACKER, VARIOUS_REMOVE_TERRAIN
 	.endm
+	
+	.macro removeweather
+	various BS_ATTACKER, VARIOUS_REMOVE_WEATHER
+	.endm
 
 	.macro consumeberry battler:req, restoreItem=FALSE
 	various \battler, VARIOUS_CONSUME_BERRY

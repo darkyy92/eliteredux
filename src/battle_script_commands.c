@@ -10218,6 +10218,21 @@ static void Cmd_various(void)
         gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;    // remove the terrain
         TryToRevertMimicry(); // restore the types of Pokémon with Mimicry
         break;
+    case VARIOUS_REMOVE_WEATHER:
+        if (gBattleWeather & WEATHER_SUN_PRIMAL) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HARSH_SUNLIGHT_CANT_END;
+        else if (gBattleWeather & WEATHER_RAIN_PRIMAL) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HEAVY_RAIN_WONT_END;
+        else if (gBattleWeather & WEATHER_STRONG_WINDS) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WIND_WONT_END;
+        else
+        {
+            gWishFutureKnock.weatherDuration = 0;
+            if (gBattleWeather & WEATHER_SUN_ANY) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SUN_ENDS;
+            else if (gBattleWeather & WEATHER_RAIN_ANY) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_RAIN_ENDS;
+            else if (gBattleWeather & WEATHER_SANDSTORM_ANY) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SAND_ENDS;
+            else if (gBattleWeather & WEATHER_HAIL_ANY) gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HAIL_ENDS;
+            else gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REMOVE_WEATHER_FAILED;
+            gBattleWeather = 0;
+        }
+        break;
     case VARIOUS_JUMP_IF_PRANKSTER_BLOCKED:
         if (BlocksPrankster(gCurrentMove, gBattlerAttacker, gActiveBattler, TRUE))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
