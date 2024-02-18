@@ -2608,6 +2608,10 @@ static void Cmd_healthbarupdate(void)
                 gBattleResults.playerMonWasDamaged = TRUE;
         }
     }
+    else
+    {
+        FlagClear(FLAG_SYS_DISABLE_DAMAGE_DONE);
+    }
 
     gBattlescriptCurrInstr += 2;
 }

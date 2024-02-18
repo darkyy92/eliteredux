@@ -144,10 +144,8 @@ General_Adoption_Center_Script_2:
 
 OldaleTown_Mart_EventScript_Clerk_Text_0:
 # 50 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Sorry but I can't sell you any Pokémon\n"
-	.string "yet, you need your Pokedex.$"
+	.string "Sorry but I can't sell you any Pokémon yet, you need your Pokedex.$"
 
 General_Adoption_Center_Script_Text_0:
 # 76 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Sorry but I can't sell you any Pokémon\n"
-	.string "yet, you need a Pokedex.$"
+	.string "Sorry but I can't sell you any Pokémon yet, you need a Pokedex.$"
