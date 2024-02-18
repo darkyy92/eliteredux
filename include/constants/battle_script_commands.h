@@ -67,6 +67,7 @@
 #define BS_ABILITY_BATTLER          15
 #define BS_ABILITY_PARTNER          16
 #define BS_TARGET_PARTNER           17
+#define BS_ATTACKER_PARTNER         18
 
 // Cmd_accuracycheck
 #define NO_ACC_CALC_CHECK_LOCK_ON 0xFFFF

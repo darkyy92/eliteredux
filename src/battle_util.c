@@ -1425,6 +1425,9 @@ u8 GetBattlerForBattleScript(u8 caseId)
     case BS_TARGET_PARTNER:
         ret = BATTLE_PARTNER(gBattlerTarget);
         break;
+    case BS_ATTACKER_PARTNER:
+        ret = BATTLE_PARTNER(gBattlerAttacker);
+        break;
     }
     return ret;
 }

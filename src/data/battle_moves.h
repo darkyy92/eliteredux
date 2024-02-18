@@ -10886,7 +10886,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SMASHIN_REALITIES] =
     {
-        .effect = EFFECT_CLEAR_WEATHER_HIT,
+        .effect = EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT,
         .power = 90,
         .type = TYPE_DARK,
         .accuracy = 100,
@@ -10895,7 +10895,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .priority = -3,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        .split = SPLIT_PHYSICAL
+        .flags2 = FLAG_HAMMER_BASED,
+        .split = SPLIT_PHYSICAL,
     },
     [MOVE_CREEPING_THORNS] =
     {

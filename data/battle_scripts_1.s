@@ -460,7 +460,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectParalyzeIgnoreType	  @ EFFECT_PARALYZE_IGNORE_TYPE
 	.4byte BattleScript_EffectSuperFangHaze			  @ EFFECT_SUPER_FANG_HAZE
 	.4byte BattleScript_EffectSpicyExtract			  @ EFFECT_SPICY_EXTRACT
-	.4byte BattleScript_EffectClearWeatherHit	      @ EFFECT_CLEAR_WEATHER_HIT
+	.4byte BattleScript_EffectClearWeatherAndTerrainHit	@ EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -1181,7 +1181,7 @@ BattleScript_EffectRemoveTerrain:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectClearWeatherHit::
+BattleScript_EffectClearWeatherAndTerrainHit::
 	attackcanceler
 	attackstring
 	ppreduce
@@ -1200,9 +1200,14 @@ BattleScript_EffectClearWeatherHit::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	removeweather
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_REMOVE_WEATHER_FAILED, BattleScript_MoveEndTryFaintTarget
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_REMOVE_WEATHER_FAILED, BattleScript_EffectClearWeatherAndTerrainHit_TryTerrain
 	printfromtable gWeatherCleared
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectClearWeatherAndTerrainHit_TryTerrain:
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PSYCHICTERRAINENDS + 1, BattleScript_MoveEndTryFaintTarget
+	printfromtable gTerrainEndingStringIds
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
@@ -3003,7 +3008,7 @@ BattleScript_EffectTailwind:
 	waitanimation
 	printstring STRINGID_TAILWINDBLEW
 	waitmessage B_WAIT_TIME_LONG
-	call BattleScript_CheckWindRider
+	call BattleScript_OnTailwindStart
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMircleEye:
@@ -9272,47 +9277,30 @@ BattleScript_AirBlowerActivated::
 	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_AIRBLOWERACTIVATED
 	waitmessage B_WAIT_TIME_LONG
-	call BattleScript_CheckWindRider
+	call BattleScript_OnTailwindStart
 	end3
 
-BattleScript_CheckWindRider::
-	copybyte gBattlerAbility, gBattlerAttacker
-	sethword sABILITY_OVERWRITE, ABILITY_WIND_RIDER
-	jumpifability BS_ABILITY_BATTLER, ABILITY_WIND_RIDER, BattleScript_CheckWindRiderActivated
-BattleScript_CheckWindRiderPartner:
-	jumpifability BS_ABILITY_PARTNER, ABILITY_WIND_RIDER, BattleScript_CheckWindRiderPartnerActivated
-BattleScript_CheckWindRiderEnd:
-	sethword sABILITY_OVERWRITE, 0
+BattleScript_OnTailwindStart::
+	callifability BS_ATTACKER, ABILITY_WIND_RIDER, BattleScript_DoWindRider
+	callifability BS_ATTACKER, ABILITY_WIND_POWER, BattleScript_DoWindPower
+	callifability BS_ATTACKER_PARTNER, ABILITY_WIND_RIDER, BattleScript_DoWindRider
+	callifability BS_ATTACKER_PARTNER, ABILITY_WIND_POWER, BattleScript_DoWindPower
 	return
-BattleScript_CheckWindRiderActivated:
-	raisehighestattackingstat BS_ABILITY_BATTLER, 1, BattleScript_CheckWindRiderPartner
+BattleScript_DoWindRider:
+	raisehighestattackingstat BS_ABILITY_BATTLER, 1, BattleScript_Return
 	showabilitypopup BS_ABILITY_BATTLER
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_BATTLERABILITYRAISEDSTAT
-	goto BattleScript_CheckWindRiderPartner
-BattleScript_CheckWindRiderPartnerActivated:
-	raisehighestattackingstat BS_ABILITY_PARTNER, 1, BattleScript_CheckWindRiderEnd
-	showabilitypopup BS_ABILITY_PARTNER
-	setgraphicalstatchangevalues
-	playanimation BS_ABILITY_PARTNER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printstring STRINGID_BATTLERABILITYRAISEDSTAT
-	goto BattleScript_CheckWindRiderEnd
-
-BattleScript_CheckWindPower::
-	copybyte gBattlerAbility, gBattlerAttacker
-	sethword sABILITY_OVERWRITE, ABILITY_WIND_POWER
-	jumpifability BS_ABILITY_BATTLER, ABILITY_WIND_RIDER, BattleScript_CheckWindPower_HasAbility
+BattleScript_Return:
 	return
-BattleScript_CheckWindPower_HasAbility::
-	jumpifstatus3 BS_ABILITY_BATTLER, STATUS3_CHARGED_UP, BattleScript_CheckWindPower_AlreadyCharged
+	
+BattleScript_DoWindPower::
+	jumpifstatus3 BS_ABILITY_BATTLER, STATUS3_CHARGED_UP, BattleScript_Return
 	call BattleScript_AbilityPopUp
 	waitmessage B_WAIT_TIME_SHORT
-	swapbattlers gBattlerAttacker, gBattlerTarget
-	printstring STRINGID_ELECTROMORPHOSIS_ACTIVATES
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	printstring STRINGID_CHARGEABILITYBATTLER
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_CheckWindPower_AlreadyCharged::
 	return
 
 BattleScript_PastelVeilActivated::

@@ -140,11 +140,19 @@
 	.4byte \ptr
 	.endm
 
-	.macro jumpifability param0:req, ability:req, ptr:req
+	.macro jumpifability battler:req, ability:req, ptr:req
 	.byte 0x1e
-	.byte \param0
+	.byte \battler
 	.2byte \ability
 	.4byte \ptr
+	.endm
+
+	.macro callifability battler:req, ability:req, ptr:req
+	jumpifability \battler, \ability, callifability_\@_1
+	goto callifability_\@_2
+	callifability_\@_1:
+	call \ptr
+	callifability_\@_2:
 	.endm
 
 	.macro jumpifsideaffecting battler:req, sidestatus:req, ptr:req
