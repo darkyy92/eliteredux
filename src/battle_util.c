@@ -6533,10 +6533,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Harvest
             if(BATTLER_HAS_ABILITY(battler, ABILITY_HARVEST)){
                 bool8 activateAbilty = FALSE;
-                bool8 alwaysActivate = TRUE; //For Testing
                 u16 abilityToCheck = ABILITY_HARVEST; //For easier copypaste
 
-                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0 || alwaysActivate)
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
                  && gBattleMons[battler].item == ITEM_NONE
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
