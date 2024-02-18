@@ -6741,6 +6741,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
+        else if (BATTLER_HAS_ABILITY(battler, ABILITY_WEATHER_CONTROL)
+            && !(gBattleMoves[move].target & MOVE_TARGET_USER)
+			&& gBattleMoves[move].flags & FLAG_WEATHER_BASED)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEATHER_CONTROL;
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
+            effect = 1;
+        }
+        else if (BATTLER_HAS_ABILITY(battler, ABILITY_DELTA_STREAM)
+            && !(gBattleMoves[move].target & MOVE_TARGET_USER)
+			&& gBattleMoves[move].flags & FLAG_WEATHER_BASED)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DELTA_STREAM;
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
+            effect = 1;
+        }
         else if ((GetBattlerAbility(battler) == ABILITY_BULLETPROOF || BattlerHasInnate(battler, ABILITY_BULLETPROOF))
 			&& gBattleMoves[move].flags & FLAG_BALLISTIC)
         {
@@ -15925,10 +15945,6 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
             (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_GIFTED_MIND, abilityDef))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
-            modifier = UQ_4_12(0.0);
-		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WEATHER_CONTROL, abilityDef))) 
-            modifier = UQ_4_12(0.0);
-		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_DELTA_STREAM, abilityDef))) 
             modifier = UQ_4_12(0.0);
     }
 
