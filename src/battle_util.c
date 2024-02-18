@@ -4641,7 +4641,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
     }
 }
 
-u8 GetSingleUseAbilityCounter(u8 battler, u16 ability) {
+s8 GetSingleUseAbilityCounter(u8 battler, u16 ability) {
     
     switch (BattlerHasInnateOrAbility(battler, ability))
     {
@@ -5438,7 +5438,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Gallantry
         if(CheckAndSetSwitchInAbility(battler, ABILITY_GALLANTRY))
         {
-            u8 uses = 1 - GetSingleUseAbilityCounter(battler, ABILITY_GALLANTRY);
+            s8 uses = 1 - GetSingleUseAbilityCounter(battler, ABILITY_GALLANTRY);
             if(uses > 0) {
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
                 effect++;

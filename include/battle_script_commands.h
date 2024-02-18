@@ -45,7 +45,7 @@ void HandleBattleWindow(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags);
 bool8 UproarWakeUpCheck(u8 battlerId);
 bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
-u8 RemainingNoDamageHits(u8 battler);
+s8 RemainingNoDamageHits(u8 battler);
 u16 GetNoDamageAbility(u8 battler);
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget);

@@ -2348,7 +2348,7 @@ static void Cmd_adjustdamage(void)
         goto END;
     if (DoesDisguiseBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
         goto END;
-    if (RemainingNoDamageHits(gBattlerTarget))
+    if (RemainingNoDamageHits(gBattlerTarget) > 0)
         goto END;
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         goto END;
@@ -2568,10 +2568,7 @@ static void Cmd_healthbarupdate(void)
         else if (RemainingNoDamageHits(gActiveBattler) > 0)
         {
             u16 ability = GetNoDamageAbility(gActiveBattler);
-            u8 noDamageHits;
-            IncrementSingleUseAbilityCounter(gActiveBattler, ability, 1);
-
-            noDamageHits = RemainingNoDamageHits(gActiveBattler);
+            s8 noDamageHits = RemainingNoDamageHits(gActiveBattler) - 1;
 
             if(noDamageHits == 0)
                 PrepareStringBattle(STRINGID_BATTLERCANNOLONGERENDUREHITS, gActiveBattler);
@@ -15294,9 +15291,9 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
         return TRUE;
 }
 
-u8 RemainingNoDamageHits(u8 battler)
+s8 RemainingNoDamageHits(u8 battler)
 {
-    u8 counts = 0;
+    s8 counts = 0;
 
     if (BATTLER_HAS_ABILITY(battler, ABILITY_CHEATING_DEATH))
         counts += 2 - GetSingleUseAbilityCounter(battler, ABILITY_CHEATING_DEATH);
