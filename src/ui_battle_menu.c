@@ -2691,8 +2691,8 @@ static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
     GET_MOVE_TYPE(move, moveType);
 
     //Max and Min Damage
-    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamage = minDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
-    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = maxDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamage = minDamage = DoMoveDamageCalcBattleMenu(move, battler, target, &moveType, FALSE, MIN_DAMAGE_FACTOR);
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = maxDamage = DoMoveDamageCalcBattleMenu(move, battler, target, &moveType, FALSE, MAX_DAMAGE_FACTOR);
 
     if(!IsBattlerAlive(battler) || 
        !IsBattlerAlive(target)  || 
@@ -2721,7 +2721,7 @@ static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
     sMenuDataPtr->damageCalculation[battler][target][moveIndex].hits2KO = (targetCurrentHp / sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage);
 
     for(i = 0; i < MIN_DAMAGE_FACTOR; i++){
-        tempdamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR - i);
+        tempdamage = DoMoveDamageCalcBattleMenu(move, battler, target, &moveType, FALSE, MIN_DAMAGE_FACTOR - i);
         tempchance = (targetCurrentHp / tempdamage);
 
         if(tempchance == hits2KO){
@@ -3762,7 +3762,7 @@ static void PrintSpeedTab(void)
                         u8 moveType = gBattleMoves[move].type;
                         SetTypeBeforeUsingMove(move, battlertoCheck);
                         GET_MOVE_TYPE(move, moveType);
-                        moveDamage = CalculateMoveDamage(move, battlertoCheck, target, moveType, 0, FALSE, FALSE, FALSE);
+                        moveDamage = CalculateMoveDamage(move, battlertoCheck, target, &moveType, 0, FALSE, FALSE, FALSE);
                         if(targetCurrentHp <= moveDamage)
                             BlitBitmapToWindow(windowId, sCheck, (x * 8) + x2, (y * 8), 8, 8);
                     }

@@ -2322,7 +2322,8 @@ static void Cmd_damagecalc(void)
     }
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
+    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, &moveType, movePower, gIsCriticalHit, TRUE, TRUE);
+    gBattleStruct->dynamicMoveType = moveType | 0x80;
 
     gBattlescriptCurrInstr++;
 }
@@ -6437,6 +6438,17 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerAttacker].multiHitOn = 0;
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_CHARGE:
+            {
+                u8 currentMoveType;
+                GET_MOVE_TYPE(gCurrentMove, currentMoveType)
+                if (currentMoveType == TYPE_ELECTRIC)
+                {
+                    gStatuses3[gBattlerAttacker] &= ~STATUS3_CHARGED_UP;
+                }
+                gBattleScripting.moveendState++;
+                break;
+            }
         case MOVEEND_ATTACKER_FOLLOWUP_MOVE:
             if (AbilityBattleEffects(ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE, gBattlerAttacker, 0, 0, gChosenMove))
             {
@@ -14308,8 +14320,6 @@ static void Cmd_setforcedtarget(void) // follow me
 static void Cmd_setcharge(void)
 {
     gStatuses3[gBattlerAttacker] |= STATUS3_CHARGED_UP;
-    gDisableStructs[gBattlerAttacker].chargeTimer = 2;
-    gDisableStructs[gBattlerAttacker].chargeTimerStartValue = 2;
     gBattlescriptCurrInstr++;
 }
 

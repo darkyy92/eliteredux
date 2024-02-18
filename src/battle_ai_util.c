@@ -809,8 +809,8 @@ static bool32 AI_GetIfCrit(u32 move, u8 battlerAtk, u8 battlerDef)
 
 s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness)
 {
-    s32 dmg, moveType, critDmg, normalDmg;
-    s8 critChance;
+    s32 dmg, critDmg, normalDmg;
+    s8 critChance, moveType;
     u16 effectivenessMultiplier;
 
     SaveBattlerData(battlerAtk);
@@ -826,8 +826,10 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness)
     if (gBattleMoves[move].power)
     {
         critChance = GetInverseCritChance(battlerAtk, battlerDef, move);
-        normalDmg = CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
-        critDmg = CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, TRUE, FALSE, FALSE);
+        normalDmg = CalculateMoveDamage(move, battlerAtk, battlerDef, &moveType, 0, FALSE, FALSE, FALSE);
+        critDmg = CalculateMoveDamage(move, battlerAtk, battlerDef, &moveType, 0, TRUE, FALSE, FALSE);
+
+        gBattleStruct->dynamicMoveType = moveType | 0x80;
 
         if(critChance == -1)
             dmg = normalDmg;
