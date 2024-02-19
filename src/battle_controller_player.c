@@ -1866,7 +1866,7 @@ enum{
 };
 
 bool8 DoesTargetHaveAbilityOrInnate(u8 targetId, u8 userId, u16 ability, u16 moveNum) {
-    return (gBattleMons[targetId].ability == ability || BattlerHasInnate(targetId, ability)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum);
+    return (gBattleMons[targetId].ability == ability || BattlerHasInnate(targetId, ability)) && !DoesBattlerIgnoreAbilityChecks(userId, targetId, moveNum);
 }
 
 u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)

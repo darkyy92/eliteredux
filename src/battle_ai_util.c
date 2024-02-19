@@ -1288,13 +1288,16 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return TRUE;
 }
 
-bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
+bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u8 battlerDef, u16 move)
 {
     u32 i;
     u16 atkAbility = gBattleMons[battler].ability;
     
     //if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
     //    return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
+
+    if (GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
+        return FALSE;
     
     for (i = 0; i < ARRAY_COUNT(sIgnoreMoldBreakerMoves); i++)
     {

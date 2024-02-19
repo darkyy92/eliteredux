@@ -34,7 +34,7 @@ bool32 CanTargetFaintAiWithMod(u8 battlerDef, u8 battlerAtk, s32 hpMod, s32 dmgM
 s32 AI_GetAbility(u32 battlerId);
 u16 AI_GetHoldEffect(u32 battlerId);
 u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 move);
-bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move);
+bool32 DoesBattlerIgnoreAbilityChecks(u8 battlerAtk, u8 battlerDef, u16 move);
 bool32 AI_WeatherHasEffect(void);
 bool32 CanAIFaintTarget(u8 battlerAtk, u8 battlerDef, u8 numHits);
 bool32 CanIndexMoveFaintTarget(u8 battlerAtk, u8 battlerDef, u8 index, u8 numHits);

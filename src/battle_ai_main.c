@@ -620,7 +620,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (moveType == TYPE_GROUND && 
            BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_LEVITATE) && 
            //Ability Check
-           !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
+           !DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) &&
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
            !IsGravityActive() &&
@@ -634,7 +634,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (moveType == TYPE_GROUND && 
            BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_DRAGONFLY) && 
            //Ability Check
-           !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
+           !DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) &&
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
            !IsGravityActive() &&
@@ -790,7 +790,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         
         // target ability checks
-        if (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move))
+        if (!DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move))
         {
             switch (AI_DATA->abilities[battlerDef])
             {
@@ -1255,7 +1255,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             {
                 score -= 10;
             }
-            else if (IsAbilityOnField(ABILITY_DAMP) && !DoesBattlerIgnoreAbilityChecks(battlerAtk, move))
+            else if (IsAbilityOnField(ABILITY_DAMP) && !DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move))
             {
                 score -= 10;
             }
@@ -2164,13 +2164,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_TEETER_DANCE:
             if (((gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
-              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->abilities[battlerDef] == ABILITY_OWN_TEMPO)
-              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->abilities[battlerDef] == ABILITY_DISCIPLINE)
+              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) && AI_DATA->abilities[battlerDef] == ABILITY_OWN_TEMPO)
+              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) && AI_DATA->abilities[battlerDef] == ABILITY_DISCIPLINE)
               || (IsBattlerGrounded(battlerDef) && ( GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN))
               || (DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
              && ((gBattleMons[BATTLE_PARTNER(battlerDef)].status2 & STATUS2_CONFUSION)
-              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_OWN_TEMPO)
-              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_DISCIPLINE)
+              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) && AI_DATA->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_OWN_TEMPO)
+              || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move) && AI_DATA->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_DISCIPLINE)
               || (IsBattlerGrounded(BATTLE_PARTNER(battlerDef)) && ( GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN))
               || (DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), move))))
             {
@@ -3099,7 +3099,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (GetMoveDamageResult(move) == MOVE_POWER_WEAK)
         {
             // partner ability checks
-            if (!partnerProtecting && gBattleMoves[move].target != MOVE_TARGET_BOTH && !DoesBattlerIgnoreAbilityChecks(battlerAtk, move))
+            if (!partnerProtecting && gBattleMoves[move].target != MOVE_TARGET_BOTH && !DoesBattlerIgnoreAbilityChecks(battlerAtk, battlerDef, move))
             {
                 switch (atkPartnerAbility)
                 {
@@ -5603,12 +5603,15 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
     bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
 
-    if(BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability) && B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE)
-        return FALSE;
-    else if(BattlerAbilityWasRemoved(battlerId, ability) && B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE)
-        return FALSE;
-    else
-        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
+    if (GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
+    {
+        if(B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE && BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
+            return FALSE;
+        if(B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE && BattlerAbilityWasRemoved(battlerId, ability))
+            return FALSE;
+    }
+    
+    return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
 }
 
 bool8 GetBattlerInnateNum(u8 battlerId, u16 ability){

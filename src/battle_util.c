@@ -10769,11 +10769,14 @@ bool32 IsNeutralizingGasOnField(void)
 
 u32 GetBattlerAbility(u8 battlerId)
 {
-    if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
-        return ABILITY_NONE;
-    
-    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
-        return ABILITY_NONE;
+    if (GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
+    {
+        if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
+            return ABILITY_NONE;
+        
+        if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
+            return ABILITY_NONE;
+    }
     
     return gBattleMons[battlerId].ability;
 }
