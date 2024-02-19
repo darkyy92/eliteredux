@@ -3131,6 +3131,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
         && !primary && gBattleScripting.moveEffect <= 9)
         INCREMENT_RESET_RETURN
 
+    if (GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+        && !primary && gBattleScripting.moveEffect <= 9)
+        INCREMENT_RESET_RETURN
+
     if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= 7)
         INCREMENT_RESET_RETURN
