@@ -11720,4 +11720,21 @@ extern const u32 gBattleAnimBgImage_Rainbow[];
 extern const u32 gBattleAnimBGPalette_Rainbow[];
 extern const u32 gBattleAnimBgTilemap_Rainbow[];
 
+// GEN IX ITEMS
+extern const u32 gItemIcon_AbilityShield[];
+extern const u32 gItemIconPalette_AbilityShield[];
+extern const u32 gItemIcon_ClearAmulet[];
+extern const u32 gItemIconPalette_ClearAmulet[];
+extern const u32 gItemIcon_BoosterEnergy[];
+extern const u32 gItemIconPalette_BoosterEnergy[];
+extern const u32 gItemIcon_CovertCloak[];
+extern const u32 gItemIconPalette_CovertCloak[];
+extern const u32 gItemIcon_LoadedDice[];
+extern const u32 gItemIconPalette_LoadedDice[];
+extern const u32 gItemIcon_PunchingGlove[];
+extern const u32 gItemIconPalette_PunchingGlove[];
+extern const u32 gItemIcon_MirrorHerb[];
+extern const u32 gItemIconPalette_MirrorHerb[];
+
+
 #endif //GUARD_GRAPHICS_H

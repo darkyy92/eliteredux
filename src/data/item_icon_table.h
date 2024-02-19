@@ -766,6 +766,15 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_WOODEN_CROWN] = {gItemIcon_WoodenCrown, gItemIconPalette_WoodenCrown},
     [ITEM_EJECT_PACK] = {gItemIcon_EjectPack, gItemIconPalette_EjectPack},
 
+    // Gen 9 Items
+    [ITEM_ABILITY_SHIELD] = {gItemIcon_AbilityShield, gItemIconPalette_AbilityShield},
+    [ITEM_CLEAR_AMULET] = {gItemIcon_ClearAmulet, gItemIconPalette_ClearAmulet},
+    [ITEM_PUNCHING_GLOVE] = {gItemIcon_PunchingGlove, gItemIconPalette_PunchingGlove},
+    [ITEM_COVERT_CLOAK] = {gItemIcon_CovertCloak, gItemIconPalette_CovertCloak},
+    [ITEM_LOADED_DICE] = {gItemIcon_LoadedDice, gItemIconPalette_LoadedDice},
+    [ITEM_MIRROR_HERB] = {gItemIcon_MirrorHerb, gItemIconPalette_MirrorHerb},
+    [ITEM_BOOSTER_ENERGY] = {gItemIcon_BoosterEnergy, gItemIconPalette_BoosterEnergy},
+    
     // Form Change Items
     [ITEM_REVEAL_GLASS]  = {gItemIcon_RevealGlass, gItemIconPalette_RevealGlass},
     [ITEM_DNA_SPLICERS]  = {gItemIcon_DNASplicers, gItemIconPalette_DNASplicers},

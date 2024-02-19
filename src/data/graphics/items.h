@@ -1889,6 +1889,28 @@ const u32 gItemIconPalette_NSolarizer[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_NLunarizer[] = INCBIN_U32("graphics/items/icons/n_lunarizer.4bpp.lz");
 const u32 gItemIconPalette_NLunarizer[] = INCBIN_U32("graphics/items/icon_palettes/n_lunarizer.gbapal.lz");
 
+// Gen 9 Items
+const u32 gItemIcon_AbilityShield[] = INCBIN_U32("graphics/items/icons/ability_shield.4bpp.lz");
+const u32 gItemIconPalette_AbilityShield[] = INCBIN_U32("graphics/items/icon_palettes/ability_shield.gbapal.lz");
+
+const u32 gItemIcon_ClearAmulet[] = INCBIN_U32("graphics/items/icons/clear_amulet.4bpp.lz");
+const u32 gItemIconPalette_ClearAmulet[] = INCBIN_U32("graphics/items/icon_palettes/clear_amulet.gbapal.lz");
+
+const u32 gItemIcon_PunchingGlove[] = INCBIN_U32("graphics/items/icons/punching_glove.4bpp.lz");
+const u32 gItemIconPalette_PunchingGlove[] = INCBIN_U32("graphics/items/icon_palettes/punching_glove.gbapal.lz");
+
+const u32 gItemIcon_CovertCloak[] = INCBIN_U32("graphics/items/icons/covert_cloak.4bpp.lz");
+const u32 gItemIconPalette_CovertCloak[] = INCBIN_U32("graphics/items/icon_palettes/covert_cloak.gbapal.lz");
+
+const u32 gItemIcon_LoadedDice[] = INCBIN_U32("graphics/items/icons/loaded_dice.4bpp.lz");
+const u32 gItemIconPalette_LoadedDice[] = INCBIN_U32("graphics/items/icon_palettes/loaded_dice.gbapal.lz");
+
+const u32 gItemIcon_MirrorHerb[] = INCBIN_U32("graphics/items/icons/mirror_herb.4bpp.lz");
+const u32 gItemIconPalette_MirrorHerb[] = INCBIN_U32("graphics/items/icon_palettes/mirror_herb.gbapal.lz");
+
+const u32 gItemIcon_BoosterEnergy[] = INCBIN_U32("graphics/items/icons/booster_energy.4bpp.lz");
+const u32 gItemIconPalette_BoosterEnergy[] = INCBIN_U32("graphics/items/icon_palettes/booster_energy.gbapal.lz");
+
 // Custom Items
 const u32 gItemIcon_TrainingBand[] = INCBIN_U32("graphics/items/icons/focus_sash.4bpp.lz");
 const u32 gItemIconPalette_TrainingBand[] = INCBIN_U32("graphics/items/icon_palettes/training_band.gbapal.lz");

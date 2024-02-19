@@ -9320,4 +9320,81 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_NSolarizer,
     },
+
+    [ITEM_ABILITY_SHIELD] =
+    {
+        .name = _("AbilityShield"),
+        .price = 20000,
+        .holdEffect = HOLD_EFFECT_ABILITY_SHIELD,
+        .description = sAbilityShieldDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_CLEAR_AMULET] =
+    {
+        .name = _("Clear Amulet"),
+        .price = 30000,
+        .holdEffect = HOLD_EFFECT_CLEAR_AMULET,
+        .description = sClearAmuletDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_PUNCHING_GLOVE] =
+    {
+        .name = _("PunchingGlove"),
+        .price = 15000,
+        .holdEffect = HOLD_EFFECT_PUNCHING_GLOVE,
+        .description = sPunchingGloveDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_COVERT_CLOAK] =
+    {
+        .name = _("Covert Cloak"),
+        .price = 20000,
+        .holdEffect = HOLD_EFFECT_COVERT_CLOAK,
+        .description = sCovertCloakDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LOADED_DICE] =
+    {
+        .name = _("Loaded Dice"),
+        .price = 20000,
+        .holdEffect = HOLD_EFFECT_LOADED_DICE,
+        .description = sLoadedDiceDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_BOOSTER_ENERGY] =
+    {
+        .name = _("BoosterEnergy"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_BOOSTER_ENERGY,
+        .description = sBoosterEnergyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_MIRROR_HERB] =
+    {
+        .name = _("Mirror Herb"),
+        .price = 30000,
+        .holdEffect = HOLD_EFFECT_MIRROR_HERB,
+        .description = sMirrorHerbDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 };
