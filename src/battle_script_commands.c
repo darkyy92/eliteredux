@@ -3128,15 +3128,15 @@ void SetMoveEffect(bool32 primary, u32 certain)
     gBattleScripting.moveEffect &= ~(MOVE_EFFECT_CERTAIN);
 
     if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || BattlerHasInnate(gEffectBattler, ABILITY_SHIELD_DUST)) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-        && !primary && gBattleScripting.moveEffect <= 9)
+        && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_FLINCH)
         INCREMENT_RESET_RETURN
 
     if (GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-        && !primary && gBattleScripting.moveEffect <= 9)
+        && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_FLINCH)
         INCREMENT_RESET_RETURN
 
     if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-        && !primary && gBattleScripting.moveEffect <= 7)
+        && !primary && gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
         INCREMENT_RESET_RETURN
 
     if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove))//&& affectsUser != MOVE_EFFECT_AFFECTS_USER
@@ -11851,7 +11851,7 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
         {
             return 0;
         }
-        else if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET && flags == 0)
+        else if (!certain && GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET && flags == 0)
         {
             return 0;
         }
