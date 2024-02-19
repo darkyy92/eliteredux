@@ -167,7 +167,8 @@ bool8 HasNoMonsToSwitch(u8 battlerId, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility);
 u8 AbilityBattleEffects(u8 caseID, u8 battlerId, u16 ability, u8 special, u16 moveArg);
 u32 GetBattlerAbility(u8 battlerId);
-u32 GetBattlerAbilityInternal(u8 battlerId, u8 checkItem);
+bool8 BattlerAbilityIsSuppressed(u8 battlerId);
+u32 GetBattlerAbilityWithoutRemoval(u8 battlerId);
 bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability);
 bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability);
 u32 IsAbilityOnSide(u32 battlerId, u32 ability);
@@ -269,13 +270,13 @@ bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[]);
 void UpdateAbilityStateIndicesForNewAbility(u8 battler, u16 newAbility);
 void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
-bool32 IsNeutralizingGasBannedAbility(u32 ability);
+bool32 IsUnsuppressableAbility(u32 ability);
 bool8 CanBeDisabled(u8 battlerId);
+bool8 DoesBattlerHaveAbilityShield(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
 bool32 IsRolePlayBannedAbility(u16 ability);
-bool32 IsSkillSwapBannedAbility(u16 ability);
 bool32 IsWorrySeedBannedAbility(u16 ability);
 bool32 IsGastroAcidBannedAbility(u16 ability);
 bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
@@ -294,14 +295,6 @@ bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag);
 // Move checks
 bool8 IsTwoStrikesMove(u16 move);
 
-// ability checks
-bool32 IsRolePlayBannedAbilityAtk(u16 ability);
-bool32 IsRolePlayBannedAbility(u16 ability);
-bool32 IsSkillSwapBannedAbility(u16 ability);
-bool32 IsWorrySeedBannedAbility(u16 ability);
-bool32 IsGastroAcidBannedAbility(u16 ability);
-bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
-bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability);
 u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 typeEffectivenessModifier, bool32 isCrit, bool32 updateFlags);
 void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 battlerDef, u8 defType, u8 battlerAtk, bool32 recordAbilities);
 

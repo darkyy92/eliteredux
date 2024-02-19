@@ -1296,7 +1296,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u8 battlerDef, u16 move)
     //if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
     //    return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
-    if (GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
+    if (DoesBattlerHaveAbilityShield(battlerDef))
         return FALSE;
     
     for (i = 0; i < ARRAY_COUNT(sIgnoreMoldBreakerMoves); i++)

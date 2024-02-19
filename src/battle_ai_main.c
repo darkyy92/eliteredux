@@ -2453,7 +2453,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_SKILL_SWAP:
             if (AI_DATA->abilities[battlerAtk] == ABILITY_NONE || AI_DATA->abilities[battlerDef] == ABILITY_NONE
-              || IsSkillSwapBannedAbility(AI_DATA->abilities[battlerAtk]) || IsSkillSwapBannedAbility(AI_DATA->abilities[battlerDef]))
+              || IsRolePlayBannedAbility(AI_DATA->abilities[battlerAtk]) || IsRolePlayBannedAbility(AI_DATA->abilities[battlerDef]))
                 score -= 10;
             break;
         case EFFECT_WORRY_SEED:
@@ -5601,15 +5601,25 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 }
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
-    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
-
-    if (GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
+    if (!DoesBattlerHaveAbilityShield(battlerId))
     {
-        if(B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE && BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
-            return FALSE;
-        if(B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE && BattlerAbilityWasRemoved(battlerId, ability))
+        if (BattlerInnatesSuppressed(battlerId, ability))
             return FALSE;
     }
+    
+    return BattlerHasInnateWithoutRemoval(battlerId, ability);
+}
+
+bool8 BattlerInnatesSuppressed(u8 battlerId, u16 ability) {
+    if(B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE && BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
+        return TRUE;
+    if(B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE && BattlerAbilityWasRemoved(battlerId, ability))
+        return TRUE;
+    return FALSE;
+}
+
+bool8 BattlerHasInnateWithoutRemoval(u8 battlerId, u16 ability) {
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
     
     return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
 }

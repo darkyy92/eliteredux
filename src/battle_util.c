@@ -97,181 +97,19 @@ static const u8 sGoNearCounterToEscapeFactor[] = {4, 4, 4, 4};
 static const u16 sSkillSwapBannedAbilities[] =
 {
     ABILITY_WONDER_GUARD,
-    ABILITY_MULTITYPE,
-    ABILITY_ILLUSION,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
 };
 
 static const u16 sRolePlayBannedAbilities[] =
 {
     ABILITY_TRACE,
     ABILITY_WONDER_GUARD,
-    ABILITY_FORECAST,
-    ABILITY_FLOWER_GIFT,
-    ABILITY_MULTITYPE,
-    ABILITY_ILLUSION,
-    ABILITY_ZEN_MODE,
-    ABILITY_IMPOSTER,
-    ABILITY_STANCE_CHANGE,
     ABILITY_POWER_OF_ALCHEMY,
     ABILITY_RECEIVER,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
-};
-
-static const u16 sRolePlayBannedAttackerAbilities[] =
-{
-    ABILITY_MULTITYPE,
-    ABILITY_ZEN_MODE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_ICE_FACE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
-};
-
-static const u16 sWorrySeedBannedAbilities[] =
-{
-    ABILITY_MULTITYPE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_TRUANT,
-    ABILITY_ICE_FACE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
-};
-
-static const u16 sGastroAcidBannedAbilities[] =
-{
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_BATTLE_BOND,
-    ABILITY_COMATOSE,
-    ABILITY_DISGUISE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_ICE_FACE,
-    ABILITY_MULTITYPE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_ZEN_MODE,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
-};
-
-static const u16 sEntrainmentBannedAttackerAbilities[] =
-{
-    ABILITY_TRACE,
-    ABILITY_FORECAST,
-    ABILITY_FLOWER_GIFT,
-    ABILITY_ZEN_MODE,
-    ABILITY_ILLUSION,
-    ABILITY_IMPOSTER,
-    ABILITY_POWER_OF_ALCHEMY,
-    ABILITY_RECEIVER,
-    ABILITY_DISGUISE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
 };
 
 static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
 {
     ABILITY_TRUANT,
-    ABILITY_MULTITYPE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_ZERO_TO_HERO,
-    ABILITY_BATTLE_BOND,
-    ABILITY_ICE_FACE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_CROWNED_KING,
-    ABILITY_EJECT_PACK_ABILITY,
-    ABILITY_CHEATING_DEATH,
-    ABILITY_GALLANTRY,
-    ABILITY_WISHMAKER,
 };
 
 static const u16 sTwoStrikeMoves[] =
@@ -1141,40 +979,6 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     //   Prismatic Fur
     //   Cheating Death
     //   Delta Stream
-};
-
-static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
-{
-    [ABILITY_BATTLE_BOND] = 1,
-    [ABILITY_COMATOSE] = 1,
-    [ABILITY_DISGUISE] = 1,
-    [ABILITY_FLOWER_GIFT] = 1,
-    [ABILITY_FORECAST] = 1,
-    [ABILITY_GULP_MISSILE] = 1,
-    [ABILITY_HUNGER_SWITCH] = 1,
-    [ABILITY_ICE_FACE] = 1,
-    [ABILITY_ILLUSION] = 1,
-    [ABILITY_IMPOSTER] = 1,
-    [ABILITY_MULTITYPE] = 1,
-    [ABILITY_NEUTRALIZING_GAS] = 1,
-    [ABILITY_NONE] = 1,
-    [ABILITY_POWER_CONSTRUCT] = 1,
-    [ABILITY_POWER_OF_ALCHEMY] = 1,
-    [ABILITY_RECEIVER] = 1,
-    [ABILITY_RKS_SYSTEM] = 1,
-    [ABILITY_ZERO_TO_HERO] = 1,
-    [ABILITY_SCHOOLING] = 1,
-    [ABILITY_SHIELDS_DOWN] = 1,
-    [ABILITY_STANCE_CHANGE] = 1,
-    [ABILITY_TRACE] = 1,
-    [ABILITY_ZEN_MODE] = 1,
-    [ABILITY_AS_ONE_ICE_RIDER] = 1,
-    [ABILITY_AS_ONE_SHADOW_RIDER] = 1,
-    [ABILITY_CROWNED_KING] = 1,
-    [ABILITY_EJECT_PACK_ABILITY] = 1,
-    [ABILITY_CHEATING_DEATH] = 1,
-    [ABILITY_GALLANTRY] = 1,
-    [ABILITY_WISHMAKER] = 1,
 };
 
 static const u8 sHoldEffectToType[][2] =
@@ -7296,30 +7100,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                switch (gBattleMons[gBattlerAttacker].ability)
+                if (!IsUnsuppressableAbility(gBattleMons[gBattlerAttacker].ability))
                 {
-                case ABILITY_LINGERING_AROMA:
-                case ABILITY_MUMMY:
-                case ABILITY_BATTLE_BOND:
-                case ABILITY_COMATOSE:
-                case ABILITY_DISGUISE:
-                case ABILITY_MULTITYPE:
-                case ABILITY_POWER_CONSTRUCT:
-                case ABILITY_RKS_SYSTEM:
-                case ABILITY_ZERO_TO_HERO:
-                case ABILITY_SCHOOLING:
-                case ABILITY_SHIELDS_DOWN:
-                case ABILITY_STANCE_CHANGE:
-                case ABILITY_AS_ONE_ICE_RIDER:
-                case ABILITY_AS_ONE_SHADOW_RIDER:
-                case ABILITY_CROWNED_KING:
-                case ABILITY_EJECT_PACK_ABILITY:
-                case ABILITY_CHEATING_DEATH:
-                case ABILITY_GALLANTRY:
-                case ABILITY_WISHMAKER:
-                    break;
-                default:
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
+                    if (DoesBattlerHaveAbilityShield(gBattlerAttacker)) break;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_MUMMY);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
                     BattleScriptPushCursor();
@@ -7335,30 +7118,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                switch (gBattleMons[gBattlerAttacker].ability)
+                if (!IsUnsuppressableAbility(gBattleMons[gBattlerAttacker].ability))
                 {
-                case ABILITY_LINGERING_AROMA:
-                case ABILITY_MUMMY:
-                case ABILITY_BATTLE_BOND:
-                case ABILITY_COMATOSE:
-                case ABILITY_DISGUISE:
-                case ABILITY_MULTITYPE:
-                case ABILITY_POWER_CONSTRUCT:
-                case ABILITY_RKS_SYSTEM:
-                case ABILITY_ZERO_TO_HERO:
-                case ABILITY_SCHOOLING:
-                case ABILITY_SHIELDS_DOWN:
-                case ABILITY_STANCE_CHANGE:
-                case ABILITY_AS_ONE_ICE_RIDER:
-                case ABILITY_AS_ONE_SHADOW_RIDER:
-                case ABILITY_CROWNED_KING:
-                case ABILITY_EJECT_PACK_ABILITY:
-                case ABILITY_CHEATING_DEATH:
-                case ABILITY_GALLANTRY:
-                case ABILITY_WISHMAKER:
-                    break;
-                default:
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
+                    if (DoesBattlerHaveAbilityShield(gBattlerAttacker)) break;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_LINGERING_AROMA);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
                     BattleScriptPushCursor();
@@ -7374,33 +7136,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             {
-                switch (gBattleMons[gBattlerAttacker].ability)
+                if (!IsUnsuppressableAbility(gBattleMons[gBattlerAttacker].ability))
                 {
-                case ABILITY_DISGUISE:
-                case ABILITY_FLOWER_GIFT:
-                case ABILITY_GULP_MISSILE:
-                case ABILITY_HUNGER_SWITCH:
-                case ABILITY_ICE_FACE:
-                case ABILITY_ILLUSION:
-                case ABILITY_IMPOSTER:
-                case ABILITY_RECEIVER:
-                case ABILITY_RKS_SYSTEM:
-                case ABILITY_ZERO_TO_HERO:
-                case ABILITY_SCHOOLING:
-                case ABILITY_STANCE_CHANGE:
-                case ABILITY_WONDER_GUARD:
-                case ABILITY_ZEN_MODE:
-                case ABILITY_AS_ONE_ICE_RIDER:
-                case ABILITY_AS_ONE_SHADOW_RIDER:
-                case ABILITY_CROWNED_KING:
-                case ABILITY_EJECT_PACK_ABILITY:
-                case ABILITY_CHEATING_DEATH:
-                case ABILITY_GALLANTRY:
-                case ABILITY_WISHMAKER:
-                    break;
-                default:
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
-                    if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
+                    if (DoesBattlerHaveAbilityShield(gBattlerAttacker)) break;
+                    if (DoesBattlerHaveAbilityShield(gBattlerTarget)) break;
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_WANDERING_SPIRIT);
                     UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, gLastUsedAbility);
@@ -10369,17 +10108,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                 {
-                    if (!sAbilitiesNotTraced[gBattleMons[target1].ability] && gBattleMons[target1].hp != 0
-                     && !sAbilitiesNotTraced[gBattleMons[target2].ability] && gBattleMons[target2].hp != 0)
+                    if (!IsRolePlayBannedAbility(gBattleMons[target1].ability) && gBattleMons[target1].hp != 0
+                     && !IsRolePlayBannedAbility(gBattleMons[target2].ability) && gBattleMons[target2].hp != 0)
                         gActiveBattler = GetBattlerAtPosition(((Random() & 1) * 2) | side), effect++;
-                    else if (!sAbilitiesNotTraced[gBattleMons[target1].ability] && gBattleMons[target1].hp != 0)
+                    else if (!IsRolePlayBannedAbility(gBattleMons[target1].ability) && gBattleMons[target1].hp != 0)
                         gActiveBattler = target1, effect++;
-                    else if (!sAbilitiesNotTraced[gBattleMons[target2].ability] && gBattleMons[target2].hp != 0)
+                    else if (!IsRolePlayBannedAbility(gBattleMons[target2].ability) && gBattleMons[target2].hp != 0)
                         gActiveBattler = target2, effect++;
                 }
                 else
                 {
-                    if (!sAbilitiesNotTraced[gBattleMons[target1].ability] && gBattleMons[target1].hp != 0)
+                    if (!IsRolePlayBannedAbility(gBattleMons[target1].ability) && gBattleMons[target1].hp != 0)
                         gActiveBattler = target1, effect++;
                 }
 
@@ -10729,7 +10468,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     return effect;
 }
 
-bool32 IsNeutralizingGasBannedAbility(u32 ability)
+bool32 IsUnsuppressableAbility(u32 ability)
 {
     switch (ability)
     {
@@ -10752,6 +10491,10 @@ bool32 IsNeutralizingGasBannedAbility(u32 ability)
     case ABILITY_CHEATING_DEATH:
     case ABILITY_GALLANTRY:
     case ABILITY_WISHMAKER:
+    case ABILITY_CLUELESS:
+    case ABILITY_BATTLE_BOND:
+    case ABILITY_NEUTRALIZING_GAS:
+    case ABILITY_HUNGER_SWITCH:
         return TRUE;
     default:
         return FALSE;
@@ -10773,20 +10516,27 @@ bool32 IsNeutralizingGasOnField(void)
 
 u32 GetBattlerAbility(u8 battlerId)
 {
-    GetBattlerAbilityInternal(battlerId, TRUE);
-}
-
-u32 GetBattlerAbilityInternal(u8 battlerId, u8 checkItem)
-{
-    if (!checkItem || GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
+    if (!DoesBattlerHaveAbilityShield(battlerId))
     {
-        if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
-            return ABILITY_NONE;
-        
-        if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
-            return ABILITY_NONE;
+        if (BattlerAbilityIsSuppressed(battlerId)) return ABILITY_NONE;
     }
     
+    return GetBattlerAbilityWithoutRemoval(battlerId);
+}
+
+bool8 BattlerAbilityIsSuppressed(u8 battlerId)
+{
+    if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
+        return TRUE;
+    
+    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
+        return TRUE;
+
+    return FALSE;
+}
+
+u32 GetBattlerAbilityWithoutRemoval(u8 battlerId)
+{
     return gBattleMons[battlerId].ability;
 }
 
@@ -10843,7 +10593,7 @@ bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
 bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability)
 {
     if ((gStatuses3[battlerId] & STATUS3_GASTRO_ACID) ||
-       (IsNeutralizingGasOnField() && !IsNeutralizingGasBannedAbility(ability)))
+       (IsNeutralizingGasOnField() && !IsUnsuppressableAbility(ability)))
         return TRUE;
     else
         return FALSE;
@@ -12821,7 +12571,7 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
             return HOLD_EFFECT_NONE;
         if (isMagicRoomActive())
             return HOLD_EFFECT_NONE;
-        if (GetBattlerAbilityInternal(battlerId, FALSE) == ABILITY_KLUTZ)
+        if (GetBattlerAbility(battlerId) == ABILITY_KLUTZ)
             return HOLD_EFFECT_NONE;
     }
 
@@ -12833,6 +12583,20 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
         return gEnigmaBerries[battlerId].holdEffect;
     else
         return ItemId_GetHoldEffect(gBattleMons[battlerId].item);
+}
+
+bool8 DoesBattlerHaveAbilityShield(u8 battlerId)
+{
+    u8 i;
+    if (GetBattlerHoldEffect(battlerId, FALSE) != HOLD_EFFECT_ABILITY_SHIELD) return FALSE;
+    if (gStatuses3[battlerId] & STATUS3_EMBARGO) return FALSE;
+    if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)) return TRUE;
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (GetBattlerAbilityWithoutRemoval(i) == ABILITY_CLUELESS) return TRUE;
+        if (BattlerHasInnateWithoutRemoval(i, ABILITY_CLUELESS)) return TRUE;
+    }
+    return FALSE;
 }
 
 u32 GetBattlerHoldEffectParam(u8 battlerId)
@@ -16598,17 +16362,15 @@ bool32 CanFling(u8 battlerId)
 bool32 IsRolePlayBannedAbilityAtk(u16 ability)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAttackerAbilities); i++)
-    {
-        if (ability == sRolePlayBannedAttackerAbilities[i])
-            return TRUE;
-    }
+    if (IsUnsuppressableAbility(ability)) return TRUE;
     return FALSE;
 }
 
 bool32 IsRolePlayBannedAbility(u16 ability)
 {
     u32 i;
+    if (!ability) return TRUE;
+    if (IsUnsuppressableAbility(ability)) return TRUE;
     for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAbilities); i++)
     {
         if (ability == sRolePlayBannedAbilities[i])
@@ -16617,9 +16379,24 @@ bool32 IsRolePlayBannedAbility(u16 ability)
     return FALSE;
 }
 
-bool32 IsSkillSwapBannedAbility(u16 ability)
+bool32 IsWorrySeedBannedAbility(u16 ability)
 {
     u32 i;
+    if (IsUnsuppressableAbility(ability)) return TRUE;
+    return FALSE;
+}
+
+bool32 IsGastroAcidBannedAbility(u16 ability)
+{
+    u32 i;
+    if (IsUnsuppressableAbility(ability)) return TRUE;
+    return FALSE;
+}
+
+bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
+{
+    u32 i;
+    if (IsUnsuppressableAbility(ability)) return TRUE;
     for (i = 0; i < ARRAY_COUNT(sSkillSwapBannedAbilities); i++)
     {
         if (ability == sSkillSwapBannedAbilities[i])
@@ -16628,42 +16405,10 @@ bool32 IsSkillSwapBannedAbility(u16 ability)
     return FALSE;
 }
 
-bool32 IsWorrySeedBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sWorrySeedBannedAbilities); i++)
-    {
-        if (ability == sWorrySeedBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsGastroAcidBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sGastroAcidBannedAbilities); i++)
-    {
-        if (ability == sGastroAcidBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sEntrainmentBannedAttackerAbilities); i++)
-    {
-        if (ability == sEntrainmentBannedAttackerAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability)
 {
     u32 i;
+    if (IsUnsuppressableAbility(ability)) return TRUE;
     for (i = 0; i < ARRAY_COUNT(sEntrainmentTargetSimpleBeamBannedAbilities); i++)
     {
         if (ability == sEntrainmentTargetSimpleBeamBannedAbilities[i])

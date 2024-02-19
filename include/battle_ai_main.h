@@ -29,6 +29,8 @@ u8 BattleAI_ChooseMoveOrAction(void);
 void GetAiLogicData(void);
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability);
+bool8 BattlerInnatesSuppressed(u8 battlerId, u16 ability);
+bool8 BattlerHasInnateWithoutRemoval(u8 battlerId, u16 ability);
 bool8 GetBattlerInnateNum(u8 battlerId, u16 ability);
 
 extern u8 sBattler_AI;
