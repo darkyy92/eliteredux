@@ -7208,6 +7208,7 @@ static void Cmd_switchineffects(void)
     {
         for (i = 0; i < gBattlersCount; i++)
         {
+            if (GetBattlerHoldEffect(i, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) continue;
             if (IsBattlerAlive(i) && !IsNeutralizingGasBannedAbility(gBattleMons[i].ability))
             {
                 UpdateAbilityStateIndicesForNewAbility(i, ABILITY_NONE);
@@ -8788,6 +8789,7 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 8;
         return;
     case VARIOUS_TRACE_ABILITY:
+        if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
         UpdateAbilityStateIndicesForNewAbility(gActiveBattler, gBattleStruct->tracedAbility[gActiveBattler]);
         gBattleMons[gActiveBattler].ability = gBattleStruct->tracedAbility[gActiveBattler];
         RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
@@ -9368,7 +9370,8 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SET_SIMPLE_BEAM:
         if (IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability)
-            || gBattleMons[gBattlerTarget].ability == ABILITY_SIMPLE)
+            || gBattleMons[gBattlerTarget].ability == ABILITY_SIMPLE
+            || GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         }
@@ -9384,7 +9387,8 @@ static void Cmd_various(void)
         return;
     case VARIOUS_TRY_ENTRAINMENT:
         if (IsEntrainmentBannedAbilityAttacker(gBattleMons[gBattlerAttacker].ability)
-          || IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability))
+          || IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability)
+          || GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             return;
@@ -14560,7 +14564,8 @@ static void Cmd_trycopyability(void) // role play
     if (gBattleMons[gBattlerAttacker].ability == defAbility
       || defAbility == ABILITY_NONE
       || IsRolePlayBannedAbilityAtk(gBattleMons[gBattlerAttacker].ability)
-      || IsRolePlayBannedAbility(defAbility))
+      || IsRolePlayBannedAbility(defAbility)
+      || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
@@ -14729,7 +14734,9 @@ static void Cmd_setroom(void)
 static void Cmd_tryswapabilities(void) // skill swap
 {
     if (IsSkillSwapBannedAbility(gBattleMons[gBattlerAttacker].ability)
-      || IsSkillSwapBannedAbility(gBattleMons[gBattlerTarget].ability))
+      || IsSkillSwapBannedAbility(gBattleMons[gBattlerTarget].ability)
+      || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD
+      || GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         return;
@@ -16267,7 +16274,8 @@ static void Cmd_trygetbaddreamstarget(void)
 
 static void Cmd_tryworryseed(void)
 {
-    if (IsWorrySeedBannedAbility(gBattleMons[gBattlerTarget].ability))
+    if (IsWorrySeedBannedAbility(gBattleMons[gBattlerTarget].ability)
+      || GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }

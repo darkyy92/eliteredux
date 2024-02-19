@@ -7319,6 +7319,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_WISHMAKER:
                     break;
                 default:
+                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_MUMMY);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_MUMMY;
                     BattleScriptPushCursor();
@@ -7357,6 +7358,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_WISHMAKER:
                     break;
                 default:
+                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_LINGERING_AROMA);
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = ABILITY_LINGERING_AROMA;
                     BattleScriptPushCursor();
@@ -7397,6 +7399,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 case ABILITY_WISHMAKER:
                     break;
                 default:
+                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
+                    if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD) break;
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
                     UpdateAbilityStateIndicesForNewAbility(gBattlerAttacker, ABILITY_WANDERING_SPIRIT);
                     UpdateAbilityStateIndicesForNewAbility(gBattlerTarget, gLastUsedAbility);
@@ -10769,7 +10773,12 @@ bool32 IsNeutralizingGasOnField(void)
 
 u32 GetBattlerAbility(u8 battlerId)
 {
-    if (GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
+    GetBattlerAbilityInternal(battlerId, TRUE);
+}
+
+u32 GetBattlerAbilityInternal(u8 battlerId, u8 checkItem)
+{
+    if (!checkItem || GetBattlerHoldEffect(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
     {
         if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
             return ABILITY_NONE;
@@ -12812,7 +12821,7 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
             return HOLD_EFFECT_NONE;
         if (isMagicRoomActive())
             return HOLD_EFFECT_NONE;
-        if (GetBattlerAbility(battlerId) == ABILITY_KLUTZ)
+        if (GetBattlerAbilityInternal(battlerId, FALSE) == ABILITY_KLUTZ)
             return HOLD_EFFECT_NONE;
     }
 

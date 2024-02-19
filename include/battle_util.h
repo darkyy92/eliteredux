@@ -167,6 +167,7 @@ bool8 HasNoMonsToSwitch(u8 battlerId, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility);
 u8 AbilityBattleEffects(u8 caseID, u8 battlerId, u16 ability, u8 special, u16 moveArg);
 u32 GetBattlerAbility(u8 battlerId);
+u32 GetBattlerAbilityInternal(u8 battlerId, u8 checkItem);
 bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability);
 bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability);
 u32 IsAbilityOnSide(u32 battlerId, u32 ability);
