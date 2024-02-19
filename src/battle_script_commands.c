@@ -6448,7 +6448,7 @@ static void Cmd_moveend(void)
             {
                 u8 currentMoveType;
                 GET_MOVE_TYPE(gCurrentMove, currentMoveType)
-                if (currentMoveType == TYPE_ELECTRIC)
+                if (currentMoveType == TYPE_ELECTRIC && gBattleMoves[gCurrentMove].power && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
                 {
                     gStatuses3[gBattlerAttacker] &= ~STATUS3_CHARGED_UP;
                 }
