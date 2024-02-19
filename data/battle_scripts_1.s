@@ -7937,6 +7937,7 @@ BattleScript_GulpMissileGulping::
 	jumpifability BS_ATTACKER, ABILITY_CLEAR_BODY, BattleScript_GulpMissileNoSecondEffectGulping
 	jumpifability BS_ATTACKER, ABILITY_FULL_METAL_BODY, BattleScript_GulpMissileNoSecondEffectGulping
 	jumpifability BS_ATTACKER, ABILITY_WHITE_SMOKE, BattleScript_GulpMissileNoSecondEffectGulping
+	jumpifholdeffect BS_ATTACKER, HOLD_EFFECT_CLEAR_AMULET, BattleScript_GulpMissileNoSecondEffectGulping
 	jumpifflowerveilattacker BattleScript_GulpMissileNoSecondEffectGulping
 BattleScript_GulpMissileNoDmgGulping:
 	handleformchange BS_TARGET, 0
@@ -9766,16 +9767,17 @@ BattleScript_IntimidateActivatesLoop:
 	setstatchanger STAT_ATK, 1, TRUE
 	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE,   BattleScript_IntimidateActivatesLoopIncrement
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY,   BattleScript_IntimidatePrevented_Clear_Body
-	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented_Hyper_Cutter
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE,  BattleScript_IntimidatePrevented_White_Smoke
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS,  BattleScript_IntimidatePrevented_Inner_Focus
-	jumpifability BS_TARGET, ABILITY_SCRAPPY,      BattleScript_IntimidatePrevented_Scrappy
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_IntimidatePrevented_Own_Tempo
-	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_IntimidatePrevented_Oblivious
-	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_IntimidatePrevented_Overwhelm
-	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_IntimidatePrevented_MirrorArmor
-	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_IntimidatePrevented_Discipline
+	jumpifholdeffect BS_ATTACKER, HOLD_EFFECT_CLEAR_AMULET, BattleScript_IntimidateActivatesLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY,   BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE,  BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS,  BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_SCRAPPY,      BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_IntimidatePrevented
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -9803,46 +9805,6 @@ BattleScript_IntimidatePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateActivatesLoopIncrement
-
-BattleScript_IntimidatePrevented_MirrorArmor:
-	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Overwhelm:
-	sethword sABILITY_OVERWRITE, ABILITY_OVERWHELM
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Oblivious:
-	sethword sABILITY_OVERWRITE, ABILITY_OBLIVIOUS
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Own_Tempo:
-	sethword sABILITY_OVERWRITE, ABILITY_OWN_TEMPO
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Inner_Focus:
-	sethword sABILITY_OVERWRITE, ABILITY_INNER_FOCUS
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_White_Smoke:
-	sethword sABILITY_OVERWRITE, ABILITY_WHITE_SMOKE
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Clear_Body:
-	sethword sABILITY_OVERWRITE, ABILITY_CLEAR_BODY
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Hyper_Cutter:
-	sethword sABILITY_OVERWRITE, ABILITY_HYPER_CUTTER
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Scrappy:
-	sethword sABILITY_OVERWRITE, ABILITY_SCRAPPY
-	goto BattleScript_IntimidatePrevented
-
-BattleScript_IntimidatePrevented_Discipline:
-	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
-	goto BattleScript_IntimidatePrevented
 	
 BattleScript_ScareActivatesEnd3::
 	call BattleScript_PauseScareActivates
@@ -9940,16 +9902,17 @@ BattleScript_ScareActivatesLoop:
 	setstatchanger STAT_SPATK, 1, TRUE
 	trygetintimidatetarget BattleScript_ScareActivatesReturn
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE,   BattleScript_ScareActivatesLoopIncrement
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY,   BattleScript_ScarePrevented_Clear_Body
-	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_ScarePrevented_Hyper_Cutter
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE,  BattleScript_ScarePrevented_White_Smoke
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS,  BattleScript_ScarePrevented_Inner_Focus
-	jumpifability BS_TARGET, ABILITY_SCRAPPY,      BattleScript_ScarePrevented_Scrappy
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_ScarePrevented_Own_Tempo
-	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_ScarePrevented_Oblivious
-	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_ScarePrevented_Overwhelm
-	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_ScarePrevented_MirrorArmor
-	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_ScarePrevented_Discipline
+	jumpifholdeffect BS_ATTACKER, HOLD_EFFECT_CLEAR_AMULET, BattleScript_ScareActivatesLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY,   BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE,  BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS,  BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_SCRAPPY,      BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_ScarePrevented
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_ScareActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_ScareActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -9977,46 +9940,6 @@ BattleScript_ScarePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_ScareActivatesLoopIncrement
-
-BattleScript_ScarePrevented_Discipline:
-	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_MirrorArmor:
-	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Overwhelm:
-	sethword sABILITY_OVERWRITE, ABILITY_OVERWHELM
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Oblivious:
-	sethword sABILITY_OVERWRITE, ABILITY_OBLIVIOUS
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Own_Tempo:
-	sethword sABILITY_OVERWRITE, ABILITY_OWN_TEMPO
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Inner_Focus:
-	sethword sABILITY_OVERWRITE, ABILITY_INNER_FOCUS
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_White_Smoke:
-	sethword sABILITY_OVERWRITE, ABILITY_WHITE_SMOKE
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Clear_Body:
-	sethword sABILITY_OVERWRITE, ABILITY_CLEAR_BODY
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Hyper_Cutter:
-	sethword sABILITY_OVERWRITE, ABILITY_HYPER_CUTTER
-	goto BattleScript_ScarePrevented
-
-BattleScript_ScarePrevented_Scrappy:
-	sethword sABILITY_OVERWRITE, ABILITY_SCRAPPY
-	goto BattleScript_ScarePrevented
 
 BattleScript_Scare_Competitive:
 	call BattleScript_CompetitiveActivates

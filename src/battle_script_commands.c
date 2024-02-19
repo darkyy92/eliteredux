@@ -5508,8 +5508,10 @@ static void Cmd_playstatchangeanimation(void)
                         && !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability)
 						&& !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_FULL_METAL_BODY, ability)
                         && !BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_WHITE_SMOKE, ability)
-						&& !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability) && currStat == STAT_ACC)
-                        && !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_CLEAR_BODY, ability) && currStat == STAT_ATK))
+						&& !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_KEEN_EYE, ability) && currStat == STAT_ACC)
+						&& !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_MINDS_EYE, ability) && currStat == STAT_ACC)
+                        && !(BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_HYPER_CUTTER, ability) && currStat == STAT_ATK)
+                        && GetBattlerHoldEffect(gActiveBattler, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
                 {
                     if (gBattleMons[gActiveBattler].statStages[currStat] > MIN_STAT_STAGE)
                     {
@@ -11811,6 +11813,7 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
         }
         else if (!certain
                 && ((BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_KEEN_EYE) && statId == STAT_ACC)
+                || (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MINDS_EYE) && statId == STAT_ACC)
 				|| (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)))
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
@@ -11841,6 +11844,10 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
         }
         else if ((GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST ||
                   BattlerHasInnate(gActiveBattler, ABILITY_SHIELD_DUST)) && flags == 0)
+        {
+            return 0;
+        }
+        else if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET && flags == 0)
         {
             return 0;
         }
@@ -12390,6 +12397,9 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
        BATTLER_HAS_ABILITY(battler, ABILITY_WHITE_SMOKE)     ||
        BATTLER_HAS_ABILITY(battler, ABILITY_FULL_METAL_BODY) ||
        BATTLER_HAS_ABILITY(battler, ABILITY_MIRROR_ARMOR))
+        return TRUE;
+
+    if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
 
     switch(ability){

@@ -1101,6 +1101,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            IsStatLoweringMoveEffect(moveEffect))
             RETURN_SCORE_MINUS(10);
 
+        if (GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_CLEAR_AMULET && IsStatLoweringMoveEffect(moveEffect))
+            RETURN_SCORE_MINUS(10);
+
         //Hyper Cutter
         if(BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER) &&
            (moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2) &&

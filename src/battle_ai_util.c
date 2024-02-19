@@ -1649,6 +1649,9 @@ bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
          || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_FULL_METAL_BODY, battlerAbility))
             return FALSE;
 
+        if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_CLEAR_AMULET)
+            return FALSE;
+
         if (stat == STAT_ATK && 
            (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_HYPER_CUTTER, battlerAbility) ||
             BATTLER_HAS_ABILITY_FAST(battler, ABILITY_DEFIANT, battlerAbility)))
@@ -1749,7 +1752,8 @@ bool32 ShouldLowerAttack(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_HYPER_CUTTER
-      && !BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER))
+      && !BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1776,7 +1780,8 @@ bool32 ShouldLowerDefense(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1802,7 +1807,8 @@ bool32 ShouldLowerSpeed(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1829,7 +1835,8 @@ bool32 ShouldLowerSpAtk(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1856,7 +1863,8 @@ bool32 ShouldLowerSpDef(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1881,7 +1889,8 @@ bool32 ShouldLowerAccuracy(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }
@@ -1907,7 +1916,8 @@ bool32 ShouldLowerEvasion(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && defAbility != ABILITY_QUEENS_MOURNING
       && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && GetBattlerHoldEffect(battlerDef, TRUE) != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
 }

@@ -1810,6 +1810,12 @@
 	.4byte \ptr
 	.endm
 
+	.macro jumpifholdeffect battler:req, holdEffect:req, ptr:req
+	jumpifnoholdeffect \battler, \holdEffect, jumpifholdeffect_\@_fail
+	goto \ptr
+	jumpifholdeffect_\@_fail:
+	.endm
+
 	.macro infatuatewithbattler battler1:req, battler2:req
 	various \battler1, VARIOUS_INFATUATE_WITH_BATTLER
 	.byte \battler2

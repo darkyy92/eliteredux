@@ -3139,7 +3139,8 @@ u8 DoBattlerEndTurnEffects(void)
             if (gDisableStructs[gActiveBattler].octolock 
              && !(GetBattlerAbility(gActiveBattler)    == ABILITY_CLEAR_BODY       || BattlerHasInnate(gActiveBattler, ABILITY_CLEAR_BODY)
                   || GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY  || BattlerHasInnate(gActiveBattler, ABILITY_FULL_METAL_BODY)
-                  || GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE      || BattlerHasInnate(gActiveBattler, ABILITY_WHITE_SMOKE)))
+                  || GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE      || BattlerHasInnate(gActiveBattler, ABILITY_WHITE_SMOKE)
+                  || GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET))
             {
                 gBattlerTarget = gActiveBattler;
                 BattleScriptExecute(BattleScript_OctolockEndTurn);
@@ -4040,7 +4041,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 }
                 else
                 {
-                    if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LOADED_DICE)
+                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
                     {
                         gMultiHitCounter = 4 + (Random() % 2);
                     }
@@ -4568,32 +4569,6 @@ static u8 ForewarnChooseMove(u32 battler)
     RecordKnownMove(gBattlerTarget, data[bestId].moveId);
 
     free(data);
-}
-
-bool8 BattlerCanBeIntimidated(u8 battler){
-    if(IsBattlerAlive(gBattlerAttacker) //Battler is Alive
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_SCRAPPY           //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_SCRAPPY)          //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_OBLIVIOUS         //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_OBLIVIOUS)        //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_VITAL_SPIRIT      //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_VITAL_SPIRIT)     //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_INNER_FOCUS       //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_INNER_FOCUS)      //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_ENLIGHTENED       //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_ENLIGHTENED)      //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_FULL_METAL_BODY   //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_FULL_METAL_BODY)  //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_CLEAR_BODY        //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_CLEAR_BODY)       //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_HYPER_CUTTER      //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_HYPER_CUTTER)     //Abilities that prevent it
-    && gBattleMons[gBattlerAttacker].ability != ABILITY_WHITE_SMOKE       //Abilities that prevent it
-    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_WHITE_SMOKE)      //Abilities that prevent it
-    && !(gSpecialStatuses[gBattlerAttacker].intimidatedMon))
-        return TRUE;
-    else
-        return FALSE;
 }
 
 bool32 TryPrimalReversion(u8 battlerId)
