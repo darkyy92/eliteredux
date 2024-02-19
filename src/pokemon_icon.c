@@ -2565,12 +2565,12 @@ const u8 gMonIconPaletteIndices[] =
 
     [SPECIES_ANNIHILAPE]   = 2,//
     [SPECIES_CLODSIRE]     = 2,//
-    [SPECIES_FARIGIRAF]    = 2,//
+    [SPECIES_FARIGIRAF]    = 1,
 
-    [SPECIES_DUDUNSPARCE]               = 2,//
-    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = 2,//
+    [SPECIES_DUDUNSPARCE]               = 0,
+    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = 0,
 
-    [SPECIES_KINGAMBIT]    = 2,//
+    [SPECIES_KINGAMBIT]    = 0,
     [SPECIES_GREAT_TUSK]   = 0,
     [SPECIES_SCREAM_TAIL]  = 0,
     [SPECIES_BRUTE_BONNET] = 1,
