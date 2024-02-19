@@ -33115,6 +33115,7 @@ const struct BaseStats gBaseStats[] =
 	.innates = {ABILITY_WATER_ABSORB, ABILITY_MULTI_HEADED, ABILITY_PYROMANCY},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .flags = F_TWO_HEADED,
     },
 
     [SPECIES_RELLOR] =
@@ -33403,6 +33404,7 @@ const struct BaseStats gBaseStats[] =
 	.innates = {ABILITY_GOOEY, ABILITY_FIELD_EXPLORER, ABILITY_MULTI_HEADED},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_BOMBIRDIER] =
@@ -34299,6 +34301,7 @@ const struct BaseStats gBaseStats[] =
 	.innates = {ABILITY_PROTOSYNTHESIS, ABILITY_MULTI_HEADED, ABILITY_TRANSISTOR},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_IRON_TREADS] =
@@ -34427,6 +34430,7 @@ const struct BaseStats gBaseStats[] =
 	.innates = {ABILITY_QUARK_DRIVE, ABILITY_MULTI_HEADED, ABILITY_SPECIAL_VIOLENT_RUSH},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_IRON_MOTH] =
@@ -35861,7 +35865,7 @@ const struct BaseStats gBaseStats[] =
 	.innates = {ABILITY_LEVITATE, ABILITY_MULTI_HEADED, ABILITY_POISON_ABSORB},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = FALSE,
-    .flags = F_GALARIAN_FORM,
+    .flags = F_GALARIAN_FORM | F_TWO_HEADED,
     },
 
 [SPECIES_MR_MIME_GALARIAN] =
