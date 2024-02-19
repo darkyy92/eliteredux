@@ -12851,6 +12851,10 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
     {
         return FALSE;
     }
+    else if (GetBattlerHoldEffect(battlerAtk, TRUE) == HOLD_EFFECT_PUNCHING_GLOVE && IS_IRON_FIST(battlerAtk, move))
+    {
+        return FALSE;
+    }
     else
     {
         return TRUE;
@@ -15501,6 +15505,10 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
         break;
     case HOLD_EFFECT_LIFE_ORB:
         MulModifier(&finalModifier, UQ_4_12(1.3));
+        break;
+    case HOLD_EFFECT_PUNCHING_GLOVE:
+        if (IS_IRON_FIST(battlerAtk, move))
+            MulModifier(&finalModifier, UQ_4_12(1.1));
         break;
     }
 
