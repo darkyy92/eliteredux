@@ -949,6 +949,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_URSALUNA_MEGA] = gMonFootprint_Ursaluna_Mega,
     [SPECIES_SCIZOR_MEGA_REDUX] = gMonFootprint_Scizor_Mega_Redux,
     [SPECIES_SCIZOR_REDUX] = gMonFootprint_Scizor_Redux,
+    [SPECIES_ESCARGINITE] = gMonFootprint_Escarginite,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

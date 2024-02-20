@@ -16,6 +16,12 @@ const u8 gDuelumberPokedexText[] = _(
     "Dont ask me why potato. Maybe because\n"
     "I like potatos.");
 
+const u8 gEscarginitePokedexText[] = _(
+    "This is not a actually Pokemon.\n"
+    "It's really just a potato\n"
+    "Dont ask me why potato. Maybe because\n"
+    "I like potatos.");
+
 const u8 gBulbasaurPokedexText[] = _(
     "Bulbasaur can be seen napping in bright\n"
     "sunlight. There is a seed on its back.\n"

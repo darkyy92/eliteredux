@@ -1135,6 +1135,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_OGERPON] = gMonIcon_Ogerpon,
     [SPECIES_PHANTOWL] = gMonIcon_Phantowl,
     [SPECIES_DUELUMBER] = gMonIcon_Duelumber,
+    [SPECIES_ESCARGINITE] = gMonIcon_Escarginite,
     [SPECIES_SCIZOR_REDUX] = gMonIcon_Scizor_Redux,
     [SPECIES_SCIZOR_MEGA_REDUX] = gMonIcon_Scizor_Mega_Redux,
     [SPECIES_URSALUNA_MEGA] = gMonIcon_Ursaluna_Mega,
@@ -3024,6 +3025,7 @@ const u8 gMonIconPaletteIndices[] =
     //New Mons
     [SPECIES_PHANTOWL] = 2,
     [SPECIES_DUELUMBER] = 1,
+    [SPECIES_ESCARGINITE] = 0,
     [SPECIES_SCIZOR_REDUX] = 1,
     [SPECIES_SCIZOR_MEGA_REDUX] = 1,
     [SPECIES_CASTFORM_SANDY] = 1,

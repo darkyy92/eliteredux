@@ -36,6 +36,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_ESCARGINITE] =
+    {
+        .categoryName = _("Escarginite"),
+        .height = 10,
+        .weight = 100,
+        .description = gEscarginitePokedexText,
+        .pokemonScale = 255,
+        .pokemonOffset = 0,
+        .trainerScale = 255,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_BULBASAUR] =
     {
         .categoryName = _("Seed"),

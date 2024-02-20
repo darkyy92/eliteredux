@@ -808,4 +808,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_SCIZOR_REDUX] = sScizorFormSpeciesIdTable,
 
+    [SPECIES_ESCARGINITE] = sEscarginiteFormSpeciesIdTable,
+
 };

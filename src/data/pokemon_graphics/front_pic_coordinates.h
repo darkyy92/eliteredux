@@ -5417,6 +5417,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
+    [SPECIES_ESCARGINITE] =
+    {
+        .size = 0,
+        .y_offset =  0
+    },
     [SPECIES_SCIZOR_REDUX] =
     {
         .size = 0,
