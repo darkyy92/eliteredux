@@ -10935,7 +10935,7 @@ BattleScript_GemActivates::
 	removeitem BS_ATTACKER
 	return
 
-BattleScript_BerryReduceDmg::
+BattleScript_PkmnAteItem::
 	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
 	setlastuseditem BS_TARGET

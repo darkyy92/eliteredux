@@ -2413,7 +2413,7 @@ END:
         && gBattleMons[gBattlerTarget].item)
     {
         BattleScriptPushCursor();
-        gBattlescriptCurrInstr = BattleScript_BerryReduceDmg;
+        gBattlescriptCurrInstr = BattleScript_PkmnAteItem;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
     }
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
@@ -10668,7 +10668,7 @@ static void Cmd_various(void)
         break;
     case VARIOUS_DO_COPY_STAT_CHANGE:
         if (gBattleStruct->statStageCheckState == STAT_STAGE_CHECK_NOT_NEEDED) break;
-        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        for (i = 0; i < gBattlersCount; i++)
         {
             u8 battler = gBattlerAttacker = gBattlerByTurnOrder[i];
             u8 otherBattler;
@@ -10680,9 +10680,9 @@ static void Cmd_various(void)
             state = GetAbilityStateAs(battler, ABILITY_EGOIST).statCopyState;
             if (!state.inProgress) continue;
             
-            for (state.stat++; state.stat <= NUM_NATURE_STATS; state.stat++) {
+            for (state.stat++; state.stat <= NUM_BATTLE_STATS; state.stat++) {
                 
-                for (otherBattler = 0; otherBattler < MAX_BATTLERS_COUNT; otherBattler++)
+                for (otherBattler = 0; otherBattler < gBattlersCount; otherBattler++)
                 {
                     if (GetBattlerSide(otherBattler) == GetBattlerSide(battler)) continue;
                     if (gBattleStruct->statChangesToCheck[otherBattler][state.stat - 1] > 0)
@@ -10718,15 +10718,15 @@ static void Cmd_various(void)
             struct StatCopyState state = GetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING).statCopyState;
             if (state.inProgress)
             {
-                for (; state.battler < MAX_BATTLERS_COUNT; state.battler++)
+                for (; state.battler < gBattlersCount; state.battler++)
                 {
                     if (!IsBattlerAlive(state.battler)) continue;
 
-                    for (state.stat++; state.stat <= NUM_NATURE_STATS; state.stat++)
+                    for (state.stat++; state.stat <= NUM_BATTLE_STATS; state.stat++)
                     {
                         s8 change = 0;
                         u8 otherBattler;
-                        for (otherBattler = 0; otherBattler < MAX_BATTLERS_COUNT; otherBattler++)
+                        for (otherBattler = 0; otherBattler < gBattlersCount; otherBattler++)
                         {
                             if (otherBattler == state.battler) continue;
                             change += gBattleStruct->statChangesToCheck[otherBattler][state.stat - 1];
@@ -10762,6 +10762,45 @@ static void Cmd_various(void)
                 SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
                 return;
             }
+        }
+        for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+        {
+            u8 stat;
+            if (!IsBattlerAlive(gActiveBattler)) continue;
+            if (!gSpecialStatuses[gActiveBattler].mirrorHerbStat && GetBattlerHoldEffect(gActiveBattler, TRUE) != HOLD_EFFECT_MIRROR_HERB) continue;
+            for (stat = max(gSpecialStatuses[gActiveBattler].mirrorHerbStat, STAT_ATK); stat < NUM_BATTLE_STATS; stat++)
+            {
+                s8 change = 0;
+                for (i = 0; i < gBattlersCount; i++)
+                {
+                    if (GetBattlerSide(i) == GetBattlerSide(gActiveBattler)) continue;
+                    change += gBattleStruct->statChangesToCheck[i][stat - 1];
+                }
+                if (change > 0)
+                {
+                    if (gSpecialStatuses[gActiveBattler].mirrorHerbStat)
+                    {
+                        SetStatChanger(stat, change);
+                        BattleScriptPushCursor();
+                        if (change > 0)
+                        {
+                            gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatUp;
+                        }
+                        else
+                        {
+                            gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatDown;
+                        }
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_PkmnAteItem;
+                    }
+                    gSpecialStatuses[gActiveBattler].mirrorHerbStat = stat;
+                    return;
+                }
+            }
+            gSpecialStatuses[gActiveBattler].mirrorHerbStat = 0;
         }
         memset(gBattleStruct->statChangesToCheck, 0, sizeof(gBattleStruct->statChangesToCheck));
         gBattleStruct->statStageCheckState = STAT_STAGE_CHECK_NOT_NEEDED;

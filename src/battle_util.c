@@ -10214,10 +10214,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             bool8 found = FALSE;
             for (i = 0; i < MAX_BATTLERS_COUNT; i++)
             {
-                if (BATTLER_HAS_ABILITY(i, ABILITY_EGOIST))
+                bool8 hasEgoist = BATTLER_HAS_ABILITY(i, ABILITY_EGOIST);
+                if (hasEgoist || GetBattlerHoldEffect(i, TRUE) == HOLD_EFFECT_MIRROR_HERB)
                 {
                     bool8 foundForBattler = FALSE;
-                    for (statId = STAT_ATK; statId < NUM_NATURE_STATS; statId++)
+                    for (statId = STAT_ATK; statId < NUM_BATTLE_STATS; statId++)
                     {
                         u8 change = 0;
                         for (j = 0; j < MAX_BATTLERS_COUNT; j++)
@@ -10226,7 +10227,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
                             {
                                 found = foundForBattler = TRUE;
-                                SetAbilityStateAs(i, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                                if (hasEgoist)
+                                {
+                                    SetAbilityStateAs(i, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                                }
                             }
                         }
                         if (foundForBattler) break;
