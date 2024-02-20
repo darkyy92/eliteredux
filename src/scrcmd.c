@@ -2427,9 +2427,7 @@ bool8 ScrCmd_multichoice2(struct ScriptContext *ctx){
 }
 
 //Items given to you by Nurse Joy
-#define NURSE_BATTLE_ITEM_COUNT 217//+ 16
-
-static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
+static const u16 sBattleItemList[][2] =
 {
     {ITEM_CANDY_BOX,         1},
     {ITEM_INFINITE_REPEL,    1},
@@ -2441,12 +2439,14 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_FOCUS_SASH,       50},
     {ITEM_TOXIC_ORB,        50},
     {ITEM_FLAME_ORB,        50},
+    {ITEM_FROST_ORB,        50},
     {ITEM_LIFE_ORB,         50},
     {ITEM_CHOICE_BAND,      50},
     {ITEM_CHOICE_SPECS,     50},
     {ITEM_CHOICE_SCARF,     50},
     {ITEM_ROCKY_HELMET,     50},
     {ITEM_ASSAULT_VEST,     50},
+    {ITEM_PHYSICAL_VEST,    50},
     {ITEM_LIGHT_CLAY,       50},
     {ITEM_HEAVY_DUTY_BOOTS, 50},
     {ITEM_AIR_BALLOON,      50},
@@ -2479,6 +2479,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MENTAL_HERB,      50},
     {ITEM_POWER_HERB,       50},
     {ITEM_WHITE_HERB,       50},
+    {ITEM_MIRROR_HERB,      50},
     {ITEM_ELECTRIC_SEED,    50},
     {ITEM_PSYCHIC_SEED,     50},
     {ITEM_MISTY_SEED,       50},
@@ -2510,6 +2511,12 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_QUICK_CLAW,       50},
     {ITEM_MUSCLE_BAND,      50},
     {ITEM_WISE_GLASSES,     50},
+    {ITEM_ABILITY_SHIELD,   50},
+    {ITEM_CLEAR_AMULET,     50},
+    {ITEM_PUNCHING_GLOVE,   50},
+    {ITEM_COVERT_CLOAK,     50},
+    {ITEM_LOADED_DICE,      50},
+    {ITEM_BOOSTER_ENERGY,   50},
     //Pokeballs
     {ITEM_POKE_BALL,         1},
     {ITEM_MASTER_BALL,       1},
@@ -2658,7 +2665,7 @@ bool8 ScrCmd_giveBattleItems(struct ScriptContext *ctx)
 {
     u8 i;
     //Battle Items
-    for(i = 0; i < NURSE_BATTLE_ITEM_COUNT; i++){
+    for(i = 0; i < ARRAY_COUNT(sBattleItemList); i++){
         if(CheckBagHasItem(ITEM_MEGA_BRACELET, 1) && FlagGet(FLAG_SYS_RECEIVED_KEYSTONE)){
             //With Mega Stones
             if (!CheckBagHasItem(sBattleItemList[i][0], sBattleItemList[i][1])){
