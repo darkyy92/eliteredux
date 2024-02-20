@@ -2918,7 +2918,22 @@ bool32 ShouldBurnSelf(u8 battler)
          HasMoveEffect(battler, EFFECT_FACADE)              ||
          HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)        ||
         (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_FLARE_BOOST) && HasMoveWithSplit(battler, SPLIT_SPECIAL)) ||
-        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_GUTS)        && HasMoveWithSplit(battler, SPLIT_PHYSICAL))))
+        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_GUTS)        && HasMoveWithSplit(battler, SPLIT_PHYSICAL)) ||
+        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_DETERMINATION)        && HasMoveWithSplit(battler, SPLIT_SPECIAL))))
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool32 ShouldFrostbiteSelf(u8 battler)
+{
+    if (CanGetFrostbite(battler) && 
+        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_QUICK_FEET)   ||
+         BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_MAGIC_GUARD)  ||
+         HasMoveEffect(battler, EFFECT_FACADE)              ||
+         HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)        ||
+        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_GUTS)        && HasMoveWithSplit(battler, SPLIT_PHYSICAL)) ||
+        (BATTLER_HAS_ABILITY_FAST_AI(battler, ABILITY_DETERMINATION)        && HasMoveWithSplit(battler, SPLIT_SPECIAL))))
         return TRUE;
     else
         return FALSE;

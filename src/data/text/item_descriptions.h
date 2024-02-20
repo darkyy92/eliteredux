@@ -2386,6 +2386,11 @@ static const u8 sFlameOrbDesc[] = _(
     "inflicts a burn on\n"
     "holder in battle.");
 
+static const u8 sFrostOrbDesc[] = _(
+    "A bizarre orb that\n"
+    "inflicts frostbite on\n"
+    "holder in battle.");
+
 static const u8 sQuickPowderDesc[] = _(
     "An item to be held\n"
     "by Ditto. This odd\n"
@@ -2843,6 +2848,11 @@ static const u8 sFairyGemDesc[] = _(
 
 static const u8 sAssaultVestDesc[] = _(
     "Raises Sp. Def but\n"
+    "prevents the use\n"
+    "of status moves.");
+
+static const u8 sPhysicalVestDesc[] = _(
+    "Raises Def but\n"
     "prevents the use\n"
     "of status moves.");
 

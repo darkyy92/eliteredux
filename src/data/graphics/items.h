@@ -858,6 +858,9 @@ const u32 gItemIconPalette_ToxicOrb[] = INCBIN_U32("graphics/items/icon_palettes
 const u32 gItemIcon_FlameOrb[] = INCBIN_U32("graphics/items/icons/flame_orb.4bpp.lz");
 const u32 gItemIconPalette_FlameOrb[] = INCBIN_U32("graphics/items/icon_palettes/flame_orb.gbapal.lz");
 
+const u32 gItemIcon_FrostOrb[] = INCBIN_U32("graphics/items/icons/frost_orb.4bpp.lz");
+const u32 gItemIconPalette_FrostOrb[] = INCBIN_U32("graphics/items/icon_palettes/frost_orb.gbapal.lz");
+
 const u32 gItemIcon_QuickPowder[] = INCBIN_U32("graphics/items/icons/quick_powder.4bpp.lz");
 const u32 gItemIconPalette_QuickPowder[] = INCBIN_U32("graphics/items/icon_palettes/quick_powder.gbapal.lz");
 
@@ -1293,9 +1296,11 @@ const u32 gItemIcon_OvalCharm[] = INCBIN_U32("graphics/items/icons/oval_charm.4b
 const u32 gItemIconPalette_OvalCharm[] = INCBIN_U32("graphics/items/icon_palettes/oval_charm.gbapal.lz");
 
 // Gen 6 Items
-
 const u32 gItemIcon_AssaultVest[] = INCBIN_U32("graphics/items/icons/assault_vest.4bpp.lz");
 const u32 gItemIconPalette_AssaultVest[] = INCBIN_U32("graphics/items/icon_palettes/assault_vest.gbapal.lz");
+
+const u32 gItemIcon_PhysicalVest[] = INCBIN_U32("graphics/items/icons/physical_vest.4bpp.lz");
+const u32 gItemIconPalette_PhysicalVest[] = INCBIN_U32("graphics/items/icon_palettes/physical_vest.gbapal.lz");
 
 const u32 gItemIcon_PixiePlate[] = INCBIN_U32("graphics/items/icons/pixie_plate.4bpp.lz");
 const u32 gItemIconPalette_PixiePlate[] = INCBIN_U32("graphics/items/icon_palettes/pixie_plate.gbapal.lz");

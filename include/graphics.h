@@ -9082,6 +9082,8 @@ extern const u32 gItemIcon_ToxicOrb[];
 extern const u32 gItemIconPalette_ToxicOrb[];
 extern const u32 gItemIcon_FlameOrb[];
 extern const u32 gItemIconPalette_FlameOrb[];
+extern const u32 gItemIcon_FrostOrb[];
+extern const u32 gItemIconPalette_FrostOrb[];
 extern const u32 gItemIcon_QuickPowder[];
 extern const u32 gItemIconPalette_QuickPowder[];
 extern const u32 gItemIcon_FocusSash[];
@@ -9374,6 +9376,8 @@ extern const u32 gItemIconPalette_OvalCharm[];
 // Gen 6 Items
 extern const u32 gItemIcon_AssaultVest[];
 extern const u32 gItemIconPalette_AssaultVest[];
+extern const u32 gItemIcon_PhysicalVest[];
+extern const u32 gItemIconPalette_PhysicalVest[];
 extern const u32 gItemIcon_PixiePlate[];
 extern const u32 gItemIconPalette_PixiePlate[];
 extern const u32 gItemIcon_SafetyGoggles[];

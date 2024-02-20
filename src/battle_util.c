@@ -1729,7 +1729,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
             limitations++;
         }
     }
-    else if (holdEffect == HOLD_EFFECT_ASSAULT_VEST && IS_MOVE_STATUS(move) && move != MOVE_ME_FIRST)
+    else if ((holdEffect == HOLD_EFFECT_ASSAULT_VEST || holdEffect == HOLD_EFFECT_PHYSICAL_VEST) && IS_MOVE_STATUS(move) && move != MOVE_ME_FIRST)
     {
         gCurrentMove = move;
         gLastUsedItem = gBattleMons[gActiveBattler].item;
@@ -1819,7 +1819,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
             unusableMoves |= gBitTable[i];
         else if (HOLD_EFFECT_CHOICE(holdEffect) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
-        else if (holdEffect == HOLD_EFFECT_ASSAULT_VEST && IS_MOVE_STATUS(gBattleMons[battlerId].moves[i]) && gBattleMons[battlerId].moves[i] != MOVE_ME_FIRST)
+        else if ((holdEffect == HOLD_EFFECT_ASSAULT_VEST || holdEffect == HOLD_EFFECT_PHYSICAL_VEST) && IS_MOVE_STATUS(gBattleMons[battlerId].moves[i]) && gBattleMons[battlerId].moves[i] != MOVE_ME_FIRST)
             unusableMoves |= gBitTable[i];
         else if (IsGravityPreventingMove(gBattleMons[battlerId].moves[i]))
             unusableMoves |= gBitTable[i];
@@ -12276,11 +12276,7 @@ case ITEMEFFECT_KINGSROCK:
         switch (battlerHoldEffect)
         {
         case HOLD_EFFECT_TOXIC_ORB:
-            if (!gBattleMons[battlerId].status1
-                && CanPoisonType(battlerId, battlerId)
-                && GetBattlerAbility(battlerId) != ABILITY_IMMUNITY
-                && GetBattlerAbility(battlerId) != ABILITY_COMATOSE
-                && IsBattlerAlive(battlerId))
+            if (CanPoisonType(battlerId, battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
                 gBattleMons[battlerId].status1 = STATUS1_TOXIC_POISON;
@@ -12289,21 +12285,20 @@ case ITEMEFFECT_KINGSROCK:
             }
             break;
         case HOLD_EFFECT_FLAME_ORB:
-            if (!gBattleMons[battlerId].status1
-                && !IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
-                && GetBattlerAbility(battlerId) != ABILITY_WATER_VEIL
-				&& !BattlerHasInnate(battlerId, ABILITY_WATER_VEIL)
-                && GetBattlerAbility(battlerId) != ABILITY_PURIFYING_WATERS
-				&& !BattlerHasInnate(battlerId, ABILITY_PURIFYING_WATERS)
-                && GetBattlerAbility(battlerId) != ABILITY_WATER_BUBBLE
-				&& !BattlerHasInnate(battlerId, ABILITY_WATER_BUBBLE)
-                && GetBattlerAbility(battlerId) != ABILITY_COMATOSE
-				&& !BattlerHasInnate(battlerId, ABILITY_COMATOSE)
-                && IsBattlerAlive(battlerId))
+            if (CanBeBurned(battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
                 gBattleMons[battlerId].status1 = STATUS1_BURN;
                 BattleScriptExecute(BattleScript_FlameOrb);
+                RecordItemEffectBattle(battlerId, battlerHoldEffect);
+            }
+            break;
+        case HOLD_EFFECT_FROST_ORB:
+            if (CanGetFrostbite(battlerId))
+            {
+                effect = ITEM_STATUS_CHANGE;
+                gBattleMons[battlerId].status1 = STATUS1_FROSTBITE;
+                BattleScriptExecute(BattleScript_FrostOrb);
                 RecordItemEffectBattle(battlerId, battlerHoldEffect);
             }
             break;
@@ -14961,6 +14956,10 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         break;
     case HOLD_EFFECT_ASSAULT_VEST:
         if (defStatToUse == STAT_SPDEF)
+            MulModifier(&modifier, UQ_4_12(1.5));
+        break;
+    case HOLD_EFFECT_PHYSICAL_VEST:
+        if (defStatToUse == STAT_DEF)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
 #if B_SOUL_DEW_BOOST <= GEN_6

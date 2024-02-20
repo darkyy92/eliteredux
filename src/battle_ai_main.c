@@ -4091,6 +4091,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (ShouldBurnSelf(battlerAtk))
                         score += 2;
                     break;
+                case HOLD_EFFECT_FROST_ORB:
+                    if (ShouldFrostbiteSelf(battlerAtk))
+                        score += 2;
+                    break;
                 case HOLD_EFFECT_BLACK_SLUDGE:
                     if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
                         score += 2;
@@ -4519,6 +4523,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (!ShouldBurnSelf(battlerAtk))
                 score += 2;
             break;
+        case HOLD_EFFECT_FROST_ORB:
+            if (!ShouldFrostbiteSelf(battlerAtk))
+                score += 2;
+            break;
         case HOLD_EFFECT_BLACK_SLUDGE:
             if (!IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON) && !BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_MAGIC_GUARD))
                 score += 3;
@@ -4567,6 +4575,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     break;
                 case HOLD_EFFECT_FLAME_ORB:
                     if (ShouldBurnSelf(battlerAtk))
+                        score += 2;
+                    break;
+                case HOLD_EFFECT_FROST_ORB:
+                    if (ShouldFrostbiteSelf(battlerAtk))
                         score += 2;
                     break;
                 case HOLD_EFFECT_BLACK_SLUDGE:

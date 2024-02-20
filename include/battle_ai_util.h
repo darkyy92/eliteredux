@@ -138,6 +138,7 @@ bool32 ShouldPoisonSelf(u8 battler);
 bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
 bool32 AI_CanParalyze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 partnerMove);
 bool32 ShouldBurnSelf(u8 battler);
+bool32 ShouldFrostbiteSelf(u8 battler);
 bool32 AI_CanBurn(u8 battlerAtk, u8 battlerDef, u16 partnerMove);
 bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 atkGender, u8 defGender);
 bool32 AnyPartyMemberStatused(u8 battlerId, bool32 checkSoundproof);

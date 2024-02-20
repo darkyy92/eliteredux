@@ -5756,6 +5756,18 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    [ITEM_FROST_ORB] =
+    {
+        .name = _("Frost Orb"),
+        .itemId = ITEM_FROST_ORB,
+        .price = 4000,
+        .holdEffect = HOLD_EFFECT_FROST_ORB,
+        .description = sFrostOrbDesc,
+        .pocket = POCKET_BATTLE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_QUICK_POWDER] =
     {
         .name = _("Quick Powder"),
@@ -6963,6 +6975,19 @@ const struct Item gItems[] =
         .holdEffect = HOLD_EFFECT_ASSAULT_VEST,
         .holdEffectParam = 50,
         .description = sAssaultVestDesc,
+        .pocket = POCKET_BATTLE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_PHYSICAL_VEST] =
+    {
+        .name = _("Physical Vest"),
+        .itemId = ITEM_PHYSICAL_VEST,
+        .price = 1000,
+        .holdEffect = HOLD_EFFECT_PHYSICAL_VEST,
+        .holdEffectParam = 50,
+        .description = sPhysicalVestDesc,
         .pocket = POCKET_BATTLE,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

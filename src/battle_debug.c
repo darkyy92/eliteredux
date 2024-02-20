@@ -1965,6 +1965,7 @@ static const u8 sText_HoldEffectZoomLens[] = _("Zoom Lens");
 static const u8 sText_HoldEffectLaggingTail[] = _("Lagging Tail");
 static const u8 sText_HoldEffectFocusSash[] = _("Focus Sash");
 static const u8 sText_HoldEffectFlameOrb[] = _("Flame Orb");
+static const u8 sText_HoldEffectFrostOrb[] = _("Frost Orb");
 static const u8 sText_HoldEffectToxicOrb[] = _("Toxic Orb");
 static const u8 sText_HoldEffectStickyBarb[] = _("Sticky Barb");
 static const u8 sText_HoldEffectIronBall[] = _("Iron Ball");
@@ -1988,6 +1989,7 @@ static const u8 sText_HoldEffectMarangaBerry[] = _("Maranga Berry");
 static const u8 sText_HoldEffectFloatStone[] = _("Float Stone");
 static const u8 sText_HoldEffectEviolite[] = _("Eviolite");
 static const u8 sText_HoldEffectAssaultVest[] = _("Assault Vest");
+static const u8 sText_HoldEffectPhysicalVest[] = _("Physical Vest");
 static const u8 sText_HoldEffectDrive[] = _("Drive");
 static const u8 sText_HoldEffectGems[] = _("Gems");
 static const u8 sText_HoldEffectRockyHelmet[] = _("Rocky Helmet");
@@ -2016,6 +2018,13 @@ static const u8 sText_HoldEffectRoomService[] = _("Room Service");
 static const u8 sText_HoldEffectBlunderPolicy[] = _("Blunder Policy");
 static const u8 sText_HoldEffectHeavyDutyBoots[] = _("Heavy Duty Boots");
 static const u8 sText_HoldEffectThroatSpray[] = _("Throat Spray");
+static const u8 sText_HoldEffectAbilityShield[] = _("Ability Shield");
+static const u8 sText_HoldEffectMirrorHerb[] = _("Mirror Herb");
+static const u8 sText_HoldEffectClearAmulet[] = _("Clear Amulet");
+static const u8 sText_HoldEffectPunchingGlove[] = _("Punching Glove");
+static const u8 sText_HoldEffectCovertCloak[] = _("Covert Cloak");
+static const u8 sText_HoldEffectBoosterEnergy[] = _("Booster Energy");
+static const u8 sText_HoldEffectLoadedDice[] = _("Loaded Dice");
 static const u8 *const sHoldEffectNames[] = 
 {
     [HOLD_EFFECT_NONE] = sText_HoldEffectNone,
@@ -2156,6 +2165,15 @@ static const u8 *const sHoldEffectNames[] =
     [HOLD_EFFECT_BLUNDER_POLICY] = sText_HoldEffectBlunderPolicy,
     [HOLD_EFFECT_HEAVY_DUTY_BOOTS] = sText_HoldEffectHeavyDutyBoots,
     [HOLD_EFFECT_THROAT_SPRAY] = sText_HoldEffectThroatSpray,
+    [HOLD_EFFECT_FROST_ORB] = sText_HoldEffectFrostOrb,
+    [HOLD_EFFECT_PHYSICAL_VEST] = sText_HoldEffectPhysicalVest,
+    [HOLD_EFFECT_ABILITY_SHIELD] = sText_HoldEffectAbilityShield,
+    [HOLD_EFFECT_MIRROR_HERB] = sText_HoldEffectMirrorHerb,
+    [HOLD_EFFECT_CLEAR_AMULET] = sText_HoldEffectClearAmulet,
+    [HOLD_EFFECT_PUNCHING_GLOVE] = sText_HoldEffectPunchingGlove,
+    [HOLD_EFFECT_COVERT_CLOAK] = sText_HoldEffectCovertCloak,
+    [HOLD_EFFECT_BOOSTER_ENERGY] = sText_HoldEffectBoosterEnergy,
+    [HOLD_EFFECT_LOADED_DICE] = sText_HoldEffectLoadedDice,
 };
 static const u8 *GetHoldEffectName(u16 holdEffect)
 {
