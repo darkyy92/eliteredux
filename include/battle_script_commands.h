@@ -60,6 +60,7 @@ bool32 CanCamouflage(u8 battlerId);
 u16 GetNaturePowerMove(void);
 u16 GetSecretPowerMoveEffect(void);
 void StealTargetItem(u8 battlerStealer, u8 battlerItem);
+void RemoveItem(u8 battler);
 u8 GetCatchingBattler(void);
 u32 IsDesertCloakProtected(u32 battler);
 u8 getStatToLowerFromIntimidateClone(u16 ability, u8 num);

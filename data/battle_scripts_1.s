@@ -10607,15 +10607,15 @@ BattleScript_PressureRemoveStats::
 	end3
 
 BattleScript_ParadoxBoostActivates::
-	call BattleScript_AbilityPopUp
-	printfromtable gParadoxBoostSourceIds
-	waitmessage B_WAIT_TIME_LONG
-	printstring STRINGID_PARADOX_BOOST
-	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_ParadoxBoostActivatesRet
 	end3
 
 BattleScript_ParadoxBoostActivatesRet::
 	call BattleScript_AbilityPopUp
+	jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PARADOX_BOOST_ITEM, BattleScript_ParadoxBoostActivatesRet_NoItem
+	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT, NULL
+	waitanimation
+BattleScript_ParadoxBoostActivatesRet_NoItem:
 	printfromtable gParadoxBoostSourceIds
 	waitmessage B_WAIT_TIME_LONG
 	printstring STRINGID_PARADOX_BOOST

@@ -5760,16 +5760,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
             }
+            else if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BOOSTER_ENERGY)
+            {
+                struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = PARADOX_BOOSTER_ENERGY };
+                SetAbilityStateAs(battler, ABILITY_PROTOSYNTHESIS, (union AbilityStates) { .paradoxBoost = boost });
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_ITEM;
+                RemoveItem(battler);
+                BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+            }
         }
 
         if (CheckAndSetSwitchInAbility(battler, ABILITY_QUARK_DRIVE))
         {
             if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
             {
-                struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = ABILITY_QUARK_DRIVE };
+                struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = PARADOX_WEATHER_ACTIVE };
                 SetAbilityStateAs(battler, ABILITY_QUARK_DRIVE, (union AbilityStates) { .paradoxBoost = boost });
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
+                BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+            }
+            else if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BOOSTER_ENERGY)
+            {
+                struct ParadoxBoost boost = { .statId = GetHighestStatId(battler, TRUE), .source = PARADOX_BOOSTER_ENERGY };
+                SetAbilityStateAs(battler, ABILITY_QUARK_DRIVE, (union AbilityStates) { .paradoxBoost = boost });
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_ITEM;
+                RemoveItem(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
             }
         }

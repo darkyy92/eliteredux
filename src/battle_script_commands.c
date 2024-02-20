@@ -3076,6 +3076,20 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
 }
 
+void RemoveItem(u8 battler)
+{
+    gLastUsedItem = gBattleMons[battler].item;
+    gBattleMons[battler].item = 0;
+    RecordItemEffectBattle(battler, 0);
+    CheckSetUnburden(battler);
+
+    gActiveBattler = battler;
+    BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[battler].item); // set attacker item
+    MarkBattlerForControllerExec(battler);
+
+    gBattleStruct->choicedMove[battler] = 0;
+}
+
 #define INCREMENT_RESET_RETURN                  \
 {                                               \
     gBattlescriptCurrInstr++;                   \
