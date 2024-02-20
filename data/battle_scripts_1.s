@@ -10935,13 +10935,22 @@ BattleScript_GemActivates::
 	removeitem BS_ATTACKER
 	return
 
-BattleScript_PkmnAteItem::
+BattleScript_TargetAteItem::
 	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
 	setlastuseditem BS_TARGET
 	printstring STRINGID_TARGETATEITEM
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_TARGET
+	return
+
+BattleScript_AttackerAteItem::
+	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT, NULL
+	waitanimation
+	setlastuseditem BS_ATTACKER
+	printstring STRINGID_ATTACKERATEITEM
+	waitmessage B_WAIT_TIME_LONG
+	removeitem BS_ATTACKER
 	return
 
 BattleScript_PrintBerryReduceString::

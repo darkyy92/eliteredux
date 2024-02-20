@@ -2413,7 +2413,7 @@ END:
         && gBattleMons[gBattlerTarget].item)
     {
         BattleScriptPushCursor();
-        gBattlescriptCurrInstr = BattleScript_PkmnAteItem;
+        gBattlescriptCurrInstr = BattleScript_TargetAteItem;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
     }
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
@@ -10778,6 +10778,7 @@ static void Cmd_various(void)
                 }
                 if (change > 0)
                 {
+                    gBattlerAttacker = gActiveBattler;
                     if (gSpecialStatuses[gActiveBattler].mirrorHerbStat)
                     {
                         SetStatChanger(stat, change);
@@ -10794,7 +10795,7 @@ static void Cmd_various(void)
                     else
                     {
                         BattleScriptPushCursor();
-                        gBattlescriptCurrInstr = BattleScript_PkmnAteItem;
+                        gBattlescriptCurrInstr = BattleScript_AttackerAteItem;
                     }
                     gSpecialStatuses[gActiveBattler].mirrorHerbStat = stat;
                     return;
