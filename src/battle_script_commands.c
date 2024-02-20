@@ -10701,7 +10701,7 @@ static void Cmd_various(void)
                     }
                     SetStatChanger(state.stat, change);
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatUp;
+                    gBattlescriptCurrInstr = BattleScript_PerformStatUp;
                     break;
                 }
             }
@@ -10748,11 +10748,11 @@ static void Cmd_various(void)
                             BattleScriptPushCursor();
                             if (change > 0)
                             {
-                                gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatUp;
+                                gBattlescriptCurrInstr = BattleScript_PerformStatUp;
                             }
                             else
                             {
-                                gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatDown;
+                                gBattlescriptCurrInstr = BattleScript_PerformStatDown;
                             }
                             break;
                         }
@@ -10785,11 +10785,11 @@ static void Cmd_various(void)
                         BattleScriptPushCursor();
                         if (change > 0)
                         {
-                            gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatUp;
+                            gBattlescriptCurrInstr = BattleScript_PerformStatUp;
                         }
                         else
                         {
-                            gBattlescriptCurrInstr = BattleScript_PerformCopyStatEffectsChangeStatDown;
+                            gBattlescriptCurrInstr = BattleScript_PerformStatDown;
                         }
                     }
                     else

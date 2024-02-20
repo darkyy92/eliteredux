@@ -1181,6 +1181,25 @@ BattleScript_EffectRemoveTerrain:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
+BattleScript_Lawnmower::
+	removeterrain
+	printfromtable gTerrainEndingStringIds
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PSYCHICTERRAINENDS, BattleScript_Lawnmower_SpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_MISTYTERRAINENDS, BattleScript_Lawnmower_SpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PSYCHICTERRAINENDS + 1, BattleScript_End3
+	setstatchanger STAT_DEF, 1, FALSE
+	goto BattleScript_Lawnmower_Continue
+BattleScript_Lawnmower_Continue:
+	printfromtable gTerrainEndingStringIds
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
+	call BattleScript_PerformStatUp
+BattleScript_End3:
+	end3
+BattleScript_Lawnmower_SpDef:
+	setstatchanger STAT_SPDEF, 1, FALSE
+	goto BattleScript_Lawnmower_Continue
+
 BattleScript_EffectClearWeatherAndTerrainHit::
 	attackcanceler
 	attackstring
@@ -11695,24 +11714,24 @@ BattleScript_PerformCopyStatEffects::
 	copybyte gBattlerAttacker, sSAVED_BATTLER 
 	return
 
-BattleScript_PerformCopyStatEffectsChangeStatDown::
-	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatDownNoResult
+BattleScript_PerformStatDown::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformStatDownNoResult
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_SHORT
-BattleScript_PerformCopyStatEffectsChangeStatDownNoResult:
+BattleScript_PerformStatDownNoResult:
 	return
 
-BattleScript_PerformCopyStatEffectsChangeStatUp::
-	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformCopyStatEffectsChangeStatUpNoResult
+BattleScript_PerformStatUp::
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_PerformStatUpNoResult
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_SHORT
-BattleScript_PerformCopyStatEffectsChangeStatUpNoResult:
+BattleScript_PerformStatUpNoResult:
 	return
 
 BattleScript_AbilityPopUpAndWait::

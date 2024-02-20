@@ -621,8 +621,9 @@
 #define ABILITY_DEAD_POWER 599 // 1.5x Attack boost. 20% chance to curse on contact moves.
 #define ABILITY_BRAWLING_WYVERN 600 // Dragon type moves become punching moves.
 #define ABILITY_MYTHICAL_ARROWS 601 // Arrow moves do special damage and deal 30% more damage.
+#define ABILITY_LAWNMOWER 602 // Removes terrain on switch-in. Stat up if terrain removed.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MYTHICAL_ARROWS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LAWNMOWER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

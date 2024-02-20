@@ -5848,6 +5848,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_LAWNMOWER))
+        {
+            if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_Lawnmower);
+                effect++;
+            }
+        }
+
         //Totem Boost
         if(FlagGet(FLAG_TOTEM_BATTLE) 
             && GetBattlerSide(battler) != B_SIDE_PLAYER 
