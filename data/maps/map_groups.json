@@ -117,7 +117,9 @@
     "PewterCity_House1",
     "PewterCity_PokemonCenter_1F",
     "Pewtercity_PokemonCenter_2F",
-    "PewterCity_Mart"
+    "PewterCity_Mart",
+    "Route_3",
+    "Route_4"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

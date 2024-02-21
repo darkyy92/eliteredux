@@ -1,0 +1,34 @@
+{
+  "id": "MAP_ROUTE_4",
+  "name": "Route_4",
+  "layout": "LAYOUT_ROUTE_4",
+  "music": "MUS_RG_ROUTE1",
+  "region_map_section": "MAPSEC_ROUTE_4",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "down",
+      "offset": -60,
+      "map": "MAP_ROUTE_3"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

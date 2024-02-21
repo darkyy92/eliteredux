@@ -619,3 +619,17 @@ gMetatiles_RG_PokemonCenter_1F::
 	.align 1
 gMetatileAttributes_RG_PokemonCenter_1F::
 	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/metatile_attributes.bin"
+	.align 1
+gMetatiles_mart_frgl::
+	.incbin "data/tilesets/secondary/mart_frgl/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_mart_frgl::
+	.incbin "data/tilesets/secondary/mart_frgl/metatile_attributes.bin"
+	.align 1
+gMetatiles_CeruleanCity::
+	.incbin "data/tilesets/secondary/ceruleancity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_CeruleanCity::
+	.incbin "data/tilesets/secondary/ceruleancity/metatile_attributes.bin"

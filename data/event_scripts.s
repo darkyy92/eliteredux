@@ -1140,3 +1140,7 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Pewtercity_PokemonCenter_2F/scripts.inc"
 
 	.include "data/maps/PewterCity_Mart/scripts.inc"
+
+	.include "data/maps/Route_3/scripts.inc"
+
+	.include "data/maps/Route_4/scripts.inc"

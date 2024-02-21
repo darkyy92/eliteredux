@@ -918,3 +918,25 @@ gTileset_RG_PokemonCenter_1F::
 	.4byte gMetatiles_RG_PokemonCenter_1F
 	.4byte gMetatileAttributes_RG_PokemonCenter_1F
 	.4byte NULL
+
+	.align 2
+gTileset_mart_frgl::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_mart_frgl
+	.4byte gTilesetPalettes_mart_frgl
+	.4byte gMetatiles_mart_frgl
+	.4byte gMetatileAttributes_mart_frgl
+	.4byte NULL
+
+	.align 2
+gTileset_CeruleanCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeruleanCity
+	.4byte gTilesetPalettes_CeruleanCity
+	.4byte gMetatiles_CeruleanCity
+	.4byte gMetatileAttributes_CeruleanCity
+	.4byte NULL

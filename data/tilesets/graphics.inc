@@ -1889,3 +1889,43 @@ gTilesetPalettes_RG_PokemonCenter_1F::
 	.align 2
 gTilesetTiles_RG_PokemonCenter_1F::
 	.incbin "data/tilesets/secondary/rg_pokemoncenter_1f/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_mart_frgl::
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mart_frgl/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_mart_frgl::
+	.incbin "data/tilesets/secondary/mart_frgl/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_CeruleanCity::
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/ceruleancity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_CeruleanCity::
+	.incbin "data/tilesets/secondary/ceruleancity/tiles.4bpp.lz"

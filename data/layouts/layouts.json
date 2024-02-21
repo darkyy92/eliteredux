@@ -4807,9 +4807,29 @@
       "width": 11,
       "height": 9,
       "primary_tileset": "gTileset_Building_Frlg",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_mart_frgl",
       "border_filepath": "data/layouts/PewterCity_Mart/border.bin",
       "blockdata_filepath": "data/layouts/PewterCity_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_3",
+      "name": "Route_3_Layout",
+      "width": 84,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_PewterCity",
+      "border_filepath": "data/layouts/Route_3/border.bin",
+      "blockdata_filepath": "data/layouts/Route_3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_4",
+      "name": "Route_4_Layout",
+      "width": 108,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/Route_4/border.bin",
+      "blockdata_filepath": "data/layouts/Route_4/map.bin"
     }
   ]
 }
