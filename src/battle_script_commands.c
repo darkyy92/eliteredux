@@ -3686,7 +3686,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_ACC_PLUS_1:
             case MOVE_EFFECT_EVS_PLUS_1:
                 if (NoAliveMonsForEitherParty()
-                  || ChangeStatBuffsImplicit(SET_STAT_BUFF_VALUE(1),
+                  || !ChangeStatBuffsImplicit(SET_STAT_BUFF_VALUE(1),
                                     gBattleScripting.moveEffect - MOVE_EFFECT_ATK_PLUS_1 + 1,
                                     affectsUser | STAT_BUFF_UPDATE_MOVE_EFFECT, 0))
                 {
@@ -3711,7 +3711,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 if (mirrorArmorReflected && !affectsUser)
                     flags |= STAT_BUFF_ALLOW_PTR;
 
-                if (ChangeStatBuffsImplicit(StatBuffValue(-1),
+                if (!ChangeStatBuffsImplicit(StatBuffValue(-1),
                   gBattleScripting.moveEffect - MOVE_EFFECT_ATK_MINUS_1 + 1,
                   flags | STAT_BUFF_UPDATE_MOVE_EFFECT, gBattlescriptCurrInstr + 1))
                 {
@@ -3734,7 +3734,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_ACC_PLUS_2:
             case MOVE_EFFECT_EVS_PLUS_2:
                 if (NoAliveMonsForEitherParty()
-                  || ChangeStatBuffsImplicit(StatBuffValue(2),
+                  || !ChangeStatBuffsImplicit(StatBuffValue(2),
                                     gBattleScripting.moveEffect - MOVE_EFFECT_ATK_PLUS_2 + 1,
                                     affectsUser | STAT_BUFF_UPDATE_MOVE_EFFECT, 0))
                 {
@@ -3758,7 +3758,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 flags = affectsUser;
                 if (mirrorArmorReflected && !affectsUser)
                     flags |= STAT_BUFF_ALLOW_PTR;
-                if (ChangeStatBuffsImplicit(StatBuffValue(-2),
+                if (!ChangeStatBuffsImplicit(StatBuffValue(-2),
                                     gBattleScripting.moveEffect - MOVE_EFFECT_ATK_MINUS_2 + 1,
                                     flags | STAT_BUFF_UPDATE_MOVE_EFFECT, gBattlescriptCurrInstr + 1))
                 {
