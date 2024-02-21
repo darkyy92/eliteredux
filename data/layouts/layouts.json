@@ -4800,6 +4800,16 @@
       "secondary_tileset": "gTileset_RG_PokemonCenter_1F",
       "border_filepath": "data/layouts/Pewtercity_PokemonCenter_2F/border.bin",
       "blockdata_filepath": "data/layouts/Pewtercity_PokemonCenter_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTER_CITY_MART",
+      "name": "PewterCity_Mart_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/PewterCity_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/PewterCity_Mart/map.bin"
     }
   ]
 }

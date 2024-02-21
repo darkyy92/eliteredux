@@ -85,6 +85,7 @@
 #define MAP_PEWTER_CITY_HOUSE1                    (16 | (1 << 8))
 #define MAP_PEWTER_CITY_POKEMON_CENTER_1F         (17 | (1 << 8))
 #define MAP_PEWTERCITY_POKEMON_CENTER_2F          (18 | (1 << 8))
+#define MAP_PEWTER_CITY_MART                      (19 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))
