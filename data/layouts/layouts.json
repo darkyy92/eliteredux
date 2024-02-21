@@ -1287,7 +1287,7 @@
       "width": 36,
       "height": 24,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_RusturfTunnel",
+      "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/RusturfTunnel/border.bin",
       "blockdata_filepath": "data/layouts/RusturfTunnel/map.bin"
     },
@@ -4650,6 +4650,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/PetalburgWoods_BreloomRoom/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgWoods_BreloomRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTURF_TUNNEL_2F",
+      "name": "RusturfTunnel_2F_Layout",
+      "width": 36,
+      "height": 24,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RusturfTunnel_2F/border.bin",
+      "blockdata_filepath": "data/layouts/RusturfTunnel_2F/map.bin"
     }
   ]
 }

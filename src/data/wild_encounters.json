@@ -15769,6 +15769,100 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_RUSTURF_TUNNEL_2F",
+          "base_label": "gRusturfTunnel_2F0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_WHISMUR"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_RHYHORN"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_TEDDIURSA"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_CHINGLING"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_DRILBUR"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_LARVITAR"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_ROGGENROLA"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_ROCKRUFF"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_NOSEPASS"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_ROCKRUFF"
+              },
+              {
+                "min_level": 8,
+                "max_level": 10,
+                "species": "SPECIES_NOSEPASS"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAGIKARP"
+              }
+            ]
+          }
         }
       ]
     },
