@@ -3105,6 +3105,59 @@ void RemoveItem(u8 battler)
     return;                                     \
 }
 
+bool8 IsPreventableSecondaryEffect(u8 moveEffect)
+{
+    switch (moveEffect)
+    {
+        case MOVE_EFFECT_SLEEP:
+        case MOVE_EFFECT_POISON:
+        case MOVE_EFFECT_BURN:
+        case MOVE_EFFECT_FREEZE:
+        case MOVE_EFFECT_PARALYSIS:
+        case MOVE_EFFECT_TOXIC:
+        case MOVE_EFFECT_FROSTBITE:
+        case MOVE_EFFECT_BLEED:
+        case MOVE_EFFECT_CONFUSION:
+        case MOVE_EFFECT_FLINCH:
+        case MOVE_EFFECT_ATK_PLUS_1:
+        case MOVE_EFFECT_DEF_PLUS_1:
+        case MOVE_EFFECT_SPD_PLUS_1:
+        case MOVE_EFFECT_SP_ATK_PLUS_1:
+        case MOVE_EFFECT_SP_DEF_PLUS_1:
+        case MOVE_EFFECT_ACC_PLUS_1:
+        case MOVE_EFFECT_EVS_PLUS_1:
+        case MOVE_EFFECT_ATK_MINUS_1:
+        case MOVE_EFFECT_DEF_MINUS_1:
+        case MOVE_EFFECT_SPD_MINUS_1:
+        case MOVE_EFFECT_SP_ATK_MINUS_1:
+        case MOVE_EFFECT_SP_DEF_MINUS_1:
+        case MOVE_EFFECT_ACC_MINUS_1:
+        case MOVE_EFFECT_EVS_MINUS_1:
+        case MOVE_EFFECT_ATK_PLUS_2:
+        case MOVE_EFFECT_DEF_PLUS_2:
+        case MOVE_EFFECT_SPD_PLUS_2:
+        case MOVE_EFFECT_SP_ATK_PLUS_2:
+        case MOVE_EFFECT_SP_DEF_PLUS_2:
+        case MOVE_EFFECT_ACC_PLUS_2:
+        case MOVE_EFFECT_EVS_PLUS_2:
+        case MOVE_EFFECT_ATK_MINUS_2:
+        case MOVE_EFFECT_DEF_MINUS_2:
+        case MOVE_EFFECT_SPD_MINUS_2:
+        case MOVE_EFFECT_SP_ATK_MINUS_2:
+        case MOVE_EFFECT_SP_DEF_MINUS_2:
+        case MOVE_EFFECT_ACC_MINUS_2:
+        case MOVE_EFFECT_EVS_MINUS_2:
+        case MOVE_EFFECT_DEF_SPDEF_DOWN:
+        case MOVE_EFFECT_SP_ATK_TWO_DOWN:
+        case MOVE_EFFECT_ATTRACT:
+        case MOVE_EFFECT_CURSE:
+        case MOVE_EFFECT_DISABLE:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
 void SetMoveEffect(bool32 primary, u32 certain)
 {
     s32 i, byTwo, affectsUser = 0;
@@ -3141,12 +3194,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
      // Just in case this flag is still set
     gBattleScripting.moveEffect &= ~(MOVE_EFFECT_CERTAIN);
 
-    if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || BattlerHasInnate(gEffectBattler, ABILITY_SHIELD_DUST)) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-        && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_FLINCH)
-        INCREMENT_RESET_RETURN
-
-    if (GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
-        && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_FLINCH)
+    if ((BATTLER_HAS_ABILITY(gEffectBattler, ABILITY_SHIELD_DUST) || GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK)
+        && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+        && !primary
+        && !affectsUser
+        && IsPreventableSecondaryEffect(gBattleScripting.moveEffect))
         INCREMENT_RESET_RETURN
 
     if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
@@ -11891,13 +11943,12 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
             }
             return 0;
         }
-        else if ((GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST ||
-                  BattlerHasInnate(gActiveBattler, ABILITY_SHIELD_DUST)) && flags == 0)
+        else if (!certain && GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET)
         {
-            return 0;
-        }
-        else if (!certain && GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_CLEAR_AMULET && flags == 0)
-        {
+            if (flags == STAT_BUFF_ALLOW_PTR)
+            {
+                gBattlescriptCurrInstr = BattleScript_ButItFailed;
+            }
             return 0;
         }
         else // try to decrease
