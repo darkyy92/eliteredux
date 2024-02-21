@@ -1929,3 +1929,23 @@ gTilesetPalettes_CeruleanCity::
 	.align 2
 gTilesetTiles_CeruleanCity::
 	.incbin "data/tilesets/secondary/ceruleancity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RG_Cave::
+	.incbin "data/tilesets/secondary/rg_cave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/rg_cave/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RG_Cave::
+	.incbin "data/tilesets/secondary/rg_cave/tiles.4bpp.lz"

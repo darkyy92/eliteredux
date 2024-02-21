@@ -633,3 +633,10 @@ gMetatiles_CeruleanCity::
 	.align 1
 gMetatileAttributes_CeruleanCity::
 	.incbin "data/tilesets/secondary/ceruleancity/metatile_attributes.bin"
+	.align 1
+gMetatiles_RG_Cave::
+	.incbin "data/tilesets/secondary/rg_cave/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RG_Cave::
+	.incbin "data/tilesets/secondary/rg_cave/metatile_attributes.bin"

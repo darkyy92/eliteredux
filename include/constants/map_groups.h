@@ -88,6 +88,9 @@
 #define MAP_PEWTER_CITY_MART                      (19 | (1 << 8))
 #define MAP_ROUTE_3                               (20 | (1 << 8))
 #define MAP_ROUTE_4                               (21 | (1 << 8))
+#define MAP_MT_MOON                               (22 | (1 << 8))
+#define MAP_MT_MOON_B1F                           (23 | (1 << 8))
+#define MAP_MT_MOON_B2F                           (24 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

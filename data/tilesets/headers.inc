@@ -940,3 +940,14 @@ gTileset_CeruleanCity::
 	.4byte gMetatiles_CeruleanCity
 	.4byte gMetatileAttributes_CeruleanCity
 	.4byte NULL
+
+	.align 2
+gTileset_RG_Cave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RG_Cave
+	.4byte gTilesetPalettes_RG_Cave
+	.4byte gMetatiles_RG_Cave
+	.4byte gMetatileAttributes_RG_Cave
+	.4byte NULL

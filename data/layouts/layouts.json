@@ -4830,6 +4830,36 @@
       "secondary_tileset": "gTileset_CeruleanCity",
       "border_filepath": "data/layouts/Route_4/border.bin",
       "blockdata_filepath": "data/layouts/Route_4/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_MOON",
+      "name": "Mt_Moon_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_RG_Cave",
+      "border_filepath": "data/layouts/Mt_Moon/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Moon/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_MOON_B1F",
+      "name": "Mt_Moon_B1F_Layout",
+      "width": 49,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_RG_Cave",
+      "border_filepath": "data/layouts/Mt_Moon_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Moon_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_MOON_B2F",
+      "name": "Mt_Moon_B2F_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_RG_Cave",
+      "border_filepath": "data/layouts/Mt_Moon_B2F/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Moon_B2F/map.bin"
     }
   ]
 }
