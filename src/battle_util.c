@@ -4395,7 +4395,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
             if(!gBattlerState[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1]){
                 gBattlerState[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
-                gBattlerAttacker = battlerId;
+                gBattlerAbility = gBattlerAttacker = battlerId;
                 return TRUE;
             }
             return FALSE;
@@ -4403,7 +4403,7 @@ bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
             if(!gBattlerState[battlerId].switchInAbilityDone[0]){
                 gBattlerState[battlerId].switchInAbilityDone[0] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ability;
-                gBattlerAttacker = battlerId;
+                gBattlerAbility = gBattlerAttacker = battlerId;
                 return TRUE;
             }
             return FALSE;
@@ -5759,6 +5759,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_WEATHER;
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+                effect++;
             }
             else if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BOOSTER_ENERGY)
             {
@@ -5768,6 +5769,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_ITEM;
                 RemoveItem(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+                effect++;
             }
         }
 
@@ -5780,6 +5782,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, boost.statId);
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_TERRAIN;
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+                effect++;
             }
             else if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BOOSTER_ENERGY)
             {
@@ -5789,6 +5792,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PARADOX_BOOST_ITEM;
                 RemoveItem(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_ParadoxBoostActivates);
+                effect++;
             }
         }
 

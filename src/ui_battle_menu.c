@@ -147,6 +147,8 @@ enum
     STATUS_INFO_ELECTRIFIED,
     STATUS_INFO_PLASMA_FIST,
     STATUS_INFO_COILED,
+    STATUS_INFO_PROTOSYNTHESIS,
+    STATUS_INFO_QUARK_DRIVE,
     NUM_STATUS_INFO,
 };
 
@@ -779,6 +781,12 @@ void UI_Battle_Menu_Init(MainCallback callback)
                 break;
                 case STATUS_INFO_COILED:
                     if(gStatuses4[j] & STATUS4_COILED)
+                        isExtraInfoShown = TRUE;
+                case STATUS_INFO_PROTOSYNTHESIS:
+                    if (GetAbilityState(j, ABILITY_PROTOSYNTHESIS))
+                        isExtraInfoShown = TRUE;
+                case STATUS_INFO_QUARK_DRIVE:
+                    if (GetAbilityState(j, ABILITY_QUARK_DRIVE))
                         isExtraInfoShown = TRUE;
                 break;
             }
@@ -2042,6 +2050,11 @@ const u8 sText_Title_Status_Coiled_Up[]                     = _("Coiled Up");
 const u8 sText_Title_Status_Coiled_Up_Description[]         = _("The next biting move used by\n"
                                                                 "this Pokémon will have an\n"
                                                                 "increased priority.");
+const u8 sText_Title_Status_Quark_Drive[]                   = _("Quark Drive");
+const u8 sText_Title_Status_Protosynthesis[]                = _("Protosynthesis");
+const u8 sText_Title_Status_Paradox_Boost_Description[]     = _("This Pokémon's highest stat\n"
+                                                                "is boosted by 30%. If speed\n"
+                                                                "+50% instead.");
 
 #define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
 #define MAX_DESCRIPTION_LINES 3
@@ -2558,6 +2571,22 @@ static void PrintStatusTab(void){
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Coiled_Up_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            case STATUS_INFO_PROTOSYNTHESIS:
+                StringCopy(gStringVar1, sText_Title_Status_Protosynthesis);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Paradox_Boost_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            case STATUS_INFO_QUARK_DRIVE:
+                StringCopy(gStringVar1, sText_Title_Status_Quark_Drive);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Paradox_Boost_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 printedInfo = TRUE;
             break;

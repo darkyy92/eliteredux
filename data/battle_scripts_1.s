@@ -10638,7 +10638,7 @@ BattleScript_ParadoxBoostActivates::
 BattleScript_ParadoxBoostActivatesRet::
 	call BattleScript_AbilityPopUp
 	jumpifbyte CMP_NOT_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PARADOX_BOOST_ITEM, BattleScript_ParadoxBoostActivatesRet_NoItem
-	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT, NULL
+	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
 BattleScript_ParadoxBoostActivatesRet_NoItem:
 	printfromtable gParadoxBoostSourceIds
