@@ -782,9 +782,11 @@ void UI_Battle_Menu_Init(MainCallback callback)
                 case STATUS_INFO_COILED:
                     if(gStatuses4[j] & STATUS4_COILED)
                         isExtraInfoShown = TRUE;
+                break;
                 case STATUS_INFO_PROTOSYNTHESIS:
                     if (GetAbilityState(j, ABILITY_PROTOSYNTHESIS))
                         isExtraInfoShown = TRUE;
+                break;
                 case STATUS_INFO_QUARK_DRIVE:
                     if (GetAbilityState(j, ABILITY_QUARK_DRIVE))
                         isExtraInfoShown = TRUE;
@@ -2573,6 +2575,7 @@ static void PrintStatusTab(void){
                 StringCopy(gStringVar1, sText_Title_Status_Coiled_Up_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 printedInfo = TRUE;
+            break;
             case STATUS_INFO_PROTOSYNTHESIS:
                 StringCopy(gStringVar1, sText_Title_Status_Protosynthesis);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
@@ -2581,6 +2584,7 @@ static void PrintStatusTab(void){
                 StringCopy(gStringVar1, sText_Title_Status_Paradox_Boost_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 printedInfo = TRUE;
+            break;
             case STATUS_INFO_QUARK_DRIVE:
                 StringCopy(gStringVar1, sText_Title_Status_Quark_Drive);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
