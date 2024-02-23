@@ -4660,6 +4660,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/RusturfTunnel_2F/border.bin",
       "blockdata_filepath": "data/layouts/RusturfTunnel_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SECRET_DUNGEON",
+      "name": "Secret_Dungeon_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SecretDungeons",
+      "border_filepath": "data/layouts/Secret_Dungeon/border.bin",
+      "blockdata_filepath": "data/layouts/Secret_Dungeon/map.bin"
     }
   ]
 }

@@ -508,6 +508,13 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE119_HOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_SECRET_DUNGEON",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
@@ -696,8 +703,8 @@
     },
     {
       "type": "secret_base",
-      "x": 5,
-      "y": 2,
+      "x": 6,
+      "y": 3,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_SHRUB1_1"
     },

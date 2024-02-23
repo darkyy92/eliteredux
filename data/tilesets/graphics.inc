@@ -1729,3 +1729,23 @@ gTilesetPalettes_UnionRoom::
 	.align 2
 gTilesetTiles_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SecretDungeons::
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/secretdungeons/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SecretDungeons::
+	.incbin "data/tilesets/secondary/secretdungeons/tiles.4bpp.lz"
