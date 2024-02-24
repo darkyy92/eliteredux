@@ -207,8 +207,6 @@ void HandleAction_UseMove(void)
     gIsCriticalHit = FALSE;
     gBattleStruct->atkCancellerTracker = 0;
     gMoveResultFlags = 0;
-    gMultiHitCounter = 0;
-    gBattleScripting.savedDmg = 0;
     gBattleCommunication[6] = 0;
     gBattleScripting.savedMoveEffect = 0;
     gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
@@ -3513,7 +3511,6 @@ u8 AtkCanceller_UnableToUseMove(void)
         case CANCELLER_FLAGS: // flags clear
             gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_DESTINY_BOND);
             gStatuses3[gBattlerAttacker] &= ~(STATUS3_GRUDGE);
-            gBattleScripting.tripleKickPower = 0;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_ASLEEP: // check being asleep
@@ -3830,40 +3827,40 @@ u8 AtkCanceller_UnableToUseMove(void)
                 if (ability == ABILITY_SKILL_LINK || 
                     BattlerHasInnate(gBattlerAttacker, ABILITY_SKILL_LINK))
                 {
-                    gMultiHitCounter = 5;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 5;
                 }
                 else if (ability == ABILITY_KUNOICHI_BLADE || 
                     BattlerHasInnate(gBattlerAttacker, ABILITY_KUNOICHI_BLADE))
                 {
-                    gMultiHitCounter = 5;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 5;
                 } 
                 else if (ability == ABILITY_BATTLE_BOND
                 && gCurrentMove == MOVE_WATER_SHURIKEN
                 && gBattleMons[gBattlerAttacker].species == SPECIES_GRENINJA_ASH)
                 {
-                    gMultiHitCounter = 3;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 3;
                 }
                 else
                 {
                     if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
                     {
-                        gMultiHitCounter = 4 + (Random() % 2);
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 4 + (Random() % 2);
                     }
                     else
                     {
                         // 2 and 3 hits: 33.3%
                         // 4 and 5 hits: 16.7%
-                        gMultiHitCounter = Random() % 4;
-                        if (gMultiHitCounter > 2)
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = Random() % 4;
+                        if (gSpecialStatuses[gBattlerAttacker].multiHitCounter > 2)
                         {
-                            gMultiHitCounter = (Random() % 3);
-                            if (gMultiHitCounter < 2)
-                                gMultiHitCounter = 2;
+                            gSpecialStatuses[gBattlerAttacker].multiHitCounter = (Random() % 3);
+                            if (gSpecialStatuses[gBattlerAttacker].multiHitCounter < 2)
+                                gSpecialStatuses[gBattlerAttacker].multiHitCounter = 2;
                             else
-                                gMultiHitCounter = 3;
+                                gSpecialStatuses[gBattlerAttacker].multiHitCounter = 3;
                         }
                         else
-                            gMultiHitCounter += 3;
+                            gSpecialStatuses[gBattlerAttacker].multiHitCounter += 3;
                     }
                 }
 
@@ -3871,22 +3868,22 @@ u8 AtkCanceller_UnableToUseMove(void)
             }
             else if (IsTwoStrikesMove(gCurrentMove))
             {
-                gMultiHitCounter = 2;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter = 2;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_DOUBLE_HIT)
             {
-                gMultiHitCounter = gBattleMoves[gCurrentMove].argument ? gBattleMoves[gCurrentMove].argument : 2;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter = gBattleMoves[gCurrentMove].argument ? gBattleMoves[gCurrentMove].argument : 2;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK)
             {
-                gMultiHitCounter = 3;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter = 3;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TEN_HITS)
             {
-                gMultiHitCounter = 10;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter = 10;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             #if B_BEAT_UP_DMG >= GEN_5
@@ -3906,7 +3903,7 @@ u8 AtkCanceller_UnableToUseMove(void)
 					&& GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
 					&& !GetMonData(&party[i], MON_DATA_IS_EGG)
 					&& !GetMonData(&party[i], MON_DATA_STATUS))
-						gMultiHitCounter++;
+						gSpecialStatuses[gBattlerAttacker].multiHitCounter++;
 				}
 
 				gBattleCommunication[0] = 0; // For later
@@ -4142,6 +4139,43 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
     }
 
     return FALSE;
+}
+
+bool8 UseOutOfTurnAttack(u8 battler, u16 ability, u16 move, u8 movePower, u8 moveEffectPercentChance, u8 moveSecondaryEffectChance)
+{
+    if (gBattlerAttacker == battler) return FALSE;
+    if (gSpecialStatuses[battler].dancerUsedMove) return FALSE;
+    if (gProtectStructs[battler].extraMoveUsed) return FALSE;
+
+    gBattleScripting.replaceEndWithEnd3++;
+
+    gBattleScripting.abilityPopupOverwrite = ability;
+    // Set bit and save Dancer mon's original target
+    gSpecialStatuses[battler].dancerUsedMove = TRUE;
+    gSpecialStatuses[battler].dancerOriginalTarget = gBattleStruct->moveTarget[battler] | 0x4;
+    gBattleStruct->atkCancellerTracker = 0;
+    gBattlerAttacker = gBattlerAbility = battler;
+    gCalledMove = move;
+
+    // Set the target to the original target of the mon that first used a Dance move
+    gBattlerTarget = gBattleScripting.savedBattler & 0x3;
+
+    // Make sure that the target isn't an ally - if it is, target the original user
+    if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker))
+        gBattlerTarget = (gBattleScripting.savedBattler & 0xF0) >> 4;
+    gBattlerTarget = GetMoveTarget(move, gBattlerTarget);
+
+    gProtectStructs[battler].extraMoveUsed = TRUE;
+
+    //Move Effect
+    VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+    VarSet(VAR_TEMP_MOVEEFFECT,       moveSecondaryEffectChance);
+
+    gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
+    BattleScriptExecute(BattleScript_DancerActivates);
+    return TRUE;
+
 }
 
 static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
@@ -4508,7 +4542,7 @@ static bool8 UseEntryMove(u8 battler, u16 ability, u8 *effect, u16 extraMove, u8
     if(hasTarget && CanUseExtraMove(battler, gBattlerTarget)){
         gTempMove = gCurrentMove;
         gCurrentMove = extraMove;
-        gMultiHitCounter = 0;
+        gSpecialStatuses[battler].multiHitCounter = 0;
         gProtectStructs[battler].extraMoveUsed = TRUE;
 
         //Move Effect
@@ -6754,7 +6788,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
                         effect = 3;
-                        gMultiHitCounter = 0;
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                     }
                     else
                     {
@@ -6765,7 +6799,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
 
                         effect = 3;
-                        gMultiHitCounter = 0;
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                     }
                 }
                 break;
@@ -6858,7 +6892,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
                         effect = 3;
-                        gMultiHitCounter = 0;
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                     }
                     else
                     {
@@ -6869,7 +6903,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
 
                         effect = 3;
-                        gMultiHitCounter = 0;
+                        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                     }
                 }
 			}
@@ -6937,7 +6971,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
-                    gMultiHitCounter = 0;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                 }
             }
             else if (effect == 2) // Boost Stat ability;
@@ -6957,7 +6991,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
 
                     SET_STATCHANGER(statId, 1, FALSE);
-                    gMultiHitCounter = 0;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
                     ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                 }
@@ -7078,7 +7112,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Had more than half of hp before, now has less
              && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
-             && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
+             && (gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0 || gSpecialStatuses[gBattlerAttacker].multiHitCounter == 1)
              && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
              && (CanBattlerSwitch(battler) || !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
              && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
@@ -8300,7 +8334,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Had more than half of hp before, now has less
              && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
-             && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
+             && (gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0 || gSpecialStatuses[gBattlerAttacker].multiHitCounter == 1)
              && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
              && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -8319,7 +8353,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Had more than half of hp before, now has less
              && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
-             && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
+             && (gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0 || gSpecialStatuses[gBattlerAttacker].multiHitCounter == 1)
              && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
              && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -9788,29 +9822,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
         // Dancer
-        if(GetBattlerAbility(battler) == ABILITY_DANCER || BattlerHasInnate(battler, ABILITY_DANCER)){
-            if (IsBattlerAlive(battler)
-             && (gBattleMoves[gCurrentMove].flags & FLAG_DANCE)
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_DANCER)
+            && !(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker])
+            && (gBattleMoves[gCurrentMove].flags & FLAG_DANCE))
+        {
+            if (UseOutOfTurnAttack(battler, ABILITY_DANCER, gCurrentMove, 0, 0, 0))
+                return TRUE;
+        }
+        else if (BATTLER_HAS_ABILITY(battler, ABILITY_PARROTING)
+             && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND)
              && !gSpecialStatuses[battler].dancerUsedMove
              && gBattlerAttacker != battler)
-            {
-                // Set bit and save Dancer mon's original target
-                gSpecialStatuses[battler].dancerUsedMove = TRUE;
-                gSpecialStatuses[battler].dancerOriginalTarget = *(gBattleStruct->moveTarget + battler) | 0x4;
-                gBattleStruct->atkCancellerTracker = 0;
-                gBattlerAttacker = gBattlerAbility = battler;
-                gCalledMove = gCurrentMove;
-
-                // Set the target to the original target of the mon that first used a Dance move
-                gBattlerTarget = gBattleScripting.savedBattler & 0x3;
-
-                // Make sure that the target isn't an ally - if it is, target the original user
-                if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker))
-                    gBattlerTarget = (gBattleScripting.savedBattler & 0xF0) >> 4;
-                gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-                BattleScriptExecute(BattleScript_DancerActivates);
-                effect++;
-            }
+        {
+            if (UseOutOfTurnAttack(battler, ABILITY_PARROTING, gCurrentMove, 0, 0, 0))
+                return TRUE;
         }
         
         break;
@@ -12998,7 +13023,8 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         basePower = gBattleStruct->presentBasePower;
         break;
     case EFFECT_TRIPLE_KICK:
-        basePower += gBattleScripting.tripleKickPower;
+        if (gSpecialStatuses[battlerAtk].multiHitCounter)
+            basePower *= 4 - gSpecialStatuses[battlerAtk].multiHitCounter;
         break;
     case EFFECT_SPIT_UP:
         basePower = 100 * gDisableStructs[battlerAtk].stockpileCounter;

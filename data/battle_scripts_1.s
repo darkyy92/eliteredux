@@ -124,7 +124,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_FALSE_SWIPE
 	.4byte BattleScript_EffectHealBell                @ EFFECT_HEAL_BELL
 	.4byte BattleScript_EffectHit                     @ EFFECT_ALWAYS_CRIT
-	.4byte BattleScript_EffectTripleKick              @ EFFECT_TRIPLE_KICK
+	.4byte BattleScript_EffectHit                     @ EFFECT_TRIPLE_KICK
 	.4byte BattleScript_EffectThief                   @ EFFECT_THIEF
 	.4byte BattleScript_EffectMeanLook                @ EFFECT_MEAN_LOOK
 	.4byte BattleScript_EffectNightmare               @ EFFECT_NIGHTMARE
@@ -5150,13 +5150,6 @@ BattleScript_EffectSoothingAroma::
 	waitstate
 	copyword gCurrentMove, gTempMove
 	end3
-
-BattleScript_EffectTripleKick::
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	increasetriplekickpower BS_ATTACKER
-	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectThief::
 	setmoveeffect MOVE_EFFECT_STEAL_ITEM
@@ -10494,15 +10487,14 @@ BattleScript_TargetAbilityStatRaiseOnMoveEnd2::
 BattleScript_ScriptingAbilityStatRaise::
 	copybyte gBattlerAbility, sBATTLER
 	call BattleScript_AbilityPopUp
-	copybyte sSAVED_DMG, gBattlerAttacker
-	copybyte gBattlerAttacker, sBATTLER
+	swapbattlers sBATTLER, gBattlerAttacker
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
 	setgraphicalstatchangevalues
 	playanimation BS_SCRIPTING, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
-	copybyte gBattlerAttacker, sSAVED_DMG
+	unswapbattlers sBATTLER, gBattlerAttacker
 	return
 
 BattleScript_WeakArmorActivates::

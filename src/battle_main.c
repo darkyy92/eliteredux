@@ -184,8 +184,6 @@ EWRAM_DATA u8 gEffectBattler = 0;
 EWRAM_DATA u8 gPotentialItemEffectBattler = 0;
 EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gIsCriticalHit = FALSE;
-EWRAM_DATA u8 gMultiHitCounter = 0;
-EWRAM_DATA u8 gSavedMultiHitCounter = 0;
 EWRAM_DATA bool8 gRetaliationInProgress = FALSE;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
 EWRAM_DATA u8 gChosenActionByBattler[MAX_BATTLERS_COUNT] = {0};
@@ -3298,7 +3296,6 @@ static void BattleStartClearSetData(void)
     gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
     gBattleScripting.monCaught = FALSE;
 
-    gMultiHitCounter = 0;
     gBattleOutcome = 0;
     gBattleControllerExecFlags = 0;
     gPaydayMoney = 0;

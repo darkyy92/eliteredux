@@ -1509,7 +1509,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_PARENTAL_BOND;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1521,7 +1521,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_RAGING_BOXER;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1533,7 +1533,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_DUAL_WIELD;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1545,7 +1545,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_RAGING_MOTH;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1557,7 +1557,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_PRIMAL_MAW;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1569,7 +1569,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_DEVOURER;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1582,9 +1582,9 @@ static void Cmd_attackcanceler(void)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
 		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED)
-			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+			gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
 		else
-			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 3;
+			gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 3;
 
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_MULTI_HEADED;
 
@@ -1597,7 +1597,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
+		gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 2;
         gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_HYPER_AGGRESSIVE;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1628,7 +1628,7 @@ static void Cmd_attackcanceler(void)
 
         if (count > 1)
         {
-            gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = count;
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = count;
             gSpecialStatuses[gBattlerAttacker].parentalBondTrigger = ABILITY_MINION_CONTROL;
             PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             return;
@@ -1841,7 +1841,7 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
 {
     if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
     {
-        gMultiHitCounter = 0;
+        gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
         gLastLandedMoves[gBattlerTarget] = 0;
         gLastHitByType[gBattlerTarget] = 0;
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -2521,16 +2521,16 @@ static void Cmd_attackanimation(void)
             gActiveBattler = gBattlerAttacker;
 
             if (gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
-                multihit = gMultiHitCounter;
-            else if (gMultiHitCounter != 0 && gMultiHitCounter != 1)
+                multihit = gSpecialStatuses[gBattlerAttacker].multiHitCounter;
+            else if (gSpecialStatuses[gBattlerAttacker].multiHitCounter != 0 && gSpecialStatuses[gBattlerAttacker].multiHitCounter != 1)
             {
                 if (gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
                     multihit = 1;
                 else
-                    multihit = gMultiHitCounter;
+                    multihit = gSpecialStatuses[gBattlerAttacker].multiHitCounter;
             }
             else
-                multihit = gMultiHitCounter;
+                multihit = gSpecialStatuses[gBattlerAttacker].multiHitCounter;
 
             BtlController_EmitMoveAnimation(0, gCurrentMove, gBattleScripting.animTurn, gBattleMovePower, gBattleMoveDamage, gBattleMons[gBattlerAttacker].friendship, &gDisableStructs[gBattlerAttacker], multihit);
             gBattleScripting.animTurn += 1;
@@ -2849,11 +2849,11 @@ static void Cmd_resultmessage(void)
         switch (gMoveResultFlags & (~MOVE_RESULT_MISSED))
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
-            if (!gMultiHitCounter)  // Don't print effectiveness on each hit in a multi hit attack
+            if (!gSpecialStatuses[gBattlerAttacker].multiHitCounter)  // Don't print effectiveness on each hit in a multi hit attack
                 stringId = STRINGID_SUPEREFFECTIVE;
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
-            if (!gMultiHitCounter)
+            if (!gSpecialStatuses[gBattlerAttacker].multiHitCounter)
                 stringId = STRINGID_NOTVERYEFFECTIVE;
             break;
         case MOVE_RESULT_ONE_HIT_KO:
@@ -2863,7 +2863,7 @@ static void Cmd_resultmessage(void)
             stringId = STRINGID_ITDOESNTAFFECT;
             break;
         case MOVE_RESULT_FOE_ENDURED:
-            if (!gMultiHitCounter)
+            if (!gSpecialStatuses[gBattlerAttacker].multiHitCounter)
                 stringId = STRINGID_PKMNENDUREDHIT;
             break;
         case MOVE_RESULT_FAILED:
@@ -2898,7 +2898,7 @@ static void Cmd_resultmessage(void)
                 gBattlescriptCurrInstr = BattleScript_SturdiedMsg;
                 return;
             }
-            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED && !gMultiHitCounter)
+            else if (gMoveResultFlags & MOVE_RESULT_FOE_ENDURED && !gSpecialStatuses[gBattlerAttacker].multiHitCounter)
             {
                 gMoveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
@@ -2947,7 +2947,7 @@ static void Cmd_resultmessage(void)
 		gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
 		gBattleMoves[gCurrentMove].power > 0 &&
 		gBattleMoveDamage > 0 &&
-        (gMultiHitCounter == 0) &&
+        (gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0) &&
         !FlagGet(FLAG_SYS_DISABLE_DAMAGE_DONE) &&
         gSaveBlock2Ptr->damageDone)
 	{
@@ -4979,13 +4979,13 @@ static void Cmd_movevaluescleanup(void)
 
 static void Cmd_setmultihit(void)
 {
-    gMultiHitCounter = gBattlescriptCurrInstr[1];
+    gSpecialStatuses[gBattlerAttacker].multiHitCounter = gBattlescriptCurrInstr[1];
     gBattlescriptCurrInstr += 2;
 }
 
 static void Cmd_decrementmultihit(void)
 {
-    if (--gMultiHitCounter == 0)
+    if (--gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0)
         gBattlescriptCurrInstr += 5;
     else
         gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -5299,8 +5299,6 @@ static void Cmd_end(void)
 {
     if (gBattleScripting.replaceEndWithEnd3 > 0) {
         gBattleScripting.replaceEndWithEnd3--;
-        gBattleScripting.limitMoveend = 0;
-        gBattleScripting.moveendState = gBattleScripting.storedMoveendState;
         Cmd_end3();
         return;
     }
@@ -5696,11 +5694,6 @@ static void Cmd_moveend(void)
     u32 arg1, arg2;
     u32 originallyUsedMove;
 
-    if (gBattleScripting.limitMoveend && gBattleScripting.moveendState > gBattleScripting.limitMoveend)
-    {
-        gBattlescriptCurrInstr += 3;
-    }
-
     if (gChosenMove == 0xFFFF)
         originallyUsedMove = 0;
     else
@@ -5720,7 +5713,7 @@ static void Cmd_moveend(void)
         switch (gBattleScripting.moveendState)
         {
         case MOVEEND_SUM_DAMAGE: // Sum and store damage dealt for multi strike recoil
-            gBattleScripting.savedDmg += gHpDealt;
+            gSpecialStatuses[gBattlerAttacker].savedDmg += gHpDealt;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_PROTECT_LIKE_EFFECT:
@@ -5849,38 +5842,38 @@ static void Cmd_moveend(void)
                 && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && gBattleMoveDamage != 0
                 && IsBattlerAlive(gBattlerAttacker)
-                && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
+                && gSpecialStatuses[gBattlerAttacker].savedDmg != 0) // Some checks may be redundant alongside this one
             {
                 switch (gBattleMoves[gCurrentMove].effect)
                 {
                 case EFFECT_FLINCH_RECOIL_25:
                 case EFFECT_RECOIL_25: // Take Down, 25% recoil
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
+                    gBattleMoveDamage = max(1, gSpecialStatuses[gBattlerAttacker].savedDmg / 4);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
                 case EFFECT_RECOIL_25_STATUS: // Flare Blitz - can burn, Volt Tackle - can paralyze
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
+                    gBattleMoveDamage = max(1, gSpecialStatuses[gBattlerAttacker].savedDmg / 4);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                     effect = TRUE;
                     break;
                 case EFFECT_RECOIL_33: // Double Edge, 33 % recoil
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 3);
+                    gBattleMoveDamage = max(1, gSpecialStatuses[gBattlerAttacker].savedDmg / 3);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
                 case EFFECT_FLINCH_RECOIL_50:
                 case EFFECT_RECOIL_50: // Head Smash, 50 % recoil
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 2);
+                    gBattleMoveDamage = max(1, gSpecialStatuses[gBattlerAttacker].savedDmg / 2);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                     effect = TRUE;
                     break;
                 case EFFECT_RECOIL_33_STATUS: // Flare Blitz - can burn, Volt Tackle - can paralyze
-                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 3);
+                    gBattleMoveDamage = max(1, gSpecialStatuses[gBattlerAttacker].savedDmg / 3);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                     effect = TRUE;
@@ -5890,7 +5883,7 @@ static void Cmd_moveend(void)
                 }
 
                 if (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SUPER_STRAIN)) {
-                    gBattleMoveDamage = max(1, gBattleMoveDamage + (gBattleScripting.savedDmg / 4));
+                    gBattleMoveDamage = max(1, gBattleMoveDamage + (gSpecialStatuses[gBattlerAttacker].savedDmg / 4));
                     if (!effect) {
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
@@ -5905,7 +5898,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES_AFTER_RECOIL:
-            gHpDealt = gBattleScripting.savedDmg;
+            gHpDealt = gSpecialStatuses[gBattlerAttacker].savedDmg;
             if (AbilityBattleEffects(ABILITYEFFECT_AFTER_RECOIL, gBattlerAttacker, 0, 0, 0))
                 effect = TRUE;
             gBattleScripting.moveendState++;
@@ -6401,31 +6394,47 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_DANCER: // Special case because it's so annoying
-            if (gBattleMoves[gCurrentMove].flags & FLAG_DANCE)
             {
-                u8 battler, nextDancer = 0;
+                u8 battler, i, j, nextDancer = 0;
+                u8 possibleDancers = 0;
+                u8 battlers[MAX_BATTLERS_COUNT] = {0};
 
-                if (!(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker]
-                    || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove
-                        && gProtectStructs[gBattlerAttacker].usesBouncedMove)))
-                {   // Dance move succeeds
-                    // Set target for other Dancer mons; set bit so that mon cannot activate Dancer off of its own move
-                    if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+                // Prevent battler from triggering dancer effects from own move
+                if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+                {
+                    gBattleScripting.savedBattler = gBattlerTarget | 0x4;
+                    gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
+                    gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
+                }
+
+                // Get list of battlers that can dance
+                for (i = 0; i < gBattlersCount - 1; i++)
+                {
+                    if (gSpecialStatuses[i].dancerUsedMove || !IsBattlerAlive(i)) continue;
+                    battlers[possibleDancers++] = i;
+                }
+
+                // Bubble sort possible dancers
+                for (i = 0; i < possibleDancers - 1; i++)
+                {
+                    for (j = i + 1; j < possibleDancers; j++)
                     {
-                        gBattleScripting.savedBattler = gBattlerTarget | 0x4;
-                        gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
-                        gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
-                    }
-                    for (battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
-                    {
-                        if (GetBattlerAbility(battler) == ABILITY_DANCER && !gSpecialStatuses[battler].dancerUsedMove)
+                        if (GetWhoStrikesFirst(i, j, TRUE))
                         {
-                            if (!nextDancer || (gBattleMons[battler].speed < gBattleMons[nextDancer & 0x3].speed))
-                                nextDancer = battler | 0x4;
+                            u8 temp;
+                            SWAP(battlers[i], battlers[j], temp)
                         }
                     }
-                    if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, 0))
+                }
+
+                // Try battlers until one can dance
+                for (i = 0; i < possibleDancers; i++)
+                {
+                    if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, i, 0, 0, 0))
+                    {
                         effect = TRUE;
+                        break;
+                    }
                 }
             }
             gBattleScripting.moveendState++;
@@ -6460,11 +6469,11 @@ static void Cmd_moveend(void)
         case MOVEEND_MULTIHIT_MOVE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
-            && gMultiHitCounter
+            && gSpecialStatuses[gBattlerAttacker].multiHitCounter
             && !(gCurrentMove == MOVE_PRESENT && gBattleStruct->presentBasePower == 0)) // Silly edge case
             {
                 gBattleScripting.multihitString[4]++;
-                if (--gMultiHitCounter == 0)
+                if (--gSpecialStatuses[gBattlerAttacker].multiHitCounter == 0)
                 {
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_MultiHitPrintStrings;
@@ -6505,7 +6514,7 @@ static void Cmd_moveend(void)
                     }
                 }
             }
-            gMultiHitCounter = 0;
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
             gSpecialStatuses[gBattlerAttacker].parentalBondOn = gSpecialStatuses[gBattlerAttacker].parentalBondInitialCount = 0;
             gSpecialStatuses[gBattlerAttacker].multiHitOn = 0;
             gBattleScripting.moveendState++;
@@ -9144,12 +9153,10 @@ static void Cmd_various(void)
     case VARIOUS_SAVE_TARGET:
         gBattleStruct->savedBattlerTarget = gBattlerTarget;
         gSavedBattleScripting = gBattleScripting;
-        gSavedMultiHitCounter = gMultiHitCounter;
         break;
     case VARIOUS_RESTORE_TARGET:
         gBattlerTarget = gBattleStruct->savedBattlerTarget;
         gBattleScripting = gSavedBattleScripting;
-        gMultiHitCounter = gSavedMultiHitCounter;
         break;
     case VARIOUS_INSTANT_HP_DROP:
         BtlController_EmitHealthBarUpdate(0, INSTANT_HP_BAR_DROP);
@@ -9394,7 +9401,7 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_PLAY_MOVE_ANIMATION:
-        BtlController_EmitMoveAnimation(0, T1_READ_16(gBattlescriptCurrInstr + 3), gBattleScripting.animTurn, 0, 0, gBattleMons[gActiveBattler].friendship, &gDisableStructs[gActiveBattler], gMultiHitCounter);
+        BtlController_EmitMoveAnimation(0, T1_READ_16(gBattlescriptCurrInstr + 3), gBattleScripting.animTurn, 0, 0, gBattleMons[gActiveBattler].friendship, &gDisableStructs[gActiveBattler], gSpecialStatuses[gBattlerAttacker].multiHitCounter);
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr += 5;
         return;
@@ -10033,7 +10040,7 @@ static void Cmd_various(void)
     case VARIOUS_HANDLE_TRAINER_SLIDE_MSG:
         if (gBattlescriptCurrInstr[3] == 0)
         {
-            gBattleScripting.savedDmg = gBattlerSpriteIds[gActiveBattler];
+            gSpecialStatuses[gBattlerAttacker].savedDmg = gBattlerSpriteIds[gActiveBattler];
             HideBattlerShadowSprite(gActiveBattler);
         }
         else if (gBattlescriptCurrInstr[3] == 1)
@@ -10043,7 +10050,7 @@ static void Cmd_various(void)
         }
         else
         {
-            gBattlerSpriteIds[gActiveBattler] = gBattleScripting.savedDmg;
+            gBattlerSpriteIds[gActiveBattler] = gSpecialStatuses[gBattlerAttacker].savedDmg;
             if (gBattleMons[gActiveBattler].hp != 0)
             {
                 SetBattlerShadowSpriteCallback(gActiveBattler, gBattleMons[gActiveBattler].species);
@@ -10662,7 +10669,6 @@ static void Cmd_various(void)
         gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
         return;
     case VARIOUS_INCREASE_TRIPLE_KICK_DAMAGE:
-        gBattleScripting.tripleKickPower += gBattleMoves[gCurrentMove].power;
         break;
     case VARIOUS_HANDLE_WEATHER_CHANGE:
         gBattlescriptCurrInstr += 3;
@@ -12139,34 +12145,34 @@ static void Cmd_setmultihitcounter(void)
 {
     if (gBattlescriptCurrInstr[1])
     {
-        gMultiHitCounter = gBattlescriptCurrInstr[1];
+        gSpecialStatuses[gBattlerAttacker].multiHitCounter = gBattlescriptCurrInstr[1];
     }
     else
     {
         if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK ||
             BattlerHasInnate(gBattlerAttacker, ABILITY_SKILL_LINK))
         {
-            gMultiHitCounter = 5;
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = 5;
         }
         else if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LOADED_DICE)
         {
-            gMultiHitCounter = 4 + (Random() % 2);
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = 4 + (Random() % 2);
         }
         else
         {
             // 2 and 3 hits: 33.3%
             // 4 and 5 hits: 16.7%
-            gMultiHitCounter = Random() % 4;
-            if (gMultiHitCounter > 2)
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = Random() % 4;
+            if (gSpecialStatuses[gBattlerAttacker].multiHitCounter > 2)
             {
-                gMultiHitCounter = (Random() % 3);
-                if (gMultiHitCounter < 2)
-                    gMultiHitCounter = 2;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter = (Random() % 3);
+                if (gSpecialStatuses[gBattlerAttacker].multiHitCounter < 2)
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 2;
                 else
-                    gMultiHitCounter = 3;
+                    gSpecialStatuses[gBattlerAttacker].multiHitCounter = 3;
             }
             else
-                gMultiHitCounter += 3;
+                gSpecialStatuses[gBattlerAttacker].multiHitCounter += 3;
         }
     }
 
@@ -12554,7 +12560,7 @@ static void Cmd_battlemacros(void)
             gBattleScripting.forceFalseSwipeEffect = TRUE;
         break;
         case MACROS_RESET_MULTIHIT_HITS:
-            gMultiHitCounter = 0;
+            gSpecialStatuses[gBattlerAttacker].multiHitCounter = 0;
         break;
         break;
         case MACROS_TRY_TO_ACTIVATE_INTIMIDATE_CLONE_TARGET_1:
@@ -14031,7 +14037,7 @@ static void Cmd_magnitudedamagecalculation(void)
 
 static void Cmd_jumpifnopursuitswitchdmg(void)
 {
-    if (gMultiHitCounter == 1)
+    if (gSpecialStatuses[gBattlerAttacker].multiHitCounter == 1)
     {
         if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
             gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);

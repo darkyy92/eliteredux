@@ -564,7 +564,7 @@
 #define ABILITY_SHOWDOWN_MODE 542 // Ambush + Violent Rush.
 #define ABILITY_SEED_SOWER 543 // Sets Grassy Terrain and Leech Seed when hit.
 #define ABILITY_AIRBORNE 544 // Boosts own and ally's Flying moves by 30%.
-#define ABILITY_PARROTING 545 // Placeholder
+#define ABILITY_PARROTING 545 // Copies sound moves used by others. Immune to sound.
 #define ABILITY_BLOCK_ON_ENTRY 546 // Prevents opposing pokemon from fleeing on entry.
 #define ABILITY_PURIFYING_SALT 547 // Immune to status conditions. Take half damage from Ghost.
 #define ABILITY_PROTOSYNTHESIS 548 // Boosts highest stat in Sun or with Booster Energy.

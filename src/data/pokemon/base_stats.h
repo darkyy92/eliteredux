@@ -32416,10 +32416,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SQUAWKABILLY] =
     {
     .baseHP        = 90,
-    .baseAttack    = 76,
+    .baseAttack    = 45,
     .baseDefense   = 100,
     .baseSpeed     = 85,
-    .baseSpAttack  =  45,
+    .baseSpAttack  = 76,
     .baseSpDefense = 90,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_FLYING,

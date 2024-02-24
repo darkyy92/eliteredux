@@ -9,41 +9,37 @@
 #define sTWOTURN_STRINGID            gBattleScripting + 0xF
 #define sB_ANIM_ARG1                 gBattleScripting + 0x10
 #define sB_ANIM_ARG2                 gBattleScripting + 0x11
-#define sTRIPLE_KICK_POWER           gBattleScripting + 0x12
-#define sMOVEEND_STATE               gBattleScripting + 0x14
-#define sSAVED_STAT_CHANGER          gBattleScripting + 0x15
-#define sSHIFT_SWITCHED              gBattleScripting + 0x16
-#define sBATTLER                     gBattleScripting + 0x17
-#define sB_ANIM_TURN                 gBattleScripting + 0x18
-#define sB_ANIM_TARGETS_HIT          gBattleScripting + 0x19
-#define sSTATCHANGER                 gBattleScripting + 0x1A
-#define sSTAT_ANIM_PLAYED            gBattleScripting + 0x1B
-#define sGIVEEXP_STATE               gBattleScripting + 0x1C
-#define sBATTLE_STYLE                gBattleScripting + 0x1D
-#define sLVLBOX_STATE                gBattleScripting + 0x1E
-#define sLEARNMOVE_STATE             gBattleScripting + 0x1F
-#define sSAVED_BATTLER               gBattleScripting + 0x20
-#define sRESHOW_MAIN_STATE           gBattleScripting + 0x21
-#define sRESHOW_HELPER_STATE         gBattleScripting + 0x22
-#define sFIELD_23                    gBattleScripting + 0x23 //unused? - levelUpHP?
-#define sWINDOWS_TYPE                gBattleScripting + 0x24
-#define sMULTIPLAYER_ID              gBattleScripting + 0x25
-#define sSPECIAL_TRAINER_BATTLE_TYPE gBattleScripting + 0x26
-#define sMON_CAUGHT                  gBattleScripting + 0x27 //monCaught
-#define sSAVED_DMG                   gBattleScripting + 0x28 //savedDmg
-#define sSAVED_MOVE_EFFECT           gBattleScripting + 0x2C //savedMoveEffect
-#define sMOVE_EFFECT                 gBattleScripting + 0x2E //moveEffect
-#define sMULTIHIT_EFFECT             gBattleScripting + 0x30 //multihitMoveEffect
-#define sILLUSION_NICK_HACK          gBattleScripting + 0x32 //illusionNickHack
-#define sFIXED_ABILITY_POPUP         gBattleScripting + 0x33 //fixedPopup
-#define sABILITY_OVERWRITE           gBattleScripting + 0x34 //abilityPopupOverwrite
-#define sSWITCH_IN_BATTLER_OVERWRITE gBattleScripting + 0x36 //switchInBattlerOverwrite
-#define sSWITCH_CASE                 gBattleScripting + 0x37 //switchCase
-#define sBERRY_OVERRIDE              gBattleScripting + 0x38 //overrideBerryRequirements
-#define sBATTLER_OVERRIDE            gBattleScripting + 0x39 //battlerPopupOverwrite
-#define sEFFECT_CHANCE               gBattleScripting + 0x3C //moveSecondaryEffectChance
-#define sLIMIT_MOVEEND               gBattleScripting + 0x3E //limitMoveend
-#define sSAVED_MOVEEND_STATE         gBattleScripting + 0x3F //replaceEndWithEnd3
+#define sMOVEEND_STATE               gBattleScripting + 0x12
+#define sSAVED_STAT_CHANGER          gBattleScripting + 0x13
+#define sSHIFT_SWITCHED              gBattleScripting + 0x14
+#define sBATTLER                     gBattleScripting + 0x15
+#define sB_ANIM_TURN                 gBattleScripting + 0x16
+#define sB_ANIM_TARGETS_HIT          gBattleScripting + 0x17
+#define sSTATCHANGER                 gBattleScripting + 0x18
+#define sSTAT_ANIM_PLAYED            gBattleScripting + 0x19
+#define sGIVEEXP_STATE               gBattleScripting + 0x1A
+#define sBATTLE_STYLE                gBattleScripting + 0x1B
+#define sLVLBOX_STATE                gBattleScripting + 0x1C
+#define sLEARNMOVE_STATE             gBattleScripting + 0x1D
+#define sSAVED_BATTLER               gBattleScripting + 0x1E
+#define sRESHOW_MAIN_STATE           gBattleScripting + 0x1F
+#define sRESHOW_HELPER_STATE         gBattleScripting + 0x20
+#define sFIELD_23                    gBattleScripting + 0x21 //unused? - levelUpHP?
+#define sWINDOWS_TYPE                gBattleScripting + 0x22
+#define sMULTIPLAYER_ID              gBattleScripting + 0x23
+#define sSPECIAL_TRAINER_BATTLE_TYPE gBattleScripting + 0x24
+#define sMON_CAUGHT                  gBattleScripting + 0x25 //monCaught
+#define sSAVED_MOVE_EFFECT           gBattleScripting + 0x26 //savedMoveEffect
+#define sMOVE_EFFECT                 gBattleScripting + 0x27 //moveEffect
+#define sMULTIHIT_EFFECT             gBattleScripting + 0x28 //multihitMoveEffect
+#define sILLUSION_NICK_HACK          gBattleScripting + 0x3A //illusionNickHack
+#define sFIXED_ABILITY_POPUP         gBattleScripting + 0x3B //fixedPopup
+#define sABILITY_OVERWRITE           gBattleScripting + 0x3C //abilityPopupOverwrite
+#define sSWITCH_IN_BATTLER_OVERWRITE gBattleScripting + 0x3E //switchInBattlerOverwrite
+#define sSWITCH_CASE                 gBattleScripting + 0x3F //switchCase
+#define sBERRY_OVERRIDE              gBattleScripting + 0x30 //overrideBerryRequirements
+#define sBATTLER_OVERRIDE            gBattleScripting + 0x31 //battlerPopupOverwrite
+#define sEFFECT_CHANCE               gBattleScripting + 0x34 //moveSecondaryEffectChance
 
 #define cMULTISTRING_CHOOSER         gBattleCommunication + 5
 #define cMISS_TYPE                   gBattleCommunication + 6

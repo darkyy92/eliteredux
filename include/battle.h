@@ -205,11 +205,13 @@ struct SpecialStatus
     s32 dmg;
     s32 physicalDmg;
     s32 specialDmg;
+    s32 savedDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u16 parentalBondTrigger; // Ability that triggered parental bond
     u8 mirrorHerbStat:4;
+    u8 multiHitCounter:4;
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
 };
 
@@ -720,7 +722,6 @@ struct BattleScripting
     u8 twoTurnsMoveStringId;
     u8 animArg1;
     u8 animArg2;
-    u16 tripleKickPower;
     u8 moveendState;
     u8 savedStatChanger; // For further use, if attempting to change stat two times(ex. Moody)
     u8 shiftSwitched; // When the game tells you the next enemy's pokemon and you switch. Option for noobs but oh well.
@@ -741,7 +742,6 @@ struct BattleScripting
     u8 multiplayerId;
     u8 specialTrainerBattleType;
     bool8 monCaught;
-    s32 savedDmg;
     u16 savedMoveEffect; // For moves hitting multiple targets.
     u16 moveEffect;
     u16 multihitMoveEffect;
@@ -755,8 +755,6 @@ struct BattleScripting
     bool8 forceFalseSwipeEffect;
     u8 moveSecondaryEffectChance;
     u8 replaceEndWithEnd3;
-    u8 limitMoveend;
-    u8 storedMoveendState;
     u8 checkStatStatus;
 };
 
@@ -921,8 +919,6 @@ extern u8 gEffectBattler;
 extern u8 gPotentialItemEffectBattler;
 extern u8 gAbsentBattlerFlags;
 extern u8 gIsCriticalHit;
-extern u8 gMultiHitCounter;
-extern u8 gSavedMultiHitCounter;
 extern bool8 gRetaliationInProgress;
 extern const u8 *gBattlescriptCurrInstr;
 extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
