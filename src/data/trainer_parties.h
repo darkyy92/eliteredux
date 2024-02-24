@@ -1,6 +1,5 @@
 
 // Wally
-
 static const struct TrainerMonItemCustomMoves sParty_WallyMauville[] = {
     {
     .lvl = 0,

@@ -1942,7 +1942,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u16 species = 1;
 
     if(DoubleReady && (gSaveBlock2Ptr->doubleBattleMode == TRUE || gTrainers[trainerNum].doubleBattle)){
-        //This is a copy from the code below to calculate the number of Pokemon per trainer
+        // This is a copy from the code below to calculate the number of Pokemon per trainer
         // In doubles if you are on elite mode the game will try to use a Double Elite Party if there is no exclusive party it uses the 
         // Elite Single Party if there is Elite Single Party it will try to use Double Normal Party if there is no Normal Double Party it will try to
         // use the Signle Normal Party
@@ -2223,6 +2223,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 SetMonData(&party[i], MON_DATA_SPEED_DOWN, &partyData[i].zeroSpeedIvs);
+
+                SetMonData(&party[i], MON_DATA_IS_ALPHA, &partyData[i].isAlpha);
                 
                 if (partyData[i].hpType) {
                     SetMonData(&party[i], MON_DATA_HP_TYPE, &partyData[i].hpType);
