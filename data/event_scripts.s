@@ -1110,3 +1110,5 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/PetalburgWoods_BreloomRoom/scripts.inc"
 
 	.include "data/maps/RusturfTunnel_2F/scripts.inc"
+
+	.include "data/maps/Secret_Dungeon/scripts.inc"

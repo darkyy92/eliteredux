@@ -3564,25 +3564,10 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     if (nature == NUM_NATURES || nature == 0xFF)
         nature = Random() % NUM_NATURES;
 
+    CreateMonWithNature(&mon, species, level, 32, nature);
+    
     //Shinyness
-    if (isShiny == 1)
-    {
-        u32 personality;
-        u32 otid = gSaveBlock2Ptr->playerTrainerId[0]
-            | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
-            | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
-            | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
-        do
-        {
-            personality = Random32();
-            personality = ((((Random() % 8) ^ (HIHALF(otid) ^ LOHALF(otid))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
-        } while (nature != GetNatureFromPersonality(personality));
-
-        CreateMon(&mon, species, level, 32, 1, personality, OT_ID_PRESET, otid);
-    }
-    else
-        CreateMonWithNature(&mon, species, level, 32, nature);
+    SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &isShiny);
 
     //EVs/IVs
     for (i = 0; i < NUM_STATS; i++)
