@@ -3782,8 +3782,6 @@ static void DestroyEnemyInfoWinGfx(struct Sprite *sprite)
     gBattleStruct->enemyInfoSpriteId = MAX_SPRITES;
 }
 
-//
-
 static void DestroyLastUsedBallWinGfx(struct Sprite *sprite)
 {
     FreeSpriteTilesByTag(LAST_BALL_WINDOW_TAG);
