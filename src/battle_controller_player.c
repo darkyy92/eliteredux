@@ -270,7 +270,6 @@ static void HandleInputChooseAction(void)
         else
             gPlayerDpadHoldFrames = 0;
 
-        
         if (JOY_NEW(A_BUTTON) && 
             gActionSelectionCursor[gActiveBattler] == 1 &&
             gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -286,6 +285,7 @@ static void HandleInputChooseAction(void)
         {
             PlaySE(SE_SELECT);
             TryHideLastUsedBall();
+            TryToHideEnemyInfoWindow();
 
             switch (gActionSelectionCursor[gActiveBattler])
             {
@@ -310,7 +310,8 @@ static void HandleInputChooseAction(void)
             VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
             FreeAllWindowBuffers();
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
+            UI_Battle_Menu_Init(CB2_SetUpReshowBattleScreenAfterMenu);
+            //ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
         }
         else if (JOY_NEW(DPAD_LEFT))
         {
@@ -386,6 +387,7 @@ static void HandleInputChooseAction(void)
         {
             PlaySE(SE_SELECT);
             TryHideLastUsedBall();
+            TryToHideEnemyInfoWindow();
             BtlController_EmitTwoReturnValues(1, B_ACTION_THROW_BALL, 0);
             PlayerBufferExecCompleted();
         }
@@ -428,6 +430,7 @@ static void HandleInputChooseTarget(void)
             BtlController_EmitTwoReturnValues(1, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
         TryHideLastUsedBall();
+        TryToHideEnemyInfoWindow();
         HideMegaTriggerSprite();
         PlayerBufferExecCompleted();
     }
@@ -614,6 +617,7 @@ static void HandleInputShowTargets(void)
             BtlController_EmitTwoReturnValues(1, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
         HideMegaTriggerSprite();
         TryHideLastUsedBall();
+        TryToHideEnemyInfoWindow();
         PlayerBufferExecCompleted();
     }
     else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
@@ -722,6 +726,7 @@ static void HandleInputChooseMove(void)
                 BtlController_EmitTwoReturnValues(1, 10, gMoveSelectionCursor[gActiveBattler] | (gMultiUsePlayerCursor << 8));
             HideMegaTriggerSprite();
             TryHideLastUsedBall();
+            TryToHideEnemyInfoWindow();
             PlayerBufferExecCompleted();
             break;
         case 1:
@@ -3755,8 +3760,9 @@ static void PlayerHandleChooseAction(void)
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);
 
+    TryToHideMoveInfoWindow();
     TryRestoreLastUsedBall();
-    //TryToAddEnemyInfoWindow();
+    TryToAddEnemyInfoWindow();
     ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, 1);

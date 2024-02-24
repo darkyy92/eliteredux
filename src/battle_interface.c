@@ -3625,7 +3625,7 @@ static const struct SpriteSheet sSpriteSheet_LastUsedBallWindow =
 };
 
 static const u8 sMoveInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/move_info_window_l.4bpp");
-static const u8 sEnemyInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/move_info_window_l.4bpp");
+static const u8 sEnemyInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/battle_info_l.4bpp");
 
 static const struct SpriteSheet sSpriteSheet_MoveInfoWindow =
 {
@@ -3741,6 +3741,9 @@ void TryToAddEnemyInfoWindow(void)
 {
     u8 x2 = 32;
 
+    if((gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        return;
+
     if(IsDoubleBattle())
         x2 = 24;
 
@@ -3761,6 +3764,14 @@ void TryToAddEnemyInfoWindow(void)
 void TryToHideEnemyInfoWindow(void)
 {
     gSprites[gBattleStruct->enemyInfoSpriteId].sHide = TRUE;   // Hide
+}
+
+static void DestroyBattleInfoWinGfx(struct Sprite *sprite)
+{
+    FreeSpriteTilesByTag(ENEMY_INFO_WINDOW_TAG);
+    FreeSpritePaletteByTag(ABILITY_POP_UP_TAG);
+    DestroySprite(sprite);
+    gBattleStruct->enemyInfoSpriteId = MAX_SPRITES;
 }
 
 static void DestroyEnemyInfoWinGfx(struct Sprite *sprite)
@@ -3831,7 +3842,7 @@ static void SpriteCB_EnemyTeamInfoWin(struct Sprite *sprite)
             sprite->x--;
 
         if (sprite->x == LAST_BALL_WIN_X_0)
-            DestroyMoveInfoWinGfx(sprite);
+            DestroyBattleInfoWinGfx(sprite);
     }
     else
     {
