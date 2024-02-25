@@ -2426,7 +2426,7 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     u16 userSpecies = gBattleMons[userId].species;
     u16 targetSpecies = gBattleMons[targetId].species;
 
-    if (BATTLER_HAS_ABILITY(userId, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[moveNum].split == SPLIT_STATUS && gBattleMoves[moveNum].target & !MOVE_TARGET_USER) {
+    if (BattlerHasAbility(userId, userId, ABILITY_MYCELIUM_MIGHT) && gBattleMoves[moveNum].split == SPLIT_STATUS && gBattleMoves[moveNum].target & !MOVE_TARGET_USER) {
         switch(gBattleMoves[moveNum].effect){
             case EFFECT_SLEEP:
             case EFFECT_TOXIC:
@@ -2496,53 +2496,67 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     }
 
     //Weather Control
-    if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || BattlerHasInnate(targetId, ABILITY_WEATHER_CONTROL)){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_WEATHER_CONTROL, moveNum)){
+        if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
+            moveNullified = TRUE;
+        }
+    }
+
+    // Delta Stream
+    if(BattlerHasAbility(userId, userId, ABILITY_DELTA_STREAM)){
         if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
             moveNullified = TRUE;
         }
     }
             
     //Bulletproof
-    if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || BattlerHasInnate(targetId, ABILITY_BULLETPROOF)){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_BULLETPROOF, moveNum)){
         if(TestMoveFlags(moveNum, FLAG_BALLISTIC)){
             moveNullified = TRUE;
         }
     }
 
     //Soundproof
-    if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || BattlerHasInnate(targetId, ABILITY_SOUNDPROOF)){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_SOUNDPROOF, moveNum)){
+        if(TestMoveFlags(moveNum, FLAG_SOUND)){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Parroting
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_PARROTING, moveNum)){
         if(TestMoveFlags(moveNum, FLAG_SOUND)){
             moveNullified = TRUE;
         }
     }
 
     //Noise Cancel
-    if(gBattleMons[targetId].ability == ABILITY_NOISE_CANCEL || BattlerHasInnate(targetId, ABILITY_NOISE_CANCEL) ||
-    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_NOISE_CANCEL && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_NOISE_CANCEL) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_NOISE_CANCEL, moveNum)
+        || (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_NOISE_CANCEL, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(TestMoveFlags(moveNum, FLAG_SOUND)){
             moveNullified = TRUE;
         }
     }
 
     //Queenly Majesty
-    if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(targetId, ABILITY_QUEENLY_MAJESTY) ||
-    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_QUEENLY_MAJESTY) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_QUEENLY_MAJESTY, moveNum)
+        || (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_QUEENLY_MAJESTY, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
             moveNullified = TRUE;
         }
     }
 
     //Dazzling
-    if(gBattleMons[targetId].ability == ABILITY_DAZZLING || BattlerHasInnate(targetId, ABILITY_DAZZLING) ||
-        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DAZZLING, moveNum)
+        || (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_DAZZLING, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
             moveNullified = TRUE;
         }
     }
 
     //Armor Tail
-    if(gBattleMons[targetId].ability == ABILITY_ARMOR_TAIL || BattlerHasInnate(targetId, ABILITY_ARMOR_TAIL) ||
-        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_ARMOR_TAIL && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_ARMOR_TAIL) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if (DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_ARMOR_TAIL, moveNum)
+        || (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_ARMOR_TAIL, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum, targetId) > 0 && gBattleMoves[moveNum].target != MOVE_TARGET_USER){
             moveNullified = TRUE;
         }

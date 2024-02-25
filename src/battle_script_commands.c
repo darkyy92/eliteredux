@@ -3222,7 +3222,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         {
         case STATUS1_SLEEP:
             // check active uproar
-            if (!BATTLER_HAS_ABILITY(gEffectBattler, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gEffectBattler, ABILITY_NOISE_CANCEL))
+            if (!IsSoundproof(gActiveBattler))
             {
                 for (gActiveBattler = 0;
                     gActiveBattler < gBattlersCount && !(gBattleMons[gActiveBattler].status2 & STATUS2_UPROAR);
@@ -10849,13 +10849,14 @@ static void Cmd_various(void)
                         {
                             gBattlescriptCurrInstr = BattleScript_PerformStatDown;
                         }
+                        gSpecialStatuses[gActiveBattler].mirrorHerbStat = stat + 1;
                     }
                     else
                     {
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AttackerAteItem;
+                        gSpecialStatuses[gActiveBattler].mirrorHerbStat = stat;
                     }
-                    gSpecialStatuses[gActiveBattler].mirrorHerbStat = stat;
                     return;
                 }
             }
@@ -10930,8 +10931,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_GHASTLY_ECHO:
         if (!(gStatuses4[gActiveBattler] & STATUS4_GHASTLY_ECHO)
-            && !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUNDPROOF)
-            && !IsAbilityOnSide(gActiveBattler, ABILITY_NOISE_CANCEL))
+            && !IsSoundproof(gActiveBattler))
         {
             gStatuses4[gActiveBattler] |= STATUS4_GHASTLY_ECHO;
             gDisableStructs[gActiveBattler].ghastlyEchoTimer = 2;
@@ -11464,8 +11464,7 @@ bool8 UproarWakeUpCheck(u8 battlerId)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (!(gBattleMons[i].status2 & STATUS2_UPROAR) ||
-            BATTLER_HAS_ABILITY(battlerId, ABILITY_SOUNDPROOF) ||
-            IsAbilityOnSide(battlerId, ABILITY_NOISE_CANCEL))
+            IsSoundproof(i))
             continue;
 
         gBattleScripting.battler = i;
@@ -13688,7 +13687,7 @@ static void Cmd_healpartystatus(void)
         else
             party = gEnemyParty;
 
-        if (!BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL))
+        if (!IsSoundproof(gBattlerAttacker))
         {
             gBattleMons[gBattlerAttacker].status1 = 0;
             gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -13704,7 +13703,7 @@ static void Cmd_healpartystatus(void)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
         {
-            if (!BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gActiveBattler, ABILITY_NOISE_CANCEL))
+            if (!IsSoundproof(gActiveBattler))
             {
                 gBattleMons[gActiveBattler].status1 = 0;
                 gBattleMons[gActiveBattler].status2 &= ~(STATUS2_NIGHTMARE);
@@ -13729,15 +13728,17 @@ static void Cmd_healpartystatus(void)
 
                 if (gBattlerPartyIndexes[gBattlerAttacker] == i || gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == i)
                 {
-                    healMon = !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF) && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL);
+                    healMon = !IsSoundproof(i);
                 }
                 else
                 {
                     u16 ability = GetAbilityBySpecies(species, abilityNum);
                     healMon = ability != ABILITY_SOUNDPROOF
                         && ability != ABILITY_NOISE_CANCEL
+                        && ability != ABILITY_PARROTING
                         && !MonHasInnate(&party[i], ABILITY_SOUNDPROOF, FALSE)
-                        && !MonHasInnate(&party[i], ABILITY_NOISE_CANCEL, FALSE);
+                        && !MonHasInnate(&party[i], ABILITY_NOISE_CANCEL, FALSE)
+                        && !MonHasInnate(&party[i], ABILITY_PARROTING, FALSE);
                 }
 
                 if (healMon)
@@ -13820,8 +13821,7 @@ static void Cmd_trysetperishsong(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (gStatuses3[i] & STATUS3_PERISH_SONG
-            || BATTLER_HAS_ABILITY(i, ABILITY_SOUNDPROOF)
-			|| IsAbilityOnSide(i, ABILITY_NOISE_CANCEL)
+            || IsSoundproof(i)
             || BlocksPrankster(gCurrentMove, gBattlerAttacker, i, TRUE))
         {
             notAffectedCount++;

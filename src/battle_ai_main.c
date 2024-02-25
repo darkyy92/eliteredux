@@ -854,6 +854,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (TestMoveFlags(move, FLAG_SOUND))
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_PARROTING:
+                if (TestMoveFlags(move, FLAG_SOUND))
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_BULLETPROOF:
                 if (TestMoveFlags(move, FLAG_BALLISTIC))
                     RETURN_SCORE_MINUS(20);
@@ -966,6 +970,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         //Soundproof
         if(BattlerHasInnate(battlerDef, ABILITY_NOISE_CANCEL) && TestMoveFlags(move, FLAG_SOUND))
+            RETURN_SCORE_MINUS(20);
+
+        if(BattlerHasInnate(battlerDef, ABILITY_PARROTING) && TestMoveFlags(move, FLAG_SOUND))
             RETURN_SCORE_MINUS(20);
 
         //Queenly Majesty
@@ -1810,6 +1817,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_SOUNDPROOF
                   && AI_DATA->abilities[battlerAtk] != ABILITY_NOISE_CANCEL
                   && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_NOISE_CANCEL
+                  && AI_DATA->abilities[battlerAtk] != ABILITY_PARROTING
+                  && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_PARROTING
                   && CountUsablePartyMons(FOE(battlerAtk)) >= 1)
                 {
                     score -= 10; //Don't wipe your team if you're going to lose
@@ -1821,6 +1830,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && (!IsBattlerAlive(BATTLE_PARTNER(FOE(battlerAtk))) || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_SOUNDPROOF
                   || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_NOISE_CANCEL
                   || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_PARROTING
                   || gStatuses3[BATTLE_PARTNER(FOE(battlerAtk))] & STATUS3_PERISH_SONG))
                 {
                     score -= 10; //Both enemies are perish songed
@@ -1833,13 +1843,15 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else
             {
                 if (CountUsablePartyMons(battlerAtk) == 0 && (AI_DATA->abilities[battlerAtk] != ABILITY_SOUNDPROOF
-                  || AI_DATA->abilities[battlerAtk] != ABILITY_NOISE_CANCEL)
+                  || AI_DATA->abilities[battlerAtk] != ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[battlerAtk] != ABILITY_PARROTING)
                   && CountUsablePartyMons(battlerDef) >= 1)
                     score -= 10;
 
                 if (gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF
                   || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_NOISE_CANCEL
-                  || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL)
+                  || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_NOISE_CANCEL
+                  || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_PARROTING)
                     score -= 10;
             }
             break;
@@ -5615,15 +5627,15 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
     if (!DoesBattlerHaveAbilityShield(battlerId))
     {
-        if (BattlerInnatesSuppressed(battlerId, ability))
+        if (BattlerInnatesSuppressed(battlerId, gBattlerAttacker, ability))
             return FALSE;
     }
     
     return BattlerHasInnateWithoutRemoval(battlerId, ability);
 }
 
-bool8 BattlerInnatesSuppressed(u8 battlerId, u16 ability) {
-    if(B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE && BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
+bool8 BattlerInnatesSuppressed(u8 battlerId, u8 attacker, u16 ability) {
+    if(B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE && BattlerIgnoresAbility(attacker, battlerId, ability))
         return TRUE;
     if(B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE && BattlerAbilityWasRemoved(battlerId, ability))
         return TRUE;

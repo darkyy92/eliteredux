@@ -62,7 +62,7 @@
 #define INVERSE_ROOM_DURATION_SHORT     3
 
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
-#define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))
+#define BATTLER_HAS_ABILITY(battlerId, ability) (IsBattlerAlive(battlerId) && BattlerHasAbility(battlerId, gBattlerAttacker, ability))
 #define BATTLER_HAS_ABILITY_FAST(battlerId, abilityToCheck, battlerAbility) ((battlerAbility == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster
 
 #define BATTLER_HEALING_BLOCKED(battlerId) (gStatuses3[battlerId] & STATUS3_HEAL_BLOCK || gBattleMons[battlerId].status1 & STATUS1_BLEED || IsAbilityOnOpposingSide(battlerId, ABILITY_PERMANENCE))
@@ -167,7 +167,7 @@ bool8 HasNoMonsToSwitch(u8 battlerId, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility);
 u8 AbilityBattleEffects(u8 caseID, u8 battlerId, u16 ability, u8 special, u16 moveArg);
 u32 GetBattlerAbility(u8 battlerId);
-bool8 BattlerAbilityIsSuppressed(u8 battlerId);
+bool8 BattlerAbilityIsSuppressed(u8 battlerId, u8 attacker);
 u32 GetBattlerAbilityWithoutRemoval(u8 battlerId);
 bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability);
 bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability);
@@ -273,6 +273,8 @@ void UpdateAbilityStateIndicesForNewSpecies(u8 battler, u16 newSpecies);
 bool32 IsUnsuppressableAbility(u32 ability);
 bool8 CanBeDisabled(u8 battlerId);
 bool8 DoesBattlerHaveAbilityShield(u8 battlerId);
+u16 IsSoundproof(u8 battlerId);
+bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

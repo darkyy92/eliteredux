@@ -1292,9 +1292,9 @@ bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u8 battlerDef, u16 move)
 {
     u32 i;
     u16 atkAbility = gBattleMons[battler].ability;
-    
-    //if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
-    //    return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
+
+    if (battler == battlerDef)
+        return FALSE;
 
     if (DoesBattlerHaveAbilityShield(battlerDef))
         return FALSE;
@@ -3068,6 +3068,9 @@ bool32 AnyPartyMemberStatused(u8 battlerId, bool32 checkSoundproof)
             continue;
 
         if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_NOISE_CANCEL)
+            continue;
+
+        if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_PARROTING)
             continue;
 
         if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)

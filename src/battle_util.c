@@ -972,6 +972,8 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_GOOD_AS_GOLD] = 1,
     [ABILITY_THERMAL_EXCHANGE] = 1,
     [ABILITY_NOISE_CANCEL] = 1,
+    [ABILITY_PARROTING] = 1,
+    [ABILITY_GALLANTRY] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -2956,8 +2958,7 @@ u8 DoBattlerEndTurnEffects(void)
                 for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
                 {
                     if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-                     && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SOUNDPROOF)
-                     && !IsAbilityOnSide(gBattlerAttacker, ABILITY_NOISE_CANCEL))
+                     && !IsSoundproof(gBattlerAttacker))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -4146,6 +4147,8 @@ bool8 UseOutOfTurnAttack(u8 battler, u16 ability, u16 move, u8 movePower, u8 mov
     if (gBattlerAttacker == battler) return FALSE;
     if (gSpecialStatuses[battler].dancerUsedMove) return FALSE;
     if (gProtectStructs[battler].extraMoveUsed) return FALSE;
+    if (gBattleMons[battler].status1 & STATUS1_SLEEP) return FALSE;
+    if (gBattleMons[battler].status1 & STATUS1_FREEZE) return FALSE;
 
     gBattleScripting.replaceEndWithEnd3++;
 
@@ -4168,9 +4171,9 @@ bool8 UseOutOfTurnAttack(u8 battler, u16 ability, u16 move, u8 movePower, u8 mov
     gProtectStructs[battler].extraMoveUsed = TRUE;
 
     //Move Effect
-    VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+    VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
     VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-    VarSet(VAR_TEMP_MOVEEFFECT,       moveSecondaryEffectChance);
+    VarSet(VAR_TEMP_MOVEEFFECT, moveSecondaryEffectChance);
 
     gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
     BattleScriptExecute(BattleScript_DancerActivates);
@@ -6558,25 +6561,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
-        if (BATTLER_HAS_ABILITY(battler, ABILITY_SOUNDPROOF)
+        if ((i = IsSoundproof(battler))
             && !(gBattleMoves[move].target & MOVE_TARGET_USER)
 			&& gBattleMoves[move].flags & FLAG_SOUND)
         {
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUNDPROOF;
-            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
-                gHitMarker |= HITMARKER_NO_PPDEDUCT;
-            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
-            effect = 1;
-        }
-        else if (IsAbilityOnSide(battler, ABILITY_NOISE_CANCEL)
-            && !(gBattleMoves[move].target & MOVE_TARGET_USER)
-			&& gBattleMoves[move].flags & FLAG_SOUND)
-        {
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NOISE_CANCEL;
-            if (!BATTLER_HAS_ABILITY(battler, ABILITY_NOISE_CANCEL)) {
+            if (i == ABILITY_NOISE_CANCEL && !BATTLER_HAS_ABILITY(battler, ABILITY_NOISE_CANCEL)) {
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
 
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = i;
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
@@ -9829,7 +9822,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (UseOutOfTurnAttack(battler, ABILITY_DANCER, gCurrentMove, 0, 0, 0))
                 return TRUE;
         }
-        else if (BATTLER_HAS_ABILITY(battler, ABILITY_PARROTING)
+        else if (BattlerHasAbility(battler, battler, ABILITY_PARROTING)
              && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND)
              && !gSpecialStatuses[battler].dancerUsedMove
              && gBattlerAttacker != battler)
@@ -10574,22 +10567,52 @@ bool32 IsNeutralizingGasOnField(void)
     return FALSE;
 }
 
+bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability)
+{
+    u8 abilityIsInnate = FALSE;
+    if (DoesBattlerHaveAbilityShield(battlerId))
+    {
+        return GetBattlerAbilityWithoutRemoval(battlerId) == ability || BattlerHasInnateWithoutRemoval(battlerId, ability);
+    }
+
+    if (BattlerHasInnateWithoutRemoval(battlerId, ability))
+    {
+        abilityIsInnate = TRUE;
+    }
+    else if (GetBattlerAbilityWithoutRemoval(battlerId) != ability)
+    {
+        return FALSE;
+    }
+
+    if ((!abilityIsInnate || B_NEUTRALIZING_GAS_WORKS_ON_INNATES) && BattlerAbilityWasRemoved(battlerId, ability))
+    {
+        return FALSE;
+    }
+
+    if (BattlerIgnoresAbility(attacker, battlerId, ability))
+    {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
 u32 GetBattlerAbility(u8 battlerId)
 {
     if (!DoesBattlerHaveAbilityShield(battlerId))
     {
-        if (BattlerAbilityIsSuppressed(battlerId)) return ABILITY_NONE;
+        if (BattlerAbilityIsSuppressed(battlerId, gBattlerAttacker)) return ABILITY_NONE;
     }
     
     return GetBattlerAbilityWithoutRemoval(battlerId);
 }
 
-bool8 BattlerAbilityIsSuppressed(u8 battlerId)
+bool8 BattlerAbilityIsSuppressed(u8 battlerId, u8 battlerAttacker)
 {
     if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
         return TRUE;
     
-    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
+    if (BattlerIgnoresAbility(battlerAttacker, battlerId, gBattleMons[battlerId].ability))
         return TRUE;
 
     return FALSE;
@@ -10613,7 +10636,7 @@ bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
         return FALSE;
 
     //Check that the battler is currently attacking the target
-    if(gBattlerByTurnOrder[gCurrentTurnActionNumber] != sBattlerAttacker                ||
+    if (gBattlerByTurnOrder[gCurrentTurnActionNumber] != sBattlerAttacker               ||
         gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] != B_ACTION_USE_MOVE ||
         gCurrentTurnActionNumber >= gBattlersCount)
         return FALSE;
@@ -17082,4 +17105,12 @@ void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[])
     memcpy(&gBattlerState[battler].switchInAbilityDone, &switchInAbilityDone, sizeof(gBattlerState[battler].switchInAbilityDone));
     memcpy(&gSpecialStatuses[battler].turnAbilityTriggers, &turnAbilityTriggers, sizeof(gSpecialStatuses[battler].turnAbilityTriggers));
     memcpy(&gBattlerState[battler].abilityState, &abilityState, sizeof(gBattlerState[battler].abilityState));
+}
+
+u16 IsSoundproof(u8 battler)
+{
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_SOUNDPROOF)) return ABILITY_SOUNDPROOF;
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_PARROTING)) return ABILITY_PARROTING;
+    if (IsAbilityOnSide(battler, ABILITY_NOISE_CANCEL)) return ABILITY_NOISE_CANCEL;
+    return 0;
 }
