@@ -14114,7 +14114,7 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
 
 static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, bool32 updateFlags)
 {
-    u8 atkStatToUse = 0;
+    u8 atkStatToUse = IS_MOVE_PHYSICAL(move) ? STAT_ATK : STAT_SPATK;
     u8 secondaryAtkStatToUse = 0;
     u8 statBattler = battlerAtk;
     //Calculates Highest Attack Stat after stat boosts
@@ -14125,11 +14125,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 
     if (gBattleMoves[move].effect == EFFECT_FOUL_PLAY)
     {
+        isUnaware = BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE);
         statBattler = battlerDef;
     }
     else if (gBattleMoves[move].effect == EFFECT_BODY_PRESS)
     {
-        isUnaware = BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE);
         atkStatToUse = STAT_DEF;
     }
     else {
@@ -14176,10 +14176,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MIND_CRUSH) && gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
         {
             atkStatToUse = STAT_SPATK;
-        }
-        else
-        {
-            atkStatToUse = IS_MOVE_PHYSICAL(move) ? STAT_ATK : STAT_SPATK;
         }
     }
 
