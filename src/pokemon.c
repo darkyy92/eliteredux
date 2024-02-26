@@ -9683,19 +9683,19 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
     u16 i = 0;
 
     if(VarGet(VAR_RANDOMIZED_SEED) == 0){
-        u16 newseed = Random() % 9999;
+        u16 newseed = Random();
         VarSet(VAR_RANDOMIZED_SEED, newseed);
         rndSeed = VarGet(VAR_RANDOMIZED_SEED);
     }
     /*encounterRandomizedLegendaryMode*/
 
     if(gSaveBlock2Ptr->encounterRandomizedMode == TRUE && basespecies != SPECIES_NONE){
+        rndSeed = rndSeed ^ basespecies;
         if(gSaveBlock2Ptr->encounterRandomizedLegendaryMode == FALSE){
             //Legendary Mons Enabled
             do{
-                rndSeed = rndSeed + i;
-                species = (basespecies * rndSeed) % SPECIES_CALYREX;
-                i++;
+                rndSeed = ISO_RANDOMIZE1(rndSeed);
+                species = rndSeed % SPECIES_CALYREX;
             }
             while(species == SPECIES_NONE                     ||
                 //Sub-Legendary
@@ -9858,9 +9858,8 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
         else{
             //Legendary Mons Disabled
             do{
-                rndSeed = rndSeed + i;
-                species = (basespecies * rndSeed) % SPECIES_CALYREX;
-                i++;
+                rndSeed = ISO_RANDOMIZE1(rndSeed);
+                species = rndSeed % SPECIES_CALYREX;
             }
             while(species == SPECIES_NONE                     ||
                 species == SPECIES_ZACIAN                     || //Legendary
