@@ -122,7 +122,7 @@ struct VolatileStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    bool8 protectedThisTurn;
+    bool8 protectedThisTurn:1;
     u8 disciplineCounter:4;
     u8 filler:4;
     bool8 syrupBombIsShiny:1;
@@ -176,6 +176,7 @@ struct RoundStruct
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
     u8 glaiveRush:1;
+    u8 silkTrapped:1;
 };
 
 struct TurnStruct

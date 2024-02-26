@@ -990,6 +990,7 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_DUAL_CHOP] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_DUAL_WINGBEAT] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_DYNAMAX_CANNON] = FORBIDDEN_METRONOME | FORBIDDEN_COPYCAT | FORBIDDEN_SLEEP_TALK,
+    [MOVE_ELECTRO_SHOT] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_ENDEAVOR] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_ENDURE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_ETERNABEAM] = FORBIDDEN_METRONOME,
@@ -1050,6 +1051,7 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_PIKA_PAPOW] = FORBIDDEN_METRONOME,
     [MOVE_PIN_MISSILE] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_PLASMA_FISTS] = FORBIDDEN_METRONOME,
+    [MOVE_POPULATION_BOMB] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_PRECIPICE_BLADES] = FORBIDDEN_METRONOME,
     [MOVE_PROTECT] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_PYRO_BALL] = FORBIDDEN_METRONOME,
@@ -1068,6 +1070,7 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_SHADOW_FORCE] = FORBIDDEN_ASSIST | FORBIDDEN_SLEEP_TALK | FORBIDDEN_PARENTAL_BOND,
     //[MOVE_SHEER_COLD] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_SHELL_TRAP] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_SLEEP_TALK,
+    [MOVE_SILK_TRAP] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_SIZZLY_SLIDE] = FORBIDDEN_METRONOME,
     [MOVE_SKETCH] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_MIMIC | FORBIDDEN_SLEEP_TALK,
     [MOVE_SKULL_BASH] = FORBIDDEN_SLEEP_TALK | FORBIDDEN_PARENTAL_BOND,
@@ -1104,6 +1107,7 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_TRICK] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_TRIPLE_AXEL] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_TRIPLE_KICK] = FORBIDDEN_PARENTAL_BOND,
+    [MOVE_TWIN_BEAM] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_TWINEEDLE] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_UPROAR] = FORBIDDEN_SLEEP_TALK | FORBIDDEN_PARENTAL_BOND,
     [MOVE_V_CREATE] = FORBIDDEN_METRONOME,
@@ -1112,7 +1116,13 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_WHIRLWIND] = FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_WICKED_BLOW] = FORBIDDEN_METRONOME,
     [MOVE_WIDE_GUARD] = FORBIDDEN_METRONOME,
+    [MOVE_WYRM_WIND] = FORBIDDEN_PARENTAL_BOND,
     [MOVE_ZIPPY_ZAP] = FORBIDDEN_METRONOME,
+    [MOVE_COMBAT_TORQUE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
+    [MOVE_WICKED_TORQUE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
+    [MOVE_BLAZING_TORQUE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
+    [MOVE_MAGICAL_TORQUE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
+    [MOVE_NOXIOUS_TORQUE] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
 };
 
 static const u16 sMoveEffectsForbiddenToInstruct[] =
@@ -3992,6 +4002,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gRoundStructs[gBattlerTarget].angelsWrathProtected = FALSE;
                     gRoundStructs[gBattlerTarget].banefulBunkered = FALSE;
                     gRoundStructs[gBattlerTarget].obstructed = FALSE;
+                    gRoundStructs[gBattlerTarget].silkTrapped = FALSE;
                     if (gCurrentMove == MOVE_FEINT)
                     {
                         BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -5762,9 +5773,6 @@ static void Cmd_moveend(void)
                 else if (gRoundStructs[gBattlerTarget].kingsShielded)
                 {
                     gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
                     gBattleScripting.moveEffect = (B_KINGS_SHIELD_LOWER_ATK >= GEN_8) ? MOVE_EFFECT_ATK_MINUS_1 : MOVE_EFFECT_ATK_MINUS_2;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
@@ -5797,6 +5805,15 @@ static void Cmd_moveend(void)
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BANEFUL_BUNKER);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
+                    effect = 1;
+                }
+                else if (gRoundStructs[gBattlerTarget].silkTrapped)
+                {
+                    gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                    gBattleScripting.moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SILK_TRAP);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
                     effect = 1;
                 }
                 else if (gRoundStructs[gBattlerTarget].beakBlastCharge)
@@ -11095,6 +11112,11 @@ static void Cmd_setprotectlike(void)
             else if (gCurrentMove == MOVE_OBSTRUCT)
             {
                 gRoundStructs[gBattlerAttacker].obstructed = TRUE;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+            }
+            else if (gCurrentMove == MOVE_SILK_TRAP)
+            {
+                gRoundStructs[gBattlerAttacker].silkTrapped = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
             }
 
