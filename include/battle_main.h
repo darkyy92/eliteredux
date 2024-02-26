@@ -79,7 +79,7 @@ u8 GetWhoStrikesFirst(u8 battlerId1, u8 battlerId2, bool8 ignoreChosenMoves);
 void RunBattleScriptCommands_PopCallbacksStack(void);
 void RunBattleScriptCommands(void);
 bool8 TryRunFromBattle(u8 battlerId);
-void SpecialStatusesClear(void);
+void TurnStructsClear(void);
 void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk);
 u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk);
 s32 GetHighestLevelInPlayerParty(void);

@@ -3854,12 +3854,12 @@ static void AnimGuardRing(struct Sprite *sprite)
 
 void AnimTask_IsFuryCutterHitRight(u8 taskId)
 {
-    gBattleAnimArgs[ARG_RET_ID] = gAnimDisableStructPtr->furyCutterCounter & 1;
+    gBattleAnimArgs[ARG_RET_ID] = gAnimVolatileStructPtr->furyCutterCounter & 1;
     DestroyAnimVisualTask(taskId);
 }
 
 void AnimTask_GetFuryCutterHitCount(u8 taskId)
 {
-    gBattleAnimArgs[ARG_RET_ID] = gAnimDisableStructPtr->furyCutterCounter;
+    gBattleAnimArgs[ARG_RET_ID] = gAnimVolatileStructPtr->furyCutterCounter;
     DestroyAnimVisualTask(taskId);
 }

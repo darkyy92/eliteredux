@@ -64,7 +64,7 @@ static bool8 ShouldSwitchIfAllBadMoves(void)
 static bool8 ShouldSwitchIfPerishSong(void)
 {
     if (gStatuses3[gActiveBattler] & STATUS3_PERISH_SONG
-        && gDisableStructs[gActiveBattler].perishSongTimer == 0)
+        && gVolatileStructs[gActiveBattler].perishSongTimer == 0)
     {
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
         BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
@@ -299,7 +299,7 @@ static bool8 ShouldSwitchIfNaturalCure(void)
 
 static bool8 ShouldSwitchIfEncored(void)
 {
-    if (gDisableStructs[gActiveBattler].encoredMove == MOVE_NONE)
+    if (gVolatileStructs[gActiveBattler].encoredMove == MOVE_NONE)
         return FALSE;
 
     if (FindMonWithFlagsAndSuperEffective(MOVE_RESULT_DOESNT_AFFECT_FOE, 1))
@@ -1181,7 +1181,7 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_X_STAT:
             *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) = 0;
-            if (gDisableStructs[gActiveBattler].isFirstTurn == 0)
+            if (gVolatileStructs[gActiveBattler].isFirstTurn == 0)
                 break;
         #ifndef ITEM_EXPANSION
             if (itemEffects[0] & ITEM0_X_ATTACK)
@@ -1216,7 +1216,7 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_GUARD_SPEC:
             battlerSide = GetBattlerSide(gActiveBattler);
-            if (gDisableStructs[gActiveBattler].isFirstTurn != 0 && gSideTimers[battlerSide].mistTimer == 0)
+            if (gVolatileStructs[gActiveBattler].isFirstTurn != 0 && gSideTimers[battlerSide].mistTimer == 0)
                 shouldUse = TRUE;
             break;
         case AI_ITEM_NOT_RECOGNIZABLE:

@@ -9126,6 +9126,6 @@ void AnimTask_SyrupBomb(u8 taskId)
 
 void AnimTask_StickySyrup(u8 taskId)
 {
-    gBattleAnimArgs[0] = gAnimDisableStructPtr->syrupBombIsShiny;
+    gBattleAnimArgs[0] = gAnimVolatileStructPtr->syrupBombIsShiny;
     DestroyAnimVisualTask(taskId);
 }

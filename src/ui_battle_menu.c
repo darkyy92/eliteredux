@@ -2410,7 +2410,7 @@ static void PrintStatusTab(void){
                 //Turns Left
                 StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].perishSongTimer;
+                turnsLeft = gVolatileStructs[sMenuDataPtr->battlerId].perishSongTimer;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
@@ -2435,7 +2435,7 @@ static void PrintStatusTab(void){
                 //Turns Left
                 StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].perishSongTimer;
+                turnsLeft = gVolatileStructs[sMenuDataPtr->battlerId].perishSongTimer;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
@@ -2503,7 +2503,7 @@ static void PrintStatusTab(void){
                 //Turns Left
                 StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].embargoTimer;
+                turnsLeft = gVolatileStructs[sMenuDataPtr->battlerId].embargoTimer;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
@@ -2555,7 +2555,7 @@ static void PrintStatusTab(void){
                 //Turns Left
                 StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].magnetRiseTimer;
+                turnsLeft = gVolatileStructs[sMenuDataPtr->battlerId].magnetRiseTimer;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 

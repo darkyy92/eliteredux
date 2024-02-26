@@ -1343,8 +1343,8 @@ static void RecordedPlayerHandleMoveAnimation(void)
         gAnimMoveDmg = gBattleResources->bufferA[gActiveBattler][6] | (gBattleResources->bufferA[gActiveBattler][7] << 8) | (gBattleResources->bufferA[gActiveBattler][8] << 16) | (gBattleResources->bufferA[gActiveBattler][9] << 24);
         gAnimFriendship = gBattleResources->bufferA[gActiveBattler][10];
         gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
-        gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
-        gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
+        gAnimVolatileStructPtr = (struct VolatileStruct *)&gBattleResources->bufferA[gActiveBattler][16];
+        gTransformedPersonalities[gActiveBattler] = gAnimVolatileStructPtr->transformedMonPersonality;
         if (IsMoveWithoutAnimation(move, gAnimMoveTurn)) // always returns FALSE
         {
             RecordedPlayerBufferExecCompleted();

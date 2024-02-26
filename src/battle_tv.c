@@ -970,7 +970,7 @@ static bool8 IsNotSpecialBattleString(u16 stringId)
         return FALSE;
 }
 
-void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct DisableStruct *disableStructPtr)
+void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct VolatileStruct *volatileStructPtr)
 {
     struct BattleTv *tvPtr;
     u32 atkSide, defSide;
@@ -996,7 +996,7 @@ void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct DisableStruc
     tvPtr->side[atkSide].usedMoveSlot = moveSlot;
     AddMovePoints(PTS_MOVE_EFFECT, moveSlot, gBattleMoves[move].effect, 0);
     AddPointsBasedOnWeather(weatherFlags, move, moveSlot);
-    if (disableStructPtr->chargeTimer != 0)
+    if (volatileStructPtr->chargeTimer != 0)
         AddMovePoints(PTS_ELECTRIC, move, moveSlot, 0);
 
     if (move == MOVE_WISH)

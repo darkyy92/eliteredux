@@ -98,7 +98,7 @@ EWRAM_DATA static s8 gAnimFramesToWait = 0;
 EWRAM_DATA bool8 gAnimScriptActive = FALSE;
 EWRAM_DATA u8 gAnimVisualTaskCount = 0;
 EWRAM_DATA u8 gAnimSoundTaskCount = 0;
-EWRAM_DATA struct DisableStruct *gAnimDisableStructPtr = NULL;
+EWRAM_DATA struct VolatileStruct *gAnimVolatileStructPtr = NULL;
 EWRAM_DATA s32 gAnimMoveDmg = 0;
 EWRAM_DATA u16 gAnimMovePower = 0;
 EWRAM_DATA static u16 sAnimSpriteIndexArray[ANIM_SPRITE_INDEX_COUNT] = {0};
@@ -2187,7 +2187,7 @@ void ClearBattleAnimationVars(void)
     gAnimScriptActive = FALSE;
     gAnimVisualTaskCount = 0;
     gAnimSoundTaskCount = 0;
-    gAnimDisableStructPtr = NULL;
+    gAnimVolatileStructPtr = NULL;
     gAnimMoveDmg = 0;
     gAnimMovePower = 0;
     gAnimFriendship = 0;

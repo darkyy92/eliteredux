@@ -206,7 +206,7 @@ void BtlController_EmitPaletteFade(u8 bufferId); // unused
 void BtlController_EmitSuccessBallThrowAnim(u8 bufferId); // unused
 void BtlController_EmitBallThrowAnim(u8 bufferId, u8 caseId);
 void BtlController_EmitPause(u8 bufferId, u8 toWait, void *data); // unused
-void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 movePower, s32 dmg, u8 friendship, struct DisableStruct *disableStructPtr, u8 multihit);
+void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 movePower, s32 dmg, u8 friendship, struct VolatileStruct *volatileStructPtr, u8 multihit);
 void BtlController_EmitPrintString(u8 bufferId, u16 stringId);
 void BtlController_EmitPrintSelectionString(u8 bufferId, u16 stringId);
 void BtlController_EmitChooseAction(u8 bufferId, u8 arg1, u16 arg2);

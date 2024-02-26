@@ -233,13 +233,13 @@ u16 ChooseMoveAndTargetInBattlePalace(void)
             // then there's a 50% chance it won't be used anyway
             if (Random() % 100 > 49)
             {
-                gProtectStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
+                gRoundStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
                 return 0;
             }
         }
         else
         {
-            gProtectStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
+            gRoundStructs[gActiveBattler].palaceUnableToUseMove = TRUE;
             return 0;
         }
     }

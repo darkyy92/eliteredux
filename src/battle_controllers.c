@@ -1070,7 +1070,7 @@ void BtlController_EmitPause(u8 bufferId, u8 toWait, void *data)
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, toWait * 3 + 2);
 }
 
-void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 movePower, s32 dmg, u8 friendship, struct DisableStruct *disableStructPtr, u8 multihit)
+void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 movePower, s32 dmg, u8 friendship, struct VolatileStruct *volatileStructPtr, u8 multihit)
 {
     if(move == MOVE_NONE && gTempMove != MOVE_NONE){
         move = gCurrentMove;
@@ -1103,8 +1103,8 @@ void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 m
     }
     sBattleBuffersTransferData[14] = 0;
     sBattleBuffersTransferData[15] = 0;
-    memcpy(&sBattleBuffersTransferData[16], disableStructPtr, sizeof(struct DisableStruct));
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 16 + sizeof(struct DisableStruct));
+    memcpy(&sBattleBuffersTransferData[16], volatileStructPtr, sizeof(struct VolatileStruct));
+    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 16 + sizeof(struct VolatileStruct));
 }
 
 void BtlController_EmitPrintString(u8 bufferId, u16 stringID)

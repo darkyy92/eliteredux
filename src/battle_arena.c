@@ -738,7 +738,7 @@ void BattleArena_AddSkillPoints(u8 battler)
         {
             skillPoints[battler] -= 1;
         }
-        else if (!gProtectStructs[battler].protected)
+        else if (!gRoundStructs[battler].protected)
         {
             skillPoints[battler] += 1;
         }

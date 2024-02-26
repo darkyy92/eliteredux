@@ -72,7 +72,7 @@ struct ResourceFlags
 #define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
 #define RESOURCE_FLAG_SCARED            0x50
 
-struct DisableStruct
+struct VolatileStruct
 {
     u32 transformedMonPersonality;
     u16 disabledMove;
@@ -84,6 +84,8 @@ struct DisableStruct
     s8 stockpileBeforeDef;
     s8 stockpileBeforeSpDef;
     u8 substituteHP;
+    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
+    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
     u8 disableTimer:4;
     u8 disableTimerStartValue:4;
     u8 encoredMovePos;
@@ -127,7 +129,7 @@ struct DisableStruct
     u8 ghastlyEchoTimer:2;
 };
 
-struct ProtectStruct
+struct RoundStruct
 {
     u32 protected:1;
     u32 spikyShielded:1;
@@ -175,7 +177,7 @@ struct ProtectStruct
     u8 glaiveRush:1;
 };
 
-struct SpecialStatus
+struct TurnStruct
 {
     u8 statLowered:1;
     u8 lightningRodRedirected:1;
@@ -213,12 +215,6 @@ struct SpecialStatus
     u8 mirrorHerbStat:4;
     u8 multiHitCounter:4;
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
-};
-
-struct BattlerState
-{
-    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
-    bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
 };
 
 struct SideTimer
@@ -680,8 +676,8 @@ struct BattleStruct
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
-#define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
-#define BATTLER_DAMAGED(battlerId) ((gSpecialStatuses[battlerId].physicalDmg != 0 || gSpecialStatuses[battlerId].specialDmg != 0))
+#define TARGET_TURN_DAMAGED ((gTurnStructs[gBattlerTarget].physicalDmg != 0 || gTurnStructs[gBattlerTarget].specialDmg != 0))
+#define BATTLER_DAMAGED(battlerId) ((gTurnStructs[battlerId].physicalDmg != 0 || gTurnStructs[battlerId].specialDmg != 0))
 
 #define IS_BATTLER_OF_TYPE(battlerId, type)((gBattleMons[battlerId].type1 == type || gBattleMons[battlerId].type2 == type || gBattleMons[battlerId].type3 == type))
 #define SET_BATTLER_TYPE(battlerId, type)           \
@@ -691,17 +687,17 @@ struct BattleStruct
     gBattleMons[battlerId].type3 = TYPE_MYSTERY;    \
 }
 
-#define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
-                                        || gDisableStructs[gActiveBattler].protectedThisTurn                           \
+#define IS_BATTLER_PROTECTED(battlerId)(gRoundStructs[battlerId].protected                                           \
+                                        || gVolatileStructs[gActiveBattler].protectedThisTurn                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
-                                        || gProtectStructs[battlerId].angelsWrathProtected                             \
-                                        || gProtectStructs[battlerId].spikyShielded                                    \
-                                        || gProtectStructs[battlerId].kingsShielded                                    \
-                                        || gProtectStructs[battlerId].banefulBunkered                                  \
-                                        || gProtectStructs[battlerId].obstructed)                                      \
+                                        || gRoundStructs[battlerId].angelsWrathProtected                             \
+                                        || gRoundStructs[battlerId].spikyShielded                                    \
+                                        || gRoundStructs[battlerId].kingsShielded                                    \
+                                        || gRoundStructs[battlerId].banefulBunkered                                  \
+                                        || gRoundStructs[battlerId].obstructed)                                      \
 
 #define GET_STAT_BUFF_ID(n)((n & 7))              // first three bits 0x1, 0x2, 0x4
 #define GET_STAT_BUFF_VALUE_WITH_SIGN(n)((n & 0xF8))
@@ -943,15 +939,14 @@ extern u8 gFaintedMonCount[2];
 extern struct SideTimer gSideTimers[2];
 extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u32 gStatuses4[MAX_BATTLERS_COUNT];
-extern struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT];
+extern struct VolatileStruct gVolatileStructs[MAX_BATTLERS_COUNT];
 extern u16 gPauseCounterBattle;
 extern u16 gPaydayMoney;
 extern u16 gRandomTurnNumber;
 extern u8 gBattleCommunication[BATTLE_COMMUNICATION_ENTRIES_COUNT];
 extern u8 gBattleOutcome;
-extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
-extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
-extern struct BattlerState gBattlerState[MAX_BATTLERS_COUNT];
+extern struct RoundStruct gRoundStructs[MAX_BATTLERS_COUNT];
+extern struct TurnStruct gTurnStructs[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
 extern struct WishFutureKnock gWishFutureKnock;
 extern u16 gIntroSlideFlags;
