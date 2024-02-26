@@ -10937,14 +10937,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_IVY_CUDGEL] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_MISC_HIT,
+        .power = 100,
+        .type = TYPE_GRASS,
+        .accuracy = 100,
+        .pp = 100,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
+        .flags2 = FLAG_HAMMER_BASED,
         .split = SPLIT_PHYSICAL,
+        .argument = MISC_EFFECT_IVY_CUDGEL,
     },
     [MOVE_ELECTRO_SHOT] =
     {
@@ -10959,14 +10962,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_FICKLE_BEAM] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_MISC_HIT,
+        .power = 80,
+        .type = TYPE_DRAGON,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .split = SPLIT_SPECIAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
+        .argument = MISC_EFFECT_DOUBLE_DAMAGE,
     },
     [MOVE_BURNING_BULWARK] =
     {
@@ -11064,13 +11069,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_SUPERCELL_SLAM] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .effect = EFFECT_RECOIL_IF_MISS,
+        .power = 130,
+        .type = TYPE_ELECTRIC,
+        .accuracy = 90,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_RECKLESS_BOOST,
+        .flags2 = FLAG_HAMMER_BASED,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_PSYCHIC_NOISE] =

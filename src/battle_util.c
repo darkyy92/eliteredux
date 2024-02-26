@@ -13233,6 +13233,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             case MISC_EFFECT_TOOK_DAMAGE_BOOST:
                 basePower += 20 * min(3, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
                 break;
+            case MISC_EFFECT_DOUBLE_DAMAGE:
+                basePower *= 1 + ((Random() % 100) < gBattleMoves[move].secondaryEffectChance);
+                break;
         }
         break;
     }

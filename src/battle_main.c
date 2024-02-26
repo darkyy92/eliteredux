@@ -5815,7 +5815,17 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         }
     }
 
-    if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
+    if (gBattleMoves[move].effect == EFFECT_MISC_HIT)
+    {
+        if (gBattleMoves[move].argument == MISC_EFFECT_IVY_CUDGEL)
+        {
+            switch (species)
+            {
+                // TODO: Add type changing based on Ogrepon form.
+            }
+        }
+    }
+    else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
         return GetMonData(mon, MON_DATA_HP_TYPE, NULL);
     }
