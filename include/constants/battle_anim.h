@@ -556,6 +556,7 @@
 #define B_ANIM_RAINBOW                  35
 #define B_ANIM_SEA_OF_FIRE              36
 #define B_ANIM_SWAMP                    37
+#define B_ANIM_SYRUP_BOMB_SPEED_DROP    38
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0

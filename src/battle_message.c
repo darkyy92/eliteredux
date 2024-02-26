@@ -799,6 +799,8 @@ static const u8 sText_ViciousThornsUsed[] = _("Vicious thorns sprout around\n{B_
 static const u8 sText_IllWillLostPp[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1} lost\nall of its PP to Ill Will!");
 static const u8 sText_ChargeAbilityBattler[] = _("{B_EFF_NAME_WITH_PREFIX} became fully\ncharged!");
 static const u8 sText_AttackerAteItem[] = _("{B_ATK_NAME_WITH_PREFIX} ate its {B_LAST_ITEM}!");
+static const u8 sText_AfflictedWithSaltCure[] = _("{B_EFF_NAME_WITH_PREFIX} is\nbeing salt cured!");
+static const u8 sText_AfflictedWithSyrup[] = _("{B_EFF_NAME_WITH_PREFIX} is\ncoated in sticky candy syrup!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s Ability\nprevents switching!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -1696,6 +1698,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ILL_WILL_LOST_PP - 12] = sText_IllWillLostPp,
     [STRINGID_CHARGEABILITYBATTLER - 12] = sText_ChargeAbilityBattler,
     [STRINGID_ATTACKERATEITEM - 12] = sText_AttackerAteItem,
+    [STRINGID_AFFLICTED_WITH_SALT_CURE - 12] = sText_AfflictedWithSaltCure,
+    [STRINGID_AFFLICTED_WITH_SYRUP - 12] = sText_AfflictedWithSyrup,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -2223,6 +2227,12 @@ const u16 gWeatherCleared[] =
     [B_MSG_SAND_ENDS] = STRINGID_SANDSTORMSUBSIDED,
     [B_MSG_HAIL_ENDS] = STRINGID_HAILSTOPPED,
     [B_MSG_REMOVE_WEATHER_FAILED] = STRINGID_BUTITFAILED,
+};
+
+const u16 gStatusAnnounce[] = 
+{
+    [B_MSG_SALT_CURE] = STRINGID_AFFLICTED_WITH_SALT_CURE,
+    [B_MSG_SYRUP] = STRINGID_AFFLICTED_WITH_SYRUP,
 };
 
 // END OF GENERATED

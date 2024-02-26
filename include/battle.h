@@ -127,6 +127,7 @@ struct VolatileStruct
     u8 filler:4;
     bool8 syrupBombIsShiny:1;
     u8 ghastlyEchoTimer:2;
+    u8 syrupTimer:2;
 };
 
 struct RoundStruct

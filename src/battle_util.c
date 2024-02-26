@@ -2541,6 +2541,7 @@ enum
     ENDTURN_NIGHTMARES,
     ENDTURN_CURSE,
     ENDTURN_SALT_CURE,
+    ENDTURN_SYRUP,
     ENDTURN_WRAP,
     ENDTURN_OCTOLOCK,
     ENDTURN_UPROAR,
@@ -2655,6 +2656,14 @@ u8 DoBattlerEndTurnEffects(void)
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_SYRUP:
+            if (gVolatileStructs[gActiveBattler].syrupTimer)
+            {
+                gVolatileStructs[gActiveBattler].syrupTimer--;
+                BattleScriptExecute(BattleScript_SyrupDropsSpeed);
+                effect++;
+            }
             break;
         case ENDTURN_ABILITIES:  // end turn abilities
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))

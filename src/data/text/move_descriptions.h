@@ -3518,8 +3518,8 @@ static const u8 sMoveTwoLineDescription_MoveElectroShot[] = _(
     "gathers electricity for a\n"
     "high-voltage shot. +1 SPA");
 
-static const u8 sMoveTwoLineDescription_MoveFlickleBeam[] = _(
-    "shoots a beam of light to inflict damage.\n"
+static const u8 sMoveTwoLineDescription_MoveFickleBeam[] = _(
+    "Shoots a beam of light to inflict damage.\n"
     "30% chance to double damage when there are more heads");
 
 static const u8 sMoveTwoLineDescription_MoveBurningBulwark[] = _(
@@ -4475,7 +4475,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SYRUP_BOMB - 1] = sMoveTwoLineDescription_MoveSyrupBomb,
     [MOVE_IVY_CUDGEL - 1] = sMoveTwoLineDescription_MoveIvyCudgel,
     [MOVE_ELECTRO_SHOT - 1] = sMoveTwoLineDescription_MoveElectroShot,
-    [MOVE_FLICKLE_BEAM - 1] = sMoveTwoLineDescription_MoveFlickleBeam,
+    [MOVE_FICKLE_BEAM - 1] = sMoveTwoLineDescription_MoveFickleBeam,
     [MOVE_BURNING_BULWARK - 1] = sMoveTwoLineDescription_MoveBurningBulwark,
     [MOVE_THUNDERCLAP - 1] = sMoveTwoLineDescription_MoveThunderclap,
     [MOVE_TACHYON_CUTTER - 1] = sMoveTwoLineDescription_MoveTachyonCutter,
@@ -5392,7 +5392,7 @@ static const u8 sMoveFourLineDescription_MoveMatchaGotcha[] = _("The user fires 
 static const u8 sMoveFourLineDescription_MoveSyrupBomb[] = _("The user sets off an explosion\nof sticky candy syrup, which coats\nthe target and causes the target's Speed\nstat to drop each turn for three turns.");
 static const u8 sMoveFourLineDescription_MoveIvyCudgel[] = _("The user strikes with an ivy-wrapped cudgel.\nThis move's type changes depending on the mask\nworn by the user, and it has a heightened\nchance of landing a critical hit.");
 static const u8 sMoveFourLineDescription_MoveElectroShot[] = _("The user gathers electricity on the first turn,\nboosting its Sp. Atk stat, then fires a high-voltage\nshot on the next turn. The shot\nwill be fired immediately in rain.");
-static const u8 sMoveFourLineDescription_MoveFlickleBeam[] = _("The user shoots a beam of light\nto inflict damage. Sometimes all the user's\nheads shoot beams in unison,\ndoubling the move's power.");
+static const u8 sMoveFourLineDescription_MoveFickleBeam[] = _("The user shoots a beam of light\nto inflict damage. Sometimes all the user's\nheads shoot beams in unison,\ndoubling the move's power.");
 static const u8 sMoveFourLineDescription_MoveBurningBulwark[] = _("The user's intensely hot fur protects\nit from attacks and also burns\nany attacker that makes\ndirect contact with it.");
 static const u8 sMoveFourLineDescription_MoveThunderclap[] = _("This move enables the user to attack\nfirst with a jolt of electricity.\nThis move fails if the\ntarget is not readying an attack.");
 static const u8 sMoveFourLineDescription_MoveTachyonCutter[] = _("The user attacks by launching\nparticle blades at the target\ntwice in a row. This attack never misses.");
@@ -6309,7 +6309,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SYRUP_BOMB - 1] = sMoveFourLineDescription_MoveSyrupBomb,
     [MOVE_IVY_CUDGEL - 1] = sMoveFourLineDescription_MoveIvyCudgel,
     [MOVE_ELECTRO_SHOT - 1] = sMoveFourLineDescription_MoveElectroShot,
-    [MOVE_FLICKLE_BEAM - 1] = sMoveFourLineDescription_MoveFlickleBeam,
+    [MOVE_FICKLE_BEAM - 1] = sMoveFourLineDescription_MoveFickleBeam,
     [MOVE_BURNING_BULWARK - 1] = sMoveFourLineDescription_MoveBurningBulwark,
     [MOVE_THUNDERCLAP - 1] = sMoveFourLineDescription_MoveThunderclap,
     [MOVE_TACHYON_CUTTER - 1] = sMoveFourLineDescription_MoveTachyonCutter,

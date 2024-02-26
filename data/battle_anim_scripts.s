@@ -922,7 +922,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_SYRUP_BOMB
 	.4byte Move_NONE @ MOVE_IVY_CUDGEL
 	.4byte Move_NONE @ MOVE_ELECTRO_SHOT
-	.4byte Move_NONE @ MOVE_FLICKLE_BEAM
+	.4byte Move_NONE @ MOVE_FICKLE_BEAM
 	.4byte Move_NONE @ MOVE_BURNING_BULWARK
 	.4byte Move_NONE @ MOVE_THUNDERCLAP
 	.4byte Move_NONE @ MOVE_TACHYON_CUTTER
@@ -990,6 +990,7 @@ gBattleAnims_General::
 	.4byte General_Rainbow                  @ B_ANIM_RAINBOW
 	.4byte General_SeaOfFire                @ B_ANIM_SEA_OF_FIRE
 	.4byte General_Swamp                    @ B_ANIM_SWAMP
+	.4byte General_SyrupBombSpeedDrop       @ B_ANIM_SYRUP_BOMB_SPEED_DROP
 
 	.align 2
 gBattleAnims_Special::
@@ -27691,6 +27692,31 @@ SeaOfFireTwisterTres:
 
 General_Swamp:: @ To do
 	goto Move_HAZE
+
+General_SyrupBombSpeedDrop::
+	createvisualtask AnimTask_StickySyrup, 0x5
+	jumpargeq 0x0, FALSE, SyrupBombSpeedDropRed
+	jumpargeq 0x0, TRUE, SyrupBombSpeedDropYellow
+
+SyrupBombSpeedDropRed:
+	loadspritegfx ANIM_TAG_SYRUP_BLOB_RED
+	loadspritegfx ANIM_TAG_SYRUP_SHELL_RED
+	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 3, 0, 15, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_TARGET, 1, 2, 0, 12, RGB(20, 3, 3)
+	createsprite gSyrupBombRedShellBSpriteTemplate, ANIM_TARGET, 1, ANIM_TARGET, 60
+	waitforvisualfinish
+	end
+
+SyrupBombSpeedDropYellow:
+	loadspritegfx ANIM_TAG_SYRUP_BLOB_YELLOW
+	loadspritegfx ANIM_TAG_SYRUP_SHELL_YELLOW
+	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 3, 0, 15, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_TARGET, 1, 2, 0, 12, RGB(23, 13, 1)
+	createsprite gSyrupBombYellowShellBSpriteTemplate, ANIM_TARGET, 1, ANIM_TARGET, 60
+	waitforvisualfinish
+	end
 
 SnatchMoveTrySwapFromSubstitute:
 	createvisualtask AnimTask_IsAttackerBehindSubstitute, 2

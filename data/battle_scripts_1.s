@@ -461,6 +461,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSuperFangHaze			  @ EFFECT_SUPER_FANG_HAZE
 	.4byte BattleScript_EffectSpicyExtract			  @ EFFECT_SPICY_EXTRACT
 	.4byte BattleScript_EffectClearWeatherAndTerrainHit	@ EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT
+	.4byte BattleScript_EffectMatchaGotcha			  @	EFFECT_MATCHA_GOTCHA
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -3574,6 +3575,7 @@ BattleScript_EffectAbsorb::
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_AbsorbHeal:
 	manipulatedamage DMG_TO_HP_FROM_MOVE
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
@@ -3609,6 +3611,35 @@ BattleScript_AbsorbTryFainting::
 BattleScript_AbsorbSoulLinkerChangeSign::
 	manipulatedamage DMG_CHANGE_SIGN
 	goto BattleScript_MoveEnd
+
+
+BattleScript_EffectMatchaGotcha::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	setmoveeffect MOVE_EFFECT_BURN
+	seteffectsecondary
+goto BattleScript_AbsorbHeal
+
+BattleScript_AnnounceStatus::
+	printfromtable gStatusAnnounce
+	waitmessage B_WAIT_TIME_LONG
+	return
 
 BattleScript_EffectBurnHit::
 	setmoveeffect MOVE_EFFECT_BURN
@@ -8262,6 +8293,15 @@ BattleScript_AquaRingHeal::
 	playanimation BS_ATTACKER, B_ANIM_INGRAIN_HEAL, NULL
 	printstring STRINGID_AQUARINGHEAL
 	goto BattleScript_TurnHeal
+
+BattleScript_SyrupDropsSpeed::
+	setstatchanger STAT_SPEED, 1, TRUE
+	statbuffchange STAT_BUFF_ALLOW_PTR | MOVE_EFFECT_AFFECTS_USER, BattleScript_SyrupBombCantLowerSpeed
+	playanimation BS_ATTACKER, B_ANIM_SYRUP_BOMB_SPEED_DROP
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_SyrupBombCantLowerSpeed:
+	end2
 
 BattleScript_PrintMonIsRooted::
 	pause B_WAIT_TIME_SHORT

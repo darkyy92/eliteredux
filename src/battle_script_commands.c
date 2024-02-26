@@ -3147,11 +3147,13 @@ bool8 IsPreventableSecondaryEffect(u8 moveEffect)
         case MOVE_EFFECT_SP_DEF_MINUS_2:
         case MOVE_EFFECT_ACC_MINUS_2:
         case MOVE_EFFECT_EVS_MINUS_2:
-        case MOVE_EFFECT_DEF_SPDEF_DOWN:
-        case MOVE_EFFECT_SP_ATK_TWO_DOWN:
         case MOVE_EFFECT_ATTRACT:
         case MOVE_EFFECT_CURSE:
         case MOVE_EFFECT_DISABLE:
+        case MOVE_EFFECT_SALT_CURE:
+        case MOVE_EFFECT_PREVENT_ESCAPE:
+        case MOVE_EFFECT_NIGHTMARE:
+        case MOVE_EFFECT_SYRUP:
             return TRUE;
         default:
             return FALSE;
@@ -3576,22 +3578,20 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_RAINBOW:
+                gBattlescriptCurrInstr++;
                 if (!gSideTimers[GetBattlerSide(gEffectBattler)].rainbowTimer)
                 {
                     gSideTimers[GetBattlerSide(gEffectBattler)].rainbowTimer = 4;
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_RainbowStart;
-                }
-                else
-                {
-                    gBattlescriptCurrInstr++;
                 }
                 break;
             case MOVE_EFFECT_SWAMP:
+                gBattlescriptCurrInstr++;
                 if (!gSideTimers[GetBattlerSide(gEffectBattler)].swampTimer)
                 {
                     gSideTimers[GetBattlerSide(gEffectBattler)].swampTimer = 4;
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_SwampStart;
                 }
                 else
@@ -3600,15 +3600,12 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_FIRE_SEA:
+                gBattlescriptCurrInstr++;
                 if (!gSideTimers[GetBattlerSide(gEffectBattler)].fireSeaTimer)
                 {
                     gSideTimers[GetBattlerSide(gEffectBattler)].fireSeaTimer = 4;
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_SeaOfFireStart;
-                }
-                else
-                {
-                    gBattlescriptCurrInstr++;
                 }
                 break;
             case MOVE_EFFECT_CONFUSION:
@@ -4132,17 +4129,45 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
             case MOVE_EFFECT_DISABLE:
+                gBattlescriptCurrInstr++;
                 if (CanBeDisabled(gBattlerTarget))
                 {
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_MoveWasDisabledMessage;
                 }
                 break;
             case MOVE_EFFECT_GLAIVE_RUSH:
+                gBattlescriptCurrInstr++;
                 gRoundStructs[gBattlerAttacker].glaiveRush = TRUE;
                 break;
             case MOVE_EFFECT_SALT_CURE:
-                gStatuses4[gBattlerTarget] |= STATUS4_SALT_CURE;
+                gBattlescriptCurrInstr++;
+                if (!(gStatuses4[gBattlerTarget] & STATUS4_SALT_CURE))
+                {
+                    gStatuses4[gBattlerTarget] |= STATUS4_SALT_CURE;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SALT_CURE;
+                    BattleScriptPush(gBattlescriptCurrInstr);
+                    gBattlescriptCurrInstr = BattleScript_AnnounceStatus;
+
+                }
+                break;
+            case MOVE_EFFECT_SYRUP:
+                gBattlescriptCurrInstr++;
+                if (!gVolatileStructs[gEffectBattler].syrupTimer)
+                {
+                    if ((gBattleMons[gBattlerAttacker].species == SPECIES_DIPPLIN ||
+                        gBattleMons[gBattlerAttacker].species == SPECIES_HYDRAPPLE))
+                    {
+                        gVolatileStructs[gEffectBattler].syrupBombIsShiny =
+                            GetMonData(&GetSideParty(GetBattlerSide(gBattlerAttacker))[gBattlerPartyIndexes[gBattlerAttacker]],
+                                MON_DATA_IS_SHINY, NULL);
+                    }
+                    else gVolatileStructs[gEffectBattler].syrupBombIsShiny = FALSE;
+                    gVolatileStructs[gEffectBattler].syrupTimer = 3;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SYRUP;
+                    BattleScriptPush(gBattlescriptCurrInstr);
+                    gBattlescriptCurrInstr = BattleScript_AnnounceStatus;
+                }
                 break;
             }
         }
