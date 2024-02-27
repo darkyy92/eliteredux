@@ -5765,7 +5765,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             if (anyBlocked) {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_BLOCK_ON_ENTRY;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SALT_CIRCLE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
