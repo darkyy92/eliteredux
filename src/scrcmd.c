@@ -2446,7 +2446,7 @@ static const u16 sBattleItemList[][2] =
     {ITEM_CHOICE_SCARF,     50},
     {ITEM_ROCKY_HELMET,     50},
     {ITEM_ASSAULT_VEST,     50},
-    {ITEM_PHYSICAL_VEST,    50},
+    {ITEM_TACTICAL_VEST,    50},
     {ITEM_LIGHT_CLAY,       50},
     {ITEM_HEAVY_DUTY_BOOTS, 50},
     {ITEM_AIR_BALLOON,      50},

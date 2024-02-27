@@ -543,7 +543,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_OVAL_CHARM] = {gItemIcon_OvalCharm, gItemIconPalette_OvalCharm},
 	// Gen 6 Items
     [ITEM_ASSAULT_VEST] = {gItemIcon_AssaultVest, gItemIconPalette_AssaultVest},
-    [ITEM_PHYSICAL_VEST] = {gItemIcon_PhysicalVest, gItemIconPalette_PhysicalVest},
+    [ITEM_TACTICAL_VEST] = {gItemIcon_TacticalVest, gItemIconPalette_TacticalVest},
     [ITEM_PIXIE_PLATE] = {gItemIcon_PixiePlate, gItemIconPalette_PixiePlate},
     [ITEM_SAFETY_GOGGLES] = {gItemIcon_SafetyGoggles, gItemIconPalette_SafetyGoggles},
     //Mega Stones

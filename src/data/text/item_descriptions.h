@@ -2851,7 +2851,7 @@ static const u8 sAssaultVestDesc[] = _(
     "prevents the use\n"
     "of status moves.");
 
-static const u8 sPhysicalVestDesc[] = _(
+static const u8 sTacticalVestDesc[] = _(
     "Raises Def but\n"
     "prevents the use\n"
     "of status moves.");

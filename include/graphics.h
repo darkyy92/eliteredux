@@ -9376,7 +9376,7 @@ extern const u32 gItemIconPalette_OvalCharm[];
 // Gen 6 Items
 extern const u32 gItemIcon_AssaultVest[];
 extern const u32 gItemIconPalette_AssaultVest[];
-extern const u32 gItemIcon_PhysicalVest[];
+extern const u32 gItemIcon_TacticalVest[];
 extern const u32 gItemIconPalette_PhysicalVest[];
 extern const u32 gItemIcon_PixiePlate[];
 extern const u32 gItemIconPalette_PixiePlate[];

@@ -6980,14 +6980,14 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_PHYSICAL_VEST] =
+    [ITEM_TACTICAL_VEST] =
     {
-        .name = _("Physical Vest"),
-        .itemId = ITEM_PHYSICAL_VEST,
+        .name = _("Tactical Vest"),
+        .itemId = ITEM_TACTICAL_VEST,
         .price = 1000,
-        .holdEffect = HOLD_EFFECT_PHYSICAL_VEST,
+        .holdEffect = HOLD_EFFECT_TACTICAL_VEST,
         .holdEffectParam = 50,
-        .description = sPhysicalVestDesc,
+        .description = sTacticalVestDesc,
         .pocket = POCKET_BATTLE,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
