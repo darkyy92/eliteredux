@@ -9507,6 +9507,21 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         }
         return;
+    case VARIOUS_COPY_ABILITY:
+        {
+            u8 battlerToGiveAbility = GetBattlerForBattleScript(gBattlescriptCurrInstr[3]);
+            if (IsEntrainmentBannedAbilityAttacker(gBattleMons[gActiveBattler].ability)
+                || IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[battlerToGiveAbility].ability)
+                || DoesBattlerHaveAbilityShield(battlerToGiveAbility))
+            {
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
+                return;
+            }
+            UpdateAbilityStateIndicesForNewAbility(battlerToGiveAbility, gBattleMons[gActiveBattler].ability);
+            gBattleMons[battlerToGiveAbility].ability = gBattleMons[gActiveBattler].ability;
+        }
+        gBattlescriptCurrInstr += 8;
+        return;
     case VARIOUS_SET_LAST_USED_ABILITY:
         gLastUsedAbility = gBattleMons[gActiveBattler].ability;
         break;

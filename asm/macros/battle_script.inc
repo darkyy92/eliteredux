@@ -1518,6 +1518,12 @@
 	.4byte \ptr
 	.endm
 
+	.macro trycopyabilitybetween copyFrom:req, copyTo:req, failPtr:req
+	various \copyFrom, VARIOUS_COPY_ABILITY
+	.byte \copyTo
+	.4byte \failPtr
+	.endm
+
 	.macro setlastusedability battler:req
 	various \battler, VARIOUS_SET_LAST_USED_ABILITY
 	.endm

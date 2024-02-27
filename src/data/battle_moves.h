@@ -10690,14 +10690,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_DOODLE] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_DOODLE,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .split = SPLIT_STATUS,
     },
     [MOVE_FILLET_AWAY] =
     {

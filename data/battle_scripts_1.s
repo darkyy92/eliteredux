@@ -462,6 +462,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpicyExtract			  @ EFFECT_SPICY_EXTRACT
 	.4byte BattleScript_EffectClearWeatherAndTerrainHit	@ EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT
 	.4byte BattleScript_EffectMatchaGotcha			  @	EFFECT_MATCHA_GOTCHA
+	.4byte BattleScript_EffectDoodle				  @ EFFECT_DOODLE
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -2700,6 +2701,41 @@ BattleScript_EffectEntrainment:
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_TARGET
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectDoodle:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setlastusedability BS_TARGET
+	trycopyabilitybetween BS_TARGET, BS_ATTACKER, BattleScript_EffectDoodle_NoAttacker
+	attackanimation
+	waitanimation
+	trycopyabilitybetween BS_TARGET, BS_ATTACKER_PARTNER, BattleScript_EffectDoodle_NoPartner
+	printstring STRINGID_TEAM_ACQUIRED_ABILITY
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	switchinabilities BS_ATTACKER_PARTNER
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectDoodle_NoAttacker:
+	trycopyabilitybetween BS_TARGET, BS_ATTACKER_PARTNER, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	getbattler BS_ATTACKER_PARTNER
+	goto BattleScript_EffectDoodle_Single
+
+BattleScript_EffectDoodle_NoPartner:
+	trycopyabilitybetween BS_TARGET, BS_ATTACKER_PARTNER, BattleScript_ButItFailed
+	getbattler BS_ATTACKER
+	goto BattleScript_EffectDoodle_Single
+
+BattleScript_EffectDoodle_Single:
+	printstring STRINGID_SCRIPTING_COPIED_ABILITY
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_SCRIPTING
+	goto BattleScript_MoveEnd
+
 
 BattleScript_EffectSimpleBeam:
 	attackcanceler
