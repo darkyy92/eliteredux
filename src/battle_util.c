@@ -4586,7 +4586,7 @@ static u8 CheckAndSetOncePerTurnAbility(u8 battler, u16 ability)
             break;
         
         default:
-            return;
+            return FALSE;
     }
 
     if (!gTurnStructs[battler].turnAbilityTriggers[index])

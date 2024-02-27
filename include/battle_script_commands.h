@@ -30,6 +30,8 @@ struct IntimidateCloneData
     bool8 targetBoth;
 };
 
+extern const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES];
+
 void CheckForBadEggs(void);
 s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility);
 s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move);

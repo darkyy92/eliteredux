@@ -3176,7 +3176,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
     bool32 statusChanged = FALSE;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR || BattlerHasInnate(gBattlerTarget, ABILITY_MIRROR_ARMOR));
     u32 flags = 0;
-    bool8 ignoreTypeImmunities = gBattleScripting.moveEffect & MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
+    bool16 ignoreTypeImmunities = gBattleScripting.moveEffect & MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
 
     gBattleScripting.moveEffect &= ~MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES;
 

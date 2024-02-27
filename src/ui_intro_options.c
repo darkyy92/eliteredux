@@ -454,7 +454,7 @@ struct OptionData
     u8 numOptions;
 };
 
-struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
+const struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
     [SETTING_DIFFICULTY] =
     {
         .title = _("Difficulty"),

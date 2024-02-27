@@ -281,7 +281,6 @@ extern const u16 gLinkPlayerFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES];
-extern const struct IntimidateCloneData gIntimidateCloneData[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);

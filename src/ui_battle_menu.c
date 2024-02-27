@@ -1108,7 +1108,7 @@ static const u8 sText_Accuracy[]       = _("Acc");
 static const u8 sText_Evasion[]        = _("Eva");
 static const u8 sText_Critical[]       = _("Crt");
 
-static u8 statorder[NUM_BATTLE_STATS] = {
+static const u8 statorder[NUM_BATTLE_STATS] = {
     STAT_HP,
     STAT_ATK,
     STAT_DEF,
@@ -4404,7 +4404,7 @@ static void SetMonTypeIcons(void)
     }
 }*/
 
-static u8 tabColors[NUM_TABS] = {
+static const u8 tabColors[NUM_TABS] = {
     [TAB_STATS]             = MENU_COLOR_BLUE,
     [TAB_ABILITIES]         = MENU_COLOR_RED,
     [TAB_MOVES]             = MENU_COLOR_GREEN,
@@ -4412,7 +4412,7 @@ static u8 tabColors[NUM_TABS] = {
     [TAB_DAMAGE_CALCULATOR] = MENU_COLOR_RED,
 };
 
-static u8 tabColorsField[NUM_FIELD_TABS + 2] = {
+static const u8 tabColorsField[NUM_FIELD_TABS + 2] = {
     [TAB_PARTY]             = MENU_COLOR_YELLOW,
     [TAB_FIELD]             = MENU_COLOR_GREEN,
     [TAB_SPEED]             = MENU_COLOR_BLUE,
