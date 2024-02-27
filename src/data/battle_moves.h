@@ -10971,8 +10971,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 5,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_SPECIAL,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_MEGA_LAUNCHER_BOOST,
+        .split = SPLIT_SPECIAL,
         .argument = MISC_EFFECT_DOUBLE_DAMAGE,
     },
     [MOVE_BURNING_BULWARK] =

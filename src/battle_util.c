@@ -14181,7 +14181,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         {
             atkStatToUse = STAT_SPEED;
         }
-        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MOMENTUM_PLUS) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+        else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IMPULSE) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
         {
             atkStatToUse = STAT_SPEED;
         }
