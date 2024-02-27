@@ -5747,7 +5747,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         //Permanence
-        if (CheckAndSetSwitchInAbility(battler, ABILITY_BLOCK_ON_ENTRY)) {
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_SALT_CIRCLE)) {
             u8 anyBlocked = FALSE;
             u8 opponent = BATTLE_OPPOSITE(battler);
 
