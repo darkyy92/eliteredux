@@ -1380,6 +1380,15 @@ static const u8 sBattlePalaceNatureToFlavorTextId[NUM_NATURES] =
 
 static bool32 NoTargetPresent(u32 move)
 {
+    switch (move)
+    {
+        case MOVE_SUNNY_DAY:
+        case MOVE_RAIN_DANCE:
+        case MOVE_SANDSTORM:
+        case MOVE_HAIL:
+            return FALSE;
+    }
+    
     if (!IsBattlerAlive(gBattlerTarget))
         gBattlerTarget = GetMoveTarget(move, 0);
 
@@ -2238,10 +2247,9 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
         critChance = -1;
     }
     //Never Critical
-    else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK)    ||
-             BATTLER_HAS_ABILITY(battlerDef, ABILITY_SHELL_ARMOR) ||
+    else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_SHELL_ARMOR) ||
              BATTLER_HAS_ABILITY(battlerDef, ABILITY_BATTLE_ARMOR) ||
-            (BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK) && IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget))))
+             IsAbilityOnSide(battlerDef, ABILITY_BAD_LUCK))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);

@@ -189,6 +189,21 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
         return MOVE_TARGET_BOTH;
     else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
         return MOVE_TARGET_BOTH;
+
+        
+    switch (moveId)
+    {
+        case MOVE_RAIN_DANCE:
+        case MOVE_SUNNY_DAY:
+        case MOVE_SANDSTORM:
+        case MOVE_HAIL:
+            if (!BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST))
+            {
+                return MOVE_TARGET_USER;
+            }
+            break;
+    }
+
     return gBattleMoves[moveId].target;
 }
 
