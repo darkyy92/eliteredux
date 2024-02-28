@@ -4926,62 +4926,67 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
 static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_ONIX, // Roxanne-E, Sand Setter
+    .species = SPECIES_ONIX,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 2, // ABILITY_ROCK_HEAD, ABILITY_STAMINA, ABILITY_SAND_STREAM},
-    // .innates = {ABILITY_SOLID_ROCK, ABILITY_ROUGH_SKIN, ABILITY_STURDY},
-    .evs = {180, 76, 252, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_IMPISH,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {180, 76, 252, 0, 0, 0},
+    .nature = NATURE_IMPISH,
     .moves = MOVE_JAGGED_FANGS, MOVE_IRON_FANGS, MOVE_HIGH_HORSEPOWER, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,
-    .species = SPECIES_LUNATONE, // Roxanne-E, SpDef Wall, Weakness Policy
+    .species = SPECIES_LUNATONE,
     .heldItem = ITEM_WEAKNESS_POLICY,
-    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
-    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_CALM,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 4, 0, 252, 0},
+    .nature = NATURE_CALM,
     .moves = MOVE_POWER_GEM, MOVE_PSYSHOCK, MOVE_HYPNOSIS, MOVE_ICY_WIND
     },
     {
     .lvl = 0,
-    .species = SPECIES_AMAURA, // Roxanne-E
-    .heldItem = ITEM_CHOPLE_BERRY,
-    .ability = 0, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_PRIMAL_ARMOR, ABILITY_PERMAFROST},
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BOLD,
-    .moves = MOVE_FREEZE_DRY, MOVE_THUNDER_WAVE, MOVE_ANCIENT_POWER, MOVE_HYPER_VOICE
+    .species = SPECIES_NACLSTACK,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 200, 0, 0, 0, 52},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_ROCK_SLIDE, MOVE_ROCK_POLISH, MOVE_FISSURE, MOVE_RECOVER
     },
     {
     .lvl = 0,
-    .species = SPECIES_GRAVELER_ALOLAN, // Roxanne-E, Bulky Vest, Trapper, Fast, SR
+    .species = SPECIES_GRAVELER_ALOLAN,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 1, // ABILITY_MAGNET_PULL, ABILITY_ROCK_HEAD, ABILITY_FORT_KNOX},
-    // .innates = {ABILITY_LETS_ROLL, ABILITY_STURDY, ABILITY_GALVANIZE},
-    .evs = {54, 252, 0, 0, 202, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {54, 252, 0, 0, 202, 0},
+    .nature = NATURE_ADAMANT,
     .moves = MOVE_DOUBLE_EDGE, MOVE_STONE_EDGE, MOVE_BRICK_BREAK, MOVE_VOLT_SWITCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_MAGCARGO, // Roxanne-E, Simple + Shell Smash
+    .species = SPECIES_MAGCARGO,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_SIMPLE, ABILITY_MOUNTAINEER, ABILITY_SHELL_ARMOR},
-    // .innates = {ABILITY_MOLTEN_DOWN, ABILITY_FLASH_FIRE, ABILITY_MAGMA_ARMOR},
-    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
     .moves = MOVE_BURN_UP, MOVE_ANCIENT_POWER, MOVE_EARTH_POWER, MOVE_SHELL_SMASH
     },
     {
     .lvl = 0,
-    .species = SPECIES_GASTRODON_EAST_SEA, // Roxanne-E, Mixed, Berry Juice
+    .species = SPECIES_GASTRODON_EAST_SEA,
     .heldItem = ITEM_BERRY_JUICE,
-    .ability = 1, // ABILITY_SHELL_ARMOR, ABILITY_STORM_DRAIN, ABILITY_REGENERATOR},
-    // .innates = {ABILITY_STICKY_HOLD, ABILITY_SELF_SUFFICIENT, ABILITY_TECTONIZE},
-    .evs = {252, 0, 108, 80, 68, 0},      //Hp, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 108, 80, 68, 0},
+    .nature = NATURE_MODEST,
     .moves = MOVE_MUDDY_WATER, MOVE_SCALD, MOVE_AURORA_BEAM, MOVE_RECOVER
     }
 };
