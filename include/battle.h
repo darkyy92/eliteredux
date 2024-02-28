@@ -122,10 +122,9 @@ struct VolatileStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    bool8 protectedThisTurn:1;
+    u8 protectedThisTurn:1;
     u8 disciplineCounter:4;
-    u8 filler:4;
-    bool8 syrupBombIsShiny:1;
+    u8 syrupBombIsShiny:1;
     u8 ghastlyEchoTimer:2;
     u8 syrupTimer:2;
 };
