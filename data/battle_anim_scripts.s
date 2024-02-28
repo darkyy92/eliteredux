@@ -836,7 +836,7 @@ gBattleAnims_Moves::
 	.4byte Move_DARK_PULSE @ MOVE_BITTER_MALICE
 	.4byte Move_WILL_O_WISP @ MOVE_INFERNAL_PARADE
 	.4byte Move_THOUSAND_ARROWS @ MOVE_DEVIOUS_SHOT
-	.4byte Move_CHARGE_BEAM @ MOVE_STARBURST
+	.4byte Move_STARBURST
 	.4byte Move_SHADOW_FORCE @ MOVE_CHEAP_SHOT
 	.4byte Move_NONE @ MOVE_TORRENT_FIST
 	.4byte Move_NONE @ MOVE_STAR_CRASH
@@ -3298,6 +3298,40 @@ Move_DRACO_METEOR:
 	delay 20
 	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
 	delay 10
+	restorebg
+	waitbgfadein
+	waitforvisualfinish
+	end
+
+Move_STARBURST:
+	loadspritegfx ANIM_TAG_YELLOW_STAR
+	loadspritegfx ANIM_TAG_WARM_ROCK
+	loadspritegfx ANIM_TAG_GOLD_STARS
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_ICE_SPIKES
+Starbust_Background:
+	fadetobg BG_COSMIC
+	waitbgfadein
+	waitforvisualfinish
+Starbust_Meteors:
+	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 22, 20, 1
+	delay 5
+	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 5, 22, -18, 1
+	delay 5
+	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, -10, 22, 15, 1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 18, 1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 2, 0, 18, 1
+	delay 5
+	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 22, -20, 1
+	delay 5
+	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 22, 12, 1
+	delay 5
+Starburst_End:
 	restorebg
 	waitbgfadein
 	waitforvisualfinish
