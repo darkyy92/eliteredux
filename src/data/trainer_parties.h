@@ -4927,24 +4927,23 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     {
     .lvl = 0,
     .species = SPECIES_ONIX,
-    .heldItem = ITEM_EVIOLITE,
+    .heldItem = ITEM_LAGGING_TAIL,
     .ability = 2,
     .ivs = {},
     .zeroSpeedIvs = TRUE,
     .evs = {180, 76, 252, 0, 0, 0},
     .nature = NATURE_IMPISH,
-    .moves = MOVE_JAGGED_FANGS, MOVE_IRON_FANGS, MOVE_HIGH_HORSEPOWER, MOVE_BODY_PRESS
+    .moves = MOVE_JAGGED_FANGS, MOVE_DRAGON_BREATH, MOVE_DRAGON_TAIL, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,
-    .species = SPECIES_LUNATONE,
-    .heldItem = ITEM_WEAKNESS_POLICY,
-    .ability = 0,
-    .ivs = {},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 0, 252, 0},
-    .nature = NATURE_CALM,
-    .moves = MOVE_POWER_GEM, MOVE_PSYSHOCK, MOVE_HYPNOSIS, MOVE_ICY_WIND
+    .species = SPECIES_TIRTOUGA,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_AQUA_JET, MOVE_RAIN_DANCE, MOVE_ICE_FANG, MOVE_CURSE
     },
     {
     .lvl = 0,
@@ -4952,20 +4951,19 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     .heldItem = ITEM_EVIOLITE,
     .ability = 0,
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 200, 0, 0, 0, 52},
+    .evs = {252, 0, 128, 0, 128, 0},
     .nature = NATURE_CAREFUL,
-    .moves = MOVE_ROCK_SLIDE, MOVE_ROCK_POLISH, MOVE_FISSURE, MOVE_RECOVER
+    .moves = MOVE_HEAVY_SLAM, MOVE_CURSE, MOVE_SALT_CURE, MOVE_RECOVER
     },
     {
     .lvl = 0,
-    .species = SPECIES_GRAVELER_ALOLAN,
-    .heldItem = ITEM_EVIOLITE,
-    .ability = 1,
-    .ivs = {},
-    .zeroSpeedIvs = TRUE,
-    .evs = {54, 252, 0, 0, 202, 0},
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_DOUBLE_EDGE, MOVE_STONE_EDGE, MOVE_BRICK_BREAK, MOVE_VOLT_SWITCH
+    .species = SPECIES_BOMBIRDIER,
+    .heldItem = ITEM_KINGS_ROCK,
+    .ability = 2,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {76, 200, 0, 0, 0, 232},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_ROCK_THROW, MOVE_PARTING_SHOT, MOVE_KNOCK_OFF, MOVE_DUAL_WINGBEAT
     },
     {
     .lvl = 0,
@@ -4980,14 +4978,13 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_GASTRODON_EAST_SEA,
-    .heldItem = ITEM_BERRY_JUICE,
+    .species = SPECIES_WHISCASH,
+    .heldItem = ITEM_RINDO_BERRY,
     .ability = 1,
-    .ivs = {},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 108, 80, 68, 0},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_MUDDY_WATER, MOVE_SCALD, MOVE_AURORA_BEAM, MOVE_RECOVER
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_ZEN_HEADBUTT, MOVE_LIQUIDATION, MOVE_EARTHQUAKE, MOVE_DRAGON_DANCE
     }
 };
 
