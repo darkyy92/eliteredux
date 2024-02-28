@@ -794,7 +794,7 @@ gBattleAnims_Moves::
 	.4byte Move_SACRED_SWORD @ MOVE_PIXIE_SLASH
 	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
 	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
-	.4byte Move_THOUSAND_ARROWS @ MOVE_ARCHER_SHOT
+	.4byte Move_ARCHER_SHOT
 	.4byte Move_CUT @ MOVE_FROST_BRAND
 	.4byte Move_THOUSAND_ARROWS @ MOVE_FROST_BOLT
 	.4byte Move_ICICLE_CRASH @ MOVE_GLACIER_CRASH
@@ -10582,6 +10582,19 @@ Move_SPIRIT_SHACKLE::
 	launchtemplate gSpiritShackleChainTemplate 0x82 0x2 0xfff0 0x10
 	waitforvisualfinish
 	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x1 0x10 0x0 0x0
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+Move_ARCHER_SHOT::
+	loadspritegfx ANIM_TAG_SPIRIT_ARROW @Arrow
+	monbg ANIM_DEF_PARTNER
+	splitbgprio ANIM_TARGET
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
+	launchtemplate gSpiritShackleArrowTemplate 0x82 0x5 0x10 0x0 0x0 0x0 0xf
+	delay 0x8
+	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x3 0x0 0xa 0x1
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff

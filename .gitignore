@@ -53,3 +53,4 @@ src/data/pokemon/base_stats-inclement.h
 generators.py
 poryscript
 generators.py
+data/maps/*/*scripts.inc
