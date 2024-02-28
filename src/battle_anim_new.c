@@ -2174,6 +2174,17 @@ const struct SpriteTemplate gSpiritShackleArrowTemplate =
     .callback = AnimSonicBoomProjectile
 };
 
+const struct SpriteTemplate gCupidShotArrowTemplate =
+{
+    .tileTag = ANIM_TAG_CUPID_SHOT,
+    .paletteTag = ANIM_TAG_MAGENTA_HEART,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSonicBoomProjectile
+};
+
 const struct SpriteTemplate gSpiritShackleChainTemplate =
 {
     .tileTag = ANIM_TAG_CHAIN_LINK,

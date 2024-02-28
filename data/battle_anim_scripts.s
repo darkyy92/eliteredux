@@ -814,7 +814,7 @@ gBattleAnims_Moves::
 	.4byte Move_SMACK_DOWN @ MOVE_ASTEROID_DOWNFALL
 	.4byte Move_AQUA_TAIL @ MOVE_AQUA_BASH
 	.4byte Move_BUG_BITE @ MOVE_TECTONIC_FANGS
-	.4byte Move_THOUSAND_ARROWS @ MOVE_CUPID_SHOT
+	.4byte Move_CUPID_SHOT
 	.4byte Move_THOUSAND_ARROWS @ MOVE_CLAY_DART
 	.4byte Move_THOUSAND_ARROWS @ MOVE_DIAMOND_ARROW
 	.4byte Move_CUT @ MOVE_DIAMOND_BLADE
@@ -10589,13 +10589,51 @@ Move_SPIRIT_SHACKLE::
 
 Move_ARCHER_SHOT::
 	loadspritegfx ANIM_TAG_SPIRIT_ARROW @Arrow
-	monbg ANIM_DEF_PARTNER
-	splitbgprio ANIM_TARGET
+ArcherShotArrowShot:
 	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
 	launchtemplate gSpiritShackleArrowTemplate 0x82 0x5 0x10 0x0 0x0 0x0 0xf
 	delay 0x8
 	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x3 0x0 0xa 0x1
 	waitforvisualfinish
+ArcherFinishMove:
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+Move_CUPID_SHOT::
+	loadspritegfx ANIM_TAG_MAGENTA_HEART
+	loadspritegfx ANIM_TAG_PINK_HEART
+	loadspritegfx ANIM_TAG_RED_HEART
+	loadspritegfx ANIM_TAG_CUPID_SHOT @Arrow
+CupidShotArrowShot:
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
+	launchtemplate gCupidShotArrowTemplate 0x82 0x5 0x10 0x0 0x0 0x0 0xf
+	delay 0x8
+	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x3 0x0 0xa 0x1
+	waitforvisualfinish
+CupidShotExtraEffect:
+	loopsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER, 12, 3
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 160, -30
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -256, -42
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 128, -14
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 416, -38
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -128, -22
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -384, -31
+	waitforvisualfinish
+CupidShotBackGround:
+	waitplaysewithpan SE_M_ATTRACT2, 0, 15
+	createvisualtask AnimTask_HeartsBackground, 5
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 16, 256, 0
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 224, 240, 15
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 126, 272, 30
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 80, 224, 45
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 170, 272, 60
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 40, 256, 75
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 112, 256, 90
+	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 200, 272, 90
+	delay 10
+CupidShotRemoveBlend:
+	createvisualtask AnimTask_BlendColorCycle, 2, 4, 4, 4, 0, 10, RGB(31, 25, 27)
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end

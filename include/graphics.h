@@ -10350,6 +10350,7 @@ extern const u32 gBattleAnimSpriteGfx_MagentaHeart[];
 extern const u32 gBattleAnimSpriteGfx_RedOrb[];
 extern const u32 gBattleAnimSpriteGfx_EyeSparkle[];
 extern const u32 gBattleAnimSpriteGfx_MagentaHeart[];
+extern const u32 gBattleAnimSpriteGfx_CupidShot[];
 extern const u32 gBattleAnimSpriteGfx_Angel[];
 extern const u32 gBattleAnimSpriteGfx_Devil[];
 extern const u32 gBattleAnimSpriteGfx_Swipe[];
