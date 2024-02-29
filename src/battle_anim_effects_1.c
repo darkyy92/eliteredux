@@ -2739,6 +2739,17 @@ const struct SpriteTemplate gPoisonJabProjectileSpriteTemplate =
     .callback = AnimPoisonJabProjectile,
 };
 
+const struct SpriteTemplate gShockingJabProjectileSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PURPLE_JAB,
+    .paletteTag = ANIM_TAG_YELLOW_STAR,
+    .oam = &gOamData_AffineDouble_ObjBlend_32x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimPoisonJabProjectile,
+};
+
 const union AnimCmd gNightSlashLeftAnimCmd0[] =
 {
     ANIMCMD_FRAME(0, 4),
