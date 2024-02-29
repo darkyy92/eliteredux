@@ -788,7 +788,7 @@ gBattleAnims_Moves::
 	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
 	.4byte Move_PLASMA_PULSE
-	.4byte Move_HYPER_BEAM @ MOVE_PRIMAL_BEAM
+	.4byte Move_PRIMAL_BEAM
 	.4byte Move_BITE @ MOVE_DRACONIC_FANGS
 	.4byte Move_FLEUR_CANNON @ MOVE_PIXIE_BEAM
 	.4byte Move_SACRED_SWORD @ MOVE_PIXIE_SLASH
@@ -3336,6 +3336,63 @@ Starburst_End:
 	waitbgfadein
 	waitforvisualfinish
 	end
+
+Move_PRIMAL_BEAM:
+	loadspritegfx ANIM_TAG_DRAGON_ENERGY
+	loadspritegfx ANIM_TAG_BLUE_ORB
+PrimalBeam_Background:
+	fadetobg BG_COSMIC
+	waitbgfadein
+	waitforvisualfinish
+	delay 10
+PrimalBeam_Hit:
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 4, 1
+	waitforvisualfinish
+	delay 30
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_HYPER_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 1, 15, 0, 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 4, 50, 1
+	createvisualtask AnimTask_FlashAnimTagWithColor, 2, ANIM_TAG_BLUE_ORB, 1, 12, RGB(31, 0, 0), 16, 0, 0
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 50, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 11, RGB(25, 25, 25)
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	call PrimalBeamOrbs
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 11, 0, RGB(25, 25, 25)
+	waitforvisualfinish
+PriamlBeam_End:
+	restorebg
+	waitbgfadein
+	waitforvisualfinish
+	end
+PrimalBeamOrbs:
+	createsprite gPrimalBeamOrbSpriteTemplate, ANIM_TARGET, 2
+	createsprite gPrimalBeamOrbSpriteTemplate, ANIM_TARGET, 2 
+	delay 1
+	return
 
 Move_DISCHARGE:
 	loadspritegfx ANIM_TAG_IMPACT
