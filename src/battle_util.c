@@ -14819,12 +14819,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	// Rocky Payload
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ROCKY_PAYLOAD)){
-		if (moveType == TYPE_ROCK)
+		if (moveType == TYPE_ROCK || gBattleMoves[move].flags2 & FLAG_THROWING)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
-	// Rocky Payload
+	// Combustion
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COMBUSTION)){
 		if (moveType == TYPE_FIRE)
         {

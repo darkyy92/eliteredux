@@ -468,7 +468,7 @@
 #define ABILITY_WELL_BAKED_BODY 446 // Halves damage and +2 defense  when hit by a FIRE type move.
 #define ABILITY_FURNACE 447 // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed
 #define ABILITY_ELECTROMORPHOSIS 448 // Charges up when getting hit.
-#define ABILITY_ROCKY_PAYLOAD 449 // Powers up Rock-type moves
+#define ABILITY_ROCKY_PAYLOAD 449 // Ups Rock and throwing moves by 50%.
 #define ABILITY_EARTH_EATER 450 // Changes ground into HP.
 #define ABILITY_LINGERING_AROMA 451 // Spreads with contact.
 #define ABILITY_FAIRY_TALE 452 // Adds fairy type
