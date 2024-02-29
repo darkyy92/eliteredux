@@ -13282,6 +13282,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2,
     .ivs = {31, 31, 31, 31, 31, 0},
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 128, 0, 128, 0},
     .nature = NATURE_BRAVE,
     .moves = MOVE_PARABOLIC_CHARGE, MOVE_U_TURN, MOVE_HYDRO_PUMP, MOVE_SPARK
@@ -13292,6 +13293,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .heldItem = ITEM_TACTICAL_VEST,
     .ability = 0,
     .ivs = {31, 31, 31, 31, 31, 0},
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 4, 0},
     .nature = NATURE_QUIET,
     .moves = MOVE_GHASTLY_ECHO, MOVE_BOOMBURST, MOVE_RAGING_SOULS, MOVE_SYNCHRONOISE
@@ -13325,7 +13327,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_VOLT_SWITCH, MOVE_SPARK, MOVE_EARTH_POWER, MOVE_DRAINING_KISS
+    .moves = MOVE_VOLT_SWITCH, MOVE_FAKE_OUT, MOVE_EARTH_POWER, MOVE_SHOCK_WAVE
     }
 };
 
