@@ -235,7 +235,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonDance             @ EFFECT_DRAGON_DANCE
 	.4byte BattleScript_EffectCamouflage              @ EFFECT_CAMOUFLAGE
 	.4byte BattleScript_EffectHit                     @ EFFECT_PLEDGE
-	.4byte BattleScript_EffectHit                     @ EFFECT_FLING
+	.4byte BattleScript_EffectFling                   @ EFFECT_FLING
 	.4byte BattleScript_EffectNaturalGift             @ EFFECT_NATURAL_GIFT
 	.4byte BattleScript_EffectWakeUpSlap              @ EFFECT_WAKE_UP_SLAP
 	.4byte BattleScript_EffectHit                     @ EFFECT_WRING_OUT
@@ -3306,6 +3306,16 @@ BattleScript_FastHitFromAtkAnimation::
 BattleScript_FastMoveEnd::
 	moveendall
 	end
+
+BattleScript_EffectFling:
+	attackcanceler
+	attackstring
+	ppreduce
+	tryfling BS_ATTACKER, BattleScript_ButItFailed
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_PKMNFLUNG
+	waitmessage B_WAIT_TIME_SHORT
+goto BattleScript_HitFromCritCalc
 
 BattleScript_EffectNaturalGift:
 	attackcanceler

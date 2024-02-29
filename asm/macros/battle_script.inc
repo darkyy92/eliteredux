@@ -2210,6 +2210,11 @@
 	.4byte \jumpInstr
 	.endm
 
+	.macro tryfling, battler:req, onFail:req
+	various \battler, VARIOUS_TRY_FLING
+	.4byte \onFail
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

@@ -234,6 +234,7 @@
 #define VARIOUS_TRY_REVIVAL_BLESSING            157
 #define VARIOUS_REMOVE_WEATHER                  158
 #define VARIOUS_COPY_ABILITY                    159
+#define VARIOUS_TRY_FLING                       160
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

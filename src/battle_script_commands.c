@@ -1388,7 +1388,7 @@ static bool32 NoTargetPresent(u32 move)
         case MOVE_HAIL:
             return FALSE;
     }
-    
+
     if (!IsBattlerAlive(gBattlerTarget))
         gBattlerTarget = GetMoveTarget(move, 0);
 
@@ -11006,6 +11006,41 @@ static void Cmd_various(void)
             return;
         }
         break;
+    case VARIOUS_TRY_FLING:
+        if (CanFling(gActiveBattler))
+        {
+            gBattlescriptCurrInstr += 7;
+            switch (gBattleMons[gActiveBattler].item)
+            {
+                case ITEM_FLAME_ORB:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                    break;
+                case ITEM_RAZOR_FANG:
+                case ITEM_KINGS_ROCK:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
+                    break;
+                case ITEM_TOXIC_ORB:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
+                    break;
+                case ITEM_FROST_ORB:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_FROSTBITE;
+                    break;
+                case ITEM_LIGHT_BALL:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
+                    break;
+                case ITEM_POISON_BARB:
+                    gBattleScripting.moveEffect = MOVE_EFFECT_POISON;
+                    break;
+            }
+            gTurnStructs[gActiveBattler].flungItem = gBattleMons[gActiveBattler].item;
+            RemoveItem(gActiveBattler);
+        }
+        else
+        {
+            gTurnStructs[gActiveBattler].flungItem = 0;
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
+        return;
     case VARIOUS_TRY_REVIVAL_BLESSING:
         {
             const u8 *failInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
