@@ -624,6 +624,17 @@ const struct SpriteTemplate gHyperBeamOrbSpriteTemplate =
     .callback = AnimHyperBeamOrb,
 };
 
+const struct SpriteTemplate gPrimalBeamOrbSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_DRAGON_ENERGY,
+    .paletteTag = ANIM_TAG_BLUE_ORB,
+    .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    .anims = gSolarbeamBigOrbAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimHyperBeamOrb,
+};
+
 const union AnimCmd gLeechSeedAnimCmds1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -2721,6 +2732,17 @@ const struct SpriteTemplate gPoisonJabProjectileSpriteTemplate =
 {
     .tileTag = ANIM_TAG_PURPLE_JAB,
     .paletteTag = ANIM_TAG_PURPLE_JAB,
+    .oam = &gOamData_AffineDouble_ObjBlend_32x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimPoisonJabProjectile,
+};
+
+const struct SpriteTemplate gShockingJabProjectileSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PURPLE_JAB,
+    .paletteTag = ANIM_TAG_YELLOW_STAR,
     .oam = &gOamData_AffineDouble_ObjBlend_32x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,

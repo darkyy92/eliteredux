@@ -2679,6 +2679,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_SyrupDropsSpeed);
                 effect++;
             }
+            gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ABILITIES:  // end turn abilities
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))

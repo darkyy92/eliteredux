@@ -1,7 +1,11 @@
 #include "global.h"
 #include "task.h"
 
+#if MODERN
 struct Task gTasks[NUM_TASKS] = {0};
+#else
+struct Task gTasks[NUM_TASKS];
+#endif //MODERN
 
 static void InsertTask(u8 newTaskId);
 static u8 FindFirstActiveTask(void);

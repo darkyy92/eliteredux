@@ -20,7 +20,11 @@ struct Task
     s16 data[NUM_TASK_DATA];
 };
 
+#if MODERN
 extern struct Task gTasks[NUM_TASKS];
+#else
+extern struct Task gTasks[];
+#endif //MODERN
 
 void ResetTasks(void);
 u8 CreateTask(TaskFunc func, u8 priority);

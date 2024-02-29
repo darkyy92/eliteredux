@@ -119,7 +119,8 @@ ifneq ($(MODERN),1)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
 endif
 
-LDFLAGS = -Map ../../$(MAP) --no-warn-rwx-segments
+LDFLAGS = -Map ../../$(MAP)
+# LDFLAGS = -Map ../../$(MAP) --no-warn-rwx-segments # Makes the game unable to build both on modern and normal so I removed the --no-warn-rwx-segments part
 
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 GFX := tools/gbagfx/gbagfx$(EXE)
