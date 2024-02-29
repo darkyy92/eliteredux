@@ -216,6 +216,7 @@ struct TurnStruct
     u8 mirrorHerbStat:4;
     u8 multiHitCounter:4;
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
+    u16 flungItem;
 };
 
 struct SideTimer

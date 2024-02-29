@@ -25,6 +25,7 @@
 #include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/weather.h"
+#include "constants/species.h"
 
 extern const u8 EventScript_RepelWoreOff[];
 
@@ -395,10 +396,43 @@ enum
     WILD_AREA_ROCKS,
     WILD_AREA_FISHING,
     WILD_AREA_HONEY,
+    WILD_AREA_BERRY,
 };
 
 #define WILD_CHECK_REPEL    0x1
 #define WILD_CHECK_KEEN_EYE 0x2
+
+u16 MaybeFindSpecialMon(u8 area)
+{
+    if (Random() % ENCOUNTER_CHANCE_RARE_SPECIAL > 0) return FALSE;
+    
+    switch (area)
+    {
+        case WILD_AREA_ROCKS:
+            if (Random() % 10 == 0) return SPECIES_REGIGIGAS;
+            switch (Random() % 5)
+            {
+                case 0:
+                    return SPECIES_REGICE;
+                case 1:
+                    return SPECIES_REGIDRAGO;
+                case 2:
+                    return SPECIES_REGIELEKI;
+                case 3:
+                    return SPECIES_REGIROCK;
+                case 4:
+                    return SPECIES_REGISTEEL;
+            }
+            break;
+        case WILD_AREA_BERRY:
+        case WILD_AREA_HONEY:
+            return SPECIES_SHAYMIN;
+        case WILD_AREA_FISHING:
+            return SPECIES_PHIONE;
+    }
+
+    return FALSE;
+}
 
 bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 flags)
 {
@@ -408,6 +442,7 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 
 
     switch (area)
     {
+    case WILD_AREA_BERRY:
     case WILD_AREA_LAND:
         if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_STEEL, ABILITY_MAGNET_PULL, &wildMonIndex))
             break;
@@ -454,7 +489,8 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
 
-    species = wildMonInfo->wildPokemon[wildMonIndex].species;
+    species = MaybeFindSpecialMon(area);
+    if (!species) species = wildMonInfo->wildPokemon[wildMonIndex].species;
 
     if (species == SPECIES_MINIOR)
     {
@@ -755,7 +791,7 @@ void BerryWildEncounter(u8 headerId)
 {
     if (gBerryTreeWildMonHeaders[headerId].landMonsInfo != NULL)
     {
-        TryGenerateWildMon(gBerryTreeWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0);
+        TryGenerateWildMon(gBerryTreeWildMonHeaders[headerId].landMonsInfo, WILD_AREA_BERRY, 0);
         BattleSetup_StartWildBattle();
         gSpecialVar_Result = TRUE;
     }

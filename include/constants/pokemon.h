@@ -328,6 +328,7 @@
 #define FLAG_ARROW_BASED                            (1 << 4)
 #define FLAG_HITS_SPDEF                             (1 << 5)
 #define FLAG_HITS_PHYSICAL_DEF                      (1 << 6)
+#define FLAG_THROWING                               (1 << 7)
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

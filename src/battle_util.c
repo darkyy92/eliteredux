@@ -12666,17 +12666,20 @@ u8 IsMonDisobedient(void)
     }
 }
 
+bool8 IsItemNegated(u8 battlerId)
+{
+    if (gStatuses3[battlerId] & STATUS3_EMBARGO)
+        return TRUE;
+    if (isMagicRoomActive())
+        return TRUE;
+    if (GetBattlerAbility(battlerId) == ABILITY_KLUTZ)
+        return TRUE;
+    return FALSE;
+}
+
 u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
 {
-    if (checkNegating)
-    {
-        if (gStatuses3[battlerId] & STATUS3_EMBARGO)
-            return HOLD_EFFECT_NONE;
-        if (isMagicRoomActive())
-            return HOLD_EFFECT_NONE;
-        if (GetBattlerAbility(battlerId) == ABILITY_KLUTZ)
-            return HOLD_EFFECT_NONE;
-    }
+    if (checkNegating && IsItemNegated(battlerId)) return HOLD_EFFECT_NONE;
 
     gPotentialItemEffectBattler = battlerId;
 
@@ -13039,11 +13042,17 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
 
     switch (gBattleMoves[move].effect)
     {
-    case EFFECT_PLEDGE:
-        // todo
-        break;
     case EFFECT_FLING:
-        // todo: program Fling + Unburden interaction
+    {
+        u16 item = gTurnStructs[gActiveBattler].flungItem ? gTurnStructs[gActiveBattler].flungItem : gBattleMons[battlerAtk].item;
+        switch (item)
+        {
+            case ITEM_IRON_BALL:
+            case ITEM_BIG_NUGGET:
+                basePower = 130;
+                break;
+        }
+    }
         break;
     case EFFECT_ERUPTION:
         basePower = gBattleMons[battlerAtk].hp * basePower / gBattleMons[battlerAtk].maxHP;
@@ -14810,12 +14819,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	// Rocky Payload
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ROCKY_PAYLOAD)){
-		if (moveType == TYPE_ROCK)
+		if (moveType == TYPE_ROCK || gBattleMoves[move].flags2 & FLAG_THROWING)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
-	// Rocky Payload
+	// Combustion
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_COMBUSTION)){
 		if (moveType == TYPE_FIRE)
         {
@@ -16261,11 +16270,8 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
     // Mail can be stolen now
     if (itemId == ITEM_ENIGMA_BERRY)
         return FALSE;
-    else if (GET_BASE_SPECIES_ID(species) == SPECIES_KYOGRE && itemId == ITEM_BLUE_ORB) // includes primal
+    else if (holdEffect == HOLD_EFFECT_PRIMAL_ORB)
         return FALSE;
-    else if (GET_BASE_SPECIES_ID(species) == SPECIES_GROUDON && itemId == ITEM_RED_ORB) // includes primal
-        return FALSE;
-    // Mega stone cannot be lost if pokemon's base species can mega evolve with it.
     else if (holdEffect == HOLD_EFFECT_MEGA_STONE)
         return FALSE;
     else if (GET_BASE_SPECIES_ID(species) == SPECIES_GIRATINA && itemId == ITEM_GRISEOUS_ORB)
@@ -16446,20 +16452,10 @@ struct Pokemon *GetBattlerPartyData(u8 battlerId)
 bool32 CanFling(u8 battlerId)
 {
     u16 item = gBattleMons[battlerId].item;
-    u16 itemEffect = ItemId_GetHoldEffect(item);
 
     if (item == ITEM_NONE
-      || GetBattlerAbility(battlerId) == ABILITY_KLUTZ
-      || isMagicRoomActive()
-      || gVolatileStructs[battlerId].embargoTimer != 0
-      || !CanBattlerGetOrLoseItem(battlerId, item)
-      //|| itemEffect == HOLD_EFFECT_PRIMAL_ORB
-      || itemEffect == HOLD_EFFECT_GEMS
-      #ifdef ITEM_ABILITY_CAPSULE
-      || item == ITEM_ABILITY_CAPSULE
-      #endif
-      || (ItemId_GetPocket(item) == POCKET_BERRIES && IsAbilityOnSide(battlerId, ABILITY_UNNERVE))
-      || GetPocketByItemId(item) == POCKET_POKE_BALLS)
+      || IsItemNegated(battlerId)
+      || CanBattlerGetOrLoseItem(battlerId, item))
         return FALSE;
 
     return TRUE;

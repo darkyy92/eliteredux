@@ -2679,7 +2679,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_FLING:
-            score -= 10; //Fling does not work
+            if (!CanFling(battlerAtk))
+                score -= 10; // No item to fling
             break;
         case EFFECT_EMBARGO:
             if (AI_DATA->abilities[battlerDef] == ABILITY_KLUTZ
