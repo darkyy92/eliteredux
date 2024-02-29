@@ -3237,170 +3237,194 @@ static const u8 sMoveTwoLineDescription_MoveCheapShot[] = _(
     "Mega Launcher Boosted.");
 
 static const u8 sMoveTwoLineDescription_MoveTorrentFist[] = _(
-    "Not done yet.");
+    "10% chance to flinch.\n"
+    "Iron Fist boost.");
 
 static const u8 sMoveTwoLineDescription_MoveStarCrash[] = _(
-    "Not done yet.");
+    "33% recoil damage.");
 
 static const u8 sMoveTwoLineDescription_MoveStoneAxe[] = _(
-    "Not done yet.");
+    "Deals damage and sets stealth\n"
+    "rock. Keen edge.");
 
 static const u8 sMoveTwoLineDescription_MoveEnergyWave[] = _(
-    "Not done yet.");
+    "Deals damage.");
 
 static const u8 sMoveTwoLineDescription_MoveFlutteringLeaf[] = _(
-    "Not done yet.");
+    "Deals damage and switches.");
 
 static const u8 sMoveTwoLineDescription_MoveHeadlongRush[] = _(
-    "Not done yet.");
+    "Drops Def and SpDef.");
 
 static const u8 sMoveTwoLineDescription_MoveRevivalBlessing[] = _(
-    "Not done yet.");
+    "Revives a fainted teammate\n"
+    "with 50% HP.");
 
 static const u8 sMoveTwoLineDescription_MoveWhirlingStrikes[] = _(
-    "Not done yet.");
+    "Hits 3 times. Each hit\n"
+    "does more damage.");
 
 static const u8 sMoveTwoLineDescription_MoveMindBreak[] = _(
-    "Not done yet.");
+    "20% confuse chance.");
 
 static const u8 sMoveTwoLineDescription_MoveWyrmWind[] = _(
-    "Not done yet.");
+    "Hits 2-5 times. Drops SpDef,\n"
+    "raises Speed.");
 
 static const u8 sMoveTwoLineDescription_MoveShedTail[] = _(
-    "Not done yet.");
+    "Uses 50% HP to create substitute\n"
+    "and switch out.");
 
 static const u8 sMoveTwoLineDescription_MoveBerrySmash[] = _(
-    "Not done yet.");
+    "Deals damage.\n"
+    "User eats their berry.");
 
 static const u8 sMoveTwoLineDescription_MoveHydroSteam[] = _(
     "The user blasts the target with boiling-hot water.\n"
     "Boosted by the sun.");
 
 static const u8 sMoveTwoLineDescription_MoveFireHydroSteam[] = _(
-    "Not done yet.");
+    "Deals damage.\n"
+    "Does increase damage in rain.");
 
 static const u8 sMoveTwoLineDescription_MoveTripleArrows[] = _(
-    "Not done yet.");
+    "50% chance to lower Def. 30%\n"
+    "chance to flinch. High-crit.");
 
 static const u8 sMoveTwoLineDescription_MoveDoubleLariat[] = _(
-    "Not done yet.");
+    "Hits both targets.\n"
+    "Silences hit targets.");
 
 static const u8 sMoveTwoLineDescription_MoveSpecialAquaJet[] = _(
-    "Not done yet.");
+    "+1 priority.");
 
 static const u8 sMoveTwoLineDescription_MoveLeechBlade[] = _(
-    "Not done yet.");
+    "Heal 50% damage done.");
 
 static const u8 sMoveTwoLineDescription_MoveYggdrasilForce[] = _(
-    "Not done yet.");
+    "Lowers user's Atk and Def.");
 
 static const u8 sMoveTwoLineDescription_MoveDrainBrain[] = _(
-    "Not done yet.");
+    "Lowers targets SpDef.\n"
+    "Heals that much HP.");
 
 static const u8 sMoveTwoLineDescription_MovePsychokineticSlam[] = _(
-    "Not done yet.");
+    "Deals damage.\n"
+    "33% recoil damage.");
 
 static const u8 sMoveTwoLineDescription_MoveEsperWing[] = _(
-    "Not done yet.");
+    "Deals damage.\n"
+    "Raises speed.");
 
 static const u8 sMoveTwoLineDescription_MoveMortalSpin[] = _(
-    "Not done yet.");
+    "Deals damage. Removes hazards.\n"
+    "Poisons targets.");
 
 static const u8 sMoveTwoLineDescription_MoveGemMissile[] = _(
-    "Not done yet.");
+    "+1 priority.");
 
 static const u8 sMoveTwoLineDescription_MoveRiderKick[] = _(
-    "Not done yet.");
+    "Deals damage that can't miss.\n"
+    "Ignores target ability.");
 
 static const u8 sMoveTwoLineDescription_MoveAquaCutter[] = _(
-    "Not done yet.");
+    "20% chance to bleed.\n"
+    "High-crit.");
 
 static const u8 sMoveTwoLineDescription_MoveInverseRoom[] = _(
-    "Not done yet.");
+    "Reverses type matchups\n"
+    "for 5 turns.");
 
 static const u8 sMoveTwoLineDescription_MoveBlazingBone[] = _(
-    "Not done yet.");
+    "Hits 2-5 times.\n"
+    "+1 priority.");
 
 static const u8 sMoveTwoLineDescription_MoveKarma[] = _(
-    "Not done yet.");
+    "Raises SpAtk and SpDef.\n"
+    "Lowers Speed.");
 
 static const u8 sMoveTwoLineDescription_MoveChillingWater[] = _(
-    "Not done yet.");
+    "Lowers target's attack.");
 
 static const u8 sMoveTwoLineDescription_MoveGhastlyEcho[] = _(
-    "Not done yet.");
+    "Deals damage and switches out.\n"
+    "New battler does 50% more damage for first turn.");
 
 static const u8 sMoveTwoLineDescription_MoveChillyReception[] = _(
-    "Not done yet.");
+    "Sets hail and switches.");
 
 static const u8 sMoveTwoLineDescription_MoveIceSpinner[] = _(
-    "Not done yet.");
+    "Deals damage and removes terrain.");
 
 static const u8 sMoveTwoLineDescription_MoveTidyUp[] = _(
-    "Not done yet.");
+    "Removes hazards. Boosts Atk\n"
+    "and Speed.");
 
 static const u8 sMoveTwoLineDescription_MovePopulationBomb[] = _(
-    "Not done yet.");
+    "Hits 10 times.");
 
 static const u8 sMoveTwoLineDescription_MoveRagingSouls[] = _(
-    "Not done yet.");
+    "Sharply lowers user's SpAtk.");
 
 static const u8 sMoveTwoLineDescription_MoveTwinBeam[] = _(
-    "Not done yet.");
+    "Hits twice.");
 
 static const u8 sMoveTwoLineDescription_MoveRequiem[] = _(
-    "Not done yet.");
+    "10% chance to curse.");
 
 static const u8 sMoveTwoLineDescription_MoveArmorCannon[] = _(
-    "Not done yet.");
+    "Lowers user's Atk and Def.");
 
 static const u8 sMoveTwoLineDescription_MoveBitterBlade[] = _(
-    "Not done yet.");
+    "Heals 50% damage done.");
 
 static const u8 sMoveTwoLineDescription_MoveSoilDrain[] = _(
-    "Not done yet.");
+    "Heals 50% damage done.");
 
 static const u8 sMoveTwoLineDescription_MoveGigatonHammer[] = _(
-    "Not done yet.");
+    "Deals damage.\n"
+    "Can't be used twice in a row.");
 
 static const u8 sMoveTwoLineDescription_MoveTripleDive[] = _(
-    "Not done yet.");
+    "Hits 3 times.");
 
 static const u8 sMoveTwoLineDescription_MoveJetPunch[] = _(
-    "Not done yet.");
+    "+1 priority.");
 
 static const u8 sMoveTwoLineDescription_MoveRageFist[] = _(
-    "Not done yet.");
+    "+20 base power per time damaged.");
 
 static const u8 sMoveTwoLineDescription_MoveWickedTorque[] = _(
-    "Not done yet.");
+    "10% chance to sleep.");
 
 static const u8 sMoveTwoLineDescription_MoveBlazingTorque[] = _(
-    "Not done yet.");
+    "30% chance to burn.");
 
 static const u8 sMoveTwoLineDescription_MoveNoxiousTorque[] = _(
-    "Not done yet.");
+    "30% chance to poison.");
 
 static const u8 sMoveTwoLineDescription_MoveMagicalTorque[] = _(
-    "Not done yet.");
+    "30% chance to confuse.");
 
 static const u8 sMoveTwoLineDescription_MoveCombatTorque[] = _(
-    "Not done yet.");
+    "30% chance to paralyze");
 
 static const u8 sMoveTwoLineDescription_MoveKowtowCleave[] = _(
-    "Not implemented.");
+    "Can't miss. High-crit.");
 
 static const u8 sMoveTwoLineDescription_MoveFlowerTrick[] = _(
-    "Not implemented.");
+    "Can't miss. Always crits.");
 
 static const u8 sMoveTwoLineDescription_MoveAquaStep[] = _(
-    "Not implemented.");
+    "Deals damage.\n"
+    "Raises speed.");
 
 static const u8 sMoveTwoLineDescription_MoveTorchSong[] = _(
-    "Not implemented.");
+    "Deals damage. Raises SpAtk.");
 
 static const u8 sMoveTwoLineDescription_MoveGlaiveRush[] = _(
-    "Not implemented.");
+    "Deals damage.\n"
+    "User takes double damage for rest of turn.");
 
 static const u8 sMoveTwoLineDescription_MoveSilkTrap[] = _(
     "The user spins a silken trap\n"
@@ -5308,61 +5332,61 @@ static const u8 sMoveFourLineDescription_MoveInfernalParade[] = _("Not done yet.
 static const u8 sMoveFourLineDescription_MoveDeviousShot[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveStarburst[] = _("The user crashes a star\nshaped ray down.\n30% Flinch chance.\nMega Launcher Boosted.");
 static const u8 sMoveFourLineDescription_MoveCheapShot[] = _("The user sneaks into\nthe shadows, then attacks\nwith a concealed projectile.\nMega Launcher Boosted.");
-static const u8 sMoveFourLineDescription_MoveTorrentFist[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveStarCrash[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveStoneAxe[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveEnergyWave[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveFlutteringLeaf[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveHeadlongRush[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRevivalBlessing[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveWhirlingStrikes[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveMindBreak[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveWyrmWind[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveShedTail[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveBerrySmash[] = _("Not done yet.");
+static const u8 sMoveFourLineDescription_MoveTorrentFist[] = _("10% chance to flinch.\nIron Fist boost.");
+static const u8 sMoveFourLineDescription_MoveStarCrash[] = _("33% recoil damage.");
+static const u8 sMoveFourLineDescription_MoveStoneAxe[] = _("Deals damage.\nSets stealth rock.\nKeen edge boost.");
+static const u8 sMoveFourLineDescription_MoveEnergyWave[] = _("Deals damage.");
+static const u8 sMoveFourLineDescription_MoveFlutteringLeaf[] = _("Deals damage and\nswitches out.");
+static const u8 sMoveFourLineDescription_MoveHeadlongRush[] = _("Drops Def and SpDef.");
+static const u8 sMoveFourLineDescription_MoveRevivalBlessing[] = _("Revives a fainted\nteammate with\n50% HP.");
+static const u8 sMoveFourLineDescription_MoveWhirlingStrikes[] = _("Hits 3 times. Each hit\ndoes more damage.\nStriker.");
+static const u8 sMoveFourLineDescription_MoveMindBreak[] = _("20% confuse chance.");
+static const u8 sMoveFourLineDescription_MoveWyrmWind[] = _("Hits 2-5 times.\nLowers SpDef.\nRaises Speed.\nMega launcher.");
+static const u8 sMoveFourLineDescription_MoveShedTail[] = _("Uses 50% HP to\ncreate substitute\nand switch out.");
+static const u8 sMoveFourLineDescription_MoveBerrySmash[] = _("Deals damage.\nUser eats their berry.");
 static const u8 sMoveFourLineDescription_MoveHydroSteam[] = _("The user blasts the target with boiling-hot water.\nThis move's power is not lowered in harsh sunlight\nbut rather boosted by 50%.");
-static const u8 sMoveFourLineDescription_MoveFireHydroSteam[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveTripleArrows[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveDoubleLariat[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveSpecialAquaJet[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveLeechBlade[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveYggdrasilForce[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveDrainBrain[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MovePsychokineticSlam[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveEsperWing[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveMortalSpin[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveGemMissile[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRiderKick[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveAquaCutter[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveInverseRoom[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveBlazingBone[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveKarma[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveChillingWater[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveGhastlyEcho[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveChillyReception[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveIceSpinner[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveTidyUp[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MovePopulationBomb[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRagingSouls[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveTwinBeam[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRequiem[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveArmorCannon[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveBitterBlade[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveSoilDrain[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveGigatonHammer[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveTripleDive[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveJetPunch[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveRageFist[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveWickedTorque[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveBlazingTorque[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveNoxiousTorque[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveMagicalTorque[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveCombatTorque[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveKowtowCleave[] = _("Not implemented.");
-static const u8 sMoveFourLineDescription_MoveFlowerTrick[] = _("Not implemented.");
-static const u8 sMoveFourLineDescription_MoveAquaStep[] = _("Not implemented.");
-static const u8 sMoveFourLineDescription_MoveTorchSong[] = _("Not implemented.");
-static const u8 sMoveFourLineDescription_MoveGlaiveRush[] = _("Not implemented.");
+static const u8 sMoveFourLineDescription_MoveFireHydroSteam[] = _("Deals damage. Deals\nincreased damage in\nrain.");
+static const u8 sMoveFourLineDescription_MoveTripleArrows[] = _("50% chance to drop\nDef. 30% chance to\nflinch. High crit.\nArrow-based.");
+static const u8 sMoveFourLineDescription_MoveDoubleLariat[] = _("Hits both targets.\nSilences hit targets.");
+static const u8 sMoveFourLineDescription_MoveSpecialAquaJet[] = _("+1 priority.");
+static const u8 sMoveFourLineDescription_MoveLeechBlade[] = _("Heal 50% damage\ndone.\nKeen edge.");
+static const u8 sMoveFourLineDescription_MoveYggdrasilForce[] = _("Lowers user's Atk\nand Def.");
+static const u8 sMoveFourLineDescription_MoveDrainBrain[] = _("Lowers targets SpDef.\nHeals that much HP.");
+static const u8 sMoveFourLineDescription_MovePsychokineticSlam[] = _("Deals damage.\n33% recoil damage.");
+static const u8 sMoveFourLineDescription_MoveEsperWing[] = _("Deals damage.\nRaises speed.\nAir-based.");
+static const u8 sMoveFourLineDescription_MoveMortalSpin[] = _("Deals damage and\nremoves hazards.\nPoisons targets.\nHits both foes.");
+static const u8 sMoveFourLineDescription_MoveGemMissile[] = _("+1 priority.");
+static const u8 sMoveFourLineDescription_MoveRiderKick[] = _("Can't miss.\nIgnores target ability.\nStriker.");
+static const u8 sMoveFourLineDescription_MoveAquaCutter[] = _("20% chance to bleed.\nHigh-crit. Keen edge.");
+static const u8 sMoveFourLineDescription_MoveInverseRoom[] = _("Reverses type chart\nfor 5 turns.");
+static const u8 sMoveFourLineDescription_MoveBlazingBone[] = _("Hits 2-5 times.\n+1 priority.\nBone-based.");
+static const u8 sMoveFourLineDescription_MoveKarma[] = _("Raises SpAtk and\nSpDef. Lowers Speed.");
+static const u8 sMoveFourLineDescription_MoveChillingWater[] = _("Lowers attack.");
+static const u8 sMoveFourLineDescription_MoveGhastlyEcho[] = _("Deals damage and\nswitches. Switched-in\ngets 50% boost for one\nturn. Sound-based.");
+static const u8 sMoveFourLineDescription_MoveChillyReception[] = _("Sets hail and switches.");
+static const u8 sMoveFourLineDescription_MoveIceSpinner[] = _("Deals damage.\nRemoves terrain.\nField-based.");
+static const u8 sMoveFourLineDescription_MoveTidyUp[] = _("Removes hazards.\nRaises Atk and Speed.");
+static const u8 sMoveFourLineDescription_MovePopulationBomb[] = _("Hits 10 times.");
+static const u8 sMoveFourLineDescription_MoveRagingSouls[] = _("Lowers user's SpAtk\nby two stages.");
+static const u8 sMoveFourLineDescription_MoveTwinBeam[] = _("Hits twice.\nMega launcher.");
+static const u8 sMoveFourLineDescription_MoveRequiem[] = _("10% chance to curse.\nSound-based.");
+static const u8 sMoveFourLineDescription_MoveArmorCannon[] = _("Lowers user's Atk\nand Def.\nMega launcher.");
+static const u8 sMoveFourLineDescription_MoveBitterBlade[] = _("Heals 50% damage\ndone.\nKeen edge.");
+static const u8 sMoveFourLineDescription_MoveSoilDrain[] = _("Heals 50% damage\ndone.");
+static const u8 sMoveFourLineDescription_MoveGigatonHammer[] = _("Deals damage. Can't\nbe used twice in a row.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveTripleDive[] = _("Hits 3 times.");
+static const u8 sMoveFourLineDescription_MoveJetPunch[] = _("+1 priority.\nIron fist.");
+static const u8 sMoveFourLineDescription_MoveRageFist[] = _("+20 base power per\ntime damaged. Max\n+60. Iron fist.");
+static const u8 sMoveFourLineDescription_MoveWickedTorque[] = _("10% chance to sleep.");
+static const u8 sMoveFourLineDescription_MoveBlazingTorque[] = _("30% chance to burn.");
+static const u8 sMoveFourLineDescription_MoveNoxiousTorque[] = _("30% chance to\npoison.");
+static const u8 sMoveFourLineDescription_MoveMagicalTorque[] = _("30% chance to\nconfuse.");
+static const u8 sMoveFourLineDescription_MoveCombatTorque[] = _("30% chance to\nparalyze.");
+static const u8 sMoveFourLineDescription_MoveKowtowCleave[] = _("Can't miss. High-crit.\nKeen edge.");
+static const u8 sMoveFourLineDescription_MoveFlowerTrick[] = _("Can't miss.\nAlways crits.");
+static const u8 sMoveFourLineDescription_MoveAquaStep[] = _("Deals damage.\nRaises speed.\nDance move.");
+static const u8 sMoveFourLineDescription_MoveTorchSong[] = _("Deals damage.\nRaises SpAtk.\nSound-based.");
+static const u8 sMoveFourLineDescription_MoveGlaiveRush[] = _("Deals damage.\nTake double damage\ntill next turn.");
 static const u8 sMoveFourLineDescription_MoveSilkTrap[] = _("The user spins a silken trap\nprotecting itself from damage\nwhile lowering the Speed stat\nof any attacker that makes direct contact.");
 static const u8 sMoveFourLineDescription_MoveLastRespects[] = _("The user attacks to avenge its allies\nThe more defeated allies there are\nin the user's party, the greater\nthe move's power.");
 static const u8 sMoveFourLineDescription_MoveLuminaCrash[] = _("The user attacks by unleashing a peculiar light\nthat even affects the mind.\nharshly lowers the target's Sp. Def stat.");
