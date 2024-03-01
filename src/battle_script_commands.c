@@ -3225,7 +3225,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         && !primary && gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
         INCREMENT_RESET_RETURN
 
-    if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove))//&& affectsUser != MOVE_EFFECT_AFFECTS_USER
+    if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
         INCREMENT_RESET_RETURN
 
     if (gBattleMons[gEffectBattler].hp == 0
@@ -4203,7 +4203,7 @@ static void Cmd_seteffectwithchance(void)
             0 : gBattleScripting.moveSecondaryEffectChance) :
         gBattleMoves[gCurrentMove].secondaryEffectChance;
     u8 moveType = gBattleMoves[gCurrentMove].type;
-    u8 moveEffect = gBattleScripting.moveEffect ? (gBattleScripting.moveEffect & 0xFF) : gBattleMoves[gCurrentMove].effect;
+    u8 moveEffect;
 
     FlagClear(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED);
 
@@ -4214,11 +4214,12 @@ static void Cmd_seteffectwithchance(void)
         }
 
         if(VarGet(VAR_TEMP_MOVEEFFECT) != 0){
-            moveEffect = VarGet(VAR_TEMP_MOVEEFFECT);
-            gBattleScripting.moveEffect = moveEffect;
+            gBattleScripting.moveEffect = VarGet(VAR_TEMP_MOVEEFFECT);
             VarSet(VAR_TEMP_MOVEEFFECT, 0);
         }
     }
+    
+    moveEffect = gBattleScripting.moveEffect & 0xFF;
 
     //Serene Grace boost
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))

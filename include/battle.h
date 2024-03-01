@@ -713,33 +713,33 @@ struct BattleStruct
 
 struct BattleScripting
 {
-    s32 painSplitHp;
-    s32 bideDmg;
-    u8 multihitString[6];
-    bool8 expOnCatch;
-    u8 twoTurnsMoveStringId;
-    u8 animArg1;
-    u8 animArg2;
-    u8 moveendState;
-    u8 savedStatChanger; // For further use, if attempting to change stat two times(ex. Moody)
-    u8 shiftSwitched; // When the game tells you the next enemy's pokemon and you switch. Option for noobs but oh well.
-    u8 battler;
-    u8 animTurn;
-    u8 animTargetsHit;
-    u8 statChanger;
-    bool8 statAnimPlayed;
-    u8 getexpState;
-    u8 battleStyle;
-    u8 drawlvlupboxState;
-    u8 learnMoveState;
-    u8 savedBattler;
-    u8 reshowMainState;
-    u8 reshowHelperState;
-    u8 levelUpHP;
-    u8 windowsType; // 0 - normal, 1 - battle arena
-    u8 multiplayerId;
-    u8 specialTrainerBattleType;
-    bool8 monCaught;
+s32 painSplitHp;
+s32 bideDmg;
+u8 multihitString[6];
+bool8 expOnCatch;
+u8 twoTurnsMoveStringId;
+u8 animArg1;
+u8 animArg2;
+u8 moveendState;
+u8 savedStatChanger;
+u8 shiftSwitched;
+u8 battler;
+u8 animTurn;
+u8 animTargetsHit;
+u8 statChanger;
+bool8 statAnimPlayed;
+u8 getexpState;
+u8 battleStyle;
+u8 drawlvlupboxState;
+u8 learnMoveState;
+u8 savedBattler;
+u8 reshowMainState;
+u8 reshowHelperState;
+u8 levelUpHP;
+u8 windowsType;
+u8 multiplayerId;
+u8 specialTrainerBattleType;
+bool8 monCaught;
     u16 savedMoveEffect; // For moves hitting multiple targets.
     u16 moveEffect;
     u16 multihitMoveEffect;
