@@ -34417,80 +34417,67 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = { // Marriland P
 static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_GRIMMSNARL, // Sidney-E, Dual Screens, SpDef Wall
-    .heldItem = ITEM_LIGHT_CLAY,
-    .ability = 0, // ABILITY_PRANKSTER, ABILITY_SOUL_EATER, ABILITY_TANGLING_HAIR},
-    // .innates = {ABILITY_FUR_COAT, ABILITY_INTIMIDATE, ABILITY_SCARE},
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_CAREFUL,
-    .moves = MOVE_TAUNT, MOVE_SPIRIT_BREAK, MOVE_LIGHT_SCREEN, MOVE_REFLECT
+    .species = SPECIES_CHIEN_PAO,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_SWORDS_DANCE, MOVE_NIGHT_SLASH, MOVE_GLACIER_CRASH, MOVE_SUCKER_PUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_YVELTAL, // Sidney-E, Bell, Air Blower
-    .heldItem = ITEM_SHELL_BELL,
-    .ability = 1, // ABILITY_OPPORTUNIST, ABILITY_FAE_HUNTER, ABILITY_SCARE},
-    // .innates = {ABILITY_DARK_AURA, ABILITY_AIR_BLOWER, ABILITY_GIANT_WINGS},
-    .evs = {180, 252, 0, 4, 0, 76},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MILD,
+    .species = SPECIES_YVELTAL,
+    .heldItem = ITEM_TACTICAL_VEST,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {180, 252, 0, 4, 0, 76},
+    .nature = NATURE_HARDY,
     .moves = MOVE_SUCKER_PUNCH, MOVE_OBLIVION_WING, MOVE_WICKED_BLOW, MOVE_U_TURN
     },
     {
     .lvl = 0,
-    .species = SPECIES_DARKRAI, // Sidney-E, Sash, Dark Aura, Nasty Plot
+    .species = SPECIES_DARKRAI,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // ABILITY_SOUL_EATER, ABILITY_BAD_DREAMS, ABILITY_DARK_AURA},
-    // .innates = {ABILITY_LEVITATE, ABILITY_PHANTOM, ABILITY_DREAMCATCHER},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 0, 0, 252, 4, 252},
+    .nature = NATURE_TIMID,
     .moves = MOVE_DARK_VOID, MOVE_DARK_PULSE, MOVE_MOONGEIST_BEAM, MOVE_NASTY_PLOT
     },
     {
     .lvl = 0,
-    .species = SPECIES_XERNEAS, // Sidney-E, Pixilate, Power Herb + Geomancy
-    .heldItem = ITEM_POWER_HERB,
-    .ability = 0, // ABILITY_PIXILATE, ABILITY_COMPETITIVE, ABILITY_SELF_SUFFICIENT},
-    // .innates = {ABILITY_FAIRY_AURA, ABILITY_ILLUMINATE, ABILITY_SOUL_HEART},
-    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_GEOMANCY, MOVE_BOOMBURST, MOVE_EARTH_POWER, MOVE_PSYSHOCK
+    .species = SPECIES_TYRANITAR_MEGA,
+    .heldItem = ITEM_TYRANITARITE,
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 4, 0, 0, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_IRON_FANGS, MOVE_JAGGED_FANGS, MOVE_DRAGON_DANCE, MOVE_CRUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_GRENINJA_BATTLE_BOND, // Sidney-E, Ash, Orb
+    .species = SPECIES_GRENINJA_BATTLE_BOND,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND},
-    // .innates = {ABILITY_TORRENT, ABILITY_SKILL_LINK, ABILITY_FATAL_PRECISION},
-    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 0, 4, 252, 0, 252},
+    .nature = NATURE_TIMID,
     .moves = MOVE_WATER_SHURIKEN, MOVE_DARK_PULSE, MOVE_GRASS_KNOT, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
-    .species = SPECIES_LUXRAY, // Sidney-E, Mega
-    .heldItem = ITEM_LUXRAYNITE,
-    .ability = 0, // ABILITY_SHOCKING_JAWS, ABILITY_SHOCKING_JAWS, ABILITY_SHOCKING_JAWS},
-    // .innates = {ABILITY_PREDATOR, ABILITY_FAE_HUNTER, ABILITY_MERCILESS},
-    // Pre-Mega
-    // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
-    // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_BAD_LUCK, ABILITY_PREDATOR},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_THUNDER_FANG, MOVE_IRON_FANGS, MOVE_SHADOW_FANGS, MOVE_CRUNCH
+    .species = SPECIES_MAWILE_MEGA_REDUX,
+    .heldItem = ITEM_MAWILITE_R,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_SHADOW_FANGS, MOVE_MOONLIGHT, MOVE_SUCKER_PUNCH, MOVE_CRUNCH
     }
-    /*{
-    .lvl = 0,
-    .species = SPECIES_GYARADOS, // Mega, Sidney-E, DD
-    .heldItem = ITEM_GYARADOSITE,
-    .ability = 0, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
-    // .innates = {ABILITY_MOLD_BREAKER, ABILITY_MOXIE, ABILITY_LEVITATE},
-    // Pre-Mega
-    // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
-    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_BEAST_BOOST, ABILITY_LEVITATE},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_WATERFALL, MOVE_WICKED_BLOW, MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE
-    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Phoebe[] = { // TR team
@@ -34567,90 +34554,67 @@ static const struct TrainerMonItemCustomMoves sParty_Phoebe[] = { // TR team
 static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_GIRATINA, // Phoebe-E, Mixed Wall, TR Setter, low speed
+    .species = SPECIES_GIRATINA,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_SCARE, ABILITY_TWISTED_DIMENSION},
-    // .innates = {ABILITY_SHADOW_SHIELD, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
+    .ability = 2,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_RELAXED,
+    .evs = {252, 0, 180, 0, 76, 0},
+    .nature = NATURE_RELAXED,
     .moves = MOVE_SPECTRAL_THIEF, MOVE_CORE_ENFORCER, MOVE_TOXIC, MOVE_RECOVER
     },
     {
     .lvl = 0,
-    .species = SPECIES_GOLURK, // Phoebe-E, Bulky Vest, No Guard, Fissure + Dynamic Punch, low speed
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // ABILITY_POWER_FISTS, ABILITY_NO_GUARD, ABILITY_HAUNTED_SPIRIT},
-    // .innates = {ABILITY_POWER_CORE, ABILITY_SHADOW_SHIELD, ABILITY_IRON_FIST},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_SHADOW_PUNCH, MOVE_FISSURE, MOVE_METEOR_MASH, MOVE_DYNAMIC_PUNCH
+    .species = SPECIES_NECROZMA_DAWN_WINGS,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 4, 0},
+    .nature = NATURE_BOLD,
+    .moves = MOVE_BODY_PRESS, MOVE_PRISMATIC_LASER, MOVE_CALM_MIND, MOVE_RECOVER
     },
     {
     .lvl = 0,
-    .species = SPECIES_AEGISLASH, // Phoebe-E, Rocky Helmet, Bulky Physical
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_SHADOW_SHIELD, ABILITY_DRAGONSLAYER, ABILITY_SOUL_EATER},
-    // .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_STANCE_CHANGE},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_EXCALIBUR, MOVE_SACRED_SWORD, MOVE_SHADOW_CLAW, MOVE_KINGS_SHIELD
+    .species = SPECIES_HOUNDOOM_MEGA_REDUX,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_RAGING_SOULS, MOVE_DARK_PULSE, MOVE_DESTINY_BOND, MOVE_FLAMETHROWER
     },
     {
     .lvl = 0,
-    .species = SPECIES_MARSHADOW, // Phoebe-E, Orb, Opportunist
+    .species = SPECIES_MARSHADOW,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // ABILITY_TECHNICIAN, ABILITY_OPPORTUNIST, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_IRON_FIST, ABILITY_PRECISE_FIST, ABILITY_CURSED_BODY},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 4, 0, 0, 252},
+    .nature = NATURE_JOLLY,
     .moves = MOVE_CLOSE_COMBAT, MOVE_SPECTRAL_THIEF, MOVE_SHADOW_SNEAK, MOVE_ICE_PUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_CALYREX_SHADOW_RIDER, // Phoebe-E, Shell Bell, Nasty Plot
+    .species = SPECIES_CALYREX_SHADOW_RIDER,
     .heldItem = ITEM_SHELL_BELL,
-    .ability = 0, // ABILITY_AS_ONE_SHADOW_RIDER, ABILITY_AS_ONE_SHADOW_RIDER, ABILITY_AS_ONE_SHADOW_RIDER},
-    // .innates = {ABILITY_SHADOW_SHIELD, ABILITY_SCARE, ABILITY_SPEED_BOOST},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 0, 0, 252, 4, 252},
+    .nature = NATURE_TIMID,
     .moves = MOVE_ASTRAL_BARRAGE, MOVE_PSYSHOCK, MOVE_DRAINING_KISS, MOVE_NASTY_PLOT
     },
     {
     .lvl = 0,
-    .species = SPECIES_CROBAT, // Phoebe-E, Mega
-    .heldItem = ITEM_CROBATITE,
-    .ability = 1, // Momentum > Nosferatu
-    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_POISON_FANG, MOVE_FIRE_FANG
+    .species = SPECIES_FLUTTER_MANE,
+    .heldItem = ITEM_BOOSTER_ENERGY,
+    .ability = 2,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_MOONBLAST, MOVE_RAGING_SOULS, MOVE_PERISH_SONG, MOVE_THUNDERBOLT
     }
-    /*{
-    .lvl = 0,
-    .species = SPECIES_GENGAR, // Mega, Phoebe-E, Special + Shadow Sneak
-    .heldItem = ITEM_GENGARITE,
-    .ability = 1, // ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG},
-    // .innates = {ABILITY_VENGEANCE, ABILITY_SOUL_EATER, ABILITY_HAUNTED_SPIRIT},
-    // Pre-Mega
-    // ABILITY_VENGEANCE, ABILITY_SCARE, ABILITY_PRANKSTER},
-    // .innates = {ABILITY_LEVITATE, ABILITY_CURSED_BODY, ABILITY_HAUNTED_SPIRIT},
-    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_HASTY,
-    .moves = MOVE_SHADOW_BALL, MOVE_SLUDGE_WAVE, MOVE_FOCUS_BLAST, MOVE_SHADOW_SNEAK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DHELMISE, // Phoebe-E, Sheer Force, Bulky Vest, low speed
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_WATER_ABSORB, ABILITY_SOUL_EATER, ABILITY_SHEER_FORCE},
-    // .innates = {ABILITY_METALLIC, ABILITY_SEAWEED, ABILITY_STEELWORKER},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 120, 0, 0, 136, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_CAREFUL,
-    .zeroSpeedIvs = TRUE,
-    .moves = MOVE_ANCHOR_SHOT, MOVE_POLTERGEIST, MOVE_POWER_WHIP, MOVE_LIQUIDATION,
-    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Glacia[] = {
