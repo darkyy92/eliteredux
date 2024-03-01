@@ -2843,6 +2843,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_CommanderEndsAttacker;
             }
+            gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BURN:  // burn
             if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0 &&
@@ -11295,7 +11296,7 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
 static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
     if (BATTLER_HEALING_BLOCKED(battlerId)) return 0;
-    
+
     if (HasEnoughHpToEatBerry(battlerId, 2, itemId)
       && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP))
     {
