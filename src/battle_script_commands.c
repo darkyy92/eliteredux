@@ -1985,6 +1985,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 defAbility = GetBattlerAbility(battlerDef);
     u32 atkHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
     u32 defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
+    u8 moveType;
+
+    GET_MOVE_TYPE(move, moveType)
 
     gPotentialItemEffectBattler = battlerDef;
     accStage     = gBattleMons[battlerAtk].statStages[STAT_ACC];
@@ -2044,7 +2047,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
             break;
         }
     }
-	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility) && CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
+	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility)
+        && CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
         return 100;
 
     // Check Wonder Skin.
