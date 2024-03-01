@@ -6279,7 +6279,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
-        .argument = MOVE_EFFECT_WATER_PLEDGE,
+        .argument = MOVE_EFFECT_WATER_PLEDGE | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_FIRE_PLEDGE] =
     {
@@ -6292,6 +6292,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
+        .argument = MOVE_EFFECT_FIRE_PLEDGE | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_GRASS_PLEDGE] =
     {
@@ -6304,6 +6305,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
+        .argument = MOVE_EFFECT_GRASS_PLEDGE | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_VOLT_SWITCH] =
     {
@@ -8912,7 +8914,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_BOTH,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
-        .argument = MOVE_EFFECT_BURN_IF_STATUS_UP,
+        .argument = MOVE_EFFECT_BURN_IF_STATUS_UP | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_LASH_OUT] =
     {
@@ -10658,7 +10660,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
-        .argument = MOVE_EFFECT_ORDER_UP | MOVE_EFFECT_AFFECTS_USER,
+        .argument = MOVE_EFFECT_ORDER_UP | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_SPICY_EXTRACT] =
     {
@@ -10697,7 +10699,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
-        .argument = MOVE_EFFECT_SALT_CURE,
+        .argument = MOVE_EFFECT_SALT_CURE | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_DOODLE] =
     {
@@ -10947,7 +10949,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_BALLISTIC,
         .split = SPLIT_SPECIAL,
-        .argument = MOVE_EFFECT_SYRUP,
+        .argument = MOVE_EFFECT_SYRUP | MOVE_EFFECT_CERTAIN,
     },
     [MOVE_IVY_CUDGEL] =
     {
