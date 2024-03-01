@@ -182,6 +182,7 @@
 #define STATUS4_COILED                  (1 << 2)
 #define STATUS4_SALT_CURE               (1 << 3)
 #define STATUS4_GHASTLY_ECHO            (1 << 4)
+#define STATUS4_COMMANDED               (1 << 5)
 
 #define HITMARKER_x10                   (1 << 4)
 #define HITMARKER_SKIP_DMG_TRACK        (1 << 5)

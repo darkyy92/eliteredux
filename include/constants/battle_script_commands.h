@@ -235,6 +235,7 @@
 #define VARIOUS_REMOVE_WEATHER                  158
 #define VARIOUS_COPY_ABILITY                    159
 #define VARIOUS_TRY_FLING                       160
+#define VARIOUS_JUMP_IF_STATUS_4                161
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

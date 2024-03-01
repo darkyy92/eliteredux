@@ -618,6 +618,8 @@ bool32 ShouldSwitch(void)
         return FALSE;
     if (gStatuses3[gActiveBattler] & STATUS3_ROOTED)
         return FALSE;
+    if (gStatuses4[gActiveBattler] & STATUS4_COMMANDED)
+        return FALSE;
     if (IsAbilityPreventingEscape(gActiveBattler))
         return FALSE;
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)

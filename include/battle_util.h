@@ -93,6 +93,14 @@ typedef enum
     PARADOX_WEATHER_ACTIVE = 2,
 } ParadoxBoostSource;
 
+typedef enum
+{
+    COMMANDER_NOT_ACTIVE = 0,
+    COMMANDER_ACTIVATING,
+    COMMANDER_ACTIVE,
+    COMMANDER_NEEDS_CANCELLING,
+} CommanderState;
+
 struct ParadoxBoost
 {
     ParadoxBoostSource source:2;

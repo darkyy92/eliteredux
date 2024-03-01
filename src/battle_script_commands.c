@@ -2120,7 +2120,9 @@ static void Cmd_accuracycheck(void)
 
     if (move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gVolatileStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+        if (GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+        else if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gVolatileStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr += 7;
         else if (gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -3501,10 +3503,12 @@ void SetMoveEffect(bool32 primary, u32 certain)
             {
             case MOVE_EFFECT_ORDER_UP:
                 if (gBattleMons[gBattlerAttacker].species == SPECIES_DONDOZO
-                    && GetAbilityState(BATTLE_PARTNER(gBattlerAttacker), ABILITY_COMMANDER) > 0)
+                    && IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker))
+                    && GetAbilityState(BATTLE_PARTNER(gBattlerAttacker), ABILITY_COMMANDER) == COMMANDER_ACTIVE)
                 {
                     switch (gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].species)
                     {
+                        case SPECIES_TATSUGIRI:
                         case SPECIES_TATSUGIRI_CURLY:
                             gBattleScripting.moveEffect = MOVE_EFFECT_ATK_PLUS_1 | affectsUser;
                             SetMoveEffect(primary, certain);
@@ -6775,6 +6779,8 @@ bool32 CanBattlerSwitch(u32 battlerId)
     s32 i, lastMonId, battlerIn1, battlerIn2;
     bool32 ret = FALSE;
     struct Pokemon *party;
+
+    if (gStatuses4[battlerId] & STATUS4_COMMANDED) return FALSE;
 
     if (BATTLE_TWO_VS_ONE_OPPONENT && GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
     {
@@ -11007,6 +11013,19 @@ static void Cmd_various(void)
             return;
         }
         break;
+    case VARIOUS_JUMP_IF_STATUS_4:
+        {
+            u32 status = T1_READ_32(gBattlescriptCurrInstr + 3);
+            if (gStatuses4[gActiveBattler] & status)
+            {
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 7);
+            }
+            else
+            {
+                gBattlescriptCurrInstr += 11;
+            }
+            return;
+        }
     case VARIOUS_TRY_FLING:
         if (CanFling(gActiveBattler))
         {
@@ -11274,6 +11293,8 @@ static void Cmd_jumpifnexttargetvalid(void)
     for (gBattlerTarget++; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
         if (gBattlerTarget == gBattlerAttacker && !(GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_USER))
+            continue;
+        if (GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;
@@ -14371,6 +14392,8 @@ static void Cmd_selectfirstvalidtarget(void)
     for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
         if (gBattlerTarget == gBattlerAttacker && !(GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_USER))
+            continue;
+        if (GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;

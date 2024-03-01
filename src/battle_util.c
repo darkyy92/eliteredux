@@ -342,7 +342,7 @@ void HandleAction_UseMove(void)
                 gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
             }
 
-            if (!IsBattlerAlive(gBattlerTarget))
+            if (!IsBattlerAlive(gBattlerTarget) || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER))
             {
                 if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
                 {
@@ -385,7 +385,7 @@ void HandleAction_UseMove(void)
                 gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
         }
 
-        if (gAbsentBattlerFlags & gBitTable[gBattlerTarget]
+        if ((gAbsentBattlerFlags & gBitTable[gBattlerTarget] || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
         {
             gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
@@ -393,7 +393,7 @@ void HandleAction_UseMove(void)
     }
     else if (GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) == MOVE_TARGET_ALLY)
     {
-        if (IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)))
+        if (IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)) && GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) < COMMANDER_ACTIVE)
             gBattlerTarget = BATTLE_PARTNER(gBattlerAttacker);
         else
             gBattlerTarget = gBattlerAttacker;
@@ -405,14 +405,16 @@ void HandleAction_UseMove(void)
         {
             if (gBattlerTarget == gBattlerAttacker)
                 continue;
+            if (GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
+                continue;
             if (IsBattlerAlive(gBattlerTarget))
                 break;
         }
     }
     else
     {
-        gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
-        if (!IsBattlerAlive(gBattlerTarget))
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
+        if (!IsBattlerAlive(gBattlerTarget) || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
         {
             if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
@@ -421,7 +423,7 @@ void HandleAction_UseMove(void)
             else
             {
                 gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_SIDE);
-                if (!IsBattlerAlive(gBattlerTarget))
+                if (!IsBattlerAlive(gBattlerTarget) || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
                     gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
             }
         }
@@ -2584,6 +2586,7 @@ enum
     ENDTURN_PLASMA_FISTS,
     ENDTURN_TOXIC_WASTE_DAMAGE,
     ENDTURN_SEA_OF_FIRE_DAMAGE,
+    ENDTURN_COMMANDER,
     ENDTURN_BATTLER_COUNT,
 };
 
@@ -2830,6 +2833,16 @@ u8 DoBattlerEndTurnEffects(void)
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_COMMANDER:
+            if (IsBattlerAlive(gBattlerAttacker) && GetAbilityState(gBattlerAttacker, ABILITY_COMMANDER) == COMMANDER_NEEDS_CANCELLING)
+            {
+                SetAbilityState(gBattlerAttacker, ABILITY_COMMANDER, COMMANDER_NOT_ACTIVE);
+                gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_CommanderEndsAttacker;
+            }
             break;
         case ENDTURN_BURN:  // burn
             if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0 &&
@@ -4880,6 +4893,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ANTICIPATION;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            }
+        }
+
+        {
+            u8 commander = IsAbilityOnSide(battler, ABILITY_COMMANDER);
+            if (commander--
+                && !GetAbilityState(commander, ABILITY_COMMANDER)
+                && IsBattlerAlive(BATTLE_PARTNER(commander))
+                && GET_BASE_SPECIES_ID(gBattleMons[commander].species) == SPECIES_TATSUGIRI
+                && GET_BASE_SPECIES_ID(gBattleMons[commander].species) == SPECIES_DONDOZO)
+            {
+                u8 partner = BATTLE_PARTNER(commander);
+                gStatuses3[commander] |= STATUS3_SEMI_INVULNERABLE;
+                gStatuses4[partner] |= STATUS4_COMMANDED;
+                SetAbilityState(commander, ABILITY_COMMANDER, COMMANDER_ACTIVATING);
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
+                gBattlerAbility = gBattlerAttacker = battler;
+                BattleScriptPushCursorAndCallback(BattleScript_CommanderActivates);
             }
         }
 
@@ -10535,6 +10566,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
             }
+
+            {
+                u8 commander = IsAbilityOnSide(battler, ABILITY_COMMANDER);
+                if (commander-- && IsBattlerAlive(commander) && GetAbilityState(commander, ABILITY_COMMANDER) == COMMANDER_NEEDS_CANCELLING)
+                {
+                    SetAbilityState(commander, ABILITY_COMMANDER, COMMANDER_NOT_ACTIVE);
+                    gStatuses3[commander] &= ~STATUS3_SEMI_INVULNERABLE;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = battler == gBattlerAttacker ? BattleScript_CommanderEndsAttacker : BattleScript_CommanderEndsDefender;
+                }
+            }
         break;
     }
 
@@ -10782,6 +10825,8 @@ bool32 CanBattlerEscape(u32 battlerId) // no ability check
     if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_SHED_SHELL)
         return TRUE;
     else if ((B_GHOSTS_ESCAPE >= GEN_6 && !IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST)) && gBattleMons[battlerId].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
+        return FALSE;
+    else if (gStatuses4[battlerId] & STATUS4_COMMANDED)
         return FALSE;
     else if (gStatuses3[battlerId] & STATUS3_ROOTED)
         return FALSE;

@@ -776,9 +776,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_MAUSHOLD_FOUR] = sMausholdFormSpeciesIdTable,
 
-    [SPECIES_TATSUGIRI_STRETCHY] = sTatsugiri_CurlyFormSpeciesIdTable,
-
-    [SPECIES_TATSUGIRI_DROOPY] = sTatsugiri_CurlyFormSpeciesIdTable,
+    [SPECIES_TATSUGIRI] = sTatsugiriFormSpeciesIdTable,
+    [SPECIES_TATSUGIRI_CURLY] = sTatsugiriFormSpeciesIdTable,
+    [SPECIES_TATSUGIRI_STRETCHY] = sTatsugiriFormSpeciesIdTable,
+    [SPECIES_TATSUGIRI_DROOPY] = sTatsugiriFormSpeciesIdTable,
 
     [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] = sSquawkabilly_Green_PlumageFormSpeciesIdTable,
 
