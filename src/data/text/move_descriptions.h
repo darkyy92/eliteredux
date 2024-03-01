@@ -3594,6 +3594,10 @@ static const u8 sMoveTwoLineDescription_MoveMalignantChain[] = _(
     "The user pours toxins into the target.\n"
     "Badly poisons the target");
 
+static const u8 sMoveTwoLineDescription_MoveLunarBlessing[] = _(
+    "Heals HP and status of\n"
+    "itself and allies in battle.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4512,6 +4516,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PSYCHIC_NOISE - 1] = sMoveTwoLineDescription_MovePsychicNoise,
     [MOVE_UPPER_HAND - 1] = sMoveTwoLineDescription_MoveUpperHand,
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveTwoLineDescription_MoveMalignantChain,
+    [MOVE_LUNAR_BLESSING - 1] = sMoveTwoLineDescription_MoveLunarBlessing,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5429,6 +5434,7 @@ static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user elect
 static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attacks the target with\nunpleasant sound waves. For two turns,\nthe target is prevented from recovering HP\nthrough moves, Abilities, or held items.");
 static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to the target's movement\nand strikes, making the target flinch.\nThis move fails if the target\nis not readying a priority move.");
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
+static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP to all\nallied battlers and\ncures their status.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6346,4 +6352,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_PSYCHIC_NOISE - 1] = sMoveFourLineDescription_MovePsychicNoise,
     [MOVE_UPPER_HAND - 1] = sMoveFourLineDescription_MoveUpperHand,
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveFourLineDescription_MoveMalignantChain,
+    [MOVE_LUNAR_BLESSING - 1] = sMoveFourLineDescription_MoveLunarBlessing,
 };

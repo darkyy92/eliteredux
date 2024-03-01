@@ -343,6 +343,7 @@ static u8 ChooseMoveOrAction_Singles(void)
         && !IsAbilityPreventingEscape(sBattler_AI)
         && !(gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         && !(gStatuses3[gActiveBattler] & STATUS3_ROOTED)
+        && !(gStatuses4[gActiveBattler] & STATUS4_COMMANDED)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_PREFER_BATON_PASS))
     {
@@ -1638,6 +1639,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else if (AI_DATA->abilities[battlerDef] == ABILITY_SUCTION_CUPS)
                 score -= 10;
             else if (AI_DATA->abilities[battlerDef] == ABILITY_GUARD_DOG)
+                score -= 10;
+            else if (gStatuses4[battlerDef] & STATUS4_COMMANDED)
                 score -= 10;
             break;
         case EFFECT_TOXIC_THREAD:
@@ -3028,7 +3031,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score += 5;
             break;
         case EFFECT_PERISH_SONG:
-            if (!(gBattleMons[battlerDef].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED)))
+            if (!(gBattleMons[battlerDef].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED)) && !(gStatuses4[battlerDef] & STATUS4_COMMANDED))
             {
                 if (IsTrappingMoveEffect(effect) || predictedMove == MOVE_INGRAIN)
                     score++;
@@ -3942,7 +3945,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
           || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
             score += 2;
-        if (!gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION && GetHealthPercentage(battlerAtk) > 70))
+        if ((!gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION) || !gStatuses4[battlerDef] & STATUS4_COMMANDED) && GetHealthPercentage(battlerAtk) > 70)
             score++;
         break;
     case EFFECT_MIMIC:

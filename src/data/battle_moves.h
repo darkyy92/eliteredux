@@ -11131,6 +11131,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_SPECIAL,
         .argument = MOVE_EFFECT_TOXIC,
     },
+    [MOVE_LUNAR_BLESSING] =
+    {
+        .effect = EFFECT_JUNGLE_HEALING,
+        .power = 0,
+        .type = TYPE_PSYCHIC,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .split = SPLIT_STATUS,
+    },
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {

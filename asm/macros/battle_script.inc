@@ -2215,6 +2215,12 @@
 	.4byte \onFail
 	.endm
 
+	.macro jumpifstatus4, battler:req, status:req, onFail:req
+	various \battler, VARIOUS_JUMP_IF_STATUS_4
+	.4byte \status
+	.4byte \onFail
+	.endm
+
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1
 	copybyte \battler1, \battler2

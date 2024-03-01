@@ -3489,6 +3489,22 @@ void FaintClearSetData(void)
     memset(&gVolatileStructs[gActiveBattler], 0, sizeof(struct VolatileStruct));
     memset(&gRoundStructs[gActiveBattler], 0, sizeof(struct RoundStruct));
 
+    if (IsBattlerAlive(BATTLE_PARTNER(gActiveBattler)))
+    {
+        u8 partner = BATTLE_PARTNER(gActiveBattler);
+        switch (GetAbilityState(partner, ABILITY_COMMANDER))
+        {
+            case COMMANDER_ACTIVATING:
+                SetAbilityState(partner, ABILITY_COMMANDER, COMMANDER_NOT_ACTIVE);
+                gStatuses3[partner] &= ~STATUS3_SEMI_INVULNERABLE;
+                break;
+            case COMMANDER_ACTIVE:
+            case COMMANDER_NEEDS_CANCELLING:
+                SetAbilityState(partner, ABILITY_COMMANDER, COMMANDER_NEEDS_CANCELLING);
+                break;
+        }
+    }
+
     gVolatileStructs[gActiveBattler].isFirstTurn = 2;
 
     gLastMoves[gActiveBattler] = 0;
@@ -4222,6 +4238,11 @@ static void HandleTurnActionSelectionState(void)
                         gChosenActionByBattler[gActiveBattler] = B_ACTION_NOTHING_FAINTED; // Not fainted, but it cannot move, because of the throwing ball.
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                     }
+                    if (GetAbilityState(gActiveBattler, ABILITY_COMMANDER))
+                    {
+                        gChosenActionByBattler[gActiveBattler] = B_ACTION_NOTHING_FAINTED; // Not fainted, but it cannot move, because of the throwing ball.
+                        gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
+                    }
                     else
                     {
                         BtlController_EmitChooseAction(0, gChosenActionByBattler[0], gBattleResources->bufferB[0][1] | (gBattleResources->bufferB[0][2] << 8));
@@ -4356,7 +4377,8 @@ static void HandleTurnActionSelectionState(void)
                     gBattleCommunication[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))] = STATE_BEFORE_ACTION_CHOSEN;
                     RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                     if (gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].status2 & STATUS2_MULTIPLETURNS
-                        || gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].status2 & STATUS2_RECHARGE)
+                        || gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].status2 & STATUS2_RECHARGE
+                        || GetAbilityState(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)), ABILITY_COMMANDER))
                     {
                         BtlController_EmitEndBounceEffect(0);
                         MarkBattlerForControllerExec(gActiveBattler);

@@ -935,6 +935,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_PSYCHIC_NOISE
 	.4byte Move_NONE @ MOVE_UPPER_HAND
 	.4byte Move_NONE @ MOVE_MALIGNANT_CHAIN
+	.4byte Move_NONE @ MOVE_LUNAR_BLESSING
 
 	.align 2
 gBattleAnims_StatusConditions::
