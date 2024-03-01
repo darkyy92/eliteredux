@@ -11294,6 +11294,8 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
 
 static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
+    if (BATTLER_HEALING_BLOCKED(battlerId)) return 0;
+    
     if (HasEnoughHpToEatBerry(battlerId, 2, itemId)
       && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP))
     {
@@ -11746,7 +11748,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             case HOLD_EFFECT_LEFTOVERS:
             LEFTOVERS:
-                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !moveTurn)
+                if (gBattleMons[battlerId].hp < gBattleMons[battlerId].maxHP && !BATTLER_HEALING_BLOCKED(battlerId) && !moveTurn)
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 16;
                     if (gBattleMoveDamage == 0)
