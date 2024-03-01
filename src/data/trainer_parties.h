@@ -4929,10 +4929,11 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     .species = SPECIES_ONIX,
     .heldItem = ITEM_LAGGING_TAIL,
     .ability = 2,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
-    .evs = {180, 76, 252, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_JAGGED_FANGS, MOVE_DRAGON_BREATH, MOVE_DRAGON_TAIL, MOVE_BODY_PRESS
+    .evs = {180, 0, 252, 0, 76, 0},
+    .nature = NATURE_SASSY,
+    .moves = MOVE_JAGGED_FANGS, MOVE_DRAGON_BREATH, MOVE_DRAGON_TAIL, MOVE_HEAVY_SLAM
     },
     {
     .lvl = 0,
@@ -4941,7 +4942,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     .ability = 1,
     .evs = {252, 252, 0, 0, 4, 0},
     .nature = NATURE_ADAMANT,
-    .moves = MOVE_AQUA_JET, MOVE_RAIN_DANCE, MOVE_ICE_FANG, MOVE_CURSE
+    .moves = MOVE_AQUA_JET, MOVE_SANDSTORM, MOVE_ICE_FANG, MOVE_CURSE
     },
     {
     .lvl = 0,
@@ -4959,13 +4960,14 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     .ability = 2,
     .evs = {76, 200, 0, 0, 0, 232},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_ROCK_THROW, MOVE_PARTING_SHOT, MOVE_KNOCK_OFF, MOVE_DUAL_WINGBEAT
+    .moves = MOVE_ROCK_SLIDE, MOVE_PARTING_SHOT, MOVE_FLING, MOVE_DUAL_WINGBEAT
     },
     {
     .lvl = 0,
     .species = SPECIES_MAGCARGO,
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 0,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
@@ -5768,88 +5770,66 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly1[] = {
 static const struct TrainerMonItemCustomMoves sParty_Brawly1Insane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_CHESNAUGHT, // Def Wall RH, Iron Barbs
-    .heldItem = ITEM_ROCKY_HELMET,
-    .ability = 2, // ABILITY_LETS_ROLL, ABILITY_STAMINA, ABILITY_IRON_BARBS},
-    // .innates = {ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_BULLETPROOF},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_IMPISH,
-    .moves = MOVE_SYNTHESIS, MOVE_BODY_PRESS, MOVE_WOOD_HAMMER, MOVE_EARTHQUAKE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_LUCARIO, // Brawly-E, Orb, Power Fists
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // ABILITY_FIGHT_SPIRIT, ABILITY_COMPETITIVE, ABILITY_POWER_FISTS},
-    // .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_VITAL_SPIRIT},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_METEOR_MASH, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH, MOVE_CLOSE_COMBAT
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_CRABOMINABLE, // Brawly-E, Bulky Vest, Raging Boxer, low speed
+    .species = SPECIES_SPIDOPS,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_RAGING_BOXER},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_ANGER_POINT, ABILITY_PERMAFROST},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_ICE_HAMMER, MOVE_HAMMER_ARM, MOVE_CRABHAMMER, MOVE_MACH_PUNCH
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_FIRST_IMPRESSION, MOVE_WEB_SHOT, MOVE_U_TURN, MOVE_SUCKER_PUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_HITMONCHAN, // Brawly-E, Shell Bell, Blitz Boxer
+    .species = SPECIES_BISHARP_REDUX,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_GUILLOTINE, MOVE_SACRED_SWORD, MOVE_EXCALIBUR, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_HITMONCHAN,
     .heldItem = ITEM_SHELL_BELL,
-    .ability = 1, // ABILITY_PRECISE_FIST, ABILITY_BLITZ_BOXER, ABILITY_RAGING_BOXER},
-    // .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_PERFECTIONIST},
-    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CLOSE_COMBAT, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_CLOSE_COMBAT, MOVE_THUNDER_PUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_TOXICROAK, // Brawly-E, Sash, Hydrate, SD
+    .species = SPECIES_DUELUMBER,
+    .heldItem = ITEM_TACTICAL_VEST,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {128, 0, 128, 0, 252, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_JAGGED_PUNCH, MOVE_NEEDLE_ARM, MOVE_HAMMER_ARM, MOVE_THUNDER_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_TOXICROAK,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
-    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 0, 0, 4, 252},
+    .nature = NATURE_JOLLY,
     .moves = MOVE_CLOSE_COMBAT, MOVE_POISON_JAB, MOVE_FAKE_OUT, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
-    .species = SPECIES_HATTERENE, // Brawly-E, TR Setter, Bulky Orb
+    .species = SPECIES_HATTERENE,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // ABILITY_HEALER, ABILITY_TWISTED_DIMENSION, ABILITY_RAMPAGE},
-    // .innates = {ABILITY_PIXILATE, ABILITY_MAGIC_BOUNCE, ABILITY_HYPER_AGGRESSIVE},
+    .ability = 1,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_QUIET,
+    .evs = {252, 0, 4, 252, 0, 0},
+    .nature = NATURE_QUIET,
     .moves = MOVE_TAUNT, MOVE_CHARGE_BEAM, MOVE_HYPER_VOICE, MOVE_MYSTICAL_FIRE
     }
-    /*{
-    .lvl = 0,
-    .species = SPECIES_SIRFETCHD, // Brawly-E, Sash, Hyper Cutter, Swords Dance
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_HYPER_CUTTER, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
-    // .innates = {ABILITY_SCRAPPY, ABILITY_KEEN_EDGE, ABILITY_DAUNTLESS_SHIELD},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_SACRED_SWORD, MOVE_NIGHT_SLASH, MOVE_DUAL_WINGBEAT, MOVE_SWORDS_DANCE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_EMBOAR, // Brawly-E, Bulky Vest, low speed
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_RECKLESS, ABILITY_AVENGER, ABILITY_VIOLENT_RUSH},
-    // .innates = {ABILITY_BLAZE, ABILITY_THICK_FAT, ABILITY_JUGGERNAUT},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_HAMMER_ARM, MOVE_HEAT_CRASH, MOVE_SUCKER_PUNCH, MOVE_WILD_CHARGE
-    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Brawly2[] = { // singles
@@ -13288,116 +13268,67 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1[] = {
 static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_RAIKOU, // Wattson-E, Sash, Transistor
+    .species = SPECIES_ELECTRODE_HISUIAN,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_TRANSISTOR, ABILITY_GROUND_SHOCK, ABILITY_DRIZZLE},
-    // .innates = {ABILITY_OVERCHARGE, ABILITY_BEAST_BOOST, ABILITY_ELECTRIC_SURGE},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_RECOVER, MOVE_RISING_VOLTAGE, MOVE_CALM_MIND, MOVE_AURORA_BEAM
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_CREEPING_THORNS, MOVE_OUTBURST, MOVE_ELECTRIC_TERRAIN, MOVE_GRASSY_GLIDE
     },
     {
     .lvl = 0,
-    .species = SPECIES_KLINKLANG, // Wattson-E, Electric Seed, Surge, Fast Special, 4 moves
-    .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 1, // ABILITY_STEELWORKER, ABILITY_ELECTRIC_SURGE, ABILITY_GALVANIZE},
-    // .innates = {ABILITY_IRON_BARBS, ABILITY_MULTI_HEADED, ABILITY_IMPENETRABLE},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_RISING_VOLTAGE, MOVE_AURORA_BEAM, MOVE_STEEL_BEAM, MOVE_EARTH_POWER
+    .species = SPECIES_EELEKTROSS,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2,
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_BRAVE,
+    .moves = MOVE_PARABOLIC_CHARGE, MOVE_U_TURN, MOVE_HYDRO_PUMP, MOVE_SPARK
     },
     {
     .lvl = 0,
-    .species = SPECIES_DRACOZOLT, // Wattson-E, Sash, Surge Surfer
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_STRONG_JAW, ABILITY_SURGE_SURFER, ABILITY_SAND_RUSH},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_DRAGONS_MAW, ABILITY_VOLT_ABSORB},
-    .evs = {0, 252, 0, 80, 0, 176},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_NAIVE,
-    .moves = MOVE_BOLT_BEAK, MOVE_DRAGON_RUSH, MOVE_JAGGED_FANGS, MOVE_FIRE_BLAST
+    .species = SPECIES_EXPLOUD_REDUX,
+    .heldItem = ITEM_TACTICAL_VEST,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 0, 252, 4, 0},
+    .nature = NATURE_QUIET,
+    .moves = MOVE_GHASTLY_ECHO, MOVE_BOOMBURST, MOVE_RAGING_SOULS, MOVE_SYNCHRONOISE
     },
     {
     .lvl = 0,
-    .species = SPECIES_CLAWITZER_REDUX, // Wattson-E, Orb
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_ELEMENTAL_CHARGE, ABILITY_ELEMENTAL_CHARGE, ABILITY_ELEMENTAL_CHARGE},
-    // .innates = {ABILITY_ICE_AGE, ABILITY_LEVITATE, ABILITY_DUAL_WIELD},
-    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_PLASMA_PULSE, MOVE_SEARING_SHOT, MOVE_FLAME_BURST, MOVE_ICE_BEAM
+    .species = SPECIES_FERALIGATR,
+    .heldItem = ITEM_FERALIGATRITE_Y,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 4, 0},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_ICE_BEAM, MOVE_KARMA
     },
     {
     .lvl = 0,
-    .species = SPECIES_RAICHU_ALOLAN, // Wattson-E, Special, Surge
+    .species = SPECIES_RAICHU_ALOLAN,
     .heldItem = ITEM_LIGHT_BALL,
-    .ability = 2, // ABILITY_PSYCHIC_MIND, ABILITY_SHORT_CIRCUIT, ABILITY_ELECTRIC_SURGE},
-    // .innates = {ABILITY_SURGE_SURFER, ABILITY_LEVITATE, ABILITY_GROUND_SHOCK},
-    .evs = {180, 0, 0, 252, 0, 76},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {180, 0, 0, 252, 0, 76},
+    .nature = NATURE_MODEST,
     .moves = MOVE_RISING_VOLTAGE, MOVE_PSYSHOCK, MOVE_GRASS_KNOT, MOVE_FOCUS_BLAST
     },
     {
     .lvl = 0,
-    .species = SPECIES_LANTURN, // Mega, Wattson-E
-    .heldItem = ITEM_LANTURNITE,
-    .ability = 2, // ABILITY_HYDRO_CIRCUIT, ABILITY_HYDRO_CIRCUIT, ABILITY_HYDRO_CIRCUIT},
-    // .innates = {ABILITY_STORM_DRAIN, ABILITY_VOLT_ABSORB, ABILITY_RADIANCE},
-    // Pre-Mega
-    // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
-    // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_SHOCK_WAVE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_PARABOLIC_CHARGE
+    .species = SPECIES_RAICHU,
+    .heldItem = ITEM_LIGHT_BALL,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_VOLT_SWITCH, MOVE_FAKE_OUT, MOVE_EARTH_POWER, MOVE_SHOCK_WAVE
     }
-    /*
-    {
-    .lvl = 0,
-    .species = SPECIES_MANECTRIC, // Mega, Wattson-E
-    .heldItem = ITEM_MANECTITE,
-    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_VOLT_RUSH, ABILITY_GROUND_SHOCK, ABILITY_OVERCHARGE},
-    // Pre-Mega
-    // ABILITY_STATIC, ABILITY_ILLUMINATE, ABILITY_ELECTRIC_BURST},
-    // .innates = {ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_OVERCHARGE},
-    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_RISING_VOLTAGE, MOVE_FLAMETHROWER, MOVE_AURORA_BEAM, MOVE_FLAME_BURST
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_AMPHAROS, // Mega, Wattson-E, Surge, Bulky Special
-    .heldItem = ITEM_AMPHAROSITE,
-    .ability = 2, // ABILITY_TRANSISTOR, ABILITY_TRANSISTOR, ABILITY_TRANSISTOR},
-    // .innates = {ABILITY_FLUFFY, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
-    // Pre-Mega
-    // ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_ELECTRIC_SURGE},
-    // .innates = {ABILITY_DAZZLING, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_QUIET,
-    .moves = MOVE_RISING_VOLTAGE, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_SLACK_OFF
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_TAPU_KOKO, // Wattson-E, Sash, Speed Boost, Drizzle + Surge
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_SPEED_BOOST, ABILITY_ELECTRIC_BURST, ABILITY_OVERCHARGE},
-    // .innates = {ABILITY_LEVITATE, ABILITY_ELECTRIC_SURGE, ABILITY_DRIZZLE},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_MOONBLAST, MOVE_RISING_VOLTAGE, MOVE_HURRICANE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_SHIINOTIC, // Wattson-E, Toxic Orb, Poison Heal
-    .heldItem = ITEM_TOXIC_ORB,
-    .ability = 2, // ABILITY_FAIRY_AURA, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
-    // .innates = {ABILITY_POISON_ABSORB, ABILITY_DREAMCATCHER, ABILITY_BAD_DREAMS},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_RELAXED,
-    .moves = MOVE_LEECH_SEED, MOVE_SPORE, MOVE_DRAINING_KISS, MOVE_GIGA_DRAIN
-    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Wattson2[] = { // singles
