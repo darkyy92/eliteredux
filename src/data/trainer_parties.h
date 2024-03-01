@@ -34558,11 +34558,11 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     .lvl = 0,
     .species = SPECIES_NECROZMA_DAWN_WINGS,
     .heldItem = ITEM_NONE,
-    .ability = 0,
+    .ability = 2,
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 4, 0},
     .nature = NATURE_BOLD,
-    .moves = MOVE_BODY_PRESS, MOVE_PRISMATIC_LASER, MOVE_CALM_MIND, MOVE_RECOVER
+    .moves = MOVE_MOONGEIST_BEAM, MOVE_PRISMATIC_LASER, MOVE_CALM_MIND, MOVE_RECOVER
     },
     {
     .lvl = 0,
@@ -34577,7 +34577,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_MARSHADOW,
-    .heldItem = ITEM_LIFE_ORB,
+    .heldItem = ITEM_FOCUS_SASH,
     .ability = 1,
     .ivs = {},
     .zeroSpeedIvs = TRUE,
@@ -34678,65 +34678,66 @@ static const struct TrainerMonItemCustomMoves sParty_Glacia[] = {
 static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS, // Mega, Glacia-E, Bulky Special, Boomburst, Hail Setter
+    .species = SPECIES_LAPRAS,
     .heldItem = ITEM_LAPRASITE_Y,
-    .ability = 1, // ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE},
-    // .innates = {ABILITY_ICE_SCALES, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
-    // Pre-Mega
-    // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
-    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 0, 252, 0, 4},
+    .nature = NATURE_MODEST,
     .moves = MOVE_BOOMBURST, MOVE_FREEZE_DRY, MOVE_HEAL_BELL, MOVE_RECOVER
     },
     {
     .lvl = 0,
-    .species = SPECIES_KYUREM_WHITE, // Glacia-E, Orb, Hail Setter, Volt Switch
+    .species = SPECIES_KYUREM_WHITE,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_BEAST_BOOST, ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING},
-    // .innates = {ABILITY_TURBOBLAZE, ABILITY_PERMAFROST, ABILITY_WHITEOUT},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 0, 0, 252, 4, 252},
+    .nature = NATURE_TIMID,
     .moves = MOVE_BLIZZARD, MOVE_FUSION_FLARE, MOVE_DRACO_METEOR, MOVE_VOLT_SWITCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_DEWGONG, // Glacia-E, Mixed Wall, Light Clay, Fur Coat, North Wind
-    .heldItem = ITEM_LIGHT_CLAY,
-    .ability = 0, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
-    .evs = {252, 0, 76, 0, 180, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BOLD,
-    .moves = MOVE_SHEER_COLD, MOVE_SCALD, MOVE_SLACK_OFF, MOVE_TOXIC
+    .species = SPECIES_DEWGONG_MEGA,
+    .heldItem = ITEM_DEWGONGITE,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 248, 8, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_TRIPLE_AXEL, MOVE_SLACK_OFF, MOVE_MEGAHORN, MOVE_HORN_DRILL
     },
     {
     .lvl = 0,
-    .species = SPECIES_WEAVILE, // Glacia-E, Sash, H-Aggr, Triple Axel + Swords Dance
+    .species = SPECIES_WEAVILE,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_TECHNICIAN},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
     .moves = MOVE_TRIPLE_AXEL, MOVE_WICKED_BLOW, MOVE_ICE_SHARD, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
-    .species = SPECIES_DARMANITAN_GALARIAN, // Glacia-E, Zen, Orb
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_GORILLA_TACTICS, ABILITY_SHEER_FORCE, ABILITY_ZEN_MODE},
-    // .innates = {ABILITY_MOLD_BREAKER, ABILITY_POWER_FISTS, ABILITY_HEATPROOF},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ICE_PUNCH, MOVE_FIRE_PUNCH, MOVE_U_TURN, MOVE_EARTHQUAKE
+    .species = SPECIES_IRON_BUNDLE,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_ICE_BEAM, MOVE_SCALD, MOVE_BLIZZARD, MOVE_FREEZE_DRY
     },
     {
     .lvl = 0,
-    .species = SPECIES_ARTICUNO, // Glacia-E, North Wind, Bulky
+    .species = SPECIES_ARTICUNO,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_NORTH_WIND, ABILITY_SNOW_WARNING, ABILITY_ICE_SCALES},
-    // .innates = {ABILITY_ANTARCTIC_BIRD, ABILITY_MAJESTIC_BIRD, ABILITY_PERMAFROST},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 0, 252, 0, 4},
+    .nature = NATURE_MODEST,
     .moves = MOVE_SHEER_COLD, MOVE_AEROBLAST, MOVE_HYDRO_PUMP, MOVE_ROOST
     }
 };
