@@ -13260,18 +13260,20 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1[] = {
 static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_ELECTRODE_HISUIAN,
-    .heldItem = ITEM_FOCUS_SASH,
+    .species = SPECIES_TAPU_KOKO,
+    .heldItem = ITEM_LIFE_ORB,
     .ability = 0,
-    .evs = {0, 0, 0, 252, 0, 252},
-    .nature = NATURE_TIMID,
-    .moves = MOVE_CREEPING_THORNS, MOVE_OUTBURST, MOVE_ELECTRIC_TERRAIN, MOVE_GRASSY_GLIDE
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_WEATHER_BALL, MOVE_HURRICANE, MOVE_THUNDERBOLT, MOVE_MOONBLAST
     },
     {
     .lvl = 0,
     .species = SPECIES_EELEKTROSS,
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 128, 0, 128, 0},
     .nature = NATURE_BRAVE,
@@ -13282,6 +13284,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .species = SPECIES_EXPLOUD_REDUX,
     .heldItem = ITEM_TACTICAL_VEST,
     .ability = 0,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 4, 0},
     .nature = NATURE_QUIET,
@@ -13292,6 +13295,8 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .species = SPECIES_FERALIGATR,
     .heldItem = ITEM_FERALIGATRITE_Y,
     .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 4, 0},
     .nature = NATURE_MODEST,
     .moves = MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_ICE_BEAM, MOVE_KARMA
@@ -13301,6 +13306,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .species = SPECIES_RAICHU_ALOLAN,
     .heldItem = ITEM_LIGHT_BALL,
     .ability = 2,
+    .ivs = {},
     .zeroSpeedIvs = TRUE,
     .evs = {180, 0, 0, 252, 0, 76},
     .nature = NATURE_MODEST,
@@ -13311,9 +13317,11 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .species = SPECIES_RAICHU,
     .heldItem = ITEM_LIGHT_BALL,
     .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_VOLT_SWITCH, MOVE_FAKE_OUT, MOVE_EARTH_POWER, MOVE_SHOCK_WAVE
+    .moves = MOVE_POWER_GEM, MOVE_FAKE_OUT, MOVE_EARTH_POWER, MOVE_THUNDER_SHOCK
     }
 };
 
