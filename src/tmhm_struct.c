@@ -1,9 +1,10 @@
 #include "global.h"
 #include "tmhm_struct.h"
+#include "mgba_printf/mgba.h"
 
 #define TM_DECORATOR(tm) [TM_ENUM(tm)] = tm,
 
-EWRAM_DATA const u16 gTmMoveMapping[TM_COUNT] =
+const u16 gTmMoveMapping[TM_COUNT] =
 {
     ALL_TMS
 };
@@ -12,7 +13,7 @@ EWRAM_DATA const u16 gTmMoveMapping[TM_COUNT] =
 
 #define TUTOR_DECORATOR(tutor) [TUTOR_ENUM(tutor)] = tutor,
 
-EWRAM_DATA const u16 gTutorMoveMapping[TUTOR_COUNT] =
+const u16 gTutorMoveMapping[TUTOR_COUNT] =
 {
     ALL_TUTORS
 };
