@@ -6431,9 +6431,6 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
     switch(gEvolutionTable[species][i].method)
     {
     case EVO_FORM_SHIFT:
-        MgbaOpen();
-        MgbaPrintf(MGBA_LOG_DEBUG, "Target species %d actual species %d badge2 %d", gEvolutionTable[species][i].targetSpecies, actualSpecies, FlagGet(FLAG_BADGE02_GET));
-        MgbaClose();
         if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
             return gEvolutionTable[species][i].targetSpecies;
     break;

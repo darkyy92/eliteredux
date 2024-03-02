@@ -59,6 +59,7 @@
 #include "constants/map_groups.h"
 #include "constants/maps.h"
 #include "script_pokemon_util.h"
+#include "tmhm_struct.h"
 
 struct SpeciesItem
 {
@@ -7704,26 +7705,8 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm)
     {
         return 0;
     }
-    else if (tm < 32)
-    {
-        u32 mask = 1 << tm;
-        return gTMHMLearnsets[species][0] & mask;
-    }
-    else if (tm > 31 && tm < 64)
-    {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
-    }
-	else if (tm > 63 && tm < 96)
-    {
-        u32 mask = 1 << (tm - 64);
-        return gTMHMLearnsets[species][2] & mask;
-    }
-	else
-    {
-        u32 mask = 1 << (tm - 96);
-        return gTMHMLearnsets[species][3] & mask;
-    }
+    
+    return gTMHMLearnsets[species].bits[tm / 32] & (1 << (tm % 32));
 }
 
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
@@ -7732,26 +7715,8 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     {
         return 0;
     }
-    else if (tm < 32)
-    {
-        u32 mask = 1 << tm;
-        return gTMHMLearnsets[species][0] & mask;
-    }
-    else if (tm >= 32 && tm < 64)
-    {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
-    }
-	else if (tm >= 64 && tm < 96)
-    {
-        u32 mask = 1 << (tm - 64);
-        return gTMHMLearnsets[species][2] & mask;
-    }
-	else
-    {
-        u32 mask = 1 << (tm - 96);
-        return gTMHMLearnsets[species][3] & mask;
-    }
+
+    return gTMHMLearnsets[species].bits[tm / 32] & (1 << (tm % 32));
 }
 
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
@@ -7921,9 +7886,9 @@ u8 GetNumberOfTMMoves(struct Pokemon *mon)
 	u16 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
-    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
+    for (i = 0; i < TM_COUNT; i++)
     {
-        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH)))
+        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, GetTmMove(i)))
         {
             numMoves++;
         }
@@ -7938,11 +7903,11 @@ u8 GetTMMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
 
-    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
+    for (i = 0; i < TM_COUNT; i++)
     {
-        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH)))
+        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, GetTmMove(i)))
         {
-            moves[numMoves] = RandomizeMoves(ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + i), species, personality);
+            moves[numMoves] = RandomizeMoves(GetTmMove(i), species, personality);
             numMoves++;
         }
     }

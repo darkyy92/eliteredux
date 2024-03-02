@@ -61,7 +61,7 @@ enum
 
 enum
 {
-    MOVE_NONE,
+    CLOCK_MOVE_NONE,
     MOVE_BACKWARD,
     MOVE_FORWARD,
 };
@@ -801,7 +801,7 @@ static void Task_SetClock_HandleInput(u8 taskId)
         }
         else
         {
-            gTasks[taskId].tMoveDir = MOVE_NONE;
+            gTasks[taskId].tMoveDir = CLOCK_MOVE_NONE;
 
             if (JOY_HELD(DPAD_LEFT))
                 gTasks[taskId].tMoveDir = MOVE_BACKWARD;
@@ -809,7 +809,7 @@ static void Task_SetClock_HandleInput(u8 taskId)
             if (JOY_HELD(DPAD_RIGHT))
                 gTasks[taskId].tMoveDir = MOVE_FORWARD;
 
-            if (gTasks[taskId].tMoveDir != MOVE_NONE)
+            if (gTasks[taskId].tMoveDir != CLOCK_MOVE_NONE)
             {
                 if (gTasks[taskId].tMoveSpeed < 0xFF)
                     gTasks[taskId].tMoveSpeed++;

@@ -345,6 +345,7 @@ SECTIONS {
         src/ui_battle_menu.o(.text);
         src/mgba_printf/mini_printf.o(.text);
         src/quests.o(.text);
+        src/tmhm_struct.o(.text);
     } =0
 
     script_data :
@@ -717,6 +718,7 @@ SECTIONS {
         src/ui_battle_menu.o(.rodata);
         src/mgba_printf/mgba.o(.rodata);
         src/quests.o(.rodata);
+        src/tmhm_struct.o(.rodata);
     } =0
 
     song_data :
