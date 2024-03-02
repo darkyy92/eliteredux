@@ -1729,3 +1729,15 @@ static void AnimSnowflakes_Step(struct Sprite *sprite)
     if (sprite->animEnded)
         DestroySprite(sprite);
 }
+
+//Frost Bolt
+const struct SpriteTemplate gFrostBoltArrowTemplate =
+{
+    .tileTag = ANIM_TAG_FROST_BOLT_ARROW,
+    .paletteTag = ANIM_TAG_ICICLE_SPEAR,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSonicBoomProjectile
+};

@@ -796,7 +796,7 @@ gBattleAnims_Moves::
 	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_CUT @ MOVE_FROST_BRAND
-	.4byte Move_THOUSAND_ARROWS @ MOVE_FROST_BOLT
+	.4byte Move_FROST_BOLT
 	.4byte Move_ICICLE_CRASH @ MOVE_GLACIER_CRASH
 	.4byte Move_SUPERSONIC @ MOVE_SUPERSONIC_SHOT
 	.4byte Move_JUMP_KICK @ MOVE_ZEPHYR_RUSH
@@ -10743,7 +10743,33 @@ ArcherShotArrowShot:
 	delay 0x8
 	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x3 0x0 0xa 0x1
 	waitforvisualfinish
-ArcherFinishMove:
+ArcherShotFinishMove:
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+Move_FROST_BOLT::
+	loadspritegfx ANIM_TAG_FROST_BOLT_ARROW
+	loadspritegfx ANIM_TAG_ICICLE_SPEAR
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	loadspritegfx ANIM_TAG_ICE_SPIKES
+FrostBoltArrowBg:
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 11, 4, 0, 4, RGB_BLACK
+	fadetobg BG_ICE
+	waitbgfadein
+FrostBoltArrowShot:
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_ATTACKER
+	createsprite gFrostBoltArrowTemplate, ANIM_TARGET, 2, 16, 0, 0, 0, 15
+	delay 0x8
+	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x3 0x0 0xa 0x1
+	playsewithpan SE_M_BRICK_BREAK, SOUND_PAN_TARGET
+	call IceCrystalEffectLong
+	waitforvisualfinish
+FrostBoltFinishMove:
+	restorebg
+	waitbgfadeout
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 11, 4, 4, 0, RGB_BLACK
+	waitbgfadein
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end

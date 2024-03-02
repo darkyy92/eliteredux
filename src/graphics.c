@@ -1064,6 +1064,9 @@ const u32 gBattleAnimSpritePal_Finger[] = INCBIN_U32("graphics/battle_anims/spri
 const u32 gBattleAnimSpriteGfx_MagentaHeart[] = INCBIN_U32("graphics/battle_anims/sprites/magenta_heart.4bpp.lz");
 const u32 gBattleAnimSpriteGfx_CupidShot[] = INCBIN_U32("graphics/battle_anims/sprites/new/cupid_shot.4bpp.lz");
 
+const u32 gBattleAnimSpriteGfx_SpiritFrostBoltArrow[] = INCBIN_U32("graphics/battle_anims/sprites/new/ice_arrow.4bpp.lz");
+const u32 gBattleAnimSpritePal_SpiritFrostBoltArrow[] = INCBIN_U32("graphics/battle_anims/sprites/new/ice_arrow.gbapal.lz");
+
 const u32 gBattleAnimSpriteGfx_DragonEnergy[] = INCBIN_U32("graphics/battle_anims/sprites/new/dragon_energy.4bpp.lz");
 const u32 gBattleAnimSpritePal_DragonEnergy[] = INCBIN_U32("graphics/battle_anims/sprites/new/dragon_energy.gbapal.lz");
 
