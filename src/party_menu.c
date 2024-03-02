@@ -2734,8 +2734,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
             struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
             u8 j = (sPartyMenuInternal->actions[i] - MENU_EVOLUTIONS);
             u16 targetspecies = GetEvolutionForMon(mon, j);
+            const u8* longName = GetSpeciesLongName(targetspecies);
 
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, gSpeciesNames[targetspecies]);
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, longName ? longName : gSpeciesNames[targetspecies]);
         }
         
     }
@@ -3033,7 +3034,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
         //Evolution
         for(i = 0; i < EVOS_PER_MON; i++){
-            targetSpecies = GetEvolutionForMon(&mons[slotId], 0);
+            targetSpecies = GetEvolutionForMon(&mons[slotId], i);
 
             if (targetSpecies != SPECIES_NONE && targetSpecies != species){
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_EVOLUTION);
@@ -6420,39 +6421,50 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u16 *targetFormId;
     u16 targetSpecies, currentMap;
+    u16 actualSpecies = species;
+    u16 formShiftSpecies = GetFormShiftSpecies(species);
+    
+    if (formShiftSpecies) species = formShiftSpecies;
 
     i = num;
 	
     switch(gEvolutionTable[species][i].method)
     {
+    case EVO_FORM_SHIFT:
+        MgbaOpen();
+        MgbaPrintf(MGBA_LOG_DEBUG, "Target species %d actual species %d badge2 %d", gEvolutionTable[species][i].targetSpecies, actualSpecies, FlagGet(FLAG_BADGE02_GET));
+        MgbaClose();
+        if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
+            return gEvolutionTable[species][i].targetSpecies;
+    break;
     case EVO_FRIENDSHIP:
         if (friendship >= 220)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies;
     break;
     case EVO_FRIENDSHIP_DAY:
         RtcCalcLocalTime();
         if (IsCurrentlyDay() && friendship >= 220)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies;
     break;
     case EVO_LEVEL_DUSK:
         RtcCalcLocalTime();
         if(IsCurrentlyDusk() && gEvolutionTable[species][i].param <= level)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_DAY:
         RtcCalcLocalTime();
         if (IsCurrentlyDay() && gEvolutionTable[species][i].param <= level && !(IsCurrentlyDusk() && species == SPECIES_ROCKRUFF))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
         break;
     case EVO_LEVEL_NIGHT:
         RtcCalcLocalTime();
         if (!IsCurrentlyDay() && gEvolutionTable[species][i].param <= level && !(IsCurrentlyDusk() && species == SPECIES_ROCKRUFF))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_FRIENDSHIP_NIGHT:
         RtcCalcLocalTime();
         if (!IsCurrentlyDay() && friendship >= 220)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_ITEM_HOLD_NIGHT:
         RtcCalcLocalTime();
@@ -6460,7 +6472,7 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
         {
             heldItem = 0;
             SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
         }
     break;
     case EVO_ITEM_HOLD_DAY:
@@ -6469,65 +6481,65 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
         {
             heldItem = 0;
             SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
         }
     break;
     case EVO_LEVEL:
         if (gEvolutionTable[species][i].param <= level)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
         break;
     case EVO_LEVEL_FEMALE:
         if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_FEMALE)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_MALE:
         if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_MALE)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_ATK_GT_DEF:
         if (gEvolutionTable[species][i].param <= level && (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0)))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_ATK_EQ_DEF:
         if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, 0) == GetMonData(mon, MON_DATA_DEF, 0))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_ATK_LT_DEF:
         if (gEvolutionTable[species][i].param <= level && GetMonData(mon, MON_DATA_ATK, 0) < GetMonData(mon, MON_DATA_DEF, 0))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_SILCOON:
         if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) <= 4)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
      break;
     case EVO_LEVEL_CASCOON:
         if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) > 4)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_LEVEL_NINJASK:
         if (gEvolutionTable[species][i].param <= level)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_BEAUTY:
         if (gEvolutionTable[species][i].param <= beauty)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_MOVE:
         if (MonKnowsMove(mon, gEvolutionTable[species][i].param))
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_MOVE_TYPE:
         for (j = 0; j < 4; j++)
         {
             if (gBattleMoves[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == gEvolutionTable[species][i].param)
-                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+                return gEvolutionTable[species][i].targetSpecies; // Get base species
         }
     break;
     case EVO_SPECIFIC_MON_IN_PARTY:
         for (j = 0; j < PARTY_SIZE; j++)
         {
             if (GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL) == gEvolutionTable[species][i].param)
-                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+                return gEvolutionTable[species][i].targetSpecies; // Get base species
         }
     break;
     case EVO_LEVEL_DARK_TYPE_MON_IN_PARTY:
@@ -6538,19 +6550,19 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
                 u16 partyspecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
                 if (gBaseStats[partyspecies].type1 == TYPE_DARK
                     || gBaseStats[partyspecies].type2 == TYPE_DARK)
-                return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+                return gEvolutionTable[species][i].targetSpecies; // Get base species
             }
         }
     break;
     case EVO_LEVEL_RAIN:
         j = GetCurrentWeather();
         if (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
     case EVO_SPECIFIC_MAP:
         currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
         if (currentMap == gEvolutionTable[species][i].param)
-            return GetFormSpeciesId(gEvolutionTable[species][i].targetSpecies, 0); // Get base species
+            return gEvolutionTable[species][i].targetSpecies; // Get base species
     break;
 	}
 

@@ -112,6 +112,14 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                             {EVO_LEVEL, 23, SPECIES_LEAFEON},
                             {EVO_LEVEL, 23, SPECIES_GLACEON},
                             {EVO_LEVEL, 23, SPECIES_SYLVEON}},
+    [SPECIES_JOLTEON]     = {{EVO_FORM_SHIFT, 23, SPECIES_JOLTEON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_VAPOREON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_FLAREON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_ESPEON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_UMBREON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_LEAFEON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_GLACEON},
+                            {EVO_FORM_SHIFT, 23, SPECIES_SYLVEON}},
     [SPECIES_PORYGON]	 = {{EVO_LEVEL, 36, SPECIES_PORYGON2}},
     [SPECIES_OMANYTE]	 = {{EVO_LEVEL, 28, SPECIES_OMASTAR}},
     [SPECIES_KABUTO]	 = {{EVO_LEVEL, 28, SPECIES_KABUTOPS}},
@@ -697,4 +705,40 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_GIRAFARIG] = {{EVO_LEVEL, 31, SPECIES_FARIGIRAF}},
     [SPECIES_BASCULIN] = {{EVO_LEVEL, 45, SPECIES_BASCULEGION}},
     [SPECIES_BASCULIN_BLUE_STRIPED] = {{EVO_LEVEL, 45, SPECIES_BASCULEGION}},
+
+    [SPECIES_ORICORIO] = {{EVO_FORM_SHIFT, 1, SPECIES_ORICORIO},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_PAU},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_POM_POM},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_SENSU},},
+    
+    [SPECIES_KELDEO] = {{EVO_FORM_SHIFT, 1, SPECIES_KELDEO},
+                            {EVO_FORM_SHIFT, 1, SPECIES_KELDEO_RESOLUTE},},
+
+    [SPECIES_SHAYMIN] = {{EVO_FORM_SHIFT, 1, SPECIES_SHAYMIN},
+                            {EVO_FORM_SHIFT, 1, SPECIES_SHAYMIN_SKY},},
+
+    [SPECIES_LANDORUS] = {{EVO_FORM_SHIFT, 1, SPECIES_LANDORUS},
+                            {EVO_FORM_SHIFT, 1, SPECIES_LANDORUS_THERIAN},},
+
+    [SPECIES_TORNADUS] = {{EVO_FORM_SHIFT, 1, SPECIES_TORNADUS},
+                            {EVO_FORM_SHIFT, 1, SPECIES_TORNADUS_THERIAN},},
+
+    [SPECIES_THUNDURUS] = {{EVO_FORM_SHIFT, 1, SPECIES_THUNDURUS},
+                            {EVO_FORM_SHIFT, 1, SPECIES_THUNDURUS_THERIAN},},
+
+    [SPECIES_DEOXYS] = {{EVO_FORM_SHIFT, 1, SPECIES_DEOXYS},
+                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_ATTACK},
+                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_SPEED},
+                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_DEFENSE},},
+
+    [SPECIES_TATSUGIRI] = {{EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI},
+                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_STRETCHY},
+                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_DROOPY},},
+
+    [SPECIES_ROTOM] = {{EVO_FORM_SHIFT, 1, SPECIES_ROTOM},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_HEAT},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_MOW},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FAN},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FROST},
+                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_WASH},},
 };

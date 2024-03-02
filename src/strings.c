@@ -2253,6 +2253,7 @@ const u8 gText_EVO_FRIENDSHIP_DAY[]                 = _("LvlUp, high friendship,
 const u8 gText_EVO_FRIENDSHIP_NIGHT[]               = _("Lvlup, high friendship, night");
 const u8 gText_EVO_LEVEL[]                          = _("LvlUp to {STR_VAR_2}");
 const u8 gText_EVO_TRADE[]                          = _("Trading");
+const u8 gText_EVO_FORM_SHIFT[]                     = _("Form Shift");
 const u8 gText_EVO_TRADE_ITEM[]                     = _("Trading, holding {STR_VAR_2}");
 const u8 gText_EVO_ITEM[]                           = _("{STR_VAR_2} is used");
 const u8 gText_EVO_LEVEL_ATK_GT_DEF[]               = _("LvlUp to {STR_VAR_2}, Atk > Def");

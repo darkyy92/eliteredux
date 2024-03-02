@@ -519,6 +519,22 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 
         }
     }
 
+    else if (species == SPECIES_TATSUGIRI)
+    {
+        switch (Random() % 3)
+        {
+            case 0:
+                species = SPECIES_TATSUGIRI_CURLY;
+                break;
+            case 1:
+                species = SPECIES_TATSUGIRI_DROOPY;
+                break;
+            case 2:
+                species = SPECIES_TATSUGIRI_STRETCHY;
+                break;
+        }
+    }
+
     CreateWildMon(species, level);
     return TRUE;
 }

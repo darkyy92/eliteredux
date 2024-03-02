@@ -4614,7 +4614,11 @@ static void SaveSpeciesWithSurname(u16 species){
         StringExpandPlaceholders(gStringVar4, gText_Subname);
     }
     else{//Normal
-        StringCopy(gStringVar4, gSpeciesNames[species]);
+        const u8* longName = GetSpeciesLongName(species);
+        if (longName)
+            StringCopy(gStringVar4, longName);
+        else
+            StringCopy(gStringVar4, gSpeciesNames[species]);
     }
 }
 
@@ -4636,16 +4640,17 @@ static void BufferMonPokemonEvolutionData(void)
     u16 item;
     const struct MapHeader *mapHeader;
     u16 actualSpecies = species;
+    u16 formSpecies = GetFormShiftSpecies(species);
 	x = 60;
 	y = 4;
 
-    if (IsEeveelution(species)) species = SPECIES_EEVEE;
+    if (formSpecies) species = formSpecies;
 
     //Calculate number of possible direct evolutions (e.g. Eevee has 8 but torchic has 1)
     for (i = 0; i < EVOS_PER_MON; i++)
     {
         if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].targetSpecies != actualSpecies){
-            times++;
+            times = i + 1;
         } 
     }
 
@@ -4671,6 +4676,20 @@ static void BufferMonPokemonEvolutionData(void)
                 //Evolution Method
                 ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
                 StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_FORM_SHIFT:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                if (targetSpecies == actualSpecies)
+                {
+                    skipPrintingEvo = TRUE;
+                    break;
+                }
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT);
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
                 break;
             case EVO_FRIENDSHIP:
@@ -4722,8 +4741,6 @@ static void BufferMonPokemonEvolutionData(void)
                 break;
             case EVO_ITEM:
                 //Target Species
-                targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                if (targetSpecies == actualSpecies) continue;
                 SaveSpeciesWithSurname(targetSpecies);
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
                 //Evolution Method
@@ -5061,7 +5078,7 @@ static void BufferMonPokemonEvolutionData(void)
             }
 
             if(!skipPrintingEvo){
-                if(species == SPECIES_EEVEE){
+                if(species == SPECIES_EEVEE || species == SPECIES_JOLTEON){
                     y +=16;
                 }
                 else if(species == SPECIES_CHARIZARD || species == SPECIES_MEWTWO){

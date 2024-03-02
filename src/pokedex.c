@@ -7489,7 +7489,13 @@ static void handleTargetSpeciesPrint(u8 taskId, u16 targetSpecies, u8 base_x, u8
     bool8 seen = GetSetPokedexFlag(SpeciesToNationalPokedexNum(targetSpecies), FLAG_GET_SEEN);
 
     if (seen || !HGSS_HIDE_UNSEEN_EVOLUTION_NAMES)
-        StringCopy(gStringVar3, gSpeciesNames[targetSpecies]); //evolution mon name
+    {
+        const u8* longName = GetSpeciesLongName(targetSpecies);
+        if (longName)
+            StringCopy(gStringVar3, longName); //evolution mon name
+        else
+            StringCopy(gStringVar3, gSpeciesNames[targetSpecies]); //evolution mon name
+    }
     else
         StringCopy(gStringVar3, gText_ThreeQuestionMarks); //show questionmarks instead of name
     StringExpandPlaceholders(gStringVar3, gText_EVO_Name); //evolution mon name
@@ -7527,6 +7533,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
         const struct MapHeader *mapHeader;
     #endif
     u16 targetSpecies = 0;
+    u16 formSpecies = GetFormShiftSpecies(species);
     u16 actualSpecies = species;
 
     u16 item;
@@ -7539,8 +7546,8 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     u8 base_i = 0;
     u8 times = 0;
     u8 depth_x = 16;
-    
-    if (IsEeveelution(species)) species = SPECIES_EEVEE;
+
+    if (formSpecies) species = formSpecies;
 
     StringCopy(gStringVar1, gSpeciesNames[species]);
 
@@ -7552,7 +7559,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 times += 1;
         #endif
         #ifdef POKEMON_EXPANSION
-            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION && gEvolutionTable[species][i].targetSpecies != actualSpecies)
+            if(gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION)
                 times += 1;
         #endif
     }
@@ -7600,6 +7607,18 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
             handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
             StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL );
+            PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
+            break;
+        case EVO_FORM_SHIFT:
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            if (targetSpecies == actualSpecies)
+            {
+                depth_i--;
+                continue;
+            }
+            CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);
+            handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
+            StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT);
             PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
             break;
         case EVO_TRADE:

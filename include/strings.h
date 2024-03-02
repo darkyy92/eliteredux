@@ -653,6 +653,7 @@ extern const u8 gText_EVO_FRIENDSHIP[];
 extern const u8 gText_EVO_FRIENDSHIP_DAY[];
 extern const u8 gText_EVO_FRIENDSHIP_NIGHT[];
 extern const u8 gText_EVO_LEVEL[];
+extern const u8 gText_EVO_FORM_SHIFT[];
 extern const u8 gText_EVO_TRADE[];
 extern const u8 gText_EVO_TRADE_ITEM[];
 extern const u8 gText_EVO_ITEM[];

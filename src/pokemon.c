@@ -6856,6 +6856,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     u8 holdEffect;
     u16 currentMap;
     u16 actualSpecies = species;
+    u16 formSpecies = GetFormShiftSpecies(species);
+
+    if (formSpecies) species = formSpecies;
 
     if (heldItem == ITEM_ENIGMA_BERRY){
         #ifndef FREE_ENIGMA_BERRY
@@ -6875,10 +6878,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
     if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE || ItemId_GetId(heldItem) == ITEM_EVIOLITE) && mode != EVO_MODE_ITEM_CHECK)
         return SPECIES_NONE;*/
 
-    if (IsEeveelution(species)) {
-        species = SPECIES_EEVEE;
-    }
-
     switch (mode)
     {
     case EVO_MODE_NORMAL:
@@ -6889,6 +6888,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         {
             switch (gEvolutionTable[species][i].method)
             {
+            case EVO_FORM_SHIFT:
+                if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             case EVO_FRIENDSHIP:
                 if (friendship >= 160)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
@@ -9991,5 +9994,115 @@ bool8 IsEeveelution(u16 species)
 
         default:
             return FALSE;
+    }
+}
+
+u16 GetFormShiftSpecies(u16 species)
+{
+    u16 baseSpecies;
+    u8 i;
+    if (IsEeveelution(species)) return SPECIES_JOLTEON;
+
+    baseSpecies = GetFormSpeciesId(species, 0);
+    if (!baseSpecies) return SPECIES_NONE;
+    for (i = 0; gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT; i++)
+    {
+        if (gEvolutionTable[baseSpecies][i].targetSpecies == species
+            && gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT)
+            return baseSpecies;
+    }
+
+    return SPECIES_NONE;
+}
+
+const u8 gSpeciesNameLongTatsugiriDroopy[] = _("Tatsugiri Droopy");
+const u8 gSpeciesNameLongTatsugiriStretchy[] = _("Tatsugiri Stretchy");
+const u8 gSpeciesNameLongTatsugiriCurly[] = _("Tatsugiri Curly");
+
+const u8 gSpeciesNameLongOricorioPau[] = _("Oricorio Pau");
+const u8 gSpeciesNameLongOricorioPomPom[] = _("Oricorio Pom Pom");
+const u8 gSpeciesNameLongOricorioSensu[] = _("Oricorio Sensu");
+
+const u8 gSpeciesNameLongShayminSky[] = _("Shaymin Sky");
+
+const u8 gSpeciesNameLongDeoxysAttack[] = _("Deoxys Attack");
+const u8 gSpeciesNameLongDeoxysDefense[] = _("Deoxys Defense");
+const u8 gSpeciesNameLongDeoxysSpeed[] = _("Deoxys Speed");
+
+const u8 gSpeciesNameLongRotomHeat[] = _("Rotom Heat");
+const u8 gSpeciesNameLongRotomFan[] = _("Rotom Fan");
+const u8 gSpeciesNameLongRotomFrost[] = _("Rotom Frost");
+const u8 gSpeciesNameLongRotomMow[] = _("Rotom Mow");
+const u8 gSpeciesNameLongRotomWash[] = _("Rotom Wash");
+
+const u8 gSpeciesNameLongTornadusTherian[] = _("Tornadus Therian");
+const u8 gSpeciesNameLongThundurusTherian[] = _("Thundurus Therian");
+const u8 gSpeciesNameLongLandorusTherian[] = _("Landorus Therian");
+
+const u8 gSpeciesNameLongKeldeoResolute[] = _("Keldeo Resolute");
+
+const u8 gSpeciesNameLongOgerponHearthflameMask[] = _("Ogerpon Hearthflame");
+const u8 gSpeciesNameLongOgerponCornerstoneMask[] = _("Ogerpon Cornerstone");
+const u8 gSpeciesNameLongOgerponWellspringMask[] = _("Ogerpon Wellspring");
+
+const u8* GetSpeciesLongName(u16 species)
+{
+    switch (species)
+    {
+        case SPECIES_TATSUGIRI_DROOPY:
+            return gSpeciesNameLongTatsugiriDroopy;
+        case SPECIES_TATSUGIRI_STRETCHY:
+            return gSpeciesNameLongTatsugiriStretchy;
+        case SPECIES_TATSUGIRI:
+        case SPECIES_TATSUGIRI_CURLY:
+            return gSpeciesNameLongTatsugiriCurly;
+
+        case SPECIES_ORICORIO_PAU:
+            return gSpeciesNameLongOricorioPau;
+        case SPECIES_ORICORIO_POM_POM:
+            return gSpeciesNameLongOricorioPomPom;
+        case SPECIES_ORICORIO_SENSU:
+            return gSpeciesNameLongOricorioSensu;
+
+        case SPECIES_SHAYMIN_SKY:
+            return gSpeciesNameLongShayminSky;
+
+        case SPECIES_DEOXYS_ATTACK:
+            return gSpeciesNameLongDeoxysAttack;
+        case SPECIES_DEOXYS_DEFENSE:
+            return gSpeciesNameLongDeoxysDefense;
+        case SPECIES_DEOXYS_SPEED:
+            return gSpeciesNameLongDeoxysSpeed;
+
+        case SPECIES_ROTOM_HEAT:
+            return gSpeciesNameLongRotomHeat;
+        case SPECIES_ROTOM_FAN:
+            return gSpeciesNameLongRotomFan;
+        case SPECIES_ROTOM_FROST:
+            return gSpeciesNameLongRotomFrost;
+        case SPECIES_ROTOM_MOW:
+            return gSpeciesNameLongRotomMow;
+        case SPECIES_ROTOM_WASH:
+            return gSpeciesNameLongRotomWash;
+
+        case SPECIES_TORNADUS_THERIAN:
+            return gSpeciesNameLongTornadusTherian;
+        case SPECIES_THUNDURUS_THERIAN:
+            return gSpeciesNameLongThundurusTherian;
+        case SPECIES_LANDORUS_THERIAN:
+            return gSpeciesNameLongLandorusTherian;
+
+        case SPECIES_KELDEO_RESOLUTE:
+            return gSpeciesNameLongKeldeoResolute;
+
+        case SPECIES_OGERPON_HEARTHFLAME_MASK:
+            return gSpeciesNameLongOgerponHearthflameMask;
+        case SPECIES_OGERPON_CORNERSTONE_MASK:
+            return gSpeciesNameLongOgerponCornerstoneMask;
+        case SPECIES_OGERPON_WELLSPRING_MASK:
+            return gSpeciesNameLongOgerponWellspringMask;
+
+        default:
+            return NULL;
     }
 }

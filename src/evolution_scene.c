@@ -214,6 +214,7 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
     const struct CompressedSpritePalette* pokePal;
     u8 ID;
     bool8 isShiny, isAlpha;
+    const u8* longName;
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -254,7 +255,11 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
 
     GetMonData(mon, MON_DATA_NICKNAME, name);
     StringCopy10(gStringVar1, name);
-    StringCopy(gStringVar2, gSpeciesNames[postEvoSpecies]);
+    longName = GetSpeciesLongName(postEvoSpecies);
+    if (longName)
+        StringCopy(gStringVar2, longName);
+    else
+        StringCopy(gStringVar2, gSpeciesNames[postEvoSpecies]);
 
     // preEvo sprite
     currSpecies = GetMonData(mon, MON_DATA_SPECIES);

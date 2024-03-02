@@ -477,5 +477,7 @@ bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon);
 bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot);
 bool8 isSpeciesPlaceholderMon(u16 species);
 bool8 IsEeveelution(u16 species);
+u16 GetFormShiftSpecies(u16 species);
+const u8* GetSpeciesLongName(u16 species);
 
 #endif // GUARD_POKEMON_H
