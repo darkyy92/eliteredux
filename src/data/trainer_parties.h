@@ -34794,66 +34794,67 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
 static const struct TrainerMonItemCustomMoves sParty_DrakeInsane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_DIALGA, // Drake-E, Chople, Lead Coat, Bulky Special, SR
-    .heldItem = ITEM_CHOPLE_BERRY,
-    .ability = 2, // ABILITY_BULLETPROOF, ABILITY_STAMINA, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_IMPENETRABLE, ABILITY_POWER_CORE},
-    .evs = {252, 0, 0, 180, 0, 76},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .species = SPECIES_DIALGA,
+    .heldItem = ITEM_RED_CARD,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 0, 180, 0, 76},
+    .nature = NATURE_MODEST,
     .moves = MOVE_STEEL_BEAM, MOVE_ROAR_OF_TIME, MOVE_STEALTH_ROCK, MOVE_FIRE_BLAST
     },
     {
     .lvl = 0,
-    .species = SPECIES_KOMMO_O, // Drake-E, Vest, Bulletproof, Mixed Attacker
+    .species = SPECIES_KOMMO_O,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_ROUGH_SKIN},
-    // .innates = {ABILITY_PRISM_SCALES, ABILITY_BATTLE_ARMOR, ABILITY_PRISM_ARMOR},
-    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_NAIVE,
+    .ability = 0,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 4, 0, 252, 0, 252},
+    .nature = NATURE_NAIVE,
     .moves = MOVE_CLOSE_COMBAT, MOVE_CLANGING_SCALES, MOVE_FLAMETHROWER, MOVE_POISON_JAB
     },
     {
     .lvl = 0,
-    .species = SPECIES_DRAGALGE, // Drake-E, Bulky Vest, Contrary, low speed
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_OVERWHELM, ABILITY_CONTRARY},
-    // .innates = {ABILITY_ADAPTABILITY, ABILITY_CORROSION, ABILITY_AQUATIC},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_QUIET,
-    .moves = MOVE_SLUDGE_WAVE, MOVE_DRACO_METEOR, MOVE_HYDRO_PUMP, MOVE_AURA_SPHERE
+    .species = SPECIES_ROARING_MOON,
+    .heldItem = ITEM_BOOSTER_ENERGY,
+    .ability = 1,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_KNOCK_OFF, MOVE_DRAGON_DANCE, MOVE_ACROBATICS, MOVE_ROOST
     },
     {
     .lvl = 0,
-    .species = SPECIES_KYUREM_BLACK, // Drake-E, Roseli, Refrigerate
+    .species = SPECIES_KYUREM_BLACK,
     .heldItem = ITEM_ROSELI_BERRY,
-    .ability = 1, // ABILITY_BEAST_BOOST, ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING},
-    // .innates = {ABILITY_TERAVOLT, ABILITY_PERMAFROST, ABILITY_MULTISCALE},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 4, 0, 0, 252},
+    .nature = NATURE_JOLLY,
     .moves = MOVE_U_TURN, MOVE_BOLT_STRIKE, MOVE_CORE_ENFORCER, MOVE_EXTREME_SPEED
     },
     {
     .lvl = 0,
-    .species = SPECIES_LUGIA, // Drake-E, Mixed Wall, Air Blower, Phazer
+    .species = SPECIES_LUGIA,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_MULTISCALE, ABILITY_WEATHER_CONTROL, ABILITY_AIR_BLOWER},
-    // .innates = {ABILITY_LEVITATE, ABILITY_SEA_GUARDIAN, ABILITY_PSYCHIC_MIND},
-    .evs = {252, 0, 160, 0, 96, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BOLD,
+    .ability = 2,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 160, 0, 96, 0},
+    .nature = NATURE_BOLD,
     .moves = MOVE_AEROBLAST, MOVE_PSYSHOCK, MOVE_RECOVER, MOVE_WHIRLWIND
     },
     {
     .lvl = 0,
-    .species = SPECIES_RAYQUAZA, // Drake-E, Mega, Lum, Air Blower
+    .species = SPECIES_RAYQUAZA,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 1, // ABILITY_DRAGONS_MAW, ABILITY_DEADEYE, ABILITY_MOLD_BREAKER},
-    // .innates = {ABILITY_DELTA_STREAM, ABILITY_WEATHER_CONTROL, ABILITY_AERILATE},
-    // Pre-Mega
-    // ABILITY_DRAGONS_MAW, ABILITY_AIR_BLOWER, ABILITY_VIOLENT_RUSH},
-    // .innates = {ABILITY_AIR_LOCK, ABILITY_WEATHER_CONTROL, ABILITY_RAMPAGE},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
+    .ability = 1,
+    .ivs = {},
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 4, 0, 0, 252},
+    .nature = NATURE_ADAMANT,
     .moves = MOVE_DRAGON_ASCENT, MOVE_V_CREATE, MOVE_EXTREME_SPEED, MOVE_CORE_ENFORCER
     }
 };
