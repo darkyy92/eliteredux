@@ -5547,7 +5547,7 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0,
         .y_offset =  0
     },
-    [SPECIES_URSALUNA_MOONBLOOD] =
+    [SPECIES_URSALUNA_BLOODMOON] =
     {
         .size = 0,
         .y_offset =  0

@@ -35713,7 +35713,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_URSALUNA_MOONBLOOD] =
+    [SPECIES_URSALUNA_BLOODMOON] =
     {
     .baseHP        =   113,
     .baseAttack    =  70,

@@ -1490,7 +1490,7 @@ static const u16 sTaurosFormSpeciesIdTable[] = {
 static const u16 sUrsalunaFormSpeciesIdTable[] = {
     SPECIES_URSALUNA,
     SPECIES_URSALUNA_MEGA,
-    SPECIES_URSALUNA_MOONBLOOD,
+    SPECIES_URSALUNA_BLOODMOON,
     FORM_SPECIES_END,
 };
 static const u16 sPalafinFormSpeciesIdTable[] = {

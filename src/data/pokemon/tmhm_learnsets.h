@@ -39,6 +39,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_IVYSAUR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -70,6 +71,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VENUSAUR] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -106,6 +108,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHARMANDER] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -142,6 +145,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHARMELEON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -178,6 +182,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHARIZARD] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -226,6 +231,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SQUIRTLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -260,6 +266,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_WARTORTLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -294,6 +301,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BLASTOISE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -340,18 +348,21 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CATERPIE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
         TM(MOVE_PROTECT)
         TM(MOVE_FRUSTRATION)
         TMHM_LEARNSET_END
+
     [SPECIES_METAPOD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
         TM(MOVE_PROTECT)
         TM(MOVE_FRUSTRATION)
         TMHM_LEARNSET_END
+
     [SPECIES_BUTTERFREE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -389,6 +400,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEEDRILL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -428,6 +440,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PIDGEY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -452,6 +465,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_PIDGEOTTO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -477,6 +491,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_PIDGEOT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -504,6 +519,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_HYPER_BEAM)
         TMHM_LEARNSET_END
+
     [SPECIES_RATTATA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -538,6 +554,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RATTATA_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -571,6 +588,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RATICATE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -610,6 +628,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RATICATE_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -652,6 +671,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPEAROW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -676,6 +696,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_FEAROW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -703,6 +724,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_EKANS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -737,6 +759,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARBOK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -774,6 +797,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_PIKACHU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -808,6 +832,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAICHU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -847,6 +872,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAICHU_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -889,6 +915,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDSHREW] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -926,6 +953,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDSHREW_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -968,6 +996,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDSLASH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -1009,6 +1038,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDSLASH_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -1054,6 +1084,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDORAN_F] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -1088,6 +1119,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDORINA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -1122,6 +1154,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDOQUEEN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1180,6 +1213,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDORAN_M] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -1214,6 +1248,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDORINO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -1248,6 +1283,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIDOKING] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1306,6 +1342,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CLEFAIRY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1353,6 +1390,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CLEFABLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1403,6 +1441,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VULPIX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -1433,6 +1472,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DARK_PULSE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_VULPIX_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -1461,6 +1501,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_NINETALES] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -1497,6 +1538,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_NINETALES_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -1532,6 +1574,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_JIGGLYPUFF] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1577,6 +1620,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WIGGLYTUFF] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -1625,6 +1669,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZUBAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1657,6 +1702,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLBAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1691,6 +1737,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ODDISH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -1719,6 +1766,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GLOOM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -1748,6 +1796,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VILEPLUME] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -1780,6 +1829,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PARAS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -1817,6 +1867,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PARASECT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -1856,6 +1907,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VENONAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1883,6 +1935,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VENOMOTH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1918,6 +1971,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DIGLETT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1949,6 +2003,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DIGLETT_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -1980,6 +2035,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUGTRIO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -2015,6 +2071,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUGTRIO_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -2049,6 +2106,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEOWTH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -2083,6 +2141,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEOWTH_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -2117,6 +2176,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEOWTH_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -2148,6 +2208,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DARK_PULSE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_PERRSERKER] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2186,6 +2247,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_RAIN_DANCE)
         TMHM_LEARNSET_END
+
     [SPECIES_PERSIAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -2224,6 +2286,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PERSIAN_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -2262,6 +2325,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PSYDUCK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -2299,6 +2363,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLDUCK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -2341,6 +2406,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MANKEY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2381,6 +2447,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PRIMEAPE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2425,6 +2492,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GROWLITHE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -2458,6 +2526,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCANINE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -2496,6 +2565,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_PAYBACK)
         TMHM_LEARNSET_END
+
     [SPECIES_POLIWAG] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -2523,6 +2593,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_POLIWHIRL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -2556,6 +2627,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_POLIWRATH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -2598,6 +2670,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ABRA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -2638,6 +2711,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KADABRA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -2678,6 +2752,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALAKAZAM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -2721,6 +2796,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHOP] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2757,6 +2833,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHOKE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2793,6 +2870,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHAMP] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -2832,6 +2910,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BELLSPROUT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -2863,6 +2942,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WEEPINBELL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -2894,6 +2974,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VICTREEBEL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -2927,6 +3008,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TENTACOOL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -2963,6 +3045,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_TENTACRUEL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -3001,6 +3084,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GEODUDE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3036,6 +3120,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GEODUDE_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3077,6 +3162,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRAVELER] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3112,6 +3198,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRAVELER_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3153,6 +3240,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLEM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -3192,6 +3280,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLEM_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -3238,6 +3327,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PONYTA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3264,6 +3354,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAPIDASH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3293,6 +3384,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_PONYTA_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -3315,6 +3407,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAPIDASH_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -3347,6 +3440,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWPOKE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -3392,6 +3486,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWPOKE_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -3435,6 +3530,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWBRO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -3489,6 +3585,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWBRO_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -3545,6 +3642,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGNEMITE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3575,6 +3673,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGNETON] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3607,6 +3706,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FARFETCHD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3638,6 +3738,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_FARFETCHD_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3662,6 +3763,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIRFETCHD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3686,6 +3788,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DODUO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3709,6 +3812,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_DODRIO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3738,6 +3842,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_SEEL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -3766,6 +3871,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DEWGONG] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -3798,6 +3904,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GRIMER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3834,6 +3941,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRIMER_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -3872,6 +3980,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3916,6 +4025,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUK_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -3964,6 +4074,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
         TMHM_LEARNSET_END
+
     [SPECIES_SHELLDER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -3989,6 +4100,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CLOYSTER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -4020,6 +4132,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GASTLY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4057,6 +4170,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_HAUNTER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4096,6 +4210,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GENGAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4143,6 +4258,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ONIX] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -4181,6 +4297,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DROWZEE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -4220,6 +4337,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HYPNO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -4262,6 +4380,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KRABBY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -4297,6 +4416,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_KINGLER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -4334,6 +4454,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIVE)
         TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
+
     [SPECIES_VOLTORB] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4366,6 +4487,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ELECTRODE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4401,6 +4523,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
+
     [SPECIES_EXEGGCUTE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -4435,6 +4558,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EXEGGUTOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -4471,6 +4595,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EXEGGUTOR_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -4514,6 +4639,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CUBONE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4551,6 +4677,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAROWAK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4595,6 +4722,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAROWAK_ALOLAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4645,6 +4773,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HITMONLEE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4677,6 +4806,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HITMONCHAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -4709,6 +4839,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LICKITUNG] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -4754,6 +4885,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KOFFING] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4787,6 +4919,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WEEZING] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -4822,6 +4955,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RHYHORN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -4864,6 +4998,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RHYDON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -4916,6 +5051,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHANSEY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -4970,6 +5106,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TANGELA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -5001,6 +5138,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KANGASKHAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -5052,6 +5190,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HORSEA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5078,6 +5217,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SEADRA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5106,6 +5246,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLDEEN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5131,6 +5272,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SEAKING] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5158,6 +5300,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_STARYU] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5194,6 +5337,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_STARMIE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5237,6 +5381,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIVE)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_MR_MIME] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -5285,6 +5430,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_SCYTHER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -5317,6 +5463,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_JYNX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -5363,6 +5510,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DREAM_EATER)
         TM(MOVE_AVALANCHE)
         TMHM_LEARNSET_END
+
     [SPECIES_ELECTABUZZ] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -5399,6 +5547,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGMAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -5432,6 +5581,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_PINSIR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -5472,6 +5622,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAUROS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5511,6 +5662,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GYARADOS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -5559,6 +5711,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LAPRAS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -5599,6 +5752,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_EEVEE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -5620,6 +5774,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_VAPOREON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -5654,6 +5809,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_JOLTEON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -5688,6 +5844,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLAREON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -5719,6 +5876,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PORYGON] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -5756,6 +5914,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_OMANYTE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5790,6 +5949,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_OMASTAR] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5827,6 +5987,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_KABUTO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5863,6 +6024,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_KABUTOPS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -5906,6 +6068,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_AERODACTYL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -5952,6 +6115,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SNORLAX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -5996,6 +6160,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_SUNNY_DAY)
         TMHM_LEARNSET_END
+
     [SPECIES_ARTICUNO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -6030,6 +6195,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZAPDOS] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -6066,6 +6232,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MOLTRES] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -6101,6 +6268,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRATINI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -6136,6 +6304,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAGONAIR] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -6171,6 +6340,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAGONITE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -6226,6 +6396,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MEWTWO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -6290,6 +6461,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEW] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -6398,6 +6570,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CHIKORITA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -6426,6 +6599,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BAYLEEF] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -6456,6 +6630,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEGANIUM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -6493,6 +6668,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CYNDAQUIL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -6519,6 +6695,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_QUILAVA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -6551,6 +6728,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_TYPHLOSION] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -6592,6 +6770,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUNNY_DAY)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_TOTODILE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -6626,6 +6805,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CROCONAW] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -6663,6 +6843,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_FERALIGATR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -6709,6 +6890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SENTRET] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -6746,6 +6928,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
+
     [SPECIES_FURRET] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -6788,6 +6971,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HOOTHOOT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -6816,6 +7000,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NOCTOWL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -6847,6 +7032,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LEDYBA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -6881,6 +7067,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LEDIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -6921,6 +7108,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPINARAK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -6950,6 +7138,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARIADOS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -6983,6 +7172,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CROBAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -7019,6 +7209,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_CHINCHOU] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7052,6 +7243,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LANTURN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7087,6 +7279,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PICHU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -7113,6 +7306,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CLEFFA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7147,6 +7341,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_IGGLYBUFF] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7180,6 +7375,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOGEPI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7213,6 +7409,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOGETIC] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7254,6 +7451,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NATU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -7292,6 +7490,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_XATU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -7333,6 +7532,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAREEP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -7358,6 +7558,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLAAFFY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -7388,6 +7589,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AMPHAROS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -7423,6 +7625,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BELLOSSOM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7455,6 +7658,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_MARILL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7487,6 +7691,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_AZUMARILL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7523,6 +7728,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SUDOWOODO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -7560,6 +7766,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_RAIN_DANCE)
         TMHM_LEARNSET_END
+
     [SPECIES_POLITOED] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7597,6 +7804,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_HOPPIP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7626,6 +7834,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKIPLOOM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7655,6 +7864,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_JUMPLUFF] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7686,6 +7896,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AIPOM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7726,6 +7937,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SUNKERN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7753,6 +7965,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SUNFLORA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -7785,6 +7998,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YANMA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -7814,6 +8028,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WOOPER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -7848,6 +8063,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_QUAGSIRE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -7892,6 +8108,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ESPEON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -7926,6 +8143,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_UMBREON] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -7959,6 +8177,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_MURKROW] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -7992,6 +8211,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWKING] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -8046,6 +8266,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIVE)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_MISDREAVUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -8083,6 +8304,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GIRAFARIG] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -8124,6 +8346,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PINECO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8158,6 +8381,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FORRETRESS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8197,6 +8421,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUNSPARCE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -8241,6 +8466,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GLIGAR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8289,6 +8515,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STEELIX] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -8331,6 +8558,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_ROCK_TOMB)
         TMHM_LEARNSET_END
+
     [SPECIES_SNUBBULL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -8375,6 +8603,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRANBULL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -8425,6 +8654,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_QWILFISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -8459,6 +8689,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SCIZOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8497,6 +8728,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHUCKLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8532,6 +8764,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HERACROSS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -8572,6 +8805,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SNEASEL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -8619,6 +8853,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TEDDIURSA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -8655,6 +8890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_URSARING] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -8697,6 +8933,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLUGMA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8723,6 +8960,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGCARGO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -8761,6 +8999,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWINUB] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -8793,6 +9032,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PILOSWINE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -8829,6 +9069,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CORSOLA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -8871,6 +9112,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REMORAID] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -8904,6 +9146,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_OCTILLERY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -8943,6 +9186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DELIBIRD] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -8972,6 +9216,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_MANTINE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -9006,6 +9251,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SKARMORY] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -9041,6 +9287,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HOUNDOUR] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -9076,6 +9323,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HOUNDOOM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -9114,6 +9362,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KINGDRA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -9142,6 +9391,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PHANPY] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -9168,6 +9418,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DONPHAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -9200,6 +9451,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PORYGON2] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -9237,6 +9489,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_REFLECT)
         TM(MOVE_PSYSHOCK)
         TMHM_LEARNSET_END
+
     [SPECIES_STANTLER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -9279,6 +9532,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SMEARGLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -9387,6 +9641,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_TYROGUE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -9413,6 +9668,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HITMONTOP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -9445,6 +9701,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SMOOCHUM] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -9481,6 +9738,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ELEKID] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -9510,6 +9768,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGBY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -9538,6 +9797,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MILTANK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -9579,6 +9839,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BLISSEY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -9636,6 +9897,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_REFLECT)
         TM(MOVE_STEALTH_ROCK)
         TMHM_LEARNSET_END
+
     [SPECIES_RAIKOU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -9675,6 +9937,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ENTEI] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -9715,6 +9978,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SUICUNE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -9755,6 +10019,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LARVITAR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -9791,6 +10056,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PUPITAR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -9827,6 +10093,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TYRANITAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -9884,6 +10151,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUGIA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -9939,6 +10207,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_HO_OH] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -9988,6 +10257,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CELEBI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -10032,6 +10302,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TREECKO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -10069,6 +10340,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GROVYLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -10109,6 +10381,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SCEPTILE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -10157,6 +10430,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORCHIC] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -10187,6 +10461,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COMBUSKEN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -10223,6 +10498,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BLAZIKEN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -10267,6 +10543,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUDKIP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10299,6 +10576,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MARSHTOMP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10336,6 +10614,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SWAMPERT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -10379,6 +10658,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FOCUS_BLAST)
         TM(MOVE_ROCK_SLIDE)
         TMHM_LEARNSET_END
+
     [SPECIES_POOCHYENA] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -10408,6 +10688,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MIGHTYENA] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -10440,6 +10721,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZIGZAGOON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10471,6 +10753,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LINOONE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -10507,6 +10790,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_THUNDER_WAVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ZIGZAGOON_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -10544,6 +10828,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LINOONE_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -10584,6 +10869,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_OBSTAGOON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -10629,6 +10915,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_BULLET_SEED)
         TM(MOVE_DIG)
         TMHM_LEARNSET_END
+
     [SPECIES_BEAUTIFLY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -10661,6 +10948,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUSTOX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -10695,6 +10983,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LOTAD] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10727,6 +11016,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LOMBRE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10764,6 +11054,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LUDICOLO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -10805,6 +11096,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SEEDOT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -10832,6 +11124,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NUZLEAF] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -10873,6 +11166,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHIFTRY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -10918,6 +11212,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAILLOW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -10941,6 +11236,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_SWELLOW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -10966,6 +11262,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_WINGULL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -10993,6 +11290,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_PELIPPER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -11024,6 +11322,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
+
     [SPECIES_RALTS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -11063,6 +11362,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KIRLIA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -11102,6 +11402,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GARDEVOIR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -11145,6 +11446,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SURSKIT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -11172,6 +11474,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MASQUERAIN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -11206,6 +11509,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHROOMISH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -11235,6 +11539,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BRELOOM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -11275,6 +11580,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLAKOTH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -11312,6 +11618,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIGOROTH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -11355,6 +11662,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLAKING] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -11402,6 +11710,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_ROCK_TOMB)
         TMHM_LEARNSET_END
+
     [SPECIES_NINCADA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -11431,6 +11740,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NINJASK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -11468,6 +11778,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHEDINJA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -11504,6 +11815,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WHISMUR] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -11529,6 +11841,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_LOUDRED] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -11565,6 +11878,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EXPLOUD] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -11606,6 +11920,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAKUHITA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -11637,6 +11952,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HARIYAMA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -11673,6 +11989,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AZURILL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -11698,6 +12015,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
+
     [SPECIES_NOSEPASS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -11733,6 +12051,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKITTY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -11768,6 +12087,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DELCATTY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -11809,6 +12129,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SABLEYE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -11852,6 +12173,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAWILE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -11898,6 +12220,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -11931,6 +12254,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LAIRON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -11965,6 +12289,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AGGRON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -12022,6 +12347,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEDITITE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -12060,6 +12386,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEDICHAM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -12101,6 +12428,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ELECTRIKE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -12131,6 +12459,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MANECTRIC] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -12164,6 +12493,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PLUSLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12191,6 +12521,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINUN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12218,6 +12549,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VOLBEAT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -12255,6 +12587,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ILLUMISE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -12292,6 +12625,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROSELIA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -12322,6 +12656,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GULPIN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -12352,6 +12687,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWALOT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -12386,6 +12722,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CARVANHA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -12416,6 +12753,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SHARPEDO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -12456,6 +12794,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_WAILMER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -12487,6 +12826,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_WAILORD] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -12520,6 +12860,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_NUMEL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12551,6 +12892,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CAMERUPT] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -12589,6 +12931,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORKOAL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12625,6 +12968,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPOINK] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -12661,6 +13005,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRUMPIG] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -12705,6 +13050,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPINDA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -12743,6 +13089,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TRAPINCH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12772,6 +13119,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIBRAVA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12806,6 +13154,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLYGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -12849,6 +13198,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CACNEA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -12882,6 +13232,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CACTURNE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -12919,6 +13270,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWABLU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -12947,6 +13299,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ALTARIA] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -12985,6 +13338,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZANGOOSE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -13031,6 +13385,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SEVIPER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -13068,6 +13423,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUNATONE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13115,6 +13471,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SOLROCK] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13164,6 +13521,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BARBOACH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13192,6 +13550,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_WHISCASH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13227,6 +13586,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CORPHISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13264,6 +13624,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
+
     [SPECIES_CRAWDAUNT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13308,6 +13669,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BALTOY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13353,6 +13715,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CLAYDOL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13403,6 +13766,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LILEEP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -13433,6 +13797,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRADILY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13472,6 +13837,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ANORITH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13504,6 +13870,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARMALDO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13544,6 +13911,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FEEBAS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13571,6 +13939,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MILOTIC] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -13606,6 +13975,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CASTFORM] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13639,6 +14009,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KECLEON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -13687,6 +14058,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHUPPET] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13723,6 +14095,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BANETTE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13762,6 +14135,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUSKULL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13796,6 +14170,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUSCLOPS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -13840,6 +14215,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TROPIUS] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -13877,6 +14253,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHIMECHO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -13914,6 +14291,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ABSOL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -13967,6 +14345,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SNORUNT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -13993,6 +14372,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GLALIE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14034,6 +14414,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPHEAL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14065,6 +14446,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SEALEO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -14097,6 +14479,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_WALREIN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -14133,6 +14516,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CLAMPERL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14157,6 +14541,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_HUNTAIL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14186,6 +14571,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOREBYSS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14215,6 +14601,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_RELICANTH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -14253,6 +14640,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LUVDISC] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -14279,6 +14667,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BAGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -14309,6 +14698,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHELGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -14339,6 +14729,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SALAMENCE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -14379,6 +14770,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_METANG] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -14420,6 +14812,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_METAGROSS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -14463,6 +14856,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGIROCK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -14503,6 +14897,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGICE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -14544,6 +14939,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGISTEEL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -14584,6 +14980,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LATIAS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -14638,6 +15035,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LATIOS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -14691,6 +15089,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_KYOGRE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -14733,6 +15132,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GROUDON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -14783,6 +15183,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAYQUAZA] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -14838,6 +15239,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_JIRACHI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -14883,6 +15285,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEOXYS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -14942,6 +15345,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEOXYS_ATTACK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -15001,6 +15405,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEOXYS_DEFENSE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -15060,6 +15465,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEOXYS_SPEED] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -15119,6 +15525,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TURTWIG] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -15150,6 +15557,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GROTLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -15181,6 +15589,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORTERRA] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15223,6 +15632,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHIMCHAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -15263,6 +15673,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MONFERNO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -15307,6 +15718,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_INFERNAPE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -15359,6 +15771,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PIPLUP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -15392,6 +15805,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PRINPLUP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -15428,6 +15842,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_EMPOLEON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -15474,6 +15889,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_STARLY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -15497,6 +15913,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_STARAVIA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -15520,6 +15937,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_STARAPTOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -15545,6 +15963,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_BIDOOF] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -15580,6 +15999,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BIBAREL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -15622,9 +16042,11 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_KRICKETOT] = TMHM_LEARNSET
         TM(MOVE_STRUGGLE_BUG)
         TMHM_LEARNSET_END
+
     [SPECIES_KRICKETUNE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -15656,6 +16078,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHINX] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15685,6 +16108,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUXIO] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15714,6 +16138,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUXRAY] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15745,6 +16170,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BUDEW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -15774,6 +16200,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROSERADE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -15806,6 +16233,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRANIDOS] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15847,6 +16275,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RAMPARDOS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -15897,6 +16326,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHIELDON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15937,6 +16367,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BASTIODON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -15980,10 +16411,12 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BURMY] = TMHM_LEARNSET
         TM(MOVE_HIDDEN_POWER)
         TM(MOVE_PROTECT)
         TMHM_LEARNSET_END
+
     [SPECIES_WORMADAM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -16018,6 +16451,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WORMADAM_SANDY_CLOAK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16053,6 +16487,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WORMADAM_TRASH_CLOAK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16088,6 +16523,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MOTHIM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16124,6 +16560,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VESPIQUEN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16155,6 +16592,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PACHIRISU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16184,6 +16622,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BUIZEL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -16216,6 +16655,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOATZEL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -16255,6 +16695,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CHERUBI] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -16280,6 +16721,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHERRIM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -16307,6 +16749,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHERRIM_SUNSHINE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -16334,6 +16777,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHELLOS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -16357,6 +16801,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SHELLOS_EAST_SEA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -16380,6 +16825,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GASTRODON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -16418,6 +16864,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GASTRODON_EAST_SEA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -16456,6 +16903,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_AMBIPOM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -16498,6 +16946,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRIFLOON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16535,6 +16984,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRIFBLIM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16575,6 +17025,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BUNEARY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -16607,6 +17058,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LOPUNNY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -16645,6 +17097,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MISMAGIUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16685,6 +17138,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HONCHKROW] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16720,6 +17174,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_GLAMEOW] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -16754,6 +17209,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PURUGLY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -16792,6 +17248,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHINGLING] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -16826,6 +17283,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STUNKY] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -16861,6 +17319,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKUNTANK] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -16900,6 +17359,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BRONZOR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16942,6 +17402,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BRONZONG] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -16990,6 +17451,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BONSLY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -17019,6 +17481,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_MIME_JR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -17060,6 +17523,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HAPPINY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -17092,6 +17556,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHATOT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -17117,6 +17582,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_SPIRITOMB] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -17150,6 +17616,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GIBLE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -17186,6 +17653,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GABITE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -17222,6 +17690,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GARCHOMP] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -17267,6 +17736,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUNCHLAX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -17305,6 +17775,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RIOLU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -17341,6 +17812,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUCARIO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -17387,6 +17859,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HIPPOPOTAS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -17415,6 +17888,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HIPPOWDON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -17446,6 +17920,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKORUPI] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -17485,6 +17960,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAPION] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -17531,6 +18007,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CROAGUNK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -17573,6 +18050,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOXICROAK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -17624,6 +18102,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CARNIVINE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -17655,6 +18134,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FINNEON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -17683,6 +18163,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_LUMINEON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -17715,6 +18196,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MANTYKE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -17744,6 +18226,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SNOVER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -17777,6 +18260,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ABOMASNOW] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -17821,6 +18305,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WEAVILE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -17871,6 +18356,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGNEZONE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -17903,6 +18389,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LICKILICKY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -17951,6 +18438,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RHYPERIOR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -18004,6 +18492,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TANGROWTH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -18044,6 +18533,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ELECTIVIRE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -18088,6 +18578,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGMORTAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -18130,6 +18621,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
+
     [SPECIES_TOGEKISS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -18172,6 +18664,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YANMEGA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18204,6 +18697,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LEAFEON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -18239,6 +18733,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_GLACEON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -18272,6 +18767,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_GLISCOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18324,6 +18820,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAMOSWINE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -18360,6 +18857,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PORYGON_Z] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18398,6 +18896,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_REFLECT)
         TMHM_LEARNSET_END
+
     [SPECIES_GALLADE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -18458,6 +18957,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_THUNDER)
         TMHM_LEARNSET_END
+
     [SPECIES_PROBOPASS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18496,6 +18996,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUSKNOIR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -18543,6 +19044,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FROSLASS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -18582,6 +19084,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18613,6 +19116,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM_HEAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18644,6 +19148,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM_WASH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18675,6 +19180,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM_FROST] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18706,6 +19212,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM_FAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18737,6 +19244,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROTOM_MOW] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -18768,6 +19276,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_UXIE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -18814,6 +19323,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MESPRIT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -18860,6 +19370,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AZELF] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -18910,6 +19421,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DIALGA] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -18960,6 +19472,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PALKIA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -19012,6 +19525,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_HEATRAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -19053,6 +19567,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGIGIGAS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -19090,6 +19605,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GIRATINA] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_CALM_MIND)
@@ -19137,6 +19653,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GIRATINA_ORIGIN] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_CALM_MIND)
@@ -19184,6 +19701,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRESSELIA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -19222,6 +19740,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PHIONE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -19250,6 +19769,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MANAPHY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -19288,6 +19808,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DARKRAI] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -19340,6 +19861,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHAYMIN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -19368,6 +19890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHAYMIN_SKY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -19396,6 +19919,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19474,6 +19998,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_FIGHTING] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19552,6 +20077,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_FLYING] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19630,6 +20156,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_POISON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19708,6 +20235,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_GROUND] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19786,6 +20314,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_ROCK] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19864,6 +20393,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_BUG] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -19942,6 +20472,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_GHOST] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20020,6 +20551,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_STEEL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20098,6 +20630,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_FIRE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20176,6 +20709,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_WATER] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20254,6 +20788,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_GRASS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20332,6 +20867,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_ELECTRIC] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20410,6 +20946,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_PSYCHIC] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20488,6 +21025,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_ICE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20566,6 +21104,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_DRAGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20644,6 +21183,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_DARK] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20722,6 +21262,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCEUS_FAIRY] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -20800,6 +21341,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_VICTINI] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -20845,6 +21387,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SNIVY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -20877,6 +21420,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SERVINE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -20909,6 +21453,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SERPERIOR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -20947,6 +21492,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TEPIG] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -20979,6 +21525,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PIGNITE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -21019,6 +21566,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EMBOAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -21065,6 +21613,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_OSHAWOTT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -21099,6 +21648,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DEWOTT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -21133,6 +21683,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SAMUROTT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -21173,6 +21724,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PATRAT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -21199,6 +21751,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_WATCHOG] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -21236,6 +21789,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LILLIPUP] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -21263,6 +21817,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HERDIER] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -21293,6 +21848,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STOUTLAND] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -21326,6 +21882,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PURRLOIN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21359,6 +21916,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_LIEPARD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21395,6 +21953,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANSAGE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -21431,6 +21990,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMISAGE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -21472,6 +22032,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANSEAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -21509,6 +22070,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMISEAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -21551,6 +22113,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANPOUR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -21590,6 +22153,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMIPOUR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -21634,6 +22198,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MUNNA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -21669,6 +22234,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUSHARNA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -21706,6 +22272,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PIDOVE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21729,6 +22296,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_TRANQUILL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21752,6 +22320,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_UNFEZANT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21777,6 +22346,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_BLITZLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21802,6 +22372,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZEBSTRIKA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21831,6 +22402,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROGGENROLA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21863,6 +22435,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BOLDORE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21895,6 +22468,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GIGALITH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -21930,6 +22504,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WOOBAT] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -21972,6 +22547,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWOOBAT] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -22016,6 +22592,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRILBUR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -22048,6 +22625,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EXCADRILL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -22084,6 +22662,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AUDINO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -22129,6 +22708,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TIMBURR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -22163,6 +22743,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GURDURR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -22197,6 +22778,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CONKELDURR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -22235,6 +22817,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TYMPOLE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -22257,6 +22840,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
+
     [SPECIES_PALPITOAD] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -22283,6 +22867,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SEISMITOAD] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -22324,6 +22909,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_THROH] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -22358,6 +22944,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SAWK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -22393,6 +22980,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SEWADDLE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -22422,6 +23010,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWADLOON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -22451,6 +23040,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LEAVANNY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -22490,6 +23080,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VENIPEDE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -22514,6 +23105,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WHIRLIPEDE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -22538,6 +23130,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SCOLIPEDE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -22573,6 +23166,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COTTONEE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -22600,6 +23194,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WHIMSICOTT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -22636,6 +23231,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PETILIL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -22662,6 +23258,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LILLIGANT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -22692,6 +23289,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BASCULIN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -22717,6 +23315,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BASCULIN_BLUE_STRIPED] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -22742,6 +23341,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDILE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -22777,6 +23377,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_KROKOROK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -22818,6 +23419,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KROOKODILE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -22868,6 +23470,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DARUMAKA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -22903,6 +23506,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DARMANITAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -22949,6 +23553,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DARUMAKA_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -22986,6 +23591,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DARMANITAN_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -23034,6 +23640,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MARACTUS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -23060,6 +23667,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_DWEBBLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -23096,6 +23704,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRUSTLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -23134,6 +23743,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_SCRAGGY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -23179,6 +23789,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SCRAFTY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -23226,6 +23837,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIGILYPH] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23268,6 +23880,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YAMASK] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23298,6 +23911,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COFAGRIGUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23333,6 +23947,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YAMASK_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23364,6 +23979,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DARK_PULSE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_RUNERIGUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23410,6 +24026,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_PAYBACK)
         TM(MOVE_DREAM_EATER)
         TMHM_LEARNSET_END
+
     [SPECIES_TIRTOUGA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -23446,6 +24063,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CARRACOSTA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -23486,6 +24104,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCHEN] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -23525,6 +24144,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCHEOPS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -23569,6 +24189,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TRUBBISH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -23598,6 +24219,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DARK_PULSE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GARBODOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -23635,6 +24257,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DARK_PULSE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_ZORUA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -23669,6 +24292,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZOROARK] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -23710,6 +24334,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINCCINO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23738,6 +24363,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_CINCCINO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23771,6 +24397,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOTHITA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23811,6 +24438,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOTHORITA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23851,6 +24479,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOTHITELLE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23895,6 +24524,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SOLOSIS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23931,6 +24561,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUOSION] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -23967,6 +24598,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REUNICLUS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -24010,6 +24642,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUCKLETT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24036,6 +24669,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SWANNA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24064,6 +24698,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_VANILLITE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24090,6 +24725,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_AVALANCHE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_VANILLISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24116,6 +24752,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_AVALANCHE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_VANILLUXE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24144,6 +24781,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_AVALANCHE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_DEERLING] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24172,6 +24810,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEERLING_SUMMER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24200,6 +24839,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEERLING_AUTUMN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24228,6 +24868,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEERLING_WINTER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24256,6 +24897,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SAWSBUCK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24290,6 +24932,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SAWSBUCK_SUMMER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24324,6 +24967,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SAWSBUCK_AUTUMN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24358,6 +25002,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SAWSBUCK_WINTER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24392,6 +25037,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EMOLGA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24424,6 +25070,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KARRABLAST] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24450,6 +25097,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_ESCAVALIER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24480,6 +25128,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FOONGUS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24507,6 +25156,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AMOONGUSS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24536,6 +25186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FRILLISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24575,6 +25226,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_JELLICENT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -24616,6 +25268,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ALOMOMOLA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -24645,6 +25298,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_JOLTIK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24677,6 +25331,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GALVANTULA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24713,6 +25368,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FERROSEED] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24744,6 +25400,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FERROTHORN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -24785,6 +25442,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KLINK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24811,6 +25469,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KLANG] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24837,6 +25496,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KLINKLANG] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24867,10 +25527,12 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TYNAMO] = TMHM_LEARNSET
         TM(MOVE_CHARGE_BEAM)
         TM(MOVE_THUNDER_WAVE)
         TMHM_LEARNSET_END
+
     [SPECIES_EELEKTRIK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -24900,6 +25562,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EELEKTROSS] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -24948,6 +25611,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ELGYEM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -24985,6 +25649,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEHEEYEM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -25025,6 +25690,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LITWICK] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -25059,6 +25725,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LAMPENT] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -25093,6 +25760,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHANDELURE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -25129,6 +25797,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AXEW] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -25163,6 +25832,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FRAXURE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -25199,6 +25869,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HAXORUS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -25243,6 +25914,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CUBCHOO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -25275,6 +25947,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEARTIC] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -25320,6 +25993,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CRYOGONAL] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -25350,6 +26024,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH_CANNON)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_SHELMET] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25372,6 +26047,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_ACCELGOR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25400,6 +26076,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_STUNFISK] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -25435,6 +26112,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MIENFOO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -25474,6 +26152,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MIENSHAO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -25515,6 +26194,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRUDDIGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -25563,6 +26243,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLETT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -25600,6 +26281,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLURK] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -25645,6 +26327,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PAWNIARD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25685,6 +26368,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BISHARP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25729,6 +26413,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BOUFFALANT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25761,6 +26446,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RUFFLET] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -25790,6 +26476,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BRAVIARY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -25821,6 +26508,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VULLABY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25854,6 +26542,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MANDIBUZZ] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25889,6 +26578,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HEATMOR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -25929,6 +26619,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DURANT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -25960,6 +26651,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEINO] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -25987,6 +26679,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZWEILOUS] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -26014,6 +26707,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HYDREIGON] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -26062,6 +26756,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LARVESTA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -26093,6 +26788,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WILD_CHARGE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_VOLCARONA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -26130,6 +26826,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_COBALION] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -26168,6 +26865,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TERRAKION] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -26209,6 +26907,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIRIZION] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -26248,6 +26947,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORNADUS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -26289,6 +26989,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORNADUS_THERIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -26330,6 +27031,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_THUNDURUS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -26375,6 +27077,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_THUNDURUS_THERIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -26420,6 +27123,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LANDORUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -26463,6 +27167,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LANDORUS_THERIAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -26506,6 +27211,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RESHIRAM] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -26550,6 +27256,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZEKROM] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -26596,6 +27303,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KYUREM] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -26642,6 +27350,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KYUREM_WHITE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -26689,6 +27398,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KYUREM_BLACK] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -26736,6 +27446,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KELDEO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -26774,6 +27485,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KELDEO_RESOLUTE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -26812,6 +27524,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MELOETTA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -26861,6 +27574,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GENESECT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -26904,6 +27618,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GENESECT_DOUSE_DRIVE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -26947,6 +27662,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GENESECT_SHOCK_DRIVE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -26990,6 +27706,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GENESECT_BURN_DRIVE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27033,6 +27750,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GENESECT_CHILL_DRIVE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27076,6 +27794,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHESPIN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -27123,6 +27842,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_QUILLADIN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -27170,6 +27890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHESNAUGHT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -27222,6 +27943,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FENNEKIN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27254,6 +27976,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_BRAIXEN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27288,6 +28011,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_DELPHOX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27329,6 +28053,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_FROAKIE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -27366,6 +28091,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_FROGADIER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -27404,6 +28130,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GRENINJA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -27445,6 +28172,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GRENINJA_BATTLE_BOND] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -27486,6 +28214,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BUNNELBY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -27524,6 +28253,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DIGGERSBY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -27566,6 +28296,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLETCHLING] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27594,6 +28325,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_FLETCHINDER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -27624,6 +28356,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_TALONFLAME] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -27658,6 +28391,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27693,6 +28427,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LITLEO] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -27729,6 +28464,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PYROAR] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -27767,6 +28503,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLABEBE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27793,6 +28530,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLABEBE_YELLOW_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27819,6 +28557,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLABEBE_ORANGE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27845,6 +28584,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLABEBE_BLUE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27871,6 +28611,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLABEBE_WHITE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27897,6 +28638,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27923,6 +28665,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE_YELLOW_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27949,6 +28692,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE_ORANGE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -27975,6 +28719,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE_BLUE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28001,6 +28746,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE_WHITE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28027,6 +28773,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOETTE_ETERNAL_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28053,6 +28800,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLORGES] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28082,6 +28830,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLORGES_YELLOW_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28111,6 +28860,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLORGES_ORANGE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28140,6 +28890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLORGES_BLUE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28169,6 +28920,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FLORGES_WHITE_FLOWER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28198,6 +28950,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKIDDO] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28231,6 +28984,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOGOAT] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28268,6 +29022,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANCHAM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -28311,6 +29066,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANGORO] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -28364,6 +29120,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28398,6 +29155,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_HEART_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28432,6 +29190,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_STAR_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28466,6 +29225,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_DIAMOND_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28500,6 +29260,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_DEBUTANTE_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28534,6 +29295,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_MATRON_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28568,6 +29330,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_DANDY_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28602,6 +29365,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_LA_REINE_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28636,6 +29400,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_KABUKI_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28670,6 +29435,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FURFROU_PHARAOH_TRIM] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -28704,6 +29470,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ESPURR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28742,6 +29509,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEOWSTIC] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28784,6 +29552,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MEOWSTIC_FEMALE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28824,6 +29593,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUNNY_DAY)
         TM(MOVE_TORMENT)
         TMHM_LEARNSET_END
+
     [SPECIES_HONEDGE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -28851,6 +29621,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DOUBLADE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -28878,6 +29649,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AEGISLASH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -28909,6 +29681,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPRITZEE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28941,6 +29714,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AROMATISSE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -28978,6 +29752,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SWIRLIX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29007,6 +29782,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLURPUFF] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29039,6 +29815,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_INKAY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29073,6 +29850,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MALAMAR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29110,6 +29888,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BINACLE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29159,6 +29938,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BARBARACLE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -29214,6 +29994,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SKRELP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29244,6 +30025,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAGALGE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29279,6 +30061,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CLAUNCHER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29313,6 +30096,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CLAWITZER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29353,6 +30137,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_CLAWITZER_REDUX] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29401,6 +30186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_HELIOPTILE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -29438,6 +30224,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HELIOLISK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -29480,6 +30267,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TYRUNT] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -29515,6 +30303,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TYRANTRUM] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -29552,6 +30341,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AMAURA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -29597,6 +30387,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AURORUS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -29647,6 +30438,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SYLVEON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29678,6 +30470,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HAWLUCHA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -29723,6 +30516,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEDENNE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29758,6 +30552,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CARBINK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -29792,6 +30587,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOOMY] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29816,6 +30612,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_SLIGGOO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -29842,6 +30639,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOODRA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -29882,6 +30680,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KLEFKI] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29913,6 +30712,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_PHANTUMP] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -29952,6 +30752,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TREVENANT] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -29998,6 +30799,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PUMPKABOO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30039,6 +30841,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOURGEIST] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30084,6 +30887,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PUMPKABOO_SMALL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30125,6 +30929,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PUMPKABOO_LARGE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30166,6 +30971,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PUMPKABOO_SUPER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30207,6 +31013,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOURGEIST_SMALL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30252,6 +31059,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOURGEIST_LARGE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30297,6 +31105,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GOURGEIST_SUPER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30342,6 +31151,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BERGMITE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -30376,6 +31186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AVALUGG] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -30414,6 +31225,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_HYPER_BEAM)
         TMHM_LEARNSET_END
+
     [SPECIES_NOIBAT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -30454,6 +31266,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_NOIBAT_REDUX] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -30506,6 +31319,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_NOIVERN] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -30551,6 +31365,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_NOIVERN_REDUX] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -30605,6 +31420,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_XERNEAS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -30641,6 +31457,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YVELTAL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -30680,6 +31497,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ZYGARDE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -30714,6 +31532,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZYGARDE_10] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -30748,6 +31567,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -30782,6 +31602,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DIANCIE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -30820,6 +31641,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HOOPA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -30864,6 +31686,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HOOPA_UNBOUND] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -30908,6 +31731,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VOLCANION] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_ROAR)
@@ -30951,6 +31775,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROWLET] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -30983,6 +31808,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DARTRIX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -31015,6 +31841,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DECIDUEYE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -31055,6 +31882,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LITTEN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31089,6 +31917,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TORRACAT] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31123,6 +31952,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_INCINEROAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -31169,6 +31999,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_POPPLIO] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31195,6 +32026,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BRIONNE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31221,6 +32053,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PRIMARINA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31256,6 +32089,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PIKIPEK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -31283,6 +32117,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TRUMBEAK] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -31310,6 +32145,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOUCANNON] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -31340,6 +32176,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_YUNGOOS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -31367,6 +32204,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_GUMSHOOS] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31398,6 +32236,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRUBBIN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -31426,6 +32265,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHARJABUG] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -31454,6 +32294,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIKAVOLT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -31490,6 +32331,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRABRAWLER] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -31523,6 +32365,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRABOMINABLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -31562,6 +32405,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ORICORIO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31588,6 +32432,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ORICORIO_POM_POM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31614,6 +32459,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ORICORIO_PAU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31640,6 +32486,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_ORICORIO_SENSU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31666,6 +32513,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_CUTIEFLY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31699,6 +32547,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RIBOMBEE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -31734,6 +32583,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROCKRUFF] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31760,6 +32610,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LYCANROC] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31792,6 +32643,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LYCANROC_MIDNIGHT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -31827,6 +32679,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LYCANROC_DUSK] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31862,6 +32715,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WISHIWASHI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31891,6 +32745,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_MAREANIE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31919,6 +32774,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
+
     [SPECIES_TOXAPEX] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -31950,6 +32806,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
+
     [SPECIES_MUDBRAY] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -31977,6 +32834,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MUDSDALE] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -32006,6 +32864,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEWPIDER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -32034,6 +32893,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARAQUANID] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -32066,6 +32926,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_FOMANTIS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32098,6 +32959,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LURANTIS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32135,6 +32997,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MORELULL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32163,6 +33026,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SHIINOTIC] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32193,6 +33057,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SALANDIT] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -32227,6 +33092,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_SALAZZLE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -32263,6 +33129,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_STUFFUL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -32295,6 +33162,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEWEAR] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -32332,6 +33200,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BOUNSWEET] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32359,6 +33228,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STEENEE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32388,6 +33258,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TSAREENA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -32423,6 +33294,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COMFEY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -32453,6 +33325,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ORANGURU] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -32493,6 +33366,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PASSIMIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -32536,6 +33410,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WIMPOD] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -32561,6 +33436,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GOLISOPOD] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -32613,6 +33489,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDYGAST] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -32644,6 +33521,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PALOSSAND] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -32678,6 +33556,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PYUKUMUKU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -32694,6 +33573,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_TYPE_NULL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32730,6 +33610,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32777,6 +33658,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_FIGHTING] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32824,6 +33706,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_FLYING] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32871,6 +33754,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_POISON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32918,6 +33802,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_GROUND] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -32965,6 +33850,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_ROCK] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33012,6 +33898,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_BUG] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33059,6 +33946,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_GHOST] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33106,6 +33994,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_STEEL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33153,6 +34042,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_FIRE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33200,6 +34090,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_WATER] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33247,6 +34138,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_GRASS] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33294,6 +34186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_ELECTRIC] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33341,6 +34234,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_PSYCHIC] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33388,6 +34282,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_ICE] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33435,6 +34330,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_DRAGON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33482,6 +34378,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_DARK] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33529,6 +34426,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILVALLY_FAIRY] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33576,6 +34474,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33616,6 +34515,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_RED] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33656,6 +34556,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_ORANGE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33696,6 +34597,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_YELLOW] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33736,6 +34638,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_GREEN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33776,6 +34679,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_BLUE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33816,6 +34720,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_INDIGO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33856,6 +34761,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MINIOR_CORE_VIOLET] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33896,6 +34802,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KOMALA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -33927,6 +34834,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TURTONATOR] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -33971,6 +34879,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOGEDEMARU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -34002,6 +34911,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MIMIKYU] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -34043,6 +34953,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BRUXISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -34083,6 +34994,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAMPA] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_CALM_MIND)
@@ -34133,6 +35045,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DHELMISE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -34174,6 +35087,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_JANGMO_O] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -34214,6 +35128,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HAKAMO_O] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -34255,6 +35170,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KOMMO_O] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -34305,6 +35221,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAPU_KOKO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -34349,6 +35266,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAPU_LELE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34387,6 +35305,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAPU_BULU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -34435,6 +35354,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TAPU_FINI] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -34470,6 +35390,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SOLGALEO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -34517,6 +35438,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_LUNALA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_ROAR)
@@ -34562,6 +35484,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NIHILEGO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -34597,6 +35520,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BUZZWOLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -34633,6 +35557,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PHEROMOSA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -34663,6 +35588,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_XURKITREE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34697,6 +35623,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CELESTEELA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -34734,6 +35661,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KARTANA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34759,6 +35687,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GUZZLORD] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -34801,6 +35730,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NECROZMA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34846,6 +35776,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_NECROZMA_DUSK_MANE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34891,6 +35822,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_NECROZMA_DAWN_WINGS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -34936,6 +35868,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGEARNA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_HIDDEN_POWER)
@@ -34970,6 +35903,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGEARNA_ORIGINAL_COLOR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_HIDDEN_POWER)
@@ -35004,6 +35938,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_MARSHADOW] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -35043,6 +35978,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_POIPOLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35064,6 +36000,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_NAGANADEL] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -35103,6 +36040,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_STAKATAKA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35138,6 +36076,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BLACEPHALON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -35175,6 +36114,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZERAORA] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -35214,6 +36154,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MELTAN] = TMHM_LEARNSET
         TM(MOVE_PROTECT)
         TM(MOVE_FRUSTRATION)
@@ -35231,6 +36172,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH_CANNON)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_MELMETAL] = TMHM_LEARNSET
         TM(MOVE_ICE_BEAM)
         TM(MOVE_PROTECT)
@@ -35256,6 +36198,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH_CANNON)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GROOKEY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35283,6 +36226,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_THWACKEY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35311,6 +36255,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RILLABOOM] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -35350,6 +36295,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SCORBUNNY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35379,6 +36325,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_RABOOT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -35409,6 +36356,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CINDERACE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -35445,6 +36393,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SOBBLE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -35470,6 +36419,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DRIZZILE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -35496,6 +36446,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_INTELEON] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -35533,6 +36484,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SKWOVET] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -35556,6 +36508,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GREEDENT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -35585,6 +36538,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROOKIDEE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35607,6 +36561,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_CORVISQUIRE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35629,6 +36584,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_CORVIKNIGHT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -35661,9 +36617,11 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BLIPBUG] = TMHM_LEARNSET
         TM(MOVE_STRUGGLE_BUG)
         TMHM_LEARNSET_END
+
     [SPECIES_DOTTLER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -35694,6 +36652,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ORBEETLE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -35732,6 +36691,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_NICKIT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35754,6 +36714,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_THIEVUL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35786,6 +36747,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TMHM_LEARNSET_END
+
     [SPECIES_GOSSIFLEUR] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -35810,6 +36772,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ELDEGOSS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -35836,6 +36799,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WOOLOO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35856,6 +36820,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUBWOOL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -35879,6 +36844,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CHEWTLE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -35904,6 +36870,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DREDNAW] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -35949,6 +36916,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_YAMPER] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -35976,6 +36944,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BOLTUND] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -36007,6 +36976,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ROLYCOLY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36033,6 +37003,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CARKOL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36067,6 +37038,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COALOSSAL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -36107,10 +37079,12 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_APPLIN] = TMHM_LEARNSET
         TM(MOVE_ATTRACT)
         TM(MOVE_RECYCLE)
         TMHM_LEARNSET_END
+
     [SPECIES_FLAPPLE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -36145,6 +37119,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_APPLETUN] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -36183,6 +37158,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SILICOBRA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36205,6 +37181,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_SANDACONDA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36235,6 +37212,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CRAMORANT] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36264,6 +37242,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARROKUDA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36286,6 +37265,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_BARRASKEWDA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36311,6 +37291,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_TOXEL] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36326,6 +37307,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_TOXTRICITY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -36364,6 +37346,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_TOXTRICITY_LOW_KEY] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -36401,6 +37384,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIZZLIPEDE] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36423,6 +37407,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CENTISKORCH] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36453,6 +37438,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CLOBBOPUS] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36479,6 +37465,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_GRAPPLOCT] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -36512,6 +37499,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIVE)
         TM(MOVE_TAUNT)
         TMHM_LEARNSET_END
+
     [SPECIES_SINISTEA] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36538,6 +37526,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_POLTEAGEIST] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36570,6 +37559,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HATENNA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -36599,6 +37589,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HATTREM] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -36628,6 +37619,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HATTERENE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -36665,6 +37657,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_IMPIDIMP] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36697,6 +37690,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MORGREM] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36731,6 +37725,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_GRIMMSNARL] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -36774,6 +37769,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CURSOLA] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -36820,6 +37816,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIG)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MR_RIME] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -36875,6 +37872,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DREAM_EATER)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MILCERY] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -36892,6 +37890,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -36921,6 +37920,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_FALINKS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULK_UP)
@@ -36950,6 +37950,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PINCURCHIN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -36978,6 +37979,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SNOM] = TMHM_LEARNSET
         TM(MOVE_PROTECT)
         TM(MOVE_FRUSTRATION)
@@ -36992,6 +37994,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_FROSMOTH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -37028,6 +38031,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STONJOURNER] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -37059,6 +38063,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_EISCUE] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -37085,6 +38090,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_INDEEDEE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -37111,6 +38117,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MORPEKO] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_BULLET_SEED)
@@ -37142,6 +38149,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CUFANT] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -37168,6 +38176,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_COPPERAJAH] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -37202,6 +38211,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRACOZOLT] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_TOXIC)
@@ -37242,6 +38252,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCTOZOLT] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HAIL)
@@ -37283,6 +38294,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DRACOVISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -37314,6 +38326,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ARCTOVISH] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -37346,6 +38359,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DURALUDON] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -37387,6 +38401,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DREEPY] = TMHM_LEARNSET
         TM(MOVE_PROTECT)
         TM(MOVE_FRUSTRATION)
@@ -37402,6 +38417,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAKLOAK] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -37441,6 +38457,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_DRAGAPULT] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_WATER_PULSE)
@@ -37488,6 +38505,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_ZACIAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -37517,6 +38535,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZAMAZENTA] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -37550,6 +38569,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ETERNATUS] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -37581,6 +38601,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLY)
         TMHM_LEARNSET_END
+
     [SPECIES_KUBFU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -37607,6 +38628,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_URSHIFU] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -37647,6 +38669,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZARUDE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -37688,6 +38711,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGIELEKI] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -37716,6 +38740,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REGIDRAGO] = TMHM_LEARNSET
         TM(MOVE_DRAGON_CLAW)
         TM(MOVE_ROAR)
@@ -37738,6 +38763,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
         TMHM_LEARNSET_END
+
     [SPECIES_GLASTRIER] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_TOXIC)
@@ -37769,6 +38795,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SPECTRIER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -37797,6 +38824,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CALYREX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -37832,168 +38860,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
-    [SPECIES_DODUO_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DODRIO_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SCRAFTY_MEGA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FROSLASS_MEGA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_HOUNDOUR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_HOUNDOOM_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_HOUNDOOM_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SABLEYE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SABLEYE_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MAWILE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MAWILE_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PAWNIARD_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BISHARP_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DEINO_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ZWEILOUS_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_HYDREIGON_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GIBLE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GABITE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GARCHOMP_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GARCHOMP_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_WHISMUR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_LOUDRED_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_EXPLOUD_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GROWLITHE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARCANINE_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARCANINE_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SKARMORY_MEGA_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_SOLOSIS_REDUX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -38030,6 +38897,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUOSION_REDUX] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -38066,6 +38934,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_REUNICLUS_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -38109,6 +38978,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHOP_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38145,6 +39015,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHOKE_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38181,6 +39052,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MACHAMP_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38220,6 +39092,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_UXIE_REDUX] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -38266,6 +39139,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MESPRIT_REDUX] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -38312,6 +39186,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AZELF_REDUX] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -38362,6 +39237,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BUIZEL_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -38394,6 +39270,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_FLOATZEL_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -38433,6 +39310,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SLUGMA_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38459,6 +39337,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MAGCARGO_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38497,6 +39376,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANSEAR_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38534,6 +39414,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMISEAR_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38576,6 +39457,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANSAGE_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38612,6 +39494,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMISAGE_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38653,6 +39536,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_PANPOUR_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -38692,6 +39576,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SIMIPOUR_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -38736,6 +39621,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_STUFFUL_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_ROAR)
@@ -38768,6 +39654,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEWEAR_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -38805,6 +39692,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_BEEDRILL_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38844,6 +39732,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_HONEDGE_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38871,6 +39760,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DOUBLADE_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38898,6 +39788,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_AEGISLASH_REDUX] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -38929,6 +39820,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ABRA_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_TOXIC)
@@ -38962,6 +39854,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KADABRA_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -39015,6 +39908,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALAKAZAM_REDUX] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -39070,6 +39964,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_WYRDEER] = TMHM_LEARNSET
         TM(MOVE_BULLDOZE)
         TM(MOVE_CALM_MIND)
@@ -39113,6 +40008,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_KLEAVOR] = TMHM_LEARNSET
         TM(MOVE_AERIAL_ACE)
         TM(MOVE_CALM_MIND)
@@ -39126,6 +40022,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STONE_EDGE)
         TM(MOVE_X_SCISSOR)
         TMHM_LEARNSET_END
+
     [SPECIES_URSALUNA] = TMHM_LEARNSET
         TM(MOVE_AERIAL_ACE)
         TM(MOVE_BULK_UP)
@@ -39168,6 +40065,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_STRENGTH)
         TMHM_LEARNSET_END
+
     [SPECIES_BASCULEGION] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_GIGA_IMPACT)
@@ -39199,6 +40097,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_SNEASLER] = TMHM_LEARNSET
         TM(MOVE_AERIAL_ACE)
         TM(MOVE_BULK_UP)
@@ -39220,6 +40119,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_SUCKER_PUNCH)
         TMHM_LEARNSET_END
+
     [SPECIES_OVERQWIL] = TMHM_LEARNSET
         TM(MOVE_DARK_PULSE)
         TM(MOVE_GIGA_IMPACT)
@@ -39235,6 +40135,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_SUCKER_PUNCH)
         TMHM_LEARNSET_END
+
     [SPECIES_ENAMORUS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_DAZZLING_GLEAM)
@@ -39245,198 +40146,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_SLUDGE_BOMB)
         TMHM_LEARNSET_END
-    [SPECIES_SPRIGATITO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FLORAGATO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MEOWSCARADA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FUECOCO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CROCALOR] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SKELEDIRGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_QUAXLY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_QUAXWELL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_QUAQUAVAL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_LECHONK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OINKOLOGNE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TAROUNTULA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SPIDOPS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_NYMBLE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_LOKIX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PAWMI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PAWMO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PAWMOT] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TANDEMAUS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MAUSHOLD] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FIDOUGH] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DACHSBUN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SMOLIV] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DOLLIV] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARBOLIVA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SQUAWKABILLY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_NACLI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_NACLSTACK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GARGANACL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CHARCADET] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARMAROUGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CERULEDGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_TADBULB] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -39444,6 +40154,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_VOLT_SWITCH)
         TMHM_LEARNSET_END
+
     [SPECIES_BELLIBOLT] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -39451,240 +40162,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_VOLT_SWITCH)
         TMHM_LEARNSET_END
-    [SPECIES_WATTREL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_KILOWATTREL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MASCHIFF] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MABOSSTIFF] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SHROODLE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GRAFAIAI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BRAMBLIN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BRAMBLEGHAST] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TOEDSCOOL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TOEDSCRUEL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_KLAWF] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CAPSAKID] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SCOVILLAIN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_RELLOR] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_RABSCA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FLITTLE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ESPATHRA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TINKATINK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TINKATUFF] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TINKATON] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_WIGLETT] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_WUGTRIO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BOMBIRDIER] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FINIZEN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PALAFIN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_VAROOM] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_REVAVROOM] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CYCLIZAR] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ORTHWORM] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GLIMMET] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GLIMMORA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GREAVARD] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_HOUNDSTONE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FLAMIGO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CETODDLE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CETITAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_VELUZA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DONDOZO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TATSUGIRI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_ANNIHILAPE] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -39730,12 +40208,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
-    [SPECIES_CLODSIRE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_FARIGIRAF] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -39777,180 +40250,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
-    [SPECIES_DUDUNSPARCE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_KINGAMBIT] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GREAT_TUSK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SCREAM_TAIL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BRUTE_BONNET] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FLUTTER_MANE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SLITHER_WING] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SANDY_SHOCKS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_TREADS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_BUNDLE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_HANDS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_JUGULIS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_MOTH] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_THORNS] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FRIGIBAX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARCTIBAX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BAXCALIBUR] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GIMMIGHOUL] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GHOLDENGO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_WO_CHIEN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CHIEN_PAO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TING_LU] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_CHI_YU] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ROARING_MOON] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_VALIANT] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_KORAIDON] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MIRAIDON] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_WALKING_WAKE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_IRON_LEAVES] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_DIPPLIN] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -39959,162 +40259,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ATTRACT)
         TM(MOVE_RECYCLE)
         TMHM_LEARNSET_END
-    [SPECIES_POLTCHAGEIST] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SINISTCHA] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OKIDOGI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MUNKIDORI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_FEZANDIPITI] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OGERPON] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ENAMORUS_THERIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PALKIA_ORIGIN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DIALGA_ORIGIN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OGERPON_HEARTHFLAME_MASK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OGERPON_CORNERSTONE_MASK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_OGERPON_WELLSPRING_MASK] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TATSUGIRI_DROOPY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TATSUGIRI_STRETCHY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TATSUGIRI_CURLY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_MAUSHOLD_FOUR] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_PALAFIN_HERO] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_URSALUNA_MOONBLOOD] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_WEEZING_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -40153,6 +40298,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MR_MIME_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -40207,6 +40353,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ARTICUNO_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -40244,6 +40391,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZAPDOS_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -40278,6 +40426,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_MOLTRES_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -40310,6 +40459,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_SLOWKING_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -40364,6 +40514,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DIVE)
         TM(MOVE_DREAM_EATER)
         TMHM_LEARNSET_END
+
     [SPECIES_CORSOLA_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_WATER_PULSE)
         TM(MOVE_CALM_MIND)
@@ -40405,6 +40556,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_STUNFISK_GALARIAN] = TMHM_LEARNSET
         TM(MOVE_TOXIC)
         TM(MOVE_HIDDEN_POWER)
@@ -40437,54 +40589,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_SURF)
         TMHM_LEARNSET_END
-    [SPECIES_GROWLITHE_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ARCANINE_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_VOLTORB_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_ELECTRODE_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_TYPHLOSION_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_QWILFISH_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SNEASEL_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SAMUROTT_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_LILLIGANT_HISUIAN] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -40514,50 +40619,17 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
-    [SPECIES_ZORUA_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_BRAVIARY_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_SLIGGOO_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_GOODRA_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_AVALUGG_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
-    [SPECIES_DECIDUEYE_HISUIAN] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
-        TMHM_LEARNSET_END
+
     [SPECIES_BURMY_SANDY_CLOAK] = TMHM_LEARNSET
         TM(MOVE_HIDDEN_POWER)
         TM(MOVE_PROTECT)
         TMHM_LEARNSET_END
+
     [SPECIES_BURMY_TRASH_CLOAK] = TMHM_LEARNSET
         TM(MOVE_HIDDEN_POWER)
         TM(MOVE_PROTECT)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_POLAR] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40593,6 +40665,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_TUNDRA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40628,6 +40701,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_CONTINENTAL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40663,6 +40737,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_GARDEN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40698,6 +40773,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_ELEGANT] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40733,6 +40809,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_MEADOW] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40768,6 +40845,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_MODERN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40803,6 +40881,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_MARINE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40838,6 +40917,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_ARCHIPELAGO] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40873,6 +40953,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_HIGH_PLAINS] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40908,6 +40989,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_SANDSTORM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40943,6 +41025,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_RIVER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -40978,6 +41061,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_MONSOON] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41013,6 +41097,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_SAVANNA] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41048,6 +41133,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_SUN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41083,6 +41169,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_OCEAN] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41118,6 +41205,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_JUNGLE] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41153,6 +41241,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_FANCY] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41188,6 +41277,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_VIVILLON_POKE_BALL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41223,6 +41313,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_RUBY_CREAM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41252,6 +41343,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_MATCHA_CREAM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41281,6 +41373,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_MINT_CREAM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41310,6 +41403,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_LEMON_CREAM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41339,6 +41433,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_SALTED_CREAM] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41368,6 +41463,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_RUBY_SWIRL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41397,6 +41493,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_CARAMEL_SWIRL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41426,6 +41523,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ALCREMIE_RAINBOW_SWIRL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41455,6 +41553,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_INDEEDEE_FEMALE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_CALM_MIND)
@@ -41483,6 +41582,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZACIAN_CROWNED_SWORD] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -41512,6 +41612,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_ZAMAZENTA_CROWNED_SHIELD] = TMHM_LEARNSET
         TM(MOVE_ROAR)
         TM(MOVE_TOXIC)
@@ -41545,6 +41646,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
         TMHM_LEARNSET_END
+
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_WATER_PULSE)
@@ -41585,6 +41687,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
+
     [SPECIES_CALYREX_ICE_RIDER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41620,6 +41723,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_CALYREX_SHADOW_RIDER] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41655,6 +41759,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DEWLEON] = TMHM_LEARNSET
         TM(MOVE_FOCUS_PUNCH)
         TM(MOVE_DRAGON_CLAW)
@@ -41763,6 +41868,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
         TMHM_LEARNSET_END
+
     [SPECIES_PHANTOWL] = TMHM_LEARNSET
         TM(MOVE_CALM_MIND)
         TM(MOVE_TOXIC)
@@ -41794,6 +41900,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_FLASH)
         TMHM_LEARNSET_END
+
     [SPECIES_DUELUMBER] = TMHM_LEARNSET
         TM(MOVE_THUNDERBOLT)
         TM(MOVE_THUNDER)
@@ -41833,46 +41940,2439 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_RAIN_DANCE)
         TMHM_LEARNSET_END
-    [SPECIES_ESCARGINITE] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+
+    [SPECIES_GROWLITHE_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_TYRANITAR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+
+    [SPECIES_ARCANINE_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_PUPITAR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
+
+    [SPECIES_VOLTORB_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
         TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_EXPLOSION)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_LARVITAR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
+
+    [SPECIES_ELECTRODE_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
         TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_EXPLOSION)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_SCIZOR_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+
+    [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = TMHM_LEARNSET
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_SURF)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_CASTFORM_SANDY] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
-        TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+
+    [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] = TMHM_LEARNSET
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
         TMHM_LEARNSET_END
-    [SPECIES_KINGAMBIT_REDUX] = TMHM_LEARNSET
-        TM(MOVE_THUNDERBOLT)
+
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] = TMHM_LEARNSET
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SURF)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TYPHLOSION_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CLODSIRE] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SURF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WYNAUT] = TMHM_LEARNSET
+        TM(MOVE_SAFEGUARD)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WOBBUFFET] = TMHM_LEARNSET
+        TM(MOVE_SAFEGUARD)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_DUDUNSPARCE] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
         TM(MOVE_THUNDER)
-        TM(MOVE_SUBSTITUTE)
-        TM(MOVE_SUCKER_PUNCH)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_QWILFISH_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SURF)
+        TM(MOVE_TAUNT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SNEASEL_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TMHM_LEARNSET_END
+
+    [SPECIES_URSALUNA_BLOODMOON] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_COMBEE] = TMHM_LEARNSET
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SAMUROTT_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_SURF)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ZORUA_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ZOROARK_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_KINGAMBIT] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BRAVIARY_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SPEWPA] = TMHM_LEARNSET
+        TM(MOVE_PROTECT)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SLIGGOO_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GOODRA_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_SURF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_AVALUGG_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_DECIDUEYE_HISUIAN] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DOUBLE_TEAM)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_HYDRAPPLE] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ARCHALUDON] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SPRIGATITO] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FLORAGATO] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MEOWSCARADA] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DOUBLE_TEAM)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FUECOCO] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CROCALOR] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SKELEDIRGE] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_QUAXLY] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_QUAXWELL] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_QUAQUAVAL] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_TAUNT)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_LECHONK] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_OINKOLOGNE] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TAROUNTULA] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SPIDOPS] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_NYMBLE] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_LOKIX] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_PAWMI] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_PAWMO] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_PAWMOT] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TANDEMAUS] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MAUSHOLD] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FIDOUGH] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_DACHSBUN] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SMOLIV] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_DOLLIV] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ARBOLIVA] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SAFEGUARD)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SQUAWKABILLY] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_NACLI] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_NACLSTACK] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GARGANACL] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_EXPLOSION)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CHARCADET] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ARMAROUGE] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CERULEDGE] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WATTREL] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_KILOWATTREL] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MASCHIFF] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MABOSSTIFF] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SHROODLE] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GRAFAIAI] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BRAMBLIN] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BRAMBLEGHAST] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TOEDSCOOL] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TOEDSCRUEL] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_KLAWF] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CAPSAKID] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SCOVILLAIN] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_RELLOR] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_RABSCA] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SAFEGUARD)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FLITTLE] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ESPATHRA] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TINKATINK] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TINKATUFF] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_FACADE)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TINKATON] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_FACADE)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WIGLETT] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SURF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WUGTRIO] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SURF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BOMBIRDIER] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FINIZEN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DIVE)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_PALAFIN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIVE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_TAUNT)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_VAROOM] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_REVAVROOM] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TORMENT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CYCLIZAR] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ORTHWORM] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_IRON_TAIL)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GLIMMET] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_EXPLOSION)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GLIMMORA] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_EXPLOSION)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GREAVARD] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_HOUNDSTONE] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FLAMIGO] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DOUBLE_TEAM)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CETODDLE] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CETITAN] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_VELUZA] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_DONDOZO] = TMHM_LEARNSET
+        TM(MOVE_DIVE)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TATSUGIRI] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SURF)
+        TM(MOVE_TAUNT)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GREAT_TUSK] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SCREAM_TAIL] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BRUTE_BONNET] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FLUTTER_MANE] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SLITHER_WING] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SANDY_SHOCKS] = TMHM_LEARNSET
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_TREADS] = TMHM_LEARNSET
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_THUNDER)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_BUNDLE] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_HANDS] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_JUGULIS] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_MOTH] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_THORNS] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FRIGIBAX] = TMHM_LEARNSET
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ARCTIBAX] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_BAXCALIBUR] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GIMMIGHOUL] = TMHM_LEARNSET
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_THIEF)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GHOLDENGO] = TMHM_LEARNSET
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_THIEF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WO_CHIEN] = TMHM_LEARNSET
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CHIEN_PAO] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BLIZZARD)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TING_LU] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_CHI_YU] = TMHM_LEARNSET
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_ROARING_MOON] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_VALIANT] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DOUBLE_TEAM)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SKILL_SWAP)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_KORAIDON] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_SMASH)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MIRAIDON] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_WALKING_WAKE] = TMHM_LEARNSET
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_SURF)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_LEAVES] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_POLTCHAGEIST] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_SINISTCHA] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REFLECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_OKIDOGI] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULK_UP)
+        TM(MOVE_DIG)
+        TM(MOVE_FACADE)
+        TM(MOVE_FOCUS_PUNCH)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_MUNKIDORI] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_FEZANDIPITI] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_ATTRACT)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLY)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_LIGHT_SCREEN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THIEF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TMHM_LEARNSET_END
+
+    [SPECIES_OGERPON] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_BULLET_SEED)
+        TM(MOVE_FACADE)
+        TM(MOVE_GIGA_DRAIN)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_GOUGING_FIRE] = TMHM_LEARNSET
+        TM(MOVE_DRAGON_CLAW)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FIRE_BLAST)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_OVERHEAT)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_RAGING_BOLT] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_TAUNT)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_THUNDER_WAVE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_BOULDER] = TMHM_LEARNSET
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_TAUNT)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_IRON_CROWN] = TMHM_LEARNSET
+        TM(MOVE_BRICK_BREAK)
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_FACADE)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_PSYCHIC)
+        TM(MOVE_REST)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
+        TM(MOVE_SWORDS_DANCE)
+        TM(MOVE_TOXIC)
+        TMHM_LEARNSET_END
+
+    [SPECIES_TERAPAGOS] = TMHM_LEARNSET
+        TM(MOVE_CALM_MIND)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_HYPER_BEAM)
+        TM(MOVE_ICE_BEAM)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROAR)
+        TM(MOVE_SOLAR_BEAM)
+        TM(MOVE_SUNNY_DAY)
+        TM(MOVE_SURF)
+        TM(MOVE_THUNDER)
+        TM(MOVE_THUNDERBOLT)
+        TM(MOVE_TOXIC)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
+    [SPECIES_PECHARUNT] = TMHM_LEARNSET
+        TM(MOVE_PROTECT)
+        TM(MOVE_REST)
+        TM(MOVE_SHADOW_BALL)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_TOXIC)
+        TM(MOVE_ENDURE)
+        TM(MOVE_SLEEP_TALK)
         TMHM_LEARNSET_END
 };

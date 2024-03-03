@@ -1108,7 +1108,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(MAUSHOLD_FOUR, gMonFrontPic_Maushold_Four),
     SPECIES_SPRITE(DUDUNSPARCE_THREE_SEGMENT, gMonFrontPic_Dudunsparce_Three_Segment),
     SPECIES_SPRITE(PALAFIN_HERO, gMonFrontPic_Palafin_Hero),
-    SPECIES_SPRITE(URSALUNA_MOONBLOOD, gMonFrontPic_Ursaluna_Moonblood),
+    SPECIES_SPRITE(URSALUNA_BLOODMOON, gMonFrontPic_Ursaluna_Bloodmoon),
     SPECIES_SPRITE(TAUROS_PALDEAN_COMBAT_BREED, gMonFrontPic_Tauros_Paldean_Combat_Breed),
     SPECIES_SPRITE(TAUROS_PALDEAN_BLAZE_BREED, gMonFrontPic_Tauros_Paldean_Blaze_Breed),
     SPECIES_SPRITE(TAUROS_PALDEAN_AQUA_BREED, gMonFrontPic_Tauros_Paldean_Aqua_Breed),
