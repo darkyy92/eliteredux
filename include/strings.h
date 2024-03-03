@@ -3511,6 +3511,7 @@ extern const u8 gText_GameCornerSnivy[];
 extern const u8 gText_GameCornerChespin[];
 extern const u8 gText_GameCornerRowlet[];
 extern const u8 gText_GameCornerGrookey[];
+extern const u8 gText_GameCornerSprigatito[];
 
 extern const u8 gText_GameCornerCharmander[];
 extern const u8 gText_GameCornerCyndaquil[];
@@ -3520,6 +3521,7 @@ extern const u8 gText_GameCornerTepig[];
 extern const u8 gText_GameCornerFennekin[];
 extern const u8 gText_GameCornerLitten[];
 extern const u8 gText_GameCornerScorbunny[];
+extern const u8 gText_GameCornerFuecoco[];
 
 extern const u8 gText_GameCornerSquirtle[];
 extern const u8 gText_GameCornerTotodile[];
@@ -3529,6 +3531,7 @@ extern const u8 gText_GameCornerOshawott[];
 extern const u8 gText_GameCornerFroakie[];
 extern const u8 gText_GameCornerPopplio[];
 extern const u8 gText_GameCornerSobble[];
+extern const u8 gText_GameCornerQuaxly[];
 
 extern const u8 gText_GrassType[];
 extern const u8 gText_FireType[];
@@ -3548,6 +3551,7 @@ extern const u8 gText_Unova[];
 extern const u8 gText_Kalos[];
 extern const u8 gText_Alola[];
 extern const u8 gText_Galar[];
+extern const u8 gText_Paldea[];
 
 extern const u8 gText_TakeOne[];
 extern const u8 gText_TakeOneDozen[];

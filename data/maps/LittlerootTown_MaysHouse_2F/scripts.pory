@@ -162,6 +162,7 @@ LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet::
 	case 5, LittlerootTown_MaysHouse_2F_EventScript_Kalos
 	case 6, LittlerootTown_MaysHouse_2F_EventScript_Alola
 	case 7, LittlerootTown_MaysHouse_2F_EventScript_Galar
+	case 8, LittlerootTown_MaysHouse_2F_EventScript_Paldea
 	goto LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	end
 
@@ -227,6 +228,14 @@ LittlerootTown_MaysHouse_2F_EventScript_Galar::
 	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 8
 	bufferstring 1, StarterRegionStringGalar
+	return
+
+LittlerootTown_MaysHouse_2F_EventScript_Paldea::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
+	setvar VAR_STARTER_GEN, 9
+	bufferstring 1, StarterRegionStringPaldea
 	return
 
 LittlerootTown_MaysHouse_2F_Movement_MayEnters: @ 81F946F
