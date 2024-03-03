@@ -161,6 +161,12 @@ enum
     STATUS_INFO_COILED,
     STATUS_INFO_PROTOSYNTHESIS,
     STATUS_INFO_QUARK_DRIVE,
+    STATUS_INFO_GHASTLY_ECHO,
+    STATUS_INFO_COMMANDED,
+    STATUS_INFO_VIOLENT_RUSH,
+    STATUS_INFO_RAPID_RESPONSE,
+    STATUS_INFO_READIED_ACTION,
+    STATUS_INFO_SHOWDOWN_MODE,
     NUM_STATUS_INFO,
 };
 
@@ -809,6 +815,30 @@ void UI_Battle_Menu_Init(MainCallback callback)
                     if (GetAbilityState(j, ABILITY_QUARK_DRIVE))
                         isExtraInfoShown = TRUE;
                 break;
+                case STATUS_INFO_GHASTLY_ECHO:
+                    if (gStatuses4[j] & STATUS4_GHASTLY_ECHO)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_COMMANDED:
+                    if (gStatuses4[j] & STATUS4_COMMANDED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_VIOLENT_RUSH:
+                    if (gVolatileStructs[j].violentRush)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_RAPID_RESPONSE:
+                    if (gVolatileStructs[j].rapidResponse)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_READIED_ACTION:
+                    if (gVolatileStructs[j].readiedAction)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_SHOWDOWN_MODE:
+                    if (gVolatileStructs[j].showdownMode)
+                        isExtraInfoShown = TRUE;
+                break;
             }
 
             if(isExtraInfoShown && IsBattlerAlive(j)){
@@ -1446,27 +1476,27 @@ static void PrintStatsTab(){
     y++;
     //Attack
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Attack);
-	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].attack, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(gStringVar1, CalculateStat(sMenuDataPtr->battlerId, STAT_ATK, 0, 0, 0, 0, 0, 0), STR_CONV_MODE_LEFT_ALIGN, 5);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
     y++;
     //Defense
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Defense);
-	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].defense, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(gStringVar1, CalculateStat(sMenuDataPtr->battlerId, STAT_DEF, 0, 0, 0, 0, 0, 0), STR_CONV_MODE_LEFT_ALIGN, 5);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
     y++;
     //Special Attack
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_SpecialAttack);
-	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].spAttack, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(gStringVar1, CalculateStat(sMenuDataPtr->battlerId, STAT_SPATK, 0, 0, 0, 0, 0, 0), STR_CONV_MODE_LEFT_ALIGN, 5);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
     y++;
     //Special Defense
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_SpecialDefense);
-	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].spDefense, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(gStringVar1, CalculateStat(sMenuDataPtr->battlerId, STAT_SPDEF, 0, 0, 0, 0, 0, 0), STR_CONV_MODE_LEFT_ALIGN, 5);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
     y++;
     //Speed
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Speed);
-	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].speed, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(gStringVar1, GetBattlerTotalSpeedStat(sMenuDataPtr->battlerId, TOTAL_SPEED_FULL), STR_CONV_MODE_LEFT_ALIGN, 5);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
 
     //Nature
@@ -2062,8 +2092,8 @@ const u8 sText_Title_Status_Magnet_Rise_Description[]      = _("This Pokémon ca
                                                                "Ground-type moves, it will\n"
                                                                "last some turns.");
 const u8 sText_Title_Status_Semi_Invulnerable[]             = _("Semi Invlunerable");
-const u8 sText_Title_Status_Semi_Invulnerable_Description[] = _("This Pokémon will avoid the\n"
-                                                                "majory of attacks for one turn,\n"
+const u8 sText_Title_Status_Semi_Invulnerable_Description[] = _("This Pokémon will avoid\n"
+                                                                "most attacks for one turn,\n"
                                                                 "it can be hit by specific moves.");
 const u8 sText_Title_Status_Electrified[]                   = _("Electrified");
 const u8 sText_Title_Status_Electrified_Description[]       = _("This Pokémon moves will become\n"
@@ -2081,6 +2111,27 @@ const u8 sText_Title_Status_Protosynthesis[]                = _("Protosynthesis"
 const u8 sText_Title_Status_Paradox_Boost_Description[]     = _("This Pokémon's highest stat\n"
                                                                 "is boosted by 30%. If speed\n"
                                                                 "+50% instead.");
+const u8 sText_Title_Status_Ghastly_Echo[]                  = _("Ghastly Echo");
+const u8 sText_Title_Status_Ghastly_Echo_Description[]      = _("This Pokémon's next attack\n"
+                                                                "is boosted by 50%.");
+const u8 sText_Title_Status_Commanded[]                     = _("Commanded");
+const u8 sText_Title_Status_Commanded_Description[]         = _("This Pokémon can't switch\n"
+                                                                "and can't be forced to switch.");
+const u8 sText_Title_Status_Violent_Rush[]                  = _("Violent Rush");
+const u8 sText_Title_Status_Violent_Rush_Description[]      = _("This Pokémon's Speed is\n"
+                                                                "boosted by 50% and its Attack\n"
+                                                                "is boosted by 20% for one turn.");
+const u8 sText_Title_Status_Rapid_Response[]                = _("Rapid Response");
+const u8 sText_Title_Status_Rapid_Response_Description[]    = _("This Pokémon's Speed is\n"
+                                                                "boosted by 50% and its Attack\n"
+                                                                "is boosted by 20% for one turn.");
+const u8 sText_Title_Status_Readied_Action[]                = _("Readied Action");
+const u8 sText_Title_Status_Readied_Action_Description[]    = _("This Pokémon's Attack is\n"
+                                                                "doubled for one turn.");
+const u8 sText_Title_Status_Showdown_Mode[]                 = _("Showdown Mode");
+const u8 sText_Title_Status_Showdown_Mode_Description[]     = _("This Pokémon's gets +50%\n"
+                                                                "Speed, +20% Attack, and always\n"
+                                                                "crits for one turn.");
 
 #define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
 #define MAX_DESCRIPTION_LINES 3
@@ -2615,6 +2666,60 @@ static void PrintStatusTab(void){
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Paradox_Boost_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_GHASTLY_ECHO:
+                StringCopy(gStringVar1, sText_Title_Status_Ghastly_Echo);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Ghastly_Echo_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_COMMANDED:
+                StringCopy(gStringVar1, sText_Title_Status_Commanded);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Commanded_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_VIOLENT_RUSH:
+                StringCopy(gStringVar1, sText_Title_Status_Violent_Rush);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Violent_Rush_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_RAPID_RESPONSE:
+                StringCopy(gStringVar1, sText_Title_Status_Rapid_Response);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Rapid_Response_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_READIED_ACTION:
+                StringCopy(gStringVar1, sText_Title_Status_Readied_Action);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Readied_Action_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_SHOWDOWN_MODE:
+                StringCopy(gStringVar1, sText_Title_Status_Showdown_Mode);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Showdown_Mode_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 printedInfo = TRUE;
             break;

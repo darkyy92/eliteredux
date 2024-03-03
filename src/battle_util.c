@@ -5955,6 +5955,38 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_VIOLENT_RUSH))
+        {
+            gVolatileStructs[battler].violentRush = TRUE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_VIOLENT_RUSH;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
+
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_RAPID_RESPONSE))
+        {
+            gVolatileStructs[battler].rapidResponse = TRUE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_RAPID_RESPONSE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
+
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_READIED_ACTION))
+        {
+            gVolatileStructs[battler].readiedAction = TRUE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_READIED_ACTION;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
+
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_SHOWDOWN_MODE))
+        {
+            gVolatileStructs[battler].showdownMode = TRUE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SHOWDOWN_MODE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
+
         //Totem Boost
         if(FlagGet(FLAG_TOTEM_BATTLE) 
             && GetBattlerSide(battler) != B_SIDE_PLAYER 
@@ -14045,19 +14077,13 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
                     statBase /= 2;
 
             // Violent Rush
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_VIOLENT_RUSH)
-                && gVolatileStructs[battler].isFirstTurn)
-                    statBase = statBase * 6 / 5;
+            if(gVolatileStructs[battler].violentRush) statBase = statBase * 6 / 5;
 
             // Showdown Mode
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_SHOWDOWN_MODE)
-                && gVolatileStructs[battler].isFirstTurn)
-                    statBase = statBase * 6 / 5;
+            if(gVolatileStructs[battler].showdownMode) statBase = statBase * 6 / 5;
 
             // Huge Power on First Turn
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_HUGE_POWER_FOR_ONE_TURN)
-                && gVolatileStructs[battler].isFirstTurn)
-                    statBase *= 2;
+            if(gVolatileStructs[battler].readiedAction) statBase *= 2;
                     
             // Hadron Engine
             if (BATTLER_HAS_ABILITY(battler, ABILITY_ORICHALCUM_PULSE)
@@ -14095,9 +14121,7 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
             if (BATTLER_HAS_ABILITY(battler, ABILITY_FELINE_PROWESS)) statBase *= 2;
 
             // Special Violent Rush
-            if(BATTLER_HAS_ABILITY(battler, ABILITY_SPECIAL_VIOLENT_RUSH)
-                && gVolatileStructs[battler].isFirstTurn)
-                    statBase = statBase * 6 / 5;
+            if(gVolatileStructs[battler].rapidResponse) statBase = statBase * 6 / 5;
 
             // Hadron Engine
             if (BATTLER_HAS_ABILITY(battler, ABILITY_HADRON_ENGINE)

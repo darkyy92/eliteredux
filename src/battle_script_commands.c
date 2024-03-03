@@ -2272,7 +2272,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              (  gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS)                 ||
              (  gBattleMons[battlerDef].item == ITEM_IRON_BALL)))
              || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMBUSH) && gVolatileStructs[battlerAtk].isFirstTurn)
-             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SHOWDOWN_MODE) && gVolatileStructs[battlerAtk].isFirstTurn)
+             || (gVolatileStructs[battlerAtk].showdownMode)
              || (move == MOVE_SPACIAL_REND && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HEAVEN_ASUNDER)))
     {
         critChance = -2;

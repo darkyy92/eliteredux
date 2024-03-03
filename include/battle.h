@@ -127,6 +127,10 @@ struct VolatileStruct
     u8 syrupBombIsShiny:1;
     u8 ghastlyEchoTimer:2;
     u8 syrupTimer:2;
+    u8 violentRush:1;
+    u8 rapidResponse:1;
+    u8 readiedAction:1;
+    u8 showdownMode:1;
 };
 
 struct RoundStruct

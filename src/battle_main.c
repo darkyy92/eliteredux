@@ -4821,14 +4821,11 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SLOW_START, ability) && gVolatileStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VIOLENT_RUSH, ability) && gVolatileStructs[battlerId].isFirstTurn)
-            speed = (speed * 150) / 100;
+    if (gVolatileStructs[battlerId].violentRush) speed = (speed * 150) / 100;
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SPECIAL_VIOLENT_RUSH, ability) && gVolatileStructs[battlerId].isFirstTurn)
-            speed = (speed * 150) / 100;
+    if (gVolatileStructs[battlerId].rapidResponse) speed = (speed * 150) / 100;
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_SHOWDOWN_MODE, ability) && gVolatileStructs[battlerId].isFirstTurn)
-            speed = (speed * 150) / 100;
+    if (gVolatileStructs[battlerId].showdownMode) speed = (speed * 150) / 100;
 	
 	if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_LEAD_COAT, ability))
         speed  = speed * 9 / 10;
@@ -5232,7 +5229,16 @@ static void TurnValuesCleanUp(bool8 var0)
             memset(&gRoundStructs[gActiveBattler], 0, sizeof(struct RoundStruct));
 
             if (gVolatileStructs[gActiveBattler].isFirstTurn)
+            {
                 gVolatileStructs[gActiveBattler].isFirstTurn--;
+                if (!gVolatileStructs[gActiveBattler].isFirstTurn)
+                {
+                    gVolatileStructs[gActiveBattler].readiedAction = FALSE;
+                    gVolatileStructs[gActiveBattler].violentRush = FALSE;
+                    gVolatileStructs[gActiveBattler].rapidResponse = FALSE;
+                    gVolatileStructs[gActiveBattler].showdownMode = FALSE;
+                }
+            }
 
             if (gVolatileStructs[gActiveBattler].rechargeTimer)
             {

@@ -806,6 +806,10 @@ static const u8 sText_TeamAcquiredAbility[] = _("{B_ATK_NAME_WITH_PREFIX}'s team
 static const u8 sText_CommanderActivates[] = _("{B_ATK_NAME_WITH_PREFIX} hops inside\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s mouth!");
 static const u8 sText_CommanderEnds[] = _("{B_ATK_NAME_WITH_PREFIX} returns\nto the battlefield!");
 static const u8 sText_CommanderCantSwitch[] = _("{B_DEF_NAME_WITH_PREFIX} refuses\nto flee!");
+static const u8 sText_ViolentRush[] = _("{B_ATK_NAME_WITH_PREFIX} charges\nonto the battlefield!");
+static const u8 sText_RapidResponse[] = _("{B_ATK_NAME_WITH_PREFIX} arrives\non the scene!");
+static const u8 sText_ReadiedAction[] = _("{B_ATK_NAME_WITH_PREFIX} prepares\na powerful attack!");
+static const u8 sText_ShowdownMode[] = _("{B_ATK_NAME_WITH_PREFIX} is\npulling out all the stops!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s Ability\nprevents switching!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -1710,6 +1714,10 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_COMMANDER_ACTIVATES - 12] = sText_CommanderActivates,
     [STRINGID_COMMANDER_ENDS - 12] = sText_CommanderEnds,
     [STRINGID_COMMANDER_CANT_SWITCH - 12] = sText_CommanderCantSwitch,
+    [STRINGID_VIOLENT_RUSH - 12] = sText_ViolentRush,
+    [STRINGID_RAPID_RESPONSE - 12] = sText_RapidResponse,
+    [STRINGID_READIED_ACTION - 12] = sText_ReadiedAction,
+    [STRINGID_SHOWDOWN_MODE - 12] = sText_ShowdownMode,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -1789,6 +1797,10 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_SALT_CIRCLE] = STRINGID_SALT_CIRCLE,
     [B_MSG_SWITCHIN_SUPREME_OVERLORD] = STRINGID_SUPREME_OVERLORD,
     [B_MSG_SWITCHIN_COSTAR] = STRINGID_COSTAR,
+    [B_MSG_SWITCHIN_READIED_ACTION] = STRINGID_READIED_ACTION,
+    [B_MSG_SWITCHIN_VIOLENT_RUSH] = STRINGID_VIOLENT_RUSH,
+    [B_MSG_SWITCHIN_RAPID_RESPONSE] = STRINGID_RAPID_RESPONSE,
+    [B_MSG_SWITCHIN_SHOWDOWN_MODE] = STRINGID_SHOWDOWN_MODE,
 };
 
 const u16 gParadoxBoostSourceIds[] = 
