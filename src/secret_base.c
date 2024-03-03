@@ -1165,6 +1165,12 @@ const u8 *GetTagTeamTrainerLoseText(bool8 isTrainerB)
             else
                 return SootopolisCity_Gym_1F_Text_WallaceDefeat;
         break;
+        case TAG_TEAM_WALLACE_JUAN_REMATCH:
+            if(!isTrainerB)
+                return SootopolisCity_Gym_1F_Text_JuanDefeatRematch;
+            else
+                return SootopolisCity_Gym_1F_Text_WallaceDefeatRematch;
+        break;
     }
         
 }

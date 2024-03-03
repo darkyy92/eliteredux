@@ -726,8 +726,10 @@
 
 	@ Starts a tag trainer battle, takes two trainers, intro text, loss text, and an optional event script
 	@ when used with an event script, you can also pass in an optional flag to disable music
-	.macro starttagbattle trainer1:req, trainer2:req, intro_text:req, tagteamtextid:req, intro:req, event_script=FALSE
-	msgbox \intro_text
+	.macro starttagbattle trainer1:req, trainer2:req, tagteamtextid:req, intro:req, intro_text=FALSE, event_script=FALSE
+	.if \intro_text != FALSE
+		msgbox \intro_text
+	.endif
 	setflag FLAG_TAG_BATTLE
 	setvar VAR_0x8004, SPECIAL_BATTLE_TWO_OPPONENTS
 	setvar VAR_0x8005, \intro

@@ -4736,7 +4736,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_WALLACE] =
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_CHAMPION_WALLACE,
         .trainerName = _("Wallace"),
@@ -4747,6 +4747,70 @@ const struct Trainer gTrainers[] = {
         .party = {.ItemCustomMoves = sParty_Wallace},
         .partySizeInsane = ARRAY_COUNT(sParty_WallaceInsane),
         .partyInsane = {.ItemCustomMoves = sParty_WallaceInsane},
+    },
+
+    [TRAINER_WALLACE_2] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LEADER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_WALLACE,
+        .trainerName = _("Wallace"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Wallace2),
+        .party = {.ItemCustomMoves = sParty_Wallace2},
+        .partySizeInsane = ARRAY_COUNT(sParty_WallaceInsane2),
+        .partyInsane = {.ItemCustomMoves = sParty_WallaceInsane2},
+    },
+
+    [TRAINER_WALLACE_3] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LEADER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_WALLACE,
+        .trainerName = _("Wallace"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Wallace3),
+        .party = {.ItemCustomMoves = sParty_Wallace3},
+        .partySizeInsane = ARRAY_COUNT(sParty_WallaceInsane3),
+        .partyInsane = {.ItemCustomMoves = sParty_WallaceInsane3},
+    },
+
+    [TRAINER_WALLACE_4] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LEADER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_WALLACE,
+        .trainerName = _("Wallace"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Wallace4),
+        .party = {.ItemCustomMoves = sParty_Wallace4},
+        .partySizeInsane = ARRAY_COUNT(sParty_WallaceInsane4),
+        .partyInsane = {.ItemCustomMoves = sParty_WallaceInsane4},
+    },
+
+    [TRAINER_WALLACE_5] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LEADER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_WALLACE,
+        .trainerName = _("Wallace"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Wallace5),
+        .party = {.ItemCustomMoves = sParty_Wallace5},
+        .partySizeInsane = ARRAY_COUNT(sParty_WallaceInsane5),
+        .partyInsane = {.ItemCustomMoves = sParty_WallaceInsane5},
     },
 
     [TRAINER_ANDREW] =
