@@ -576,7 +576,7 @@
 #define ABILITY_ANGER_SHELL 554 // Applies Shell Smash when reduced below half HP.
 #define ABILITY_EGOIST 555 // Raises its own stats when foes raise theirs.
 #define ABILITY_SUBDUE 556 // Doubles the power of stat dropping moves.
-#define ABILITY_HUGE_POWER_FOR_ONE_TURN 557 // Doubles attack on first turn.
+#define ABILITY_READIED_ACTION 557 // Doubles attack on first turn.
 #define ABILITY_DARK_GALE_WINGS 558 // Dark moves get +1 priority. Requires full HP.
 #define ABILITY_GUILT_TRIP 559 // Sharply lowers attacker's Attack and SpAtk when fainting.
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
@@ -592,7 +592,7 @@
 #define ABILITY_ILL_WILL 570 // Deletes the PP of the move that faints this Pokemon.
 #define ABILITY_FIRE_SCALES 571 // Halves special damage.
 #define ABILITY_WATCH_YOUR_STEP 572 // Spreads two layers of Spikes on switch-in.
-#define ABILITY_SPECIAL_VIOLENT_RUSH 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
+#define ABILITY_RAPID_RESPONSE 573 // Boosts Speed by 50% + SpAtk by 20% on first turn.
 #define ABILITY_DOUBLE_IRON_BARBS 574 // 1/6 HP damage when touched.
 #define ABILITY_THERMAL_EXCHANGE 575 // Ups Attack when hit by Fire. Immune to burn.
 #define ABILITY_GOOD_AS_GOLD 576 // Blocks Status moves.
