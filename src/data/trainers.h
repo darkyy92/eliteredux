@@ -11402,7 +11402,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_STEVEN] =
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_5,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_STEVEN,
         .trainerName = _("Steven"),
@@ -11411,8 +11411,56 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Steven),
         .party = {.ItemCustomMoves = sParty_Steven},
-        //.partySizeInsane = ARRAY_COUNT(sStevenInsane),
-        //.partyInsane = {.ItemCustomMoves = sStevenInsane},
+        .partySizeInsane = ARRAY_COUNT(sParty_StevenInsane),
+        .partyInsane = {.ItemCustomMoves = sParty_StevenInsane},
+    },
+
+    [TRAINER_STEVEN_LEGENDS] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("Steven"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Steven_Legends),
+        .party = {.ItemCustomMoves = sParty_Steven_Legends},
+        .partySizeInsane = ARRAY_COUNT(sParty_Steven_LegendsInsane),
+        .partyInsane = {.ItemCustomMoves = sParty_Steven_LegendsInsane},
+    },
+
+    [TRAINER_STEVEN_DOUBLES] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("Steven"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Steven_Doubles),
+        .party = {.ItemCustomMoves = sParty_Steven_Doubles},
+        .partySizeInsane = ARRAY_COUNT(sParty_Steven_DoublesInsane),
+        .partyInsane = {.ItemCustomMoves = sParty_Steven_DoublesInsane},
+    },
+
+    [TRAINER_STEVEN_DOUBLES_LEGENDS] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("Steven"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Steven_Doubles_Legends),
+        .party = {.ItemCustomMoves = sParty_Steven_Doubles_Legends},
+        .partySizeInsane = ARRAY_COUNT(sParty_Steven_Doubles_LegendsInsane),
+        .partyInsane = {.ItemCustomMoves = sParty_Steven_Doubles_LegendsInsane},
     },
 
     [TRAINER_ANABEL] =

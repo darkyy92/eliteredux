@@ -884,10 +884,6 @@ static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
                 *spriteIdPtr = spriteId;
         break;
         case MART_TYPE_MONS:
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "BuyMenuAddItemIcon iconSlot: %d, item: %d", iconSlot, item);
-            MgbaClose();
-
             if (item > SPECIES_NONE && item < NUM_SPECIES){
                 LoadMonIconPalette(item);
                 spriteId = CreateMonIconNoPersonality(item, SpriteCallbackDummy, 0, 0, 0);

@@ -881,6 +881,9 @@
 #define TRAINER_WALLACE_3                              877
 #define TRAINER_WALLACE_4                              878
 #define TRAINER_WALLACE_5                              879
+#define TRAINER_STEVEN_LEGENDS                         880
+#define TRAINER_STEVEN_DOUBLES                         881
+#define TRAINER_STEVEN_DOUBLES_LEGENDS                 882
 
 #define TRAINERS_COUNT                                 1600
 #define MAX_OLD_TRAINERS_COUNT                         TRAINERS_COUNT + 1

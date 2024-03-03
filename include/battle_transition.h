@@ -13,6 +13,7 @@ extern const struct SpritePalette gSpritePalette_Pokeball;
 
 enum // TRANSITION_MUGSHOT
 {
+    MUGSHOT_WALLACE,
     MUGSHOT_SIDNEY,
     MUGSHOT_PHOEBE,
     MUGSHOT_GLACIA,
