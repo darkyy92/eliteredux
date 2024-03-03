@@ -2487,7 +2487,7 @@ void ShowScrollableMultichoice(void)
         case SCROLL_MULTI_GAMECORNER_FIRE_STARTERS:
         case SCROLL_MULTI_GAMECORNER_WATER_STARTERS:
             task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-            task->tNumItems = 9;
+            task->tNumItems = 10;
             task->tLeft = 19;
             task->tTop = 1;
             task->tWidth = 12;
@@ -2497,7 +2497,7 @@ void ShowScrollableMultichoice(void)
             break;
         case SCROLL_MULTI_REGION_NAMES:
             task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-            task->tNumItems = 8;
+            task->tNumItems = 9;
             task->tLeft = 22;
             task->tTop = 1;
             task->tWidth = 12;
@@ -2886,6 +2886,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_GameCornerChespin,
         gText_GameCornerRowlet,
         gText_GameCornerGrookey,
+        gText_GameCornerSprigatito,
         gText_Exit
     },
     [SCROLL_MULTI_GAMECORNER_FIRE_STARTERS] =
@@ -2898,6 +2899,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_GameCornerFennekin,
         gText_GameCornerLitten,
         gText_GameCornerScorbunny,
+        gText_GameCornerFuecoco,
         gText_Exit
     },
     [SCROLL_MULTI_GAMECORNER_WATER_STARTERS] =
@@ -2910,6 +2912,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_GameCornerFroakie,
         gText_GameCornerPopplio,
         gText_GameCornerSobble,
+        gText_GameCornerQuaxly,
         gText_Exit
     },
     [SCROLL_MULTI_REGION_NAMES] = 
@@ -2922,6 +2925,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_Kalos,
         gText_Alola,
         gText_Galar,
+        gText_Paldea,
     },
     [SCROLL_MULTI_FURFROU_TRIMS] = 
     {
