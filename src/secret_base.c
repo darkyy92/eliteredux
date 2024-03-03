@@ -1155,6 +1155,19 @@ const u8 *GetSecretBaseTrainerLoseText(void)
         return SecretBase_Text_Trainer9Defeated;
 }
 
+const u8 *GetTagTeamTrainerLoseText(bool8 isTrainerB)
+{
+    u8 tagTeam = VarGet(VAR_TAG_TEAM_ID);
+    switch(tagTeam){
+        case TAG_TEAM_WALLACE_JUAN:
+            if(!isTrainerB)
+                return SootopolisCity_Gym_1F_Text_JuanDefeat;
+            else
+                return SootopolisCity_Gym_1F_Text_WallaceDefeat;
+        break;
+    }
+        
+}
 void PrepSecretBaseBattleFlags(void)
 {
     TryGainNewFanFromCounter(FANCOUNTER_BATTLED_AT_BASE);

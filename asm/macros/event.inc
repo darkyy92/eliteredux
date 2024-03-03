@@ -724,6 +724,23 @@
 	.endif
 	.endm
 
+	@ Starts a tag trainer battle, takes two trainers, intro text, loss text, and an optional event script
+	@ when used with an event script, you can also pass in an optional flag to disable music
+	.macro starttagbattle trainer1:req, trainer2:req, intro_text:req, tagteamtextid:req, intro:req, event_script=FALSE
+	msgbox \intro_text
+	setflag FLAG_TAG_BATTLE
+	setvar VAR_0x8004, SPECIAL_BATTLE_TWO_OPPONENTS
+	setvar VAR_0x8005, \intro
+	setvar VAR_0x8006, \trainer1
+	setvar VAR_0x8007, \trainer2 
+	setvar VAR_TAG_TEAM_ID, \tagteamtextid
+	special DoSpecialTrainerBattle
+	waitstate
+	.if \event_script == TRUE
+		goto \event_script
+	.endif
+	.endm
+
 	@ Starts a rematch battle, takes a trainer, intro text and loss text
 	.macro trainerbattle_rematch trainer:req, intro_text:req, lose_text:req
 	trainerbattle TRAINER_BATTLE_REMATCH, \trainer, 0, \intro_text, \lose_text
@@ -738,7 +755,6 @@
 	.macro trainerbattle_no_intro trainer:req, lose_text:req
 	trainerbattle TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT, \trainer, 0, \lose_text
 	.endm
-
 
 	@ Starts a trainer battle using the battle information stored in RAM (usually by trainerbattle, which actually calls this 
 	@ command behind-the-scenes), and blocks script execution until the battle finishes.
