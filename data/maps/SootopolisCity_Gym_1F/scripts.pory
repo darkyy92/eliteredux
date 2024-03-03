@@ -122,27 +122,6 @@ SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge:: @ 822501B
 	release
 	end
 
-SootopolisCity_Gym_1F_EventScript_JuanRematch::
-	message SootopolisCity_Gym_1F_Text_JuanChooseFormat
-	waitmessage
-	multichoice 17, 6, MULTI_REMATCH_BATTLE_MODE, 0
-	switch VAR_RESULT
-	case 0, SootopolisCity_Gym_1F_EventScript_SetSingles
-	case 1, SootopolisCity_Gym_1F_EventScript_SetDoubles
-	case 2, SootopolisCity_Gym_1F_EventScript_Exit
-	case 127, SootopolisCity_Gym_1F_EventScript_Exit
-	releaseall
-	end
-
-SootopolisCity_Gym_1F_EventScript_SetSingles::
-	msgbox SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq SootopolisCity_Gym_1F_EventScript_JuanSinglesRematch
-	trainerbattle_no_intro TRAINER_JUAN_4, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
-	//setflag FLAG_DAILY_REMATCH_JUAN
-	releaseall
-	end
-
 SootopolisCity_Gym_1F_EventScript_SetDoubles::
 	msgbox SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, 0
@@ -334,7 +313,7 @@ SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 script SootopolisCity_Gym_1F_EventScript_Juan{
 	//call(SootopolisCity_Gym_EventScript_CheckTrainers)
 	goto_if_set(FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch)
-	starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, SootopolisCity_Gym_1F_Text_JuanIntro, TAG_TEAM_WALLACE_JUAN, 16)
+	starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro)
 	goto_if_unset(FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald)
 	goto_if_unset(FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge)
 	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
@@ -342,6 +321,40 @@ script SootopolisCity_Gym_1F_EventScript_Juan{
 	end
 }
 
+script SootopolisCity_Gym_1F_EventScript_JuanRematch{
+	//All of these are double battles so it needs to be redone
+	message(SootopolisCity_Gym_1F_Text_JuanChooseFormat)
+	waitmessage
+	multichoice(17, 6, MULTI_REMATCH_BATTLE_MODE, 0)
+	switch(var(VAR_RESULT)){
+		case 0:
+			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
+			if(var(VAR_RESULT) == NO){
+				starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+			else{
+				starttagbattle(TRAINER_JUAN_4, TRAINER_WALLACE_4, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+		break
+		case 1:
+			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
+			if(var(VAR_RESULT) == NO){
+				starttagbattle(TRAINER_JUAN_3, TRAINER_WALLACE_3, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+			else{
+				starttagbattle(TRAINER_JUAN_5, TRAINER_WALLACE_5, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
+			}
+		break
+		case 2:
+		case 127:
+			goto(SootopolisCity_Gym_1F_EventScript_Exit)
+		break
+	}
+	releaseall
+	end
+}
+
+//Please Change
 text SootopolisCity_Gym_1F_Text_JuanIntro{
 	"Let me ask you.\n"
 	"Did you know?\l"
@@ -362,6 +375,7 @@ text SootopolisCity_Gym_1F_Text_JuanIntro{
 	"by Pokémon and myself!"
 }
 
+//Please Change
 text SootopolisCity_Gym_1F_Text_JuanDefeat{
 	"Ahahaha, excellent!\n"
 	"Very well, you are the winner.\p"
@@ -378,8 +392,19 @@ text SootopolisCity_Gym_1F_Text_JuanDefeat{
 	"you with this, the Rain Badge!"
 }
 
+//Please Change
 text SootopolisCity_Gym_1F_Text_WallaceDefeat{
-	"Ahahaha, excellent!"
+	"Wallace Defeat Text"
+}
+
+//Please Change
+text SootopolisCity_Gym_1F_Text_JuanDefeatRematch{ 
+	"Juan Defeat Text Rematch"
+}
+
+//Please Change
+text SootopolisCity_Gym_1F_Text_WallaceDefeatRematch{
+	"Wallace Defeat Text Rematch"
 }
 
 script SootopolisCity_Gym_1F_EventScript_GiveScald{
