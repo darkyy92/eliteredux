@@ -10574,7 +10574,7 @@ static const union AnimCmd sAnim_PALAFIN_HERO_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
-static const union AnimCmd sAnim_URSALUNA_MOONBLOOD_1[] =
+static const union AnimCmd sAnim_URSALUNA_BLOODMOON_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -17309,9 +17309,9 @@ static const union AnimCmd *const sAnims_PALAFIN_HERO[] ={
     sAnim_PALAFIN_HERO_1,
 };
 
-static const union AnimCmd *const sAnims_URSALUNA_MOONBLOOD[] ={
+static const union AnimCmd *const sAnims_URSALUNA_BLOODMOON[] ={
     sAnim_GeneralFrame0,
-    sAnim_URSALUNA_MOONBLOOD_1,
+    sAnim_URSALUNA_BLOODMOON_1,
 };
 
 static const union AnimCmd *const sAnims_TAUROS_PALDEAN_COMBAT_BREED[] ={
@@ -19526,7 +19526,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(MAUSHOLD_FOUR),
     ANIM_CMD(DUDUNSPARCE_THREE_SEGMENT),
     ANIM_CMD(PALAFIN_HERO),
-    ANIM_CMD(URSALUNA_MOONBLOOD),
+    ANIM_CMD(URSALUNA_BLOODMOON),
     ANIM_CMD(TAUROS_PALDEAN_COMBAT_BREED),
     ANIM_CMD(TAUROS_PALDEAN_BLAZE_BREED),
     ANIM_CMD(TAUROS_PALDEAN_AQUA_BREED),

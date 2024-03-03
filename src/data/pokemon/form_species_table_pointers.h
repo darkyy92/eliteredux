@@ -768,7 +768,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] = sTaurosFormSpeciesIdTable,
 
-    [SPECIES_URSALUNA_MOONBLOOD] = sUrsalunaFormSpeciesIdTable,
+    [SPECIES_URSALUNA_BLOODMOON] = sUrsalunaFormSpeciesIdTable,
 
     [SPECIES_PALAFIN_HERO] = sPalafinFormSpeciesIdTable,
 
