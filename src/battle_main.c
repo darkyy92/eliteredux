@@ -4238,7 +4238,7 @@ static void HandleTurnActionSelectionState(void)
                         gChosenActionByBattler[gActiveBattler] = B_ACTION_NOTHING_FAINTED; // Not fainted, but it cannot move, because of the throwing ball.
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                     }
-                    if (GetAbilityState(gActiveBattler, ABILITY_COMMANDER))
+                    else if (GetAbilityState(gActiveBattler, ABILITY_COMMANDER))
                     {
                         gChosenActionByBattler[gActiveBattler] = B_ACTION_NOTHING_FAINTED; // Not fainted, but it cannot move, because of the throwing ball.
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
