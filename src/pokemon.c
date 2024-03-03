@@ -6889,10 +6889,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_FORM_SHIFT:
-                if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
-                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                break;
+            // 
+            // case EVO_FORM_SHIFT:
+            //     if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
+            //         targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            //     break;
             case EVO_FRIENDSHIP:
                 if (friendship >= 160)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
