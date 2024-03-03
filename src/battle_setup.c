@@ -1668,6 +1668,8 @@ const u8 *GetTrainerALoseText(void)
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         string = GetSecretBaseTrainerLoseText();
+    else if(FlagGet(FLAG_TAG_BATTLE))
+        string = GetTagTeamTrainerLoseText(FALSE);
     else
         string = sTrainerADefeatSpeech;
 
@@ -1677,7 +1679,11 @@ const u8 *GetTrainerALoseText(void)
 
 const u8 *GetTrainerBLoseText(void)
 {
-    StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(sTrainerBDefeatSpeech));
+    if(FlagGet(FLAG_TAG_BATTLE))
+        StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(GetTagTeamTrainerLoseText(TRUE)));
+    else
+        StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(sTrainerBDefeatSpeech));
+   
     return gStringVar4;
 }
 

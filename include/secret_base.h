@@ -7,6 +7,7 @@ void ClearJapaneseSecretBases(struct SecretBase *dest);
 void SetPlayerSecretBaseParty(void);
 u8 *GetSecretBaseMapName(u8 *dest);
 const u8 *GetSecretBaseTrainerLoseText(void);
+const u8 *GetTagTeamTrainerLoseText(bool8 isTrainerB);
 void SetOccupiedSecretBaseEntranceMetatiles(struct MapEvents const *events);
 void InitSecretBaseAppearance(bool8 hidePC);
 bool8 CurMapIsSecretBase(void);

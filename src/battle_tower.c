@@ -2174,6 +2174,16 @@ void DoSpecialTrainerBattle(void)
         PlayMapChosenOrBattleBGM(0);
         BattleTransition_StartOnField(B_TRANSITION_MAGMA);
         break;
+    case SPECIAL_BATTLE_TWO_OPPONENTS:
+        gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS;
+        gTrainerBattleOpponent_A = VarGet(gSpecialVar_0x8006);
+        gApproachingTrainerId = 0;
+        gTrainerBattleOpponent_B = VarGet(gSpecialVar_0x8007);
+        gApproachingTrainerId = 1;
+        CreateTask(Task_StartBattleAfterTransition, 1);
+        PlayMapChosenOrBattleBGM(0);
+        BattleTransition_StartOnField(VarGet(gSpecialVar_0x8005));
+        break;
     case SPECIAL_BATTLE_MULTI:
         if (gSpecialVar_0x8005 & MULTI_BATTLE_2_VS_WILD) // Player + AI against wild mon
         {

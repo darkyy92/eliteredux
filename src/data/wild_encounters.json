@@ -10619,7 +10619,7 @@
             "encounter_rate": 4,
             "mons": [
               {
-                "min_level": "20",
+                "min_level": 0,
                 "max_level": 35,
                 "species": "SPECIES_CORSOLA"
               },
@@ -15585,8 +15585,8 @@
                 "species": "SPECIES_CROBAT"
               },
               {
-                "min_level": "40",
-                "max_level": "40",
+                "min_level": 0,
+                "max_level": 0,
                 "species": "SPECIES_GARGANACL"
               },
               {

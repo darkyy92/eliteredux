@@ -371,6 +371,9 @@ extern const u8 SecretBase_Text_Trainer7Defeated[];
 extern const u8 SecretBase_Text_Trainer8Defeated[];
 extern const u8 SecretBase_Text_Trainer9Defeated[];
 
+extern const u8 SootopolisCity_Gym_1F_Text_JuanDefeat[];
+extern const u8 SootopolisCity_Gym_1F_Text_WallaceDefeat[];
+
 //field effects
 extern const u8 EventScript_UseStrength[];
 extern const u8 EventScript_FailSweetScent[];

@@ -48,7 +48,7 @@ Debug_Script_1::
 	end
 
 Debug_Script_2::
-	setvar VAR_PETALBURG_GYM_STATE, 6
+	goto SootopolisCity_Gym_1F_EventScript_Juan
 	end
 
 Debug_Script_3::

@@ -145,7 +145,7 @@
 #define VAR_TEMP_BATTLE_STRING_OVERWRITE_2   0x407E
 #define VAR_TEMP_BATTLE_STRING_OVERWRITE_3   0x407F
 #define VAR_TEMP_BATTLE_STRING_OVERWRITE_4   0x4080
-#define VAR_INTIMIDATED_TARGETS              0x4081 // Unused Var
+#define VAR_INTIMIDATED_TARGETS              0x4081
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY      0x4082
 #define VAR_STARTER_GEN                      0x4083 // Used to track which set of starters the player chose from
 #define VAR_BIRCH_LAB_STATE                  0x4084
@@ -203,7 +203,7 @@
 #define VAR_SHOP_MONEY_TYPE                  0x40B8
 #define VAR_MT_PYRE_STATE                    0x40B9
 #define VAR_NEW_MAUVILLE_STATE               0x40BA
-#define VAR_UNUSED_0x40BB                    0x40BB // Unused Var
+#define VAR_TAG_TEAM_ID                      0x40BB
 #define VAR_BRAVO_TRAINER_BATTLE_TOWER_ON    0x40BC
 #define VAR_JAGGED_PASS_ASH_WEATHER          0x40BD
 #define VAR_GLASS_WORKSHOP_STATE             0x40BE

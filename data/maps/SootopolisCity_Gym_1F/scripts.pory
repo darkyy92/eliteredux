@@ -83,17 +83,6 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce: @ 8224F42
 	set_invisible
 	step_end
 
-SootopolisCity_Gym_1F_EventScript_Juan:: @ 8224F44
-	call SootopolisCity_Gym_EventScript_CheckTrainers
-	//goto_if_set FLAG_DAILY_REMATCH_JUAN, SootopolisCity_Gym_1F_EventScript_AlreadyRematched
-	goto_if_set FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch
-	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
-	goto_if_unset FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald
-	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
-	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
 SootopolisCity_Gym_1F_EventScript_JuanDefeated:: @ 8224F82
 	message SootopolisCity_Gym_1F_Text_ReceivedRainBadge
 	waitmessage
@@ -238,43 +227,10 @@ SootopolisCity_Gym_1F_Text_GymGuidePostVictory: @ 82251AF
 	.string "If you've gotten all the Badges, you're\n"
 	.string "set for the Pokémon League challenge!$"
 
-SootopolisCity_Gym_1F_Text_JuanIntro: @ 8225268
-	.string "Let me ask you.\n"
-	.string "Did you know?\l"
-	.string "Ah, I should not be so coy.\p"
-	.string "It was I who taught Wallace everything\n"
-	.string "there is to know about Pokémon.\p"
-	.string "Once, I had given up my position as\n"
-	.string "the Gym Leader.\p"
-	.string "In my place, I had entrusted Wallace\n"
-	.string "with the Gym.\p"
-	.string "However, a compelling reason arose for\n"
-	.string "me to make a comeback.\p"
-	.string "Ah, but enough chatter.\n"
-	.string "Let us begin our match, shall we?\p"
-	.string "Please, you shall bear witness to\n"
-	.string "our artistry.\p"
-	.string "A grand illusion of water sculpted\n"
-	.string "by Pokémon and myself!$"
-
 @ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
 @ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
 @ after, as well as the otherwise unused array after that. One wonders if that's the reason for
 @ the existence of that unused array of ints.
-SootopolisCity_Gym_1F_Text_JuanDefeat: @ 8225432
-	.string "Ahahaha, excellent!\n"
-	.string "Very well, you are the winner.\p"
-	.string "From you, I sense the brilliant shine\n"
-	.string "of skill that will overcome all.\p"
-	.string "However, compared with me or even\n"
-	.string "Wallace, you are lacking in elegance.\p"
-	.string "Perhaps I should make you a loan\n"
-	.string "of my outfit?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "Hahaha, I merely jest!\p"
-	.string "Rather than my clothes, I shall reward\n"
-	.string "you with this, the Rain Badge!$"
 
 SootopolisCity_Gym_1F_Text_ReceivedRainBadge: @ 8225598
 	.string "{PLAYER} received the Rain Badge\n"
@@ -374,6 +330,57 @@ SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 	.string "And would you allow me to dance with\n"
 	.string "even stronger Legendary Pokémon?$"
 `
+
+script SootopolisCity_Gym_1F_EventScript_Juan{
+	//call(SootopolisCity_Gym_EventScript_CheckTrainers)
+	goto_if_set(FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch)
+	starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, SootopolisCity_Gym_1F_Text_JuanIntro, TAG_TEAM_WALLACE_JUAN, 16)
+	goto_if_unset(FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald)
+	goto_if_unset(FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge)
+	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+text SootopolisCity_Gym_1F_Text_JuanIntro{
+	"Let me ask you.\n"
+	"Did you know?\l"
+	"Ah, I should not be so coy.\p"
+	"It was I who taught Wallace everything\n"
+	"there is to know about Pokémon.\p"
+	"Once, I had given up my position as\n"
+	"the Gym Leader.\p"
+	"In my place, I had entrusted Wallace\n"
+	"with the Gym.\p"
+	"However, a compelling reason arose for\n"
+	"me to make a comeback.\p"
+	"Ah, but enough chatter.\n"
+	"Let us begin our match, shall we?\p"
+	"Please, you shall bear witness to\n"
+	"our artistry.\p"
+	"A grand illusion of water sculpted\n"
+	"by Pokémon and myself!"
+}
+
+text SootopolisCity_Gym_1F_Text_JuanDefeat{
+	"Ahahaha, excellent!\n"
+	"Very well, you are the winner.\p"
+	"From you, I sense the brilliant shine\n"
+	"of skill that will overcome all.\p"
+	"However, compared with me or even\n"
+	"Wallace, you are lacking in elegance.\p"
+	"Perhaps I should make you a loan\n"
+	"of my outfit?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"Hahaha, I merely jest!\p"
+	"Rather than my clothes, I shall reward\n"
+	"you with this, the Rain Badge!"
+}
+
+text SootopolisCity_Gym_1F_Text_WallaceDefeat{
+	"Ahahaha, excellent!"
+}
 
 script SootopolisCity_Gym_1F_EventScript_GiveScald{
 	msgbox(format("Take this special Pokémon as a gift from me!"))

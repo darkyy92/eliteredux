@@ -1497,6 +1497,7 @@
 #define FLAG_TRAINER_BANEFUL_PETALBURG_WOODS                        3056 // Primal Cascoon battle
 #define FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED                   3057
 #define FLAG_TRAINER_YDA_MTPYRE                                     3058
+#define FLAG_TAG_BATTLE                                             3059
 
 #define FLAGS_COUNT                                                 6135 //Added 3000 new flags
 
