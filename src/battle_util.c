@@ -5760,13 +5760,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
                 effect++;
             }
-            else{
-                //Removes Trick Room
-                gFieldTimers.trickRoomTimer = 0;
-                gFieldStatuses &= ~(STATUS_FIELD_TRICK_ROOM);
-                BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionRemoved);
-                effect++;
-            }
         }
 
         //Inverse Room
@@ -5776,13 +5769,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gFieldStatuses |= STATUS_FIELD_INVERSE_ROOM;
                 gFieldTimers.inverseRoomTimer = INVERSE_ROOM_DURATION_SHORT;
                 BattleScriptPushCursorAndCallback(BattleScript_InversedRoomActivated);
-                effect++;
-            }
-            else{
-                //Removes Trick Room
-                gFieldTimers.inverseRoomTimer = 0;
-                gFieldStatuses &= ~(STATUS_FIELD_INVERSE_ROOM);
-                BattleScriptPushCursorAndCallback(BattleScript_InverseRoomRemoved);
                 effect++;
             }
         }
