@@ -6149,6 +6149,7 @@ BattleScript_FirstTurnFly::
 BattleScript_FirstTurnSemiInvulnerable::
 	call BattleScriptFirstChargingTurn
 	setsemiinvulnerablebit
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_SecondTurnSemiInvulnerable
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 BattleScript_SecondTurnSemiInvulnerable::
