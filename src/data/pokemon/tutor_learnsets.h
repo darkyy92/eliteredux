@@ -1,9 +1,3 @@
-// const u16 gTutorMoves{ 0 },
-// 	[TUTOR_MOVE_PSYCHIC_FANGS] = MOVE_PSYCHIC_FANGS,
-// 	[TUTOR_MOVE_GRASS_PLEDGE] = MOVE_GRASS_PLEDGE,
-// const u16 gNewTutorLearnsets[NUM_SPECIES][MAX_TUTOR_MOVE_COUNTTUTOR_LEARNSET_END
-// static const u32 sTutorLearnsets{ 0 },[5TUTOR_LEARNSET_END
-
 #define TUTOR_LEARNSET { .fields = {
 #define TUTOR(tutor) .TUTOR_BIT_FIELD(tutor) = TRUE,
 #define TUTOR_LEARNSET_END }},
