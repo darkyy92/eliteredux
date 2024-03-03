@@ -30,8 +30,6 @@ extern const u16 sTMHMMove[];
 
 extern void (*gItemUseCB)(u8, TaskFunc);
 
-extern const u16 gTutorMoves[];
-
 void AnimatePartySlot(u8 slot, u8 animNum);
 bool8 IsMultiBattle(void);
 u8 GetCursorSelectionMonId(void);
@@ -108,8 +106,6 @@ void MoveDeleterChooseMoveToForget(void);
 void DoItemFormChange (u16 newSpecies);
 void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void CB2_ShowPartyMenuForItemUseTMCase(void);
-u16 GetTutorMove(u8 tutor);
-u16 GetNewTutorMove(u16 species, u8 num);
 
 void Task_IronPill(u8 taskId);
 void ItemUseCB_IronPill(u8 taskId, TaskFunc task);

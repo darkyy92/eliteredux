@@ -68,6 +68,7 @@
 #include "constants/weather.h"
 #include "constants/metatile_labels.h"
 #include "palette.h"
+#include "tmhm_struct.h"
 
 EWRAM_DATA bool8 gBikeCyclingChallenge = FALSE;
 EWRAM_DATA u8 gBikeCollisions = 0;
@@ -3961,85 +3962,85 @@ void GetBattleFrontierTutorMoveIndex(void)
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves1[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves1[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 1:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves2[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves2[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 2:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves3[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves3[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 3:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves4[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves4[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 4:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves5[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves5[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 5:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves6[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves6[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
         case 6:
             i = 0;
             do
             {
-                if (gTutorMoves[i] == sPokemonCenter_TutorMoves7[moveIndex])
+                if (GetTutorMove(i) == sPokemonCenter_TutorMoves7[moveIndex])
                 {
                     gSpecialVar_0x8005 = i;
                     break;
                 }
                 i++;
-            } while (i < TUTOR_MOVE_COUNT);
+            } while (i < TUTOR_COUNT);
             break;
     }
 }

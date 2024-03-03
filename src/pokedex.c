@@ -140,7 +140,7 @@ EWRAM_DATA static u16 sStatsMovesLevelUp[EGG_LVL_UP_MOVES_ARRAY_COUNT] = {0};
 EWRAM_DATA static u16 sStatsMovesEgg[EGG_MOVES_ARRAY_COUNT] = {0};
 EWRAM_DATA static u16 sStatsMovesTMHM[TM_COUNT] = {0};
 EWRAM_DATA static u16 sStatsMovesTMHM_ID[TM_COUNT] = {0};
-EWRAM_DATA static u16 sStatsMovesTutor[TUTOR_MOVE_COUNT] = {0};
+EWRAM_DATA static u16 sStatsMovesTutor[TUTOR_COUNT] = {0};
 
 // IWRAM common
 // This is written to, but never read.
@@ -5233,9 +5233,9 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
     {
         //Calc tutor move ID
         tutorMoveId = 0xFF;
-        for (i = 0; i < TUTOR_MOVE_COUNT; i++)
+        for (i = 0; i < TUTOR_COUNT; i++)
         {
-            if(move == gTutorMoves[i])
+            if(move == GetTutorMove(i))
             {
                 tutorMoveId = i;
                 break;
@@ -5243,7 +5243,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
         }
         //Calc tm move ID
         tmMoveId = 0xFF;
-        for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
+        for (i = 0; i < TM_COUNT; i++)
         {
             if(move == ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + i))
             {
@@ -6506,12 +6506,11 @@ static bool8 CalculateMoves(void)
     u16 movestotal;
     u8 i,j;
 
-    // sTutorLearnsets
-    for (i=0; i< TUTOR_MOVE_COUNT; i++)
+    for (i=0; i < TUTOR_COUNT; i++)
     {
-        if (CanLearnTutorMove(species, i)) //if (sTutorLearnsets[species] & (1 << i))
+        if (CanLearnTutorMove(species, i))
         {
-            sStatsMovesTutor[numTutorMoves] = gTutorMoves[i];
+            sStatsMovesTutor[numTutorMoves] = GetTutorMove(i);
             numTutorMoves++;
         }
     }

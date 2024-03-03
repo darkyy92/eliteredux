@@ -84,6 +84,7 @@
 #include "constants/hold_effects.h"
 #include "mgba_printf/mgba.h"
 #include "mgba_printf/mini_printf.h"
+#include "tmhm_struct.h"
 //#include "data/pokemon/form_species_table_pointers.h"
 
 #define PARTY_PAL_SELECTED     (1 << 0)
@@ -2136,51 +2137,14 @@ static u8 CanMonLearnTMTutor(struct Pokemon *mon, u16 item, u8 tutor)
         return CAN_LEARN_MOVE;
 }
 
-
-u16 GetTutorMove(u8 tutor)
-{
-    return gTutorMoves[tutor];
-}
-
-u16 GetNewTutorMove(u16 species, u8 num)
-{
-    return gNewTutorLearnsets[species][num];
-}
-
 bool32 CanLearnTutorMove(u16 species, u8 tutor) // note the change to bool32
 {
-    if (tutor < 32)
+    if (species == SPECIES_EGG)
     {
-        u32 mask = 1 << tutor;
-
-        return sTutorLearnsets[species][0] & mask;
+        return 0;
     }
 
-    else if (tutor < 64)
-    {
-        u32 mask = 1 << (tutor - 32);
-
-        return sTutorLearnsets[species][1] & mask;
-    }
-    else if (tutor < 96)
-    {
-        u32 mask = 1 << (tutor - 64);
-
-        return sTutorLearnsets[species][2] & mask;
-    }
- 
-    else if (tutor < 128)
-    {
-        u32 mask = 1 << (tutor - 96);
-
-        return sTutorLearnsets[species][3] & mask;
-    }
-    else
-    {
-        u32 mask = 1 << (tutor - 128);
-
-        return sTutorLearnsets[species][4] & mask;
-    }
+    return gTutorLearnsets[species].bits[tutor / 32] & (1 << (tutor % 32));
 }
 
 static void InitPartyMenuWindows(u8 layout)

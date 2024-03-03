@@ -24,3 +24,8 @@ u16 GetTmMove(u8 tmId)
 {
     return tmId >= TM_COUNT ? MOVE_NONE : gTmMoveMapping[tmId];
 }
+
+u16 GetTutorMove(u8 tutorId)
+{
+    return tutorId >= TUTOR_COUNT ? MOVE_NONE : gTutorMoveMapping[tutorId];
+}
