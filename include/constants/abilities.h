@@ -582,7 +582,7 @@
 #define ABILITY_WATER_GALE_WINGS 560 // Water moves get +1 priority. Requires full HP.
 #define ABILITY_ZERO_TO_HERO 561 // Changes forms after switching out.
 #define ABILITY_COSTAR 562 // Copies its ally's stat changes on switch-in.
-#define ABILITY_COMMANDER 563 // Placeholder
+#define ABILITY_COMMANDER 563 // Hops inside an allied Dondozo. Boosts its ally but can't act.
 #define ABILITY_EJECT_PACK_ABILITY 564 // Flees when stats are lowered.
 #define ABILITY_VENGEFUL_SPIRIT 565 // Haunted Spirit + Vengeance.
 #define ABILITY_CUD_CHEW 566 // Eats berries again at the end of the next turn.
