@@ -16514,7 +16514,7 @@ bool32 CanFling(u8 battlerId)
 
     if (item == ITEM_NONE
       || IsItemNegated(battlerId)
-      || CanBattlerGetOrLoseItem(battlerId, item))
+      || !CanBattlerGetOrLoseItem(battlerId, item))
         return FALSE;
 
     return TRUE;
