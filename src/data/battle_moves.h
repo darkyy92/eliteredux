@@ -11180,6 +11180,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags2 = FLAG_HORN_BASED,
         .split = SPLIT_PHYSICAL,
     },
+    [MOVE_CEASELESS_EDGE] =
+    {
+        .effect = EFFECT_SPIKE_HIT,
+        .power = 65,
+        .type = TYPE_DARK,
+        .accuracy = 100,
+        .pp = 15,
+        .secondaryEffectChance = 100,
+        .target = MOVE_TARGET_SELECTED,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .split = SPLIT_PHYSICAL,
+    },
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {

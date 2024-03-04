@@ -463,6 +463,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectClearWeatherAndTerrainHit	@ EFFECT_CLEAR_WEATHER_AND_TERRAIN_HIT
 	.4byte BattleScript_EffectMatchaGotcha			  @	EFFECT_MATCHA_GOTCHA
 	.4byte BattleScript_EffectDoodle				  @ EFFECT_DOODLE
+	.4byte BattleScript_EffectSpikeHit				  @ EFEFCT_SPIKE_HIT
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -3734,10 +3735,22 @@ BattleScript_EffectStealthRockHit::
 	trytoapplymoveeffect BattleScript_MoveEffectStealthRockHit
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectSpikeHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectSpikeHit
+	goto BattleScript_MoveEnd
+
 BattleScript_MoveEffectStealthRockHit::
 	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
 	waitanimation
 	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectSpikeHit::
+	playmoveanimation BS_ATTACKER, MOVE_SPIKES
+	waitanimation
+	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 

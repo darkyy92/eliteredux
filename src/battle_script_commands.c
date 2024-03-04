@@ -13328,6 +13328,19 @@ static void Cmd_trytoapplymoveeffect(void)
                 }
             }
         break;
+        case EFFECT_SPIKE_HIT:
+            if(rand <= secondaryEffectChance){
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !gRoundStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
+                && gSideTimers[GetBattlerSide(gBattlerTarget)].spikesAmount < 3)
+                {
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] |= SIDE_STATUS_SPIKES;
+                    gSideTimers[GetBattlerSide(gBattlerTarget)].spikesAmount++;
+                    appliedEffect = TRUE;
+                }
+            }
+        break;
         case EFFECT_LEECH_SEED_HIT:
              if(rand <= secondaryEffectChance){
                 if (IsMyceliumMightActive(gBattlerAttacker) && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
