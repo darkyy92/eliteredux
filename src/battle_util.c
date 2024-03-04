@@ -17171,10 +17171,9 @@ void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[])
     {
         for (j = 0; j < NUM_INNATE_PER_SPECIES + 1; j++)
         {
-            if (newAbilities[i] == oldAbilities[j])
-            {
-                break;
-            }
+            if (newAbilities[i] == oldAbilities[j]) break;
+            if (newAbilities[i] == ABILITY_CROWNED_SWORD && oldAbilities[j] == ABILITY_INTREPID_SWORD) break;
+            if (newAbilities[i] == ABILITY_CROWNED_SHIELD && oldAbilities[j] == ABILITY_DAUNTLESS_SHIELD) break;
         }
         if (j >= NUM_INNATE_PER_SPECIES + 1) continue;
         switchInAbilityDone[i] = gVolatileStructs[battler].switchInAbilityDone[i];
