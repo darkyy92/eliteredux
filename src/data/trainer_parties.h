@@ -33282,69 +33282,58 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
 static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_BRONZONG, // Steven, Def Wall, Leftovers, TR Setter, Calm Mind
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
-    // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_RELAXED,
-    .moves = MOVE_FLASH_CANNON, MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND
+    .species = SPECIES_ZAMAZENTA_CROWNED_SHIELD,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {0, 0, 0, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_BITE, MOVE_HOWL, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
     },
     {
     .lvl = 0,
-    .species = SPECIES_GENESECT, // Steven, Scarf, Download, Mixed
-    .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_FATAL_PRECISION, ABILITY_SIGHTING_SYSTEM},
-    // .innates = {ABILITY_FULL_METAL_BODY, ABILITY_PREDATOR, ABILITY_MEGA_LAUNCHER},
-    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_HASTY,
-    .moves = MOVE_U_TURN, MOVE_IRON_HEAD, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
+    .species = SPECIES_ZACIAN_CROWNED_SWORD,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {0, 0, 0, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_BITE, MOVE_HOWL, MOVE_IRON_FANGS, MOVE_LOVELY_BITE
     },
     {
     .lvl = 0,
-    .species = SPECIES_MAGEARNA, // Steven, SpDef Wall, Pixilate + Boomburst
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_STEELWORKER, ABILITY_PIXILATE, ABILITY_MIRROR_ARMOR},
-    // .innates = {ABILITY_CLEAR_BODY, ABILITY_SOUL_HEART, ABILITY_POWER_CORE},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_SASSY,
-    .moves = MOVE_BOOMBURST, MOVE_VOLT_SWITCH, MOVE_HEAL_BELL, MOVE_RECOVER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_MELMETAL, // Steven, Atk + SpDef Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_STEELWORKER, ABILITY_STAMINA},
-    // .innates = {ABILITY_MAGNET_PULL, ABILITY_GALVANIZE, ABILITY_JUGGERNAUT},
-    .zeroSpeedIvs = TRUE,
-    .evs = {4, 252, 0, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_DOUBLE_IRON_BASH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_MEGA_PUNCH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_NECROZMA_DUSK_MANE, // Steven, Psychic Gem, Bulky Special, Prism. Laser, SR
+    .species = SPECIES_NECROZMA_DUSK_MANE,
     .heldItem = ITEM_PSYCHIC_GEM,
-    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_RAMPAGE, ABILITY_MEGA_LAUNCHER},
-    // .innates = {ABILITY_SOLAR_FLARE, ABILITY_IMPENETRABLE, ABILITY_PRISM_ARMOR},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
+    .ability = 1,
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 0, 252, 0, 4},
+    .nature = NATURE_MODEST,
     .moves = MOVE_STEALTH_ROCK, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
     },
     {
     .lvl = 0,
-    .species = SPECIES_METAGROSS, // Steven, Mega
-    .heldItem = ITEM_METAGROSSITE,
-    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
-    // .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
-    // Pre-Mega
-    // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_METEOR_MASH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH
+    .species = SPECIES_DIALGA_ORIGIN,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {0, 0, 0, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_BODY_PRESS, MOVE_DRAGON_BREATH, MOVE_SCALE_SHOT, MOVE_SCARY_FACE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MEWTWO_MEGA_Y,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {0, 0, 0, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_ANCIENT_POWER, MOVE_CLOSE_COMBAT, MOVE_CONFUSION, MOVE_DISABLE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_METAGROSS_MEGA,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {0, 0, 0, 0, 0, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_CONFUSION, MOVE_HAMMER_ARM, MOVE_METAL_CLAW, MOVE_BODY_PRESS
     }
 };
 
