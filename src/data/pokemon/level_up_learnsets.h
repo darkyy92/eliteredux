@@ -22949,6 +22949,7 @@ static const struct LevelUpMove sWyrdeerLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sKleavorLevelUpLearnset[] = {
+    LEVEL_UP_MOVE(0, MOVE_STONE_AXE),
     LEVEL_UP_MOVE(1, MOVE_ACCELEROCK),
     LEVEL_UP_MOVE(1, MOVE_LEER),
     LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),

@@ -3629,6 +3629,10 @@ static const u8 sMoveTwoLineDescription_MoveSpringtideStorm[] = _(
     "30% chance to lower attack.\n"
     "Always hits in rain.");
 
+static const u8 sMoveTwoLineDescription_MoveDireClaw[] = _(
+    "Deals damage and has a 50% chance\n"
+    "to poison, paralyze, or sleep the target.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4556,6 +4560,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_WILDBOLT_STORM - 1] = sMoveTwoLineDescription_MoveWildboltStorm,
     [MOVE_SANDSEAR_STORM - 1] = sMoveTwoLineDescription_MoveSandsearStorm,
     [MOVE_SPRINGTIDE_STORM - 1] = sMoveTwoLineDescription_MoveSpringtideStorm,
+    [MOVE_DIRE_CLAW - 1] = sMoveTwoLineDescription_MoveDireClaw,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5482,6 +5487,7 @@ static const u8 sMoveFourLineDescription_MoveBleakwindStorm[] = _("30% chance to
 static const u8 sMoveFourLineDescription_MoveWildboltStorm[] = _("20% chance to paralyze.\nAlways hits in rain.\nHits both targets.\nWeather-based.");
 static const u8 sMoveFourLineDescription_MoveSandsearStorm[] = _("20% chance to burn.\nAlways hits in rain.\nHits both targets.\nWeather-based.");
 static const u8 sMoveFourLineDescription_MoveSpringtideStorm[] = _("30% chance to lower\nAttack. Always hits in\nrain. Hits both targets.\nWeather-based.");
+static const u8 sMoveFourLineDescription_MoveDireClaw[] = _("50% chance to sleep,\nparalyze, or poison.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6408,4 +6414,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_WILDBOLT_STORM - 1] = sMoveFourLineDescription_MoveWildboltStorm,
     [MOVE_SANDSEAR_STORM - 1] = sMoveFourLineDescription_MoveSandsearStorm,
     [MOVE_SPRINGTIDE_STORM - 1] = sMoveFourLineDescription_MoveSpringtideStorm,
+    [MOVE_DIRE_CLAW - 1] = sMoveFourLineDescription_MoveDireClaw,
 };
