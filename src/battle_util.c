@@ -4903,7 +4903,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 && !GetAbilityState(commander, ABILITY_COMMANDER)
                 && IsBattlerAlive(BATTLE_PARTNER(commander))
                 && GET_BASE_SPECIES_ID(gBattleMons[commander].species) == SPECIES_TATSUGIRI
-                && GET_BASE_SPECIES_ID(gBattleMons[commander].species) == SPECIES_DONDOZO)
+                && GET_BASE_SPECIES_ID(gBattleMons[BATTLE_PARTNER(commander)].species) == SPECIES_DONDOZO)
             {
                 u8 partner = BATTLE_PARTNER(commander);
                 gStatuses3[commander] |= STATUS3_SEMI_INVULNERABLE;
@@ -4912,6 +4912,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
                 gBattlerAbility = gBattlerAttacker = battler;
                 BattleScriptPushCursorAndCallback(BattleScript_CommanderActivates);
+                effect++;
             }
         }
 
