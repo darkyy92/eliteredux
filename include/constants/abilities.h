@@ -431,7 +431,7 @@
 #define ABILITY_KINGS_WRATH 409 // Lowering any stats on its side raises Atk and Def.
 #define ABILITY_QUEENS_MOURNING 410 // Lowering any stats on its side raises SpAtk and SpDef.
 #define ABILITY_TOXIC_SPILL 411 // Non-Poison-types get 1/8 dmg every turn when on field.
-#define ABILITY_DESERT_CLOAK 412 // Protects it's side from status and secondary effects in sand.
+#define ABILITY_DESERT_CLOAK 412 // Protects its side from status and secondary effects in sand.
 #define ABILITY_DRACONIZE 413 // Normal moves become Dragon and get a 10% boost.
 #define ABILITY_PRETTY_PRINCESS 414 // Does 50% more damage if the target has any lowered stat.
 #define ABILITY_SELF_REPAIR 415 // Leftovers + Natural Cure.
