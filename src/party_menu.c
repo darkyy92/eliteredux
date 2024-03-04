@@ -2698,9 +2698,8 @@ static u8 DisplaySelectionWindow(u8 windowType)
             struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
             u8 j = (sPartyMenuInternal->actions[i] - MENU_EVOLUTIONS);
             u16 targetspecies = GetEvolutionForMon(mon, j);
-            const u8* longName = GetSpeciesLongName(targetspecies);
 
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, longName ? longName : gSpeciesNames[targetspecies]);
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, SaveSpeciesWithSurname(targetspecies));
         }
         
     }

@@ -19,6 +19,7 @@ void ShowPokemonSummaryScreenSet40EF(u8 mode, struct BoxPokemon *mons, u8 monInd
 u8 GetMoveSlotToReplace(void);
 void SummaryScreen_SetAnimDelayTaskId(u8 taskId);
 void CopyNatureName(u8 nature);
+const u8* SaveSpeciesWithSurname(u16 species);
 
 // The Pokemon Summary Screen can operate in different modes. Certain features,
 // such as move re-ordering, are available in the different modes.

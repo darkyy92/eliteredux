@@ -4555,7 +4555,7 @@ const u8 gText_Dusk[] = _("(Dusk Form)");
 const u8 gText_X[] = _("X");
 const u8 gText_Y[] = _("Y");
 
-static void SaveSpeciesWithSurname(u16 species){
+const u8* SaveSpeciesWithSurname(u16 species){
     if(species == SPECIES_CHARIZARD_MEGA_X || species == SPECIES_MEWTWO_MEGA_X){ //Mega X
         StringCopy(gStringVar1, gText_Mega);
         StringCopy(gStringVar2, gSpeciesNames[species]);
@@ -4620,6 +4620,8 @@ static void SaveSpeciesWithSurname(u16 species){
         else
             StringCopy(gStringVar4, gSpeciesNames[species]);
     }
+
+    return gStringVar4;
 }
 
 static void BufferMonPokemonEvolutionData(void)
