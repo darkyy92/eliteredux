@@ -2271,7 +2271,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
              || (gBattleMoves[move].flags2 & FLAG_ALWAYS_CRIT)
-             || (gBattleMoves[move].effect == EFFECT_FLAIL && gBattleMons[battlerDef].maxHP / 2 >= gBattleMons[battlerDef].hp)
+             || (gBattleMoves[move].effect == EFFECT_FLAIL && gBattleMons[battlerAtk].hp <= gBattleMons[battlerAtk].maxHP / 2)
              || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MERCILESS)  &&
              (( gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)                   ||
              (  gBattleMons[battlerDef].statStages[STAT_SPEED] < DEFAULT_STAT_STAGE) ||
