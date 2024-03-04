@@ -940,6 +940,10 @@ gBattleAnims_Moves::
 	.4byte Move_PSYSHIELD_BASH
 	.4byte Move_CEASELESS_EDGE
 	.4byte Move_VICTORY_DANCE
+	.4byte Move_BLEAKWIND_STORM
+	.4byte Move_WILDBOLT_STORM
+	.4byte Move_SANDSEAR_STORM
+	.4byte Move_SPRINGTIDE_STORM
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -7021,10 +7025,10 @@ Move_HURRICANE:
 	setalpha 12, 8
 	fadetobg BG_HURRICANE
 	waitbgfadeout
-	launchtask AnimTask_StartSlidingBg 0x5 0x4 0x1000 0x0 0x1 0xffff
+	createvisualtask AnimTask_StartSlidingBg, 0x5, 0x1000, 0x0, 0x1, 0xffff
 	waitbgfadein
 	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
-	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x0 0x3 0x40 0x1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 64, 1
 	call HurricaneGust
 	delay 0xA
 	call HurricaneGust
@@ -7044,6 +7048,10 @@ Move_HURRICANE:
 	end
 HurricaneGust:
 	createsprite gEllipticalGustSpriteTemplate, ANIM_ATTACKER, 2, 0, -16
+	createvisualtask AnimTask_AnimateGustTornadoPalette, 5, 1, 70
+	return
+HurricaneGustCentered:
+	createsprite gEllipticalGustCenteredSpriteTemplate, ANIM_ATTACKER, 2, 0, -16
 	createvisualtask AnimTask_AnimateGustTornadoPalette, 5, 1, 70
 	return
 
@@ -28185,3 +28193,162 @@ Move_VICTORY_DANCE::
 	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	end
+
+@Credits to Skeli
+Move_BLEAKWIND_STORM::
+	loadspritegfx ANIM_TAG_GUST
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
+	createvisualtaskontargets AnimTask_ShakeMon2, 2, 0, ANIM_TARGET, 0, 4, 0x58, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x4, 0x0, 0xB, 0x7FFF
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	call HurricaneGustCentered
+	call BleakwindStormIceSwirl
+	waitforvisualfinish
+	stopsound
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x1, 0xB, 0x0, 0x7FFF
+	waitforvisualfinish
+	end
+BleakwindStormIceSwirl:
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x210, 0x1e, 0xa, 0x32, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x24, 0x1e0, 0x14, 0xd, 0xffd2, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x240, 0x14, 0x5, 0x2a, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x23, 0x190, 0x19, 0x8, 0xffd6, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x200, 0x19, 0xd, 0x2e, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_BleakwindIce, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x1d0, 0x1e, 0xc, 0xffce, ANIM_TARGET
+	return
+
+@Credits to Skeli
+Move_WILDBOLT_STORM::
+	loadspritegfx ANIM_TAG_GUST
+	loadspritegfx ANIM_TAG_SPARK_2
+	fadetobg BG_MAX_LIGHTNING
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 0x5, 0xff00, 0x0, 0x1, 0xffff
+	waitbgfadein
+	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
+	createvisualtaskontargets AnimTask_ShakeMon2, 2, 0, ANIM_TARGET, 0, 4, 0x58, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 0x4, 0x0, 0xB, 0x07FE
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	call HurricaneGustCentered
+	call WildboltStormSparkSwirl
+	waitforvisualfinish
+	stopsound
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x1, 0xB, 0x0, 0x07FE
+	call UnsetPsychicBg
+	waitforvisualfinish
+	end
+
+WildboltStormSparkSwirl:
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x210, 0x1e, 0xa, 0x32, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x24, 0x1e0, 0x14, 0xd, 0xffd2, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x240, 0x14, 0x5, 0x2a, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x23, 0x190, 0x19, 0x8, 0xffd6, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x200, 0x19, 0xd, 0x2e, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_WildboltStormSpark, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x1d0, 0x1e, 0xc, 0xffce, ANIM_TARGET
+	return
+
+@Credits to Skeli
+Move_SANDSEAR_STORM::
+	loadspritegfx ANIM_TAG_GUST
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_GUST, 0x0, 0xA, 0xA, 0x190B
+	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
+	createvisualtaskontargets AnimTask_ShakeMon2, 2, 0, ANIM_TARGET, 0, 4, 0x58, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x4, 0x0, 0xB, 0x1F
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	call HurricaneGustCentered
+	call SandsearStormFireSpin
+	waitforvisualfinish
+	stopsound
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x1, 0xB, 0x0, 0x1F
+	waitforvisualfinish
+	end
+
+SandsearStormFireSpin:
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x1c, 0x210, 0x1e, 0xd, 0x32, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x1e0, 0x14, 0x10, 0xffd2, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x21, 0x240, 0x14, 0x8, 0x2a, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x1f, 0x190, 0x19, 0xb, 0xffd6, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x1c, 0x200, 0x19, 0x10, 0x2e, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gFireSpinSpriteTemplate, ANIM_TARGET, 2, 6, 0x0, 0x21, 0x1d0, 0x1e, 0xf, 0xffce, ANIM_TARGET
+	return
+
+@Credits to Skeli
+Move_SPRINGTIDE_STORM::
+	loadspritegfx ANIM_TAG_GUST
+	loadspritegfx ANIM_TAG_RED_HEART
+	playsewithpan SE_M_GUST, SOUND_PAN_TARGET
+	createvisualtaskontargets AnimTask_ShakeMon2, 2, 0, ANIM_TARGET, 0, 4, 0x58, 1
+	createvisualtask AnimTask_BlendColorCycle, 0x2, F_PAL_TARGET, 0x2, 0x6, 0x0, 0xB, 0x7ADF
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	call HurricaneGustCentered
+	call SpringtideStormHeartSwirl
+	waitforvisualfinish
+	stopsound
+	end
+
+SpringtideStormHeartSwirl:
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x210, 0x1e, 0xa, 0x32, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x24, 0x1e0, 0x14, 0xd, 0xffd2, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x240, 0x14, 0x5, 0x2a, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x23, 0x190, 0x19, 0x8, 0xffd6, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x20, 0x200, 0x19, 0xd, 0x2e, ANIM_TARGET
+	delay 0x2
+	createspriteontargets gSpriteTemplate_SpringtideHeart, ANIM_TARGET, 2, 6, 0x0, 0x25, 0x1d0, 0x1e, 0xc, 0xffce, ANIM_TARGET
+	return

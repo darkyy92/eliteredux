@@ -3613,6 +3613,22 @@ static const u8 sMoveTwoLineDescription_MoveVictoryDance[] = _(
     "Raises Attack, Defense, and Speed\n"
     "by 1 stage.");
 
+static const u8 sMoveTwoLineDescription_MoveBleakwindStorm[] = _(
+    "30% chance to lower Defense.\n"
+    "Always hits in rain.");
+
+static const u8 sMoveTwoLineDescription_MoveWildboltStorm[] = _(
+    "20% chance to paralyze.\n"
+    "Always hits in rain.");
+
+static const u8 sMoveTwoLineDescription_MoveSandsearStorm[] = _(
+    "20% chance to burn.\n"
+    "Always hits in rain.");
+
+static const u8 sMoveTwoLineDescription_MoveSpringtideStorm[] = _(
+    "30% chance to lower attack.\n"
+    "Always hits in rain.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4536,6 +4552,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PSYSHIELD_BASH - 1] = sMoveTwoLineDescription_MovePsyshieldBash,
     [MOVE_CEASELESS_EDGE - 1] = sMoveTwoLineDescription_MoveCeaselessEdge,
     [MOVE_VICTORY_DANCE - 1] = sMoveTwoLineDescription_MoveVictoryDance,
+    [MOVE_BLEAKWIND_STORM - 1] = sMoveTwoLineDescription_MoveBleakwindStorm,
+    [MOVE_WILDBOLT_STORM - 1] = sMoveTwoLineDescription_MoveWildboltStorm,
+    [MOVE_SANDSEAR_STORM - 1] = sMoveTwoLineDescription_MoveSandsearStorm,
+    [MOVE_SPRINGTIDE_STORM - 1] = sMoveTwoLineDescription_MoveSpringtideStorm,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5458,6 +5478,10 @@ static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n5
 static const u8 sMoveFourLineDescription_MovePsyshieldBash[] = _("Deals damage. Raises\nDefense by 1 stage.\nMighty horn.");
 static const u8 sMoveFourLineDescription_MoveCeaselessEdge[] = _("Deals damage.\nApplies spikes.\nKeen edge.");
 static const u8 sMoveFourLineDescription_MoveVictoryDance[] = _("Raises Attack,\nDefense, and Speed\nby 1 stage.\nDance move.");
+static const u8 sMoveFourLineDescription_MoveBleakwindStorm[] = _("30% chance to lower\nDefense. Always hits\nin rain. Hits both targets.\nWeather-based.");
+static const u8 sMoveFourLineDescription_MoveWildboltStorm[] = _("20% chance to paralyze.\nAlways hits in rain.\nHits both targets.\nWeather-based.");
+static const u8 sMoveFourLineDescription_MoveSandsearStorm[] = _("20% chance to burn.\nAlways hits in rain.\nHits both targets.\nWeather-based.");
+static const u8 sMoveFourLineDescription_MoveSpringtideStorm[] = _("30% chance to lower\nAttack. Always hits in\nrain. Hits both targets.\nWeather-based.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6380,4 +6404,8 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_PSYSHIELD_BASH - 1] = sMoveFourLineDescription_MovePsyshieldBash,
     [MOVE_CEASELESS_EDGE - 1] = sMoveFourLineDescription_MoveCeaselessEdge,
     [MOVE_VICTORY_DANCE - 1] = sMoveFourLineDescription_MoveVictoryDance,
+    [MOVE_BLEAKWIND_STORM - 1] = sMoveFourLineDescription_MoveBleakwindStorm,
+    [MOVE_WILDBOLT_STORM - 1] = sMoveFourLineDescription_MoveWildboltStorm,
+    [MOVE_SANDSEAR_STORM - 1] = sMoveFourLineDescription_MoveSandsearStorm,
+    [MOVE_SPRINGTIDE_STORM - 1] = sMoveFourLineDescription_MoveSpringtideStorm,
 };

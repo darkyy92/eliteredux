@@ -11203,6 +11203,54 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .split = SPLIT_PHYSICAL,
     },
+    [MOVE_BLEAKWIND_STORM] =
+    {
+        .effect = EFFECT_SPEED_DOWN_HIT,
+        .power = 100,
+        .type = TYPE_FLYING,
+        .accuracy = 80,
+        .pp = 10,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_BOTH,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_WEATHER_BASED,
+        .split = SPLIT_SPECIAL,
+    },
+    [MOVE_WILDBOLT_STORM] =
+    {
+        .effect = EFFECT_PARALYZE_HIT,
+        .power = 100,
+        .type = TYPE_ELECTRIC,
+        .accuracy = 80,
+        .pp = 10,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_BOTH,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_WEATHER_BASED,
+        .split = SPLIT_SPECIAL,
+    },
+    [MOVE_SANDSEAR_STORM] =
+    {
+        .effect = EFFECT_BURN_HIT,
+        .power = 100,
+        .type = TYPE_GROUND,
+        .accuracy = 80,
+        .pp = 10,
+        .secondaryEffectChance = 20,
+        .target = MOVE_TARGET_BOTH,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_WEATHER_BASED,
+        .split = SPLIT_SPECIAL,
+    },
+    [MOVE_SPRINGTIDE_STORM] =
+    {
+        .effect = EFFECT_ATTACK_DOWN_HIT,
+        .power = 100,
+        .type = TYPE_FAIRY,
+        .accuracy = 80,
+        .pp = 10,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_BOTH,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_WEATHER_BASED,
+        .split = SPLIT_SPECIAL,
+    },
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {

@@ -546,5 +546,6 @@ void AnimDracoMeteorRock(struct Sprite *sprite);
 
 // battle_anim_new.c
 void CoreEnforcerLoadBeamTarget(struct Sprite* sprite);
+void InitSpritePosToAnimTargetsCentre(struct Sprite *sprite, bool32 respectMonPicOffsets);
 
 #endif // GUARD_BATTLE_ANIM_H

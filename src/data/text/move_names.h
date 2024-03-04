@@ -921,6 +921,10 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_PSYSHIELD_BASH] = _("PsyshieldBsh"),
     [MOVE_CEASELESS_EDGE] = _("CeaselessEdg"),
     [MOVE_VICTORY_DANCE] = _("VictoryDance"),
+    [MOVE_BLEAKWIND_STORM] = _("BleakwndStrm"),
+    [MOVE_WILDBOLT_STORM] = _("WildboltStrm"),
+    [MOVE_SANDSEAR_STORM] = _("SandsearStrm"),
+    [MOVE_SPRINGTIDE_STORM] = _("SprngtidStrm"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1848,4 +1852,8 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_PSYSHIELD_BASH] = _("Psyshield Bash"),
     [MOVE_CEASELESS_EDGE] = _("Ceaseless Edge"),
     [MOVE_VICTORY_DANCE] = _("Victory Dance"),
+    [MOVE_BLEAKWIND_STORM] = _("Bleakwind Storm"),
+    [MOVE_WILDBOLT_STORM] = _("Wildbolt Storm"),
+    [MOVE_SANDSEAR_STORM] = _("Sandsear Storm"),
+    [MOVE_SPRINGTIDE_STORM] = _("Springtide Storm"),
 };
