@@ -180,6 +180,7 @@ struct RoundStruct
     u32 angelsWrathProtected:1;
     u8 glaiveRush:1;
     u8 silkTrapped:1;
+    u8 attackCancelled:1;
 };
 
 struct TurnStruct

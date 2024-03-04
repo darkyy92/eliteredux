@@ -1734,6 +1734,7 @@ static void Cmd_attackcanceler(void)
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
     {
         CancelMultiTurnMoves(gBattlerAttacker);
+        gRoundStructs[gBattlerAttacker].attackCancelled = TRUE;
         return;
     }
     if (!gBattleMons[gBattlerAttacker].pp[gCurrMovePos] && gCurrentMove != MOVE_STRUGGLE

@@ -3959,7 +3959,11 @@ u8 AtkCanceller_UnableToUseMove(void)
 
     } while (gBattleStruct->atkCancellerTracker != CANCELLER_END && gBattleStruct->atkCancellerTracker != CANCELLER_END2 && effect == 0);
 
-    if (effect == 2)
+    if (effect == 1)
+    {
+        gRoundStructs[gBattlerAttacker].attackCancelled = TRUE;
+    }
+    else if (effect == 2)
     {
         gActiveBattler = gBattlerAttacker;
         BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
@@ -3998,6 +4002,11 @@ u8 AtkCanceller_UnableToUseMove2(void)
         }
 
     } while (gBattleStruct->atkCancellerTracker != CANCELLER_END2 && effect == 0);
+
+    if (effect == 1)
+    {
+        gRoundStructs[gBattlerAttacker].attackCancelled = TRUE;
+    }
 
     return effect;
 }
@@ -17029,12 +17038,7 @@ bool8 isWonderRoomActive(void){
 bool8 CanUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
     if(IsBattlerAlive(sBattlerAttacker)                         &&
        IsBattlerAlive(sBattlerTarget)                           &&
-       !gRoundStructs[sBattlerAttacker].confusionSelfDmg      &&
-       !gRoundStructs[sBattlerAttacker].extraMoveUsed         &&
-       !gRoundStructs[sBattlerAttacker].flinchImmobility      &&
-       !gRoundStructs[sBattlerAttacker].powderSelfDmg         &&
-       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP) &&
-       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
+       !gRoundStructs[sBattlerAttacker].attackCancelled)
         return TRUE;
     else
         return FALSE;
