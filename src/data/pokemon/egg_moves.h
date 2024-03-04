@@ -1358,7 +1358,8 @@ const u16 gEggMoves[] = {
         MOVE_AQUA_JET,
         MOVE_WATER_PULSE,
         MOVE_BRINE,
-        MOVE_ACID_SPRAY),
+        MOVE_ACID_SPRAY,
+        MOVE_BARB_BARRAGE),
 
     egg_moves(SHUCKLE,
         MOVE_SWEET_SCENT,

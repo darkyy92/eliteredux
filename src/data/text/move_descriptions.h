@@ -3602,6 +3602,10 @@ static const u8 sMoveTwoLineDescription_MoveChloroblast[] = _(
     "Deal powerful damage.\n"
     "Take 50% max HP damage.");
 
+static const u8 sMoveTwoLineDescription_MovePsyshieldBash[] = _(
+    "Deals damage.\n"
+    "Raises Defense by 1 stage.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4522,6 +4526,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveTwoLineDescription_MoveMalignantChain,
     [MOVE_LUNAR_BLESSING - 1] = sMoveTwoLineDescription_MoveLunarBlessing,
     [MOVE_CHLOROBLAST - 1] = sMoveTwoLineDescription_MoveChloroblast,
+    [MOVE_PSYSHIELD_BASH - 1] = sMoveTwoLineDescription_MovePsyshieldBash,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5441,6 +5446,7 @@ static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
 static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP to all\nallied battlers and\ncures their status.");
 static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n50% max HP recoil.");
+static const u8 sMoveFourLineDescription_MovePsyshieldBash[] = _("Deals damage. Raises\nDefense by 1 stage.\nMighty horn.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6360,4 +6366,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveFourLineDescription_MoveMalignantChain,
     [MOVE_LUNAR_BLESSING - 1] = sMoveFourLineDescription_MoveLunarBlessing,
     [MOVE_CHLOROBLAST - 1] = sMoveFourLineDescription_MoveChloroblast,
+    [MOVE_PSYSHIELD_BASH - 1] = sMoveFourLineDescription_MovePsyshieldBash,
 };
