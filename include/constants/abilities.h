@@ -547,7 +547,7 @@
 #define ABILITY_FLAMING_JAWS 525 // Biting moves have 50% chance to burn the target.
 #define ABILITY_MONSTER_HUNTER 526 // Does 50% more damage to Dark-types.
 #define ABILITY_CROWNED_SWORD 527 // Intrepid Sword + Anger Point.
-#define ABILITY_CROWNED_SHIELD 528 // Intrepid Shield + Stamina.
+#define ABILITY_CROWNED_SHIELD 528 // Dauntless Shield + Stamina.
 #define ABILITY_BERSERK_DNA 529 // Sharply ups highest attacking stat but confuses on entry.
 #define ABILITY_CROWNED_KING 530 // Unnerve + Grim Neigh + Chilling Neigh.
 #define ABILITY_SNAP_TRAP_WHEN_HIT 531 // Counters contact with 50BP Snap Trap.
