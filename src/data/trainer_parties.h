@@ -33285,18 +33285,20 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .species = SPECIES_ZAMAZENTA,
     .heldItem = ITEM_RUSTED_SHIELD,
     .ability = 1,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_BITE, MOVE_HOWL, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BEHEMOTH_BASH, MOVE_BODY_PRESS, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
     },
     {
     .lvl = 0,
     .species = SPECIES_ZACIAN,
     .heldItem = ITEM_RUSTED_SWORD,
-    .ability = 1,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_BEHEMOTH_BLADE, MOVE_HOWL, MOVE_IRON_FANGS, MOVE_LOVELY_BITE
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_BEHEMOTH_BLADE, MOVE_SACRED_SWORD, MOVE_CLOSE_COMBAT, MOVE_PIXIE_SLASH
     },
     {
     .lvl = 0,
@@ -33306,17 +33308,17 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 0, 4},
     .nature = NATURE_MODEST,
-    .moves = MOVE_STEALTH_ROCK, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
+    .moves = MOVE_MOONGEIST_BEAM, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
     },
     {
     .lvl = 0,
     .species = SPECIES_DIALGA_ORIGIN,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_ASSAULT_VEST,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_BODY_PRESS, MOVE_DRAGON_BREATH, MOVE_SCALE_SHOT, MOVE_SCARY_FACE
+    .evs = {252, 0, 0, 252, 0, 4},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_STEEL_BEAM, MOVE_ROAR_OF_TIME, MOVE_ANCIENT_POWER, MOVE_DRAGON_BREATH
     },
     {
     .lvl = 0,
