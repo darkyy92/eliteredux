@@ -9949,10 +9949,9 @@ u16 GetFormShiftSpecies(u16 species)
 
     baseSpecies = GetFormSpeciesId(species, 0);
     if (!baseSpecies) return SPECIES_NONE;
-    for (i = 0; gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT; i++)
+    for (i = 0; gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT || gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT_GENDER; i++)
     {
-        if (gEvolutionTable[baseSpecies][i].targetSpecies == species
-            && gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT)
+        if (gEvolutionTable[baseSpecies][i].targetSpecies == species)
             return baseSpecies;
     }
 
@@ -9982,12 +9981,23 @@ const u8 gSpeciesNameLongRotomWash[] = _("Rotom Wash");
 const u8 gSpeciesNameLongTornadusTherian[] = _("Tornadus Therian");
 const u8 gSpeciesNameLongThundurusTherian[] = _("Thundurus Therian");
 const u8 gSpeciesNameLongLandorusTherian[] = _("Landorus Therian");
+const u8 gSpeciesNameLongEnamorusTherian[] = _("Enamorus Therian");
 
 const u8 gSpeciesNameLongKeldeoResolute[] = _("Keldeo Resolute");
 
 const u8 gSpeciesNameLongOgerponHearthflameMask[] = _("Ogerpon Hearthflame");
 const u8 gSpeciesNameLongOgerponCornerstoneMask[] = _("Ogerpon Cornerstone");
 const u8 gSpeciesNameLongOgerponWellspringMask[] = _("Ogerpon Wellspring");
+
+const u8 gSpeciesNameLongFurfrouDandy[] = _("Furfrou Dandy");
+const u8 gSpeciesNameLongFurfrouDebutante[] = _("Furfrou Debutante");
+const u8 gSpeciesNameLongFurfrouDiamond[] = _("Furfrou Diamond");
+const u8 gSpeciesNameLongFurfrouHeart[] = _("Furfrou Heart");
+const u8 gSpeciesNameLongFurfrouKabuki[] = _("Furfrou Kabuki");
+const u8 gSpeciesNameLongFurfrouLaReine[] = _("Furfrou La Reine");
+const u8 gSpeciesNameLongFurfrouMatron[] = _("Furfrou Matron");
+const u8 gSpeciesNameLongFurfrouPharaoh[] = _("Furfrou Pharaoh");
+const u8 gSpeciesNameLongFurfrouStar[] = _("Furfrou Star");
 
 const u8* GetSpeciesLongName(u16 species)
 {
@@ -10035,6 +10045,8 @@ const u8* GetSpeciesLongName(u16 species)
             return gSpeciesNameLongThundurusTherian;
         case SPECIES_LANDORUS_THERIAN:
             return gSpeciesNameLongLandorusTherian;
+        case SPECIES_ENAMORUS_THERIAN:
+            return gSpeciesNameLongEnamorusTherian;
 
         case SPECIES_KELDEO_RESOLUTE:
             return gSpeciesNameLongKeldeoResolute;
@@ -10045,6 +10057,25 @@ const u8* GetSpeciesLongName(u16 species)
             return gSpeciesNameLongOgerponCornerstoneMask;
         case SPECIES_OGERPON_WELLSPRING_MASK:
             return gSpeciesNameLongOgerponWellspringMask;
+
+        case SPECIES_FURFROU_DANDY_TRIM:
+            return gSpeciesNameLongFurfrouDandy;
+        case SPECIES_FURFROU_DEBUTANTE_TRIM:
+            return gSpeciesNameLongFurfrouDebutante;
+        case SPECIES_FURFROU_DIAMOND_TRIM:
+            return gSpeciesNameLongFurfrouDiamond;
+        case SPECIES_FURFROU_HEART_TRIM:
+            return gSpeciesNameLongFurfrouHeart;
+        case SPECIES_FURFROU_KABUKI_TRIM:
+            return gSpeciesNameLongFurfrouKabuki;
+        case SPECIES_FURFROU_LA_REINE_TRIM:
+            return gSpeciesNameLongFurfrouLaReine;
+        case SPECIES_FURFROU_MATRON_TRIM:
+            return gSpeciesNameLongFurfrouMatron;
+        case SPECIES_FURFROU_PHARAOH_TRIM:
+            return gSpeciesNameLongFurfrouPharaoh;
+        case SPECIES_FURFROU_STAR_TRIM:
+            return gSpeciesNameLongFurfrouStar;
 
         default:
             return NULL;

@@ -6397,6 +6397,10 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
         if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
             return gEvolutionTable[species][i].targetSpecies;
     break;
+    case EVO_FORM_SHIFT_GENDER:
+        if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies && GetMonGender(mon) == gEvolutionTable[species][i].param)
+            return gEvolutionTable[species][i].targetSpecies;
+    break;
     case EVO_FRIENDSHIP:
         if (friendship >= 220)
             return gEvolutionTable[species][i].targetSpecies;

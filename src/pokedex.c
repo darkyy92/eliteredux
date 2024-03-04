@@ -7621,6 +7621,21 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT);
             PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
             break;
+        case EVO_FORM_SHIFT_GENDER:
+            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+            if (targetSpecies == actualSpecies)
+            {
+                depth_i--;
+                continue;
+            }
+            CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);
+            handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
+            if (gEvolutionTable[species][i].param == MALE)
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Male);
+            else
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Female);
+            PrintInfoScreenTextSmall(gStringVar4, base_x + depth_x*depth+base_x_offset, base_y + base_y_offset*base_i);
+            break;
         case EVO_TRADE:
             targetSpecies = gEvolutionTable[species][i].targetSpecies;
             CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);

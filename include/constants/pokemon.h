@@ -395,6 +395,7 @@
 #define EVO_SPECIFIC_MAP                  32     // Pokémon levels up on specified map
 #define EVO_ITEM_HOLD                     33     // Pokémon levels up, holds specified item
 #define EVO_FORM_SHIFT                    34     // Form shift
+#define EVO_FORM_SHIFT_GENDER             35     // Form shift by gender
 
 #define EVOS_PER_MON 10
 
