@@ -3609,6 +3609,10 @@ static const u8 sMoveTwoLineDescription_MovePsyshieldBash[] = _(
 static const u8 sMoveTwoLineDescription_MoveCeaselessEdge[] = _(
     "Deals damage. Applies spikes.");
 
+static const u8 sMoveTwoLineDescription_MoveVictoryDance[] = _(
+    "Raises Attack, Defense, and Speed\n"
+    "by 1 stage.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4531,6 +4535,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_CHLOROBLAST - 1] = sMoveTwoLineDescription_MoveChloroblast,
     [MOVE_PSYSHIELD_BASH - 1] = sMoveTwoLineDescription_MovePsyshieldBash,
     [MOVE_CEASELESS_EDGE - 1] = sMoveTwoLineDescription_MoveCeaselessEdge,
+    [MOVE_VICTORY_DANCE - 1] = sMoveTwoLineDescription_MoveVictoryDance,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5452,6 +5457,7 @@ static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP t
 static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n50% max HP recoil.");
 static const u8 sMoveFourLineDescription_MovePsyshieldBash[] = _("Deals damage. Raises\nDefense by 1 stage.\nMighty horn.");
 static const u8 sMoveFourLineDescription_MoveCeaselessEdge[] = _("Deals damage.\nApplies spikes.\nKeen edge.");
+static const u8 sMoveFourLineDescription_MoveVictoryDance[] = _("Raises Attack,\nDefense, and Speed\nby 1 stage.\nDance move.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6373,4 +6379,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_CHLOROBLAST - 1] = sMoveFourLineDescription_MoveChloroblast,
     [MOVE_PSYSHIELD_BASH - 1] = sMoveFourLineDescription_MovePsyshieldBash,
     [MOVE_CEASELESS_EDGE - 1] = sMoveFourLineDescription_MoveCeaselessEdge,
+    [MOVE_VICTORY_DANCE - 1] = sMoveFourLineDescription_MoveVictoryDance,
 };

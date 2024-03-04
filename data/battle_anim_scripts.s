@@ -939,6 +939,7 @@ gBattleAnims_Moves::
 	.4byte Move_CHLOROBLAST
 	.4byte Move_PSYSHIELD_BASH
 	.4byte Move_CEASELESS_EDGE
+	.4byte Move_VICTORY_DANCE
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -28164,3 +28165,23 @@ CeaselessEdgeSlashes:
 	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
 	createsprite gSpriteTemplate_CeaselessEdgeSlash, ANIM_TARGET, 2, 8, -4, FALSE, TRUE
 	return
+
+@Credits to Skeli
+Move_VICTORY_DANCE::
+	loadspritegfx ANIM_TAG_HOLLOW_ORB
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 40, 6, 3, 3
+	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
+	delay 0x8
+	createvisualtask AnimTask_BlendPalInAndOutByTag, 0x5, ANIM_TAG_HOLLOW_ORB, 0x0B1D, 0xe, 0x0, 0x3 @;Light orange
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0x0
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0x2b
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0x55
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0x80
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0xaa
+	createsprite gDragonDanceOrbSpriteTemplate, ANIM_ATTACKER, 2, 0xd5
+	delay 0x1e
+	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
+	delay 0x1e
+	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	end

@@ -920,6 +920,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_CHLOROBLAST] = _("Chloroblast"),
     [MOVE_PSYSHIELD_BASH] = _("PsyshieldBsh"),
     [MOVE_CEASELESS_EDGE] = _("CeaselessEdg"),
+    [MOVE_VICTORY_DANCE] = _("VictoryDance"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1846,4 +1847,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_CHLOROBLAST] = _("Chloroblast"),
     [MOVE_PSYSHIELD_BASH] = _("Psyshield Bash"),
     [MOVE_CEASELESS_EDGE] = _("Ceaseless Edge"),
+    [MOVE_VICTORY_DANCE] = _("Victory Dance"),
 };

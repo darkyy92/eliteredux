@@ -26161,7 +26161,7 @@ static const struct LevelUpMove sSneaselHisuianLevelUpLearnset[] = {
 static const struct LevelUpMove sSamurottHisuianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_NIGHT_SLASH),
     LEVEL_UP_MOVE(0, MOVE_SACRED_SWORD),
-    LEVEL_UP_MOVE(0, MOVE_CEASELESS_EDGE)
+    LEVEL_UP_MOVE(0, MOVE_CEASELESS_EDGE),
     LEVEL_UP_MOVE(1, MOVE_KARATE_CHOP),
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
     LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),
@@ -26190,6 +26190,7 @@ static const struct LevelUpMove sSamurottHisuianLevelUpLearnset[] = {
 
 static const struct LevelUpMove sLilligantHisuianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_ROCK_SMASH),
+    LEVEL_UP_MOVE(0, MOVE_VICTORY_DANCE),
     LEVEL_UP_MOVE(1, MOVE_ABSORB),
     LEVEL_UP_MOVE(4, MOVE_GROWTH),
     LEVEL_UP_MOVE(5, MOVE_LEAFAGE),

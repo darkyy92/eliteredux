@@ -11192,6 +11192,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
         .split = SPLIT_PHYSICAL,
     },
+    [MOVE_VICTORY_DANCE] =
+    {
+        .effect = EFFECT_PLACEHOLDER,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
+        .split = SPLIT_PHYSICAL,
+    },
 };
 
 const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
