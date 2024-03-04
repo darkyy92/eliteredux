@@ -9454,6 +9454,7 @@ static const struct LevelUpMove sMetagrossLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_IRON_DEFENSE),
     LEVEL_UP_MOVE(50, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE(53, MOVE_STEEL_BEAM),
+    LEVEL_UP_MOVE(60, MOVE_HEAVY_SLAM),
     LEVEL_UP_END
 };
 
