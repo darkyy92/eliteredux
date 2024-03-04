@@ -851,6 +851,26 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_GARCHOMPITE_R)
                 return SPECIES_GARCHOMP_MEGA_REDUX;
         break;
+        case SPECIES_DIALGA:
+            if(item == ITEM_ADAMANT_ORB)
+                return SPECIES_DIALGA_ORIGIN;
+        break;
+        case SPECIES_PALKIA:
+            if(item == ITEM_LUSTROUS_ORB)
+                return SPECIES_PALKIA_ORIGIN;
+        break;
+        case SPECIES_GIRATINA:
+            if(item == ITEM_GRISEOUS_ORB)
+                return SPECIES_GIRATINA_ORIGIN;
+        break;
+        case SPECIES_ZAMAZENTA:
+            if(item == ITEM_RUSTED_SHIELD)
+                return SPECIES_ZAMAZENTA_CROWNED_SHIELD;
+        break;
+        case SPECIES_ZACIAN:
+            if(item == ITEM_RUSTED_SWORD)
+                return SPECIES_ZACIAN_CROWNED_SWORD;
+        break;
         /*case SPECIES_KINGAMBIT_REDUX:
             if(item == ITEM_KINGAMBITITE_R)
                 return SPECIES_KINGAMBIT_REDUX_MEGA;
