@@ -26014,6 +26014,7 @@ static const struct LevelUpMove sVoltorbHisuianLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sElectrodeHisuianLevelUpLearnset[] = {
+    LEVEL_UP_MOVE(0, MOVE_CHLOROBLAST),
     LEVEL_UP_MOVE(1, MOVE_CHARGE),
     LEVEL_UP_MOVE(1, MOVE_CREEPING_THORNS),
     LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),

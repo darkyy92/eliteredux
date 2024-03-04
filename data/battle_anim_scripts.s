@@ -936,6 +936,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_UPPER_HAND
 	.4byte Move_NONE @ MOVE_MALIGNANT_CHAIN
 	.4byte Move_NONE @ MOVE_LUNAR_BLESSING
+	.4byte Move_CHLOROBLAST
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -28035,3 +28036,63 @@ Special_CriticalCaptureBallThrow:
 	createvisualtask AnimTask_IsBallBlockedByTrainer, 2
 	jumpreteq -1, BallThrowTrainerBlock
 	goto BallThrowEnd
+@Credits to Skeli
+Move_CHLOROBLAST::
+	loadspritegfx ANIM_TAG_THIN_RING
+	loadspritegfx ANIM_TAG_HYDRO_PUMP
+	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_THIN_RING, 0x0, 0xA, 0xA, 0x03AC
+	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_HYDRO_PUMP, 0x0, 0xC, 0xC, 0x03AC
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BG, 0x2, 0x0, 0x10, 0x0
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x2, 0x0, 0x10, 0x03AC
+	createvisualtask AnimTask_BlendNonAttackerPalettes, 0x2, 0x2, 0x0, 0x10, 0x0
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_ATTACKER
+	createsprite gThinRingShrinkingSpriteTemplate ANIM_ATTACKER, 0x28, 0, 0, 0, 0
+	delay 0xe
+	createsprite gThinRingShrinkingSpriteTemplate ANIM_ATTACKER, 0x28, 0, 0, 0, 0
+	delay 0xe
+	createsprite gThinRingShrinkingSpriteTemplate ANIM_ATTACKER, 0x28, 0, 0, 0, 0
+	waitforvisualfinish
+	createvisualtask AnimTask_AllBattlersInvisibleExceptAttackerAndTarget, 0xA,
+	fadetobg BG_CHLOROBLAST
+	waitbgfadeout
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x0, 0x10, 0x0, 0x0
+	delay 0x10
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 4, 74, 1
+	createsoundtask SoundTask_LoopSEAdjustPanning, 0xf0, 0xFF00 | SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 0x1, 0x17, 0x0, 0x5
+	createvisualtask AnimTask_HorizontalShake, 5, ANIM_PLAYER_RIGHT, 1, 67
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 4, 0, 74, 1
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	call ChloroblastShot
+	waitforvisualfinish
+	delay 0x5
+	createvisualtask AnimTask_BlendNonAttackerPalettes, 0x2, 0x2, 0x0, 0x0, 0x0 @;From Black
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x0, 0x10, 0x0, 0x03AC
+	restorebg
+	waitbgfadeout
+	createvisualtask AnimTask_AllBattlersVisible, 0xA,
+	clearmonbg ANIM_DEF_PARTNER
+	waitbgfadein
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_BATTLERS_2), 0x2, 0x0, 0x0, 0x0 @;From Black
+	end
+ChloroblastShot:
+	createsprite gSpriteTemplate_ChloroblastShot, ANIM_TARGET, 2, 0, 0, 0x19
+	delay 0x2
+	createsprite gSpriteTemplate_ChloroblastShot, ANIM_TARGET, 2, 0, 0, 0x19
+	delay 0x2
+	return

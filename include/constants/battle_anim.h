@@ -519,6 +519,7 @@
 #define BG_STEEL_BEAM_OPPONENT                  78
 #define BG_STEEL_BEAM_PLAYER                    79
 #define BG_RAINBOW                              80
+#define BG_CHLOROBLAST                          81
 
 // table ids for general animations (gBattleAnims_General)
 #define B_ANIM_CASTFORM_CHANGE          0

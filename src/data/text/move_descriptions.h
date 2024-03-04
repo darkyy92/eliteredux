@@ -3598,6 +3598,10 @@ static const u8 sMoveTwoLineDescription_MoveLunarBlessing[] = _(
     "Heals HP and status of\n"
     "itself and allies in battle.");
 
+static const u8 sMoveTwoLineDescription_MoveChloroblast[] = _(
+    "Deal powerful damage.\n"
+    "Take 50% max HP damage.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4517,6 +4521,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_UPPER_HAND - 1] = sMoveTwoLineDescription_MoveUpperHand,
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveTwoLineDescription_MoveMalignantChain,
     [MOVE_LUNAR_BLESSING - 1] = sMoveTwoLineDescription_MoveLunarBlessing,
+    [MOVE_CHLOROBLAST - 1] = sMoveTwoLineDescription_MoveChloroblast,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5435,6 +5440,7 @@ static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attack
 static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to the target's movement\nand strikes, making the target flinch.\nThis move fails if the target\nis not readying a priority move.");
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
 static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP to all\nallied battlers and\ncures their status.");
+static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n50% max HP recoil.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6353,4 +6359,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_UPPER_HAND - 1] = sMoveFourLineDescription_MoveUpperHand,
     [MOVE_MALIGNANT_CHAIN - 1] = sMoveFourLineDescription_MoveMalignantChain,
     [MOVE_LUNAR_BLESSING - 1] = sMoveFourLineDescription_MoveLunarBlessing,
+    [MOVE_CHLOROBLAST - 1] = sMoveFourLineDescription_MoveChloroblast,
 };
