@@ -1527,6 +1527,9 @@
 //Therian
 #define SPECIES_ENAMORUS_THERIAN            FORMS_START + 344
 
+// Castform Sand
+#define SPECIES_CASTFORM_SANDY              FORMS_START + 345
+
 // Custom Megas
 #define CUSTOM_MEGA_START                   FORMS_START + 600
 
@@ -1588,13 +1591,14 @@
 #define SPECIES_FROSLASS_MEGA               CUSTOM_MEGA_START + 55
 #define SPECIES_SCRAFTY_MEGA                CUSTOM_MEGA_START + 56
 #define SPECIES_CASCOON_PRIMAL              CUSTOM_MEGA_START + 57
+#define SPECIES_KINGAMBIT_REDUX_MEGA        REDUX_FORMS_START + 58
 #define LAST_CUSTOM_MEGA                    CUSTOM_MEGA_START + 400 // To make temporary space for anything we need to add in the future
 
 #define REDUX_FORMS_START                   LAST_CUSTOM_MEGA
-#define SPECIES_INFERNAPE_REDUX             REDUX_FORMS_START + 1
-#define SPECIES_NOIBAT_REDUX                REDUX_FORMS_START + 2
-#define SPECIES_NOIVERN_REDUX               REDUX_FORMS_START + 3
-#define SPECIES_DEWLEON                     REDUX_FORMS_START + 4
+#define SPECIES_DEWLEON                     REDUX_FORMS_START + 1
+#define SPECIES_INFERNAPE_REDUX             REDUX_FORMS_START + 2
+#define SPECIES_NOIBAT_REDUX                REDUX_FORMS_START + 3
+#define SPECIES_NOIVERN_REDUX               REDUX_FORMS_START + 4
 #define SPECIES_LUXRAY_REDUX                REDUX_FORMS_START + 5
 #define SPECIES_CLAWITZER_REDUX             REDUX_FORMS_START + 6
 #define SPECIES_HONEDGE_REDUX               REDUX_FORMS_START + 7
@@ -1649,15 +1653,13 @@
 #define SPECIES_DODUO_REDUX                 REDUX_FORMS_START + 56
 #define SPECIES_DODRIO_REDUX                REDUX_FORMS_START + 57
 #define SPECIES_KINGAMBIT_REDUX             REDUX_FORMS_START + 58
-#define SPECIES_KINGAMBIT_REDUX_MEGA        REDUX_FORMS_START + 59
-#define SPECIES_CASTFORM_SANDY              REDUX_FORMS_START + 60
-#define SPECIES_LARVITAR_REDUX              REDUX_FORMS_START + 61
-#define SPECIES_PUPITAR_REDUX               REDUX_FORMS_START + 62
-#define SPECIES_TYRANITAR_REDUX             REDUX_FORMS_START + 63
-#define SPECIES_TYRANITAR_MEGA_REDUX        REDUX_FORMS_START + 64
-#define SPECIES_URSALUNA_MEGA               REDUX_FORMS_START + 65
-#define SPECIES_SCIZOR_MEGA_REDUX           REDUX_FORMS_START + 66
-#define SPECIES_SCIZOR_REDUX                REDUX_FORMS_START + 67
+#define SPECIES_LARVITAR_REDUX              REDUX_FORMS_START + 59
+#define SPECIES_PUPITAR_REDUX               REDUX_FORMS_START + 60
+#define SPECIES_TYRANITAR_REDUX             REDUX_FORMS_START + 61
+#define SPECIES_TYRANITAR_MEGA_REDUX        REDUX_FORMS_START + 62
+#define SPECIES_URSALUNA_MEGA               REDUX_FORMS_START + 63
+#define SPECIES_SCIZOR_MEGA_REDUX           REDUX_FORMS_START + 64
+#define SPECIES_SCIZOR_REDUX                REDUX_FORMS_START + 65
 
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 

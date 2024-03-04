@@ -4549,6 +4549,8 @@ const u8 gText_Primal[] = _("Primal");
 const u8 gText_Ultra[] = _("Ultra");
 const u8 gText_Alolan[] = _("Alolan");
 const u8 gText_Galarian[] = _("Galarian");
+const u8 gText_Hisuian[] = _("Hisuian");
+const u8 gText_Redux[] = _("Redux");
 const u8 gText_Midday[] = _("(Midday Form)");
 const u8 gText_Midnight[] = _("(Midnight Form)");
 const u8 gText_Dusk[] = _("(Dusk Form)");
@@ -4596,6 +4598,16 @@ const u8* SaveSpeciesWithSurname(u16 species){
     else if(species >= SPECIES_MEOWTH_GALARIAN && species <= SPECIES_STUNFISK_GALARIAN){ //Galarian
         StringCopy(gStringVar1, gText_Galarian);
         StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_QWILFISH_HISUIAN && species <= SPECIES_ZOROARK_HISUIAN){ //Hisuian
+        StringCopy(gStringVar1, gText_Hisuian);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_INFERNAPE_REDUX && species <= SPECIES_SCIZOR_REDUX){ //Redux
+        StringCopy(gStringVar2, gText_Redux);
+        StringCopy(gStringVar1, gSpeciesNames[species]);
         StringExpandPlaceholders(gStringVar4, gText_Subname);
     }
     else if(species == SPECIES_LYCANROC){ //Midday Lycanroc
