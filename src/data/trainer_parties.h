@@ -33286,7 +33286,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .heldItem = ITEM_RUSTED_SHIELD,
     .ability = 1,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 128, 0, 128, 0},
+    .evs = {252, 0, 4, 0, 252, 0},
     .nature = NATURE_CAREFUL,
     .moves = MOVE_BEHEMOTH_BASH, MOVE_BODY_PRESS, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
     },
@@ -33298,47 +33298,46 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_BEHEMOTH_BLADE, MOVE_SACRED_SWORD, MOVE_CLOSE_COMBAT, MOVE_PIXIE_SLASH
+    .moves = MOVE_BEHEMOTH_BLADE, MOVE_SACRED_SWORD, MOVE_SWORDS_DANCE, MOVE_PIXIE_SLASH
     },
     {
     .lvl = 0,
     .species = SPECIES_NECROZMA_DUSK_MANE,
-    .heldItem = ITEM_PSYCHIC_GEM,
+    .heldItem = ITEM_TACTICAL_VEST,
     .ability = 1,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 0, 252, 0, 4},
+    .evs = {252, 252, 0, 0, 0, 4},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_SUNSTEEL_STRIKE, MOVE_SOLAR_BLADE, MOVE_PSYCHOKINETIC_SLAM, MOVE_FLARE_BLITZ
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DIALGA,
+    .heldItem = ITEM_ADAMANT_ORB,
+    .ability = 2,
+    .evs = {252, 0, 4, 252, 0, 0},
     .nature = NATURE_MODEST,
-    .moves = MOVE_MOONGEIST_BEAM, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
+    .moves = MOVE_ROAR_OF_TIME, MOVE_DRAGON_BREATH, MOVE_AURA_SPHERE, MOVE_STEEL_BEAM
     },
     {
     .lvl = 0,
-    .species = SPECIES_DIALGA_ORIGIN,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0,
+    .species = SPECIES_MEWTWO,
+    .heldItem = ITEM_MEWTWONITE_Y,
+    .ability = 1,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 0, 252, 0, 4},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_STEEL_BEAM, MOVE_ROAR_OF_TIME, MOVE_ANCIENT_POWER, MOVE_DRAGON_BREATH
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FLAMETHROWER, MOVE_FOCUS_BLAST
     },
     {
     .lvl = 0,
-    .species = SPECIES_MEWTWO_MEGA_Y,
-    .heldItem = ITEM_NONE,
+    .species = SPECIES_METAGROSS,
+    .heldItem = ITEM_METAGROSSITE,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_ANCIENT_POWER, MOVE_CLOSE_COMBAT, MOVE_CONFUSION, MOVE_DISABLE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_METAGROSS_MEGA,
-    .heldItem = ITEM_NONE,
-    .ability = 0,
-    .zeroSpeedIvs = TRUE,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_CONFUSION, MOVE_HAMMER_ARM, MOVE_METAL_CLAW, MOVE_BODY_PRESS
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_METEOR_MASH, MOVE_ICE_PUNCH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH
     }
 };
 
