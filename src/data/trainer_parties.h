@@ -33282,21 +33282,21 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
 static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_ZAMAZENTA_CROWNED_SHIELD,
-    .heldItem = ITEM_NONE,
-    .ability = 0,
+    .species = SPECIES_ZAMAZENTA,
+    .heldItem = ITEM_RUSTED_SHIELD,
+    .ability = 1,
     .evs = {0, 0, 0, 0, 0, 0},
     .nature = NATURE_IMPISH,
     .moves = MOVE_BITE, MOVE_HOWL, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
     },
     {
     .lvl = 0,
-    .species = SPECIES_ZACIAN_CROWNED_SWORD,
-    .heldItem = ITEM_NONE,
-    .ability = 0,
+    .species = SPECIES_ZACIAN,
+    .heldItem = ITEM_RUSTED_SWORD,
+    .ability = 1,
     .evs = {0, 0, 0, 0, 0, 0},
     .nature = NATURE_IMPISH,
-    .moves = MOVE_BITE, MOVE_HOWL, MOVE_IRON_FANGS, MOVE_LOVELY_BITE
+    .moves = MOVE_BEHEMOTH_BLADE, MOVE_HOWL, MOVE_IRON_FANGS, MOVE_LOVELY_BITE
     },
     {
     .lvl = 0,
@@ -33313,6 +33313,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .species = SPECIES_DIALGA_ORIGIN,
     .heldItem = ITEM_NONE,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {0, 0, 0, 0, 0, 0},
     .nature = NATURE_IMPISH,
     .moves = MOVE_BODY_PRESS, MOVE_DRAGON_BREATH, MOVE_SCALE_SHOT, MOVE_SCARY_FACE
@@ -33322,6 +33323,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .species = SPECIES_MEWTWO_MEGA_Y,
     .heldItem = ITEM_NONE,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {0, 0, 0, 0, 0, 0},
     .nature = NATURE_IMPISH,
     .moves = MOVE_ANCIENT_POWER, MOVE_CLOSE_COMBAT, MOVE_CONFUSION, MOVE_DISABLE
@@ -33331,6 +33333,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .species = SPECIES_METAGROSS_MEGA,
     .heldItem = ITEM_NONE,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {0, 0, 0, 0, 0, 0},
     .nature = NATURE_IMPISH,
     .moves = MOVE_CONFUSION, MOVE_HAMMER_ARM, MOVE_METAL_CLAW, MOVE_BODY_PRESS
