@@ -2122,7 +2122,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    return max(calc, 100);
+    return min(calc, 100);
 }
 
 static void Cmd_accuracycheck(void)
