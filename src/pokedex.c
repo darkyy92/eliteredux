@@ -7630,7 +7630,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             }
             CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*base_i, 0);
             handleTargetSpeciesPrint(taskId, targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, base_i); //evolution mon name
-            if (gEvolutionTable[species][i].param == MALE)
+            if (gEvolutionTable[species][i].param == MON_MALE)
                 StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Male);
             else
                 StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Female);

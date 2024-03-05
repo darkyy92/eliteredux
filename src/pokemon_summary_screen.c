@@ -4717,7 +4717,7 @@ static void BufferMonPokemonEvolutionData(void)
                 SaveSpeciesWithSurname(targetSpecies);
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
                 //Evolution Method
-                if (gEvolutionTable[species][i].param == MALE)
+                if (gEvolutionTable[species][i].param == MON_MALE)
                     StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Male);
                 else
                     StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Female);
