@@ -30663,7 +30663,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     },
     {
     .lvl = 0,
-    .species = SPECIES_ALAKAZAM_MEGA,
+    .species = SPECIES_ALAKAZAM,
     .heldItem = ITEM_ALAKAZITE,
     .ability = 0,
     .evs = {4, 0, 0, 252, 0, 252},
@@ -30701,7 +30701,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     },
     {
     .lvl = 0,
-    .species = SPECIES_GALLADE_MEGA,
+    .species = SPECIES_GALLADE,
     .heldItem = ITEM_GALLADITE,
     .ability = 0,
     .evs = {4, 252, 0, 0, 0, 252},
@@ -34918,7 +34918,7 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_TYRANITAR_MEGA,
+    .species = SPECIES_TYRANITAR,
     .heldItem = ITEM_TYRANITARITE,
     .ability = 1,
     .evs = {252, 252, 4, 0, 0, 0},
@@ -39359,7 +39359,7 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
     },
     {
     .lvl = 0,
-    .species = SPECIES_NIDOKING_MEGA, // Mega
+    .species = SPECIES_NIDOKING, // Mega
     .heldItem = ITEM_NIDOKINGITE,
     .ability = 0, // Sheer Force > Sheer Force
     .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -39368,7 +39368,7 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
     },
     {
     .lvl = 0,
-    .species = SPECIES_NIDOQUEEN_MEGA, // Mega
+    .species = SPECIES_NIDOQUEEN, // Mega
     .heldItem = ITEM_NIDOQUEENITE,
     .ability = 0, // Poison Point > Sheer Force
     .evs = {248, 0, 128, 0, 132, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
