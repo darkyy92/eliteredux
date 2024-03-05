@@ -15546,7 +15546,7 @@ static void Cmd_trycastformdatachange(void)
     u8 form;
 
     gBattlescriptCurrInstr++;
-    if (ShouldChangeFormHpBased(gBattleScripting.battler))
+    if (ShouldChangeFormHpBased(gBattlerAttacker))
     {
         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
     }

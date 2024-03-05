@@ -9912,15 +9912,15 @@ BattleScript_ShedSkinActivates::
 	end3
 
 BattleScript_OnWeatherChange::
-	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
 	setbyte sBATTLER, 0
 BattleScript_OnWeatherChangeLoop::
+	copybyte gBattlerAttacker, sBATTLER
 	trycastformdatachange
-	copybyte gBattlerTarget, sBATTLER
-	handleweatherchange BS_TARGET
+	handleweatherchange BS_SCRIPTING
 	addbyte sBATTLER, 1
 	jumpifbytenotequal sBATTLER, gBattlersCount, BattleScript_OnWeatherChangeLoop
-	restoretarget
+	copybyte gBattlerAttacker, sSAVED_BATTLER
 	return
 
 BattleScript_CastformChange::

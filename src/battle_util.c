@@ -4277,6 +4277,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             if (gBattleMons[battler].species == forms[i][2]
                 && gBattleMons[battler].hp > gBattleMons[battler].maxHP / forms[i][3])
             {
+                gBattleScripting.abilityPopupOverwrite = forms[i][0];
                 UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][1]);
                 gBattleMons[battler].species = forms[i][1];
                 return TRUE;
@@ -4284,6 +4285,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             if (gBattleMons[battler].species == forms[i][1]
                 && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / forms[i][3])
             {
+                gBattleScripting.abilityPopupOverwrite = forms[i][0];
                 UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][2]);
                 gBattleMons[battler].species = forms[i][2];
                 return TRUE;
@@ -4957,7 +4959,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect++;
         }
 
-        if (BATTLER_HAS_ABILITY(battler, ABILITY_IMPOSTER)
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_IMPOSTER)
             && IsBattlerAlive(BATTLE_OPPOSITE(battler))
             && !(gBattleMons[BATTLE_OPPOSITE(battler)].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
@@ -4982,16 +4984,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gTurnStructs[battler].traced = TRUE;
         }
 
-		if (BATTLER_HAS_ABILITY(battler, ABILITY_ZEN_MODE) && ShouldChangeFormHpBased(battler))
+		if (CheckAndSetSwitchInAbility(battler, ABILITY_ZEN_MODE) && ShouldChangeFormHpBased(battler))
         {
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
             effect++;
         }
 
-        if ((BATTLER_HAS_ABILITY(battler, ABILITY_SCHOOLING) && gBattleMons[battler].level >= 20)
-            || BATTLER_HAS_ABILITY(battler, ABILITY_SHIELDS_DOWN)
-            || BATTLER_HAS_ABILITY(battler, ABILITY_FORECAST)
-            || BATTLER_HAS_ABILITY(battler, ABILITY_FLOWER_GIFT))
+        if ((CheckAndSetSwitchInAbility(battler, ABILITY_SCHOOLING) && gBattleMons[battler].level >= 20)
+            || CheckAndSetSwitchInAbility(battler, ABILITY_SHIELDS_DOWN)
+            || CheckAndSetSwitchInAbility(battler, ABILITY_FORECAST)
+            || CheckAndSetSwitchInAbility(battler, ABILITY_FLOWER_GIFT))
         {
             if (ShouldChangeFormHpBased(battler))
             {
@@ -5000,7 +5002,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if (BATTLER_HAS_ABILITY(battler, ABILITY_MIMICRY))
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_MIMICRY))
         {
             if (gBattleMons[battler].hp != 0 && gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
             {
@@ -5325,23 +5327,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         // Coward
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_COWARD)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_COWARD; //For easier copypaste
-
-            if (CheckAndSetSwitchInAbility(battler, abilityToCheck)) {
-                if (!GetSingleUseAbilityCounter(battler, abilityToCheck)) {
-                    SetSingleUseAbilityCounter(battler, abilityToCheck, TRUE);
-                    activateAbilty = TRUE;
-                }
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                gVolatileStructs[battler].protectedThisTurn = TRUE;
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerIsProtectedForThisTurn);
-                effect++;
-            }
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_COWARD) && !GetSingleUseAbilityCounter(battler, ABILITY_COWARD)){
+            SetSingleUseAbilityCounter(battler, ABILITY_COWARD, TRUE);
+            gVolatileStructs[battler].protectedThisTurn = TRUE;
+            BattleScriptPushCursorAndCallback(BattleScript_BattlerIsProtectedForThisTurn);
+            effect++;
         }
 
         // Atlas
@@ -5445,7 +5435,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         UseEntryMove(battler, ABILITY_WEB_SPINNER, &effect, MOVE_STRING_SHOT, 0, 0, 0);
 
         // Wishmaker
-        if (BATTLER_HAS_ABILITY(battler, ABILITY_WISHMAKER)) {
+        if (CheckAndSetSwitchInAbility(battler, ABILITY_WISHMAKER)) {
             u8 counter = GetSingleUseAbilityCounter(battler, ABILITY_WISHMAKER) + 1;
             if (counter <= 3) {
                 if (UseEntryMove(battler, ABILITY_WISHMAKER, &effect, MOVE_WISH, 0, 0, 0))
