@@ -1496,6 +1496,7 @@ void BattleScriptPush(const u8 *bsPtr)
     struct SavedStackData savedStackData = 
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
+            .multistringChooser = gBattleCommunication[MULTISTRING_CHOOSER],
         };
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
@@ -1506,6 +1507,7 @@ void BattleScriptPushCursor(void)
     struct SavedStackData savedStackData = 
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
+            .multistringChooser = gBattleCommunication[MULTISTRING_CHOOSER],
         };
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
@@ -1519,6 +1521,7 @@ void BattleScriptPop(void)
         struct SavedStackData *data = &gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size - 1];
         // Abilities typically get overwritten and then stored, so they will generally be one position ahead
         gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
+        gBattleCommunication[MULTISTRING_CHOOSER] = data ->multistringChooser;
     }
 }
 

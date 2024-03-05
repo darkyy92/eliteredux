@@ -334,6 +334,7 @@ struct BattleHistory
 struct SavedStackData
 {
     u16 abilityOverride;
+    u8 multistringChooser;
 };
 
 #define MAX_SCRIPT_STACK_COUNT 8
