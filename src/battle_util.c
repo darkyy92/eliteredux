@@ -991,6 +991,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_NOISE_CANCEL] = 1,
     [ABILITY_PARROTING] = 1,
     [ABILITY_GALLANTRY] = 1,
+    [ABILITY_ANTICIPATION] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -10646,6 +10647,7 @@ bool32 IsUnsuppressableAbility(u32 ability)
     case ABILITY_BATTLE_BOND:
     case ABILITY_NEUTRALIZING_GAS:
     case ABILITY_HUNGER_SWITCH:
+    case ABILITY_ANTICIPATION:
         return TRUE;
     default:
         return FALSE;

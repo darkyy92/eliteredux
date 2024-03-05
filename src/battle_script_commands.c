@@ -1943,7 +1943,8 @@ static bool32 AccuracyCalcHelper(u16 move)
         || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
         || (!(gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
         || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER)
+        || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
@@ -2030,33 +2031,35 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
         moveAcc = 50;
 
-    if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SIGHTING_SYSTEM, atkAbility))
-        return 100;
+    if (!moveAcc)
+        return 101;
+    else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SIGHTING_SYSTEM, atkAbility))
+        return 101;
     else if ((gBattleMoves[move].flags & FLAG_STRIKER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ROUNDHOUSE, atkAbility))
-        return 100;
+        return 101;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IRON_BARRAGE, atkAbility))
-        return 100;
+        return 101;
     else if ((gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ARTILLERY, atkAbility))
-        return 100;
+        return 101;
     else if ((gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) && (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SWEEPING_EDGE, atkAbility) || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SWEEPING_EDGE_PLUS, atkAbility)))
-        return 100;
+        return 101;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DEADEYE, atkAbility))
-        return 100;
+        return 101;
     else if (IS_MOVE_STATUS(move) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GIFTED_MIND, atkAbility))
-        return 100;
+        return 101;
     else if(BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ANGELS_WRATH, atkAbility)){
         switch(move){
             case MOVE_TACKLE:
             case MOVE_POISON_STING:
             case MOVE_ELECTROWEB:
             case MOVE_BUG_BITE:
-                return 100;
+                return 101;
             break;
         }
     }
 	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility)
         && CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
-        return 100;
+        return 101;
 
     // Check Wonder Skin.
     if ((BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WONDER_SKIN, defAbility) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_PRIM_AND_PROPER, defAbility)) && IS_MOVE_STATUS(move))
@@ -2119,7 +2122,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    return calc;
+    return max(calc, 100);
 }
 
 static void Cmd_accuracycheck(void)
@@ -2156,14 +2159,27 @@ static void Cmd_accuracycheck(void)
     }
     else
     {
+        u32 accuracy;
         GET_MOVE_TYPE(move, type);
         if (JumpIfMoveAffectedByProtect(move))
             return;
         if (AccuracyCalcHelper(move))
             return;
 
+        accuracy = GetTotalAccuracy(gBattlerAttacker, gBattlerTarget, move);
+
         // final calculation
-        if ((Random() % 100 + 1) > GetTotalAccuracy(gBattlerAttacker, gBattlerTarget, move))
+        if (accuracy <= 100
+            && BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_ANTICIPATION)
+            && !GetSingleUseAbilityCounter(gBattlerTarget, ABILITY_ANTICIPATION)
+            && CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, gBattlerTarget, TRUE) >= UQ_4_12(2.0))
+        {
+            SetSingleUseAbilityCounter(gBattlerTarget, ABILITY_ANTICIPATION, TRUE);
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANTICIPATION;
+            gMoveResultFlags |= MOVE_RESULT_MISSED;
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
+        }
+        else if ((Random() % 100) >= accuracy)
         {
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_BLUNDER_POLICY)
