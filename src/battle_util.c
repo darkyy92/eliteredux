@@ -4767,6 +4767,129 @@ bool8 UseIntimidateClone(u8 battler, u16 abilityToCheck)
     return FALSE;
 }
 
+bool8 TryToSetFieldEffect(u8 battler){
+    u16 effect = VarGet(VAR_BATTLE_FIELD_EFFECT_TYPE);
+    u16 fieldEffectId = VarGet(VAR_BATTLE_FIELD_ID);
+    bool8 isTemporary = FALSE;
+
+    VarSet(VAR_BATTLE_FIELD_EFFECT_TYPE, 0);
+    VarSet(VAR_BATTLE_FIELD_ID, 0);
+    
+    switch(effect){
+        //Weather
+        case BATTLE_FIELD_EFFECT_WEATHER:
+            switch (fieldEffectId)
+            {
+            case WEATHER_RAIN_ANY:
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, isTemporary))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SetRainFromScript);
+                    return TRUE;
+                }
+                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                    return TRUE;
+                }
+                break;
+            case WEATHER_SANDSTORM_ANY:
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, isTemporary))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SetSandstormFromScript);
+                    return TRUE;
+                }
+                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                    return TRUE;
+                }
+                break;
+            case WEATHER_SUN_ANY:
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, isTemporary))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SetSunFromScript);
+                    return TRUE;
+                }
+                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                    return TRUE;
+                }
+                break;
+            case WEATHER_HAIL_ANY:
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, isTemporary))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SetHailFromScript);
+                    return TRUE;
+                }
+                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                    return TRUE;
+                }
+                break;
+            /*case WEATHER_STRONG_WINDS:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESPSYCHIC;
+                break;*/
+            }
+        break;
+        //Terrain
+        case BATTLE_FIELD_EFFECT_TERRAIN:
+            if(fieldEffectId & STATUS_FIELD_TERRAIN_ANY){
+                u16 terrainFlags = fieldEffectId & STATUS_FIELD_TERRAIN_ANY; // only works for status flag (1 << 15)
+                gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT;            // terrain is permanent
+                switch (fieldEffectId & STATUS_FIELD_TERRAIN_ANY)
+                {
+                case STATUS_FIELD_ELECTRIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESELECTRIC;
+                    break;
+                case STATUS_FIELD_MISTY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESMISTY;
+                    break;
+                case STATUS_FIELD_GRASSY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESGRASSY;
+                    break;
+                case STATUS_FIELD_PSYCHIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESPSYCHIC;
+                    break;
+                }
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                return TRUE;
+            }
+            break;
+        //Room
+        case BATTLE_FIELD_EFFECT_ROOM:
+            switch (fieldEffectId){
+            case STATUS_FIELD_TRICK_ROOM:
+                if(!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)){
+                    //Enable Trick Room
+                    gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
+                    if(isTemporary)
+                        gFieldTimers.trickRoomTimer = TRICK_ROOM_DURATION_SHORT;
+                    else
+                        gFieldTimers.trickRoomTimer = ROOM_DURATION_MAX;
+                    BattleScriptPushCursorAndCallback(BattleScript_SetTrickRoomFromScript);
+                    return TRUE;
+                }
+            break;
+            }
+        break;
+        //Other
+        default:
+            if (GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+            {
+                // overworld weather started rain, so just do electric terrain anim
+                gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESELECTRIC;
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                return TRUE;
+            }
+        break;
+    }
+
+    return FALSE;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -4808,39 +4931,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     switch (caseID)
     {
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:
-        if (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
-        {
-            u16 terrainFlags = VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
-            gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
-            switch (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
-            {
-            case STATUS_FIELD_ELECTRIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESELECTRIC;
-                break;
-            case STATUS_FIELD_MISTY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESMISTY;
-                break;
-            case STATUS_FIELD_GRASSY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESGRASSY;
-                break;
-            case STATUS_FIELD_PSYCHIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESPSYCHIC;
-                break;
-            }
-
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+        if(TryToSetFieldEffect(battler))
             effect++;
-        }
-        #if B_THUNDERSTORM_TERRAIN == TRUE
-        else if (GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-        {
-            // overworld weather started rain, so just do electric terrain anim
-            gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESELECTRIC;
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
-        }
-        #endif
         break;
     case ABILITYEFFECT_SWITCH_IN_WEATHER:
         if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))

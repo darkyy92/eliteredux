@@ -9911,6 +9911,40 @@ BattleScript_ShedSkinActivates::
 	updatestatusicon BS_ATTACKER
 	end3
 
+BattleScript_SetSandstormFromScript::
+	printstring STRINGID_SANDSTORMBREWED
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_SANDSTORM_CONTINUES, NULL
+	call BattleScript_OnWeatherChange
+	end3
+
+BattleScript_SetRainFromScript::
+	printstring STRINGID_ITISRAINING
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_RAIN_CONTINUES, NULL
+	call BattleScript_OnWeatherChange
+	end3
+
+BattleScript_SetSunFromScript::
+	printstring STRINGID_SUNLIGHTGOTBRIGHT
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
+	call BattleScript_OnWeatherChange
+	end3
+
+BattleScript_SetHailFromScript::
+	printstring STRINGID_STARTEDHAIL
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES, NULL
+	call BattleScript_OnWeatherChange
+	end3
+
+BattleScript_SetTrickRoomFromScript::
+	printstring STRINGID_TRICKROOMSTARTS
+	playmoveanimation BS_ATTACKER, MOVE_TRICK_ROOM
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_OnWeatherChange::
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	setbyte sBATTLER, 0
