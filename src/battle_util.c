@@ -458,7 +458,7 @@ void HandleAction_UseMove(void)
         BattleArena_AddMindPoints(gBattlerAttacker);
 
     // Record HP of each battler
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    for (i = 0; i < gBattlersCount; i++)
         gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
 
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
@@ -1951,7 +1951,7 @@ void TryToRevertMimicry(void)
 {
     s32 i;
 
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    for (i = 0; i < gBattlersCount; i++)
     {
         if (GetBattlerAbility(i) == ABILITY_MIMICRY)
             RestoreBattlerOriginalTypes(i);
@@ -4416,10 +4416,10 @@ static u8 ForewarnChooseMove(u32 battler)
         u16 moveId;
     };
     u32 i, j, bestId, count;
-    struct Forewarn *data = malloc(sizeof(struct Forewarn) * MAX_BATTLERS_COUNT * MAX_MON_MOVES);
+    struct Forewarn *data = malloc(sizeof(struct Forewarn) * gBattlersCount * MAX_MON_MOVES);
 
     // Put all moves
-    for (count = 0, i = 0; i < MAX_BATTLERS_COUNT; i++)
+    for (count = 0, i = 0; i < gBattlersCount; i++)
     {
         if (IsBattlerAlive(i) && GetBattlerSide(i) != GetBattlerSide(battler))
         {
@@ -4888,7 +4888,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         {
             u32 side = GetBattlerSide(battler);
 
-            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            for (i = 0; i < gBattlersCount; i++)
             {
                 if (IsBattlerAlive(i) && side != GetBattlerSide(i))
                 {
@@ -8802,7 +8802,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
-        for(i = 0; i < MAX_BATTLERS_COUNT; i++){
+        for(i = 0; i < gBattlersCount; i++){
             // Retribution Blow
             if(BATTLER_HAS_ABILITY(i, ABILITY_RETRIBUTION_BLOW)){
                 if (IsBattlerAlive(i)
@@ -10323,20 +10323,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         {
             u8 i, statId, j;
             bool8 found = FALSE;
-            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            for (i = 0; i < gBattlersCount; i++)
             {
                 bool8 hasEgoist = BATTLER_HAS_ABILITY(i, ABILITY_EGOIST);
-                if (hasEgoist || GetBattlerHoldEffect(i, TRUE) == HOLD_EFFECT_MIRROR_HERB)
+                if (hasEgoist || (GetBattlerHoldEffect(i, TRUE) == HOLD_EFFECT_MIRROR_HERB && !found))
                 {
                     bool8 foundForBattler = FALSE;
                     for (statId = STAT_ATK; statId < NUM_BATTLE_STATS; statId++)
                     {
                         u8 change = 0;
-                        for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+                        for (j = 0; j < gBattlersCount; j++)
                         {
                             if (GetBattlerSide(i) == GetBattlerSide(j)) continue;
                             if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
                             {
+                                MGBA_PRINT_DEBUG("Found stats ego battler %d target %d stat %d", i, j, statId);
                                 found = foundForBattler = TRUE;
                                 if (hasEgoist)
                                 {

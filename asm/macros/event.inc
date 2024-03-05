@@ -738,7 +738,7 @@
 	setvar VAR_TAG_TEAM_ID, \tagteamtextid
 	special DoSpecialTrainerBattle
 	waitstate
-	.if \event_script == TRUE
+	.if \event_script != FALSE
 		goto \event_script
 	.endif
 	.endm

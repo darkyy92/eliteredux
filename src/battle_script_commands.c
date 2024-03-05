@@ -2122,7 +2122,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    return max(calc, 100);
+    return min(calc, 100);
 }
 
 static void Cmd_accuracycheck(void)
@@ -10849,7 +10849,7 @@ static void Cmd_various(void)
             state = GetAbilityStateAs(battler, ABILITY_EGOIST).statCopyState;
             if (!state.inProgress) continue;
             
-            for (state.stat++; state.stat <= NUM_BATTLE_STATS; state.stat++) {
+            for (state.stat++; state.stat < NUM_BATTLE_STATS; state.stat++) {
                 
                 for (otherBattler = 0; otherBattler < gBattlersCount; otherBattler++)
                 {
@@ -10875,7 +10875,7 @@ static void Cmd_various(void)
                 }
             }
 
-            if (state.stat > NUM_NATURE_STATS) state = (struct StatCopyState) {0};
+            if (state.stat >= NUM_NATURE_STATS - 1) state = (struct StatCopyState) {0};
 
             SetAbilityStateAs(battler, ABILITY_EGOIST, (union AbilityStates) { .statCopyState = state });
             return;
@@ -10891,7 +10891,7 @@ static void Cmd_various(void)
                 {
                     if (!IsBattlerAlive(state.battler)) continue;
 
-                    for (state.stat++; state.stat <= NUM_BATTLE_STATS; state.stat++)
+                    for (state.stat++; state.stat < NUM_BATTLE_STATS; state.stat++)
                     {
                         s8 change = 0;
                         u8 otherBattler;
@@ -10927,7 +10927,7 @@ static void Cmd_various(void)
                         }
                     }
                 }
-                if (state.battler >= MAX_BATTLERS_COUNT) state = (struct StatCopyState) {0};
+                if (state.battler >= gBattlersCount) state = (struct StatCopyState) {0};
                 SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
                 return;
             }
@@ -10937,6 +10937,7 @@ static void Cmd_various(void)
             u8 stat;
             if (!IsBattlerAlive(gActiveBattler)) continue;
             if (!gTurnStructs[gActiveBattler].mirrorHerbStat && GetBattlerHoldEffect(gActiveBattler, TRUE) != HOLD_EFFECT_MIRROR_HERB) continue;
+            
             for (stat = max(gTurnStructs[gActiveBattler].mirrorHerbStat, STAT_ATK); stat < NUM_BATTLE_STATS; stat++)
             {
                 s8 change = 0;
@@ -11941,8 +11942,6 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
         notProtectAffected++;
     flags &= ~(STAT_BUFF_NOT_PROTECT_AFFECTED);
 
-    if (dontSetBuffers) flags = 0;
-
     if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_CONTRARY))
     {
         #ifdef DEBUG_BUILD
@@ -11957,19 +11956,24 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
         gBattleScripting.statChanger ^= STAT_BUFF_NEGATIVE;
         if (flags & STAT_BUFF_UPDATE_MOVE_EFFECT)
         {
-            flags &= ~(STAT_BUFF_UPDATE_MOVE_EFFECT);
             gBattleScripting.moveEffect = ReverseStatChangeMoveEffect(gBattleScripting.moveEffect);
         }
     }
 
+    flags &= ~(STAT_BUFF_UPDATE_MOVE_EFFECT);
+
+    if (dontSetBuffers) flags = 0;
+
     if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SIMPLE))
     {
-        statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
+        statValue = StatBuffValue(2 * GET_STAT_BUFF_VALUE(statValue) * (statValue <= -1 ? -1 : 1));
+        gBattleScripting.statChanger = statValue;
     }
 
-    if (!affectsUser && BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SUBDUE) && statValue <= -1)
+    if (!affectsUser && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SUBDUE) && statValue <= -1)
     {
-        statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
+        statValue = StatBuffValue(-2 * GET_STAT_BUFF_VALUE(statValue));
+        gBattleScripting.statChanger = statValue;
     }
 
     if (!dontSetBuffers) { PREPARE_STAT_BUFFER(gBattleTextBuff1, statId); }

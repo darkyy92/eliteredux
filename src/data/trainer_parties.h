@@ -35174,7 +35174,7 @@ static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_DEWGONG_MEGA,
+    .species = SPECIES_DEWGONG,
     .heldItem = ITEM_DEWGONGITE,
     .ability = 0,
     .evs = {252, 248, 8, 0, 0, 0},

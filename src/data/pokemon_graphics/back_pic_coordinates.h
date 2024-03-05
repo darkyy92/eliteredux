@@ -3383,7 +3383,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_FURFROU] =
     {
         .size = 0x78,
-        .y_offset = 0,
+        .y_offset = 2,
     },
     [SPECIES_ESPURR] =
     {
