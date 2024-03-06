@@ -12111,15 +12111,17 @@ BattleScript_SpiderLairActivated::
 	end3
 	
 BattleScript_TwistedDimensionActivated::
-	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_TRICK_ROOM
+	waitanimation
 	printstring STRINGID_TWISTEDDIMENSIONACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
 BattleScript_InversedRoomActivated::
-	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_INVERSE_ROOM
+	waitanimation
 	printstring STRINGID_INVERSEROOMACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
