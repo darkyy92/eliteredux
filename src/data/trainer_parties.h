@@ -32391,7 +32391,7 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_PALKIA_ORIGIN,
+    .species = SPECIES_PALKIA,
     .heldItem = ITEM_LUSTROUS_ORB,
     .ability = 2,
     .evs = {4, 0, 0, 252, 0, 252},
@@ -32430,7 +32430,7 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_GYARADOS_MEGA,
+    .species = SPECIES_GYARADOS,
     .heldItem = ITEM_GYARADOSITE,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
@@ -35048,7 +35048,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_HOUNDOOM_MEGA_REDUX,
+    .species = SPECIES_HOUNDOOM_REDUX,
     .heldItem = ITEM_HOUNDOOMINITE_R,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
@@ -37237,7 +37237,7 @@ static const struct TrainerMonItemCustomMoves sParty_Phoebe4[] = { // legendarie
     },
     {
     .lvl = 0,
-    .species = SPECIES_GIRATINA_ORIGIN, // Phoebe, Doubles, Intimidate, Fast Special, Defog
+    .species = SPECIES_GIRATINA, // Phoebe, Doubles, Intimidate, Fast Special, Defog
     .heldItem = ITEM_GRISEOUS_ORB,
     .ability = 0, // ABILITY_INTIMIDATE, ABILITY_SCARE, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_LEVITATE, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
