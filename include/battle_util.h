@@ -60,6 +60,7 @@
 #define MAGIC_ROOM_DURATION             5
 #define INVERSE_ROOM_DURATION           5
 #define INVERSE_ROOM_DURATION_SHORT     3
+#define ROOM_DURATION_MAX               255
 
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define BATTLER_HAS_ABILITY(battlerId, ability) (IsBattlerAlive(battlerId) && BattlerHasAbility(battlerId, gBattlerAttacker, ability))

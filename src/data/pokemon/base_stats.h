@@ -15969,12 +15969,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_GIRATINA_ORIGIN] =
     {
-    .baseHP        = 150,
-    .baseAttack    = 120,
-    .baseDefense   = 100,
-    .baseSpeed     = 90,
-    .baseSpAttack  = 120,
-    .baseSpDefense = 100,
+    .baseHP        =  150,
+    .baseAttack    =  140,
+    .baseDefense   =  120,
+    .baseSpeed     =  110,
+    .baseSpAttack  =  140,
+    .baseSpDefense =  120,
     .type1 = TYPE_GHOST,
     .type2 = TYPE_DRAGON,
     .catchRate = 255,
@@ -35235,12 +35235,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_PALKIA_ORIGIN] =
     {
-    .baseHP        = 90,
-    .baseAttack    = 100,
-    .baseDefense   = 100,
-    .baseSpeed     = 120,
-    .baseSpAttack  = 150,
-    .baseSpDefense = 120,
+    .baseHP        =  90,
+    .baseAttack    =  120,
+    .baseDefense   =  120,
+    .baseSpeed     =  140,
+    .baseSpAttack  =  170,
+    .baseSpDefense =  140,
     .type1 = TYPE_DRAGON,
     .type2 = TYPE_WATER,
         .catchRate = 255,
@@ -35267,12 +35267,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_DIALGA_ORIGIN] =
     {
-    .baseHP        = 100,
-    .baseAttack    = 100,
-    .baseDefense   = 120,
-    .baseSpeed     =  90,
-    .baseSpAttack  = 150,
-    .baseSpDefense = 120,
+    .baseHP        =  100,
+    .baseAttack    =  120,
+    .baseDefense   =  140,
+    .baseSpeed     =  110,
+    .baseSpAttack  =  170,
+    .baseSpDefense =  140,
     .type1 = TYPE_DRAGON,
     .type2 = TYPE_STEEL,
         .catchRate = 255,

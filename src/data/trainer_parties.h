@@ -31432,36 +31432,60 @@ static const struct TrainerMonItemCustomMoves sParty_CourtneyMossdeepInsane[] = 
 static const struct TrainerMonItemCustomMoves sParty_StevenMossdeep[] = { // Double against Team Magma
     {
     .lvl = 0,
-    .species = SPECIES_GENESECT, // Steven (Friend), Sash, Download
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_FATAL_PRECISION, ABILITY_SIGHTING_SYSTEM},
-    // .innates = {ABILITY_FULL_METAL_BODY, ABILITY_PREDATOR, ABILITY_MEGA_LAUNCHER},
-    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_PROTECT, MOVE_FLASH_CANNON, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
+    .species = SPECIES_SKARMORY,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = 2,
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_PRESS, MOVE_DUAL_WINGBEAT, MOVE_STEALTH_ROCK, MOVE_ROOST
     },
     {
     .lvl = 0,
-    .species = SPECIES_AERODACTYL, // Steven (Friend), Doubles, Sash, Support
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
-    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ROCK_SLIDE, MOVE_DRAGON_RUSH, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    .species = SPECIES_GENESECT,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 0, 4, 0, 252},
+    .nature = NATURE_HASTY,
+    .moves = MOVE_U_TURN, MOVE_IRON_HEAD, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
     },
     {
     .lvl = 0,
-    .species = SPECIES_METAGROSS, // Steven (Friend), Mega
+    .species = SPECIES_AGGRON,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1,
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_HEAVY_SLAM, MOVE_BODY_PRESS, MOVE_SLACK_OFF, MOVE_HEAD_SMASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MELMETAL,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 252, 0},
+    .nature = NATURE_BRAVE,
+    .moves = MOVE_DOUBLE_IRON_BASH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_MEGA_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MAGNEZONE,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2,
+    .evs = {128, 0, 128, 128, 128, 0},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_CHARGE_BEAM, MOVE_TRI_ATTACK, MOVE_FLASH_CANNON, MOVE_VOLT_SWITCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_METAGROSS,
     .heldItem = ITEM_METAGROSSITE,
-    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
-    // .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
-    // Pre-Mega
-    // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_METEOR_MASH, MOVE_BULLET_PUNCH, MOVE_ZEN_HEADBUTT, MOVE_PROTECT
+    .ability = 2,
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 0, 0, 4, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_METEOR_MASH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH
     }
 };
 
@@ -32358,60 +32382,61 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     {
     .lvl = 0,
     .species = SPECIES_SUICUNE,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2,
+    .heldItem = ITEM_EJECT_BUTTON,
+    .ability = 0,
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 4, 0, 0, 252},
-    .nature = NATURE_BOLD,
-    .moves = MOVE_SCALD, MOVE_SHEER_COLD, MOVE_RECOVER, MOVE_CALM_MIND
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_REUNICLUS_REDUX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0,
-    .evs = {252, 0, 4, 252, 0, 0},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_STEAM, MOVE_FLAME_BURST, MOVE_FIRE_HYDRO_STEAM, MOVE_RECOVER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_PALKIA,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0,
-    .zeroSpeedIvs = TRUE,
-    .evs = {116, 0, 0, 136, 4, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_SURF, MOVE_SPACIAL_REND, MOVE_THUNDER, MOVE_EARTH_POWER
+    .moves = MOVE_SCALD, MOVE_RAIN_DANCE, MOVE_ICY_WIND, MOVE_TAILWIND
     },
     {
     .lvl = 0,
-    .species = SPECIES_DEWGONG,
-    .heldItem = ITEM_LIGHT_CLAY,
+    .species = SPECIES_PALKIA_ORIGIN,
+    .heldItem = ITEM_LUSTROUS_ORB,
     .ability = 2,
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 76, 0, 180, 0},
-    .nature = NATURE_BOLD,
-    .moves = MOVE_SHEER_COLD, MOVE_SCALD, MOVE_SLACK_OFF, MOVE_TOXIC
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_THUNDER, MOVE_SPACIAL_REND, MOVE_SURF, MOVE_DRAGON_BREATH
     },
     {
     .lvl = 0,
     .species = SPECIES_MANAPHY,
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 0, 4},
     .nature = NATURE_TIMID,
-    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SCALD
+    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SURF
     },
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_LAPRASITE_X,
+    .species = SPECIES_SIMIPOUR,
+    .heldItem = ITEM_LEPPA_BERRY,
     .ability = 2,
     .zeroSpeedIvs = TRUE,
-    .evs = {0, 252, 0, 252, 4, 252},
+    .evs = {4, 0, 252, 0, 252, 0},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_DEATHROLL, MOVE_JAGGED_FANGS, MOVE_ICE_FANG, MOVE_IRON_FANGS
+    .moves = MOVE_REVIVAL_BLESSING, MOVE_INSTRUCT, MOVE_FAKE_OUT, MOVE_WATERFALL
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_POLITOED,
+    .heldItem = ITEM_DAMP_ROCK,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_SURF, MOVE_ICY_WIND, MOVE_HYPER_VOICE, MOVE_ICE_BEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GYARADOS_MEGA,
+    .heldItem = ITEM_GYARADOSITE,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_DEATHROLL, MOVE_WICKED_BLOW, MOVE_DRAGON_DANCE, MOVE_DRAGON_RUSH
     }
 };
 
@@ -33213,69 +33238,58 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = { // Postgame
 static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_BRONZONG, // Steven, Def Wall, Leftovers, TR Setter, Calm Mind
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
-    // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
+    .species = SPECIES_ZAMAZENTA,
+    .heldItem = ITEM_RUSTED_SHIELD,
+    .ability = 1,
+    .evs = {252, 0, 0, 0, 252, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BEHEMOTH_BASH, MOVE_BODY_PRESS, MOVE_KINGS_SHIELD, MOVE_METAL_BURST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_ZACIAN,
+    .heldItem = ITEM_RUSTED_SWORD,
+    .ability = 0,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_BEHEMOTH_BLADE, MOVE_SACRED_SWORD, MOVE_SWORDS_DANCE, MOVE_PIXIE_SLASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_NECROZMA_DUSK_MANE,
+    .heldItem = ITEM_TACTICAL_VEST,
+    .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_RELAXED,
-    .moves = MOVE_FLASH_CANNON, MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND
+    .evs = {252, 252, 0, 0, 0, 4},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_SUNSTEEL_STRIKE, MOVE_SOLAR_BLADE, MOVE_PSYCHOKINETIC_SLAM, MOVE_FLARE_BLITZ
     },
     {
     .lvl = 0,
-    .species = SPECIES_GENESECT, // Steven, Scarf, Download, Mixed
-    .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_FATAL_PRECISION, ABILITY_SIGHTING_SYSTEM},
-    // .innates = {ABILITY_FULL_METAL_BODY, ABILITY_PREDATOR, ABILITY_MEGA_LAUNCHER},
-    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_HASTY,
-    .moves = MOVE_U_TURN, MOVE_IRON_HEAD, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
+    .species = SPECIES_HAXORUS,
+    .heldItem = ITEM_HAXORUSITE,
+    .ability = 1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXCALIBUR, MOVE_DUAL_CHOP, MOVE_GUILLOTINE, MOVE_DRAGON_DANCE
     },
     {
     .lvl = 0,
-    .species = SPECIES_MAGEARNA, // Steven, SpDef Wall, Pixilate + Boomburst
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_STEELWORKER, ABILITY_PIXILATE, ABILITY_MIRROR_ARMOR},
-    // .innates = {ABILITY_CLEAR_BODY, ABILITY_SOUL_HEART, ABILITY_POWER_CORE},
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_SASSY,
-    .moves = MOVE_BOOMBURST, MOVE_VOLT_SWITCH, MOVE_HEAL_BELL, MOVE_RECOVER
+    .species = SPECIES_MEWTWO,
+    .heldItem = ITEM_MEWTWONITE_Y,
+    .ability = 1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FLAMETHROWER, MOVE_FOCUS_BLAST
     },
     {
     .lvl = 0,
-    .species = SPECIES_MELMETAL, // Steven, Atk + SpDef Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_STEELWORKER, ABILITY_STAMINA},
-    // .innates = {ABILITY_MAGNET_PULL, ABILITY_GALVANIZE, ABILITY_JUGGERNAUT},
-    .zeroSpeedIvs = TRUE,
-    .evs = {4, 252, 0, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_DOUBLE_IRON_BASH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_MEGA_PUNCH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_NECROZMA_DUSK_MANE, // Steven, Psychic Gem, Bulky Special, Prism. Laser, SR
-    .heldItem = ITEM_PSYCHIC_GEM,
-    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_RAMPAGE, ABILITY_MEGA_LAUNCHER},
-    // .innates = {ABILITY_SOLAR_FLARE, ABILITY_IMPENETRABLE, ABILITY_PRISM_ARMOR},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_STEALTH_ROCK, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_METAGROSS, // Steven, Mega
+    .species = SPECIES_METAGROSS,
     .heldItem = ITEM_METAGROSSITE,
-    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
-    // .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
-    // Pre-Mega
-    // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_METEOR_MASH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH
+    .ability = 0,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_METEOR_MASH, MOVE_ICE_PUNCH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH
     }
 };
 
@@ -33304,7 +33318,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .lvl = 0,
     .species = SPECIES_NECROZMA_DUSK_MANE,
     .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 1,
+    .ability = 2,
     .zeroSpeedIvs = TRUE,
     .evs = {252, 252, 0, 0, 0, 4},
     .nature = NATURE_ADAMANT,
@@ -33312,12 +33326,13 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     },
     {
     .lvl = 0,
-    .species = SPECIES_DIALGA,
-    .heldItem = ITEM_ADAMANT_ORB,
-    .ability = 2,
-    .evs = {252, 0, 4, 252, 0, 0},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_ROAR_OF_TIME, MOVE_DRAGON_BREATH, MOVE_AURA_SPHERE, MOVE_STEEL_BEAM
+    .species = SPECIES_HAXORUS,
+    .heldItem = ITEM_HAXORUSITE,
+    .ability = 1,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXCALIBUR, MOVE_DUAL_CHOP, MOVE_GUILLOTINE, MOVE_DRAGON_DANCE
     },
     {
     .lvl = 0,
@@ -33551,69 +33566,61 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_Doubles_Legends[] = 
 static const struct TrainerMonItemCustomMoves sParty_Steven_Doubles_LegendsInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_BRONZONG, // Steven, Def Wall, Leftovers, TR Setter, Calm Mind
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
-    // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
+    .species = SPECIES_SABLEYE_REDUX,
+    .heldItem = ITEM_SABLENITE_R,
+    .ability = 1,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_RELAXED,
-    .moves = MOVE_FLASH_CANNON, MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_FAKE_OUT, MOVE_FOLLOW_ME, MOVE_FLASH_FREEZE, MOVE_METEOR_MASH
     },
     {
     .lvl = 0,
-    .species = SPECIES_GENESECT, // Steven, Scarf, Download, Mixed
-    .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_FATAL_PRECISION, ABILITY_SIGHTING_SYSTEM},
-    // .innates = {ABILITY_FULL_METAL_BODY, ABILITY_PREDATOR, ABILITY_MEGA_LAUNCHER},
-    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_HASTY,
-    .moves = MOVE_U_TURN, MOVE_IRON_HEAD, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_MAGEARNA, // Steven, SpDef Wall, Pixilate + Boomburst
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_STEELWORKER, ABILITY_PIXILATE, ABILITY_MIRROR_ARMOR},
-    // .innates = {ABILITY_CLEAR_BODY, ABILITY_SOUL_HEART, ABILITY_POWER_CORE},
+    .species = SPECIES_ZACIAN,
+    .heldItem = ITEM_RUSTED_SWORD,
+    .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_SASSY,
-    .moves = MOVE_BOOMBURST, MOVE_VOLT_SWITCH, MOVE_HEAL_BELL, MOVE_RECOVER
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXCALIBUR, MOVE_SACRED_SWORD, MOVE_PIXIE_SLASH, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
-    .species = SPECIES_MELMETAL, // Steven, Atk + SpDef Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_STEELWORKER, ABILITY_STAMINA},
-    // .innates = {ABILITY_MAGNET_PULL, ABILITY_GALVANIZE, ABILITY_JUGGERNAUT},
+    .species = SPECIES_DIANCIE,
+    .heldItem = ITEM_DIANCITE,
+    .ability = 0,
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_CALM,
+    .moves = MOVE_STEALTH_ROCK, MOVE_HELPING_HAND, MOVE_DIAMOND_STORM, MOVE_DAZZLING_GLEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GRANBULL,
+    .heldItem = ITEM_GRANBULLITE,
+    .ability = 2,
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_PLAY_ROUGH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_FANG, MOVE_CRUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_NECROZMA_DUSK_MANE,
+    .heldItem = ITEM_TACTICAL_VEST,
+    .ability = 2,
     .zeroSpeedIvs = TRUE,
-    .evs = {4, 252, 0, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_DOUBLE_IRON_BASH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_MEGA_PUNCH
+    .evs = {252, 252, 0, 0, 0, 4},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_FLARE_BLITZ, MOVE_SOLAR_BLADE, MOVE_SUNSTEEL_STRIKE, MOVE_PSYCHOKINETIC_SLAM
     },
     {
     .lvl = 0,
-    .species = SPECIES_NECROZMA_DUSK_MANE, // Steven, Psychic Gem, Bulky Special, Prism. Laser, SR
-    .heldItem = ITEM_PSYCHIC_GEM,
-    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_RAMPAGE, ABILITY_MEGA_LAUNCHER},
-    // .innates = {ABILITY_SOLAR_FLARE, ABILITY_IMPENETRABLE, ABILITY_PRISM_ARMOR},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_STEALTH_ROCK, MOVE_MORNING_SUN, MOVE_FLASH_CANNON, MOVE_PRISMATIC_LASER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_METAGROSS, // Steven, Mega
+    .species = SPECIES_METAGROSS,
     .heldItem = ITEM_METAGROSSITE,
-    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
-    // .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
-    // Pre-Mega
-    // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_METEOR_MASH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 252, 0, 0, 4, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_HEAVY_SLAM, MOVE_PSYCHOKINETIC_SLAM, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH
     }
 };
 
@@ -34892,6 +34899,7 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .species = SPECIES_CHIEN_PAO,
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 1,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
     .moves = MOVE_SWORDS_DANCE, MOVE_NIGHT_SLASH, MOVE_GLACIER_CRASH, MOVE_SUCKER_PUNCH
@@ -34900,7 +34908,7 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .lvl = 0,
     .species = SPECIES_YVELTAL,
     .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 1,
+    .ability = 2,
     .zeroSpeedIvs = TRUE,
     .evs = {180, 252, 0, 4, 0, 76},
     .nature = NATURE_HARDY,
@@ -34921,9 +34929,9 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .species = SPECIES_TYRANITAR,
     .heldItem = ITEM_TYRANITARITE,
     .ability = 1,
-    .evs = {252, 252, 4, 0, 0, 0},
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_IRON_FANGS, MOVE_JAGGED_FANGS, MOVE_DRAGON_DANCE, MOVE_CRUNCH
+    .evs = {252, 252, 0, 0, 0, 4},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_IRON_FANGS, MOVE_JAGGED_FANGS, MOVE_CRUNCH, MOVE_DRAGON_DANCE
     },
     {
     .lvl = 0,
@@ -34937,12 +34945,12 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_MAWILE_MEGA_REDUX,
+    .species = SPECIES_MAWILE_REDUX,
     .heldItem = ITEM_MAWILITE_R,
     .ability = 0,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_SHADOW_FANGS, MOVE_MOONLIGHT, MOVE_SUCKER_PUNCH, MOVE_CRUNCH
+    .moves = MOVE_SUCKER_PUNCH, MOVE_MOONLIGHT, MOVE_PLAY_ROUGH, MOVE_SHADOW_FANGS
     }
 };
 
@@ -35031,8 +35039,9 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_NECROZMA_DAWN_WINGS,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 2,
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 4, 0},
     .nature = NATURE_BOLD,
     .moves = MOVE_MOONGEIST_BEAM, MOVE_PRISMATIC_LASER, MOVE_CALM_MIND, MOVE_RECOVER
@@ -35040,8 +35049,9 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_HOUNDOOM_MEGA_REDUX,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_HOUNDOOMINITE_R,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
     .moves = MOVE_RAGING_SOULS, MOVE_DARK_PULSE, MOVE_DESTINY_BOND, MOVE_FLAMETHROWER
@@ -35059,7 +35069,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_CALYREX_SHADOW_RIDER,
-    .heldItem = ITEM_SHELL_BELL,
+    .heldItem = ITEM_FOCUS_SASH,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
     .evs = {0, 0, 0, 252, 4, 252},
@@ -35071,6 +35081,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     .species = SPECIES_FLUTTER_MANE,
     .heldItem = ITEM_BOOSTER_ENERGY,
     .ability = 2,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
     .moves = MOVE_MOONBLAST, MOVE_RAGING_SOULS, MOVE_PERISH_SONG, MOVE_THUNDERBOLT
