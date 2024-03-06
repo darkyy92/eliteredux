@@ -33317,7 +33317,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .lvl = 0,
     .species = SPECIES_NECROZMA_DUSK_MANE,
     .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 1,
+    .ability = 2,
     .zeroSpeedIvs = TRUE,
     .evs = {252, 252, 0, 0, 0, 4},
     .nature = NATURE_ADAMANT,
@@ -33328,6 +33328,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_LegendsInsane[] = { 
     .species = SPECIES_HAXORUS,
     .heldItem = ITEM_HAXORUSITE,
     .ability = 1,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
     .moves = MOVE_EXCALIBUR, MOVE_DUAL_CHOP, MOVE_GUILLOTINE, MOVE_DRAGON_DANCE
@@ -33567,6 +33568,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_Doubles_LegendsInsan
     .species = SPECIES_SABLEYE_REDUX,
     .heldItem = ITEM_SABLENITE_R,
     .ability = 1,
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 128, 0, 128, 0},
     .nature = NATURE_IMPISH,
     .moves = MOVE_FAKE_OUT, MOVE_FOLLOW_ME, MOVE_FLASH_FREEZE, MOVE_METEOR_MASH
@@ -33574,29 +33576,30 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_Doubles_LegendsInsan
     {
     .lvl = 0,
     .species = SPECIES_ZACIAN,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_RUSTED_SWORD,
     .ability = 0,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_BITE, MOVE_HOWL, MOVE_IRON_FANGS, MOVE_LOVELY_BITE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_JIRACHI,
-    .heldItem = ITEM_NONE,
-    .ability = 2,
-    .evs = {0, 0, 0, 0, 0, 0},
-    .nature = NATURE_IMPISH,
-    .moves = MOVE_CONFUSION, MOVE_WISH, MOVE_REST, MOVE_SWIFT
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_HAXORUS,
-    .heldItem = ITEM_HAXORUSITE,
-    .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_DRAGON_DANCE, MOVE_DUAL_CHOP, MOVE_GUILLOTINE, MOVE_EXCALIBUR
+    .moves = MOVE_EXCALIBUR, MOVE_SACRED_SWORD, MOVE_PIXIE_SLASH, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DIANCIE,
+    .heldItem = ITEM_DIANCITE,
+    .ability = 0,
+    .evs = {252, 0, 128, 0, 128, 0},
+    .nature = NATURE_CALM,
+    .moves = MOVE_STEALTH_ROCK, MOVE_HELPING_HAND, MOVE_DIAMOND_STORM, MOVE_DAZZLING_GLEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GRANBULL,
+    .heldItem = ITEM_GRANBULLITE,
+    .ability = 2,
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_PLAY_ROUGH, MOVE_HIGH_HORSEPOWER, MOVE_ICE_FANG, MOVE_CRUNCH
     },
     {
     .lvl = 0,
