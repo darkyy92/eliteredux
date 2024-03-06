@@ -35273,7 +35273,7 @@ static const struct TrainerMonItemCustomMoves sParty_DrakeInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_DIALGA,
-    .heldItem = ITEM_RED_CARD,
+    .heldItem = ITEM_SHELL_BELL,
     .ability = 2,
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 180, 0, 76},
@@ -35295,14 +35295,15 @@ static const struct TrainerMonItemCustomMoves sParty_DrakeInsane[] = {
     .species = SPECIES_ROARING_MOON,
     .heldItem = ITEM_BOOSTER_ENERGY,
     .ability = 1,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_KNOCK_OFF, MOVE_DRAGON_DANCE, MOVE_ACROBATICS, MOVE_ROOST
+    .moves = MOVE_KNOCK_OFF, MOVE_DRAGON_DANCE, MOVE_ACROBATICS, MOVE_EARTHQUAKE
     },
     {
     .lvl = 0,
     .species = SPECIES_KYUREM_BLACK,
-    .heldItem = ITEM_ROSELI_BERRY,
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
     .ability = 1,
     .zeroSpeedIvs = TRUE,
     .evs = {0, 252, 4, 0, 0, 252},
