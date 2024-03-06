@@ -591,4 +591,14 @@ extern const u8 BattleScript_MoveEffectBleed[];
 extern const u8 BattleScript_BerryCureBldEnd2[];
 extern const u8 BattleScript_BerryCureBldRet[];
 
+extern const u8 BattleScript_SetSandstormFromScript[];
+extern const u8 BattleScript_SetRainFromScript[];
+extern const u8 BattleScript_SetSunFromScript[];
+extern const u8 BattleScript_SetHailFromScript[];
+extern const u8 BattleScript_SetTrickRoomFromScript[];
+extern const u8 BattleScript_SetMagicRoomFromScript[];
+extern const u8 BattleScript_SetWonderRoomFromScript[];
+extern const u8 BattleScript_SetGravityFromScript[];
+extern const u8 BattleScript_SetInverseRoomFromScript[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

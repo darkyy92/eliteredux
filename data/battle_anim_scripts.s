@@ -3332,7 +3332,6 @@ Move_DEFOG:
 	end
 
 Move_TRICK_ROOM::
-	call InitRoomAnimation
 	fadetobg BG_TRICK_ROOM
 	waitbgfadein
 	delay 0x40
