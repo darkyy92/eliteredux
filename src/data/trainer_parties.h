@@ -30641,28 +30641,27 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
 static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { // Inverse Battle!
     {
     .lvl = 0,
-    .species = SPECIES_ORBEETLE,
-    .heldItem = ITEM_FOCUS_SASH,
+    .species = SPECIES_MUSHARNA,
+    .heldItem = ITEM_TACTICAL_VEST,
     .ability = 0,
-    .evs = {4, 0, 0, 252, 0, 252},
-    .nature = NATURE_TIMID,
-    .moves = MOVE_HYPNOSIS, MOVE_INSTRUCT, MOVE_PSYSHOCK, MOVE_BUG_BUZZ
+    .evs = {252, 0, 4, 252, 0, 0},
+    .nature = NATURE_RELAXED,
+    .moves = MOVE_MOONBLAST, MOVE_EXPANDING_FORCE, MOVE_THUNDERBOLT, MOVE_PSYCHIC
     },
     {
     .lvl = 0,
-    .species = SPECIES_ALAKAZAM,
-    .heldItem = ITEM_ALAKAZITE,
+    .species = SPECIES_REUNICLUS,
+    .heldItem = ITEM_ASSAULT_VEST,
     .ability = 0,
-    .evs = {4, 0, 0, 252, 0, 252},
-    .nature = NATURE_TIMID,
-    .moves = MOVE_DAZZLING_GLEAM, MOVE_DREAM_EATER, MOVE_PSYCHIC, MOVE_PROTECT
+    .evs = {252, 0, 0, 252, 4, 0},
+    .nature = NATURE_SASSY,
+    .moves = MOVE_SIGNAL_BEAM, MOVE_EXPANDING_FORCE, MOVE_PSYCHIC, MOVE_SHADOW_BALL
     },
     {
     .lvl = 0,
     .species = SPECIES_ORANGURU,
     .heldItem = ITEM_LIGHT_CLAY,
     .ability = 0,
-    .zeroSpeedIvs = TRUE,
     .evs = {248, 0, 252, 0, 8, 0},
     .nature = NATURE_QUIET,
     .moves = MOVE_REFLECT, MOVE_LIGHT_SCREEN, MOVE_HYPER_VOICE, MOVE_INSTRUCT
@@ -30670,30 +30669,29 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     {
     .lvl = 0,
     .species = SPECIES_CALYREX_ICE_RIDER,
-    .heldItem = ITEM_LEFTOVERS,
+    .heldItem = ITEM_IRON_BALL,
     .ability = 0,
-    .zeroSpeedIvs = TRUE,
     .evs = {252, 252, 0, 0, 4, 0},
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_GLACIAL_LANCE, MOVE_ZEN_HEADBUTT, MOVE_CLOSE_COMBAT, MOVE_PROTECT
+    .nature = NATURE_BRAVE,
+    .moves = MOVE_GLACIAL_LANCE, MOVE_ZEN_HEADBUTT, MOVE_CLOSE_COMBAT, MOVE_HIGH_HORSEPOWER
     },
     {
     .lvl = 0,
-    .species = SPECIES_CRESSELIA,
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_SLOWBRO,
+    .heldItem = ITEM_SLOWBRONITE,
     .ability = 1,
-    .evs = {252, 0, 172, 0, 84, 0},
-    .nature = NATURE_BOLD,
-    .moves = MOVE_TRICK_ROOM, MOVE_MOONBLAST, MOVE_SIGNAL_BEAM, MOVE_MOONLIGHT
+    .evs = {252, 0, 4, 0, 252, 0},
+    .nature = NATURE_SASSY,
+    .moves = MOVE_AMNESIA, MOVE_HEAL_PULSE, MOVE_EXPANDING_FORCE, MOVE_SCALD
     },
     {
     .lvl = 0,
-    .species = SPECIES_GALLADE,
-    .heldItem = ITEM_GALLADITE,
+    .species = SPECIES_SLOWKING,
+    .heldItem = ITEM_SLOWKINGITE,
     .ability = 0,
-    .evs = {4, 252, 0, 0, 0, 252},
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_SHADOW_SNEAK, MOVE_PROTECT, MOVE_SACRED_SWORD, MOVE_PSYCHO_CUT
+    .evs = {252, 0, 252, 0, 4, 0},
+    .nature = NATURE_RELAXED,
+    .moves = MOVE_EXPANDING_FORCE, MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_MUD_SPORT
     }
 };
 
