@@ -32391,7 +32391,7 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_PALKIA_ORIGIN,
+    .species = SPECIES_PALKIA,
     .heldItem = ITEM_LUSTROUS_ORB,
     .ability = 2,
     .evs = {4, 0, 0, 252, 0, 252},
@@ -32430,10 +32430,9 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_GYARADOS_MEGA,
+    .species = SPECIES_GYARADOS,
     .heldItem = ITEM_GYARADOSITE,
     .ability = 0,
-    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
     .moves = MOVE_DEATHROLL, MOVE_WICKED_BLOW, MOVE_DRAGON_DANCE, MOVE_DRAGON_RUSH
