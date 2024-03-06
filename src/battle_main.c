@@ -4266,7 +4266,7 @@ static void HandleTurnActionSelectionState(void)
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                         *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
                         *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
-                        *(gBattleStruct->moveTarget + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][3];
+                        gBattleStruct->moveTarget[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][3];
                         return;
                     }
                     else if (gVolatileStructs[gActiveBattler].encoredMove != 0)
@@ -4509,9 +4509,9 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][2]);
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
-                            *(gBattleStruct->chosenMovePositions + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION);
+                            gBattleStruct->chosenMovePositions[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION);
                             gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
-                            *(gBattleStruct->moveTarget + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][3];
+                            gBattleStruct->moveTarget[gBattlerAttacker] = gBattleResources->bufferB[gActiveBattler][3];
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
                             gBattleCommunication[gActiveBattler]++;
@@ -5439,7 +5439,7 @@ static void RunTurnActionsFunctions(void)
     if (gBattleOutcome != 0)
         gCurrentActionFuncId = B_ACTION_FINISHED;
 
-    *(&gBattleStruct->savedTurnActionNumber) = gCurrentTurnActionNumber;
+    gBattleStruct->savedTurnActionNumber = gCurrentTurnActionNumber;
     sTurnActionsFuncsTable[gCurrentActionFuncId]();
 
     if (gCurrentTurnActionNumber >= gBattlersCount) // everyone did their actions, turn finished

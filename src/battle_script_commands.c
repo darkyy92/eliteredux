@@ -6644,9 +6644,9 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gTurnStructs[gBattlerAttacker].instructedChosenTarget)
-                *(gBattleStruct->moveTarget + gBattlerAttacker) = gTurnStructs[gBattlerAttacker].instructedChosenTarget & 0x3;
+                gBattleStruct->moveTarget[gBattlerAttacker] = gTurnStructs[gBattlerAttacker].instructedChosenTarget & 0x3;
             if (gTurnStructs[gBattlerAttacker].dancerOriginalTarget)
-                *(gBattleStruct->moveTarget + gBattlerAttacker) = gTurnStructs[gBattlerAttacker].dancerOriginalTarget & 0x3;
+                gBattleStruct->moveTarget[gBattlerAttacker] = gTurnStructs[gBattlerAttacker].dancerOriginalTarget & 0x3;
 
             #if B_RAMPAGE_CANCELLING >= GEN_5
             if (gBattleMoves[gCurrentMove].effect == EFFECT_RAMPAGE // If we're rampaging
@@ -9939,7 +9939,7 @@ static void Cmd_various(void)
         }
         else
         {
-            gTurnStructs[gBattlerTarget].instructedChosenTarget = *(gBattleStruct->moveTarget + gBattlerTarget) | 0x4;
+            gTurnStructs[gBattlerTarget].instructedChosenTarget = gBattleStruct->moveTarget[gBattlerTarget] | 0x4;
             gBattlerAttacker = gBattlerTarget;
             gCalledMove = gLastMoves[gBattlerAttacker];
             for (i = 0; i < MAX_MON_MOVES; i++)
@@ -11066,6 +11066,22 @@ static void Cmd_various(void)
             }
             return;
         }
+    case VARIOUS_RESTORE_TURN_BATTLERS:
+        if (gBattleStruct->switchInAbilitiesCounter < gBattlersCount)
+        {
+            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInAbilitiesCounter];
+        }
+        else if (gBattleStruct->switchInItemsCounter < gBattlersCount)
+        {
+            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInItemsCounter];
+        }
+        else if (gCurrentTurnActionNumber < gBattlersCount)
+        {
+            gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+            if (gCurrentActionFuncId == B_ACTION_USE_MOVE)
+                gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
+        }
+        break;
     case VARIOUS_TRY_FLING:
         if (CanFling(gActiveBattler))
         {
@@ -14236,7 +14252,7 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
     }
 
     if (gChosenActionByBattler[gBattlerTarget] == B_ACTION_USE_MOVE
-        && gBattlerAttacker == *(gBattleStruct->moveTarget + gBattlerTarget)
+        && gBattlerAttacker == gBattleStruct->moveTarget[gBattlerTarget]
         && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
         && gBattleMons[gBattlerAttacker].hp
         && !gVolatileStructs[gBattlerTarget].truantCounter

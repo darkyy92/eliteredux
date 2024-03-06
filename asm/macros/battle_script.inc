@@ -504,6 +504,7 @@
 	.macro switchineffects battler:req
 	.byte 0x52
 	.byte \battler
+	restoreturnbattlers
 	.endm
 
 	.macro trainerslidein battler:req
@@ -1439,6 +1440,7 @@
 
 	.macro switchinabilities battler:req
 	various \battler, VARIOUS_SWITCHIN_ABILITIES
+	restoreturnbattlers
 	.endm
 
 	.macro savetarget
@@ -2219,6 +2221,10 @@
 	various \battler, VARIOUS_JUMP_IF_STATUS_4
 	.4byte \status
 	.4byte \onFail
+	.endm
+
+	.macro restoreturnbattlers
+	various BS_ATTACKER, VARIOUS_RESTORE_TURN_BATTLERS
 	.endm
 
 	.macro swapbattlers battler1:req, battler2:req
