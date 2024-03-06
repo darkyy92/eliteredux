@@ -1635,13 +1635,13 @@ static void Cmd_attackcanceler(void)
         else
             party = gEnemyParty;
 
-        for (i = 0; i < PARTY_SIZE; gBattleCommunication[0]++)
+        for (i = 0; i < PARTY_SIZE; i++)
         {
             if (gBattlerPartyIndexes[gBattlerAttacker] == i) continue;
-            if (GetMonData(&party[gBattleCommunication[0]], MON_DATA_HP)
-                && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2)
-                && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2) != SPECIES_EGG
-                && !GetMonData(&party[gBattleCommunication[0]], MON_DATA_STATUS))
+            if (GetMonData(&party[i], MON_DATA_HP)
+                && GetMonData(&party[i], MON_DATA_SPECIES2)
+                && GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG
+                && !GetMonData(&party[i], MON_DATA_STATUS))
                     count++;
         }
 
