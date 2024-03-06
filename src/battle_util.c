@@ -429,6 +429,8 @@ void HandleAction_UseMove(void)
         }
     }
 
+    gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget;
+
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE && gRoundStructs[gBattlerAttacker].palaceUnableToUseMove)
     {
         // Battle Palace, select battle script for failure to use move
@@ -460,8 +462,6 @@ void HandleAction_UseMove(void)
     // Record HP of each battler
     for (i = 0; i < gBattlersCount; i++)
         gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
-
-    gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget;
 
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }

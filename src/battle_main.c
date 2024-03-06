@@ -4511,7 +4511,7 @@ static void HandleTurnActionSelectionState(void)
                             }
                             gBattleStruct->chosenMovePositions[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION);
                             gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
-                            gBattleStruct->moveTarget[gBattlerAttacker] = gBattleResources->bufferB[gActiveBattler][3];
+                            gBattleStruct->moveTarget[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][3];
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
                             gBattleCommunication[gActiveBattler]++;
