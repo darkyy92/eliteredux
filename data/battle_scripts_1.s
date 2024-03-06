@@ -9946,7 +9946,7 @@ BattleScript_SetTrickRoomFromScript::
 	end3
 
 BattleScript_SetMagicRoomFromScript::
-	printstring STRINGID_WONDERROOMSTARTS
+	printstring STRINGID_MAGICROOMSTARTS
 	playmoveanimation BS_ATTACKER, MOVE_TRICK_ROOM
 	waitmessage B_WAIT_TIME_LONG
 	end3
