@@ -5862,7 +5862,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 0,
         .type = TYPE_BUG,
         .accuracy = 0,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
         .flags = FLAG_SNATCH_AFFECTED | FLAG_DANCE,
@@ -8611,6 +8611,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .flags2 = FLAG_DOUBLE_DAMAGE_TO_MEGA,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_BEHEMOTH_BASH] =
@@ -8623,6 +8624,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags2 = FLAG_DOUBLE_DAMAGE_TO_MEGA,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_AURA_WHEEL] =
@@ -11194,14 +11196,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_VICTORY_DANCE] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_VICTORY_DANCE,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_FIGHTING,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .flags = FLAG_SNATCH_AFFECTED | FLAG_DANCE,
+        .split = SPLIT_STATUS,
     },
     [MOVE_BLEAKWIND_STORM] =
     {

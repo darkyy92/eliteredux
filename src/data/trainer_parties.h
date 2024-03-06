@@ -30663,7 +30663,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     },
     {
     .lvl = 0,
-    .species = SPECIES_ALAKAZAM_MEGA,
+    .species = SPECIES_ALAKAZAM,
     .heldItem = ITEM_ALAKAZITE,
     .ability = 0,
     .evs = {4, 0, 0, 252, 0, 252},
@@ -30701,7 +30701,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     },
     {
     .lvl = 0,
-    .species = SPECIES_GALLADE_MEGA,
+    .species = SPECIES_GALLADE,
     .heldItem = ITEM_GALLADITE,
     .ability = 0,
     .evs = {4, 252, 0, 0, 0, 252},
@@ -35047,7 +35047,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_HOUNDOOM_MEGA_REDUX,
+    .species = SPECIES_HOUNDOOM_REDUX,
     .heldItem = ITEM_HOUNDOOMINITE_R,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
@@ -37236,7 +37236,7 @@ static const struct TrainerMonItemCustomMoves sParty_Phoebe4[] = { // legendarie
     },
     {
     .lvl = 0,
-    .species = SPECIES_GIRATINA_ORIGIN, // Phoebe, Doubles, Intimidate, Fast Special, Defog
+    .species = SPECIES_GIRATINA, // Phoebe, Doubles, Intimidate, Fast Special, Defog
     .heldItem = ITEM_GRISEOUS_ORB,
     .ability = 0, // ABILITY_INTIMIDATE, ABILITY_SCARE, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_LEVITATE, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
@@ -39369,7 +39369,7 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
     },
     {
     .lvl = 0,
-    .species = SPECIES_NIDOKING_MEGA, // Mega
+    .species = SPECIES_NIDOKING, // Mega
     .heldItem = ITEM_NIDOKINGITE,
     .ability = 0, // Sheer Force > Sheer Force
     .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -39378,7 +39378,7 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
     },
     {
     .lvl = 0,
-    .species = SPECIES_NIDOQUEEN_MEGA, // Mega
+    .species = SPECIES_NIDOQUEEN, // Mega
     .heldItem = ITEM_NIDOQUEENITE,
     .ability = 0, // Poison Point > Sheer Force
     .evs = {248, 0, 128, 0, 132, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
