@@ -32382,60 +32382,61 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     {
     .lvl = 0,
     .species = SPECIES_SUICUNE,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2,
+    .heldItem = ITEM_EJECT_BUTTON,
+    .ability = 0,
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 4, 0, 0, 252},
-    .nature = NATURE_BOLD,
-    .moves = MOVE_SCALD, MOVE_SHEER_COLD, MOVE_RECOVER, MOVE_CALM_MIND
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_REUNICLUS_REDUX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0,
-    .evs = {252, 0, 4, 252, 0, 0},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_STEAM, MOVE_FLAME_BURST, MOVE_FIRE_HYDRO_STEAM, MOVE_RECOVER
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_PALKIA,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0,
-    .zeroSpeedIvs = TRUE,
-    .evs = {116, 0, 0, 136, 4, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_SURF, MOVE_SPACIAL_REND, MOVE_THUNDER, MOVE_EARTH_POWER
+    .moves = MOVE_SCALD, MOVE_RAIN_DANCE, MOVE_ICY_WIND, MOVE_TAILWIND
     },
     {
     .lvl = 0,
-    .species = SPECIES_DEWGONG,
-    .heldItem = ITEM_LIGHT_CLAY,
+    .species = SPECIES_PALKIA_ORIGIN,
+    .heldItem = ITEM_LUSTROUS_ORB,
     .ability = 2,
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 76, 0, 180, 0},
-    .nature = NATURE_BOLD,
-    .moves = MOVE_SHEER_COLD, MOVE_SCALD, MOVE_SLACK_OFF, MOVE_TOXIC
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_MODEST,
+    .moves = MOVE_THUNDER, MOVE_SPACIAL_REND, MOVE_SURF, MOVE_DRAGON_BREATH
     },
     {
     .lvl = 0,
     .species = SPECIES_MANAPHY,
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 0, 252, 0, 4},
     .nature = NATURE_TIMID,
-    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SCALD
+    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SURF
     },
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_LAPRASITE_X,
+    .species = SPECIES_SIMIPOUR,
+    .heldItem = ITEM_LEPPA_BERRY,
     .ability = 2,
     .zeroSpeedIvs = TRUE,
-    .evs = {0, 252, 0, 252, 4, 252},
+    .evs = {4, 0, 252, 0, 252, 0},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_DEATHROLL, MOVE_JAGGED_FANGS, MOVE_ICE_FANG, MOVE_IRON_FANGS
+    .moves = MOVE_REVIVAL_BLESSING, MOVE_INSTRUCT, MOVE_FAKE_OUT, MOVE_WATERFALL
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_POLITOED,
+    .heldItem = ITEM_DAMP_ROCK,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_SURF, MOVE_ICY_WIND, MOVE_HYPER_VOICE, MOVE_ICE_BEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GYARADOS_MEGA,
+    .heldItem = ITEM_GYARADOSITE,
+    .ability = 0,
+    .zeroSpeedIvs = TRUE,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_DEATHROLL, MOVE_WICKED_BLOW, MOVE_DRAGON_DANCE, MOVE_DRAGON_RUSH
     }
 };
 
