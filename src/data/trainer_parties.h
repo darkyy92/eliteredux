@@ -34888,7 +34888,7 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_SWORDS_DANCE, MOVE_NIGHT_SLASH, MOVE_GLACIER_CRASH, MOVE_SUCKER_PUNCH
+    .moves = MOVE_CRUNCH, MOVE_IRON_FANGS, MOVE_ICE_FANG, MOVE_JAGGED_FANGS
     },
     {
     .lvl = 0,
@@ -34908,16 +34908,17 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .zeroSpeedIvs = TRUE,
     .evs = {0, 0, 0, 252, 4, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_DARK_VOID, MOVE_DARK_PULSE, MOVE_MOONGEIST_BEAM, MOVE_NASTY_PLOT
+    .moves = MOVE_DARK_VOID, MOVE_DARK_PULSE, MOVE_SLUDGE_BOMB, MOVE_NASTY_PLOT
     },
     {
     .lvl = 0,
     .species = SPECIES_TYRANITAR,
     .heldItem = ITEM_TYRANITARITE,
     .ability = 1,
+    .zeroSpeedIvs = TRUE,
     .evs = {252, 252, 0, 0, 0, 4},
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_IRON_FANGS, MOVE_JAGGED_FANGS, MOVE_CRUNCH, MOVE_DRAGON_DANCE
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_IRON_FANGS, MOVE_JAGGED_FANGS, MOVE_CRUNCH, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
@@ -34934,9 +34935,10 @@ static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = {
     .species = SPECIES_MAWILE_REDUX,
     .heldItem = ITEM_MAWILITE_R,
     .ability = 0,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_SUCKER_PUNCH, MOVE_MOONLIGHT, MOVE_PLAY_ROUGH, MOVE_SHADOW_FANGS
+    .moves = MOVE_SUCKER_PUNCH, MOVE_IRON_FANGS, MOVE_PLAY_ROUGH, MOVE_SHADOW_FANGS
     }
 };
 
@@ -35046,7 +35048,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     .lvl = 0,
     .species = SPECIES_MARSHADOW,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1,
+    .ability = 2,
     .zeroSpeedIvs = TRUE,
     .evs = {0, 252, 4, 0, 0, 252},
     .nature = NATURE_JOLLY,
@@ -35070,7 +35072,7 @@ static const struct TrainerMonItemCustomMoves sParty_PhoebeInsane[] = {
     .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_MOONBLAST, MOVE_RAGING_SOULS, MOVE_PERISH_SONG, MOVE_THUNDERBOLT
+    .moves = MOVE_MOONBLAST, MOVE_SHADOW_BALL, MOVE_PERISH_SONG, MOVE_THUNDERBOLT
     }
 };
 
