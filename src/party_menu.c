@@ -6393,6 +6393,27 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
 	
     switch(gEvolutionTable[species][i].method)
     {
+    case EVO_MEGA_EVOLUTION:
+    case EVO_PRIMAL_REVERSION:
+        if(gSaveBlock2Ptr->permanentMegaMode){
+            if (gEvolutionTable[species][i].param == heldItem || CheckBagHasItem(gEvolutionTable[species][i].param, 1)) //Check if the mon holds the evolution item or the player has it in the bag
+                return gEvolutionTable[species][i].targetSpecies;
+        }
+    break;
+    case EVO_MOVE_MEGA_EVOLUTION:
+        if(gSaveBlock2Ptr->permanentMegaMode){
+            u16 move1 = GetMonData(mon, MON_DATA_MOVE1, 0);
+            u16 move2 = GetMonData(mon, MON_DATA_MOVE2, 0);
+            u16 move3 = GetMonData(mon, MON_DATA_MOVE3, 0);
+            u16 move4 = GetMonData(mon, MON_DATA_MOVE4, 0);
+
+            if (gEvolutionTable[species][i].param == move1 ||
+                gEvolutionTable[species][i].param == move2 ||
+                gEvolutionTable[species][i].param == move3 ||
+                gEvolutionTable[species][i].param == move4) //Check if the mon has the evolution move
+                return gEvolutionTable[species][i].targetSpecies;
+        }
+    break;
     case EVO_FORM_SHIFT:
         if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
             return gEvolutionTable[species][i].targetSpecies;
