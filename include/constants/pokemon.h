@@ -329,6 +329,7 @@
 #define FLAG_HITS_SPDEF                             (1 << 5)
 #define FLAG_HITS_PHYSICAL_DEF                      (1 << 6)
 #define FLAG_THROWING                               (1 << 7)
+#define FLAG_DOUBLE_DAMAGE_TO_MEGA                  (1 << 8)
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

@@ -14030,6 +14030,14 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
             MulModifier(&modifier, UQ_4_12(0.8));
     }
 
+    if (gBattleMoves[move].flags2 & FLAG_DOUBLE_DAMAGE_TO_MEGA
+        && (gBattleStruct->mega.evolvedSpecies[battlerDef]
+            || gBattleStruct->mega.primalRevertedSpecies[battlerDef]))
+    {
+        MulModifier(&modifier, UQ_4_12(2.0));
+    }
+        
+
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     holdEffectParamAtk = GetBattlerHoldEffectParam(battlerAtk);
     if (holdEffectParamAtk > 100)
