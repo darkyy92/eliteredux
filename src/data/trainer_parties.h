@@ -33615,7 +33615,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven_Doubles_LegendsInsan
     .lvl = 0,
     .species = SPECIES_METAGROSS,
     .heldItem = ITEM_METAGROSSITE,
-    .ability = 2,
+    .ability = 0,
     .zeroSpeedIvs = TRUE,
     .evs = {0, 252, 0, 0, 4, 252},
     .nature = NATURE_JOLLY,
