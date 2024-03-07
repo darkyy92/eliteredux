@@ -10489,7 +10489,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             if (GetBattlerSide(i) == GetBattlerSide(j)) continue;
                             if (gBattleStruct->statChangesToCheck[j][statId - 1] > 0)
                             {
-                                MGBA_PRINT_DEBUG("Found stats ego battler %d target %d stat %d", i, j, statId);
                                 found = foundForBattler = TRUE;
                                 if (hasEgoist)
                                 {
