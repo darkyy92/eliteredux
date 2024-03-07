@@ -1206,6 +1206,7 @@ u8 GetBattlerForBattleScript(u8 caseId)
     case BS_TARGET:
         ret = gBattlerTarget;
         break;
+    case BS_CHOOSE_FAINTED_MON:
     case BS_ATTACKER:
         ret = gBattlerAttacker;
         break;

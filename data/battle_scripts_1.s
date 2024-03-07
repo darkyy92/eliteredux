@@ -12323,6 +12323,8 @@ BattleScript_EffectRevivalBlessing::
 	attackcanceler
 	attackstring
 	ppreduce
+	openpartyscreen BS_CHOOSE_FAINTED_MON, BattleScript_ButItFailed
+	waitstate
 	tryrevivalblessing BattleScript_ButItFailed
 	attackanimation
 	waitanimation

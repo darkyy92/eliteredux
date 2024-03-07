@@ -2208,7 +2208,7 @@
 	.endm
 
 	.macro tryrevivalblessing, jumpInstr:req
-	various 0, VARIOUS_TRY_REVIVAL_BLESSING
+	various BS_ATTACKER, VARIOUS_TRY_REVIVAL_BLESSING
 	.4byte \jumpInstr
 	.endm
 

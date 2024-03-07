@@ -3733,7 +3733,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                         static const u8 sTriAttackEffects[] = { MOVE_EFFECT_BURN, MOVE_EFFECT_FREEZE, MOVE_EFFECT_PARALYSIS};
                     #endif
                     gBattleScripting.moveEffect = sTriAttackEffects[Random() % 3];
-                    SetMoveEffect(FALSE, 0);
+                    SetMoveEffect(primary, certain);
                 }
                 break;
             case MOVE_EFFECT_DIRE_CLAW:
@@ -3745,7 +3745,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 {
                     static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_SLEEP, MOVE_EFFECT_PARALYSIS};
                     gBattleScripting.moveEffect = sDireClawEffects[Random() % 3];
-                    SetMoveEffect(FALSE, 0);
+                    SetMoveEffect(primary, certain);
                 }
                 break;
             case MOVE_EFFECT_CHARGING:
@@ -7223,7 +7223,9 @@ static void Cmd_openpartyscreen(void)
     }
     else
     {
-        if (gBattlescriptCurrInstr[1] & PARTY_SCREEN_OPTIONAL)
+        if (gBattlescriptCurrInstr[1] == BS_CHOOSE_FAINTED_MON)
+            hitmarkerFaintBits = PARTY_ACTION_CHOOSE_FAINTED_MON;
+        else if (gBattlescriptCurrInstr[1] & PARTY_SCREEN_OPTIONAL)
             hitmarkerFaintBits = PARTY_ACTION_CHOOSE_MON; // Used here as the caseId for the EmitChoose function.
         else
             hitmarkerFaintBits = PARTY_ACTION_SEND_OUT;
@@ -7233,7 +7235,12 @@ static void Cmd_openpartyscreen(void)
         {
             gBattlescriptCurrInstr += 6;
         }
-        else if (HasNoMonsToSwitch(battlerId, PARTY_SIZE, PARTY_SIZE))
+        else if (GetFirstFaintedPartyIndex(gBattlerAttacker) >= PARTY_SIZE)
+        {
+            gBattlescriptCurrInstr = jumpPtr;
+            return;
+        }
+        else if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON && HasNoMonsToSwitch(battlerId, PARTY_SIZE, PARTY_SIZE))
         {
             gActiveBattler = battlerId;
             gAbsentBattlerFlags |= gBitTable[gActiveBattler];
@@ -7252,8 +7259,10 @@ static void Cmd_openpartyscreen(void)
 
             gBattlescriptCurrInstr += 6;
 
-            if (GetBattlerPosition(gActiveBattler) == 0 && gBattleResults.playerSwitchesCounter < 0xFF)
-                gBattleResults.playerSwitchesCounter++;
+            if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON
+                && GetBattlerPosition(gActiveBattler) == 0
+                && gBattleResults.playerSwitchesCounter < 0xFF)
+                    gBattleResults.playerSwitchesCounter++;
 
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
             {
@@ -11122,15 +11131,8 @@ static void Cmd_various(void)
             const u8 *failInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             u8 side = GetBattlerSide(gBattlerAttacker);
 
-            // Move fails if there are no battlers to revive.
-            if (GetFirstFaintedPartyIndex(gBattlerAttacker) >= PARTY_SIZE)
-            {
-                gBattlescriptCurrInstr = failInstr;
-                return;
-            }
-
             // Battler selected! Revive and go to next instruction.
-            if (gSelectedMonPartyId != PARTY_SIZE)
+            if (gSelectedMonPartyId < PARTY_SIZE)
             {
                 struct Pokemon *party = GetBattlerParty(gActiveBattler);
                 u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
@@ -11148,18 +11150,13 @@ static void Cmd_various(void)
 
                 gSelectedMonPartyId = PARTY_SIZE;
                 gBattlescriptCurrInstr += 7;
-                return;
             }
-
-            // Open party menu, wait to go to next instruction.
             else
             {
-                BtlController_EmitChoosePokemon(0, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
-                MarkBattlerForControllerExec(gBattlerAttacker);
-            }
-            return;            
+                gBattlescriptCurrInstr = failInstr;
+            }        
         }
-        break;    
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
