@@ -122,7 +122,6 @@ struct VolatileStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    u8 protectedThisTurn:1;
     u8 disciplineCounter:4;
     u8 syrupBombIsShiny:1;
     u8 ghastlyEchoTimer:2;
@@ -159,6 +158,7 @@ struct RoundStruct
     u32 notFirstStrike:1;
     u32 palaceUnableToUseMove:1;
     u32 usesBouncedMove:1;
+    u8 protectedThisTurn:1;
     u32 usedHealBlockedMove:1;
     u32 usedGravityPreventedMove:1;
     u32 powderSelfDmg:1;
@@ -696,7 +696,7 @@ struct BattleStruct
 }
 
 #define IS_BATTLER_PROTECTED(battlerId)(gRoundStructs[battlerId].protected                                           \
-                                        || gVolatileStructs[gActiveBattler].protectedThisTurn                           \
+                                        || gRoundStructs[gActiveBattler].protectedThisTurn                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \

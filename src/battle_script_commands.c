@@ -3994,7 +3994,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 if (IS_BATTLER_PROTECTED(gBattlerTarget))
                 {
                     gRoundStructs[gBattlerTarget].protected = FALSE;
-                    gVolatileStructs[gActiveBattler].protectedThisTurn = FALSE;
+                    gRoundStructs[gActiveBattler].protectedThisTurn = FALSE;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_WIDE_GUARD);
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_QUICK_GUARD);
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_CRAFTY_SHIELD);
@@ -15183,7 +15183,7 @@ static void Cmd_switchoutabilities(void)
     u8 count;
     const u8 *startingPointer = gBattlescriptCurrInstr;
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
-    gVolatileStructs[gActiveBattler].protectedThisTurn = FALSE;
+    gRoundStructs[gActiveBattler].protectedThisTurn = FALSE;
 
     count = GetSingleUseAbilityCounter(gActiveBattler, ABILITY_ZERO_TO_HERO);
     if (count == 0) {

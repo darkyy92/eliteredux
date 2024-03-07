@@ -5476,7 +5476,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Coward
         if(CheckAndSetSwitchInAbility(battler, ABILITY_COWARD) && !GetSingleUseAbilityCounter(battler, ABILITY_COWARD)){
             SetSingleUseAbilityCounter(battler, ABILITY_COWARD, TRUE);
-            gVolatileStructs[battler].protectedThisTurn = TRUE;
+            gRoundStructs[battler].protectedThisTurn = TRUE;
             BattleScriptPushCursorAndCallback(BattleScript_BattlerIsProtectedForThisTurn);
             effect++;
         }
@@ -12990,7 +12990,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return FALSE;
     else if (gRoundStructs[battlerId].protected)
         return TRUE;
-    else if (gVolatileStructs[battlerId].protectedThisTurn && gRoundStructs[gBattlerAttacker].extraMoveUsed != TRUE)
+    else if (gRoundStructs[battlerId].protectedThisTurn && gRoundStructs[gBattlerAttacker].extraMoveUsed != TRUE)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerBattleMoveTargetFlags(move, battlerId) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))

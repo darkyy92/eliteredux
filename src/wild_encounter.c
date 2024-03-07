@@ -541,11 +541,13 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 area, u8 
 
 static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 rod)
 {
-    u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     u8 level = ChooseWildMonLevel();
+    u16 species = MaybeFindSpecialMon(WILD_AREA_FISHING);
 
-    CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
-    return wildMonInfo->wildPokemon[wildMonIndex].species;
+    if (!species) species = wildMonInfo->wildPokemon[ChooseWildMonIndex_Fishing(rod)].species;
+
+    CreateWildMon(species, level);
+    return species;
 }
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
