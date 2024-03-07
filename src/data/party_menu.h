@@ -859,8 +859,10 @@ enum
     MENU_FIELD_MOVES,
 };
 
-#define MENU_SUB_EVOLUTION (MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT + 1)
-#define MENU_EVOLUTIONS    (MENU_SUB_EVOLUTION + 1)
+#define MENU_SUB_EVOLUTION   (MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT + 1)
+#define MENU_SUB_FORM_CHANGE (MENU_SUB_EVOLUTION + 1)
+#define MENU_EVOLUTIONS      (MENU_SUB_FORM_CHANGE + 1)
+#define MENU_FORM_CHANGE     (MENU_SUB_FORM_CHANGE + EVOS_PER_MON + 1)
 
 enum
 {
@@ -931,23 +933,25 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK]    = {gMoveNames[MOVE_MILK_DRINK], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED]   = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT]   = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
-    [MENU_SUB_EVOLUTION]   = {gText_Evolution, CursorCb_EvolutionSubMenu},
+    [MENU_SUB_EVOLUTION]   = {gText_Evolution,   CursorCb_EvolutionSubMenu},
     [MENU_EVOLUTIONS]      = {gSpeciesNames[1],  CursorCb_Evolution},
+    [MENU_SUB_FORM_CHANGE] = {gText_FormChange,  CursorCb_FormChangeSubMenu},
+    [MENU_FORM_CHANGE]     = {gSpeciesNames[1],  CursorCb_FormChange},
 };
 
-static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
-static const u8 sPartyMenuAction_ShiftSummaryCancel[] = {MENU_SHIFT, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_SendOutSummaryCancel[] = {MENU_SEND_OUT, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_SummaryCancel[] = {MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_EnterSummaryCancel[] = {MENU_ENTER, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_NoEntrySummaryCancel[] = {MENU_NO_ENTRY, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_StoreSummaryCancel[] = {MENU_STORE, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_GiveTakeItemCancel[] = {MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE_ITEM, MENU_CANCEL2};
-static const u8 sPartyMenuAction_ReadTakeMailCancel[] = {MENU_READ, MENU_TAKE_MAIL, MENU_CANCEL2};
-static const u8 sPartyMenuAction_RegisterSummaryCancel[] = {MENU_REGISTER, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_TradeSummaryCancel1[] = {MENU_TRADE1, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_TradeSummaryCancel2[] = {MENU_TRADE2, MENU_SUMMARY, MENU_CANCEL1};
-static const u8 sPartyMenuAction_TakeItemTossCancel[] = {MENU_TAKE_ITEM, MENU_TOSS, MENU_CANCEL1};
+static const u8 sPartyMenuAction_SummarySwitchCancel[]   = {MENU_SUMMARY,   MENU_SWITCH,    MENU_CANCEL1};
+static const u8 sPartyMenuAction_ShiftSummaryCancel[]    = {MENU_SHIFT,     MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_SendOutSummaryCancel[]  = {MENU_SEND_OUT,  MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_SummaryCancel[]         = {MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_EnterSummaryCancel[]    = {MENU_ENTER,     MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_NoEntrySummaryCancel[]  = {MENU_NO_ENTRY,  MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_StoreSummaryCancel[]    = {MENU_STORE,     MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_GiveTakeItemCancel[]    = {MENU_GIVE,      MENU_TAKE_ITEM, MENU_MOVE_ITEM,  MENU_CANCEL2};
+static const u8 sPartyMenuAction_ReadTakeMailCancel[]    = {MENU_READ,      MENU_TAKE_MAIL, MENU_CANCEL2};
+static const u8 sPartyMenuAction_RegisterSummaryCancel[] = {MENU_REGISTER,  MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_TradeSummaryCancel1[]   = {MENU_TRADE1,    MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_TradeSummaryCancel2[]   = {MENU_TRADE2,    MENU_SUMMARY,   MENU_CANCEL1};
+static const u8 sPartyMenuAction_TakeItemTossCancel[]    = {MENU_TAKE_ITEM, MENU_TOSS,      MENU_CANCEL1};
 
 // IDs for the action lists that appear when a party mon is selected
 enum
@@ -968,6 +972,7 @@ enum
     ACTIONS_TAKEITEM_TOSS,
     ACTIONS_FIELDMOVE_SUB,
     ACTIONS_EVOLUTION_SUB,
+    ACTIONS_FORM_CHANGE_SUB,
     ACTIONS_MOVES_SUB,
     ACTIONS_ITEMS_SUB,
 };
