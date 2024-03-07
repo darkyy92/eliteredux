@@ -9564,7 +9564,7 @@ BattleScript_DefenderEffectExtraHit::
 BattleScript_DefenderExtraHitFromAtkCanceler::
 	attackcanceler
 BattleScript_DefenderExtraHitFromAccCheck::
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	accuracycheck BattleScript_MoveMissedDefenderExtraMove, ACC_CURR_MOVE
 BattleScript_DefenderExtraHitFromAtkString::
 	attackstring
 BattleScript_DefenderExtraHitFromCritCalc::
@@ -9591,6 +9591,15 @@ BattleScript_DefenderExtraRestoreBattlers::
 	restoretarget
 BattleScript_DefenderExtraMoveEnd::
 	end3
+	
+BattleScript_MoveMissedDefenderExtraMove:
+	attackstring
+	ppreduce
+	pause B_WAIT_TIME_SHORT
+	effectivenesssound
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DefenderExtraRestoreBattlers
 
 BattleScript_PickUpActivate::
 	copybyte gBattlerAbility, gBattlerAttacker
