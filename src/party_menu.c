@@ -274,6 +274,7 @@ static void SetPartyMonFieldMoveSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonEvolutionSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonLearnMoveSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonHeldItemSelectionActions(struct Pokemon*, u8);
+static void SetPartyMonFormChangeSelectionActions(struct Pokemon*, u8);
 static u8 GetPartyMenuActionsTypeInBattle(struct Pokemon*);
 static u8 GetPartySlotEntryStatus(s8);
 static void Task_UpdateHeldItemSprite(u8);
@@ -357,7 +358,10 @@ static void DisplayLevelUpStatsPg2(u8);
 static void Task_TryLearnNewMoves(u8);
 static void PartyMenuTryEvolution(u8);
 static void PartyMenuTryEvolutionFromSubMenu(u8);
+static void PartyMenuTryFormChangeFromSubMenu(u8);
+void BeginFormChangeScene(u8 taskId, u16 targetSpecies);
 static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num);
+static u16 GetFormChangeForMon(struct Pokemon *mon, u8 num);
 static void DisplayMonNeedsToReplaceMove(u8);
 static void DisplayMonLearnedMove(u8, u16);
 static void UseSacredAsh(u8);
@@ -428,12 +432,14 @@ static void CursorCb_LearnMovesSubMenu(u8);
 static void CursorCb_HeldItemSubMenu(u8);
 static void CursorCb_FieldMovesSubMenu(u8);
 static void CursorCb_EvolutionSubMenu(u8);
+static void CursorCb_FormChangeSubMenu(u8);
 static void CursorCb_FieldMove(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
 static void CursorCb_Evolution(u8 taskId);
+static void CursorCb_FormChange(u8 taskId);
 void SetArceusForm(struct Pokemon *mon);
 u16 GetArceusForm(struct Pokemon *mon);
 u16 GetSilvallyForm(struct Pokemon *mon);
@@ -2666,6 +2672,7 @@ static u8 DisplaySelectionWindow(u8 windowType)
         //    fontColorsId = 4;
         if (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES ||
             sPartyMenuInternal->actions[i] == MENU_SUB_EVOLUTION   ||
+            sPartyMenuInternal->actions[i] == MENU_SUB_FORM_CHANGE ||
             sPartyMenuInternal->actions[i] == MENU_SUB_MOVES)
             fontColorsId = 4; //Blue
         else
@@ -2692,16 +2699,22 @@ static u8 DisplaySelectionWindow(u8 windowType)
 
             AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0xFF, ItemId_GetName(megaEvoItem));
         }
-        else if(sPartyMenuInternal->actions[i] < MENU_EVOLUTIONS)
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
-        else{
+        else if(sPartyMenuInternal->actions[i] >= MENU_FORM_CHANGE){
+            struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+            u8 j = (sPartyMenuInternal->actions[i] - MENU_FORM_CHANGE);
+            u16 targetspecies = GetFormChangeForMon(mon, j);
+
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, SaveSpeciesWithSurname(targetspecies));
+        }
+        else if(sPartyMenuInternal->actions[i] >= MENU_EVOLUTIONS){
             struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
             u8 j = (sPartyMenuInternal->actions[i] - MENU_EVOLUTIONS);
             u16 targetspecies = GetEvolutionForMon(mon, j);
 
             AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, SaveSpeciesWithSurname(targetspecies));
         }
-        
+        else
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
     }
 
     InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
@@ -2798,6 +2811,10 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
             sPartyMenuInternal->numActions = 0;
             SetPartyMonHeldItemSelectionActions(mons, slotId);
         break;
+        case ACTIONS_FORM_CHANGE_SUB:
+            sPartyMenuInternal->numActions = 0;
+            SetPartyMonFormChangeSelectionActions(mons, slotId);
+        break;
         default:
             sPartyMenuInternal->numActions = sPartyMenuActionCounts[action];
             for (i = 0; i < sPartyMenuInternal->numActions; i++)
@@ -2829,6 +2846,25 @@ static void SetPartyMonFieldMoveSelectionActions(struct Pokemon *mons, u8 slotId
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
                 break;
             }
+        }
+    }
+
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
+}
+
+static void SetPartyMonFormChangeSelectionActions(struct Pokemon *mons, u8 slotId)
+{
+    u32 i,j, targetspecies;
+    u32 species = GetMonData(&mons[slotId], MON_DATA_SPECIES, NULL);
+
+    // Add Forms to action list
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        targetspecies = GetFormChangeForMon(&mons[slotId], i);
+
+        if (targetspecies != SPECIES_NONE && targetspecies != species)
+        {
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FORM_CHANGE + i);
         }
     }
 
@@ -2971,6 +3007,70 @@ static void PartyMenuTryEvolutionFromSubMenu(u8 taskId)
     }
 }
 
+static void CursorCb_FormChange(u8 taskId)
+{
+    u8 evolutionNum = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_FORM_CHANGE;
+    u16 targetSpecies = GetFormChangeForMon(&gPlayerParty[gPartyMenu.slotId], evolutionNum);
+
+    PlaySE(SE_SELECT);
+    if (targetSpecies != SPECIES_NONE || TRUE)
+    {
+        gPartyMenu.exitCallback = CB2_ReturnToPartyMenuFromFlyMap;
+        //gPartyMenu.exitCallback = CB2_PartyMenuFromStartMenu;
+        PartyMenuTryFormChangeFromSubMenu(taskId);
+    }
+    else
+    {
+        DisplayPartyMenuMessage(gText_RemoveMailBeforeItem, FALSE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    }
+}
+
+static void PartyMenuTryFormChangeFromSubMenu(u8 taskId)
+{
+    u8 evolutionNum = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_FORM_CHANGE;
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetFormChangeForMon(&gPlayerParty[gPartyMenu.slotId], evolutionNum);
+
+    if (targetSpecies != SPECIES_NONE)
+    {
+        FreePartyPointers();
+        gCB2_AfterEvolution = gPartyMenu.exitCallback;
+        BeginFormChangeScene(taskId, targetSpecies);
+        DestroyTask(taskId);
+    }
+    else
+    {
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        }
+        else{
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        }
+    }
+}
+
+void BeginFormChangeScene(u8 taskId, u16 targetSpecies)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+
+    PlayCry2(targetSpecies, 0, 0x7D, 0xA);
+    SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+    FreeAndDestroyMonIconSprite(&gSprites[sPartyMenuBoxes[gPartyMenu.slotId].monSpriteId]);
+    CreatePartyMonIconSpriteParameterized(targetSpecies, personality, &sPartyMenuBoxes[gPartyMenu.slotId], 0);
+    CalculateMonStats(mon);
+    //GetMonNickname(mon, gStringVar1);
+    //StringExpandPlaceholders(gStringVar4, gTextPokemonTransformed);
+
+    //DisplayPartyMenuMessage(gStringVar4, FALSE);
+    //ScheduleBgCopyTilemapToVram(2);
+    //DisplayTookHeldItemMessage(&gPlayerParty[gPartyMenu.slotId], ITEM_POTION, TRUE, MESSAGE_GIVEMEGASTONE);
+    //gTasks[taskId].func = Task_UpdateHeldItemSprite;
+    SetMainCallback2(gCB2_AfterEvolution);
+}
+
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
@@ -3001,6 +3101,16 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
             if (targetSpecies != SPECIES_NONE && targetSpecies != species){
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_EVOLUTION);
+                break;
+            }
+        }
+
+        //Form change
+        for(i = 0; i < EVOS_PER_MON; i++){
+            targetSpecies = GetFormChangeForMon(&mons[slotId], i);
+
+            if (targetSpecies != SPECIES_NONE && targetSpecies != species){
+                AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_FORM_CHANGE);
                 break;
             }
         }
@@ -3138,12 +3248,12 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
         default:
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[2]);
 
-            if(sPartyMenuInternal->actions[input] < MENU_EVOLUTIONS)
-                sCursorOptions[sPartyMenuInternal->actions[input]].func(taskId);
-            else
+            if(sPartyMenuInternal->actions[input] >= MENU_FORM_CHANGE)
+                sCursorOptions[MENU_FORM_CHANGE].func(taskId);
+            else if(sPartyMenuInternal->actions[input] >= MENU_EVOLUTIONS)
                 sCursorOptions[MENU_EVOLUTIONS].func(taskId);
-
-            break;
+            else
+                sCursorOptions[sPartyMenuInternal->actions[input]].func(taskId);
         }
     }
 }
@@ -4010,6 +4120,18 @@ static void CursorCb_EvolutionSubMenu(u8 taskId)
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_EVOLUTION_SUB);
+    DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
+    DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+static void CursorCb_FormChangeSubMenu(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_FORM_CHANGE_SUB);
     DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
     DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
     gTasks[taskId].data[0] = 0xFF;
@@ -6373,6 +6495,46 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
 }
 
+static u16 GetFormChangeForMon(struct Pokemon *mon, u8 num){
+    u8 i, j;
+	u16 species 		    = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 level 			    = GetMonData(mon, MON_DATA_LEVEL, NULL);
+	u8 friendship 		    = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    u16 heldItem 		    = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    u32 personality         = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    u16 upperPersonality    = personality >> 16;
+    u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
+    u16 *targetFormId;
+    u16 targetSpecies, currentMap;
+    u16 actualSpecies = species;
+    u16 formShiftSpecies = GetFormShiftSpecies(species);
+
+    MgbaOpen();
+    MgbaPrintf(MGBA_LOG_WARN, "GetFormChangeForMon num: %d", num);
+    MgbaClose();
+    
+    if (formShiftSpecies) species = formShiftSpecies;
+
+    i = num;
+
+    //if(!FlagGet(FLAG_BADGE02_GET))
+	//    return SPECIES_NONE;
+	
+    switch(gEvolutionTable[species][i].method)
+    {
+        case EVO_FORM_SHIFT:
+            if (gEvolutionTable[species][i].targetSpecies != actualSpecies)
+                return gEvolutionTable[species][i].targetSpecies;
+        break;
+        case EVO_FORM_SHIFT_GENDER:
+            if (gEvolutionTable[species][i].targetSpecies != actualSpecies && GetMonGender(mon) == gEvolutionTable[species][i].param)
+                return gEvolutionTable[species][i].targetSpecies;
+        break;
+    }
+
+	return SPECIES_NONE;
+}
+
 static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
     u8 i, j;
 	u16 species 		    = GetMonData(mon, MON_DATA_SPECIES, NULL);
@@ -6413,14 +6575,6 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
                 gEvolutionTable[species][i].param == move4) //Check if the mon has the evolution move
                 return gEvolutionTable[species][i].targetSpecies;
         }
-    break;
-    case EVO_FORM_SHIFT:
-        if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies)
-            return gEvolutionTable[species][i].targetSpecies;
-    break;
-    case EVO_FORM_SHIFT_GENDER:
-        if (FlagGet(FLAG_BADGE02_GET) && gEvolutionTable[species][i].targetSpecies != actualSpecies && GetMonGender(mon) == gEvolutionTable[species][i].param)
-            return gEvolutionTable[species][i].targetSpecies;
     break;
     case EVO_FRIENDSHIP:
         if (friendship >= 220)
