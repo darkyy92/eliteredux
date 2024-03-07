@@ -6508,10 +6508,6 @@ static u16 GetFormChangeForMon(struct Pokemon *mon, u8 num){
     u16 targetSpecies, currentMap;
     u16 actualSpecies = species;
     u16 formShiftSpecies = GetFormShiftSpecies(species);
-
-    MgbaOpen();
-    MgbaPrintf(MGBA_LOG_WARN, "GetFormChangeForMon num: %d", num);
-    MgbaClose();
     
     if (formShiftSpecies) species = formShiftSpecies;
 
