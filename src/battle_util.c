@@ -16021,6 +16021,9 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier);
     }
 
+    if (modifier != UQ_4_12(0.0) && GetBattleMoveSplit(move) == SPLIT_STATUS)
+        modifier = UQ_4_12(1.0);
+
     if (recordAbilities)
         UpdateMoveResultFlags(modifier);
     return modifier;

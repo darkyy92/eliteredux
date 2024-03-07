@@ -1904,85 +1904,6 @@ bool8 JumpIfMoveAffectedByProtect(u16 move)
     return affected;
 }
 
-static bool32 AccuracyCalcHelper(u16 move)
-{
-    if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gVolatileStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
-    {
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-    else if (B_TOXIC_NEVER_MISS >= GEN_6
-            && gBattleMoves[move].effect == EFFECT_TOXIC
-            && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
-    {
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD || BattlerHasInnate(gBattlerAttacker, ABILITY_NO_GUARD))
-    {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
-        return TRUE;
-    }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD || BattlerHasInnate(gBattlerTarget, ABILITY_NO_GUARD))
-    {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
-        return TRUE;
-    }
-
-    if((GetBattlerAbility(gBattlerAttacker) == ABILITY_GRIP_PINCER || BattlerHasInnate(gBattlerAttacker, ABILITY_GRIP_PINCER)) &&
-        gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
-    {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerAttacker, ABILITY_GRIP_PINCER);
-        return TRUE;
-    }
-
-    if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER)
-        || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
-    {
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-
-    if ((WEATHER_HAS_EFFECT &&
-            ((IsBattlerWeatherAffected(gBattlerTarget, WEATHER_RAIN_ANY) && 
-                (gBattleMoves[move].effect == EFFECT_THUNDER
-                || gBattleMoves[move].effect == EFFECT_HURRICANE
-                || move == MOVE_BLEAKWIND_STORM
-                || move == MOVE_WILDBOLT_STORM
-                || move == MOVE_SANDSEAR_STORM
-                || move == MOVE_SPRINGTIDE_STORM))
-         || ((B_BLIZZARD_HAIL >= GEN_4 && (gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))))
-     || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
-     || (gBattleMoves[move].accuracy == 0))
-    {
-        // thunder/hurricane ignore acc checks in rain unless target is holding utility umbrella
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-
-    // Sheer Cold always hits in Hail
-    if ((WEATHER_HAS_EFFECT &&
-            ((IsBattlerWeatherAffected(gBattlerTarget, WEATHER_HAIL_ANY) && (gBattleMoves[move].effect == EFFECT_FREEZE_DRY))
-         || (((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_SHEER_COLD))))
-     || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
-     || (gBattleMoves[move].accuracy == 0))
-    {
-        // thunder/hurricane ignore acc checks in rain unless target is holding utility umbrella
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
 u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     u32 calc, moveAcc;
@@ -1994,6 +1915,25 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 atkHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
     u32 defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
     u8 moveType;
+    
+    if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS && gVolatileStructs[battlerDef].battlerWithSureHit == battlerAtk)
+        return 101;
+    else if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+        return 101;
+    else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NO_GUARD))
+        return 101;
+    else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_NO_GUARD))
+        return 101;
+    else if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GRIP_PINCER) && gBattleMons[battlerDef].status2 & STATUS2_WRAPPED)
+        return 101;
+
+    if ((gStatuses3[battlerDef] & STATUS3_PHANTOM_FORCE)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
+        || GetAbilityState(battlerDef, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
+        return 0;
 
     GET_MOVE_TYPE(move, moveType)
 
@@ -2031,7 +1971,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
         moveAcc = 50;
 
-    if (!moveAcc)
+    if (moveAcc == 0)
         return 101;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SIGHTING_SYSTEM, atkAbility))
         return 101;
@@ -2059,6 +1999,19 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     }
 	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility)
         && CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
+        return 101;
+    else if (IsBattlerWeatherAffected(battlerDef, WEATHER_RAIN_ANY) && 
+                (gBattleMoves[move].effect == EFFECT_THUNDER
+                || gBattleMoves[move].effect == EFFECT_HURRICANE
+                || move == MOVE_BLEAKWIND_STORM
+                || move == MOVE_WILDBOLT_STORM
+                || move == MOVE_SANDSEAR_STORM
+                || move == MOVE_SPRINGTIDE_STORM))
+        return 101;
+    else if (IsBattlerWeatherAffected(battlerDef, WEATHER_HAIL_ANY) && 
+                (gBattleMoves[move].effect == EFFECT_FREEZE_DRY
+                || gBattleMoves[move].effect == MOVE_SHEER_COLD
+                || move == MOVE_BLIZZARD))
         return 101;
 
     // Check Wonder Skin.
@@ -2162,8 +2115,6 @@ static void Cmd_accuracycheck(void)
         u32 accuracy;
         GET_MOVE_TYPE(move, type);
         if (JumpIfMoveAffectedByProtect(move))
-            return;
-        if (AccuracyCalcHelper(move))
             return;
 
         accuracy = GetTotalAccuracy(gBattlerAttacker, gBattlerTarget, move);

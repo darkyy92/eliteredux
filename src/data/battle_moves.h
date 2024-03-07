@@ -2827,7 +2827,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_VITAL_THROW] =
     {
-        .effect = EFFECT_VITAL_THROW,
+        .effect = EFFECT_HIT,
         .power = 70,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
