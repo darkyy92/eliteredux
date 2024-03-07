@@ -162,6 +162,7 @@ void UpdateSentPokesToOpponentValue(u8 battlerId);
 void BattleScriptPush(const u8* bsPtr);
 void BattleScriptPushCursor(void);
 void BattleScriptPop(void);
+void ReadActiveScriptInitialStackState();
 u8 TrySetCantSelectMoveBattleScript(void);
 u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check);
 bool8 AreAllMovesUnusable(void);

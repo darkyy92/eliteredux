@@ -11288,6 +11288,12 @@ const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
         .statsLowered = {STAT_ATK, STAT_SPATK, 0},
         .targetBoth = TRUE,
     },
+    [I_CLONE_YUKI_ONNA] = {
+        .ability = ABILITY_YUKI_ONNA,
+        .numStatsLowered = 2,
+        .statsLowered = {STAT_ATK, STAT_SPATK, 0},
+        .targetBoth = TRUE,
+    },
     [I_CLONE_MONKEY_BUSSINESS] = {
         .ability = ABILITY_MONKEY_BUSINESS,
         .numStatsLowered = 2,

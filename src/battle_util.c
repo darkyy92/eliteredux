@@ -1518,12 +1518,16 @@ void BattleScriptPushCursor(void)
 void BattleScriptPop(void)
 {
     gBattlescriptCurrInstr = gBattleResources->battleScriptsStack->ptr[--gBattleResources->battleScriptsStack->size];
+    ReadActiveScriptInitialStackState();
+}
+
+void ReadActiveScriptInitialStackState()
+{
     if (gBattleResources->battleScriptsStack->size > 0)
     {
         struct SavedStackData *data = &gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size - 1];
-        // Abilities typically get overwritten and then stored, so they will generally be one position ahead
         gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
-        gBattleCommunication[MULTISTRING_CHOOSER] = data ->multistringChooser;
+        gBattleCommunication[MULTISTRING_CHOOSER] = data->multistringChooser;
     }
 }
 
@@ -4761,7 +4765,7 @@ bool8 UseIntimidateClone(u8 battler, u16 abilityToCheck)
         }
     }
 
-    if(canLowerStat){ //Ability effect can be triggered
+    if (canLowerStat) { //Ability effect can be triggered
         BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatedNew);
         return TRUE;
     }
@@ -5615,27 +5619,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         // Intimidate
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_INTIMIDATE)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_INTIMIDATE)) {
             effect += UseIntimidateClone(battler, ABILITY_INTIMIDATE);
         }
         
         // Scare
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_SCARE)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_SCARE)) {
             effect += UseIntimidateClone(battler, ABILITY_SCARE);
         }
         
         // Fearmonger
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_FEARMONGER) || CheckAndSetSwitchInAbility(battler, ABILITY_YUKI_ONNA)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_FEARMONGER)) {
             effect += UseIntimidateClone(battler, ABILITY_FEARMONGER);
         }
         
+        // Yuki Onna
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_YUKI_ONNA)) {
+            effect += UseIntimidateClone(battler, ABILITY_YUKI_ONNA);
+        }
+        
         // Monkey Business
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_MONKEY_BUSINESS)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_MONKEY_BUSINESS)) {
             effect += UseIntimidateClone(battler, ABILITY_MONKEY_BUSINESS);
         }
         
         // Monkey Business
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_MALICIOUS)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_MALICIOUS)) {
             effect += UseIntimidateClone(battler, ABILITY_MALICIOUS);
         }
         
@@ -10747,6 +10756,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         break;
     }
+
+    // Restore state in case of clobbering
+    if (effect)
+        ReadActiveScriptInitialStackState();
 
     if (effect && gLastUsedAbility != 0xFF)
         RecordAbilityBattle(battler, gLastUsedAbility);
