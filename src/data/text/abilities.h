@@ -574,6 +574,7 @@ static const u8 sAbilityDeadPowerDescription[] = _("1.5x Attack boost. 20% chanc
 static const u8 sAbilityBrawlingWyvernDescription[] = _("Dragon type moves become\npunching moves.");
 static const u8 sAbilityMythicalArrowsDescription[] = _("Arrow moves do special damage\nand deal 30% more damage.");
 static const u8 sAbilityLawnmowerDescription[] = _("Removes terrain on switch-in.\nStat up if terrain removed.");
+static const u8 sAbilityFlourishDescription[] = _("Boosts Grass moves by 50% in\ngrassy terrain.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1180,6 +1181,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BRAWLING_WYVERN] = _("Brawling Wyvern"),
     [ABILITY_MYTHICAL_ARROWS] = _("Mythical Arrows"),
     [ABILITY_LAWNMOWER] = _("Lawnmower"),
+    [ABILITY_FLOURISH] = _("Flourish"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1787,4 +1789,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BRAWLING_WYVERN] = sAbilityBrawlingWyvernDescription,
     [ABILITY_MYTHICAL_ARROWS] = sAbilityMythicalArrowsDescription,
     [ABILITY_LAWNMOWER] = sAbilityLawnmowerDescription,
+    [ABILITY_FLOURISH] = sAbilityFlourishDescription,
 };

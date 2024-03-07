@@ -3106,12 +3106,15 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         }
 
         //Form change
-        for(i = 0; i < EVOS_PER_MON; i++){
-            targetSpecies = GetFormChangeForMon(&mons[slotId], i);
+        if (VarGet(FLAG_BADGE02_GET))
+        {
+            for(i = 0; i < EVOS_PER_MON; i++){
+                targetSpecies = GetFormChangeForMon(&mons[slotId], i);
 
-            if (targetSpecies != SPECIES_NONE && targetSpecies != species){
-                AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_FORM_CHANGE);
-                break;
+                if (targetSpecies != SPECIES_NONE && targetSpecies != species){
+                    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_FORM_CHANGE);
+                    break;
+                }
             }
         }
 

@@ -14704,7 +14704,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	
 	// Whiteout
 	if(BattlerHasInnate(battlerAtk, ABILITY_WHITEOUT)){
-        if (moveType == TYPE_ICE && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+        if (moveType == TYPE_ICE && IsBattlerWeatherAffected(battlerAtk, WEATHER_HAIL_ANY))
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
+
+	// Flourish
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FLOURISH)) {
+        if (moveType == TYPE_GRASS && IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_GRASSY_TERRAIN))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
