@@ -58,6 +58,7 @@ enum{
     SETTING_RANDOMIZER_MOVE_MODE,
     SETTING_RANDOMIZER_TYPE_MODE,
     SETTING_INDIVIDUAL_COLORS,
+    SETTING_PERMANENT_MEGA_MODE,
     NUM_INTRO_OPTIONS,
 };
 
@@ -180,6 +181,7 @@ static void SaveOptionsData()
     gSaveBlock2Ptr->individualColors        = sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS];
     gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
     gSaveBlock2Ptr->typeRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE];
+    gSaveBlock2Ptr->permanentMegaMode       = sMenuDataPtr->temporal_settings[SETTING_PERMANENT_MEGA_MODE];
 }
 
 static void LoadOptionsData()
@@ -197,6 +199,7 @@ static void LoadOptionsData()
     sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS]       = gSaveBlock2Ptr->individualColors;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE]    = gSaveBlock2Ptr->moveRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE]    = gSaveBlock2Ptr->typeRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_PERMANENT_MEGA_MODE]     = gSaveBlock2Ptr->permanentMegaMode;
 }
 
 // This is our main initialization function if you want to call the menu from elsewhere
@@ -568,6 +571,20 @@ const struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             },
         .numOptions = 2,
     },
+    [SETTING_PERMANENT_MEGA_MODE] =
+    {
+        .title = _("Permanent Mega Evolution"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Normal Mega Evolution."),
+            _("Pokémon can evolve into their Mega\nEvolutions as if they were a\nnormal evolution."),
+            },
+        .numOptions = 2,
+    },
+    
 };
 
 static const u8 sText_Menu_Title[] = _("Elite Redux Setup - press START to save");

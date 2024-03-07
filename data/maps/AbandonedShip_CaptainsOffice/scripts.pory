@@ -42,3 +42,11 @@ AbandonedShip_CaptainsOffice_Text_ThisIsSSCactus: @ 8238918
 	.string "It seems to be from an earlier era.$"
 
 `
+
+script Debug_Script_2_Pory{
+	msgbox(format("Starting Script 2"), MSGBOX_DEFAULT)
+	setvar(VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_TERRAIN)
+	setvar(VAR_BATTLE_FIELD_ID, STATUS_FIELD_MISTY_TERRAIN)
+	trainerbattle_no_intro(TRAINER_KAYLEE, format("Defeat text"))
+	end
+}
