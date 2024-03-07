@@ -7185,56 +7185,58 @@ static void Cmd_openpartyscreen(void)
         if (gTurnStructs[battlerId].flag40)
         {
             gBattlescriptCurrInstr += 6;
+            return;
         }
-        else if (GetFirstFaintedPartyIndex(gBattlerAttacker) >= PARTY_SIZE)
+
+        if (hitmarkerFaintBits == BS_CHOOSE_FAINTED_MON && GetFirstFaintedPartyIndex(gBattlerAttacker) >= PARTY_SIZE)
         {
             gBattlescriptCurrInstr = jumpPtr;
             return;
         }
-        else if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON && HasNoMonsToSwitch(battlerId, PARTY_SIZE, PARTY_SIZE))
+
+        if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON && HasNoMonsToSwitch(battlerId, PARTY_SIZE, PARTY_SIZE))
         {
             gActiveBattler = battlerId;
             gAbsentBattlerFlags |= gBitTable[gActiveBattler];
             gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
             gBattlescriptCurrInstr = jumpPtr;
+            return;
+        }
+        
+        gActiveBattler = battlerId;
+        *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = 6;
+        gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
+
+        BtlController_EmitChoosePokemon(0, hitmarkerFaintBits, *(gBattleStruct->monToSwitchIntoId + (gActiveBattler ^ 2)), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+        MarkBattlerForControllerExec(gActiveBattler);
+
+        gBattlescriptCurrInstr += 6;
+
+        if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON
+            && GetBattlerPosition(gActiveBattler) == 0
+            && gBattleResults.playerSwitchesCounter < 0xFF)
+                gBattleResults.playerSwitchesCounter++;
+
+        if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+        {
+            for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+            {
+                if (gActiveBattler != battlerId)
+                {
+                    BtlController_EmitLinkStandbyMsg(0, 2, FALSE);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+            }
         }
         else
         {
-            gActiveBattler = battlerId;
-            *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
-            *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = 6;
-            gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
+            gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(battlerId) ^ BIT_SIDE);
+            if (gAbsentBattlerFlags & gBitTable[gActiveBattler])
+                gActiveBattler ^= BIT_FLANK;
 
-            BtlController_EmitChoosePokemon(0, hitmarkerFaintBits, *(gBattleStruct->monToSwitchIntoId + (gActiveBattler ^ 2)), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+            BtlController_EmitLinkStandbyMsg(0, 2, FALSE);
             MarkBattlerForControllerExec(gActiveBattler);
-
-            gBattlescriptCurrInstr += 6;
-
-            if (hitmarkerFaintBits != PARTY_ACTION_CHOOSE_FAINTED_MON
-                && GetBattlerPosition(gActiveBattler) == 0
-                && gBattleResults.playerSwitchesCounter < 0xFF)
-                    gBattleResults.playerSwitchesCounter++;
-
-            if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-            {
-                for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
-                {
-                    if (gActiveBattler != battlerId)
-                    {
-                        BtlController_EmitLinkStandbyMsg(0, 2, FALSE);
-                        MarkBattlerForControllerExec(gActiveBattler);
-                    }
-                }
-            }
-            else
-            {
-                gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(battlerId) ^ BIT_SIDE);
-                if (gAbsentBattlerFlags & gBitTable[gActiveBattler])
-                    gActiveBattler ^= BIT_FLANK;
-
-                BtlController_EmitLinkStandbyMsg(0, 2, FALSE);
-                MarkBattlerForControllerExec(gActiveBattler);
-            }
         }
     }
 }
