@@ -5860,7 +5860,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         else if (type2 != TYPE_MYSTERY)
             return type2;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
@@ -5880,7 +5880,6 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-            && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
             && (   (HAS_ABILITY(ABILITY_PIXILATE)          && (ateType = TYPE_FAIRY))
                 || (HAS_ABILITY(ABILITY_REFRIGERATE)       && (ateType = TYPE_ICE))
                 || (HAS_ABILITY(ABILITY_REFRIGERATOR)      && (ateType = TYPE_ICE))
@@ -5931,8 +5930,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH)
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
 				return TYPE_FIGHTING;
 	}
 
@@ -5996,7 +5994,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             return gBattleMons[battlerAtk].type3;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -6032,7 +6030,6 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
              && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)        && (ateType = TYPE_FAIRY))
                  || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)     && (ateType = TYPE_ICE))
                  || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)    && (ateType = TYPE_ICE))
@@ -6135,7 +6132,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | 0x80;
     }
-    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT || gBattleMoves[move].effect == EFFECT_BERRY_SMASH)
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
             gBattleStruct->dynamicMoveType = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
@@ -6179,7 +6176,6 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && gBattleMoves[move].effect != EFFECT_BERRY_SMASH
              && (   (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PIXILATE, attackerAbility)            && (ateType = TYPE_FAIRY))
                  || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATE, attackerAbility)         && (ateType = TYPE_ICE))
                  || (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_REFRIGERATOR, attackerAbility)        && (ateType = TYPE_ICE))

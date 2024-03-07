@@ -3358,9 +3358,6 @@ BattleScript_EffectNaturalGift:
 	attackstring
 	ppreduce
 	jumpifnotberry BS_ATTACKER, BattleScript_ButItFailed
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailed
-	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_ButItFailed
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_ButItFailed
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
 	critcalc
 	damagecalc
@@ -3385,33 +3382,15 @@ BattleScript_EffectNaturalGiftEnd:
 
 BattleScript_EffectBerrySmash:
 	jumpifnotberry BS_ATTACKER, BattleScript_EffectBerrySmashNoBerry
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_EffectBerrySmashNoBerry
-	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_EffectBerrySmashNoBerry
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_EffectBerrySmashNoBerry
 	attackcanceler
 	attackstring
 	ppreduce
-	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
-	critcalc
-	damagecalc
-	adjustdamage
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	seteffectwithchance
+	copybyte sSAVED_BATTLER, gBattlerTarget
+	setbyte sBERRY_OVERRIDE, TRUE
 	consumeberry BS_ATTACKER
-	jumpifmovehadnoeffect BattleScript_EffectBerrySmashEnd
-BattleScript_EffectBerrySmashEnd:
-	tryfaintmon BS_TARGET, FALSE, NULL
-	goto BattleScript_MoveEnd
+	setbyte sBERRY_OVERRIDE, FALSE
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	goto BattleScript_HitFromAccCheck
 BattleScript_EffectBerrySmashNoBerry:
 	setdynamictype BS_ATTACKER, 0
 	setmoveeffect 0

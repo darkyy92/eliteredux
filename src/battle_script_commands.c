@@ -8948,7 +8948,9 @@ static void Cmd_various(void)
         UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], mon, HEALTHBOX_NICK);
         break;
     case VARIOUS_JUMP_IF_NOT_BERRY:
-        if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRIES)
+        if (IsItemNegated(gActiveBattler))
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRIES)
             gBattlescriptCurrInstr += 7;
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
