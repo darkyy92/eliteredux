@@ -5209,22 +5209,13 @@ static void SetActionsAndBattlersTurnOrder(void)
     gBattleStruct->mega.battlerId = 0;
 }
 
-static void TurnValuesCleanUp(bool8 var0)
+static void TurnValuesCleanUp(bool8 clearRoundStruts)
 {
     s32 i;
 
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
-        if (var0)
-        {
-            gVolatileStructs[gActiveBattler].protectedThisTurn = FALSE;
-            gRoundStructs[gActiveBattler].protected = FALSE;
-            gRoundStructs[gActiveBattler].spikyShielded = FALSE;
-            gRoundStructs[gActiveBattler].kingsShielded = FALSE;
-            gRoundStructs[gActiveBattler].banefulBunkered = FALSE;
-            gRoundStructs[gActiveBattler].angelsWrathProtected = FALSE;
-        }
-        else
+        if (!clearRoundStruts)
         {
             memset(&gRoundStructs[gActiveBattler], 0, sizeof(struct RoundStruct));
 
