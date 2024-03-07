@@ -1799,7 +1799,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
-    if (moveId == gLastChosenMove[gActiveBattler] && gBattleMoves[moveId].effect == EFFECT_EVERY_OTHER_TURN)
+    if (move == gLastChosenMove[gActiveBattler] && gBattleMoves[move].effect == EFFECT_EVERY_OTHER_TURN)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
         {
@@ -3296,7 +3296,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BATTLER_COUNT:  // done
-            gLastChosenMove[gActiveBattler] = gChosenMove;
+            gLastChosenMove[gActiveBattler] = gChosenMoveByBattler[gActiveBattler];
             gBattleStruct->turnEffectsTracker = 0;
             gBattleStruct->turnEffectsBattlerId++;
             break;
