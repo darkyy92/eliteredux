@@ -1745,7 +1745,7 @@
 	.endm
 
 	.macro tryinstruct ptr:req
-	various BS_ATTACKER, VARIOUS_TRY_INSTRUCT
+	various BS_ATTACKER_PARTNER, VARIOUS_TRY_INSTRUCT
 	.4byte \ptr
 	.endm
 
@@ -2208,7 +2208,7 @@
 	.endm
 
 	.macro tryrevivalblessing, jumpInstr:req
-	various 0, VARIOUS_TRY_REVIVAL_BLESSING
+	various BS_ATTACKER, VARIOUS_TRY_REVIVAL_BLESSING
 	.4byte \jumpInstr
 	.endm
 

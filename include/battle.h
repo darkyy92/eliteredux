@@ -122,7 +122,6 @@ struct VolatileStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
-    u8 protectedThisTurn:1;
     u8 disciplineCounter:4;
     u8 syrupBombIsShiny:1;
     u8 ghastlyEchoTimer:2;
@@ -159,6 +158,7 @@ struct RoundStruct
     u32 notFirstStrike:1;
     u32 palaceUnableToUseMove:1;
     u32 usesBouncedMove:1;
+    u8 protectedThisTurn:1;
     u32 usedHealBlockedMove:1;
     u32 usedGravityPreventedMove:1;
     u32 powderSelfDmg:1;
@@ -197,7 +197,6 @@ struct TurnStruct
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
     u8 switchInItemDone:1;
-    u8 instructedChosenTarget:3; //8
     u8 berryReduced:1;
     u8 gemBoost:1;
     u8 rototillerAffected:1;  // to be affected by rototiller
@@ -207,7 +206,6 @@ struct TurnStruct
     u8 gemParam;
     u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
     u8 dancerUsedMove:1;
-    u8 dancerOriginalTarget:3;
     u8 announceNeutralizingGas:1;   // See Cmd_switchineffects
     u8 neutralizingGasRemoved:1;    // See VARIOUS_TRY_END_NEUTRALIZING_GAS
     s32 dmg;
@@ -536,6 +534,16 @@ typedef enum
     STAT_STAGE_CHECK_IN_PROGRESS = 2,
 } StatStageCheckState;
 
+struct ExtraAttackActionStruct
+{
+    u8 attacker:2;
+    u8 target:2;
+    u8 movePos:3;
+    u16 ability;
+    u16 move;
+    u8 movePower;
+};
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -696,7 +704,7 @@ struct BattleStruct
 }
 
 #define IS_BATTLER_PROTECTED(battlerId)(gRoundStructs[battlerId].protected                                           \
-                                        || gVolatileStructs[gActiveBattler].protectedThisTurn                           \
+                                        || gRoundStructs[gActiveBattler].protectedThisTurn                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
@@ -923,7 +931,6 @@ extern u8 gEffectBattler;
 extern u8 gPotentialItemEffectBattler;
 extern u8 gAbsentBattlerFlags;
 extern u8 gIsCriticalHit;
-extern bool8 gRetaliationInProgress;
 extern const u8 *gBattlescriptCurrInstr;
 extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
 extern const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT];
@@ -964,6 +971,9 @@ extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];
 extern struct BattleScripting gBattleScripting;
 extern struct BattleScripting gSavedBattleScripting;
 extern struct BattleStruct *gBattleStruct;
+extern u8 gQueuedAttackCount;
+extern struct ExtraAttackActionStruct gQueuedExtraAttackData[MAX_BATTLERS_COUNT + 1];
+extern bool8 gProcessingExtraAttacks;
 extern u8 *gLinkBattleSendBuffer;
 extern u8 *gLinkBattleRecvBuffer;
 extern struct BattleResources *gBattleResources;

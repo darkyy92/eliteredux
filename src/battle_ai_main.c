@@ -1026,6 +1026,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             moveType == TYPE_WATER)
             RETURN_SCORE_MINUS(20);
 
+        if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_ANTICIPATION)
+            && !GetSingleUseAbilityCounter(battlerDef, ABILITY_ANTICIPATION)
+            && CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0)
+            && GetTotalAccuracy(battlerAtk, battlerDef, move) <= 100)
+            RETURN_SCORE_MINUS(5);
+
         //Flash Fire
         if(BattlerHasInnate(battlerDef, ABILITY_FLASH_FIRE) && 
             moveType == TYPE_FIRE)

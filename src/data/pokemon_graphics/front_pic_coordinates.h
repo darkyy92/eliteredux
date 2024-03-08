@@ -4895,7 +4895,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_LECHONK] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  11
     },
     [SPECIES_OINKOLOGNE] =
     {
@@ -4950,7 +4950,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_FIDOUGH] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  12
     },
     [SPECIES_DACHSBUN] =
     {

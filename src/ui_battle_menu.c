@@ -1826,7 +1826,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
             StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             // Move Accuracy
-            if(moveAccuracy != 0 && moveAccuracy <= 100)
+            if(moveAccuracy <= 100)
                 ConvertIntToDecimalStringN(gStringVar1, moveAccuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
             else
                 StringCopy(gStringVar1, gText_Target_Nothing);

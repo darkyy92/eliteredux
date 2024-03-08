@@ -423,7 +423,7 @@ static const u8 sAbilityFaeHunterDescription[] = _("Does 50% more damage to\nFai
 static const u8 sAbilityGravityWellDescription[] = _("Sets Gravity on entry for\n5 turns.");
 static const u8 sAbilityEvaporateDescription[] = _("Takes no damage and sets Mist\nif hit by water");
 static const u8 sAbilityLumberjackDescription[] = _("1.5x damage to GRASS types.");
-static const u8 sAbilityWellBakedBodyDescription[] = _("Halves damage and +2 defense\n when hit by a FIRE type move.");
+static const u8 sAbilityWellBakedBodyDescription[] = _("Halves damage and +2 defense\nwhen hit by a FIRE type move.");
 static const u8 sAbilityFurnaceDescription[] = _("Upon getting hit by a rock move or switching\non stealth rocks user gains +2 speed");
 static const u8 sAbilityElectromorphosisDescription[] = _("Charges up when getting hit.");
 static const u8 sAbilityRockyPayloadDescription[] = _("Ups Rock and throwing\nmoves by 50%.");
@@ -574,6 +574,7 @@ static const u8 sAbilityDeadPowerDescription[] = _("1.5x Attack boost. 20% chanc
 static const u8 sAbilityBrawlingWyvernDescription[] = _("Dragon type moves become\npunching moves.");
 static const u8 sAbilityMythicalArrowsDescription[] = _("Arrow moves do special damage\nand deal 30% more damage.");
 static const u8 sAbilityLawnmowerDescription[] = _("Removes terrain on switch-in.\nStat up if terrain removed.");
+static const u8 sAbilityFlourishDescription[] = _("Boosts Grass moves by 50% in\ngrassy terrain.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -1180,6 +1181,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BRAWLING_WYVERN] = _("Brawling Wyvern"),
     [ABILITY_MYTHICAL_ARROWS] = _("Mythical Arrows"),
     [ABILITY_LAWNMOWER] = _("Lawnmower"),
+    [ABILITY_FLOURISH] = _("Flourish"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1787,4 +1789,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BRAWLING_WYVERN] = sAbilityBrawlingWyvernDescription,
     [ABILITY_MYTHICAL_ARROWS] = sAbilityMythicalArrowsDescription,
     [ABILITY_LAWNMOWER] = sAbilityLawnmowerDescription,
+    [ABILITY_FLOURISH] = sAbilityFlourishDescription,
 };

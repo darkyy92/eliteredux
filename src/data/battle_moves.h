@@ -2827,7 +2827,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_VITAL_THROW] =
     {
-        .effect = EFFECT_VITAL_THROW,
+        .effect = EFFECT_HIT,
         .power = 70,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -7648,7 +7648,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_HIGH_HORSEPOWER] =
     {
-        .effect = EFFECT_SMACK_DOWN,
+        .effect = EFFECT_HIT,
         .power = 95,
         .type = TYPE_GROUND,
         .accuracy = 100,
@@ -9217,10 +9217,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_ELECTRIC,
         .accuracy = 80,
         .pp = 15,
-        .secondaryEffectChance = 100,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_DMG_IN_AIR,
         .split = SPLIT_PHYSICAL,
+        .argument = MOVE_EFFECT_PARALYSIS,
     },
     [MOVE_OUTBURST] =
     {
@@ -10258,7 +10259,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRIKER_BOOST | FLAG_TARGET_ABILITY_IGNORED,
-        .split = SPLIT_SPECIAL,
+        .split = SPLIT_PHYSICAL,
     },
     [MOVE_AQUA_CUTTER] =
     {
@@ -10584,7 +10585,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_KEEN_EDGE_BOOST,
         .flags2 = FLAG_ALWAYS_CRIT,
         .split = SPLIT_PHYSICAL,
         .argument = MISC_EFFECT_INCREASED_CRIT_DAMAGE,
@@ -11284,6 +11285,12 @@ const struct IntimidateCloneData gIntimidateCloneData[NUM_INTIMIDATE_CLONES] = {
     },
     [I_CLONE_FEARMONGER] = {
         .ability = ABILITY_FEARMONGER,
+        .numStatsLowered = 2,
+        .statsLowered = {STAT_ATK, STAT_SPATK, 0},
+        .targetBoth = TRUE,
+    },
+    [I_CLONE_YUKI_ONNA] = {
+        .ability = ABILITY_YUKI_ONNA,
         .numStatsLowered = 2,
         .statsLowered = {STAT_ATK, STAT_SPATK, 0},
         .targetBoth = TRUE,

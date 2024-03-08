@@ -48,7 +48,7 @@ Debug_Script_1::
 	end
 
 Debug_Script_2::
-	goto SootopolisCity_Gym_1F_EventScript_Juan
+	goto Debug_Script_2_Pory
 	end
 
 Debug_Script_3::

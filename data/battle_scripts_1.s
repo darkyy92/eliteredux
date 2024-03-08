@@ -2003,8 +2003,29 @@ BattleScript_SynchronoiseNoEffect:
 	goto BattleScript_SynchronoiseMoveTargetEnd
 
 BattleScript_EffectSmackDown:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
 	setmoveeffect MOVE_EFFECT_SMACK_DOWN
-	goto BattleScript_EffectHit
+	seteffectsecondary
+	argumenttomoveeffect
+	seteffectwithchance
+	goto BattleScript_MoveEndTryFaintTarget
 
 BattleScript_MoveEffectSmackDown::
 	printstring STRINGID_FELLSTRAIGHTDOWN
@@ -2065,15 +2086,12 @@ BattleScript_EffectInstruct:
 	attackcanceler
 	attackstring
 	ppreduce
-	pause 5
 	tryinstruct BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_USEDINSTRUCTEDMOVE
-	waitmessage B_WAIT_TIME_LONG
-	setbyte sB_ANIM_TURN, 0
-	setbyte sB_ANIM_TARGETS_HIT, 0
-	jumptocalledmove TRUE
+	moveendfrom MOVEEND_CLEAR_BITS
+	end
 
 BattleScript_EffectAutotomize:
 	setstatchanger STAT_SPEED, 2, FALSE
@@ -3358,9 +3376,6 @@ BattleScript_EffectNaturalGift:
 	attackstring
 	ppreduce
 	jumpifnotberry BS_ATTACKER, BattleScript_ButItFailed
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailed
-	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_ButItFailed
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_ButItFailed
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
 	critcalc
 	damagecalc
@@ -3385,33 +3400,15 @@ BattleScript_EffectNaturalGiftEnd:
 
 BattleScript_EffectBerrySmash:
 	jumpifnotberry BS_ATTACKER, BattleScript_EffectBerrySmashNoBerry
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_EffectBerrySmashNoBerry
-	jumpifability BS_ATTACKER, ABILITY_KLUTZ, BattleScript_EffectBerrySmashNoBerry
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_EffectBerrySmashNoBerry
 	attackcanceler
 	attackstring
 	ppreduce
-	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
-	critcalc
-	damagecalc
-	adjustdamage
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	seteffectwithchance
+	copybyte sSAVED_BATTLER, gBattlerTarget
+	setbyte sBERRY_OVERRIDE, TRUE
 	consumeberry BS_ATTACKER
-	jumpifmovehadnoeffect BattleScript_EffectBerrySmashEnd
-BattleScript_EffectBerrySmashEnd:
-	tryfaintmon BS_TARGET, FALSE, NULL
-	goto BattleScript_MoveEnd
+	setbyte sBERRY_OVERRIDE, FALSE
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	goto BattleScript_HitFromAccCheck
 BattleScript_EffectBerrySmashNoBerry:
 	setdynamictype BS_ATTACKER, 0
 	setmoveeffect 0
@@ -9549,49 +9546,6 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	movevaluescleanup
 	gotoactualmove BS_ATTACKER
 
-BattleScript_DefenderEffectSpeedDownHit::
-	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
-	goto BattleScript_DefenderUsedAnExtraMove
-
-BattleScript_DefenderUsedAnExtraMove::
-	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
-	setbyte gRetaliationInProgress, TRUE
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_ABILITYLETITUSEMOVE
-	waitmessage B_WAIT_TIME_LONG
-BattleScript_DefenderEffectExtraHit::
-BattleScript_DefenderExtraHitFromAtkCanceler::
-	attackcanceler
-BattleScript_DefenderExtraHitFromAccCheck::
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-BattleScript_DefenderExtraHitFromAtkString::
-	attackstring
-BattleScript_DefenderExtraHitFromCritCalc::
-	critcalc
-	damagecalc
-	adjustdamage
-BattleScript_DefenderExtraHitFromAtkAnimation::
-	playmoveanimation BS_ATTACKER, MOVE_NONE
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	seteffectwithchance
-	tryfaintmon BS_TARGET, FALSE, NULL
-BattleScript_DefenderExtraRestoreBattlers::
-	unswapbattlers gBattlerAttacker, gBattlerTarget
-	setbyte gRetaliationInProgress, FALSE
-	restoretarget
-BattleScript_DefenderExtraMoveEnd::
-	end3
-
 BattleScript_PickUpActivate::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
@@ -9946,7 +9900,7 @@ BattleScript_SetTrickRoomFromScript::
 	end3
 
 BattleScript_SetMagicRoomFromScript::
-	printstring STRINGID_WONDERROOMSTARTS
+	printstring STRINGID_MAGICROOMSTARTS
 	playmoveanimation BS_ATTACKER, MOVE_TRICK_ROOM
 	waitmessage B_WAIT_TIME_LONG
 	end3
@@ -12323,6 +12277,8 @@ BattleScript_EffectRevivalBlessing::
 	attackcanceler
 	attackstring
 	ppreduce
+	openpartyscreen BS_CHOOSE_FAINTED_MON, BattleScript_ButItFailed
+	waitstate
 	tryrevivalblessing BattleScript_ButItFailed
 	attackanimation
 	waitanimation

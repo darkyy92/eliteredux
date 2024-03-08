@@ -162,6 +162,7 @@ void UpdateSentPokesToOpponentValue(u8 battlerId);
 void BattleScriptPush(const u8* bsPtr);
 void BattleScriptPushCursor(void);
 void BattleScriptPop(void);
+void ReadActiveScriptInitialStackState();
 u8 TrySetCantSelectMoveBattleScript(void);
 u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check);
 bool8 AreAllMovesUnusable(void);
@@ -287,6 +288,7 @@ bool8 CanBeDisabled(u8 battlerId);
 bool8 DoesBattlerHaveAbilityShield(u8 battlerId);
 u16 IsSoundproof(u8 battlerId);
 bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability);
+u8 GetTurnBattler();
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
