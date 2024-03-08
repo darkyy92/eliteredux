@@ -7264,6 +7264,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_COLD_REBOUND)){
+            if(ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_COLD_REBOUND, MOVE_ICY_WIND, 0);
+            }
+        }
+        
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
+            if(ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_SNAP_TRAP_WHEN_HIT, MOVE_SNAP_TRAP, 50);
+            }
+        }
+
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
+            if(ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_PARRY, MOVE_MACH_PUNCH, 0);
+            }
+        }
+
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ATOMIC_BURST)){
+            if(ShouldApplyOnHitAffect(gBattlerAttacker)
+                && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE){
+                    UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_ATOMIC_BURST, MOVE_HYPER_BEAM, 50);
+            }
+        }
+
         // Innates
         // Loose Rocks
         if (BATTLER_HAS_ABILITY(battler, ABILITY_LOOSE_ROCKS)) {
@@ -8861,43 +8889,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (UseOutOfTurnAttack(battler, target, ABILITY_PARROTING, gCurrentMove, 0))
                 return TRUE;
         }
-        else if(BATTLER_HAS_ABILITY(battler, ABILITY_COLD_REBOUND)){
-            if(battler == gBattlerTarget
-                && ShouldApplyOnHitAffect(gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_COLD_REBOUND, MOVE_ICY_WIND, 0))
-                        return TRUE;
-            }
-        }
-        else if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
-            if(battler == gBattlerTarget
-                && ShouldApplyOnHitAffect(gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_SNAP_TRAP_WHEN_HIT, MOVE_SNAP_TRAP, 50))
-                        return TRUE;
-            }
-        }
-        else if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
-            if(battler == gBattlerTarget
-                && ShouldApplyOnHitAffect(gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_PARRY, MOVE_MACH_PUNCH, 0))
-                        return TRUE;
-            }
-        }
         else if(BATTLER_HAS_ABILITY(battler, ABILITY_RETRIBUTION_BLOW)){
             if(GetBattlerSide(battler) != GetBattlerSide(gBattlerAttacker)
                 && IsBattlerAlive(gBattlerAttacker)
                 && DoesMoveBoostStats(gCurrentMove)){
                     if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_RETRIBUTION_BLOW, MOVE_HYPER_BEAM, 0))
-                        return TRUE;
-            }
-        }
-        else if(BATTLER_HAS_ABILITY(battler, ABILITY_ATOMIC_BURST)){
-            if(battler == gBattlerTarget
-                && ShouldApplyOnHitAffect(gBattlerAttacker)
-                && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE){
-                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_ATOMIC_BURST, MOVE_HYPER_BEAM, 50))
                         return TRUE;
             }
         }
