@@ -20138,6 +20138,7 @@ static const struct LevelUpMove sCinderaceLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_DOUBLE_EDGE),
     LEVEL_UP_MOVE(36, MOVE_MEGA_KICK),
     LEVEL_UP_MOVE(62, MOVE_RAGING_FURY),
+    LEVEL_UP_MOVE(62, MOVE_COURT_CHANGE),
     LEVEL_UP_END
 };
 
