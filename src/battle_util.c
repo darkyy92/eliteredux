@@ -9432,7 +9432,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         break;
         case ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE:
-            #define CHECK_ABILITY(ability) (BATTLER_HAS_ABILITY(battler, ability) && CheckAndSetOncePerTurnAbility(battler, ability))
+            #define CHECK_ABILITY(ability) (CheckAndSetOncePerTurnAbility(battler, ability))
 
             //Weather Cast
             if(CHECK_ABILITY(ABILITY_FORECAST)){
