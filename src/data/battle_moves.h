@@ -7648,7 +7648,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_HIGH_HORSEPOWER] =
     {
-        .effect = EFFECT_SMACK_DOWN,
+        .effect = EFFECT_HIT,
         .power = 95,
         .type = TYPE_GROUND,
         .accuracy = 100,
@@ -9217,10 +9217,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_ELECTRIC,
         .accuracy = 80,
         .pp = 15,
-        .secondaryEffectChance = 100,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_DMG_IN_AIR,
         .split = SPLIT_PHYSICAL,
+        .argument = MOVE_EFFECT_PARALYSIS,
     },
     [MOVE_OUTBURST] =
     {
