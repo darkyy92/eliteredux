@@ -2086,12 +2086,12 @@ BattleScript_EffectInstruct:
 	attackcanceler
 	attackstring
 	ppreduce
-	pause 5
 	tryinstruct BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_USEDINSTRUCTEDMOVE
 	moveendfrom MOVEEND_CLEAR_BITS
+	end
 
 BattleScript_EffectAutotomize:
 	setstatchanger STAT_SPEED, 2, FALSE

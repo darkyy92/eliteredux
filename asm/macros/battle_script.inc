@@ -1745,7 +1745,7 @@
 	.endm
 
 	.macro tryinstruct ptr:req
-	various BS_ATTACKER, VARIOUS_TRY_INSTRUCT
+	various BS_ATTACKER_PARTNER, VARIOUS_TRY_INSTRUCT
 	.4byte \ptr
 	.endm
 

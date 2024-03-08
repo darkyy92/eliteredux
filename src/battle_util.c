@@ -225,6 +225,7 @@ void HandleAction_UseMove(void)
     gBattleCommunication[6] = 0;
     gBattleScripting.savedMoveEffect = 0;
     gCurrMovePos = gChosenMovePos = gBattleStruct->chosenMovePositions[gBattlerAttacker];
+    gHitMarker = 0;
 
     // choose move
     if (gProcessingExtraAttacks)
@@ -855,6 +856,7 @@ void HandleAction_TryFinish(void)
     {
         gQueuedExtraAttackData[0] = gQueuedExtraAttackData[gQueuedAttackCount--];
         gProcessingExtraAttacks = TRUE;
+        gCurrentActionFuncId = B_ACTION_USE_MOVE;
         return;
     }
     
@@ -4235,7 +4237,7 @@ bool8 UseOutOfTurnAttack(u8 battler, u8 target, u16 ability, u16 move, u8 movePo
     // Set bit and save Dancer mon's original target
     gTurnStructs[battler].dancerUsedMove = TRUE;
 
-    gQueuedExtraAttackData[gQueuedAttackCount] = (struct ExtraAttackActionStruct)
+    gQueuedExtraAttackData[++gQueuedAttackCount] = (struct ExtraAttackActionStruct)
     {
         .ability = ability,
         .move = move,
@@ -8853,7 +8855,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 return TRUE;
         }
         else if (BattlerHasAbility(battler, battler, ABILITY_PARROTING)
-            && IsBattlerAlive(battler)
             && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND))
         {
             u8 target = GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker) ? gBattlerTarget : BATTLE_OPPOSITE(battler);
@@ -9319,8 +9320,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             {
-                u32 target = GetBattleMoveTargetFlags(move, GetBattlerAbility(battler));
-                if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_ALL_BATTLERS)
+                u32 target = GetBattlerBattleMoveTargetFlags(move, battler);
+                if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_ALL_BATTLERS || target == MOVE_TARGET_FOES_AND_ALLY)
                 {
                     // Move doesn't matter, just pick a single target move
                     gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
@@ -12102,6 +12103,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         break;
     case EFFECT_ROLLOUT:
+        if (gProcessingExtraAttacks) break;
         for (i = 1; i < (5 - gVolatileStructs[battlerAtk].rolloutTimer); i++)
             basePower *= 2;
         if (gBattleMons[battlerAtk].status2 & STATUS2_DEFENSE_CURL)

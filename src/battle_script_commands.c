@@ -2461,8 +2461,6 @@ static void Cmd_multihitresultmessage(void)
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
             gPotentialItemEffectBattler = gBattlerTarget;
             gMoveResultFlags &= ~(MOVE_RESULT_STURDIED | MOVE_RESULT_FOE_HUNG_ON);
-            gTurnStructs[gBattlerTarget].focusBanded = FALSE; // Delete this line to make Focus Band last for the duration of the whole move turn.
-            gTurnStructs[gBattlerTarget].focusSashed = FALSE; // Delete this line to make Focus Sash last for the duration of the whole move turn.
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_HangedOnMsg;
             return;
@@ -3638,7 +3636,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_UPROAR:
-                if (!(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR))
+                if (!(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR) && !gProcessingExtraAttacks)
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
                     gLockedMoves[gEffectBattler] = gCurrentMove;
@@ -3700,9 +3698,12 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_CHARGING:
-                gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
-                gRoundStructs[gEffectBattler].chargingTurn = TRUE;
+                if (!gProcessingExtraAttacks)
+                {
+                    gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
+                    gLockedMoves[gEffectBattler] = gCurrentMove;
+                    gRoundStructs[gEffectBattler].chargingTurn = TRUE;
+                }
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_WRAP:
@@ -3835,9 +3836,12 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_RECHARGE:
-                gBattleMons[gEffectBattler].status2 |= STATUS2_RECHARGE;
-                gVolatileStructs[gEffectBattler].rechargeTimer = 2;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
+                if (!gProcessingExtraAttacks)
+                {
+                    gBattleMons[gEffectBattler].status2 |= STATUS2_RECHARGE;
+                    gVolatileStructs[gEffectBattler].rechargeTimer = 2;
+                    gLockedMoves[gEffectBattler] = gCurrentMove;
+                }
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_RAGE:
@@ -3945,7 +3949,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                 break;
             case MOVE_EFFECT_THRASH:
-                if (gBattleMons[gEffectBattler].status2 & STATUS2_LOCK_CONFUSE)
+                if (gBattleMons[gEffectBattler].status2 & STATUS2_LOCK_CONFUSE || gProcessingExtraAttacks)
                 {
                     gBattlescriptCurrInstr++;
                 }
@@ -5754,6 +5758,10 @@ static void Cmd_moveend(void)
         case MOVEEND_SUM_DAMAGE: // Sum and store damage dealt for multi strike recoil
             gTurnStructs[gBattlerAttacker].savedDmg += gHpDealt;
             gBattleScripting.moveendState++;
+
+            gTurnStructs[gBattlerTarget].sturdied = 0;
+            gTurnStructs[gBattlerTarget].focusBanded = 0;
+            gTurnStructs[gBattlerTarget].focusSashed = 0;
             break;
         case MOVEEND_PROTECT_LIKE_EFFECT:
             if (gRoundStructs[gBattlerAttacker].touchedProtectLike)
@@ -6465,10 +6473,10 @@ static void Cmd_moveend(void)
                 }
 
                 // Reverse order so faster battlers resolve first
-                for (i = possibleDancers - 1; i > 0; i--)
+                for (i = possibleDancers; i > 0; i--)
                 {
                     // Out of turn moves do not use battle scripting so there's no point in pausing
-                    AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, i, 0, 0, 0);
+                    AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, i - 1, 0, 0, 0);
                 }
             }
             gBattleScripting.moveendState++;
@@ -6531,9 +6539,6 @@ static void Cmd_moveend(void)
                         gHitMarker |= (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING);
                         gBattleScripting.animTargetsHit = 0;
                         gBattleScripting.moveendState = 0;
-                        gTurnStructs[gBattlerTarget].sturdied = 0;
-                        gTurnStructs[gBattlerTarget].focusBanded = 0; // Delete this line to make Focus Band last for the duration of the whole move turn.
-                        gTurnStructs[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
                         gTurnStructs[gBattlerAttacker].multiHitOn = TRUE;
                         MoveValuesCleanUp();
                         BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
@@ -6570,9 +6575,6 @@ static void Cmd_moveend(void)
                 gHitMarker |= (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING);
                 gBattleScripting.animTargetsHit = 0;
                 gBattleScripting.moveendState = 0;
-                gTurnStructs[gBattlerTarget].sturdied = 0;
-                gTurnStructs[gBattlerTarget].focusBanded = 0; // Delete this line to make Focus Band last for the duration of the whole move turn.
-                gTurnStructs[gBattlerTarget].focusSashed = 0; // Delete this line to make Focus Sash last for the duration of the whole move turn.
                 gTurnStructs[gBattlerAttacker].multiHitOn = FALSE;
                 MoveValuesCleanUp();
 
@@ -9878,11 +9880,11 @@ static void Cmd_various(void)
     case VARIOUS_TRY_INSTRUCT:
         for (i = 0; sMoveEffectsForbiddenToInstruct[i] != FORBIDDEN_INSTRUCT_END; i++)
         {
-            if (sMoveEffectsForbiddenToInstruct[i] == gBattleMoves[gLastMoves[gBattlerTarget]].effect)
+            if (sMoveEffectsForbiddenToInstruct[i] == gBattleMoves[gLastMoves[gActiveBattler]].effect)
                 break;
         }
-        if (gLastMoves[gBattlerTarget] == 0 || gLastMoves[gBattlerTarget] == 0xFFFF || sMoveEffectsForbiddenToInstruct[i] != FORBIDDEN_INSTRUCT_END
-            || gLastMoves[gBattlerTarget] == MOVE_STRUGGLE || gLastMoves[gBattlerTarget] == MOVE_KINGS_SHIELD)
+        if (gLastMoves[gActiveBattler] == 0 || gLastMoves[gActiveBattler] == 0xFFFF || sMoveEffectsForbiddenToInstruct[i] != FORBIDDEN_INSTRUCT_END
+            || gLastMoves[gActiveBattler] == MOVE_STRUGGLE || gLastMoves[gActiveBattler] == MOVE_KINGS_SHIELD)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         }
@@ -9890,20 +9892,20 @@ static void Cmd_various(void)
         {
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
-                if (gBattleMons[gBattlerAttacker].moves[i] == gLastMoves[gBattlerTarget])
+                if (gBattleMons[gActiveBattler].moves[i] == gLastMoves[gActiveBattler])
                 {
                     break;
                 }
             }
             
-            if (i >= MAX_MON_MOVES || gBattleMons[gBattlerAttacker].pp[gCurrMovePos] == 0)
+            if (i >= MAX_MON_MOVES || gBattleMons[gActiveBattler].pp[i] == 0)
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             else
             {
                 gQueuedExtraAttackData[++gQueuedAttackCount] = (struct ExtraAttackActionStruct) {
-                    .attacker = gBattlerTarget,
-                    .target = gBattleStruct->moveTarget[gBattlerTarget],
-                    .move = gLastMoves[gBattlerTarget],
+                    .attacker = gActiveBattler,
+                    .target = gBattleStruct->moveTarget[gBattlerAttacker],
+                    .move = gLastMoves[gActiveBattler],
                     .movePos = i,
                 };
                 gBattlescriptCurrInstr += 7;
@@ -12246,10 +12248,13 @@ static void Cmd_normalisebuffs(void) // haze
 
 static void Cmd_setbide(void)
 {
-    gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
-    gLockedMoves[gBattlerAttacker] = gCurrentMove;
-    gTakenDmg[gBattlerAttacker] = 0;
-    gBattleMons[gBattlerAttacker].status2 |= STATUS2_BIDE_TURN(2);
+    if (!gProcessingExtraAttacks)
+    {
+        gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
+        gLockedMoves[gBattlerAttacker] = gCurrentMove;
+        gTakenDmg[gBattlerAttacker] = 0;
+        gBattleMons[gBattlerAttacker].status2 |= STATUS2_BIDE_TURN(2);
+    }
 
     gBattlescriptCurrInstr++;
 }
@@ -13987,7 +13992,7 @@ static void Cmd_handlerollout(void)
     }
     else
     {
-        if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)) // First hit.
+        if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS) && !gProcessingExtraAttacks) // First hit.
         {
             gVolatileStructs[gBattlerAttacker].rolloutTimer = 5;
             gVolatileStructs[gBattlerAttacker].rolloutTimerStartValue = 5;
