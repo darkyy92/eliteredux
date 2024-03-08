@@ -32382,19 +32382,20 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_MANAPHY,
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_POLITOED,
+    .heldItem = ITEM_TACTICAL_VEST,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 0, 252, 0, 4},
+    .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SURF
+    .moves = MOVE_SURF, MOVE_ICY_WIND, MOVE_HYPER_VOICE, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_TAPU_FINI,
     .heldItem = ITEM_LIFE_ORB,
     .ability = 2,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
     .moves = MOVE_DAZZLING_GLEAM, MOVE_SURF, MOVE_WHIRLPOOL, MOVE_HAZE
@@ -32411,13 +32412,13 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_POLITOED,
-    .heldItem = ITEM_TACTICAL_VEST,
+    .species = SPECIES_MANAPHY,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0,
     .zeroSpeedIvs = TRUE,
-    .evs = {4, 0, 0, 252, 0, 252},
+    .evs = {252, 0, 0, 252, 0, 4},
     .nature = NATURE_TIMID,
-    .moves = MOVE_SURF, MOVE_ICY_WIND, MOVE_HYPER_VOICE, MOVE_ICE_BEAM
+    .moves = MOVE_ENERGY_BALL, MOVE_TAIL_GLOW, MOVE_HURRICANE, MOVE_SURF
     },
     {
     .lvl = 0,
