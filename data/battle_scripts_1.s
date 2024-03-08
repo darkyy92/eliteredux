@@ -2091,10 +2091,7 @@ BattleScript_EffectInstruct:
 	attackanimation
 	waitanimation
 	printstring STRINGID_USEDINSTRUCTEDMOVE
-	waitmessage B_WAIT_TIME_LONG
-	setbyte sB_ANIM_TURN, 0
-	setbyte sB_ANIM_TARGETS_HIT, 0
-	jumptocalledmove TRUE
+	moveendfrom MOVEEND_CLEAR_BITS
 
 BattleScript_EffectAutotomize:
 	setstatchanger STAT_SPEED, 2, FALSE
@@ -9548,58 +9545,6 @@ BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
 	battlemacros MACROS_RESET_MULTIHIT_HITS, 0, NULL
 	movevaluescleanup
 	gotoactualmove BS_ATTACKER
-
-BattleScript_DefenderEffectSpeedDownHit::
-	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
-	goto BattleScript_DefenderUsedAnExtraMove
-
-BattleScript_DefenderUsedAnExtraMove::
-	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
-	setbyte gRetaliationInProgress, TRUE
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_ABILITYLETITUSEMOVE
-	waitmessage B_WAIT_TIME_LONG
-BattleScript_DefenderEffectExtraHit::
-BattleScript_DefenderExtraHitFromAtkCanceler::
-	attackcanceler
-BattleScript_DefenderExtraHitFromAccCheck::
-	accuracycheck BattleScript_MoveMissedDefenderExtraMove, ACC_CURR_MOVE
-BattleScript_DefenderExtraHitFromAtkString::
-	attackstring
-BattleScript_DefenderExtraHitFromCritCalc::
-	critcalc
-	damagecalc
-	adjustdamage
-BattleScript_DefenderExtraHitFromAtkAnimation::
-	playmoveanimation BS_ATTACKER, MOVE_NONE
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	seteffectwithchance
-	tryfaintmon BS_TARGET, FALSE, NULL
-BattleScript_DefenderExtraRestoreBattlers::
-	unswapbattlers gBattlerAttacker, gBattlerTarget
-	setbyte gRetaliationInProgress, FALSE
-	restoretarget
-BattleScript_DefenderExtraMoveEnd::
-	end3
-	
-BattleScript_MoveMissedDefenderExtraMove:
-	attackstring
-	ppreduce
-	pause B_WAIT_TIME_SHORT
-	effectivenesssound
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_DefenderExtraRestoreBattlers
 
 BattleScript_PickUpActivate::
 	copybyte gBattlerAbility, gBattlerAttacker

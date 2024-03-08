@@ -288,6 +288,7 @@ bool8 CanBeDisabled(u8 battlerId);
 bool8 DoesBattlerHaveAbilityShield(u8 battlerId);
 u16 IsSoundproof(u8 battlerId);
 bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability);
+u8 GetTurnBattler();
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

@@ -6440,17 +6440,9 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_DANCER: // Special case because it's so annoying
             {
-                u8 battler, i, j, nextDancer = 0;
+                u8 i, j = 0;
                 u8 possibleDancers = 0;
                 u8 battlers[MAX_BATTLERS_COUNT] = {0};
-
-                // Prevent battler from triggering dancer effects from own move
-                if (!gTurnStructs[gBattlerAttacker].dancerUsedMove)
-                {
-                    gBattleScripting.savedBattler = gBattlerTarget | 0x4;
-                    gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
-                    gTurnStructs[gBattlerAttacker].dancerUsedMove = TRUE;
-                }
 
                 // Get list of battlers that can dance
                 for (i = 0; i < gBattlersCount - 1; i++)
@@ -6472,14 +6464,11 @@ static void Cmd_moveend(void)
                     }
                 }
 
-                // Try battlers until one can dance
-                for (i = 0; i < possibleDancers; i++)
+                // Reverse order so faster battlers resolve first
+                for (i = possibleDancers - 1; i > 0; i--)
                 {
-                    if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, i, 0, 0, 0))
-                    {
-                        effect = TRUE;
-                        break;
-                    }
+                    // Out of turn moves do not use battle scripting so there's no point in pausing
+                    AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, i, 0, 0, 0);
                 }
             }
             gBattleScripting.moveendState++;
@@ -6594,10 +6583,6 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
-            if (gTurnStructs[gBattlerAttacker].instructedChosenTarget)
-                gBattleStruct->moveTarget[gBattlerAttacker] = gTurnStructs[gBattlerAttacker].instructedChosenTarget & 0x3;
-            if (gTurnStructs[gBattlerAttacker].dancerOriginalTarget)
-                gBattleStruct->moveTarget[gBattlerAttacker] = gTurnStructs[gBattlerAttacker].dancerOriginalTarget & 0x3;
 
             #if B_RAMPAGE_CANCELLING >= GEN_5
             if (gBattleMoves[gCurrentMove].effect == EFFECT_RAMPAGE // If we're rampaging
@@ -9903,25 +9888,24 @@ static void Cmd_various(void)
         }
         else
         {
-            gTurnStructs[gBattlerTarget].instructedChosenTarget = gBattleStruct->moveTarget[gBattlerTarget] | 0x4;
-            gBattlerAttacker = gBattlerTarget;
-            gCalledMove = gLastMoves[gBattlerAttacker];
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
-                if (gBattleMons[gBattlerAttacker].moves[i] == gCalledMove)
+                if (gBattleMons[gBattlerAttacker].moves[i] == gLastMoves[gBattlerTarget])
                 {
-                    gCurrMovePos = i;
-                    i = 4;
                     break;
                 }
             }
-            if (i != 4 || gBattleMons[gBattlerAttacker].pp[gCurrMovePos] == 0)
+            
+            if (i >= MAX_MON_MOVES || gBattleMons[gBattlerAttacker].pp[gCurrMovePos] == 0)
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             else
             {
-                gBattlerTarget = gBattleStruct->lastMoveTarget[gBattlerAttacker];
-                gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-                PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gActiveBattler, gBattlerPartyIndexes[gActiveBattler]);
+                gQueuedExtraAttackData[++gQueuedAttackCount] = (struct ExtraAttackActionStruct) {
+                    .attacker = gBattlerTarget,
+                    .target = gBattleStruct->moveTarget[gBattlerTarget],
+                    .move = gLastMoves[gBattlerTarget],
+                    .movePos = i,
+                };
                 gBattlescriptCurrInstr += 7;
             }
         }
@@ -11041,7 +11025,7 @@ static void Cmd_various(void)
         }
         else if (gCurrentTurnActionNumber < gBattlersCount)
         {
-            gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+            gBattlerAttacker = GetTurnBattler();
             if (gCurrentActionFuncId == B_ACTION_USE_MOVE)
                 gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
         }
@@ -13149,7 +13133,7 @@ static void Cmd_mimicattackcopy(void)
                 break;
         }
 
-        if (i == MAX_MON_MOVES)
+        if (i == MAX_MON_MOVES && gCurrMovePos < 4)
         {
             gChosenMove = 0xFFFF;
             gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastMoves[gBattlerTarget];
@@ -13622,7 +13606,7 @@ static void Cmd_copymovepermanently(void) // sketch
                 break;
         }
 
-        if (i != MAX_MON_MOVES)
+        if (i != MAX_MON_MOVES || gCurrMovePos >= 4)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
@@ -14222,7 +14206,7 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
         }
 
         gCurrentMove = MOVE_PURSUIT;
-        gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerTarget);
+        gCurrMovePos = gChosenMovePos = gBattleStruct->chosenMovePositions[gBattlerTarget];
         gBattlescriptCurrInstr += 5;
         gBattleScripting.animTurn = 1;
         gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);

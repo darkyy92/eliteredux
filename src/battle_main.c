@@ -163,6 +163,10 @@ EWRAM_DATA u8 gBattlerPositions[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gActionsByTurnOrder[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerByTurnOrder[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gCurrentTurnActionNumber = 0;
+EWRAM_DATA bool8 gProcessingExtraAttacks = FALSE;
+EWRAM_DATA u8 gQueuedAttackCount = 0;
+// Position 0 is active attack
+EWRAM_DATA struct ExtraAttackActionStruct gQueuedExtraAttackData[MAX_BATTLERS_COUNT + 1] = {0};
 EWRAM_DATA u8 gCurrentActionFuncId = 0;
 EWRAM_DATA struct BattlePokemon gBattleMons[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerSpriteIds[MAX_BATTLERS_COUNT] = {0};
@@ -184,7 +188,6 @@ EWRAM_DATA u8 gEffectBattler = 0;
 EWRAM_DATA u8 gPotentialItemEffectBattler = 0;
 EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gIsCriticalHit = FALSE;
-EWRAM_DATA bool8 gRetaliationInProgress = FALSE;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
 EWRAM_DATA u8 gChosenActionByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
@@ -3301,7 +3304,6 @@ static void BattleStartClearSetData(void)
     gPaydayMoney = 0;
     gBattleResources->battleScriptsStack->size = 0;
     gBattleResources->battleCallbackStack->size = 0;
-    gRetaliationInProgress = FALSE;
 
     for (i = 0; i < BATTLE_COMMUNICATION_ENTRIES_COUNT; i++)
         gBattleCommunication[i] = 0;
@@ -3348,7 +3350,7 @@ static void BattleStartClearSetData(void)
 
 void SwitchInClearSetData(void)
 {
-    s32 i;
+    s32 i, j;
     struct VolatileStruct VolatileStructCopy = gVolatileStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3403,8 +3405,36 @@ void SwitchInClearSetData(void)
             gBattleMons[i].status2 &= ~(STATUS2_WRAPPED);
     }
 
+    // Remove any queued out-of-turn attacks
+    for (i = 1, j = 1; j <= gQueuedAttackCount; i++, j++)
+    {
+        if (gQueuedExtraAttackData[i].attacker == gActiveBattler)
+        {
+            j--;
+            gQueuedAttackCount--;
+        }
+        else if (i != j)
+        {
+            gQueuedExtraAttackData[j] = gQueuedExtraAttackData[i];
+        }
+    }
+
     gActionSelectionCursor[gActiveBattler] = 0;
     gMoveSelectionCursor[gActiveBattler] = 0;
+
+    // Remove any queued out-of-turn attacks
+    for (i = 1, j = 1; j <= gQueuedAttackCount; i++, j++)
+    {
+        if (gQueuedExtraAttackData[i].attacker == gActiveBattler)
+        {
+            j--;
+            gQueuedAttackCount--;
+        }
+        else if (i != j)
+        {
+            gQueuedExtraAttackData[j] = gQueuedExtraAttackData[i];
+        }
+    }
 
     memset(&gVolatileStructs[gActiveBattler], 0, sizeof(struct VolatileStruct));
 
@@ -3464,7 +3494,7 @@ void SwitchInClearSetData(void)
 
 void FaintClearSetData(void)
 {
-    s32 i;
+    s32 i, j;
 
     for (i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[gActiveBattler].statStages[i] = DEFAULT_STAT_STAGE;
@@ -4048,7 +4078,6 @@ void BattleTurnPassed(void)
     gBattleScripting.moveendState = 0;
     gBattleMoveDamage = 0;
     gMoveResultFlags = 0;
-    gRetaliationInProgress = 0;
 
     for (i = 0; i < 5; i++)
         gBattleCommunication[i] = 0;
@@ -4272,7 +4301,7 @@ static void HandleTurnActionSelectionState(void)
                     else if (gVolatileStructs[gActiveBattler].encoredMove != 0)
                     {
                         gChosenMoveByBattler[gActiveBattler] = gVolatileStructs[gActiveBattler].encoredMove;
-                        *(gBattleStruct->chosenMovePositions + gActiveBattler) = gVolatileStructs[gActiveBattler].encoredMovePos;
+                        gBattleStruct->chosenMovePositions[gActiveBattler] = gVolatileStructs[gActiveBattler].encoredMovePos;
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         return;
                     }
@@ -4510,7 +4539,7 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
                             gBattleStruct->chosenMovePositions[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION);
-                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
+                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[gBattleStruct->chosenMovePositions[gActiveBattler]];
                             gBattleStruct->moveTarget[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][3];
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
@@ -4877,10 +4906,12 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
 
 u16 GetChosenMove(u32 battlerId)
 {
+    if (gProcessingExtraAttacks)
+        return gQueuedExtraAttackData[0].move;
     if (gRoundStructs[battlerId].noValidMoves)
         return MOVE_STRUGGLE;
     else
-        return gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+        return gBattleMons[battlerId].moves[gBattleStruct->chosenMovePositions[battlerId]];
 }
 
 u16 IsMyceliumMightActive(u32 battlerId)

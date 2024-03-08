@@ -212,7 +212,7 @@ void HandleAction_UseMove(void)
 {
     u32 i, side, moveType, var = 4;
 
-    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gBattlerAttacker = GetTurnBattler();
     if (gBattleStruct->field_91 & gBitTable[gBattlerAttacker] || !IsBattlerAlive(gBattlerAttacker))
     {
         gCurrentActionFuncId = B_ACTION_FINISHED;
@@ -224,10 +224,17 @@ void HandleAction_UseMove(void)
     gMoveResultFlags = 0;
     gBattleCommunication[6] = 0;
     gBattleScripting.savedMoveEffect = 0;
-    gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
+    gCurrMovePos = gChosenMovePos = gBattleStruct->chosenMovePositions[gBattlerAttacker];
 
     // choose move
-    if (gRoundStructs[gBattlerAttacker].noValidMoves)
+    if (gProcessingExtraAttacks)
+    {
+        gCurrentMove = gChosenMove = gQueuedExtraAttackData[0].move;
+        gCurrMovePos = gQueuedExtraAttackData[0].movePos;
+        if (gCurrMovePos == MAX_MON_MOVES) gHitMarker |= HITMARKER_NO_PPDEDUCT;
+        gBattleStruct->moveTarget[gBattlerAttacker] = gQueuedExtraAttackData[0].target;
+    }
+    else if (gRoundStructs[gBattlerAttacker].noValidMoves)
     {
         gRoundStructs[gBattlerAttacker].noValidMoves = FALSE;
         gCurrentMove = gChosenMove = MOVE_STRUGGLE;
@@ -453,7 +460,15 @@ void HandleAction_UseMove(void)
     }
     else
     {
-        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        if (gProcessingExtraAttacks && gQueuedExtraAttackData[0].ability)
+        {
+            gBattleScripting.abilityPopupOverwrite = gQueuedExtraAttackData[0].ability;
+            gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+        }
+        else
+        {
+            gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        }
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
@@ -836,6 +851,14 @@ void HandleAction_WallyBallThrow(void)
 
 void HandleAction_TryFinish(void)
 {
+    if (gQueuedAttackCount)
+    {
+        gQueuedExtraAttackData[0] = gQueuedExtraAttackData[gQueuedAttackCount--];
+        gProcessingExtraAttacks = TRUE;
+        return;
+    }
+    
+    gProcessingExtraAttacks = FALSE;
     if (!HandleFaintedMonActions())
     {
         gBattleStruct->faintedActionsState = 0;
@@ -4201,41 +4224,26 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
     return FALSE;
 }
 
-bool8 UseOutOfTurnAttack(u8 battler, u16 ability, u16 move, u8 movePower, u8 moveEffectPercentChance, u8 moveSecondaryEffectChance)
+bool8 UseOutOfTurnAttack(u8 battler, u8 target, u16 ability, u16 move, u8 movePower)
 {
     if (gBattlerAttacker == battler) return FALSE;
     if (gTurnStructs[battler].dancerUsedMove) return FALSE;
-    if (gRoundStructs[battler].extraMoveUsed) return FALSE;
     if (gBattleMons[battler].status1 & STATUS1_SLEEP) return FALSE;
     if (gBattleMons[battler].status1 & STATUS1_FREEZE) return FALSE;
+    if (!IsBattlerAlive(battler)) return FALSE;
 
-    gBattleScripting.replaceEndWithEnd3++;
-
-    gBattleScripting.abilityPopupOverwrite = ability;
     // Set bit and save Dancer mon's original target
     gTurnStructs[battler].dancerUsedMove = TRUE;
-    gTurnStructs[battler].dancerOriginalTarget = gBattleStruct->moveTarget[battler] | 0x4;
-    gBattleStruct->atkCancellerTracker = 0;
-    gBattlerAttacker = gBattlerAbility = battler;
-    gCalledMove = move;
 
-    // Set the target to the original target of the mon that first used a Dance move
-    gBattlerTarget = gBattleScripting.savedBattler & 0x3;
+    gQueuedExtraAttackData[gQueuedAttackCount] = (struct ExtraAttackActionStruct)
+    {
+        .ability = ability,
+        .move = move,
+        .attacker = battler,
+        .target = target,
+        .movePower = movePower,
+    };
 
-    // Make sure that the target isn't an ally - if it is, target the original user
-    if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker))
-        gBattlerTarget = (gBattleScripting.savedBattler & 0xF0) >> 4;
-    gBattlerTarget = GetMoveTarget(move, gBattlerTarget);
-
-    gRoundStructs[battler].extraMoveUsed = TRUE;
-
-    //Move Effect
-    VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-    VarSet(VAR_TEMP_MOVEEFFECT, moveSecondaryEffectChance);
-
-    gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-    BattleScriptExecute(BattleScript_DancerActivates);
     return TRUE;
 
 }
@@ -6833,6 +6841,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
+
+        if (effect)
+        {
+            if (gBattleScripting.battlerPopupOverwrite == BATTLE_PARTNER(battler))
+                gBattleScripting.battler = BATTLE_PARTNER(battler);
+            else
+                gBattleScripting.battler = battler;
+        }
         
         break;
     case ABILITYEFFECT_ABSORBING: // 3
@@ -7901,158 +7917,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        //Atomic Burst
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_ATOMIC_BURST)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_ATOMIC_BURST; //For easier copypaste
-            //Target and Attacker are swapped because this is the defender's ability
-            //battler = attacker, gBattlerAttacker = defender
-
-            //Checks if the ability is triggered
-            if(ShouldApplyOnHitAffect(gBattlerAttacker)
-                && !gRetaliationInProgress
-                && CanUseExtraMove(battler, gBattlerAttacker)
-                && (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
-                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                gRoundStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
-                effect++;
-            }
-        }
-
-        //Cold Rebound
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_COLD_REBOUND)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_COLD_REBOUND; //For easier copypaste
-            //Target and Attacker are swapped because this is the defender's ability
-            //battler = attacker, gBattlerAttacker = defender
-
-            //Checks if the ability is triggered
-            if(ShouldApplyOnHitAffect(gBattlerAttacker)
-                && !gRetaliationInProgress
-                && CanUseExtraMove(battler, gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                u16 extraMove = MOVE_ICY_WIND;     //The Extra Move to be used
-                u8 movePower = 0;                  //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = MOVE_EFFECT_SPD_MINUS_1; //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                gRoundStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
-                effect++;
-            }
-        }
-
-        //Parry
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_PARRY; //For easier copypaste
-            //Target and Attacker are swapped because this is the defender's ability
-            //battler = attacker, gBattlerAttacker = defender
-
-            //Checks if the ability is triggered
-            if(ShouldApplyOnHitAffect(gBattlerAttacker)
-                && !gRetaliationInProgress
-                && CanUseExtraMove(battler, gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used
-                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                gRoundStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
-                effect++;
-            }
-        }
-
-        //Parry
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_SNAP_TRAP_WHEN_HIT; //For easier copypaste
-            //Target and Attacker are swapped because this is the defender's ability
-            //battler = attacker, gBattlerAttacker = defender
-
-            //Checks if the ability is triggered
-            if(ShouldApplyOnHitAffect(gBattlerAttacker)
-                && !gRetaliationInProgress
-                && CanUseExtraMove(battler, gBattlerAttacker)
-                && IsMoveMakingContact(move, gBattlerAttacker)){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                u16 extraMove = MOVE_SNAP_TRAP;  //The Extra Move to be used
-                u8 movePower = 50;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
-                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                gRoundStructs[battler].extraMoveUsed = TRUE;
-
-                //Move Effect
-                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
-                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
-
-                //If the ability is an innate overwrite the popout
-                gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
-                effect++;
-            }
-        }
-
         //Scrapyard
         if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPYARD)){
             if(ShouldApplyOnHitAffect(battler)
@@ -8197,40 +8061,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
-
-        for(i = 0; i < gBattlersCount; i++){
-            // Retribution Blow
-            if(BATTLER_HAS_ABILITY(i, ABILITY_RETRIBUTION_BLOW)){
-                if (IsBattlerAlive(i)
-                && DoesMoveBoostStats(gCurrentMove)
-                && !gRetaliationInProgress
-                && !gRoundStructs[i].extraMoveUsed
-                && !(gBattleMons[i].status1 & STATUS1_SLEEP)
-                && gBattlerAttacker != i
-                && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || BATTLER_HAS_ABILITY(i, ABILITY_SCRAPPY))
-                && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
-                {
-                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
-                    u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                    u8 moveEffectPercentChance  = 0;  //The secondary effect is removed here
-                    u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
-                    gTempMove = gCurrentMove;
-                    gCurrentMove = extraMove;
-                    VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                    gRoundStructs[battler].extraMoveUsed = TRUE;
-
-                    //Move Effect
-                    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                    VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
-
-                    gBattlerTarget = battler = i;
-                    gRoundStructs[i].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_RETRIBUTION_BLOW;
-                    BattleScriptPushCursorAndCallback(BattleScript_DefenderUsedAnExtraMove);
-                    effect++;
-                }
-            }
-        }
 		
         break;
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
@@ -9018,16 +8848,57 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             && !(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker])
             && (gBattleMoves[gCurrentMove].flags & FLAG_DANCE))
         {
-            if (UseOutOfTurnAttack(battler, ABILITY_DANCER, gCurrentMove, 0, 0, 0))
+            u8 target = GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker) ? gBattlerTarget : BATTLE_OPPOSITE(battler);
+            if (UseOutOfTurnAttack(battler, target, ABILITY_DANCER, gCurrentMove, 0))
                 return TRUE;
         }
         else if (BattlerHasAbility(battler, battler, ABILITY_PARROTING)
-             && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND)
-             && !gTurnStructs[battler].dancerUsedMove
-             && gBattlerAttacker != battler)
+            && IsBattlerAlive(battler)
+            && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND))
         {
-            if (UseOutOfTurnAttack(battler, ABILITY_PARROTING, gCurrentMove, 0, 0, 0))
+            u8 target = GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker) ? gBattlerTarget : BATTLE_OPPOSITE(battler);
+            if (UseOutOfTurnAttack(battler, target, ABILITY_PARROTING, gCurrentMove, 0))
                 return TRUE;
+        }
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_COLD_REBOUND)){
+            if(battler == gBattlerTarget
+                && ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_COLD_REBOUND, MOVE_ICY_WIND, 0))
+                        return TRUE;
+            }
+        }
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_SNAP_TRAP_WHEN_HIT)){
+            if(battler == gBattlerTarget
+                && ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_SNAP_TRAP_WHEN_HIT, MOVE_SNAP_TRAP, 50))
+                        return TRUE;
+            }
+        }
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
+            if(battler == gBattlerTarget
+                && ShouldApplyOnHitAffect(gBattlerAttacker)
+                && IsMoveMakingContact(move, gBattlerAttacker)){
+                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_PARRY, MOVE_MACH_PUNCH, 0))
+                        return TRUE;
+            }
+        }
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_RETRIBUTION_BLOW)){
+            if(GetBattlerSide(battler) != GetBattlerSide(gBattlerAttacker)
+                && IsBattlerAlive(gBattlerAttacker)
+                && DoesMoveBoostStats(gCurrentMove)){
+                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_RETRIBUTION_BLOW, MOVE_HYPER_BEAM, 0))
+                        return TRUE;
+            }
+        }
+        else if(BATTLER_HAS_ABILITY(battler, ABILITY_ATOMIC_BURST)){
+            if(battler == gBattlerTarget
+                && ShouldApplyOnHitAffect(gBattlerAttacker)
+                && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE){
+                    if (UseOutOfTurnAttack(battler, gBattlerAttacker, ABILITY_ATOMIC_BURST, MOVE_HYPER_BEAM, 50))
+                        return TRUE;
+            }
         }
         
         break;
@@ -16293,4 +16164,12 @@ u16 IsSoundproof(u8 battler)
     if (BATTLER_HAS_ABILITY(battler, ABILITY_PARROTING)) return ABILITY_PARROTING;
     if (IsAbilityOnSide(battler, ABILITY_NOISE_CANCEL)) return ABILITY_NOISE_CANCEL;
     return 0;
+}
+
+u8 GetTurnBattler()
+{
+    if (gProcessingExtraAttacks)
+        return gQueuedExtraAttackData[0].attacker;
+    else
+        return gBattlerByTurnOrder[gCurrentTurnActionNumber];
 }
