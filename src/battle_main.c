@@ -3359,7 +3359,7 @@ void SwitchInClearSetData(void)
     s32 i, j;
     struct VolatileStruct VolatileStructCopy = gVolatileStructs[gActiveBattler];
 
-    gActionsByTurnOrder[gBattlerByTurnOrder[gActiveBattler]] = B_ACTION_TRY_FINISH;
+    gActionsByTurnOrder[GetBattlerTurnOrderNum(gActiveBattler)] = B_ACTION_TRY_FINISH;
 
     ClearIllusionMon(gActiveBattler);
     if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)
