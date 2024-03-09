@@ -221,6 +221,9 @@ struct MenuResources
     u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
     u8 numStatusInfo[MAX_BATTLERS_COUNT];
     struct DamageCalculation damageCalculation[MAX_BATTLERS_COUNT][MAX_TARGETS * 2][MAX_MON_MOVES];
+    bool8 partySelectorMode;
+    u8 partyMenuSelectorID_X;
+    u8 partyMenuSelectorID_Y;
 };
 
 enum WindowIds
@@ -366,6 +369,7 @@ static const u32 sMenuTiles[]      = INCBIN_U32("graphics/ui_menus/battle_menu/t
 static const u8 sStatDownArrow[]   = INCBIN_U8("graphics/ui_menus/battle_menu/stat_down_arrow.4bpp");
 static const u8 sStatUpArrow[]     = INCBIN_U8("graphics/ui_menus/battle_menu/stat_up_arrow.4bpp");
 static const u8 sCheck[]           = INCBIN_U8("graphics/ui_menus/battle_menu/check.4bpp");
+static const u8 sSelector2[]       = INCBIN_U8("graphics/ui_menus/battle_menu/selector_2.4bpp");
 
 //Palettes
 static const u16 sMenuPalette[]        = INCBIN_U16("graphics/ui_menus/battle_menu/palette.gbapal");
@@ -465,6 +469,9 @@ void UI_Battle_Menu_Init(MainCallback callback)
 
     sMenuDataPtr->currentSideInfoEnemy  = 0;
     sMenuDataPtr->numSideInfoEnemy      = 0;
+    sMenuDataPtr->partyMenuSelectorID_X = 0;
+    sMenuDataPtr->partyMenuSelectorID_Y = 0;
+    sMenuDataPtr->partySelectorMode     = FALSE;
 
     sMenuDataPtr->numStatusInfo[B_POSITION_PLAYER_LEFT]    = 0;
     sMenuDataPtr->numStatusInfo[B_POSITION_OPPONENT_LEFT]  = 0;
@@ -1293,6 +1300,8 @@ const u8 sText_Title_Player_Side[]       = _("Player Side Info");
 const u8 sText_Title_Speed_Order[]       = _("Speed Order");
 const u8 sText_Title_FieldControllers[]  = _("{A_BUTTON}Scroll {DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 const u8 sText_Title_FieldControllers2[] = _("{A_BUTTON}Scroll {DPAD_UPDOWN}Switch");
+const u8 sText_Title_PartyInfoSelect[]   = _("{A_BUTTON}Select {DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
+const u8 sText_Title_PartyInfo[]         = _("{A_BUTTON}Info {B_BUTTON}Back {DPAD_NONE}Switch");
 const u8 sText_Title_Controllers[]       = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 
 const u8 sText_Title_Type_One[]     = _("Type:\n{STR_VAR_1}");
@@ -3084,6 +3093,7 @@ static void PrintPartyTab(){
     u8 turnsLeft = 5;
     bool8 printedInfo = FALSE;
     u8 maxLines = 3;
+    u8 partyIndex = sMenuDataPtr->partyMenuSelectorID_X + (sMenuDataPtr->partyMenuSelectorID_Y * 3);
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -3094,7 +3104,10 @@ static void PrintPartyTab(){
     y2 = -4;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Party);
     x  = 15;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_FieldControllers);
+    if(sMenuDataPtr->partySelectorMode)
+        AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_PartyInfo);
+    else
+        AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_PartyInfoSelect);
 
     //Player Mon Icons
     for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
@@ -3104,6 +3117,20 @@ static void PrintPartyTab(){
     //Enemy Mon Icons
     for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
         ShowSpeciesIconParty(i, TRUE, PARTY_POKEMON_ICON_X + ((i % 3) * PARTY_POKEMON_SPACE_X), PARTY_POKEMON_ICON_Y_2 + ((i / 3)  * PARTY_POKEMON_SPACE_Y));
+    }
+
+    //Selector
+    if(sMenuDataPtr->partySelectorMode){
+        x = 9 + ((partyIndex % 3) * 7); //PARTY_POKEMON_ICON_X / 8
+
+        if(partyIndex >= 6){
+            u8 enemyIndex = partyIndex - 6;
+            y = 13 + ((enemyIndex / 3) * 3); //PARTY_POKEMON_ICON_Y / 8
+        }
+        else
+            y = 3 + ((partyIndex / 3) * 3); //PARTY_POKEMON_ICON_Y / 8
+        
+        BlitBitmapToWindow(windowId, sSelector2, (x * 8), (y * 8), 40, 24);
     }
     
     PutWindowTilemap(windowId);
@@ -4396,12 +4423,18 @@ static u8 ShowSpeciesIconParty(u8 num, bool8 isEnemyParty, u8 x, u8 y)
         return 0;
 
     if(isEnemyParty){
+        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] != SPRITE_NONE)//Already created
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num];
+        
         sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
                     
         gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER]].invisible = FALSE;
         return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER];
     }
     else{
+        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] != SPRITE_NONE)//Already created
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num];
+        
         sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
                     
         gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num]].invisible = FALSE;
@@ -4634,14 +4667,26 @@ static void PrintPage(void){
     }
 }
 
+#define PARTY_TAB_NUM_MONS_X 3
+#define PARTY_TAB_NUM_MONS_Y 4
+
 /* This is the meat of the UI. This is where you wait for player inputs and can branch to other tasks accordingly */
 static void Task_MenuMain(u8 taskId)
 {
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_PC_OFF);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[taskId].func = Task_MenuTurnOff;
+        if(sMenuDataPtr->modeId == MODE_FIELD && sMenuDataPtr->fieldTabId == TAB_PARTY && sMenuDataPtr->partySelectorMode){
+            sMenuDataPtr->partySelectorMode = FALSE;
+            sMenuDataPtr->partyMenuSelectorID_X = 0;
+            sMenuDataPtr->partyMenuSelectorID_Y = 0;
+
+            PrintPartyTab();
+        }
+        else{
+            PlaySE(SE_PC_OFF);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            gTasks[taskId].func = Task_MenuTurnOff;
+        }
     }
 
     if (JOY_NEW(A_BUTTON))
@@ -4674,12 +4719,55 @@ static void Task_MenuMain(u8 taskId)
                     gTasks[taskId].func = Task_MenuTurnOff;
                 break;
             }
-
         }
         else{
             switch(sMenuDataPtr->fieldTabId){
                 case TAB_PARTY:
-                    PrintPartyTab();
+                    if(!sMenuDataPtr->partySelectorMode){
+                        sMenuDataPtr->partySelectorMode = TRUE;
+                        PrintPartyTab();
+                    }
+                    else{
+                        u8 currMonId = sMenuDataPtr->partyMenuSelectorID_X + (sMenuDataPtr->partyMenuSelectorID_Y * PARTY_TAB_NUM_MONS_X);
+                        bool8 PlayerPartyInfoWorking = FALSE;//It's not working yet so we'll leave it like this for now
+
+                        if(currMonId < PARTY_SIZE){
+                            //Player Party
+                            u16 species = GetMonData(&gPlayerParty[currMonId], MON_DATA_SPECIES, NULL);
+                            u8 value = 1;
+                            u8 partyCount = gPlayerPartyCount - 1;
+                            if(species != SPECIES_NONE && PlayerPartyInfoWorking){
+                                VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
+                                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+                                FreeAllWindowBuffers();
+                                DestroyTask(taskId);
+                                ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, currMonId, partyCount, sMenuDataPtr->savedCallback); //Gotta change the callback to get back at this screen
+                            }
+                            else{
+                                PlaySE(SE_BOO);
+                            }
+                        }
+                        else{
+                            //Enemy Party
+                            u16 species = GetMonData(&gEnemyParty[currMonId - PARTY_SIZE], MON_DATA_SPECIES, NULL);
+                            u8 value = 2;
+                            u8 partyCount = CalculateEnemyPartyCount() - 1;
+
+                            currMonId = currMonId - PARTY_SIZE;
+
+                            if(species != SPECIES_NONE){
+                                VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
+                                BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+                                FreeAllWindowBuffers();
+                                DestroyTask(taskId);
+                                ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, currMonId, partyCount, sMenuDataPtr->savedCallback); //Gotta change the callback to get back at this screen
+                            }
+                            else{
+                                PlaySE(SE_BOO);
+                            }
+                        }
+                    }
+                break;
                 case TAB_FIELD:
                     sMenuDataPtr->currentFieldInfo = (sMenuDataPtr->currentFieldInfo + 1) % sMenuDataPtr->numFields;
                     PrintFieldTab();
@@ -4718,47 +4806,75 @@ static void Task_MenuMain(u8 taskId)
     }
 
     if (JOY_NEW(DPAD_DOWN)){
-        if(IsDoubleBattle()){
-            if(sMenuDataPtr->modeId != NUM_MODES - 1)
-                sMenuDataPtr->modeId++;
+        if(sMenuDataPtr->modeId == MODE_FIELD && sMenuDataPtr->fieldTabId == TAB_PARTY && sMenuDataPtr->partySelectorMode){
+            if((sMenuDataPtr->partyMenuSelectorID_Y) < PARTY_TAB_NUM_MONS_Y - 1)
+                sMenuDataPtr->partyMenuSelectorID_Y++;
             else
-                sMenuDataPtr->modeId = 0;
+                sMenuDataPtr->partyMenuSelectorID_Y = 0;
+            PrintPartyTab();
         }
         else{
-            if(sMenuDataPtr->modeId != MODE_BATTLER1)
-                sMenuDataPtr->modeId++;
-            else
-                sMenuDataPtr->modeId = MODE_BATTLER0;
+            if(IsDoubleBattle()){
+                if(sMenuDataPtr->modeId != NUM_MODES - 1)
+                    sMenuDataPtr->modeId++;
+                else
+                    sMenuDataPtr->modeId = 0;
+            }
+            else{
+                if(sMenuDataPtr->modeId != MODE_BATTLER1)
+                    sMenuDataPtr->modeId++;
+                else
+                    sMenuDataPtr->modeId = MODE_BATTLER0;
+            }
+            setBattler();
+            PrintPage();
         }
-        setBattler();
-        PrintPage();
     }
 
     if (JOY_NEW(DPAD_UP)){
-        if(IsDoubleBattle()){
-            if(sMenuDataPtr->modeId != 0)
-                sMenuDataPtr->modeId--;
+        if(sMenuDataPtr->modeId == MODE_FIELD && sMenuDataPtr->fieldTabId == TAB_PARTY && sMenuDataPtr->partySelectorMode){
+            if(sMenuDataPtr->partyMenuSelectorID_Y != 0)
+                sMenuDataPtr->partyMenuSelectorID_Y--;
             else
-                sMenuDataPtr->modeId = NUM_MODES - 1;
+                sMenuDataPtr->partyMenuSelectorID_Y = PARTY_TAB_NUM_MONS_Y - 1;
+            PrintPartyTab();
         }
         else{
-            if(sMenuDataPtr->modeId != MODE_BATTLER0)
-                sMenuDataPtr->modeId--;
-            else
-                sMenuDataPtr->modeId = MODE_BATTLER1;
+            if(IsDoubleBattle()){
+                if(sMenuDataPtr->modeId != 0)
+                    sMenuDataPtr->modeId--;
+                else
+                    sMenuDataPtr->modeId = NUM_MODES - 1;
+            }
+            else{
+                if(sMenuDataPtr->modeId != MODE_BATTLER0)
+                    sMenuDataPtr->modeId--;
+                else
+                    sMenuDataPtr->modeId = MODE_BATTLER1;
+            }
+            setBattler();
+            PrintPage();
         }
-        setBattler();
-        PrintPage();
     }
 
     if (JOY_NEW(DPAD_LEFT)){
         switch(sMenuDataPtr->modeId){
             case MODE_FIELD:
-                if(sMenuDataPtr->fieldTabId != 0)
-                    sMenuDataPtr->fieldTabId--;
+                if(sMenuDataPtr->fieldTabId == TAB_PARTY && sMenuDataPtr->partySelectorMode){
+                    if(sMenuDataPtr->partyMenuSelectorID_X != 0)
+                        sMenuDataPtr->partyMenuSelectorID_X--;
+                    else
+                        sMenuDataPtr->partyMenuSelectorID_X = PARTY_TAB_NUM_MONS_X - 1;
+                    PrintPartyTab();
+                }
                 else
-                    sMenuDataPtr->fieldTabId = NUM_FIELD_TABS - 1;
-                PrintPage();
+                {
+                    if(sMenuDataPtr->fieldTabId != 0)
+                        sMenuDataPtr->fieldTabId--;
+                    else
+                        sMenuDataPtr->fieldTabId = NUM_FIELD_TABS - 1;
+                    PrintPage();
+                }
             break;
             default: //Battlers
                 if(sMenuDataPtr->tabId != 0)
@@ -4774,11 +4890,20 @@ static void Task_MenuMain(u8 taskId)
     if (JOY_NEW(DPAD_RIGHT)){
         switch(sMenuDataPtr->modeId){
             case MODE_FIELD:
-                if(sMenuDataPtr->fieldTabId != NUM_FIELD_TABS - 1)
-                    sMenuDataPtr->fieldTabId++;
-                else
-                    sMenuDataPtr->fieldTabId = 0;
-                PrintPage();
+                if(sMenuDataPtr->fieldTabId == TAB_PARTY && sMenuDataPtr->partySelectorMode){
+                    if(sMenuDataPtr->partyMenuSelectorID_X < PARTY_TAB_NUM_MONS_X - 1)
+                        sMenuDataPtr->partyMenuSelectorID_X++;
+                    else
+                        sMenuDataPtr->partyMenuSelectorID_X = 0;
+                    PrintPartyTab();
+                }
+                else{
+                    if(sMenuDataPtr->fieldTabId != NUM_FIELD_TABS - 1)
+                        sMenuDataPtr->fieldTabId++;
+                    else
+                        sMenuDataPtr->fieldTabId = 0;
+                    PrintPage();
+                }
             break;
             default: //Battlers
                 if(sMenuDataPtr->tabId != NUM_TABS - 1)
