@@ -6566,7 +6566,7 @@ static void Cmd_moveend(void)
                 break;
             }
         case MOVEEND_ATTACKER_FOLLOWUP_MOVE:
-            if (AbilityBattleEffects(ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE, gBattlerAttacker, 0, 0, gChosenMove))
+            if (!gProcessingExtraAttacks && AbilityBattleEffects(ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE, gBattlerAttacker, 0, 0, gChosenMove))
             {
                 gHitMarker |= (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING);
                 gBattleScripting.animTargetsHit = 0;
@@ -15261,16 +15261,16 @@ static void Cmd_switchoutabilities(void)
         }
     }
 
-    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_RETRIEVER))
+    if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_RETRIEVER) && gBattleMons[gActiveBattler].item == 0)
     {
-        u16 *usedHeldItem;
-        usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
+        u8 side = GetBattlerSide(gActiveBattler);
+        u8 index = gBattlerPartyIndexes[gActiveBattler];
+        u16 originalItem = side == B_SIDE_PLAYER ? gBattleStruct->itemStolen[index].originalItem : gBattleStruct->opposingOriginalItems[index];
 
-        if (*usedHeldItem != 0 && gBattleMons[gActiveBattler].item == 0)
+        if (originalItem)
         {
-            gLastUsedItem = *usedHeldItem;
-            *usedHeldItem = 0;
-            gBattleMons[gActiveBattler].item = gLastUsedItem;
+            gBattleStruct->usedHeldItems[index][side] = ITEM_NONE;
+            gBattleMons[gActiveBattler].item = gLastUsedItem = originalItem;
 
             BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
             MarkBattlerForControllerExec(gActiveBattler);
