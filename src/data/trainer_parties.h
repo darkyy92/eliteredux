@@ -33229,13 +33229,12 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = { // Postgame
 static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_ZAMAZENTA,
-    .heldItem = ITEM_RUSTED_SHIELD,
-    .ability = 1,
-    .zeroSpeedIvs = TRUE,
-    .evs = {252, 0, 4, 0, 252, 0},
-    .nature = NATURE_CAREFUL,
-    .moves = MOVE_BEHEMOTH_BASH, MOVE_ICE_FANG, MOVE_KINGS_SHIELD, MOVE_BODY_PRESS
+    .species = SPECIES_KARTANA,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_FROST_BRAND, MOVE_AQUA_CUTTER, MOVE_BULLET_PUNCH, MOVE_LEAF_BLADE
     },
     {
     .lvl = 0,
@@ -33259,12 +33258,13 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     },
     {
     .lvl = 0,
-    .species = SPECIES_NIHILEGO,
-    .heldItem = ITEM_LIFE_ORB,
+    .species = SPECIES_ZAMAZENTA,
+    .heldItem = ITEM_RUSTED_SHIELD,
     .ability = 1,
-    .evs = {4, 0, 0, 252, 0, 252},
-    .nature = NATURE_TIMID,
-    .moves = MOVE_POWER_GEM, MOVE_SLUDGE_WAVE, MOVE_BANEFUL_BUNKER, MOVE_CHARGE_BEAM
+    .zeroSpeedIvs = TRUE,
+    .evs = {252, 0, 4, 0, 252, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BEHEMOTH_BASH, MOVE_ICE_FANG, MOVE_KINGS_SHIELD, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,

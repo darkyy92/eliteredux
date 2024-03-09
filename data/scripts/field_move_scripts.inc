@@ -245,39 +245,15 @@ EventScript_SmashRock::
 	specialvar VAR_RESULT, TryUpdateRusturfTunnelState
 	compare VAR_RESULT, TRUE
 	goto_if_eq EventScript_EndSmash
-	random 3
+	random 10
 	switch VAR_RESULT
-	case 0, EventScript_EndSmash
-	case 1, EventScript_RockSmashItem
-	case 2, EventScript_RockSmashEncounter
-	releaseall
-	end
-
-EventScript_RockSmashEncounter::
+	case 0, EventScript_RockSmashFossil
 	compare VAR_REPEL_STEP_COUNT, 0
 	goto_if_gt EventScript_EndSmash
 	special RockSmashWildEncounter
 	compare VAR_RESULT, FALSE
 	goto_if_eq EventScript_EndSmash
 	waitstate
-	releaseall
-	end
-
-EventScript_RockSmashItem::
-	random 12
-	switch VAR_RESULT
-	case 0, EventScript_RockSmashPearl
-	case 1, EventScript_RockSmashBigPearl
-	case 2, EventScript_RockSmashEther
-	case 3, EventScript_RockSmashMaxEther
-	case 4, EventScript_RockSmashSoftSand
-	case 5, EventScript_RockSmashHardStone
-	case 6, EventScript_RockSmashRevive
-	case 7, EventScript_RockSmashMaxRevive
-	case 8, EventScript_RockSmashStarPiece
-	case 9, EventScript_RockSmashGem
-	case 10, EventScript_RockSmashFossil
-	case 11, EventScript_RockSmashBottleCap
 	releaseall
 	end
 
