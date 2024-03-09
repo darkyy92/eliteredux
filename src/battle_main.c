@@ -154,6 +154,10 @@ EWRAM_DATA static struct UnknownPokemonStruct4* sMultiPartnerPartyBuffer = NULL;
 EWRAM_DATA u8 *gUnknown_0202305C = NULL;
 EWRAM_DATA u8 *gUnknown_02023060 = NULL;
 EWRAM_DATA u8 gActiveBattler = 0;
+EWRAM_DATA u8 gStackBattler1 = 0;
+EWRAM_DATA u8 gStackBattler2 = 0;
+EWRAM_DATA u8 gStackBattler3 = 0;
+EWRAM_DATA u8 gStackBattler4 = 0;
 EWRAM_DATA u32 gBattleControllerExecFlags = 0;
 EWRAM_DATA u8 gBattlersCount = 0;
 EWRAM_DATA u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT] = {0};
@@ -3353,6 +3357,8 @@ void SwitchInClearSetData(void)
     s32 i, j;
     struct VolatileStruct VolatileStructCopy = gVolatileStructs[gActiveBattler];
 
+    gActionsByTurnOrder[gBattlerByTurnOrder[gActiveBattler]] = B_ACTION_TRY_FINISH;
+
     ClearIllusionMon(gActiveBattler);
     if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)
     {
@@ -3421,20 +3427,6 @@ void SwitchInClearSetData(void)
 
     gActionSelectionCursor[gActiveBattler] = 0;
     gMoveSelectionCursor[gActiveBattler] = 0;
-
-    // Remove any queued out-of-turn attacks
-    for (i = 1, j = 1; j <= gQueuedAttackCount; i++, j++)
-    {
-        if (gQueuedExtraAttackData[i].attacker == gActiveBattler)
-        {
-            j--;
-            gQueuedAttackCount--;
-        }
-        else if (i != j)
-        {
-            gQueuedExtraAttackData[j] = gQueuedExtraAttackData[i];
-        }
-    }
 
     memset(&gVolatileStructs[gActiveBattler], 0, sizeof(struct VolatileStruct));
 

@@ -218,6 +218,7 @@ struct TurnStruct
     u16 parentalBondTrigger; // Ability that triggered parental bond
     u8 mirrorHerbStat:4;
     u8 multiHitCounter:4;
+    u8 shouldTriggerSwitchItem:1;
     bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
     u16 flungItem;
 };
@@ -333,9 +334,13 @@ struct SavedStackData
 {
     u16 abilityOverride;
     u8 multistringChooser;
+    u8 stackBattler1:2;
+    u8 stackBattler2:2;
+    u8 stackBattler3:2;
+    u8 stackBattler4:2;
 };
 
-#define MAX_SCRIPT_STACK_COUNT 8
+#define MAX_SCRIPT_STACK_COUNT 9
 struct BattleScriptsStack
 {
     const u8 *ptr[MAX_SCRIPT_STACK_COUNT];
@@ -901,6 +906,10 @@ extern u32 gUnusedFirstBattleVar1;
 extern u8 *gUnknown_0202305C;
 extern u8 *gUnknown_02023060;
 extern u8 gActiveBattler;
+extern u8 gStackBattler1;
+extern u8 gStackBattler2;
+extern u8 gStackBattler3;
+extern u8 gStackBattler4;
 extern u32 gBattleControllerExecFlags;
 extern u8 gBattlersCount;
 extern u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT];

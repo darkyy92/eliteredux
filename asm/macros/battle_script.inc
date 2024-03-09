@@ -504,7 +504,7 @@
 	.macro switchineffects battler:req
 	.byte 0x52
 	.byte \battler
-	restoreturnbattlers
+	restoreattackerandtargetfrom34
 	.endm
 
 	.macro trainerslidein battler:req
@@ -1188,6 +1188,7 @@
 	.macro switchoutabilities battler:req
 	.byte 0xe2
 	.byte \battler
+	restoreattackerandtargetfrom34
 	.endm
 
 	.macro jumpifhasnohp battler:req, param1:req
@@ -1440,7 +1441,7 @@
 
 	.macro switchinabilities battler:req
 	various \battler, VARIOUS_SWITCHIN_ABILITIES
-	restoreturnbattlers
+	restoreattackerandtargetfrom34
 	.endm
 
 	.macro savetarget
@@ -2226,6 +2227,32 @@
 	.macro restoreturnbattlers
 	various BS_ATTACKER, VARIOUS_RESTORE_TURN_BATTLERS
 	.endm
+
+	.macro writestackbattler, battler:req, number:req
+	various \battler, VARIOUS_WRITE_STACK_BATTLER
+	.byte \number
+	.endm
+
+	.macro restorestackstate
+	various BS_ATTACKER, VARIOUS_RESTORE_STACK_STATE
+	.endm
+
+	.macro saveattackerandtargetto34
+	writestackbattler BS_ATTACKER, 3
+	writestackbattler BS_TARGET, 4
+	.endm
+
+	.macro swapattackerandtargetfrom34
+	copybyte gBattlerAttacker, gStackBattler4
+	copybyte gBattlerTarget, gStackBattler3
+	.endm
+
+	.macro restoreattackerandtargetfrom34
+	restorestackstate
+	copybyte gBattlerAttacker, gStackBattler3
+	copybyte gBattlerTarget, gStackBattler4
+	.endm
+	
 
 	.macro swapbattlers battler1:req, battler2:req
 	copybyte sSAVED_BATTLER, \battler1

@@ -65,6 +65,10 @@
 #define BS_TARGET_PARTNER           17
 #define BS_ATTACKER_PARTNER         18
 #define BS_CHOOSE_FAINTED_MON       19
+#define BS_STACK_1                  20
+#define BS_STACK_2                  21
+#define BS_STACK_3                  22
+#define BS_STACK_4                  23
 
 // Cmd_accuracycheck
 #define NO_ACC_CALC_CHECK_LOCK_ON 0xFFFF
@@ -238,6 +242,8 @@
 #define VARIOUS_TRY_FLING                       160
 #define VARIOUS_JUMP_IF_STATUS_4                161
 #define VARIOUS_RESTORE_TURN_BATTLERS           162
+#define VARIOUS_WRITE_STACK_BATTLER             163
+#define VARIOUS_RESTORE_STACK_STATE             164
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
