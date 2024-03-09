@@ -9,6 +9,7 @@
 #include "battle_pyramid.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
+#include "battle_util.h"
 #include "data.h"
 #include "dexnav.h"
 #include "daycare.h"
@@ -9941,18 +9942,160 @@ bool8 IsEeveelution(u16 species)
     }
 }
 
+u16 getBaseSpeciesFromMega(u16 species){
+    u16 baseSpecies = GetFormSpeciesId(species, 0);
+
+    switch(species){
+        case SPECIES_ABOMASNOW_MEGA:
+        case SPECIES_ABSOL_MEGA:
+        case SPECIES_AERODACTYL_MEGA:
+        case SPECIES_AGGRON_MEGA:
+        case SPECIES_ALAKAZAM_MEGA:
+        case SPECIES_ALTARIA_MEGA:
+        case SPECIES_AMPHAROS_MEGA:
+        case SPECIES_AUDINO_MEGA:
+        case SPECIES_BANETTE_MEGA:
+        case SPECIES_BEEDRILL_MEGA:
+        case SPECIES_BLASTOISE_MEGA:
+        case SPECIES_BLAZIKEN_MEGA:
+        case SPECIES_CAMERUPT_MEGA:
+        case SPECIES_CHARIZARD_MEGA_X:
+        case SPECIES_CHARIZARD_MEGA_Y:
+        case SPECIES_DIANCIE_MEGA:
+        case SPECIES_GALLADE_MEGA:
+        case SPECIES_GARCHOMP_MEGA:
+        case SPECIES_GARDEVOIR_MEGA:
+        case SPECIES_GENGAR_MEGA:
+        case SPECIES_GLALIE_MEGA:
+        case SPECIES_GYARADOS_MEGA:
+        case SPECIES_HERACROSS_MEGA:
+        case SPECIES_HOUNDOOM_MEGA:
+        case SPECIES_KANGASKHAN_MEGA:
+        case SPECIES_LATIAS_MEGA:
+        case SPECIES_LATIOS_MEGA:
+        case SPECIES_LOPUNNY_MEGA:
+        case SPECIES_LUCARIO_MEGA:
+        case SPECIES_MANECTRIC_MEGA:
+        case SPECIES_MAWILE_MEGA:
+        case SPECIES_MEDICHAM_MEGA:
+        case SPECIES_METAGROSS_MEGA:
+        case SPECIES_MEWTWO_MEGA_X:
+        case SPECIES_MEWTWO_MEGA_Y:
+        case SPECIES_PIDGEOT_MEGA:
+        case SPECIES_PINSIR_MEGA:
+        case SPECIES_SABLEYE_MEGA:
+        case SPECIES_SALAMENCE_MEGA:
+        case SPECIES_SCEPTILE_MEGA:
+        case SPECIES_SCIZOR_MEGA:
+        case SPECIES_SHARPEDO_MEGA:
+        case SPECIES_SLOWBRO_MEGA:
+        case SPECIES_STEELIX_MEGA:
+        case SPECIES_SWAMPERT_MEGA:
+        case SPECIES_TYRANITAR_MEGA:
+        case SPECIES_VENUSAUR_MEGA:
+        case SPECIES_MILOTIC_MEGA:
+        case SPECIES_GROUDON_PRIMAL:
+        case SPECIES_KYOGRE_PRIMAL:
+        case SPECIES_FLYGON_MEGA:
+        case SPECIES_BUTTERFREE_MEGA:
+        case SPECIES_LAPRAS_MEGA:
+        case SPECIES_MACHAMP_MEGA:
+        case SPECIES_KINGLER_MEGA:
+        case SPECIES_KINGDRA_MEGA:
+        case SPECIES_DEWGONG_MEGA:
+        case SPECIES_HITMONCHAN_MEGA:
+        case SPECIES_HITMONLEE_MEGA:
+        case SPECIES_HITMONTOP_MEGA:
+        case SPECIES_CROBAT_MEGA:
+        case SPECIES_SKARMORY_MEGA:
+        case SPECIES_BRUXISH_MEGA:
+        case SPECIES_TORTERRA_MEGA:
+        case SPECIES_INFERNAPE_MEGA:
+        case SPECIES_EMPOLEON_MEGA:
+        case SPECIES_SHUCKLE_MEGA:
+        case SPECIES_RELICANTH_MEGA:
+        case SPECIES_QUAGSIRE_MEGA:
+        case SPECIES_JELLICENT_MEGA:
+        case SPECIES_TOUCANNON_MEGA:
+        case SPECIES_DRAGONITE_MEGA:
+        case SPECIES_BRELOOM_MEGA:
+        case SPECIES_SLAKING_MEGA:
+        case SPECIES_CASCOON_PRIMAL:
+        case SPECIES_RAYQUAZA_MEGA:
+        case SPECIES_FERALIGATR_MEGA_X:
+        case SPECIES_FERALIGATR_MEGA_Y:
+        case SPECIES_GRANBULL_MEGA:
+        case SPECIES_GYARADOS_MEGA_Y:
+        case SPECIES_HAXORUS_MEGA:
+        case SPECIES_KINGDRA_MEGA_Y:
+        case SPECIES_LUXRAY_MEGA:
+        case SPECIES_NIDOKING_MEGA:
+        case SPECIES_NIDOQUEEN_MEGA:
+        case SPECIES_SANDSLASH_MEGA:
+        case SPECIES_TYPHLOSION_MEGA:
+        case SPECIES_MEGANIUM_MEGA:
+        case SPECIES_KROOKODILE_MEGA:
+        case SPECIES_MAGNEZONE_MEGA:
+        case SPECIES_SHEDINJA_MEGA:
+        case SPECIES_SWALOT_MEGA:
+        case SPECIES_LANTURN_MEGA:
+        case SPECIES_LAPRAS_MEGA_X:
+        case SPECIES_SLOWKING_MEGA:
+            return baseSpecies;
+        break;
+        //Redux forms with Mega Evolutions
+        case SPECIES_ALAKAZAM_MEGA_REDUX:
+            return SPECIES_ALAKAZAM_REDUX;
+        break;
+        case SPECIES_BEEDRILL_MEGA_REDUX:
+            return SPECIES_BEEDRILL_REDUX;
+        break;
+        case SPECIES_MACHAMP_MEGA_REDUX:
+            return SPECIES_MACHAMP_REDUX;
+        break;
+        case SPECIES_SKARMORY_MEGA_REDUX:
+            return SPECIES_SKARMORY_REDUX;
+        break;
+        case SPECIES_GARCHOMP_MEGA_REDUX:
+            return SPECIES_GARCHOMP_REDUX;
+        break;
+        case SPECIES_MAWILE_MEGA_REDUX:
+            return SPECIES_MAWILE_REDUX;
+        break;
+        case SPECIES_SABLEYE_MEGA_REDUX:
+            return SPECIES_SABLEYE_REDUX;
+        break;
+        case SPECIES_HOUNDOOM_MEGA_REDUX:
+            return SPECIES_HOUNDOOM_REDUX;
+        break;
+        /*case SPECIES_KINGAMBIT_REDUX_MEGA
+            return SPECIES_KINGAMBIT_REDUX;
+        break;*/
+    }
+
+    return SPECIES_NONE;
+}
+
 u16 GetFormShiftSpecies(u16 species)
 {
+    bool8 canMegaEvolve = gSaveBlock2Ptr->permanentMegaMode && CheckBagHasItem(ITEM_MEGA_BRACELET, 1) && FlagGet(FLAG_SYS_RECEIVED_KEYSTONE); //Check if the player has the Mega Bracelet and the Keystone
     u16 baseSpecies;
     u8 i;
-    if (IsEeveelution(species)) return SPECIES_JOLTEON;
 
     baseSpecies = GetFormSpeciesId(species, 0);
     if (!baseSpecies) return SPECIES_NONE;
-    for (i = 0; gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT || gEvolutionTable[baseSpecies][i].method == EVO_FORM_SHIFT_GENDER; i++)
+
+    for (i = 0; gFormChangeTable[baseSpecies][i].method == EVO_FORM_SHIFT || gFormChangeTable[baseSpecies][i].method == EVO_FORM_SHIFT_GENDER; i++)
     {
-        if (gEvolutionTable[baseSpecies][i].targetSpecies == species)
+        if (gFormChangeTable[baseSpecies][i].targetSpecies == species)
             return baseSpecies;
+    }
+
+    if(canMegaEvolve) //Permanent mega mode only
+    {
+        u16 notMegaSpecies = getBaseSpeciesFromMega(species);
+        if(notMegaSpecies != SPECIES_NONE && notMegaSpecies != species)
+            return notMegaSpecies;
     }
 
     return SPECIES_NONE;

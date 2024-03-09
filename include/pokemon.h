@@ -273,6 +273,7 @@ extern const struct BaseStats gBaseStats[];
 extern const u8 *const gItemEffectTable[];
 extern const u32 gExperienceTables[][MAX_LEVEL + 1];
 extern const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON];
+extern const struct Evolution gFormChangeTable[NUM_SPECIES][EVOS_PER_MON];
 extern const struct LevelUpMove *const gLevelUpLearnsets[];
 extern const u8 gPPUpGetMask[];
 extern const u8 gPPUpSetMask[];
@@ -478,6 +479,7 @@ bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon);
 bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot);
 bool8 isSpeciesPlaceholderMon(u16 species);
 bool8 IsEeveelution(u16 species);
+u16 getBaseSpeciesFromMega(u16 species);
 u16 GetFormShiftSpecies(u16 species);
 const u8* GetSpeciesLongName(u16 species);
 

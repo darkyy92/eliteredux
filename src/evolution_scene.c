@@ -650,6 +650,7 @@ static void Task_EvolutionScene(u8 taskId)
 {
     u32 var;
     struct Pokemon* mon = &gPlayerParty[gTasks[taskId].tPartyId];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
 
     // check if B Button was held, so the evolution gets stopped
     if (gMain.heldKeys == B_BUTTON
@@ -677,7 +678,10 @@ static void Task_EvolutionScene(u8 taskId)
     case EVOSTATE_INTRO_MSG:
         if (!gPaletteFade.active)
         {
-            StringExpandPlaceholders(gStringVar4, gText_PkmnIsEvolving);
+            if(IsEeveelution(species))
+                StringExpandPlaceholders(gStringVar4, gText_PkmnIsDeEvolving);
+            else
+                StringExpandPlaceholders(gStringVar4, gText_PkmnIsEvolving);
             BattlePutTextOnWindow(gStringVar4, 0);
             gTasks[taskId].tState++;
         }
@@ -774,7 +778,10 @@ static void Task_EvolutionScene(u8 taskId)
     case EVOSTATE_SET_MON_EVOLVED:
         if (IsCryFinished())
         {
-            StringExpandPlaceholders(gStringVar4, gText_CongratsPkmnEvolved);
+            if(IsEeveelution(species))
+                StringExpandPlaceholders(gStringVar4, gText_CongratsPkmnDeEvolved);
+            else
+                StringExpandPlaceholders(gStringVar4, gText_CongratsPkmnEvolved);
             BattlePutTextOnWindow(gStringVar4, 0);
             PlayBGM(MUS_EVOLVED);
             gTasks[taskId].tState++;
@@ -857,10 +864,14 @@ static void Task_EvolutionScene(u8 taskId)
     case EVOSTATE_CANCEL_MSG:
         if (EvoScene_IsMonAnimFinished(sEvoStructPtr->preEvoSpriteId))
         {
-            if (gTasks[taskId].tEvoWasStopped)
+            if (gTasks[taskId].tEvoWasStopped) //FRLG leftovers can be removed or expanded
                 StringExpandPlaceholders(gStringVar4, gText_EllipsisQuestionMark);
-            else // Fire Red leftover probably
-                StringExpandPlaceholders(gStringVar4, gText_PkmnStoppedEvolving);
+            else{
+                if(IsEeveelution(species))
+                    StringExpandPlaceholders(gStringVar4, gText_PkmnStoppedDeEvolving);
+                else
+                    StringExpandPlaceholders(gStringVar4, gText_PkmnStoppedEvolving);
+            }
 
             BattlePutTextOnWindow(gStringVar4, 0);
             gTasks[taskId].tEvoWasStopped = TRUE;

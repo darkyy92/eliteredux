@@ -2713,6 +2713,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
 
             AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, SaveSpeciesWithSurname(targetspecies));
         }
+        else if(IsEeveelution(GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES)) && sPartyMenuInternal->actions[i] == MENU_SUB_EVOLUTION){
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, gText_De_Evolution);
+        }
         else
             AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], font, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
     }
@@ -6511,6 +6514,8 @@ static u16 GetFormChangeForMon(struct Pokemon *mon, u8 num){
     u16 targetSpecies, currentMap;
     u16 actualSpecies = species;
     u16 formShiftSpecies = GetFormShiftSpecies(species);
+    bool8 canMegaEvolve = gSaveBlock2Ptr->permanentMegaMode && CheckBagHasItem(ITEM_MEGA_BRACELET, 1) && FlagGet(FLAG_SYS_RECEIVED_KEYSTONE); //Check if the player has the Mega Bracelet and the Keystone
+    u16 notMegaSpecies = getBaseSpeciesFromMega(species);
     
     if (formShiftSpecies) species = formShiftSpecies;
 
@@ -6519,17 +6524,44 @@ static u16 GetFormChangeForMon(struct Pokemon *mon, u8 num){
     //if(!FlagGet(FLAG_BADGE02_GET))
 	//    return SPECIES_NONE;
 	
-    switch(gEvolutionTable[species][i].method)
+    switch(gFormChangeTable[species][i].method)
     {
         case EVO_FORM_SHIFT:
-            if (gEvolutionTable[species][i].targetSpecies != actualSpecies)
-                return gEvolutionTable[species][i].targetSpecies;
+            if (gFormChangeTable[species][i].targetSpecies != actualSpecies)
+                return gFormChangeTable[species][i].targetSpecies;
         break;
         case EVO_FORM_SHIFT_GENDER:
-            if (gEvolutionTable[species][i].targetSpecies != actualSpecies && GetMonGender(mon) == gEvolutionTable[species][i].param)
-                return gEvolutionTable[species][i].targetSpecies;
+            if (gFormChangeTable[species][i].targetSpecies != actualSpecies && GetMonGender(mon) == gFormChangeTable[species][i].param)
+                return gFormChangeTable[species][i].targetSpecies;
         break;
     }
+
+    if(canMegaEvolve && notMegaSpecies == SPECIES_NONE) //Permanent mega mode only
+    {
+        switch(gEvolutionTable[species][i].method)
+        {
+        case EVO_MEGA_EVOLUTION:
+        case EVO_PRIMAL_REVERSION:
+            if (gEvolutionTable[species][i].param == heldItem || CheckBagHasItem(gEvolutionTable[species][i].param, 1)) //Check if the mon holds the evolution item or the player has it in the bag
+                return gEvolutionTable[species][i].targetSpecies;
+        break;
+        case EVO_MOVE_MEGA_EVOLUTION:{
+            u16 move1 = GetMonData(mon, MON_DATA_MOVE1, 0);
+            u16 move2 = GetMonData(mon, MON_DATA_MOVE2, 0);
+            u16 move3 = GetMonData(mon, MON_DATA_MOVE3, 0);
+            u16 move4 = GetMonData(mon, MON_DATA_MOVE4, 0);
+
+            if (gEvolutionTable[species][i].param == move1 ||
+                gEvolutionTable[species][i].param == move2 ||
+                gEvolutionTable[species][i].param == move3 ||
+                gEvolutionTable[species][i].param == move4) //Check if the mon has the evolution move
+                return gEvolutionTable[species][i].targetSpecies;
+            }
+        break;
+        }
+    }
+    else if(num == 0 && notMegaSpecies != SPECIES_NONE)
+        return notMegaSpecies;
 
 	return SPECIES_NONE;
 }
@@ -6551,30 +6583,13 @@ static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num){
     if (formShiftSpecies) species = formShiftSpecies;
 
     i = num;
+
+    //Eevee is handled similar to evolution but will be handled separately, I need to add an special animation for de-evolution
+    if(IsEeveelution(species) && num == 0)
+        return SPECIES_EEVEE;
 	
     switch(gEvolutionTable[species][i].method)
     {
-    case EVO_MEGA_EVOLUTION:
-    case EVO_PRIMAL_REVERSION:
-        if(gSaveBlock2Ptr->permanentMegaMode){
-            if (gEvolutionTable[species][i].param == heldItem || CheckBagHasItem(gEvolutionTable[species][i].param, 1)) //Check if the mon holds the evolution item or the player has it in the bag
-                return gEvolutionTable[species][i].targetSpecies;
-        }
-    break;
-    case EVO_MOVE_MEGA_EVOLUTION:
-        if(gSaveBlock2Ptr->permanentMegaMode){
-            u16 move1 = GetMonData(mon, MON_DATA_MOVE1, 0);
-            u16 move2 = GetMonData(mon, MON_DATA_MOVE2, 0);
-            u16 move3 = GetMonData(mon, MON_DATA_MOVE3, 0);
-            u16 move4 = GetMonData(mon, MON_DATA_MOVE4, 0);
-
-            if (gEvolutionTable[species][i].param == move1 ||
-                gEvolutionTable[species][i].param == move2 ||
-                gEvolutionTable[species][i].param == move3 ||
-                gEvolutionTable[species][i].param == move4) //Check if the mon has the evolution move
-                return gEvolutionTable[species][i].targetSpecies;
-        }
-    break;
     case EVO_FRIENDSHIP:
         if (friendship >= 220)
             return gEvolutionTable[species][i].targetSpecies;

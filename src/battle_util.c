@@ -15065,108 +15065,14 @@ bool32 CanMegaEvolve(u8 battlerId)
 void UndoMegaEvolution(u32 monId)
 {
     u16 species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
-    u16 baseSpecies = GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES));
+    u16 baseSpecies = getBaseSpeciesFromMega(species);
     bool8 multibattle = VarGet(VAR_0x8004) == SPECIAL_BATTLE_MULTI;
 
-    switch(species){
-        case SPECIES_ABOMASNOW_MEGA:
-        case SPECIES_ABSOL_MEGA:
-        case SPECIES_AERODACTYL_MEGA:
-        case SPECIES_AGGRON_MEGA:
-        case SPECIES_ALAKAZAM_MEGA:
-        case SPECIES_ALTARIA_MEGA:
-        case SPECIES_AMPHAROS_MEGA:
-        case SPECIES_AUDINO_MEGA:
-        case SPECIES_BANETTE_MEGA:
-        case SPECIES_BEEDRILL_MEGA:
-        case SPECIES_BLASTOISE_MEGA:
-        case SPECIES_BLAZIKEN_MEGA:
-        case SPECIES_CAMERUPT_MEGA:
-        case SPECIES_CHARIZARD_MEGA_X:
-        case SPECIES_CHARIZARD_MEGA_Y:
-        case SPECIES_DIANCIE_MEGA:
-        case SPECIES_GALLADE_MEGA:
-        case SPECIES_GARCHOMP_MEGA:
-        case SPECIES_GARDEVOIR_MEGA:
-        case SPECIES_GENGAR_MEGA:
-        case SPECIES_GLALIE_MEGA:
-        case SPECIES_GYARADOS_MEGA:
-        case SPECIES_HERACROSS_MEGA:
-        case SPECIES_HOUNDOOM_MEGA:
-        case SPECIES_KANGASKHAN_MEGA:
-        case SPECIES_LATIAS_MEGA:
-        case SPECIES_LATIOS_MEGA:
-        case SPECIES_LOPUNNY_MEGA:
-        case SPECIES_LUCARIO_MEGA:
-        case SPECIES_MANECTRIC_MEGA:
-        case SPECIES_MAWILE_MEGA:
-        case SPECIES_MEDICHAM_MEGA:
-        case SPECIES_METAGROSS_MEGA:
-        case SPECIES_MEWTWO_MEGA_X:
-        case SPECIES_MEWTWO_MEGA_Y:
-        case SPECIES_PIDGEOT_MEGA:
-        case SPECIES_PINSIR_MEGA:
-        case SPECIES_SABLEYE_MEGA:
-        case SPECIES_SALAMENCE_MEGA:
-        case SPECIES_SCEPTILE_MEGA:
-        case SPECIES_SCIZOR_MEGA:
-        case SPECIES_SHARPEDO_MEGA:
-        case SPECIES_SLOWBRO_MEGA:
-        case SPECIES_STEELIX_MEGA:
-        case SPECIES_SWAMPERT_MEGA:
-        case SPECIES_TYRANITAR_MEGA:
-        case SPECIES_VENUSAUR_MEGA:
-        case SPECIES_MILOTIC_MEGA:
-        case SPECIES_GROUDON_PRIMAL:
-        case SPECIES_KYOGRE_PRIMAL:
-        case SPECIES_FLYGON_MEGA:
-        case SPECIES_BUTTERFREE_MEGA:
-        case SPECIES_LAPRAS_MEGA:
-        case SPECIES_MACHAMP_MEGA:
-        case SPECIES_KINGLER_MEGA:
-        case SPECIES_KINGDRA_MEGA:
-        case SPECIES_DEWGONG_MEGA:
-        case SPECIES_HITMONCHAN_MEGA:
-        case SPECIES_HITMONLEE_MEGA:
-        case SPECIES_HITMONTOP_MEGA:
-        case SPECIES_CROBAT_MEGA:
-        case SPECIES_SKARMORY_MEGA:
-        case SPECIES_BRUXISH_MEGA:
-        case SPECIES_TORTERRA_MEGA:
-        case SPECIES_INFERNAPE_MEGA:
-        case SPECIES_EMPOLEON_MEGA:
-        case SPECIES_SHUCKLE_MEGA:
-        case SPECIES_RELICANTH_MEGA:
-        case SPECIES_QUAGSIRE_MEGA:
-        case SPECIES_JELLICENT_MEGA:
-        case SPECIES_TOUCANNON_MEGA:
-        case SPECIES_DRAGONITE_MEGA:
-        case SPECIES_BRELOOM_MEGA:
-        case SPECIES_SLAKING_MEGA:
-        case SPECIES_CASCOON_PRIMAL:
-        case SPECIES_RAYQUAZA_MEGA:
-        case SPECIES_FERALIGATR_MEGA_X:
-        case SPECIES_FERALIGATR_MEGA_Y:
-        case SPECIES_GRANBULL_MEGA:
-        case SPECIES_GYARADOS_MEGA_Y:
-        case SPECIES_HAXORUS_MEGA:
-        case SPECIES_KINGDRA_MEGA_Y:
-        case SPECIES_LUXRAY_MEGA:
-        case SPECIES_NIDOKING_MEGA:
-        case SPECIES_NIDOQUEEN_MEGA:
-        case SPECIES_SANDSLASH_MEGA:
-        case SPECIES_TYPHLOSION_MEGA:
-        case SPECIES_MEGANIUM_MEGA:
-        case SPECIES_KROOKODILE_MEGA:
-        case SPECIES_MAGNEZONE_MEGA:
-        case SPECIES_SHEDINJA_MEGA:
-        case SPECIES_SWALOT_MEGA:
-        case SPECIES_LANTURN_MEGA:
-        case SPECIES_LAPRAS_MEGA_X:
-        case SPECIES_SLOWKING_MEGA:
-            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
-        break;
-    }
+    if(gSaveBlock2Ptr->permanentMegaMode && species != SPECIES_ZYGARDE_COMPLETE)
+        return;
+
+    if(baseSpecies != SPECIES_NONE && species != baseSpecies)
+        SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
 
     if (gBattleStruct->mega.evolvedPartyIds[B_SIDE_PLAYER] & gBitTable[monId])
     {

@@ -116,18 +116,10 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                             {EVO_LEVEL, 23, SPECIES_LEAFEON},
                             {EVO_LEVEL, 23, SPECIES_GLACEON},
                             {EVO_LEVEL, 23, SPECIES_SYLVEON}},
-    [SPECIES_JOLTEON]     = {{EVO_FORM_SHIFT, 23, SPECIES_JOLTEON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_VAPOREON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_FLAREON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_ESPEON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_UMBREON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_LEAFEON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_GLACEON},
-                            {EVO_FORM_SHIFT, 23, SPECIES_SYLVEON}},
     [SPECIES_PORYGON]	 = {{EVO_LEVEL, 36, SPECIES_PORYGON2}},
     [SPECIES_OMANYTE]	 = {{EVO_LEVEL, 28, SPECIES_OMASTAR}},
     [SPECIES_KABUTO]	 = {{EVO_LEVEL, 28, SPECIES_KABUTOPS}},
-    [SPECIES_AERODACTYL]	 = {{EVO_MEGA_EVOLUTION, ITEM_AERODACTYLITE, SPECIES_AERODACTYL_MEGA}},
+    [SPECIES_AERODACTYL] = {{EVO_MEGA_EVOLUTION, ITEM_AERODACTYLITE, SPECIES_AERODACTYL_MEGA}},
     [SPECIES_DRATINI]	 = {{EVO_LEVEL, 30, SPECIES_DRAGONAIR}},
     [SPECIES_DRAGONAIR]	 = {{EVO_LEVEL, 55, SPECIES_DRAGONITE}},
     [SPECIES_MEWTWO]	 = {{EVO_MEGA_EVOLUTION, ITEM_MEWTWONITE_X, SPECIES_MEWTWO_MEGA_X},
@@ -719,61 +711,76 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_GIRAFARIG] = {{EVO_LEVEL, 31, SPECIES_FARIGIRAF}},
     [SPECIES_BASCULIN] = {{EVO_LEVEL, 45, SPECIES_BASCULEGION}},
     [SPECIES_BASCULIN_BLUE_STRIPED] = {{EVO_LEVEL, 45, SPECIES_BASCULEGION}},
+};
 
+const struct Evolution gFormChangeTable[NUM_SPECIES][EVOS_PER_MON] =
+{
+    //Oricorio changes forms with the use of a nectar
     [SPECIES_ORICORIO] = {{EVO_FORM_SHIFT, 1, SPECIES_ORICORIO},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_PAU},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_POM_POM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_SENSU},},
+                          {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_PAU},
+                          {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_POM_POM},
+                          {EVO_FORM_SHIFT, 1, SPECIES_ORICORIO_SENSU},},
     
+    //Keldeo changes forms when it knows the move Secret Sword
     [SPECIES_KELDEO] = {{EVO_FORM_SHIFT, 1, SPECIES_KELDEO},
-                            {EVO_FORM_SHIFT, 1, SPECIES_KELDEO_RESOLUTE},},
+                        {EVO_FORM_SHIFT, 1, SPECIES_KELDEO_RESOLUTE},},
 
+    //Shaymin changes forms when it has the Gracidea flower
     [SPECIES_SHAYMIN] = {{EVO_FORM_SHIFT, 1, SPECIES_SHAYMIN},
-                            {EVO_FORM_SHIFT, 1, SPECIES_SHAYMIN_SKY},},
+                         {EVO_FORM_SHIFT, 1, SPECIES_SHAYMIN_SKY},},
 
+    //Landorus changes forms with the use of the Reveal Glass
     [SPECIES_LANDORUS] = {{EVO_FORM_SHIFT, 1, SPECIES_LANDORUS},
-                            {EVO_FORM_SHIFT, 1, SPECIES_LANDORUS_THERIAN},},
+                          {EVO_FORM_SHIFT, 1, SPECIES_LANDORUS_THERIAN},},
 
+    //Thundurus changes forms with the use of the Reveal Glass
     [SPECIES_TORNADUS] = {{EVO_FORM_SHIFT, 1, SPECIES_TORNADUS},
-                            {EVO_FORM_SHIFT, 1, SPECIES_TORNADUS_THERIAN},},
+                          {EVO_FORM_SHIFT, 1, SPECIES_TORNADUS_THERIAN},},
 
+    //Thundurus changes forms with the use of the Reveal Glass
     [SPECIES_THUNDURUS] = {{EVO_FORM_SHIFT, 1, SPECIES_THUNDURUS},
-                            {EVO_FORM_SHIFT, 1, SPECIES_THUNDURUS_THERIAN},},
+                           {EVO_FORM_SHIFT, 1, SPECIES_THUNDURUS_THERIAN},},
 
+    //Meloetta changes forms with the use of the Reveal Glass
     [SPECIES_ENAMORUS] = {{EVO_FORM_SHIFT, 1, SPECIES_ENAMORUS},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ENAMORUS_THERIAN},},
+                          {EVO_FORM_SHIFT, 1, SPECIES_ENAMORUS_THERIAN},},
 
+    //Meloetta changes forms with the use of the Meteorite
     [SPECIES_DEOXYS] = {{EVO_FORM_SHIFT, 1, SPECIES_DEOXYS},
-                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_ATTACK},
-                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_SPEED},
-                            {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_DEFENSE},},
+                        {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_ATTACK},
+                        {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_SPEED},
+                        {EVO_FORM_SHIFT, 1, SPECIES_DEOXYS_DEFENSE},},
 
-    [SPECIES_TATSUGIRI] = {{EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_CURLY},
-                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_STRETCHY},
-                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_DROOPY},},
-
+    //Rotom changes forms with the use of an overworld script
     [SPECIES_ROTOM] = {{EVO_FORM_SHIFT, 1, SPECIES_ROTOM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_HEAT},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_MOW},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FAN},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FROST},
-                            {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_WASH},},
+                       {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_HEAT},
+                       {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_MOW},
+                       {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FAN},
+                       {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_FROST},
+                       {EVO_FORM_SHIFT, 1, SPECIES_ROTOM_WASH},},
 
+    //Furfrou changes forms with the use of an overworld script
     [SPECIES_FURFROU] = {{EVO_FORM_SHIFT, 1, SPECIES_FURFROU},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DANDY_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DEBUTANTE_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DIAMOND_TRIM},
-                            {EVO_FORM_SHIFT_GENDER, MON_FEMALE, SPECIES_FURFROU_HEART_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_KABUKI_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_LA_REINE_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_MATRON_TRIM},
-                            {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_PHARAOH_TRIM},
-                            {EVO_FORM_SHIFT_GENDER, MON_MALE, SPECIES_FURFROU_STAR_TRIM},},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DANDY_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DEBUTANTE_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_DIAMOND_TRIM},
+                         {EVO_FORM_SHIFT_GENDER, MON_FEMALE, SPECIES_FURFROU_HEART_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_KABUKI_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_LA_REINE_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_MATRON_TRIM},
+                         {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_PHARAOH_TRIM},
+                         {EVO_FORM_SHIFT_GENDER, MON_MALE, SPECIES_FURFROU_STAR_TRIM},},
 
-    [SPECIES_DIALGA] = {{EVO_PRIMAL_REVERSION, ITEM_ADAMANT_ORB, SPECIES_DIALGA_ORIGIN}},
+    //Tatsugiri does not change between forms in the vanilla games so it should not be included here
+    /*[SPECIES_TATSUGIRI] = {{EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_CURLY},
+                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_STRETCHY},
+                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_DROOPY},},*/
+
+    //These are handled in the code that handles arceus and silvally forms so they should not be added here let alone be called primal reversion
+    /*[SPECIES_DIALGA] = {{EVO_PRIMAL_REVERSION, ITEM_ADAMANT_ORB, SPECIES_DIALGA_ORIGIN}},
     [SPECIES_PALKIA] = {{EVO_PRIMAL_REVERSION, ITEM_LUSTROUS_ORB, SPECIES_PALKIA_ORIGIN}},
     [SPECIES_GIRATINA] = {{EVO_PRIMAL_REVERSION, ITEM_GRISEOUS_ORB, SPECIES_GIRATINA_ORIGIN}},
 
     [SPECIES_ZAMAZENTA] = {{EVO_PRIMAL_REVERSION, ITEM_RUSTED_SHIELD, SPECIES_ZAMAZENTA_CROWNED_SHIELD}},
-    [SPECIES_ZACIAN] = {{EVO_PRIMAL_REVERSION, ITEM_RUSTED_SWORD, SPECIES_ZACIAN_CROWNED_SWORD}},
+    [SPECIES_ZACIAN] = {{EVO_PRIMAL_REVERSION, ITEM_RUSTED_SWORD, SPECIES_ZACIAN_CROWNED_SWORD}},*/
 };

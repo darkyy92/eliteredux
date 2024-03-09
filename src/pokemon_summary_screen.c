@@ -4692,7 +4692,7 @@ static void BufferMonPokemonEvolutionData(void)
                 StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL );
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
                 break;
-            case EVO_FORM_SHIFT:
+            /*case EVO_FORM_SHIFT:
                 //Target Species
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 if (targetSpecies == actualSpecies)
@@ -4722,7 +4722,7 @@ static void BufferMonPokemonEvolutionData(void)
                 else
                     StringExpandPlaceholders(gStringVar4, gText_EVO_FORM_SHIFT_Female);
                 PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
-                break;
+                break;*/
             case EVO_FRIENDSHIP:
                 //Target Species
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
