@@ -156,7 +156,9 @@ EWRAM_DATA u8 *gUnknown_02023060 = NULL;
 EWRAM_DATA u8 gActiveBattler = 0;
 EWRAM_DATA u8 gStackBattler1 = 0;
 EWRAM_DATA u8 gStackBattler2 = 0;
+// gStackBattler3 should be preferred for holding gBattlerAttacker when it may be clobbered
 EWRAM_DATA u8 gStackBattler3 = 0;
+// gStackBattler4 should be preferred for holding gBattlerTarget when it may be clobbered
 EWRAM_DATA u8 gStackBattler4 = 0;
 EWRAM_DATA u32 gBattleControllerExecFlags = 0;
 EWRAM_DATA u8 gBattlersCount = 0;
