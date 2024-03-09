@@ -814,6 +814,8 @@ static const u8 sText_TrickRoomStarts[] = _("The dimensions became\ntwisted!");
 static const u8 sText_InverseRoomStarts[] = _("The type effectiveness\nwere inverted!");
 static const u8 sText_WonderRoomStarts[] = _("A bizzarre area was\ncreated!");
 static const u8 sText_MagicRoomStarts[] = _("A bizzarre area was\ncreated!");
+static const u8 sText_OriginReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Origin Reversion!\nIt regained its origin form!");
+static const u8 sText_CrownedReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Restoration!\nIt's restored to its former glory!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s Ability\nprevents switching!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -1729,6 +1731,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_INVERSEROOMSTARTS - 12] = sText_InverseRoomStarts,
     [STRINGID_WONDERROOMSTARTS - 12] = sText_WonderRoomStarts,
     [STRINGID_MAGICROOMSTARTS - 12] = sText_MagicRoomStarts,
+    [STRINGID_ORIGIN_REVERSION - 12] = sText_OriginReversion,
+    [STRINGID_CROWNED_REVERSION - 12] = sText_CrownedReversion,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -2266,6 +2270,13 @@ const u16 gStatusAnnounce[] =
 {
     [B_MSG_SALT_CURE] = STRINGID_AFFLICTED_WITH_SALT_CURE,
     [B_MSG_SYRUP] = STRINGID_AFFLICTED_WITH_SYRUP,
+};
+
+const u16 gPrimalEvolutionAnnouncement[] = 
+{
+    [B_MSG_PRIMAL_REVERSION] = STRINGID_PKMNREVERTEDTOPRIMAL,
+    [B_MSG_ORIGIN_REVERSION] = STRINGID_ORIGIN_REVERSION,
+    [B_MSG_CROWNED_REVERSION] = STRINGID_CROWNED_REVERSION,
 };
 
 // END OF GENERATED

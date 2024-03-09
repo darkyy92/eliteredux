@@ -1578,6 +1578,11 @@ void ReadActiveScriptInitialStackState()
     gStackBattler4 = data->stackBattler4;
 }
 
+void SetActiveMultistringChooser(u8 messageId)
+{
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].multistringChooser = messageId;
+}
+
 void SetActiveStackBattler(u8 battler, u8 number)
 {
     switch (number)

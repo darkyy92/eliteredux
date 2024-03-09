@@ -8626,18 +8626,7 @@ BattleScript_WishMegaEvolution::
 	end2
 
 BattleScript_PrimalReversion::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
-	setbyte gIsCriticalHit, 0
-	handleprimalreversion BS_ATTACKER, 0
-	handleprimalreversion BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_PRIMAL_REVERSION, NULL
-	waitanimation
-	handleprimalreversion BS_ATTACKER, 2
-	printstring STRINGID_PKMNREVERTEDTOPRIMAL
-	waitmessage B_WAIT_TIME_LONG
-	saveattackerandtargetto34
-	switchinabilities BS_ATTACKER
+	call BattleScript_PrimalReversionRet
 	end2
 
 BattleScript_PrimalReversionRet::
@@ -8646,12 +8635,18 @@ BattleScript_PrimalReversionRet::
 	setbyte gIsCriticalHit, 0
 	handleprimalreversion BS_ATTACKER, 0
 	handleprimalreversion BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_PRIMAL_REVERSION, NULL
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_PRIMAL_REVERSION, BattleScript_PrimalReversionPlayPrimalAnimation
+	playanimation BS_ATTACKER, B_ANIM_MEGA_EVOLUTION, NULL
+BattleScript_PrimalReversionPlayPrimalWaitAnimation:
 	waitanimation
 	handleprimalreversion BS_ATTACKER, 2
-	printstring STRINGID_PKMNREVERTEDTOPRIMAL
+	printfromtable gPrimalEvolutionAnnouncement
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_PrimalReversionPlayPrimalAnimation:
+	playanimation BS_ATTACKER, B_ANIM_PRIMAL_REVERSION, NULL
+	goto BattleScript_PrimalReversionPlayPrimalWaitAnimation
 
 BattleScript_AttackerFormChange::
 	pause 5

@@ -290,6 +290,7 @@ u16 IsSoundproof(u8 battlerId);
 bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability);
 u8 GetTurnBattler();
 void ReadActiveScriptInitialStackState();
+void SetActiveMultistringChooser(u8 messageId);
 void SetActiveStackBattler(u8 battler, u8 number);
 
 // Ability checks

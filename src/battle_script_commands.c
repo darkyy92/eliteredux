@@ -9748,6 +9748,24 @@ static void Cmd_various(void)
 
             BtlController_EmitSetMonData(0, REQUEST_SPECIES_BATTLE, gBitTable[gBattlerPartyIndexes[gActiveBattler]], 2, &gBattleMons[gActiveBattler].species);
             MarkBattlerForControllerExec(gActiveBattler);
+
+            switch (primalSpecies)
+            {
+                case SPECIES_GIRATINA_ORIGIN:
+                case SPECIES_PALKIA_ORIGIN:
+                case SPECIES_DIALGA_ORIGIN:
+                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ORIGIN_REVERSION);
+                    break;
+
+                case SPECIES_ZAMAZENTA_CROWNED_SHIELD:
+                case SPECIES_ZACIAN_CROWNED_SWORD:
+                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CROWNED_REVERSION);
+                    break;
+
+                default:
+                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_REVERSION);
+                    break;
+            }
         }
         // Change stats.
         else if (gBattlescriptCurrInstr[3] == 1)
