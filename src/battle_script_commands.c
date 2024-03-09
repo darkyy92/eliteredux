@@ -6075,6 +6075,7 @@ static void Cmd_moveend(void)
                 {
                     gBattleMons[i].item = gBattleStruct->changedItems[i];
                     gBattleStruct->changedItems[i] = 0;
+                    gTurnStructs[i].shouldTriggerSwitchItem = FALSE;
                 }
             }
             gBattleScripting.moveendState++;
@@ -6270,8 +6271,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_EJECT_BUTTON:
-            if (gCurrentMove != MOVE_DRAGON_TAIL
-              && gCurrentMove != MOVE_CIRCLE_THROW
+            if (gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET
               && IsBattlerAlive(gBattlerAttacker)
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove)
               && (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER || (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
@@ -6283,14 +6283,15 @@ static void Cmd_moveend(void)
                 for (i = 0; i < gBattlersCount; i++)
                 {
                     u8 battler = battlers[i];
+                    if (battler == GetTurnBattler()) continue;
                     // Attacker is the damage-dealer, battler is mon to be switched out
-                    if (IsBattlerAlive(battler)
-                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_BUTTON
-                      && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-                      && (gTurnStructs[battler].physicalDmg != 0 || gTurnStructs[battler].specialDmg != 0)
-                      && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
+                    if (gTurnStructs[battler].shouldTriggerSwitchItem
+                        && IsBattlerAlive(battler)
+                        && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_BUTTON
+                        && CanBattlerSwitch(battler))  // Has mon to switch into
                     {
-                        gActiveBattler = gBattleScripting.battler = battler;
+                        gStackBattler1 = battler;
+                        gTurnStructs[battler].shouldTriggerSwitchItem = FALSE;
                         gLastUsedItem = gBattleMons[battler].item;
                         if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
                             gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
@@ -6304,8 +6305,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_RED_CARD:
-            if (gCurrentMove != MOVE_DRAGON_TAIL
-              && gCurrentMove != MOVE_CIRCLE_THROW
+            if (gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET
               && IsBattlerAlive(gBattlerAttacker)
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
             {
@@ -6318,16 +6318,13 @@ static void Cmd_moveend(void)
                     u8 battler = battlers[i];
                     // Search for fastest hit pokemon with a red card
                     // Attacker is the one to be switched out, battler is one with red card
-                    if (battler != gBattlerAttacker
-                      && IsBattlerAlive(battler)
-                      && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RED_CARD
-                      && (gTurnStructs[battler].physicalDmg != 0 || gTurnStructs[battler].specialDmg != 0)
-                      && CanBattlerSwitch(gBattlerAttacker))
+                    if (gTurnStructs[battler].shouldTriggerSwitchItem
+                        && IsBattlerAlive(battler)
+                        && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RED_CARD
+                        && CanBattlerSwitch(battler))  // Has mon to switch into
                     {
                         gLastUsedItem = gBattleMons[battler].item;
-                        gActiveBattler = gBattleStruct->savedBattlerTarget = gBattleScripting.battler = battler;  // Battler with red card
-                        gEffectBattler = gBattlerAttacker;
+                        gStackBattler1 = battler;
                         if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
                             gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                         BattleScriptPushCursor();
@@ -6340,6 +6337,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_EJECT_PACK:
+            if (!(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker)))
             {
                 u8 battlers[4] = {0, 1, 2, 3};
                 SortBattlersBySpeed(battlers, FALSE);
@@ -6350,11 +6348,10 @@ static void Cmd_moveend(void)
                      && gRoundStructs[battler].statFell
                      && gRoundStructs[battler].disableEjectPack == 0
                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_PACK
-                     && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))  // Does not activate if attacker used Parting Shot and can switch out
                      && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
                     {
+                        gStackBattler1 = battler;
                         gRoundStructs[battler].statFell = FALSE;
-                        gActiveBattler = gBattleScripting.battler = battler;
                         gLastUsedItem = gBattleMons[battler].item;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_EjectPackActivates;
@@ -6367,11 +6364,10 @@ static void Cmd_moveend(void)
                      && gRoundStructs[battler].disableEjectPack == 0
                      && BATTLER_HAS_ABILITY(battler, ABILITY_EJECT_PACK_ABILITY)
                      && !GetSingleUseAbilityCounter(battler, ABILITY_EJECT_PACK_ABILITY)
-                     && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))  // Does not activate if attacker used Parting Shot and can switch out
                      && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
                     {
+                        gStackBattler1 = battler;
                         gRoundStructs[battler].statFell = FALSE;
-                        gActiveBattler = gBattleScripting.battler = battler;
                         gBattleScripting.abilityPopupOverwrite = ABILITY_EJECT_PACK_ABILITY;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_EmergencyExitPopupNoPause;
@@ -6486,8 +6482,8 @@ static void Cmd_moveend(void)
             {
                 if (gBattleResources->flags->flags[i] & RESOURCE_FLAG_EMERGENCY_EXIT)
                 {
+                    gStackBattler1 = i;
                     gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_EMERGENCY_EXIT);
-                    gBattlerTarget = gBattlerAbility = i;
                     BattleScriptPushCursor();
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || GetBattlerSide(i) == B_SIDE_PLAYER)
                     {
@@ -11028,8 +11024,6 @@ static void Cmd_various(void)
         else if (gCurrentTurnActionNumber < gBattlersCount)
         {
             gBattlerAttacker = GetTurnBattler();
-            if (gCurrentActionFuncId == B_ACTION_USE_MOVE)
-                gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
         }
         break;
     case VARIOUS_TRY_FLING:
@@ -11098,6 +11092,13 @@ static void Cmd_various(void)
             }        
         }
         return;
+    case VARIOUS_WRITE_STACK_BATTLER:
+        SetActiveStackBattler(gActiveBattler, gBattlescriptCurrInstr[3]);
+        gBattlescriptCurrInstr += 4;
+        return;
+    case VARIOUS_RESTORE_STACK_STATE:
+        ReadActiveScriptInitialStackState();
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

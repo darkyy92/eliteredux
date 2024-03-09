@@ -67,6 +67,10 @@
 #define B_TXT_ACTIVE_NAME 0x3C
 #define B_TXT_ACTIVE_NAME2 0x3D // no Illusion check
 #define B_TXT_BUFF4 0x3E //For Damage Done so it does not get overwritten
+#define B_TXT_STACK_1_NAME_WITH_PREFIX 0x3F //Stack battler
+#define B_TXT_STACK_2_NAME_WITH_PREFIX 0x40
+#define B_TXT_STACK_3_NAME_WITH_PREFIX 0x41
+#define B_TXT_STACK_4_NAME_WITH_PREFIX 0x42
 
 // for B_TXT_BUFF1, B_TXT_BUFF2, B_TXT_BUFF3 and B_TXT_BUFF4
 

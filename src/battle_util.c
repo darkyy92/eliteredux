@@ -1278,6 +1278,18 @@ u8 GetBattlerForBattleScript(u8 caseId)
     case BS_ATTACKER_PARTNER:
         ret = BATTLE_PARTNER(gBattlerAttacker);
         break;
+    case BS_STACK_1:
+        ret = gStackBattler1;
+        break;
+    case BS_STACK_2:
+        ret = gStackBattler2;
+        break;
+    case BS_STACK_3:
+        ret = gStackBattler3;
+        break;
+    case BS_STACK_4:
+        ret = gStackBattler4;
+        break;
     }
     return ret;
 }
@@ -1525,9 +1537,13 @@ void BattleScriptPush(const u8 *bsPtr)
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
             .multistringChooser = gBattleCommunication[MULTISTRING_CHOOSER],
+            .stackBattler1 = gStackBattler1,
+            .stackBattler2 = gStackBattler2,
+            .stackBattler3 = gStackBattler3,
+            .stackBattler4 = gStackBattler4,
         };
-    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = bsPtr;
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
 }
 
 void BattleScriptPushCursor(void)
@@ -1536,9 +1552,13 @@ void BattleScriptPushCursor(void)
         {
             .abilityOverride = gBattleScripting.abilityPopupOverwrite,
             .multistringChooser = gBattleCommunication[MULTISTRING_CHOOSER],
+            .stackBattler1 = gStackBattler1,
+            .stackBattler2 = gStackBattler2,
+            .stackBattler3 = gStackBattler3,
+            .stackBattler4 = gStackBattler4,
         };
-    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
     gBattleResources->battleScriptsStack->ptr[gBattleResources->battleScriptsStack->size++] = gBattlescriptCurrInstr;
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size] = savedStackData;
 }
 
 void BattleScriptPop(void)
@@ -1549,11 +1569,31 @@ void BattleScriptPop(void)
 
 void ReadActiveScriptInitialStackState()
 {
-    if (gBattleResources->battleScriptsStack->size > 0)
+    struct SavedStackData *data = &gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size];
+    gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
+    gBattleCommunication[MULTISTRING_CHOOSER] = data->multistringChooser;
+    gStackBattler1 = data->stackBattler1;
+    gStackBattler2 = data->stackBattler2;
+    gStackBattler3 = data->stackBattler3;
+    gStackBattler4 = data->stackBattler4;
+}
+
+void SetActiveStackBattler(u8 battler, u8 number)
+{
+    switch (number)
     {
-        struct SavedStackData *data = &gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size - 1];
-        gBattleScripting.abilityPopupOverwrite = data->abilityOverride;
-        gBattleCommunication[MULTISTRING_CHOOSER] = data->multistringChooser;
+    case 1:
+        gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler1 = battler;
+        return;
+    case 2:
+        gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler2 = battler;
+        return;
+    case 3:
+        gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler3 = battler;
+        return;
+    case 4:
+        gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler4 = battler;
+        return;
     }
 }
 
@@ -10610,7 +10650,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                  && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))) // Does not activate if attacker used Parting Shot and can switch out
                 {
                     gRoundStructs[battlerId].statFell = FALSE;
-                    gActiveBattler = gBattleScripting.battler = battlerId;
+                    gStackBattler1 = battlerId;
                     effect = ITEM_STATS_CHANGE;
                     if (moveTurn)
                     {
@@ -11245,6 +11285,13 @@ case ITEMEFFECT_KINGSROCK:
             GET_MOVE_TYPE(gCurrentMove, moveType);
             switch (battlerHoldEffect)
             {
+            case HOLD_EFFECT_RED_CARD:
+            case HOLD_EFFECT_EJECT_BUTTON:
+                if (TARGET_TURN_DAMAGED)
+                {
+                    gTurnStructs[battlerId].shouldTriggerSwitchItem = TRUE;
+                }
+                break;
             case HOLD_EFFECT_AIR_BALLOON:
                 if (TARGET_TURN_DAMAGED)
                 {

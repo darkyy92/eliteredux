@@ -618,8 +618,8 @@ static const u8 sText_PkmnGotOverItsInfatuation[] = _("{B_SCR_ACTIVE_NAME_WITH_P
 static const u8 sText_ItemCannotBeRemoved[] = _("{B_ATK_NAME_WITH_PREFIX}'s item cannot be removed!");
 static const u8 sText_StickyBarbTransfer[] = _("The {B_LAST_ITEM} attached itself to\n{B_ATK_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnBurnHealed[] = _("{B_DEF_NAME_WITH_PREFIX}'s\nburn was healed.");
-static const u8 sText_RedCardActivate[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} held up its {B_LAST_ITEM}\nagainst {B_ATK_NAME_WITH_PREFIX}!");
-static const u8 sText_EjectButtonActivate[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is switched\nout with the {B_LAST_ITEM}!");
+static const u8 sText_RedCardActivate[] = _("{B_STACK_1_NAME_WITH_PREFIX} held up its {B_LAST_ITEM}\nagainst {B_ATK_NAME_WITH_PREFIX}!");
+static const u8 sText_EjectButtonActivate[] = _("{B_STACK_1_NAME_WITH_PREFIX} is switched\nout with the {B_LAST_ITEM}!");
 static const u8 sText_AttackerGotOverInfatuation[] = _("{B_ATK_NAME_WITH_PREFIX} got over\nits infatuation!");
 static const u8 sText_TormentedNoMore[] = _("{B_ATK_NAME_WITH_PREFIX} is\ntormented no more!");
 static const u8 sText_HealBlockedNoMore[] = _("{B_ATK_NAME_WITH_PREFIX} is cured of\nits heal block!");
@@ -3690,6 +3690,18 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 break;
             case B_TXT_SCR_ACTIVE_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
                 HANDLE_NICKNAME_STRING_CASE(gBattleScripting.battler)
+                break;
+            case B_TXT_STACK_1_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
+                HANDLE_NICKNAME_STRING_CASE(gStackBattler1)
+                break;
+            case B_TXT_STACK_2_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
+                HANDLE_NICKNAME_STRING_CASE(gStackBattler2)
+                break;
+            case B_TXT_STACK_3_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
+                HANDLE_NICKNAME_STRING_CASE(gStackBattler3)
+                break;
+            case B_TXT_STACK_4_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
+                HANDLE_NICKNAME_STRING_CASE(gStackBattler4)
                 break;
             case B_TXT_CURRENT_MOVE: // current move name
                 if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT)
