@@ -8244,6 +8244,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_VITAL_SPIRIT) && gBattleMoves[move].type == TYPE_FIGHTING)
+        {
+            AbilityHealMonStatus(&effect, battler, ABILITY_VITAL_SPIRIT);
+        }
+
         // Hardened Sheath
 		if (BATTLER_HAS_ABILITY(battler, ABILITY_HARDENED_SHEATH)){
 			if (ShouldApplyOnHitAffect(battler) && (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
