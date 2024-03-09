@@ -80,6 +80,7 @@ enum {
     REMATCH_GLACIA,
     REMATCH_DRAKE,
     REMATCH_WALLACE,
+    REMATCH_STEVEN,
     REMATCH_TABLE_ENTRIES // The total number of rematch entries. Must be last in enum
 };
 
