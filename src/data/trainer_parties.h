@@ -31425,10 +31425,28 @@ static const struct TrainerMonItemCustomMoves sParty_StevenMossdeep[] = { // Dou
     .lvl = 0,
     .species = SPECIES_MAGNEZONE,
     .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 0,
-    .evs = {252, 0, 4, 252, 0, 0},
+    .ability = 2,
+    .evs = {252, 0, 0, 252, 0, 4},
     .nature = NATURE_MODEST,
-    .moves = MOVE_CHARGE_BEAM, MOVE_TRI_ATTACK, MOVE_FLASH_CANNON, MOVE_THUNDER_SHOCK
+    .moves = MOVE_CHARGE_BEAM, MOVE_TRI_ATTACK, MOVE_THUNDER_SHOCK, MOVE_FLASH_CANNON
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_AGGRON,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1,
+    .evs = {252, 252, 0, 0, 4, 0},
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_HEAVY_SLAM, MOVE_BODY_PRESS, MOVE_SLACK_OFF, MOVE_HEAD_SMASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SKARMORY,
+    .heldItem = ITEM_SKARMORITE,
+    .ability = 2,
+    .evs = {4, 0, 252, 0, 252, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_PRESS, MOVE_DUAL_WINGBEAT, MOVE_STEALTH_ROCK, MOVE_ROOST
     },
     {
     .lvl = 0,
@@ -31442,27 +31460,9 @@ static const struct TrainerMonItemCustomMoves sParty_StevenMossdeep[] = { // Dou
     },
     {
     .lvl = 0,
-    .species = SPECIES_AGGRON,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1,
-    .evs = {252, 252, 0, 0, 4, 0},
-    .nature = NATURE_CAREFUL,
-    .moves = MOVE_HEAVY_SLAM, MOVE_BODY_PRESS, MOVE_SLACK_OFF, MOVE_HEAD_SMASH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_SKARMORY,
-    .heldItem = ITEM_SKARMORITE,
-    .ability = 2,
-    .evs = {4, 0, 252, 0, 252, 0},
-    .nature = NATURE_CAREFUL,
-    .moves = MOVE_BODY_PRESS, MOVE_BRAVE_BIRD, MOVE_STEALTH_ROCK, MOVE_ROOST
-    },
-    {
-    .lvl = 0,
     .species = SPECIES_TINKATON,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0,
+    .ability = 1,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_ADAMANT,
     .moves = MOVE_SUCKER_PUNCH, MOVE_ICE_HAMMER, MOVE_DRAGON_HAMMER, MOVE_GIGATON_HAMMER
