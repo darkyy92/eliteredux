@@ -10902,7 +10902,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_BUG,
     .eggGroup2 = EGG_GROUP_DRAGON,
 	.abilities = {ABILITY_AMPLIFIER, ABILITY_TINTED_LENS, ABILITY_SAND_GUARD},
-	.innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_SAND_RUSH},
+	.innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_DESERT_SPIRIT},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },

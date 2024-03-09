@@ -5263,7 +5263,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         
         // Sand Stream
-        if(CheckAndSetSwitchInAbility(battler, ABILITY_SAND_STREAM)){
+        if(CheckAndSetSwitchInAbility(battler, ABILITY_SAND_STREAM) || CheckAndSetSwitchInAbility(battler, ABILITY_DESERT_SPIRIT)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
@@ -14795,8 +14795,9 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) &&
-       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity
+    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef)
+        && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+        && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))) // Moves that ignore ground immunity
     {
         if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEVITATE) || BATTLER_HAS_ABILITY(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Levitate as Ability
             modifier = UQ_4_12(0.0);
@@ -14833,6 +14834,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Thousand Arrows ignores type modifiers for flying mons
     if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+        && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))
         && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
     {
         modifier = UQ_4_12(1.0);
@@ -14840,6 +14842,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Thousand Arrows ignores type modifiers for flying mons
     if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
+        && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))
         && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) && modifier == UQ_4_12(0))
     {
         modifier = UQ_4_12(1.0);
