@@ -3061,9 +3061,8 @@ void BeginFormChangeScene(u8 taskId, u16 targetSpecies)
 
     PlayCry2(targetSpecies, 0, 0x7D, 0xA);
     SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
-    FreeAndDestroyMonIconSprite(&gSprites[sPartyMenuBoxes[gPartyMenu.slotId].monSpriteId]);
-    CreatePartyMonIconSpriteParameterized(targetSpecies, personality, &sPartyMenuBoxes[gPartyMenu.slotId], 0);
     CalculateMonStats(mon);
+
     //GetMonNickname(mon, gStringVar1);
     //StringExpandPlaceholders(gStringVar4, gTextPokemonTransformed);
 

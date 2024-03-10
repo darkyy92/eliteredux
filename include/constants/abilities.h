@@ -73,7 +73,7 @@
 #define ABILITY_ROCK_HEAD 69 // Prevents recoil damage.
 #define ABILITY_DROUGHT 70 // Summons sunlight in battle. Lasts 8 turns.
 #define ABILITY_ARENA_TRAP 71 // Prevents fleeing.
-#define ABILITY_VITAL_SPIRIT 72 // Prevents sleep.
+#define ABILITY_VITAL_SPIRIT 72 // Prevents sleep. Heals status after using Fighting move.
 #define ABILITY_WHITE_SMOKE 73 // Prevents stat reduction.
 #define ABILITY_PURE_POWER 74 // Doubles Attack.
 #define ABILITY_SHELL_ARMOR 75 // Blocks critical hits. Takes 20% less damage.
