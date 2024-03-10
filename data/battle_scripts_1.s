@@ -465,6 +465,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDoodle				  @ EFFECT_DOODLE
 	.4byte BattleScript_EffectSpikeHit				  @ EFEFCT_SPIKE_HIT
 	.4byte BattleScript_EffectVictoryDance			  @ EFFECT_VICTORY_DANCE
+	.4byte BattleScript_EffectPlaceholder			  @ EFFECT_DRAGON_CHEER
 	
 BattleScript_EffectCourtChange:
 	attackcanceler

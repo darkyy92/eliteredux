@@ -893,10 +893,7 @@ void HandleAction_NothingIsFainted(void)
 {
     RecalculateMoveOrder(++gCurrentTurnActionNumber + (gAfterYouBattlers ? gAfterYouBattlers-- : 0), gBattlersCount - (gQuashedBattlers ? gQuashedBattlers-- : 0));
     gCurrentActionFuncId = gActionsByTurnOrder[gCurrentTurnActionNumber];
-    gHitMarker &= ~(HITMARKER_DESTINYBOND | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_ATTACKSTRING_PRINTED
-                    | HITMARKER_NO_PPDEDUCT | HITMARKER_IGNORE_SAFEGUARD | HITMARKER_PASSIVE_DAMAGE
-                    | HITMARKER_OBEYS | HITMARKER_x10 | HITMARKER_SYNCHRONISE_EFFECT
-                    | HITMARKER_CHARGING | HITMARKER_x4000000 | HITMARKER_IGNORE_DISGUISE);
+    ClearMiscTurnFlags();
 }
 
 void HandleAction_ActionFinished(void)
@@ -908,6 +905,7 @@ void HandleAction_ActionFinished(void)
     gRoundStructs[gBattlerAttacker].extraMoveUsed = 0;
     gLastLandedMoves[gBattlerAttacker] = 0;
     gLastHitByType[gBattlerAttacker] = 0;
+    ClearMiscTurnFlags();
 }
 
 // rom const data
@@ -11869,6 +11867,8 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return TRUE;
     else if (gRoundStructs[battlerId].obstructed && !IS_MOVE_STATUS(move))
         return TRUE;
+    else if (gRoundStructs[battlerId].silkTrapped && !IS_MOVE_STATUS(move))
+        return TRUE;
     else if (gRoundStructs[battlerId].spikyShielded)
         return TRUE;
     else if (gRoundStructs[battlerId].kingsShielded && gBattleMoves[move].power != 0)
@@ -14845,17 +14845,10 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     }
 
     // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
-        && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))
-        && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
-    {
-        modifier = UQ_4_12(1.0);
-    }
-
-    // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
-        && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))
-        && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) && modifier == UQ_4_12(0))
+    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING
+        || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY)))
+        && moveType == TYPE_GROUND
+        && modifier == UQ_4_12(0))
     {
         modifier = UQ_4_12(1.0);
     }

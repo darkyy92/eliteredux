@@ -4,7 +4,11 @@
 // Battle Scripting and BattleCommunication addresses
 #define sPAINSPLIT_HP                gBattleScripting
 #define sBIDE_DMG                    sPAINSPLIT_HP + 4
-#define sMULTIHIT_STRING             sBIDE_DMG + 4
+#define sSAVED_MOVE_EFFECT           sBIDE_DMG + 4
+#define sMOVE_EFFECT                 sSAVED_MOVE_EFFECT + 2
+#define sMULTIHIT_EFFECT             sMOVE_EFFECT + 2
+#define sABILITY_OVERWRITE           sMULTIHIT_EFFECT + 2
+#define sMULTIHIT_STRING             sABILITY_OVERWRITE + 2
 #define sEXP_CATCH                   sMULTIHIT_STRING + 6
 #define sTWOTURN_STRINGID            sEXP_CATCH + 1
 #define sB_ANIM_ARG1                 sTWOTURN_STRINGID + 1
@@ -28,13 +32,9 @@
 #define sMULTIPLAYER_ID              sWINDOWS_TYPE + 1
 #define sSPECIAL_TRAINER_BATTLE_TYPE sMULTIPLAYER_ID + 1
 #define sMON_CAUGHT                  sSPECIAL_TRAINER_BATTLE_TYPE + 1
-#define sSAVED_MOVE_EFFECT           sMON_CAUGHT + 1
-#define sMOVE_EFFECT                 sSAVED_MOVE_EFFECT + 2
-#define sMULTIHIT_EFFECT             sMOVE_EFFECT + 2
-#define sILLUSION_NICK_HACK          sMULTIHIT_EFFECT + 2
+#define sILLUSION_NICK_HACK          sMON_CAUGHT + 1
 #define sFIXED_ABILITY_POPUP         sILLUSION_NICK_HACK + 1
-#define sABILITY_OVERWRITE           sFIXED_ABILITY_POPUP + 1
-#define sSWITCH_IN_BATTLER_OVERWRITE sABILITY_OVERWRITE + 2
+#define sSWITCH_IN_BATTLER_OVERWRITE sFIXED_ABILITY_POPUP + 1
 #define sSWITCH_CASE                 sSWITCH_IN_BATTLER_OVERWRITE + 1
 #define sBERRY_OVERRIDE              sSWITCH_CASE + 1
 #define sBATTLER_OVERRIDE            sBERRY_OVERRIDE + 1

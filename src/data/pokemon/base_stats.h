@@ -32888,7 +32888,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
 	.abilities = {ABILITY_UNBURDEN, ABILITY_TECHNICIAN, ABILITY_PRANKSTER},
-	.innates = {ABILITY_POISON_TOUCH, ABILITY_TECHNICIAN, ABILITY_SCRAPPY},
+	.innates = {ABILITY_POISON_TOUCH, ABILITY_CHEAP_TACTICS, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
