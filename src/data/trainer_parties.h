@@ -33232,6 +33232,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     .species = SPECIES_KARTANA,
     .heldItem = ITEM_COVERT_CLOAK,
     .ability = 2,
+    .zeroSpeedIvs = TRUE,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
     .moves = MOVE_FROST_BRAND, MOVE_AQUA_CUTTER, MOVE_BULLET_PUNCH, MOVE_LEAF_BLADE
@@ -33264,7 +33265,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     .zeroSpeedIvs = TRUE,
     .evs = {252, 0, 4, 0, 252, 0},
     .nature = NATURE_CAREFUL,
-    .moves = MOVE_BEHEMOTH_BASH, MOVE_ICE_FANG, MOVE_KINGS_SHIELD, MOVE_BODY_PRESS
+    .moves = MOVE_BEHEMOTH_BASH, MOVE_ICE_FANG, MOVE_FIRE_FANG, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,
