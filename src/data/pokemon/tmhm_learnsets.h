@@ -36457,6 +36457,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_CHARGE_BEAM)
         TMHM_LEARNSET_END
 
     [SPECIES_DRIZZILE] = TMHM_LEARNSET
@@ -36484,6 +36486,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_DIVE)
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_CHARGE_BEAM)
         TMHM_LEARNSET_END
 
     [SPECIES_INTELEON] = TMHM_LEARNSET
@@ -36522,6 +36526,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ROCK_SMASH)
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
+        TM(MOVE_AERIAL_ACE)
+        TM(MOVE_CHARGE_BEAM)
         TMHM_LEARNSET_END
 
     [SPECIES_SKWOVET] = TMHM_LEARNSET
@@ -36810,6 +36816,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
+        TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
 
     [SPECIES_ELDEGOSS] = TMHM_LEARNSET
@@ -36837,6 +36844,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_CUT)
         TM(MOVE_FLASH)
+        TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
 
     [SPECIES_WOOLOO] = TMHM_LEARNSET
@@ -37219,6 +37227,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_SUCKER_PUNCH)
         TM(MOVE_CURSE)
+        TM(MOVE_FOCUS_BLAST)
         TMHM_LEARNSET_END
 
     [SPECIES_SANDACONDA] = TMHM_LEARNSET
@@ -37250,6 +37259,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_STRENGTH)
         TM(MOVE_ROCK_SMASH)
+        TM(MOVE_FOCUS_BLAST)
         TMHM_LEARNSET_END
 
     [SPECIES_CRAMORANT] = TMHM_LEARNSET
@@ -37280,6 +37290,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FLY)
         TM(MOVE_SURF)
         TM(MOVE_DIVE)
+        TM(MOVE_WATERFALL)
         TMHM_LEARNSET_END
 
     [SPECIES_ARROKUDA] = TMHM_LEARNSET
@@ -37910,6 +37921,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_FREEZE_DRY)
         TM(MOVE_DREAM_EATER)
         TM(MOVE_FLASH)
+        TM(MOVE_AURORA_VEIL)
         TMHM_LEARNSET_END
 
     [SPECIES_MILCERY] = TMHM_LEARNSET
@@ -37928,6 +37940,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
+        TM(MOVE_REFLECT)
+        TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
 
     [SPECIES_ALCREMIE] = TMHM_LEARNSET
@@ -37958,6 +37972,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
+        TM(MOVE_REFLECT)
+        TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
 
     [SPECIES_FALINKS] = TMHM_LEARNSET
@@ -38032,6 +38048,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRUGGLE_BUG)
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_CURSE)
+        TM(MOVE_U_TURN)
+        TM(MOVE_ROOST)
         TMHM_LEARNSET_END
 
     [SPECIES_FROSMOTH] = TMHM_LEARNSET
@@ -38063,12 +38081,13 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRUGGLE_BUG)
         TM(MOVE_FREEZE_DRY)
         TM(MOVE_DREAM_EATER)
-        TM(MOVE_U_TURN)
         TM(MOVE_SUBSTITUTE)
         TM(MOVE_AVALANCHE)
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
+        TM(MOVE_U_TURN)
+        TM(MOVE_ROOST)
         TMHM_LEARNSET_END
 
     [SPECIES_STONJOURNER] = TMHM_LEARNSET
@@ -38128,6 +38147,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
+        TM(MOVE_ROOST)
         TMHM_LEARNSET_END
 
     [SPECIES_INDEEDEE] = TMHM_LEARNSET
@@ -38155,6 +38175,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_DAZZLING_GLEAM)
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
+        TM(MOVE_FOCUS_BLAST)
+        TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
 
     [SPECIES_MORPEKO] = TMHM_LEARNSET
@@ -38439,6 +38461,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_STRENGTH)
         TM(MOVE_FLASH)
         TM(MOVE_ROCK_SMASH)
+        TM(MOVE_FLAMETHROWER)
+        TM(MOVE_FIRE_BLAST)
         TMHM_LEARNSET_END
 
     [SPECIES_DREEPY] = TMHM_LEARNSET
