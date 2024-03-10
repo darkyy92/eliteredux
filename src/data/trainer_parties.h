@@ -33229,13 +33229,12 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = { // Postgame
 static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_KARTANA,
-    .heldItem = ITEM_COVERT_CLOAK,
-    .ability = 2,
-    .zeroSpeedIvs = TRUE,
+    .species = SPECIES_SKARMORY_REDUX,
+    .heldItem = ITEM_SKARMORITE_R,
+    .ability = 0,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_FROST_BRAND, MOVE_AQUA_CUTTER, MOVE_BULLET_PUNCH, MOVE_LEAF_BLADE
+    .moves = MOVE_FLAME_TONGUE, MOVE_DUAL_WINGBEAT, MOVE_EXCALIBUR, MOVE_AGILITY
     },
     {
     .lvl = 0,
