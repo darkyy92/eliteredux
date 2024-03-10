@@ -33229,12 +33229,13 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = { // Postgame
 static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postgame
     {
     .lvl = 0,
-    .species = SPECIES_SKARMORY_REDUX,
-    .heldItem = ITEM_SKARMORITE_R,
-    .ability = 0,
-    .evs = {4, 252, 0, 0, 0, 252},
+    .species = SPECIES_KARTANA,
+    .heldItem = ITEM_COVERT_CLOAK,
+    .ability = 2,
+    .zeroSpeedIvs = TRUE,
+    .evs = {0, 4, 0, 0, 252, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_FLAME_TONGUE, MOVE_DUAL_WINGBEAT, MOVE_EXCALIBUR, MOVE_AGILITY
+    .moves = MOVE_FROST_BRAND, MOVE_AQUA_CUTTER, MOVE_BULLET_PUNCH, MOVE_LEAF_BLADE
     },
     {
     .lvl = 0,
@@ -33248,13 +33249,13 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     },
     {
     .lvl = 0,
-    .species = SPECIES_NECROZMA_DUSK_MANE,
-    .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 2,
+    .species = SPECIES_HEATRAN,
+    .heldItem = ITEM_AIR_BALLOON,
+    .ability = 1,
     .zeroSpeedIvs = TRUE,
-    .evs = {252, 252, 0, 0, 0, 4},
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_SUNSTEEL_STRIKE, MOVE_SOLAR_BLADE, MOVE_PSYCHOKINETIC_SLAM, MOVE_FLARE_BLITZ
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_FLASH_CANNON, MOVE_AUTOTOMIZE, MOVE_HYDRO_STEAM, MOVE_BURN_UP
     },
     {
     .lvl = 0,
