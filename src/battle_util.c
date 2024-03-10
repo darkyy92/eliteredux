@@ -143,7 +143,8 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
     if (gSideTimers[defSide].followmeTimer == 0
         || gBattleMons[gSideTimers[defSide].followmeTarget].hp == 0
         || gBattleMoves[move].effect == EFFECT_SNIPE_SHOT
-        || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
+        || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_PROPELLER_TAIL, ability)
+        || BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_STALWART, ability))
         return FALSE;
 
     if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk, TRUE)))
@@ -309,8 +310,8 @@ void HandleAction_UseMove(void)
                  || ((GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN   || BattlerHasInnate(gActiveBattler, ABILITY_STORM_DRAIN))   && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(gActiveBattler) < var
                 && gBattleMoves[gCurrentMove].effect != EFFECT_SNIPE_SHOT
-                && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
-                 || GetBattlerAbility(gBattlerAttacker) != ABILITY_STALWART))
+                && !(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_PROPELLER_TAIL)
+                    || BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_STALWART)))
             {
                 var = GetBattlerTurnOrderNum(gActiveBattler);
             }
