@@ -2241,8 +2241,9 @@
 	writestackbattler BS_ATTACKER, 3
 	writestackbattler BS_TARGET, 4
 	.endm
-
-	.macro swapattackerandtargetfrom34
+	
+	.macro swapbattlerandtargetvia34
+	saveattackerandtargetto34
 	copybyte gBattlerAttacker, gStackBattler4
 	copybyte gBattlerTarget, gStackBattler3
 	.endm
@@ -2251,18 +2252,6 @@
 	restorestackstate
 	copybyte gBattlerAttacker, gStackBattler3
 	copybyte gBattlerTarget, gStackBattler4
-	.endm
-	
-
-	.macro swapbattlers battler1:req, battler2:req
-	copybyte sSAVED_BATTLER, \battler1
-	copybyte \battler1, \battler2
-	copybyte \battler2, sSAVED_BATTLER
-	.endm
-
-	.macro unswapbattlers battler1:req, battler2:req
-	copybyte \battler2, \battler1
-	copybyte \battler1, sSAVED_BATTLER
 	.endm
 
 	.macro checkburn

@@ -3987,7 +3987,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
 		            !BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_MAGIC_GUARD) &&
 		            !BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_IMPENETRABLE))
                 {
-                    gBattleScripting.savedBattler = BATTLE_PARTNER(gBattlerTarget);
                     gBattleMoveDamage = gBattleMons[BATTLE_PARTNER(gBattlerTarget)].hp / 4;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;

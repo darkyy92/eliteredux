@@ -1914,15 +1914,12 @@ BattleScript_EffectFlameBurst:
 
 BattleScript_MoveEffectFlameBurst::
 	tryfaintmon BS_TARGET, FALSE, NULL
-	copybyte sBATTLER, sSAVED_BATTLER
+	getbattler BS_TARGET_PARTNER
 	printstring STRINGID_BURSTINGFLAMESHIT
 	waitmessage B_WAIT_TIME_LONG
-	savetarget
-	copybyte gBattlerTarget, sSAVED_BATTLER
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	tryfaintmon BS_TARGET, FALSE, NULL
-	restoretarget
+	healthbarupdate BS_TARGET_PARTNER
+	datahpupdate BS_TARGET_PARTNER
+	tryfaintmon BS_TARGET_PARTNER, FALSE, NULL
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPowerTrick:
@@ -2329,7 +2326,7 @@ BattleScript_AngerShell::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPEED, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_AngerShellTryDef
-	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_ButItFailed
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_AngerShellEnd
 BattleScript_AngerShellTryDef:
 	call BattleScript_AbilityPopUp
 	waitmessage B_WAIT_TIME_SHORT	
@@ -5235,13 +5232,13 @@ BattleScript_EffectSpite::
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilitySpiteful::
-	swapbattlers gBattlerAttacker, gBattlerTarget
-	tryspiteppreduce BattleScript_ButItFailed
+	swapbattlerandtargetvia34
+	tryspiteppreduce BattleScript_AbilitySpitefulFailed
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNREDUCEDPP
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_AbilitySpitefulFailed:
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	return
 
 BattleScript_EffectHealBell::
@@ -9627,7 +9624,7 @@ BattleScript_BattlerAnnouncedToxicSpill::
 
 BattleScript_DefenderSetsSpikeLayer_LooseQuills::
 	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd
 	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_QUILLS
 	call BattleScript_AbilityPopUp
@@ -9636,13 +9633,13 @@ BattleScript_DefenderSetsSpikeLayer_LooseQuills::
 	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd:
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	restoretarget
 	return
 
 BattleScript_DefenderSetsSpikeLayer_Scrapyard::
 	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd
 	sethword sABILITY_OVERWRITE, ABILITY_SCRAPYARD
 	call BattleScript_AbilityPopUp
@@ -9651,7 +9648,7 @@ BattleScript_DefenderSetsSpikeLayer_Scrapyard::
 	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd:
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	restoretarget
 	return
 
@@ -9666,7 +9663,7 @@ BattleScript_DoubleSpikesOnEntry::
 
 BattleScript_DefenderSetsToxicSpikeLayer::
 	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	checkcondition CONDITION_TOXIC_SPIKES, BattleScript_DefenderSetsToxicSpikeLayerEnd
 	sethword sABILITY_OVERWRITE, ABILITY_TOXIC_DEBRIS
 	call BattleScript_AbilityPopUp
@@ -9675,13 +9672,13 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	printstring STRINGID_POISONSPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsToxicSpikeLayerEnd:
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	restoretarget
 	return
 
 BattleScript_DefenderSetsStealthRock::
 	savetarget
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	checkcondition CONDITION_STEALTH_ROCK, BattleScript_DefenderSetsStealthRockEnd
 	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_ROCKS
 	call BattleScript_AbilityPopUp
@@ -9690,7 +9687,7 @@ BattleScript_DefenderSetsStealthRock::
 	printstring STRINGID_POINTEDSTONESFLOAT
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DefenderSetsStealthRockEnd:
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	restoretarget
 	return
 
@@ -10971,12 +10968,12 @@ BattleScript_SpikyShieldRet::
 	return
 
 BattleScript_KingsShieldEffect::
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	seteffectsecondary
 	setmoveeffect 0
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 	return
 
 BattleScript_AngelsWrathProtectEffect::
@@ -12272,12 +12269,12 @@ BattleScript_SeedSowerTryLeech:
 	jumpiftype BS_ATTACKER, TYPE_GRASS, BattleScript_SeedSowerEnd
 BattleScript_SeedSowerDoLeech:
 	setuserstatus3 STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
-	swapbattlers gBattlerAttacker, gBattlerTarget
+	swapbattlerandtargetvia34
 	playmoveanimation BS_ATTACKER, MOVE_LEECH_SEED
 	waitanimation
 	printstring STRINGID_PKMNSEEDED
 	waitmessage B_WAIT_TIME_LONG
-	unswapbattlers gBattlerAttacker, gBattlerTarget
+	restoreattackerandtargetfrom34
 BattleScript_SeedSowerEnd:
 	end3
 
