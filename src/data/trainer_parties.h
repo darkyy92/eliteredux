@@ -33230,7 +33230,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     {
     .lvl = 0,
     .species = SPECIES_KARTANA,
-    .heldItem = ITEM_FOCUS_SASH,
+    .heldItem = ITEM_COVERT_CLOAK,
     .ability = 2,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
