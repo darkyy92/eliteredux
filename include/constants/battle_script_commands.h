@@ -21,8 +21,7 @@
 #define sBATTLE_STYLE                sGIVEEXP_STATE + 1
 #define sLVLBOX_STATE                sBATTLE_STYLE + 1
 #define sLEARNMOVE_STATE             sLVLBOX_STATE + 1
-#define sSAVED_BATTLER               sLEARNMOVE_STATE + 1
-#define sRESHOW_MAIN_STATE           sSAVED_BATTLER + 1
+#define sRESHOW_MAIN_STATE           sLEARNMOVE_STATE + 1
 #define sRESHOW_HELPER_STATE         sRESHOW_MAIN_STATE + 1
 #define sLEVEL_UP_HP                 sRESHOW_HELPER_STATE + 1
 #define sWINDOWS_TYPE                sLEVEL_UP_HP + 1
@@ -244,6 +243,7 @@
 #define VARIOUS_RESTORE_TURN_BATTLERS           162
 #define VARIOUS_WRITE_STACK_BATTLER             163
 #define VARIOUS_RESTORE_STACK_STATE             164
+#define VARIOUS_SAVE_ABILITY_OVERWRITE          165
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
