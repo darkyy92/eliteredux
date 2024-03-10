@@ -33235,7 +33235,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     .zeroSpeedIvs = TRUE,
     .evs = {0, 4, 0, 0, 252, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_FROST_BRAND, MOVE_AQUA_CUTTER, MOVE_BULLET_PUNCH, MOVE_LEAF_BLADE
+    .moves = MOVE_FROST_BRAND, MOVE_RAZOR_SHELL, MOVE_BULLET_PUNCH, MOVE_AIR_CUTTER
     },
     {
     .lvl = 0,
