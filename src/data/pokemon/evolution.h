@@ -778,8 +778,7 @@ const struct Evolution gFormChangeTable[NUM_SPECIES][EVOS_PER_MON] =
                          {EVO_FORM_SHIFT, 1, SPECIES_FURFROU_PHARAOH_TRIM},
                          {EVO_FORM_SHIFT_GENDER, MON_MALE, SPECIES_FURFROU_STAR_TRIM},},
 
-    //Tatsugiri does not change between forms in the vanilla games so it should not be included here
-    /*[SPECIES_TATSUGIRI] = {{EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_CURLY},
+    [SPECIES_TATSUGIRI] = {{EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_CURLY},
                             {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_STRETCHY},
-                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_DROOPY},},*/
+                            {EVO_FORM_SHIFT, 1, SPECIES_TATSUGIRI_DROOPY},},
 };

@@ -7977,7 +7977,7 @@ BattleScript_StickyWebOnSwitch_KingsWrath:
 BattleScript_StickyWebOnSwitch_KingsWrath_BoostAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense
 	setstatchanger STAT_ATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -7985,7 +7985,7 @@ BattleScript_StickyWebOnSwitch_KingsWrath_BoostAtk:
 BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_KingsWrath_End
 	setstatchanger STAT_DEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_StickyWebOnSwitch_KingsWrath_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -8003,7 +8003,7 @@ BattleScript_StickyWebOnSwitch_QueensMourning:
 BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialDefense
 	setstatchanger STAT_SPATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -8011,7 +8011,7 @@ BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialAtk:
 BattleScript_StickyWebOnSwitch_QueensMourning_BoostSpecialDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_QueensMourning_End
 	setstatchanger STAT_SPDEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_StickyWebOnSwitch_QueensMourning_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -9205,9 +9205,9 @@ BattleScript_DefiantActivates::
 	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
 	setstatchanger STAT_ATK, 2, FALSE
 BattleScript_DefiantActivates_Effect:
+	statbuffchange 0, BattleScript_Return
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
-	statbuffchange 0, NULL
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -9269,8 +9269,8 @@ BattleScript_TippingPointsLightBoostActivates::
 	
 BattleScript_BattlerInnateStatRaiseOnSwitchIn::
 	copybyte gBattlerAbility, gBattlerAttacker
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, BattleScript_End3
 	call BattleScript_AbilityPopUp
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
@@ -9406,7 +9406,7 @@ BattleScript_IntimidateCloneActivated_KingsWrath_1:
 BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_1:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_1
 	setstatchanger STAT_ATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_1
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -9414,7 +9414,7 @@ BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_1:
 BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_1:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_End_1
 	setstatchanger STAT_DEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_IntimidateCloneActivated_KingsWrath_End_1
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -9454,7 +9454,7 @@ BattleScript_IntimidateCloneActivated_KingsWrath_2:
 BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_2:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_2
 	setstatchanger STAT_ATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_2
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -9462,7 +9462,7 @@ BattleScript_IntimidateCloneActivated_KingsWrath_BoostAtk_2:
 BattleScript_IntimidateCloneActivated_KingsWrath_BoostDefense_2:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_IntimidateCloneActivated_KingsWrath_End_2
 	setstatchanger STAT_DEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_IntimidateCloneActivated_KingsWrath_End_2
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10057,7 +10057,7 @@ BattleScript_Intimidate_KingsWrath:
 BattleScript_Intimidate_KingsWrath_BoostAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_Intimidate_KingsWrath_BoostDefense
 	setstatchanger STAT_ATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Intimidate_KingsWrath_BoostDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10065,7 +10065,7 @@ BattleScript_Intimidate_KingsWrath_BoostAtk:
 BattleScript_Intimidate_KingsWrath_BoostDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_Intimidate_KingsWrath_End
 	setstatchanger STAT_DEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Intimidate_KingsWrath_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10084,7 +10084,7 @@ BattleScript_Intimidate_QueensMourning:
 BattleScript_Intimidate_QueensMourning_BoostSpecialAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_Intimidate_QueensMourning_BoostSpecialDefense
 	setstatchanger STAT_SPATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Intimidate_QueensMourning_BoostSpecialDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10092,7 +10092,7 @@ BattleScript_Intimidate_QueensMourning_BoostSpecialAtk:
 BattleScript_Intimidate_QueensMourning_BoostSpecialDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_Intimidate_QueensMourning_End
 	setstatchanger STAT_SPDEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Intimidate_QueensMourning_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10102,9 +10102,9 @@ BattleScript_Intimidate_QueensMourning_End:
 	goto BattleScript_IntimidateActivatesLoopIncrement
 
 BattleScript_Intimidate_DefiantActivates:
+	statbuffchange 0, BattleScript_IntimidateActivatesLoopIncrement
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
-	statbuffchange 0, NULL
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10184,7 +10184,7 @@ BattleScript_Scare_KingsWrath:
 BattleScript_Scare_KingsWrath_BoostAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_Scare_KingsWrath_BoostDefense
 	setstatchanger STAT_ATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Scare_KingsWrath_BoostDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10192,7 +10192,7 @@ BattleScript_Scare_KingsWrath_BoostAtk:
 BattleScript_Scare_KingsWrath_BoostDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_Scare_KingsWrath_End
 	setstatchanger STAT_DEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Scare_KingsWrath_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10210,7 +10210,7 @@ BattleScript_Scare_QueensMourning:
 BattleScript_Scare_QueensMourning_BoostSpecialAtk:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_Scare_QueensMourning_BoostSpecialDefense
 	setstatchanger STAT_SPATK, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Scare_QueensMourning_BoostSpecialDefense
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10218,7 +10218,7 @@ BattleScript_Scare_QueensMourning_BoostSpecialAtk:
 BattleScript_Scare_QueensMourning_BoostSpecialDefense:
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_Scare_QueensMourning_End
 	setstatchanger STAT_SPDEF, 1, FALSE
-	statbuffchange 0, NULL
+	statbuffchange 0, BattleScript_Scare_QueensMourning_End
 	setgraphicalstatchangevalues
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
@@ -10650,8 +10650,8 @@ BattleScript_WanderingSpiritActivates::
 	return
 
 BattleScript_TargetsStatWasMaxedOut::
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, BattleScript_Return
 	call BattleScript_AbilityPopUp
-	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
 	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_TARGETSSTATWASMAXEDOUT
@@ -10661,7 +10661,7 @@ BattleScript_TargetsStatWasMaxedOut::
 BattleScript_BattlerAbilityStatRaiseOnSwitchIn::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, BattleScript_End3
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
@@ -10671,31 +10671,32 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchIn::
 
 BattleScript_WaterCompactionActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_WATER_COMPACTION
-	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_TargetAbilityStatRaiseOnMoveEnd2
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_Return
 	goto BattleScript_TargetAbilityStatRaiseOnMoveEnd
 
 BattleScript_TargetAbilityStatRaiseOnMoveEnd::
 	call BattleScript_AbilityPopUp
-	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, BattleScript_Return
 	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printstring STRINGID_ABILITYRAISEDSTAT
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_TargetAbilityStatRaiseOnMoveEnd2::
 	return
 	
 BattleScript_ScriptingAbilityStatRaise::
-	copybyte gBattlerAbility, sBATTLER
+	copybyte gBattlerAbility, gStackBattler1
+	writestackbattler BS_ATTACKER, 3
+	copybyte gBattlerAttacker, gStackBattler1
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, BattleScript_ScriptingAbilityStatRaise_Fail
 	call BattleScript_AbilityPopUp
-	swapbattlers sBATTLER, gBattlerAttacker
-	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
 	setgraphicalstatchangevalues
-	playanimation BS_SCRIPTING, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	playanimation BS_STACK_1, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
-	unswapbattlers sBATTLER, gBattlerAttacker
+BattleScript_ScriptingAbilityStatRaise_Fail:
+	copybyte gBattlerAttacker, gStackBattler3
 	return
 
 BattleScript_WeakArmorActivates::
@@ -10783,18 +10784,6 @@ BattleScript_AttackerAbilityStatRaise::
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 	return
-
-BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn::
-	copybyte gBattlerAbility, sBATTLER
-	copybyte gBattlerAttacker, sBATTLER
-	call BattleScript_AbilityPopUp
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
-	setgraphicalstatchangevalues
-	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	waitanimation
-	printstring STRINGID_BATTLERABILITYLOWEREDTARGETSTAT
-	waitmessage B_WAIT_TIME_LONG
-	end3
 
 BattleScript_FellStingerRaisesStat::
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_FellStingerRaisesAtkEnd

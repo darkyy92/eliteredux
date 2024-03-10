@@ -9408,7 +9408,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_ACTIVATE_SOULHEART:
         while (gBattleStruct->soulheartBattlerId < gBattlersCount)
         {
-            gBattleScripting.battler = gBattleStruct->soulheartBattlerId++;
+            gStackBattler1 = gBattleStruct->soulheartBattlerId++;
             if ((GetBattlerAbility(gBattleScripting.battler) == ABILITY_SOUL_HEART ||
                  BattlerHasInnate(gBattleScripting.battler, ABILITY_SOUL_HEART))
                 && IsBattlerAlive(gBattleScripting.battler)

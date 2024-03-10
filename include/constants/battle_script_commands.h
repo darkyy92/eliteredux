@@ -244,6 +244,7 @@
 #define VARIOUS_RESTORE_TURN_BATTLERS           162
 #define VARIOUS_WRITE_STACK_BATTLER             163
 #define VARIOUS_RESTORE_STACK_STATE             164
+#define VARIOUS_SAVE_ABILITY_OVERWRITE          165
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
