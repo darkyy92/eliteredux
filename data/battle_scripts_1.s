@@ -2320,7 +2320,7 @@ BattleScript_ShellSmashEnd:
 	goto BattleScript_MoveEnd
 	
 BattleScript_AngerShell::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
+	writestackbattler BS_ATTACKER, 3
 	copybyte gBattlerAttacker, gBattlerTarget
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
@@ -2364,7 +2364,7 @@ BattleScript_AngerShellTrySpeed:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_AngerShellEnd:
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	copybyte gBattlerAttacker, gStackBattler3
 	end3
 
 BattleScript_EffectLastResort:
@@ -3405,11 +3405,9 @@ BattleScript_EffectBerrySmash:
 	attackcanceler
 	attackstring
 	ppreduce
-	copybyte sSAVED_BATTLER, gBattlerTarget
 	setbyte sBERRY_OVERRIDE, TRUE
 	consumeberry BS_ATTACKER
 	setbyte sBERRY_OVERRIDE, FALSE
-	copybyte gBattlerTarget, sSAVED_BATTLER
 	goto BattleScript_HitFromAccCheck
 BattleScript_EffectBerrySmashNoBerry:
 	setdynamictype BS_ATTACKER, 0
@@ -7189,10 +7187,8 @@ BattleScript_FaintedMonChooseAnotherEnd:
 BattleScript_FaintedMonEnd::
 	end2
 BattleScript_FaintedMonShiftSwitched:
-	copybyte sSAVED_BATTLER, gBattlerTarget
 	switchineffects BS_ATTACKER
 	resetsentmonsvalue
-	copybyte gBattlerTarget, sSAVED_BATTLER
 	goto BattleScript_FaintedMonChooseAnotherEnd
 
 BattleScript_HandleFaintedMonMultiple::
@@ -9792,10 +9788,10 @@ BattleScript_RainDishActivates::
 	end3
 	
 BattleScript_CheekPouchActivates::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
+	writestackbattler BS_ATTACKER, 3
 	copybyte gBattlerAttacker, gBattlerAbility
 	call BattleScript_AbilityHpHeal
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	copybyte gBattlerAttacker, gStackBattler3
 	return
 
 BattleScript_HarvestActivates::
@@ -9929,15 +9925,14 @@ BattleScript_SetGravityFromScript::
 	end3
 
 BattleScript_OnWeatherChange::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	setbyte sBATTLER, 0
+	writestackbattler BS_ATTACKER, 3
+	setbyte gBattlerAttacker, 0
 BattleScript_OnWeatherChangeLoop::
-	copybyte gBattlerAttacker, sBATTLER
 	trycastformdatachange
-	handleweatherchange BS_SCRIPTING
-	addbyte sBATTLER, 1
-	jumpifbytenotequal sBATTLER, gBattlersCount, BattleScript_OnWeatherChangeLoop
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+	handleweatherchange BS_ATTACKER
+	addbyte gBattlerAttacker, 1
+	jumpifbytenotequal gBattlerAttacker, gBattlersCount, BattleScript_OnWeatherChangeLoop
+	copybyte gBattlerAttacker, gStackBattler3
 	return
 
 BattleScript_CastformChange::
@@ -10797,49 +10792,37 @@ BattleScript_AttackerAbilityStatRaiseEnd3::
 	end3
 
 BattleScript_CommanderActivates::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	getbattler BS_ATTACKER_PARTNER
-	jumpifspecies BS_ATTACKER, SPECIES_DONDOZO, BattleScript_CommanderActivates_Partner
+	jumpifspecies BS_STACK_2, SPECIES_DONDOZO, BattleScript_CommanderActivates_CheckAbility
+	goto BattleScript_End3
+BattleScript_CommanderActivates_CheckAbility:
+	jumpifability BS_STACK_1, ABILITY_COMMANDER, BattleScript_CommanderActivates_Start
+	goto BattleScript_End3
 BattleScript_CommanderActivates_Start:
-	copybyte gBattlerAbility, gBattlerAttacker
+	writestackbattler BS_ATTACKER, 3
+	copybyte gBattlerAbility, gStackBattler1
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_COMMANDER_ACTIVATES
 	waitmessage B_WAIT_TIME_SHORT
-	makeinvisible BS_ATTACKER
+	makeinvisible BS_STACK_1
 	waitmessage B_WAIT_TIME_SHORT
-	copybyte gBattlerAttacker, sBATTLER
+	copybyte gBattlerAttacker, gStackBattler2
 	call BattleScript_AllStatsTwoUp
-	copybyte gBattlerAttacker, sSAVED_BATTLER
+BattleScript_CommanderActivates_Fail:
+	copybyte gBattlerAttacker, gStackBattler3
 	end3
 
-BattleScript_CommanderActivates_Partner:
-	copybyte gBattlerAttacker, sBATTLER
-	copybyte sBATTLER, sSAVED_BATTLER
-	goto BattleScript_CommanderActivates_Start
+BattleScript_CommanderEndsEnd2::
+	call BattleScript_CommanderEnds
+	end2
 
-BattleScript_CommanderEndsAttacker::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-
-BattleScript_CommanderEndsDefender::
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	copybyte gBattlerAttacker, gBattlerTarget
-
-BattleScript_CommanderEnds:
-	jumpifspecies BS_ATTACKER, SPECIES_DONDOZO, BattleScript_CommanderEndsPartner
-BattleScript_CommanderEndsStart:
-	copybyte gBattlerAbility, gBattlerAttacker
+BattleScript_CommanderEnds::
+	copybyte gBattlerAbility, gStackBattler1
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_COMMANDER_ENDS
 	waitmessage B_WAIT_TIME_SHORT
-	makevisible BS_ATTACKER
+	makevisible BS_STACK_1
 	waitmessage B_WAIT_TIME_SHORT
-	copybyte gBattlerAttacker, sSAVED_BATTLER
 	return
-
-BattleScript_CommanderEndsPartner:
-	getbattler BS_ATTACKER_PARTNER
-	copybyte gBattlerAttacker, sBATTLER
-	goto BattleScript_CommanderEndsStart
 
 BattleScript_SwitchInAbilityMsg::
 	call BattleScript_AbilityPopUp

@@ -1591,15 +1591,19 @@ void SetActiveStackBattler(u8 battler, u8 number)
     switch (number)
     {
     case 1:
+        gStackBattler1 = battler;
         gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler1 = battler;
         return;
     case 2:
+        gStackBattler2 = battler;
         gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler2 = battler;
         return;
     case 3:
+        gStackBattler3 = battler;
         gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler3 = battler;
         return;
     case 4:
+        gStackBattler4 = battler;
         gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].stackBattler4 = battler;
         return;
     }
@@ -2924,8 +2928,9 @@ u8 DoBattlerEndTurnEffects(void)
                 SetAbilityState(gBattlerAttacker, ABILITY_COMMANDER, COMMANDER_NOT_ACTIVE);
                 gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_CommanderEndsAttacker;
+                gStackBattler1 = gBattlerAttacker;
+                BattleScriptExecute(BattleScript_CommanderEndsEnd2);
+                effect++;
             }
             gBattleStruct->turnEffectsTracker++;
             break;
@@ -5131,7 +5136,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gStatuses4[partner] |= STATUS4_COMMANDED;
                 SetAbilityState(commander, ABILITY_COMMANDER, COMMANDER_ACTIVATING);
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
-                gBattlerAbility = gBattlerAttacker = battler;
+                gStackBattler1 = commander;
+                gStackBattler2 = partner;
                 BattleScriptPushCursorAndCallback(BattleScript_CommanderActivates);
                 effect++;
             }
@@ -9606,8 +9612,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     SetAbilityState(commander, ABILITY_COMMANDER, COMMANDER_NOT_ACTIVE);
                     gStatuses3[commander] &= ~STATUS3_SEMI_INVULNERABLE;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMMANDER;
+                    gStackBattler1 = commander;
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = battler == gBattlerAttacker ? BattleScript_CommanderEndsAttacker : BattleScript_CommanderEndsDefender;
+                    gBattlescriptCurrInstr = BattleScript_CommanderEnds;
                 }
             }
         break;
