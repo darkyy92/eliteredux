@@ -733,8 +733,13 @@ struct BattleStruct
 
 struct BattleScripting
 {
+    // Fields should be ordered by size, as the compiler will align fields based on their size
     s32 painSplitHp;
     s32 bideDmg;
+    u16 savedMoveEffect; // For moves hitting multiple targets.
+    u16 moveEffect;
+    u16 multihitMoveEffect;
+    u16 abilityPopupOverwrite;
     u8 multihitString[6];
     bool8 expOnCatch;
     u8 twoTurnsMoveStringId;
@@ -759,12 +764,8 @@ struct BattleScripting
     u8 multiplayerId;
     u8 specialTrainerBattleType;
     bool8 monCaught;
-    u16 savedMoveEffect; // For moves hitting multiple targets.
-    u16 moveEffect;
-    u16 multihitMoveEffect;
     u8 illusionNickHack; // To properly display nick in STRINGID_ENEMYABOUTTOSWITCHPKMN.
     bool8 fixedPopup;   // Force ability popup to stick until manually called back
-    u16 abilityPopupOverwrite;
     u8 switchInBattlerOverwrite;
     u8 switchCase;  // Special switching conditions, eg. red card
     u8 overrideBerryRequirements;

@@ -27236,7 +27236,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_STOMPING_TANTRUM)
         TUTOR(MOVE_POWER_UP_PUNCH)
         TUTOR(MOVE_MUD_SLAP)
-        TUTOR(MOVE_FOUL_PLAY)
         TUTOR(MOVE_TELEPORT)
         TUTOR_LEARNSET_END
 

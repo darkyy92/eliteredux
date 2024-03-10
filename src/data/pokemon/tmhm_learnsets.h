@@ -37973,7 +37973,6 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_CURSE)
         TM(MOVE_FLASH)
         TM(MOVE_REFLECT)
-        TM(MOVE_LIGHT_SCREEN)
         TMHM_LEARNSET_END
 
     [SPECIES_FALINKS] = TMHM_LEARNSET

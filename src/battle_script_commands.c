@@ -1915,8 +1915,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 atkHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
     u32 defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
     u8 moveType;
-    
-    if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS && gVolatileStructs[battlerDef].battlerWithSureHit == battlerAtk)
+
+        if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS && gVolatileStructs[battlerDef].battlerWithSureHit == battlerAtk)
         return 101;
     else if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
         return 101;
@@ -2075,7 +2075,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    return min(calc, 100);
+        return min(calc, 100);
 }
 
 static void Cmd_accuracycheck(void)
@@ -4203,20 +4203,20 @@ static void Cmd_seteffectwithchance(void)
     u8 moveEffect;
 
     FlagClear(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED);
+    
+    moveEffect = gBattleScripting.moveEffect & 0xFF;
 
     if(gRoundStructs[gBattlerAttacker].extraMoveUsed){
         if(VarGet(VAR_TEMP_MOVEEFECT_CHANCE) != 0){
             percentChance = VarGet(VAR_TEMP_MOVEEFECT_CHANCE);
             VarSet(VAR_TEMP_MOVEEFECT_CHANCE, 0);
-        }
+                    }
 
         if(VarGet(VAR_TEMP_MOVEEFFECT) != 0){
             gBattleScripting.moveEffect = VarGet(VAR_TEMP_MOVEEFFECT);
             VarSet(VAR_TEMP_MOVEEFFECT, 0);
         }
     }
-    
-    moveEffect = gBattleScripting.moveEffect & 0xFF;
 
     //Serene Grace boost
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
@@ -4260,9 +4260,6 @@ static void Cmd_seteffectwithchance(void)
             break;
         }
     }
-
-    if(percentChance > 100)
-        percentChance = 100;
 
     if (gBattleScripting.moveEffect & MOVE_EFFECT_CERTAIN
         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
