@@ -7406,7 +7406,7 @@ static void Cmd_switchineffects(void)
         && IsBattlerGrounded(gActiveBattler))
     {
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STICKY_WEB_DAMAGED;
-        gBattleScripting.battler = gActiveBattler;
+        gStackBattler1 = gActiveBattler;
         SET_STATCHANGER(STAT_SPEED, 1, TRUE);
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StickyWebOnSwitchIn;
@@ -9193,11 +9193,11 @@ static void Cmd_various(void)
         AbilityBattleEffects(ABILITYEFFECT_TRACE2, gActiveBattler, 0, 0, 0);
         return;
     case VARIOUS_SAVE_TARGET:
-        gBattleStruct->savedBattlerTarget = gBattlerTarget;
+        SetActiveStackBattler(gBattlerTarget, 4);
         gSavedBattleScripting = gBattleScripting;
         break;
     case VARIOUS_RESTORE_TARGET:
-        gBattlerTarget = gBattleStruct->savedBattlerTarget;
+        gBattlerTarget = gStackBattler4;
         gBattleScripting = gSavedBattleScripting;
         break;
     case VARIOUS_INSTANT_HP_DROP:
@@ -10225,6 +10225,7 @@ static void Cmd_various(void)
     case VARIOUS_ROOM_SERVICE:
         if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_ROOM_SERVICE && TryRoomService(gActiveBattler))
         {
+            gStackBattler1 = gActiveBattler;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BerryStatRaiseRet;
         }
@@ -15697,24 +15698,24 @@ static void Cmd_settypetoterrain(void)
 
 static void Cmd_pursuitrelated(void)
 {
-    gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_FLANK);
+    // gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_FLANK);
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-        && !(gAbsentBattlerFlags & gBitTable[gActiveBattler])
-        && gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_MOVE
-        && gChosenMoveByBattler[gActiveBattler] == MOVE_PURSUIT)
-    {
-        gActionsByTurnOrder[gActiveBattler] = 11;
-        gCurrentMove = MOVE_PURSUIT;
-        gBattlescriptCurrInstr += 5;
-        gBattleScripting.animTurn = 1;
-        gBattleScripting.savedBattler = gBattlerAttacker;
-        gBattlerAttacker = gActiveBattler;
-    }
-    else
-    {
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-    }
+    // if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+    //     && !(gAbsentBattlerFlags & gBitTable[gActiveBattler])
+    //     && gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_MOVE
+    //     && gChosenMoveByBattler[gActiveBattler] == MOVE_PURSUIT)
+    // {
+    //     gActionsByTurnOrder[gActiveBattler] = 11;
+    //     gCurrentMove = MOVE_PURSUIT;
+    //     gBattlescriptCurrInstr += 5;
+    //     gBattleScripting.animTurn = 1;
+    //     gBattleScripting.savedBattler = gBattlerAttacker;
+    //     gBattlerAttacker = gActiveBattler;
+    // }
+    // else
+    // {
+    //     gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    // }
 }
 
 static void Cmd_snatchsetbattlers(void)

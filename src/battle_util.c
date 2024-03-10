@@ -10194,7 +10194,6 @@ static u8 StatRaiseBerry(u32 battlerId, u32 itemId, u32 statId, bool32 end2)
     if (CompareStat(battlerId, statId, MAX_STAT_STAGE, CMP_LESS_THAN) && HasEnoughHpToEatBerry(battlerId, GetBattlerHoldEffectParam(battlerId), itemId))
     {
         BufferStatChange(battlerId, statId, STRINGID_STATROSE);
-        gEffectBattler = battlerId;
         if (BATTLER_HAS_ABILITY(battlerId, ABILITY_RIPEN))
             SET_STATCHANGER(statId, 2, FALSE);
         else
@@ -10202,6 +10201,7 @@ static u8 StatRaiseBerry(u32 battlerId, u32 itemId, u32 statId, bool32 end2)
 
         gBattleScripting.animArg1 = 14 + statId;
         gBattleScripting.animArg2 = 0;
+        gStackBattler1 = battlerId;
 
         if (end2)
         {
@@ -10244,7 +10244,6 @@ static u8 RandomStatRaiseBerry(u32 battlerId, u32 itemId, bool32 end2)
         gBattleTextBuff2[5] = stringId;
         gBattleTextBuff2[6] = stringId >> 8;
         gBattleTextBuff2[7] = EOS;
-        gEffectBattler = battlerId;
         if (BATTLER_HAS_ABILITY(battlerId, ABILITY_RIPEN))
             SET_STATCHANGER(i + 1, 4, FALSE);
         else
@@ -10252,6 +10251,7 @@ static u8 RandomStatRaiseBerry(u32 battlerId, u32 itemId, bool32 end2)
 
         gBattleScripting.animArg1 = 0x21 + i + 6;
         gBattleScripting.animArg2 = 0;
+        gStackBattler1 = battlerId;
         if (end2)
         {
             BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
@@ -10305,6 +10305,7 @@ static u8 DamagedStatBoostBerryEffect(u8 battlerId, u8 statId, u8 split)
 
         gBattleScripting.animArg1 = 14 + statId;
         gBattleScripting.animArg2 = 0;
+        gStackBattler1 = battlerId;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_BerryStatRaiseRet;
         return ITEM_STATS_CHANGE;
@@ -10318,10 +10319,10 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
     {
         BufferStatChange(battler, statId, STRINGID_STATROSE);
         gLastUsedItem = itemId; // For surge abilities
-        gEffectBattler = gBattleScripting.battler = battler;
         SET_STATCHANGER(statId, 1, FALSE);
         gBattleScripting.animArg1 = 0xE + statId;
         gBattleScripting.animArg2 = 0;
+        gStackBattler1 = battler;
         if (execute)
         {
             BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
@@ -10963,8 +10964,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_MENTAL_HERB:
                 if (GetMentalHerbEffect(battlerId))
                 {
-                    gBattleScripting.savedBattler = gBattlerAttacker;
-                    gBattlerAttacker = battlerId;
+                    gStackBattler1 = battlerId;
                     BattleScriptExecute(BattleScript_MentalHerbCureEnd2);
                     effect = ITEM_EFFECT_OTHER;
                 }
@@ -11116,8 +11116,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_MENTAL_HERB:
                 if (GetMentalHerbEffect(battlerId))
                 {
-                    gBattleScripting.savedBattler = gBattlerAttacker;
-                    gBattlerAttacker = battlerId;
+                    gStackBattler1 = battlerId;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MentalHerbCureRet;
                     effect = ITEM_EFFECT_OTHER;

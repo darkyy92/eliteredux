@@ -21,8 +21,7 @@
 #define sBATTLE_STYLE                sGIVEEXP_STATE + 1
 #define sLVLBOX_STATE                sBATTLE_STYLE + 1
 #define sLEARNMOVE_STATE             sLVLBOX_STATE + 1
-#define sSAVED_BATTLER               sLEARNMOVE_STATE + 1
-#define sRESHOW_MAIN_STATE           sSAVED_BATTLER + 1
+#define sRESHOW_MAIN_STATE           sLEARNMOVE_STATE + 1
 #define sRESHOW_HELPER_STATE         sRESHOW_MAIN_STATE + 1
 #define sLEVEL_UP_HP                 sRESHOW_HELPER_STATE + 1
 #define sWINDOWS_TYPE                sLEVEL_UP_HP + 1

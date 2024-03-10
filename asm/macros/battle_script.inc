@@ -2237,9 +2237,25 @@
 	various BS_ATTACKER, VARIOUS_RESTORE_STACK_STATE
 	.endm
 
-	.macro saveattackerandtargetto34
+	.macro saveattackertostack3
 	writestackbattler BS_ATTACKER, 3
+	.endm
+
+	.macro readattackerfromstack3
+	copybyte gBattlerAttacker, gStackBattler3
+	.endm
+
+	.macro savetargettostack4
 	writestackbattler BS_TARGET, 4
+	.endm
+
+	.macro readtargetfromstack4
+	copybyte gBattlerTarget, gStackBattler4
+	.endm
+
+	.macro saveattackerandtargetto34
+	saveattackertostack3
+	savetargettostack4
 	.endm
 	
 	.macro swapbattlerandtargetvia34
@@ -2250,8 +2266,8 @@
 
 	.macro restoreattackerandtargetfrom34
 	restorestackstate
-	copybyte gBattlerAttacker, gStackBattler3
-	copybyte gBattlerTarget, gStackBattler4
+	readattackerfromstack3
+	readtargetfromstack4
 	.endm
 
 	.macro checkburn
