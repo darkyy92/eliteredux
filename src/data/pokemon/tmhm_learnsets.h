@@ -44580,5 +44580,5 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_TOXIC)
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
-        TMHM_LEARNSET_END
+        TMHM_LEARNSET_END        
 };

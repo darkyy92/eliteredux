@@ -811,4 +811,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ESCARGINITE] = sEscarginiteFormSpeciesIdTable,
 
+    [SPECIES_WOOPER_PALDEAN] = sWooperFormSpeciesIdTable,
+
 };

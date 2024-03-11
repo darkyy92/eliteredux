@@ -1567,3 +1567,8 @@ static const u16 sEscarginiteFormSpeciesIdTable[] = {
     SPECIES_ESCARGINITE,
     FORM_SPECIES_END,
 };
+static const u16 sWooperFormSpeciesIdTable[] = {
+    SPECIES_WOOPER,
+    SPECIES_WOOPER_PALDEAN,
+    FORM_SPECIES_END,
+};
