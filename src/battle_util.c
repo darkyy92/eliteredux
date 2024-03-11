@@ -4072,10 +4072,8 @@ u8 AtkCanceller_UnableToUseMove2(void)
         case CANCELLER_END:
             gBattleStruct->atkCancellerTracker++;
         case CANCELLER_PSYCHIC_TERRAIN:
-            if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN
-                && IsBattlerGrounded(gBattlerTarget)
+            if (IsBattlerTerrainAffected(gBattlerTarget, STATUS_FIELD_PSYCHIC_TERRAIN)
                 && GetChosenMovePriority(gBattlerAttacker, gBattlerTarget) > 0
-                && gBattleMoves[gCurrentMove].target == MOVE_TARGET_SELECTED
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
                 CancelMultiTurnMoves(gBattlerAttacker);
@@ -6862,7 +6860,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         //Sand Guard
         else if(BATTLER_HAS_ABILITY(battler, ABILITY_SAND_GUARD)
             && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT
-            && GetChosenMovePriority(gBattlerAttacker, battler) > 0)
+            && GetChosenMovePriority(gBattlerAttacker, battler) > 0
+            && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAND_GUARD;
 
@@ -9757,23 +9756,17 @@ bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
         return FALSE;
 
     //Move ignores target ability regardless if it has Mold Breaker
-    if(gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED &&
-       GetBattlerSide(sBattlerAttacker) != GetBattlerSide(sBattlerTarget))
+    if(gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED)
         return TRUE;
-    
-    //Attacker Ability is suppressed so it can't ignore target ability
-    if((gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID) ||
-        GetBattlerSide(sBattlerAttacker) == GetBattlerSide(sBattlerTarget))
-        return FALSE;
 
     //Check if the attacker has any Mold Breaker Variant
     switch(abilityAtk){
         case ABILITY_MOLD_BREAKER:
         case ABILITY_TERAVOLT:
         case ABILITY_TURBOBLAZE:
-            return TRUE;
-            break;
+            return !(gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID);
         default:
+            if (gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID && B_NEUTRALIZING_GAS_WORKS_ON_INNATES) return FALSE;
             if(SpeciesHasInnate(species, ABILITY_MOLD_BREAKER, level, personality, isEnemyMon, isEnemyMon) ||
                SpeciesHasInnate(species, ABILITY_TERAVOLT,     level, personality, isEnemyMon, isEnemyMon) ||
                SpeciesHasInnate(species, ABILITY_TURBOBLAZE,   level, personality, isEnemyMon, isEnemyMon))

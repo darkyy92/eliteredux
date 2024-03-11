@@ -2073,9 +2073,15 @@ const u8 sText_Title_Status_Cant_Crit_Description[]        = _("This Pokémon wi
                                                                "land any critical hit, it will\n"
                                                                "last until the Pokémon leaves.");
 const u8 sText_Title_Status_Gastro_Acid[]                  = _("Ability Suppressed");
+#if B_NEUTRALIZING_GAS_WORKS_ON_INNATES
 const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("The Ability and Innates for\n"
                                                                "this Pokémon are Disabled, it\n"
                                                                "lasts until the Pokémon leaves.");
+#else
+const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("The Ability for this Pokémon\n"
+                                                               "is Disabled. Lasts until the\n"
+                                                               "Pokémon leaves.");
+#endif
 const u8 sText_Title_Status_Embargo[]                      = _("Held Effect Negated");
 const u8 sText_Title_Status_Embargo_Description[]          = _("This Pokémon will be unable to\n"
                                                                "use it's held item for some\n"

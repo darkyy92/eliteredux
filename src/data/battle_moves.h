@@ -5883,13 +5883,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SYNCHRONOISE] =
     {
         .effect = EFFECT_SYNCHRONOISE,
-        .power = 120,
+        .power = 95,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_FOES_AND_ALLY,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SOUND,
         .split = SPLIT_SPECIAL,
     },
     [MOVE_ELECTRO_BALL] =

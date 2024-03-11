@@ -12648,6 +12648,7 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
         case ABILITY_INTIMIDATE:
         case ABILITY_SCARE:
         case ABILITY_FEARMONGER:
+        case ABILITY_YUKI_ONNA:
             //Abilities that are immune to this effect
             if(BATTLER_HAS_ABILITY(battler, ABILITY_SCRAPPY)      ||
                BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS)    ||
