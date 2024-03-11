@@ -465,7 +465,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDoodle				  @ EFFECT_DOODLE
 	.4byte BattleScript_EffectSpikeHit				  @ EFEFCT_SPIKE_HIT
 	.4byte BattleScript_EffectVictoryDance			  @ EFFECT_VICTORY_DANCE
-	.4byte BattleScript_EffectPlaceholder			  @ EFFECT_DRAGON_CHEER
+	.4byte BattleScript_EffectDragonCheer			  @ EFFECT_DRAGON_CHEER
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -1156,6 +1156,7 @@ BattleScript_DecorateBoostSpAtk:
 BattleScript_DecorateBoostCrit:
 	jumpifstatus2 BS_TARGET, STATUS2_FOCUS_ENERGY, BattleScript_MoveEnd
 	setfocusenergy
+	getbattler BS_TARGET
 	printfromtable gFocusEnergyUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
@@ -1870,7 +1871,7 @@ BattleScript_RototillerMoveTargetEnd:
 	moveendto MOVEEND_NEXT_TARGET
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_RototillerLoop
-	copybyte gBattlerTarget, gStackBattler3
+	readtargetfromstack4
 	end
 
 BattleScript_RototillerCantRaiseMultipleStats:
@@ -4549,6 +4550,7 @@ BattleScript_EffectFocusEnergy:
 	setfocusenergy
 	attackanimation
 	waitanimation
+	getbattler BS_ATTACKER
 	printfromtable gFocusEnergyUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
@@ -12276,3 +12278,25 @@ BattleScript_TheSwampDisappeared::
 	printstring STRINGID_THESWAMPDISAPPEARED
 	waitmessage B_WAIT_TIME_LONG
 	end2
+
+BattleScript_EffectDragonCheer::
+	attackcanceler
+	attackstring
+	ppreduce
+	setdragoncheer BS_ATTACKER, BattleScript_EffectDragonCheer_PartnerOnly
+	attackanimation
+	waitanimation
+	getbattler BS_ATTACKER
+	printfromtable gFocusEnergyUsedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	setdragoncheer BS_ATTACKER_PARTNER, BattleScript_MoveEnd
+BattleScript_EffectDragonCheer_DoPartner:
+	getbattler BS_ATTACKER_PARTNER
+	printfromtable gFocusEnergyUsedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+BattleScript_EffectDragonCheer_PartnerOnly:
+	setdragoncheer BS_ATTACKER_PARTNER, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	goto BattleScript_EffectDragonCheer_DoPartner

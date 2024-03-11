@@ -2286,3 +2286,7 @@
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	.endm
 
+	.macro setdragoncheer battler:req, failPtr:req
+	various \battler, VARIOUS_SET_DRAGON_CHEER
+	.4byte \failPtr
+	.endm

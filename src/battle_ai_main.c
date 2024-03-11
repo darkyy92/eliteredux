@@ -1690,6 +1690,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
                 score -= 10;
             break;
+        case EFFECT_DRAGON_CHEER:
+            if (gStatuses4[battlerAtk] & STATUS4_DRAGON_CHEER || gStatuses4[BATTLE_PARTNER(battlerAtk)] & STATUS4_DRAGON_CHEER)
+                score -= 10;
+            break;
         case EFFECT_CONFUSE:
         case EFFECT_SWAGGER:
         case EFFECT_FLATTER:

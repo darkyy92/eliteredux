@@ -2255,6 +2255,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         //Boost Critical Chance
         critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
+                    + (gStatuses4[gBattlerAttacker] & STATUS4_DRAGON_CHEER ? 1 + IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_DRAGON) : 0)
                     + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
@@ -11114,6 +11115,17 @@ static void Cmd_various(void)
     case VARIOUS_RESTORE_STACK_STATE:
         ReadActiveScriptInitialStackState();
         break;
+    case VARIOUS_SET_DRAGON_CHEER:
+        if (gStatuses4[gActiveBattler] & STATUS4_DRAGON_CHEER) {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FOCUS_ENERGY_FAILED;
+        }
+        else {
+            gBattlescriptCurrInstr += 7;
+            gStatuses4[gActiveBattler] |= STATUS4_DRAGON_CHEER;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
+        }
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
