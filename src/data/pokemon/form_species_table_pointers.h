@@ -813,4 +813,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_WOOPER_PALDEAN] = sWooperFormSpeciesIdTable,
 
+    [SPECIES_ZOROARK_HISUIAN] = sZoroarkFormSpeciesIdTable,
+
 };

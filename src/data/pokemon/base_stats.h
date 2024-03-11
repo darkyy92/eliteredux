@@ -38720,7 +38720,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
-
+    
     [SPECIES_WOOPER_PALDEAN] =
     {
         .baseHP        = 110,

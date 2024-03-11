@@ -1572,3 +1572,8 @@ static const u16 sWooperFormSpeciesIdTable[] = {
     SPECIES_WOOPER_PALDEAN,
     FORM_SPECIES_END,
 };
+static const u16 sZoroarkFormSpeciesIdTable[] = {
+    SPECIES_ZOROARK,
+    SPECIES_ZOROARK_HISUIAN,
+    FORM_SPECIES_END,
+};
