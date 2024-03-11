@@ -624,8 +624,9 @@
 #define ABILITY_LAWNMOWER 602 // Removes terrain on switch-in. Stat up if terrain removed.
 #define ABILITY_FLOURISH 603 // Boosts Grass moves by 50% in grassy terrain.
 #define ABILITY_DESERT_SPIRIT 604 // Summons sand on entry. Ground moves hit airborne in sand.
+#define ABILITY_CONTEMPT 605 // Ignores opposing stat changes. Boosts Attack when stat lowered.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_DESERT_SPIRIT + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CONTEMPT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

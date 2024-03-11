@@ -902,6 +902,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (moveEffect == EFFECT_DEFENSE_DOWN || moveEffect == EFFECT_DEFENSE_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
+            case ABILITY_CONTEMPT:
             case ABILITY_DEFIANT:
             case ABILITY_COMPETITIVE:
                 if (IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
@@ -1135,7 +1136,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         //Defiant and Competitive
         if((BattlerHasInnate(battlerDef, ABILITY_DEFIANT) ||
-            BattlerHasInnate(battlerDef, ABILITY_COMPETITIVE)) &&
+            BattlerHasInnate(battlerDef, ABILITY_COMPETITIVE) ||
+            BattlerHasInnate(battlerDef, ABILITY_CONTEMPT)) &&
             IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
             RETURN_SCORE_MINUS(8);
 
@@ -3218,6 +3220,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         RETURN_SCORE_PLUS(2);
                     }
                     break;
+                case ABILITY_CONTEMPT:
                 case ABILITY_DEFIANT:
                     if (IsStatLoweringEffect(effect)
                       && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK))

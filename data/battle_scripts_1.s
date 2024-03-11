@@ -9130,25 +9130,21 @@ BattleScript_QueensMourning_End:
 
 BattleScript_FortKnoxActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
 	setstatchanger STAT_DEF, 3, FALSE
 	goto BattleScript_DefiantActivates_Effect
 
 BattleScript_RunAwayActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
 	setstatchanger STAT_SPEED, 2, FALSE
 	goto BattleScript_DefiantActivates_Effect
 
 BattleScript_CompetitiveActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
 	setstatchanger STAT_SPATK, 2, FALSE
 	goto BattleScript_DefiantActivates_Effect
 	
 BattleScript_DefiantActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
 	setstatchanger STAT_ATK, 2, FALSE
 BattleScript_DefiantActivates_Effect:
 	statbuffchange 0, BattleScript_Return
@@ -9295,6 +9291,7 @@ BattleScript_IntimidateCloneActivated_Target_1:
 BattleScript_Intimidate_DefiantClonesCheck_Target1:
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_1
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_1
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_IntimidateCloneActivated_Defiant_1
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_1
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_1
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_1
@@ -9313,6 +9310,7 @@ BattleScript_IntimidateCloneActivated_Target_2:
 BattleScript_Intimidate_DefiantClonesCheck_Target2:
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_2
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_2
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_IntimidateCloneActivated_Defiant_2
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_2
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_2
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_2
@@ -10077,6 +10075,7 @@ BattleScript_ScareActivatesLoop:
 	call BattleScript_TryAdrenalineOrb
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_Scare_Competitive
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_Scare_Defiant
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_Scare_Defiant
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_Scare_FortKnox
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_Scare_RunAway
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_Scare_KingsWrath

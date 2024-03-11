@@ -1658,7 +1658,8 @@ bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
 
         if (stat == STAT_ATK && 
            (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_HYPER_CUTTER, battlerAbility) ||
-            BATTLER_HAS_ABILITY_FAST(battler, ABILITY_DEFIANT, battlerAbility)))
+            BATTLER_HAS_ABILITY_FAST(battler, ABILITY_DEFIANT, battlerAbility) ||
+            BATTLER_HAS_ABILITY_FAST(battler, ABILITY_CONTEMPT, battlerAbility)))
             return FALSE;
 
         /*if (stat == STAT_DEF && 
@@ -3610,7 +3611,9 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
     if (CanTargetFaintAi(battlerDef, battlerAtk))
         return;
 
-    if (AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY || (BattlerHasInnate(battlerDef, ABILITY_UNAWARE) && statId != STAT_SPEED) || (AI_DATA->abilities[battlerDef] == ABILITY_UNAWARE && statId != STAT_SPEED))
+    if (AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY
+        || (BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_UNAWARE) && statId != STAT_SPEED)
+        || (BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_CONTEMPT) && statId != STAT_SPEED))
         return;
     
     if (AI_DATA->hpPercents[battlerAtk] < 80 && AI_RandLessThan(128))
