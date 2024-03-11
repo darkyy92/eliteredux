@@ -542,7 +542,7 @@ static void Cmd_settypebasedhalvers(void);
 static void Cmd_jumpifsubstituteblocks(void);
 static void Cmd_tryrecycleitem(void);
 static void Cmd_settypetoterrain(void);
-static void Cmd_pursuitrelated(void);
+static void Cmd_unused_pursuitrelated(void);
 static void Cmd_snatchsetbattlers(void);
 static void Cmd_removelightscreenreflect(void);
 static void Cmd_handleballthrow(void);
@@ -809,7 +809,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_jumpifsubstituteblocks,                  //0xE9
     Cmd_tryrecycleitem,                          //0xEA
     Cmd_settypetoterrain,                        //0xEB
-    Cmd_pursuitrelated,                          //0xEC
+    Cmd_unused_pursuitrelated,                          //0xEC
     Cmd_snatchsetbattlers,                       //0xED
     Cmd_removelightscreenreflect,                //0xEE
     Cmd_handleballthrow,                         //0xEF
@@ -15698,7 +15698,7 @@ static void Cmd_settypetoterrain(void)
     }
 }
 
-static void Cmd_pursuitrelated(void)
+static void Cmd_unused_pursuitrelated(void)
 {
     // gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(gBattlerAttacker) ^ BIT_FLANK);
 

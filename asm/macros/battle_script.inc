@@ -1233,7 +1233,7 @@
 	.4byte \param0
 	.endm
 
-	.macro pursuitrelated param0:req
+	.macro unused_pursuitrelated param0:req
 	.byte 0xec
 	.4byte \param0
 	.endm
