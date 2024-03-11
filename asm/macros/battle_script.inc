@@ -1570,15 +1570,15 @@
 	.endm
 
 	.macro setgrassyterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESGRASSY
 	.endm
 
 	.macro setelectricterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESELECTRIC
 	.endm
 
 	.macro setpsychicterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESPSYCHIC
 	.endm
 
 	.macro trymefirst ptr:req
