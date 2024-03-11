@@ -5235,7 +5235,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         
         if (CheckAndSetSwitchInAbility(battler, ABILITY_CURIOUS_MEDICINE) && IsDoubleBattle()
-            && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler)))
+            && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler), RESET_ALL_STATS))
         {
             u32 i;
             gEffectBattler = BATTLE_PARTNER(battler);
@@ -5437,7 +5437,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         // Lethargy
         if(CheckAndSetSwitchInAbility(battler, ABILITY_LETHARGY)){
-            TryResetBattlerStatChanges(battler);
+            TryResetBattlerStatChanges(battler, RESET_ALL_STATS);
             gVolatileStructs[battler].slowStartTimer = 5;
             BattleScriptPushCursorAndCallback(BattleScript_LethargyEnters);
             effect++;
@@ -5917,9 +5917,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             u8 loweredStats;
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (i == battler) continue;
                 if (!IsBattlerAlive(i)) continue;
-                loweredStats |= TryResetBattlerStatBuffs(i);
+                loweredStats |= TryResetBattlerStatChanges(i, i == battler ? RESET_STAT_DROPS : RESET_STAT_BUFFS);
             }
 
             if (loweredStats)

@@ -12215,7 +12215,7 @@ static void Cmd_statbuffchange(void)
         gBattlescriptCurrInstr = jumpPtr;
 }
 
-bool32 TryResetBattlerStatBuffs(u8 battler)
+bool32 TryResetBattlerStatChanges(u8 battler, s8 comparison)
 {
     u32 j;
     bool32 ret = FALSE;
@@ -12224,28 +12224,20 @@ bool32 TryResetBattlerStatBuffs(u8 battler)
     gVolatileStructs[battler].stockpileSpDef = 0;
     for (j = 0; j < NUM_BATTLE_STATS; j++)
     {
-        if (gBattleMons[battler].statStages[j] > DEFAULT_STAT_STAGE)
+        switch (comparison)
         {
-            ret = TRUE; // returns TRUE if any stat was reset
-            gBattleMons[battler].statStages[j] = DEFAULT_STAT_STAGE;
+        case RESET_ALL_STATS:
+            if (gBattleMons[battler].statStages[j] == DEFAULT_STAT_STAGE) continue;
+            break;
+        case RESET_STAT_BUFFS:
+            if (gBattleMons[battler].statStages[j] <= DEFAULT_STAT_STAGE) continue;
+            break;
+        case RESET_STAT_DROPS:
+            if (gBattleMons[battler].statStages[j] >= DEFAULT_STAT_STAGE) continue;
+            break;
         }
-    }
-
-    return ret;
-}
-
-bool32 TryResetBattlerStatChanges(u8 battler)
-{
-    u32 j;
-    bool32 ret = FALSE;
-
-    gVolatileStructs[battler].stockpileDef = 0;
-    gVolatileStructs[battler].stockpileSpDef = 0;
-    for (j = 0; j < NUM_BATTLE_STATS; j++)
-    {
-        if (gBattleMons[battler].statStages[j] != DEFAULT_STAT_STAGE)
-            ret = TRUE; // returns TRUE if any stat was reset
-
+        
+        ret = TRUE;
         gBattleMons[battler].statStages[j] = DEFAULT_STAT_STAGE;
     }
 
@@ -12257,7 +12249,7 @@ static void Cmd_normalisebuffs(void) // haze
     s32 i, j;
 
     for (i = 0; i < gBattlersCount; i++)
-        TryResetBattlerStatChanges(i);
+        TryResetBattlerStatChanges(i, RESET_ALL_STATS);
 
     gBattlescriptCurrInstr++;
 }
