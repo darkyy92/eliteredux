@@ -876,6 +876,7 @@ void HandleAction_TryFinish(void)
     {
         ClearMiscTurnFlags();
         gQueuedExtraAttackData[0] = gQueuedExtraAttackData[gQueuedAttackCount--];
+        if (!IsBattlerAlive(gQueuedExtraAttackData[0].attacker)) return;
         gProcessingExtraAttacks = TRUE;
         gCurrentActionFuncId = B_ACTION_USE_MOVE;
         return;

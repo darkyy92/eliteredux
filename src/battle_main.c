@@ -3415,16 +3415,17 @@ void SwitchInClearSetData(void)
     }
 
     // Remove any queued out-of-turn attacks
-    for (i = 1, j = 1; j <= gQueuedAttackCount; i++, j++)
     {
-        if (gQueuedExtraAttackData[i].attacker == gActiveBattler)
+        u8 previousQueuedAttackCount = gQueuedAttackCount;
+        gQueuedAttackCount = 0;
+        for (i = 1; i <= previousQueuedAttackCount; i++)
         {
-            j--;
-            gQueuedAttackCount--;
-        }
-        else if (i != j)
-        {
-            gQueuedExtraAttackData[j] = gQueuedExtraAttackData[i];
+            if (gQueuedExtraAttackData[i].attacker == gActiveBattler) continue;
+            gQueuedAttackCount++;
+            if (gQueuedAttackCount != i)
+            {
+                gQueuedExtraAttackData[gQueuedAttackCount] = gQueuedExtraAttackData[i];
+            }
         }
     }
 
@@ -5274,7 +5275,7 @@ static void TurnValuesCleanUp(bool8 clearRoundStruts)
     gSideStatuses[0] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideStatuses[1] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideTimers[0].followmeTimer = 0;
-    gSideTimers[1].followmeTimer = 0;
+    gSideTimers[1].followmeTimer = 0;    
 }
 
 void TurnStructsClear(void)
