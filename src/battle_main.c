@@ -3993,7 +3993,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         // Restore Coward for the first turn
-        if (GetSingleUseAbilityCounter(i, ABILITY_COWARD)) gRoundStructs[i].protected = TRUE;
+        if (GetSingleUseAbilityCounter(i, ABILITY_COWARD) > 0) gRoundStructs[i].protected = TRUE;
     }
     TurnStructsClear();
     *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
