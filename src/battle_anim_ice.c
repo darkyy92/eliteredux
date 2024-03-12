@@ -33,7 +33,9 @@ static void AnimSwirlingSnowball_End(struct Sprite *);
 static void AnimWiggleParticleTowardsTarget(struct Sprite *);
 static void AnimWaveFromCenterOfTarget(struct Sprite *);
 static void InitSwirlingFogAnim(struct Sprite *);
+static void InitSwirlingFogAnim_Fast(struct Sprite *);
 static void AnimSwirlingFogAnim(struct Sprite *);
+static void AnimSwirlingFogAnim_Fast(struct Sprite *);
 static void InitPoisonGasCloudAnim(struct Sprite *);
 static void MovePoisonGasCloud(struct Sprite *);
 static void AnimHailBegin(struct Sprite *);
@@ -335,6 +337,17 @@ const struct SpriteTemplate gMistCloudSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = InitSwirlingFogAnim,
+};
+
+const struct SpriteTemplate gFumigationBombCloudSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PURPLE_GAS_CLOUD,
+    .paletteTag = ANIM_TAG_GREEN_POISON_BUBBLE,
+    .oam = &gOamData_AffineOff_ObjBlend_32x16,
+    .anims = sAnims_Cloud,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = InitSwirlingFogAnim_Fast,
 };
 
 const struct SpriteTemplate gSmogCloudSpriteTemplate =
@@ -1055,6 +1068,74 @@ static void InitSwirlingFogAnim(struct Sprite *sprite)
     sprite->callback(sprite);
 }
 
+
+static void InitSwirlingFogAnim_Fast(struct Sprite *sprite)
+{
+    s16 tempVar;
+    u8  battler;
+
+    if (gBattleAnimArgs[4] == 0)
+    {
+        if (gBattleAnimArgs[5] == 0)
+        {
+            InitSpritePosToAnimAttacker(sprite, FALSE);
+        }
+        else
+        {
+            SetAverageBattlerPositions(gBattleAnimAttacker, 0, &sprite->x, &sprite->y);
+            if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+                sprite->x -= gBattleAnimArgs[0];
+            else
+                sprite->x += gBattleAnimArgs[0];
+
+            sprite->y += gBattleAnimArgs[1];
+        }
+
+        battler = gBattleAnimAttacker;
+    }
+    else
+    {
+        if (gBattleAnimArgs[5] == 0)
+        {
+            InitSpritePosToAnimTarget(sprite, FALSE);
+        }
+        else
+        {
+            SetAverageBattlerPositions(gBattleAnimTarget, 0, &sprite->x, &sprite->y);
+            if (GetBattlerSide(gBattleAnimTarget) != B_SIDE_PLAYER)
+                sprite->x -= gBattleAnimArgs[0];
+            else
+                sprite->x += gBattleAnimArgs[0];
+
+            sprite->y += gBattleAnimArgs[1];
+        }
+
+        battler = gBattleAnimTarget;
+    }
+
+    sprite->data[7] = battler;
+    if (gBattleAnimArgs[5] == 0 || !IsDoubleBattle())
+        tempVar = 0x20;
+    else
+        tempVar = 0x40;
+
+    sprite->data[6] = tempVar;
+    if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+        sprite->y += 8;
+
+    sprite->data[0] = gBattleAnimArgs[3] / 3;
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x;
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y + gBattleAnimArgs[2];
+
+    InitAnimLinearTranslation(sprite);
+
+    sprite->data[5] = 64;
+    sprite->callback = AnimSwirlingFogAnim_Fast;
+    sprite->callback(sprite);
+}
+
 // Animates swirling fog initialized by InitSwirlingFogAnim.
 static void AnimSwirlingFogAnim(struct Sprite *sprite)
 {
@@ -1064,6 +1145,26 @@ static void AnimSwirlingFogAnim(struct Sprite *sprite)
         sprite->y2 += Cos(sprite->data[5], -6);
 
         if ((u16)(sprite->data[5] - 64) <= 0x7F)
+            sprite->oam.priority = GetBattlerSpriteBGPriority(sprite->data[7]);
+        else
+            sprite->oam.priority = GetBattlerSpriteBGPriority(sprite->data[7]) + 1;
+
+        sprite->data[5] = (sprite->data[5] + 3) & 0xFF;
+    }
+    else
+    {
+        DestroyAnimSprite(sprite);
+    }
+}
+
+static void AnimSwirlingFogAnim_Fast(struct Sprite *sprite)
+{
+    if (!AnimTranslateLinear(sprite))
+    {
+        sprite->x2 += Sin(sprite->data[5], sprite->data[6]);
+        sprite->y2 += Cos(sprite->data[5], -6);
+
+        if ((u16)(sprite->data[5] - 64) <= 64)//127
             sprite->oam.priority = GetBattlerSpriteBGPriority(sprite->data[7]);
         else
             sprite->oam.priority = GetBattlerSpriteBGPriority(sprite->data[7]) + 1;

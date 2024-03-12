@@ -819,7 +819,7 @@ gBattleAnims_Moves::
 	.4byte Move_THOUSAND_ARROWS @ MOVE_DIAMOND_ARROW
 	.4byte Move_CUT @ MOVE_DIAMOND_BLADE
 	.4byte Move_POISON_STING @ MOVE_VENOM_BOLT
-	.4byte Move_ACID @ MOVE_FUMIGATION_BOMB
+	.4byte Move_FUMIGATION_BOMB
 	.4byte Move_DARK_PULSE @ MOVE_BLACK_MAGIC
 	.4byte Move_FIRE_LASH @ MOVE_FLAME_TONGUE
 	.4byte Move_FIRE_LASH @ MOVE_BLAZING_ARROW
@@ -21454,6 +21454,39 @@ Move_SLUDGE_BOMB:
 SludgeBombProjectile:
 	playsewithpan SE_M_BUBBLE3, SOUND_PAN_ATTACKER
 	createsprite gSludgeProjectileSpriteTemplate, ANIM_TARGET, 2, 20, 0, 40, 0
+	delay 3
+	return
+
+Move_FUMIGATION_BOMB:
+	loadspritegfx ANIM_TAG_MIST_CLOUD
+	loadspritegfx ANIM_TAG_PURPLE_GAS_CLOUD
+	loadspritegfx ANIM_TAG_POISON_BUBBLE
+	loadspritegfx ANIM_TAG_GLOWY_GREEN_ORB
+	loadspritegfx ANIM_TAG_GREEN_POISON_BUBBLE
+	call FumigationBombProjectile
+	call FumigationBombProjectile
+	call FumigationBombProjectile
+	call FumigationBombProjectile
+	call FumigationBombProjectile
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 3, 0, 15, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, 4, 1, 2, 0, 12, RGB(0, 31, 0)
+	call FumigationBombGasCloudEffect
+	call FumigationBombGasCloudEffect
+	call FumigationBombGasCloudEffect
+	call FumigationBombGasCloudEffect
+	call FumigationBombGasCloudEffect
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 3, 0, 15, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, 4, 1, 2, 0, 12, RGB(0, 31, 0)
+	end
+FumigationBombProjectile:
+	playsewithpan SE_M_BUBBLE3, SOUND_PAN_ATTACKER
+	createsprite gFumigationBombProjectileSpriteTemplate, ANIM_TARGET, 2, 20, 0, 40, 0
+	delay 3
+	return
+FumigationBombGasCloudEffect:
+	createsprite gFumigationBombCloudSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 48, 240, 1, 0
 	delay 3
 	return
 
