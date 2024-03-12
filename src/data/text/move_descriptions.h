@@ -3634,7 +3634,7 @@ static const u8 sMoveTwoLineDescription_MoveDireClaw[] = _(
     "to poison, paralyze, or sleep the target.");
 
 static const u8 sMoveTwoLineDescription_MoveShelter[] = _(
-    "Sharply raises the Defense for\n"
+    "Sharply raises the Defense of\n"
     "the user and their partner.");
 
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
