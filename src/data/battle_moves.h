@@ -11055,14 +11055,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_DRAGON_CHEER] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_DRAGON_CHEER,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_DRAGON,
         .accuracy = 0,
-        .pp = 0,
+        .pp = 15,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_SELECTED,
-        .split = SPLIT_PHYSICAL,
+        .target = MOVE_TARGET_USER,
+        .split = SPLIT_STATUS,
     },
     [MOVE_ALLURING_VOICE] =
     {
@@ -11267,6 +11267,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
         .argument = MOVE_EFFECT_DIRE_CLAW,
+    },
+    [MOVE_SHELTER] =
+    {
+        .effect = EFFECT_SHELTER,
+        .power = 0,
+        .type = TYPE_STEEL,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .flags = FLAG_SNATCH_AFFECTED,
+        .split = SPLIT_STATUS,
     },
 };
 

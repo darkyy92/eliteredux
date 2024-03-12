@@ -945,6 +945,7 @@ gBattleAnims_Moves::
 	.4byte Move_SANDSEAR_STORM
 	.4byte Move_SPRINGTIDE_STORM
 	.4byte Move_DIRE_CLAW
+	.4byte Move_NONE @ MOVE_SHELTER
 
 	.align 2
 gBattleAnims_StatusConditions::

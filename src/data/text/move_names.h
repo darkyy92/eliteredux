@@ -926,6 +926,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_SANDSEAR_STORM] = _("SandsearStrm"),
     [MOVE_SPRINGTIDE_STORM] = _("SprngtidStrm"),
     [MOVE_DIRE_CLAW] = _("Dire Claw"),
+    [MOVE_SHELTER] = _("Shelter"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1858,4 +1859,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_SANDSEAR_STORM] = _("Sandsear Storm"),
     [MOVE_SPRINGTIDE_STORM] = _("Springtide Storm"),
     [MOVE_DIRE_CLAW] = _("Dire Claw"),
+    [MOVE_SHELTER] = _("Shelter"),
 };

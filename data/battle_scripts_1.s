@@ -466,6 +466,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpikeHit				  @ EFEFCT_SPIKE_HIT
 	.4byte BattleScript_EffectVictoryDance			  @ EFFECT_VICTORY_DANCE
 	.4byte BattleScript_EffectDragonCheer			  @ EFFECT_DRAGON_CHEER
+	.4byte BattleScript_EffectShelter				  @ EFFECT_SHELTER
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -12299,3 +12300,22 @@ BattleScript_EffectDragonCheer_PartnerOnly:
 	attackanimation
 	waitanimation
 	goto BattleScript_EffectDragonCheer_DoPartner
+
+BattleScript_EffectShelter::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_EffectShelter_Works
+	jumpifstat BS_ATTACKER_PARTNER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_ButItFailed
+BattleScript_EffectShelter_Works:
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_DEF_PLUS_2 | MOVE_EFFECT_AFFECTS_USER
+	seteffectprimary
+	savetargettostack4
+	getbattler BS_ATTACKER_PARTNER
+	copybyte gBattlerTarget, sBATTLER
+	setmoveeffect MOVE_EFFECT_DEF_PLUS_2
+	seteffectprimary
+	readtargetfromstack4
+	goto BattleScript_MoveEnd
