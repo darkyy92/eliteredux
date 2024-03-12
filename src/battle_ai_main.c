@@ -216,6 +216,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
 {
     u32 savedCurrentMove = gCurrentMove;
     u8 ret;
+    u8 protected = gRoundStructs[gActiveBattler].protected;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
         ret = ChooseMoveOrAction_Singles();
@@ -225,6 +226,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
     // Clear protect structures, some flags may be set during AI calcs
     // e.g. pranksterElevated from GetMovePriority
     memset(&gRoundStructs[gActiveBattler], 0, sizeof(struct RoundStruct));
+    gRoundStructs[gActiveBattler].protected = protected;
     
     gCurrentMove = savedCurrentMove;
     return ret;

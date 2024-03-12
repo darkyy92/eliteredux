@@ -3990,6 +3990,11 @@ static void TryDoEventsBeforeFirstTurn(void)
             gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[i]];
     }
     TurnValuesCleanUp(FALSE);
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        // Restore Coward for the first turn
+        if (GetSingleUseAbilityCounter(i, ABILITY_COWARD)) gRoundStructs[i].protected = TRUE;
+    }
     TurnStructsClear();
     *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, 0);
