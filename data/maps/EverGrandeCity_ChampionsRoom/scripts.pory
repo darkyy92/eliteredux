@@ -301,7 +301,6 @@ script EverGrandeCity_ChampionsRoom_EventScript_Steven{
 	playbgm(MUS_ENCOUNTER_CHAMPION, FALSE)
 	msgbox(EverGrandeCity_ChampionsRoom_Text_IntroSpeech_Steven, MSGBOX_DEFAULT)
 	setvar(VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_ROOM)
-	setvar(VAR_BATTLE_FIELD_ID, STATUS_FIELD_GRAVITY)
 	if(flag(FLAG_SYS_GAME_CLEAR)){
 		switch(var(VAR_ELITE_4_MODE)){
 			case 0:
@@ -311,9 +310,11 @@ script EverGrandeCity_ChampionsRoom_EventScript_Steven{
 				trainerbattle_no_intro(TRAINER_STEVEN_LEGENDS, EverGrandeCity_ChampionsRoom_Text_Defeat_Steven)
 			break
 			case 2:
+				setvar(VAR_BATTLE_FIELD_ID, STATUS_FIELD_GRAVITY)
 				trainerbattle_no_intro(TRAINER_STEVEN_DOUBLES, EverGrandeCity_ChampionsRoom_Text_Defeat_Steven)
 			break
 			case 3:
+				setvar(VAR_BATTLE_FIELD_ID, STATUS_FIELD_GRAVITY)
 				trainerbattle_no_intro(TRAINER_STEVEN_DOUBLES_LEGENDS, EverGrandeCity_ChampionsRoom_Text_Defeat_Steven)
 			break
 		}

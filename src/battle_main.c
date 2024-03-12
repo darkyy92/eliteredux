@@ -3380,11 +3380,11 @@ void SwitchInClearSetData(void)
     }
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
-        gBattleMons[gActiveBattler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
+        gBattleMons[gActiveBattler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED | STATUS2_POWDER);
         gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
                                        | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
                                        | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
-
+        gStatuses4[gActiveBattler] &= (STATUS4_DRAGON_CHEER | STATUS4_SALT_CURE);
         for (i = 0; i < gBattlersCount; i++)
         {
             if (GetBattlerSide(gActiveBattler) != GetBattlerSide(i)
@@ -3415,16 +3415,17 @@ void SwitchInClearSetData(void)
     }
 
     // Remove any queued out-of-turn attacks
-    for (i = 1, j = 1; j <= gQueuedAttackCount; i++, j++)
     {
-        if (gQueuedExtraAttackData[i].attacker == gActiveBattler)
+        u8 previousQueuedAttackCount = gQueuedAttackCount;
+        gQueuedAttackCount = 0;
+        for (i = 1; i <= previousQueuedAttackCount; i++)
         {
-            j--;
-            gQueuedAttackCount--;
-        }
-        else if (i != j)
-        {
-            gQueuedExtraAttackData[j] = gQueuedExtraAttackData[i];
+            if (gQueuedExtraAttackData[i].attacker == gActiveBattler) continue;
+            gQueuedAttackCount++;
+            if (gQueuedAttackCount != i)
+            {
+                gQueuedExtraAttackData[gQueuedAttackCount] = gQueuedExtraAttackData[i];
+            }
         }
     }
 
@@ -3989,6 +3990,11 @@ static void TryDoEventsBeforeFirstTurn(void)
             gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[i]];
     }
     TurnValuesCleanUp(FALSE);
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        // Restore Coward for the first turn
+        if (GetSingleUseAbilityCounter(i, ABILITY_COWARD)) gRoundStructs[i].protected = TRUE;
+    }
     TurnStructsClear();
     *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, 0);
@@ -4521,9 +4527,9 @@ static void HandleTurnActionSelectionState(void)
                         {
                             RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                             gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
-                            *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
+                            gBattleStruct->selectionScriptFinished[gActiveBattler] = FALSE;
                             gBattleResources->bufferB[gActiveBattler][1] = B_ACTION_USE_MOVE;
-                            *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_WAIT_ACTION_CHOSEN;
+                            gBattleStruct->stateIdAfterSelScript[gActiveBattler] = STATE_WAIT_ACTION_CHOSEN;
                             return;
                         }
                         else
@@ -5274,7 +5280,7 @@ static void TurnValuesCleanUp(bool8 clearRoundStruts)
     gSideStatuses[0] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideStatuses[1] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideTimers[0].followmeTimer = 0;
-    gSideTimers[1].followmeTimer = 0;
+    gSideTimers[1].followmeTimer = 0;    
 }
 
 void TurnStructsClear(void)
@@ -5886,6 +5892,13 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer){
         else if (type2 != TYPE_MYSTERY)
             return type2;
     }
+    else if (gBattleMoves[move].effect == EFFECT_SYNCHRONOISE)
+    {
+        if (type2 != TYPE_MYSTERY)
+            return type2;
+        else if (type1 != TYPE_MYSTERY)
+            return type1;
+    }
     else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(item) == POCKET_BERRIES)
@@ -6017,6 +6030,15 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
             return gBattleMons[battlerAtk].type1;
         else if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
             return gBattleMons[battlerAtk].type2;
+        else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type3;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_SYNCHRONOISE)
+    {
+        if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type2;
+        else if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type1;
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             return gBattleMons[battlerAtk].type3;
     }
@@ -6155,6 +6177,15 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type1 | 0x80;
         else if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type2 | 0x80;
+        else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
+            gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | 0x80;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_SYNCHRONOISE)
+    {
+        if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
+            gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type2 | 0x80;
+        else if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
+            gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type1 | 0x80;
         else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type3 | 0x80;
     }

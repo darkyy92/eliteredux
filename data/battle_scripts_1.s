@@ -329,7 +329,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDefog                   @ EFFECT_DEFOG
 	.4byte BattleScript_EffectHitEnemyHealAlly        @ EFFECT_HIT_ENEMY_HEAL_ALLY
 	.4byte BattleScript_EffectSmackDown               @ EFFECT_SMACK_DOWN
-	.4byte BattleScript_EffectSynchronoise            @ EFFECT_SYNCHRONOISE
+	.4byte BattleScript_EffectHit                     @ EFFECT_SYNCHRONOISE
 	.4byte BattleScript_EffectPsychoShift             @ EFFECT_PSYCHO_SHIFT
 	.4byte BattleScript_EffectPowerTrick              @ EFFECT_POWER_TRICK
 	.4byte BattleScript_EffectFlameBurst              @ EFFECT_FLAME_BURST
@@ -465,7 +465,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDoodle				  @ EFFECT_DOODLE
 	.4byte BattleScript_EffectSpikeHit				  @ EFEFCT_SPIKE_HIT
 	.4byte BattleScript_EffectVictoryDance			  @ EFFECT_VICTORY_DANCE
-	.4byte BattleScript_EffectPlaceholder			  @ EFFECT_DRAGON_CHEER
+	.4byte BattleScript_EffectDragonCheer			  @ EFFECT_DRAGON_CHEER
+	.4byte BattleScript_EffectShelter				  @ EFFECT_SHELTER
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -1156,6 +1157,7 @@ BattleScript_DecorateBoostSpAtk:
 BattleScript_DecorateBoostCrit:
 	jumpifstatus2 BS_TARGET, STATUS2_FOCUS_ENERGY, BattleScript_MoveEnd
 	setfocusenergy
+	getbattler BS_TARGET
 	printfromtable gFocusEnergyUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
@@ -1870,7 +1872,7 @@ BattleScript_RototillerMoveTargetEnd:
 	moveendto MOVEEND_NEXT_TARGET
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_RototillerLoop
-	copybyte gBattlerTarget, gStackBattler3
+	readtargetfromstack4
 	end
 
 BattleScript_RototillerCantRaiseMultipleStats:
@@ -4549,6 +4551,7 @@ BattleScript_EffectFocusEnergy:
 	setfocusenergy
 	attackanimation
 	waitanimation
+	getbattler BS_ATTACKER
 	printfromtable gFocusEnergyUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
@@ -9128,25 +9131,21 @@ BattleScript_QueensMourning_End:
 
 BattleScript_FortKnoxActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_FORT_KNOX
 	setstatchanger STAT_DEF, 3, FALSE
 	goto BattleScript_DefiantActivates_Effect
 
 BattleScript_RunAwayActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_RUN_AWAY
 	setstatchanger STAT_SPEED, 2, FALSE
 	goto BattleScript_DefiantActivates_Effect
 
 BattleScript_CompetitiveActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_SPATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
 	setstatchanger STAT_SPATK, 2, FALSE
 	goto BattleScript_DefiantActivates_Effect
 	
 BattleScript_DefiantActivates::
 	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_DefiantActivates_End
-	sethword sABILITY_OVERWRITE, ABILITY_DEFIANT
 	setstatchanger STAT_ATK, 2, FALSE
 BattleScript_DefiantActivates_Effect:
 	statbuffchange 0, BattleScript_Return
@@ -9293,6 +9292,7 @@ BattleScript_IntimidateCloneActivated_Target_1:
 BattleScript_Intimidate_DefiantClonesCheck_Target1:
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_1
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_1
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_IntimidateCloneActivated_Defiant_1
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_1
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_1
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_1
@@ -9311,6 +9311,7 @@ BattleScript_IntimidateCloneActivated_Target_2:
 BattleScript_Intimidate_DefiantClonesCheck_Target2:
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_IntimidateCloneActivated_Competitive_2
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_IntimidateCloneActivated_Defiant_2
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_IntimidateCloneActivated_Defiant_2
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_IntimidateCloneActivated_FortKnox_2
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_IntimidateCloneActivated_RunAway_2
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_IntimidateCloneActivated_KingsWrath_2
@@ -10075,6 +10076,7 @@ BattleScript_ScareActivatesLoop:
 	call BattleScript_TryAdrenalineOrb
 	jumpifability BS_TARGET, ABILITY_COMPETITIVE,           BattleScript_Scare_Competitive
 	jumpifability BS_TARGET, ABILITY_DEFIANT,               BattleScript_Scare_Defiant
+	jumpifability BS_TARGET, ABILITY_CONTEMPT,              BattleScript_Scare_Defiant
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,             BattleScript_Scare_FortKnox
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,              BattleScript_Scare_RunAway
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH,     BattleScript_Scare_KingsWrath
@@ -12276,3 +12278,44 @@ BattleScript_TheSwampDisappeared::
 	printstring STRINGID_THESWAMPDISAPPEARED
 	waitmessage B_WAIT_TIME_LONG
 	end2
+
+BattleScript_EffectDragonCheer::
+	attackcanceler
+	attackstring
+	ppreduce
+	setdragoncheer BS_ATTACKER, BattleScript_EffectDragonCheer_PartnerOnly
+	attackanimation
+	waitanimation
+	getbattler BS_ATTACKER
+	printfromtable gFocusEnergyUsedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	setdragoncheer BS_ATTACKER_PARTNER, BattleScript_MoveEnd
+BattleScript_EffectDragonCheer_DoPartner:
+	getbattler BS_ATTACKER_PARTNER
+	printfromtable gFocusEnergyUsedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+BattleScript_EffectDragonCheer_PartnerOnly:
+	setdragoncheer BS_ATTACKER_PARTNER, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	goto BattleScript_EffectDragonCheer_DoPartner
+
+BattleScript_EffectShelter::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_EffectShelter_Works
+	jumpifstat BS_ATTACKER_PARTNER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_ButItFailed
+BattleScript_EffectShelter_Works:
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_DEF_PLUS_2 | MOVE_EFFECT_AFFECTS_USER
+	seteffectprimary
+	savetargettostack4
+	getbattler BS_ATTACKER_PARTNER
+	copybyte gBattlerTarget, sBATTLER
+	setmoveeffect MOVE_EFFECT_DEF_PLUS_2
+	seteffectprimary
+	readtargetfromstack4
+	goto BattleScript_MoveEnd

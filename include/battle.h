@@ -130,7 +130,6 @@ struct VolatileStruct
     u8 rapidResponse:1;
     u8 readiedAction:1;
     u8 showdownMode:1;
-    u8 dragonCheer:1;
 };
 
 struct RoundStruct
@@ -182,6 +181,7 @@ struct RoundStruct
     u8 glaiveRush:1;
     u8 silkTrapped:1;
     u8 attackCancelled:1;
+    u8 burningBulwark:1;
 };
 
 struct TurnStruct

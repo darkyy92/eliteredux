@@ -42259,6 +42259,25 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_PSYCHIC)
         TMHM_LEARNSET_END
 
+    [SPECIES_WOOPER_PALDEAN] = TMHM_LEARNSET
+        TM(MOVE_DIG)
+        TM(MOVE_EARTHQUAKE)
+        TM(MOVE_FACADE)
+        TM(MOVE_PROTECT)
+        TM(MOVE_RAIN_DANCE)
+        TM(MOVE_REST)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_SANDSTORM)
+        TM(MOVE_SLUDGE_BOMB)
+        TM(MOVE_SURF)
+        TM(MOVE_TOXIC)
+        TM(MOVE_WATERFALL)
+        TM(MOVE_WATER_PULSE)
+        TM(MOVE_ENDURE)
+        TM(MOVE_ROCK_SLIDE)
+        TM(MOVE_SLEEP_TALK)
+        TMHM_LEARNSET_END
+
     [SPECIES_CLODSIRE] = TMHM_LEARNSET
         TM(MOVE_DIG)
         TM(MOVE_EARTHQUAKE)
@@ -44661,5 +44680,5 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_TOXIC)
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
-        TMHM_LEARNSET_END
+        TMHM_LEARNSET_END        
 };

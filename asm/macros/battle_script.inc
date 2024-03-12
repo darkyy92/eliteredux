@@ -1233,7 +1233,7 @@
 	.4byte \param0
 	.endm
 
-	.macro pursuitrelated param0:req
+	.macro unused_pursuitrelated param0:req
 	.byte 0xec
 	.4byte \param0
 	.endm
@@ -1570,15 +1570,15 @@
 	.endm
 
 	.macro setgrassyterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESGRASSY
 	.endm
 
 	.macro setelectricterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESELECTRIC
 	.endm
 
 	.macro setpsychicterrain ptr:req
-	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESMISTY
+	setterrainwithoverride \ptr, B_MSG_TERRAINBECOMESPSYCHIC
 	.endm
 
 	.macro trymefirst ptr:req
@@ -2286,3 +2286,7 @@
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	.endm
 
+	.macro setdragoncheer battler:req, failPtr:req
+	various \battler, VARIOUS_SET_DRAGON_CHEER
+	.4byte \failPtr
+	.endm

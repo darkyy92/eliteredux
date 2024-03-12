@@ -216,6 +216,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
 {
     u32 savedCurrentMove = gCurrentMove;
     u8 ret;
+    u8 protected = gRoundStructs[gActiveBattler].protected;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
         ret = ChooseMoveOrAction_Singles();
@@ -225,6 +226,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
     // Clear protect structures, some flags may be set during AI calcs
     // e.g. pranksterElevated from GetMovePriority
     memset(&gRoundStructs[gActiveBattler], 0, sizeof(struct RoundStruct));
+    gRoundStructs[gActiveBattler].protected = protected;
     
     gCurrentMove = savedCurrentMove;
     return ret;
@@ -902,6 +904,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (moveEffect == EFFECT_DEFENSE_DOWN || moveEffect == EFFECT_DEFENSE_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
+            case ABILITY_CONTEMPT:
             case ABILITY_DEFIANT:
             case ABILITY_COMPETITIVE:
                 if (IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
@@ -1135,7 +1138,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         //Defiant and Competitive
         if((BattlerHasInnate(battlerDef, ABILITY_DEFIANT) ||
-            BattlerHasInnate(battlerDef, ABILITY_COMPETITIVE)) &&
+            BattlerHasInnate(battlerDef, ABILITY_COMPETITIVE) ||
+            BattlerHasInnate(battlerDef, ABILITY_CONTEMPT)) &&
             IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
             RETURN_SCORE_MINUS(8);
 
@@ -1688,6 +1692,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_FOCUS_ENERGY:
             if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
+                score -= 10;
+            break;
+        case EFFECT_DRAGON_CHEER:
+            if (gStatuses4[battlerAtk] & STATUS4_DRAGON_CHEER || gStatuses4[BATTLE_PARTNER(battlerAtk)] & STATUS4_DRAGON_CHEER)
                 score -= 10;
             break;
         case EFFECT_CONFUSE:
@@ -3214,6 +3222,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         RETURN_SCORE_PLUS(2);
                     }
                     break;
+                case ABILITY_CONTEMPT:
                 case ABILITY_DEFIANT:
                     if (IsStatLoweringEffect(effect)
                       && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK))

@@ -167,6 +167,7 @@ enum
     STATUS_INFO_RAPID_RESPONSE,
     STATUS_INFO_READIED_ACTION,
     STATUS_INFO_SHOWDOWN_MODE,
+    STATUS_INFO_DRAGON_CHEER,
     NUM_STATUS_INFO,
 };
 
@@ -712,6 +713,10 @@ void UI_Battle_Menu_Init(MainCallback callback)
                 break;
                 case STATUS_INFO_FOCUS_ENERGY:
                     if(gBattleMons[j].status2 & STATUS2_FOCUS_ENERGY)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_DRAGON_CHEER:
+                    if(gStatuses4[j] & STATUS4_DRAGON_CHEER)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_TRANSFORMED:
@@ -2009,9 +2014,13 @@ const u8 sText_Title_Status_Infuation_Description[]        = _("Reduces the dmg 
                                                                "of it's infuation, it will end\n"
                                                                "when any of the two gets switched.");
 const u8 sText_Title_Status_Focus_Energy[]                 = _("Focus Energy");
-const u8 sText_Title_Status_Focus_Energy_Description[]     = _("Increases the user critical hit rate\n"
-                                                               "by two stages, this effect can be\n"
+const u8 sText_Title_Status_Focus_Energy_Description[]     = _("Increases critical hit rate by two\n"
+                                                               "stages. This effect can be\n"
                                                                "transferred by Baton Pass.");
+const u8 sText_Title_Status_Dragon_Cheer[]                 = _("Dragon Cheer");
+const u8 sText_Title_Status_Dragon_Cheer_Description[]     = _("Increases critical hit rate by one\n"
+                                                               "stage. If the Pokémon is Dragon type\n"
+                                                               "increases by two stages instead.");
 const u8 sText_Title_Status_Transformed[]                  = _("Transformed into {STR_VAR_1}");
 const u8 sText_Title_Status_Transformed_Description[]      = _("Became an exact copy of a targeted\n"
                                                                "Pokémon, has less PP and some\n"
@@ -2021,7 +2030,7 @@ const u8 sText_Title_Status_Escape_Prevention_Description[] = _("This Pokémon c
                                                                 "it can be only removed from battle\n"
                                                                 "if the battle ends or it faints.");
 const u8 sText_Title_Status_Cursed[]                       = _("Cursed");
-const u8 sText_Title_Status_Cursed_Description[]           = _("Loses 1/4 of it's maximum HP at the\n"
+const u8 sText_Title_Status_Cursed_Description[]           = _("Loses 1/4 of its maximum HP at the\n"
                                                                "end of each turn, the curse will\n"
                                                                "remain until the Pokémon leaves.");
 const u8 sText_Title_Status_Foresight[]                    = _("Foresighted");
@@ -2073,9 +2082,15 @@ const u8 sText_Title_Status_Cant_Crit_Description[]        = _("This Pokémon wi
                                                                "land any critical hit, it will\n"
                                                                "last until the Pokémon leaves.");
 const u8 sText_Title_Status_Gastro_Acid[]                  = _("Ability Suppressed");
+#if B_NEUTRALIZING_GAS_WORKS_ON_INNATES
 const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("The Ability and Innates for\n"
                                                                "this Pokémon are Disabled, it\n"
                                                                "lasts until the Pokémon leaves.");
+#else
+const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("The Ability for this Pokémon\n"
+                                                               "is Disabled. Lasts until the\n"
+                                                               "Pokémon leaves.");
+#endif
 const u8 sText_Title_Status_Embargo[]                      = _("Held Effect Negated");
 const u8 sText_Title_Status_Embargo_Description[]          = _("This Pokémon will be unable to\n"
                                                                "use it's held item for some\n"
@@ -2388,6 +2403,15 @@ static void PrintStatusTab(void){
 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Focus_Energy_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_DRAGON_CHEER:
+                StringCopy(gStringVar1, sText_Title_Status_Dragon_Cheer);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Dragon_Cheer_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
                 printedInfo = TRUE;
             break;
