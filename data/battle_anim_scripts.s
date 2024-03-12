@@ -945,7 +945,7 @@ gBattleAnims_Moves::
 	.4byte Move_SANDSEAR_STORM
 	.4byte Move_SPRINGTIDE_STORM
 	.4byte Move_DIRE_CLAW
-	.4byte Move_NONE @ MOVE_SHELTER
+	.4byte Move_SHELTER
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -28372,4 +28372,19 @@ Move_DIRE_CLAW::
 	createsprite gSlashSliceSpriteTemplate, ANIM_TARGET, 2, ANIM_TARGET, 0x0, 0x0
 	call PoisonBubblesEffect
 	waitforvisualfinish
+	end
+
+@ credits to Skeli
+Move_SHELTER::
+	loadspritegfx ANIM_TAG_SHELL_LEFT
+	loadspritegfx ANIM_TAG_SHELL_RIGHT
+	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShellSmashShrinkAttacker, 0x2
+	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_SHELL_LEFT, 0x1, 0x0, 0xE, 0x6B5A @ light light, gray
+	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_SHELL_RIGHT, 0x1, 0x0, 0xE, 0x6B5A @ light light, gray
+	createsprite gShellSmashRightShellSpriteTemplate, ANIM_ATTACKER, 2, 0xffd7, 0x0, 0x2, 0x333, 0x0, 10, 30
+	createsprite gShellSmashLeftShellSpriteTemplate, ANIM_ATTACKER, 2, 0x20, 0x0, 0x6, 0xfccd, 0x0, 10, 30
+	createvisualtask AnimTask_FadeOutParticles, 0x2, 0
+	waitforvisualfinish
+	blendoff
 	end
