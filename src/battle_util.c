@@ -11869,6 +11869,8 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return TRUE;
     else if (gRoundStructs[battlerId].silkTrapped && !IS_MOVE_STATUS(move))
         return TRUE;
+    else if (gRoundStructs[battlerId].burningBulwark && !IS_MOVE_STATUS(move))
+        return TRUE;
     else if (gRoundStructs[battlerId].spikyShielded)
         return TRUE;
     else if (gRoundStructs[battlerId].kingsShielded && gBattleMoves[move].power != 0)
