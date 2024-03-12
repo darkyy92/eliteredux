@@ -1306,9 +1306,9 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_CASTFORM_RAINY] = sCastformLevelUpLearnset,
     [SPECIES_CASTFORM_SNOWY] = sCastformLevelUpLearnset,
     // Deoxys
-    [SPECIES_DEOXYS_ATTACK] = sDeoxysLevelUpLearnset,
-    [SPECIES_DEOXYS_DEFENSE] = sDeoxysLevelUpLearnset,
-    [SPECIES_DEOXYS_SPEED] = sDeoxysLevelUpLearnset,
+    [SPECIES_DEOXYS_ATTACK] = sDeoxysAttackLevelUpLearnset,
+    [SPECIES_DEOXYS_DEFENSE] = sDeoxysDefenseLevelUpLearnset,
+    [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
     // Burmy
     [SPECIES_BURMY_SANDY_CLOAK] = sBurmyLevelUpLearnset,
     [SPECIES_BURMY_TRASH_CLOAK] = sBurmyLevelUpLearnset,
