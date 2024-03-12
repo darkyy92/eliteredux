@@ -26361,6 +26361,7 @@ static const struct LevelUpMove sBraviaryHisuianLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSliggooHisuianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_ACID),
+    LEVEL_UP_MOVE(0, MOVE_SHELTER),
     LEVEL_UP_MOVE(1, MOVE_ABSORB),
     LEVEL_UP_MOVE(1, MOVE_BUBBLE),
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
@@ -26382,7 +26383,8 @@ static const struct LevelUpMove sSliggooHisuianLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGoodraHisuianLevelUpLearnset[] = {
-    LEVEL_UP_MOVE(0, MOVE_ACID),
+    LEVEL_UP_MOVE(1, MOVE_ACID),
+    LEVEL_UP_MOVE(1, MOVE_SHELTER),
     LEVEL_UP_MOVE(1, MOVE_ABSORB),
     LEVEL_UP_MOVE(1, MOVE_BUBBLE),
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
