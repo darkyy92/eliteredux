@@ -7815,8 +7815,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Stamina
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_STAMINA) && ShouldApplyOnHitAffect(battler)){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STAMINA;
-            if (gIsCriticalHit
-             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            if (gIsCriticalHit && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 SET_STATCHANGER(STAT_DEF, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_DEF], FALSE);
                 BattleScriptPushCursor();
@@ -7835,8 +7834,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Crowned Shield
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_CROWNED_SHIELD) && ShouldApplyOnHitAffect(battler)){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SHIELD;
-            if (gIsCriticalHit
-             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            if (gIsCriticalHit && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 SET_STATCHANGER(STAT_DEF, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_DEF], FALSE);
                 BattleScriptPushCursor();
@@ -7882,7 +7880,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
                 effect++;
             }
-			else if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			else if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) && IS_MOVE_PHYSICAL(move))
 			{
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGER_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -7897,7 +7895,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Crowned Sword
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_CROWNED_SWORD) && ShouldApplyOnHitAffect(battler)){
-			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			if (gIsCriticalHit && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
                 SET_STATCHANGER(STAT_ATK, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_ATK], FALSE);
@@ -7905,7 +7903,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
                 effect++;
             }
-			else if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			else if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) && IS_MOVE_PHYSICAL(move))
 			{
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -7920,7 +7918,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Tipping Point
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_TIPPING_POINT) && ShouldApplyOnHitAffect(battler)){
-			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			if (gIsCriticalHit && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
                 SET_STATCHANGER(STAT_SPATK, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_SPATK], FALSE);
@@ -7928,7 +7926,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
                 effect++;
             }
-			else if (CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			else if (CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN) && IS_MOVE_SPECIAL(move))
 			{
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -16113,8 +16111,6 @@ void UpdateAbilityStateIndices(u8 battler, u16 newAbilities[])
         for (j = 0; j < NUM_INNATE_PER_SPECIES + 1; j++)
         {
             if (newAbilities[i] == oldAbilities[j]) break;
-            if (newAbilities[i] == ABILITY_CROWNED_SWORD && oldAbilities[j] == ABILITY_INTREPID_SWORD) break;
-            if (newAbilities[i] == ABILITY_CROWNED_SHIELD && oldAbilities[j] == ABILITY_DAUNTLESS_SHIELD) break;
         }
         if (j >= NUM_INNATE_PER_SPECIES + 1) continue;
         switchInAbilityDone[i] = gVolatileStructs[battler].switchInAbilityDone[i];

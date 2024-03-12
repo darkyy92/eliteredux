@@ -7334,10 +7334,27 @@ static void Cmd_switchineffects(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             if (DoesBattlerHaveAbilityShield(i)) continue;
+            #if B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE
+            {
+            u16 abilities[NUM_INNATE_PER_SPECIES + 1] = {0};
+            u16 species = gBattleMons[i].species;
+            u32 personality = gBattleMons[i].personality;
+            bool8 isPlayer = GetBattlerSide(i) == B_SIDE_PLAYER;
+            u8 j = 0;
+            if (IsUnsuppressableAbility(gBattleMons[i].ability)) abilities[0] = gBattleMons[i].ability;
+            for (j = 0; j < NUM_INNATE_PER_SPECIES; j++)
+            {
+                u16 innate = GetInnateInSlot(species, j, personality, isPlayer);
+                if (IsUnsuppressableAbility(innate)) abilities[j+1] = innate;
+            }
+            UpdateAbilityStateIndices(i, abilities);
+            }
+            #else
             if (IsBattlerAlive(i) && !IsUnsuppressableAbility(gBattleMons[i].ability))
             {
                 UpdateAbilityStateIndicesForNewAbility(i, ABILITY_NONE);
             }
+            #endif
         }
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_NEUTRALIZING_GAS;
         gTurnStructs[gActiveBattler].announceNeutralizingGas = TRUE;
