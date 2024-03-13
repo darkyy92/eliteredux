@@ -17,13 +17,31 @@
       "direction": "down",
       "offset": -60,
       "map": "MAP_ROUTE_3"
+    },
+    {
+      "direction": "right",
+      "offset": -10,
+      "map": "MAP_CERULEAN_CITY"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 19,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 32,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_B1F",
+      "dest_warp_id": 3
+    }
   ],
   "coord_events": [
 

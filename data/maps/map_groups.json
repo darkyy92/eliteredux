@@ -122,7 +122,10 @@
     "Route_4",
     "Mt_Moon",
     "Mt_Moon_B1F",
-    "Mt_Moon_B2F"
+    "Mt_Moon_B2F",
+    "Route4_PkemonCenter_1F",
+    "CeruleanCity",
+    "CeruleanCity_House2"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

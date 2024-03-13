@@ -863,9 +863,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1:
 	.string "The {STR_VAR_1} ran away!$"
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_0:
-	.string "Haxorus seems to want to join your\n"
-	.string "team, will you let this Haxorus join\l"
-	.string "you?$"
+	.string "Haxorus seems to want to join your team, will you let this Haxorus join you?$"
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1:
 	.string "{PLAYER} received a Haxorus!$"
@@ -874,10 +872,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_2:
 	.string "{PLAYER} received a Haxorusite!$"
 
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_Text_0:
-	.string "Do you want to check all the mega\n"
-	.string "stones?$"
+	.string "Do you want to check all the mega stones?$"
 
 EventScript_ObtainedItem_PC_Text_0:
-	.string "{PLAYER} obtained the\n"
-	.string "{STR_VAR_2} and transferred it to\l"
-	.string "the PC!$"
+	.string "{PLAYER} obtained the {STR_VAR_2} and transferred it to the PC!$"

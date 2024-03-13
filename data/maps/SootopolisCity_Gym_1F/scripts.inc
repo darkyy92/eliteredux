@@ -412,13 +412,10 @@ SootopolisCity_Gym_EventScript_CheckTrainers_3:
 
 
 SootopolisCity_Gym_1F_EventScript_GiveScald_Text_0:
-	.string "Take this special Pokémon as a gift\n"
-	.string "from me!$"
+	.string "Take this special Pokémon as a gift from me!$"
 
 SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1:
 	.string "{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!$"
 
 SootopolisCity_Gym_EventScript_CheckTrainers_Text_0:
-	.string "Juan: Sorry, but you need to defeat\n"
-	.string "every trainer on this Gym before\l"
-	.string "battling me.$"
+	.string "Juan: Sorry, but you need to defeat every trainer on this Gym before battling me.$"

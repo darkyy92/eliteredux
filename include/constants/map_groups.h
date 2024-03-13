@@ -91,6 +91,9 @@
 #define MAP_MT_MOON                               (22 | (1 << 8))
 #define MAP_MT_MOON_B1F                           (23 | (1 << 8))
 #define MAP_MT_MOON_B2F                           (24 | (1 << 8))
+#define MAP_ROUTE4_PKEMON_CENTER_1F               (25 | (1 << 8))
+#define MAP_CERULEAN_CITY                         (26 | (1 << 8))
+#define MAP_CERULEAN_CITY_HOUSE2                  (27 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

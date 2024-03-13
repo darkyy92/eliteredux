@@ -640,3 +640,10 @@ gMetatiles_RG_Cave::
 	.align 1
 gMetatileAttributes_RG_Cave::
 	.incbin "data/tilesets/secondary/rg_cave/metatile_attributes.bin"
+	.align 1
+gMetatiles_BurgledHouse::
+	.incbin "data/tilesets/secondary/burgledhouse/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BurgledHouse::
+	.incbin "data/tilesets/secondary/burgledhouse/metatile_attributes.bin"

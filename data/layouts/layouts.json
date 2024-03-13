@@ -4860,6 +4860,36 @@
       "secondary_tileset": "gTileset_RG_Cave",
       "border_filepath": "data/layouts/Mt_Moon_B2F/border.bin",
       "blockdata_filepath": "data/layouts/Mt_Moon_B2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE4_PKEMON_CENTER_1F",
+      "name": "Route4_PkemonCenter_1F_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_RG_PokemonCenter_1F",
+      "border_filepath": "data/layouts/Route4_PkemonCenter_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Route4_PkemonCenter_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CITY",
+      "name": "CeruleanCity_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/CeruleanCity/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CITY_HOUSE2",
+      "name": "CeruleanCity_House2_Layout",
+      "width": 10,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_BurgledHouse",
+      "border_filepath": "data/layouts/CeruleanCity_House2/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCity_House2/map.bin"
     }
   ]
 }

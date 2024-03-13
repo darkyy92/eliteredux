@@ -17,7 +17,34 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 22,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_B2F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 39,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_B2F",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 45,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_4",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 

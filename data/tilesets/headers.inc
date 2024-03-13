@@ -951,3 +951,14 @@ gTileset_RG_Cave::
 	.4byte gMetatiles_RG_Cave
 	.4byte gMetatileAttributes_RG_Cave
 	.4byte NULL
+
+	.align 2
+gTileset_BurgledHouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BurgledHouse
+	.4byte gTilesetPalettes_BurgledHouse
+	.4byte gMetatiles_BurgledHouse
+	.4byte gMetatileAttributes_BurgledHouse
+	.4byte NULL

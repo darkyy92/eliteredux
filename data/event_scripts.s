@@ -1150,3 +1150,9 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Mt_Moon_B1F/scripts.inc"
 
 	.include "data/maps/Mt_Moon_B2F/scripts.inc"
+
+	.include "data/maps/Route4_PkemonCenter_1F/scripts.inc"
+
+	.include "data/maps/CeruleanCity/scripts.inc"
+
+	.include "data/maps/CeruleanCity_House2/scripts.inc"
