@@ -3348,7 +3348,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 else
                     break;
             }
-            if (ignoreTypeImmunities) break;
+            if (ignoreTypeImmunities)
+            {
+                statusChanged = TRUE;
+                break;
+            }
             if (!CanParalyzeType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
@@ -3364,7 +3368,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
             if (!CanBeParalyzed(gBattleScripting.battler, gEffectBattler))
                 break;
 
-            statusChanged = TRUE;
             break;
         case STATUS1_TOXIC_POISON:
             if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
