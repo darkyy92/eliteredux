@@ -801,7 +801,7 @@ gBattleAnims_Moves::
 	.4byte Move_SUPERSONIC @ MOVE_SUPERSONIC_SHOT
 	.4byte Move_JUMP_KICK @ MOVE_ZEPHYR_RUSH
 	.4byte Move_SHOCKING_JAB
-	.4byte Move_ZING_ZAP @ MOVE_SHOCKING_EDGE
+	.4byte Move_SHOCKING_EDGE
 	.4byte Move_THUNDER_SHOCK @ MOVE_LIGHTING_SRIKE
 	.4byte Move_VOLT_TACKLE @ MOVE_VOLT_BOLT
 	.4byte Move_STRENGTH @ MOVE_PSYCHOKINESIS
@@ -2210,6 +2210,23 @@ Move_POISON_JAB:
 	call PoisonBubblesEffect
 	waitforvisualfinish
 	blendoff
+	end
+
+Move_SHOCKING_EDGE:
+	loadspritegfx ANIM_TAG_SPARK_2
+	loadspritegfx ANIM_TAG_CUT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(25, 25, 0), 12, 0, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
+	call ElectricityEffect
 	end
 
 Move_SHOCKING_JAB:
