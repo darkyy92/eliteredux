@@ -4701,65 +4701,56 @@ static void PrintPage(void){
 
 #define PARTY_TAB_NUM_MONS_X 3
 #define PARTY_TAB_NUM_MONS_Y 4
+#define PARTY_MENU_SUMMARY_LOCK_MONS FALSE
 
 static void StartSummaryScreen(u8 taskId)
 {
     u8 currMonId = sMenuDataPtr->partyMenuSelectorID_X + (sMenuDataPtr->partyMenuSelectorID_Y * PARTY_TAB_NUM_MONS_X);
-    bool8 PlayerPartyInfoWorking = FALSE; //It's not working yet so we'll leave it like this for now
+    u16 species;
+    u8 partyCount;
+    u8 value = 2;
+    bool8 isEnemyMon = FALSE;
 
+    //Save State
     VarSet(VAR_BATTLE_MENU_MON_ID_X, sMenuDataPtr->partyMenuSelectorID_X);
     VarSet(VAR_BATTLE_MENU_MON_ID_Y, sMenuDataPtr->partyMenuSelectorID_Y);
     FlagSet(FLAG_BATTLE_MENU_COMING_FROM_SUMMARY_SCREEN);
 
+    //Check if the mon is from the enemy party or the player party
     if(currMonId < PARTY_SIZE){
-    //Player Party
-        u16 species = GetMonData(&gPlayerParty[currMonId], MON_DATA_SPECIES, NULL);
-        u8 value = 1;
-        u8 partyCount = gPlayerPartyCount - 1;
-
-        partyCount = 0;//To remove being able to change mons in the summary screen
-
-        if(species != SPECIES_NONE && PlayerPartyInfoWorking){
-            VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
-            FreeAllWindowBuffers();
-            DestroyTask(taskId);
-            tempsavedCallback = sMenuDataPtr->savedCallback;
-            Menu_FreeResources();
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, currMonId, partyCount, CB2_SetUpReshowBattleMenuAfterSummaryScreen);
-        }
-        else{
-            PlaySE(SE_BOO);
-            FlagClear(FLAG_BATTLE_MENU_COMING_FROM_SUMMARY_SCREEN);
-            VarSet(VAR_BATTLE_MENU_MON_ID_X, 0);
-            VarSet(VAR_BATTLE_MENU_MON_ID_Y, 0);
-        }
+        //Player Party
+        species = GetMonData(&gPlayerParty[currMonId], MON_DATA_SPECIES, NULL);
+        partyCount = gPlayerPartyCount - 1;
     }
     else{
         //Enemy Party
-        u16 species = GetMonData(&gEnemyParty[currMonId - PARTY_SIZE], MON_DATA_SPECIES, NULL);
-        u8 value = 2;
-        u8 partyCount = CalculateEnemyPartyCount() - 1;
-
+        species = GetMonData(&gEnemyParty[currMonId - PARTY_SIZE], MON_DATA_SPECIES, NULL);
+        partyCount = CalculateEnemyPartyCount() - 1;
         currMonId = currMonId - PARTY_SIZE;
+        isEnemyMon = TRUE;
+    }
 
-        partyCount = 0;//To remove being able to change mons in the summary screen
+    if(PARTY_MENU_SUMMARY_LOCK_MONS)
+        partyCount = 0; //To remove being able to change mons in the summary screen
 
-        if(species != SPECIES_NONE){
-            VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
-            FreeAllWindowBuffers();
-            DestroyTask(taskId);
-            tempsavedCallback = sMenuDataPtr->savedCallback;
-            Menu_FreeResources();
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, currMonId, partyCount, CB2_SetUpReshowBattleMenuAfterSummaryScreen);
-        }
-        else{
-            PlaySE(SE_BOO);
-            FlagClear(FLAG_BATTLE_MENU_COMING_FROM_SUMMARY_SCREEN);
-            VarSet(VAR_BATTLE_MENU_MON_ID_X, 0);
-            VarSet(VAR_BATTLE_MENU_MON_ID_Y, 0);
-        }
+    if(species != SPECIES_NONE){
+        VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        FreeAllWindowBuffers();
+        DestroyTask(taskId);
+        tempsavedCallback = sMenuDataPtr->savedCallback;
+        Menu_FreeResources();
+        if(!isEnemyMon)
+            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, currMonId, partyCount, CB2_SetUpReshowBattleMenuAfterSummaryScreen);
+        else
+            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty,  currMonId, partyCount, CB2_SetUpReshowBattleMenuAfterSummaryScreen);
+    }
+    else{
+        //There is no pokemon in that slot
+        PlaySE(SE_BOO);
+        FlagClear(FLAG_BATTLE_MENU_COMING_FROM_SUMMARY_SCREEN);
+        VarSet(VAR_BATTLE_MENU_MON_ID_X, 0);
+        VarSet(VAR_BATTLE_MENU_MON_ID_Y, 0);
     }
 }
 
