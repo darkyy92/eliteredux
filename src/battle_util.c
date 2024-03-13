@@ -14471,15 +14471,8 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
             MulModifier(&finalModifier, UQ_4_12(0.50));
 	
     // target's ally's abilities
-    if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
-    {
-        switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
-        {
-        case ABILITY_FRIEND_GUARD:
-            MulModifier(&finalModifier, UQ_4_12(0.5)); // was 0.75
-            break;
-        }
-    }
+    if (BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_FRIEND_GUARD))
+        MulModifier(&finalModifier, UQ_4_12(0.5)); // was 0.75
 
     // attacker's hold effect
     switch (GetBattlerHoldEffect(battlerAtk, TRUE))

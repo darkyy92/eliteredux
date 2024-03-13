@@ -137,6 +137,7 @@ enum { // Battle 0 Type
     DEBUG_BATTLE_0_MENU_ITEM_MULTI,
 };
 enum { // Battle 1 AI FLags
+    DEBUG_BATTLE_1_MENU_ITEM_CONTINUE,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_00,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_01,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_02,
@@ -156,7 +157,6 @@ enum { // Battle 1 AI FLags
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_15,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_16,
 #endif
-    DEBUG_BATTLE_1_MENU_ITEM_CONTINUE,
 };
 enum { // Battle 2 Terrain
     DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_0,   
@@ -1205,17 +1205,17 @@ static void Debug_RefreshListMenu(u8 taskId)
             if (i == 6)
             {
                 name = sDebugText_Continue;
-                StringCopy(&sDebugMenuListData->itemNames[i][0], name);
+                StringCopy(&sDebugMenuListData->itemNames[0][0], name);
             }
             else if (GetMonData(&gEnemyParty[i], MON_DATA_SANITY_HAS_SPECIES))
             {
                 species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES);
                 GetSpeciesName(gStringVar1, species);
-                StringCopy(&sDebugMenuListData->itemNames[i][0], gStringVar1);
+                StringCopy(&sDebugMenuListData->itemNames[i+1][0], gStringVar1);
             }
             else
             {
-                StringCopy(&sDebugMenuListData->itemNames[i][0], sDebugText_Dashes);
+                StringCopy(&sDebugMenuListData->itemNames[i+1][0], sDebugText_Dashes);
             }
         }
         else
@@ -1227,8 +1227,8 @@ static void Debug_RefreshListMenu(u8 taskId)
             }
             else if (sDebugMenuListData->listId == 1)
             {
-                flagResult = sDebugBattleData->aiFlags[i];
-                if (i == totalItems - 1)
+                flagResult = sDebugBattleData->aiFlags[i-1];
+                if (i == 0)
                     flagResult == 0xFF;
                 name = sDebugMenu_Items_Battle_1[i].name;
             }
@@ -1425,7 +1425,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             }
             break;
         case 1: // AI Flags
-            if (idx == sDebugMenu_ListTemplate_Battle_1.totalItems - 1)
+            if (idx == 0)
             {
                 sDebugBattleData->submenu++;
                 Debug_DestroyMenu(taskId);
@@ -1433,7 +1433,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             }
             else
             {
-                sDebugBattleData->aiFlags[idx] = !sDebugBattleData->aiFlags[idx];
+                sDebugBattleData->aiFlags[idx-1] = !sDebugBattleData->aiFlags[idx-1];
                 Debug_RedrawListMenu(taskId);
             }
                 
@@ -1445,7 +1445,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             Debug_ShowMenu(DebugTask_HandleMenuInput_Battle, gMultiuseListMenuTemplate);
             break;
         case 3: // Enemy pokemon
-            if (idx == 6)
+            if (idx == 0)
                 Debug_InitializeBattle(taskId);
             break;
         }
