@@ -8057,6 +8057,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Seed Sower
         if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_SEED_SOWER)){
             if(ShouldApplyOnHitAffect(battler)) {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SEED_SOWER;
 				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_SeedSower;
                 effect++;

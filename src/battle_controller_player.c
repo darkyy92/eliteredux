@@ -46,6 +46,7 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/rgb.h"
+#include "mgba_printf/mgba.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 

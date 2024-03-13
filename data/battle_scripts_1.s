@@ -12193,11 +12193,10 @@ BattleScript_SeedSowerTestLeech:
 BattleScript_SeedSowerGrassySucceeded:
 	call BattleScript_AbilityPopUp
 	waitmessage B_WAIT_TIME_SHORT
-	playmoveanimation BS_TARGET, MOVE_GRASSY_TERRAIN
+	playanimation BS_TARGET, B_ANIM_RESTORE_BG, NULL
 	waitanimation
 	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
-	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG, NULL
 	call BattleScript_OnTerrainChanged
 BattleScript_SeedSowerTryLeech:
 	jumpifstatus3 BS_ATTACKER, STATUS3_LEECHSEED, BattleScript_SeedSowerEnd
@@ -12211,7 +12210,7 @@ BattleScript_SeedSowerDoLeech:
 	waitmessage B_WAIT_TIME_LONG
 	restoreattackerandtargetfrom34
 BattleScript_SeedSowerEnd:
-	end3
+	return
 
 BattleScript_EffectArgumentHit::
 	argumenttomoveeffect

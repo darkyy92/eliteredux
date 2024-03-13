@@ -8547,19 +8547,19 @@ static void HandleTerrainMove(u32 moveEffect)
     {
     case EFFECT_MISTY_TERRAIN:
         statusFlag = STATUS_FIELD_MISTY_TERRAIN, timer = &gFieldTimers.terrainTimer;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESMISTY;
+        SetActiveMultistringChooser(B_MSG_TERRAINBECOMESMISTY);
         break;
     case EFFECT_GRASSY_TERRAIN:
         statusFlag = STATUS_FIELD_GRASSY_TERRAIN, timer = &gFieldTimers.terrainTimer;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESGRASSY;
+        SetActiveMultistringChooser(B_MSG_TERRAINBECOMESGRASSY);
         break;
     case EFFECT_ELECTRIC_TERRAIN:
         statusFlag = STATUS_FIELD_ELECTRIC_TERRAIN, timer = &gFieldTimers.terrainTimer;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESELECTRIC;
+        SetActiveMultistringChooser(B_MSG_TERRAINBECOMESELECTRIC);
         break;
     case EFFECT_PSYCHIC_TERRAIN:
         statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN, timer = &gFieldTimers.terrainTimer;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINBECOMESPSYCHIC;
+        SetActiveMultistringChooser(B_MSG_TERRAINBECOMESPSYCHIC);
         break;
     }
 
