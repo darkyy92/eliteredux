@@ -790,7 +790,7 @@ gBattleAnims_Moves::
 	.4byte Move_PLASMA_PULSE
 	.4byte Move_PRIMAL_BEAM
 	.4byte Move_BITE @ MOVE_DRACONIC_FANGS
-	.4byte Move_FLEUR_CANNON @ MOVE_PIXIE_BEAM
+	.4byte Move_PIXIE_BEAM
 	.4byte Move_SACRED_SWORD @ MOVE_PIXIE_SLASH
 	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
 	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
@@ -12560,6 +12560,49 @@ ShellTrapFireLaunch2:
 	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x0003 0x0000 0x0006 0x0001
 	playsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_ATTACKER
 	delay 0x3
+	return
+
+Move_PIXIE_BEAM:
+	loadspritegfx ANIM_TAG_ORBS        @beam particles
+	loadspritegfx ANIM_TAG_ELECTRICITY @discharge
+	loadspritegfx ANIM_TAG_PINK_PETAL  @pink color
+	loadspritegfx ANIM_TAG_PINK_HEART  @pink color
+	setalpha 12, 8
+	monbg ANIM_TARGET
+	createvisualtask AnimTask_BlendColorCycle, 2, 2, 1, 4, 0, 11, RGB(31, 0, 11)
+	waitforvisualfinish
+	panse SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 0x2, 0x0
+	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_ATTACKER 0x0 0x4 0x32 0x1
+	createvisualtask AnimTask_FlashAnimTagWithColor, 2, ANIM_TAG_ORBS, 1, 12, 0x1f, 16, 0, 0
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	launchtask AnimTask_ShakeMon2 0x2 0x5 0x1 0x4 0x0 0x32 0x1
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	call PixieBeamShot
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+PixieBeamShot:
+	launchtemplate gFleurCannonOrbTemplate 0x82 0x0
+	launchtemplate gFleurCannonOrbTemplate 0x82 0x0
+	delay 1
 	return
 
 Move_FLEUR_CANNON::
