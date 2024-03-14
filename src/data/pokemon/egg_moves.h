@@ -4728,7 +4728,9 @@ const u16 gEggMoves[] = {
         MOVE_COPYCAT,
         MOVE_LEECH_SEED,
         MOVE_PETAL_BLIZZARD,
-        MOVE_SUCKER_PUNCH),
+        MOVE_SUCKER_PUNCH,
+        MOVE_CREEPING_THORNS,
+        MOVE_FLUTTERING_LEAF),
 
     egg_moves(FUECOCO,
 		MOVE_BELCH,
