@@ -125,7 +125,13 @@
     "Mt_Moon_B2F",
     "Route4_PkemonCenter_1F",
     "CeruleanCity",
-    "CeruleanCity_House2"
+    "CeruleanCity_House2",
+    "Route_24",
+    "Route25",
+    "Route_5",
+    "Route_9",
+    "Route_10",
+    "RockTunnel_1F"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

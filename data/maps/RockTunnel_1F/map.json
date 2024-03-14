@@ -1,9 +1,9 @@
 {
-  "id": "MAP_MT_MOON",
-  "name": "Mt_Moon",
-  "layout": "LAYOUT_MT_MOON",
+  "id": "MAP_ROCK_TUNNEL_1F",
+  "name": "RockTunnel_1F",
+  "layout": "LAYOUT_ROCK_TUNNEL_1F",
   "music": "MUS_RG_MT_MOON",
-  "region_map_section": "MAPSEC_MT_MOON",
+  "region_map_section": "MAPSEC_ROCK_TUNNEL",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -21,14 +21,7 @@
       "x": 18,
       "y": 37,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE_4",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 5,
-      "y": 6,
-      "elevation": 0,
-      "dest_map": "MAP_MT_MOON_B1F",
+      "dest_map": "MAP_ROUTE_10",
       "dest_warp_id": 0
     }
   ],

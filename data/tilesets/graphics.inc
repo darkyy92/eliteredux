@@ -1969,3 +1969,43 @@ gTilesetPalettes_BurgledHouse::
 	.align 2
 gTilesetTiles_BurgledHouse::
 	.incbin "data/tilesets/secondary/burgledhouse/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_LavenderTown::
+	.incbin "data/tilesets/secondary/lavendertown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/lavendertown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_LavenderTown::
+	.incbin "data/tilesets/secondary/lavendertown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RockTunnel::
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/rocktunnel/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RockTunnel::
+	.incbin "data/tilesets/secondary/rocktunnel/tiles.4bpp.lz"

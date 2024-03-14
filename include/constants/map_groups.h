@@ -94,6 +94,12 @@
 #define MAP_ROUTE4_PKEMON_CENTER_1F               (25 | (1 << 8))
 #define MAP_CERULEAN_CITY                         (26 | (1 << 8))
 #define MAP_CERULEAN_CITY_HOUSE2                  (27 | (1 << 8))
+#define MAP_ROUTE_24                              (28 | (1 << 8))
+#define MAP_ROUTE25                               (29 | (1 << 8))
+#define MAP_ROUTE_5                               (30 | (1 << 8))
+#define MAP_ROUTE_9                               (31 | (1 << 8))
+#define MAP_ROUTE_10                              (32 | (1 << 8))
+#define MAP_ROCK_TUNNEL_1F                        (33 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

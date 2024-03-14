@@ -647,3 +647,17 @@ gMetatiles_BurgledHouse::
 	.align 1
 gMetatileAttributes_BurgledHouse::
 	.incbin "data/tilesets/secondary/burgledhouse/metatile_attributes.bin"
+	.align 1
+gMetatiles_LavenderTown::
+	.incbin "data/tilesets/secondary/lavendertown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_LavenderTown::
+	.incbin "data/tilesets/secondary/lavendertown/metatile_attributes.bin"
+	.align 1
+gMetatiles_RockTunnel::
+	.incbin "data/tilesets/secondary/rocktunnel/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RockTunnel::
+	.incbin "data/tilesets/secondary/rocktunnel/metatile_attributes.bin"

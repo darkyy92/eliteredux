@@ -1156,3 +1156,15 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/CeruleanCity/scripts.inc"
 
 	.include "data/maps/CeruleanCity_House2/scripts.inc"
+
+	.include "data/maps/Route_24/scripts.inc"
+
+	.include "data/maps/Route25/scripts.inc"
+
+	.include "data/maps/Route_5/scripts.inc"
+
+	.include "data/maps/Route_9/scripts.inc"
+
+	.include "data/maps/Route_10/scripts.inc"
+
+	.include "data/maps/RockTunnel_1F/scripts.inc"

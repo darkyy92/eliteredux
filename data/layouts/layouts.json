@@ -4890,6 +4890,66 @@
       "secondary_tileset": "gTileset_BurgledHouse",
       "border_filepath": "data/layouts/CeruleanCity_House2/border.bin",
       "blockdata_filepath": "data/layouts/CeruleanCity_House2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_24",
+      "name": "Route_24_Layout",
+      "width": 24,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/Route_24/border.bin",
+      "blockdata_filepath": "data/layouts/Route_24/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE25",
+      "name": "Route25_Layout",
+      "width": 72,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/Route25/border.bin",
+      "blockdata_filepath": "data/layouts/Route25/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_5",
+      "name": "Route_5_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/Route_5/border.bin",
+      "blockdata_filepath": "data/layouts/Route_5/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_9",
+      "name": "Route_9_Layout",
+      "width": 72,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/Route_9/border.bin",
+      "blockdata_filepath": "data/layouts/Route_9/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_10",
+      "name": "Route_10_Layout",
+      "width": 24,
+      "height": 80,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/Route_10/border.bin",
+      "blockdata_filepath": "data/layouts/Route_10/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROCK_TUNNEL_1F",
+      "name": "RockTunnel_1F_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_RockTunnel",
+      "border_filepath": "data/layouts/RockTunnel_1F/border.bin",
+      "blockdata_filepath": "data/layouts/RockTunnel_1F/map.bin"
     }
   ]
 }

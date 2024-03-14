@@ -962,3 +962,25 @@ gTileset_BurgledHouse::
 	.4byte gMetatiles_BurgledHouse
 	.4byte gMetatileAttributes_BurgledHouse
 	.4byte NULL
+
+	.align 2
+gTileset_LavenderTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_LavenderTown
+	.4byte gTilesetPalettes_LavenderTown
+	.4byte gMetatiles_LavenderTown
+	.4byte gMetatileAttributes_LavenderTown
+	.4byte NULL
+
+	.align 2
+gTileset_RockTunnel::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RockTunnel
+	.4byte gTilesetPalettes_RockTunnel
+	.4byte gMetatiles_RockTunnel
+	.4byte gMetatileAttributes_RockTunnel
+	.4byte NULL
