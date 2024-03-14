@@ -3368,6 +3368,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             if (!CanBeParalyzed(gBattleScripting.battler, gEffectBattler))
                 break;
 
+            statusChanged = TRUE;
             break;
         case STATUS1_TOXIC_POISON:
             if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
