@@ -17,7 +17,7 @@ gDamagedSaveSectors: @ 0x0300122C
 gSaveCounter: @ 0x03001230
 	.space 0x4
 
-gFastSaveSection: @ 0x03001234
+gReadWriteSector: @ 0x03001234
 	.space 0x4
 
 gCurSaveChunk:

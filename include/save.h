@@ -1,34 +1,6 @@
 #ifndef GUARD_SAVE_H
 #define GUARD_SAVE_H
 
-struct SaveSectionLocation
-{
-    void *data;
-    u16 size;
-};
-
-struct SaveSection
-{
-    u8 data[0xFF4];
-    u16 id;
-    u16 checksum;
-    u32 security;
-    u32 counter;
-}; // size is 0x1000
-
-// headless save section?
-struct UnkSaveSection
-{
-    u8 data[0xFF4];
-    u32 security;
-}; // size is 0xFF8
-
-struct SaveSectionOffsets
-{
-    u16 toAdd;
-    u16 size;
-};
-
 // Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer
 #define SECTOR_DATA_SIZE 4084
 #define SECTOR_FOOTER_SIZE 12
@@ -37,8 +9,33 @@ struct SaveSectionOffsets
 // Emerald changes this definition to be the sectors per slot.
 #define NUM_SECTORS_PER_SLOT 16
 
-#define UNKNOWN_CHECK_VALUE 0x8012025
+// If the sector's signature field is not this value then the sector is either invalid or empty.
+#define SECTOR_SIGNATURE 0x8012025
 #define SPECIAL_SECTION_SENTINEL 0xB39D
+
+#define FULL_SAVE_SLOT 0xFFFF
+#define NUM_SAVE_SLOTS 2
+
+struct SaveSectionLocation
+{
+    void *data;
+    u16 size;
+};
+
+struct SaveSector
+{
+    u8 data[SECTOR_DATA_SIZE];
+    u16 id;
+    u16 checksum;
+    u32 security; // signature
+    u32 counter;
+}; // size is 0x1000
+
+struct SaveSectionOffsets
+{
+    u16 toAdd;
+    u16 size;
+};
 
 // SetDamagedSectorBits states
 enum
@@ -59,6 +56,9 @@ enum
     SAVE_OVERWRITE_DIFFERENT_FILE,
     SAVE_HALL_OF_FAME_ERASE_BEFORE // unused
 };
+
+#define SECTOR_SIGNATURE_OFFSET offsetof(struct SaveSector, security) // signature
+#define SECTOR_COUNTER_OFFSET   offsetof(struct SaveSector, counter)
 
 #define SECTOR_ID_SAVEBLOCK2  0
 #define SECTOR_ID_SAVEBLOCK1_START 1
@@ -84,27 +84,26 @@ extern u32 gLastSaveCounter;
 extern u16 gLastKnownGoodSector;
 extern u32 gDamagedSaveSectors;
 extern u32 gSaveCounter;
-extern struct SaveSection *gFastSaveSection;
-extern u16 gUnknown_03006208;
+extern struct SaveSector *gReadWriteSector;
+extern u16 gIncrementalSectorId;
 extern u16 gSaveFileStatus;
 extern void (*gGameContinueCallback)(void);
 extern struct SaveSectionLocation gRamSaveSectionLocations[];
-extern u16 gUnknown_03006294;
 
-extern struct SaveSection gSaveDataBuffer;
+extern struct SaveSector gSaveDataBuffer;
 
 void ClearSaveData(void);
 void Save_ResetSaveCounters(void);
 u8 HandleSavingData(u8 saveType);
 u8 TrySavingData(u8 saveType);
-bool8 sub_8153380(void);
-bool8 sub_81533AC(void);
-bool8 sub_81533E0(void);
-bool8 sub_8153408(void);
-bool8 FullSaveGame(void);
-bool8 CheckSaveFile(void);
-u8 Save_LoadGameData(u8 saveType);
-u16 sub_815355C(void);
+bool8 LinkFullSave_Init(void);
+bool8 LinkFullSave_WriteSector(void);
+bool8 LinkFullSave_ReplaceLastSector(void);
+bool8 LinkFullSave_SetLastSectorSignature(void);
+bool8 WriteSaveBlock2(void);
+bool8 WriteSaveBlock1Sector(void);
+u8 LoadGameSave(u8 saveType);
+u16 GetSaveBlocksPointersBaseOffset(void);
 u32 TryReadSpecialSaveSection(u8 sector, u8* dst);
 u32 TryWriteSpecialSaveSection(u8 sector, u8* src);
 void Task_LinkSave(u8 taskId);

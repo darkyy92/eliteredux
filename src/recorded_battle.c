@@ -493,7 +493,7 @@ bool32 MoveRecordedBattleToSaveData(void)
     return ret;
 }
 
-static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, struct SaveSection *saveBuffer)
+static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, struct SaveSector *saveBuffer)
 {
     if (TryReadSpecialSaveSection(SECTOR_ID_RECORDED_BATTLE, (void*)(saveBuffer)) != SAVE_STATUS_OK)
         return FALSE;
@@ -508,7 +508,7 @@ static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, stru
 
 static bool32 CopyRecordedBattleFromSave(struct RecordedBattleSave *dst)
 {
-    struct SaveSection *savBuffer = AllocZeroed(sizeof(struct SaveSection));
+    struct SaveSector *savBuffer = AllocZeroed(sizeof(struct SaveSector));
     bool32 ret = TryCopyRecordedBattleSaveData(dst, savBuffer);
     Free(savBuffer);
 

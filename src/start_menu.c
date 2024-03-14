@@ -1461,11 +1461,11 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
             break;
         case 1:
             SetContinueGameWarpStatusToDynamicWarp();
-            FullSaveGame();
+            WriteSaveBlock2();
             *state = 2;
             break;
         case 2:
-            if (CheckSaveFile())
+            if (WriteSaveBlock1Sector())
             {
                 ClearContinueGameWarpStatus2();
                 *state = 3;

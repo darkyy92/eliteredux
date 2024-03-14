@@ -4689,7 +4689,7 @@ static void CB2_SaveAndEndTrade(void)
             MysteryGift_TryIncrementStat(2, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
         }
         SetContinueGameWarpStatusToDynamicWarp();
-        sub_8153380();
+        LinkFullSave_Init();
         gMain.state++;
         sTradeData->timer = 0;
         break;
@@ -4700,7 +4700,7 @@ static void CB2_SaveAndEndTrade(void)
         }
         break;
     case 52:
-        if (sub_81533AC())
+        if (LinkFullSave_WriteSector())
         {
             ClearContinueGameWarpStatus2();
             gMain.state = 4;
@@ -4712,7 +4712,7 @@ static void CB2_SaveAndEndTrade(void)
         }
         break;
     case 4:
-        sub_81533E0();
+        LinkFullSave_ReplaceLastSector();
         gMain.state = 40;
         sTradeData->timer = 0;
         break;
@@ -4744,7 +4744,7 @@ static void CB2_SaveAndEndTrade(void)
     case 42:
         if (_IsLinkTaskFinished())
         {
-            sub_8153408();
+            LinkFullSave_SetLastSectorSignature();
             gMain.state = 5;
         }
         break;
@@ -5000,7 +5000,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
             StringExpandPlaceholders(gStringVar4, gText_SavingDontTurnOffPower);
             DrawTextOnTradeWindow(0, gStringVar4, 0);
             IncrementGameStat(GAME_STAT_POKEMON_TRADES);
-            sub_8153380();
+            LinkFullSave_Init();
             sTradeData->timer = 0;
         }
         break;
@@ -5009,7 +5009,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
             gMain.state = 4;
         break;
     case 4:
-        if (sub_81533AC())
+        if (LinkFullSave_WriteSector())
         {
             gMain.state = 5;
         }
@@ -5020,7 +5020,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
         }
         break;
     case 5:
-        sub_81533E0();
+        LinkFullSave_ReplaceLastSector();
         gMain.state = 6;
         sTradeData->timer = 0;
         break;
@@ -5048,7 +5048,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
     case 8:
         if (_IsLinkTaskFinished())
         {
-            sub_8153408();
+            LinkFullSave_SetLastSectorSignature();
             gMain.state = 9;
         }
         break;
