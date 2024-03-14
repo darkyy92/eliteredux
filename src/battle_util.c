@@ -9384,7 +9384,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     // Move doesn't matter, just pick a single target move
                     gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
-                    if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker)) continue;
+                    if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker)) break;
                 }
             }
 
