@@ -991,6 +991,7 @@ static const struct LevelUpMove sNinetalesLevelUpLearnset[] = {
 static const struct LevelUpMove sNinetalesAlolanLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_DAZZLING_GLEAM),
     LEVEL_UP_MOVE(0, MOVE_HYPER_VOICE),
+    LEVEL_UP_MOVE(0, MOVE_MOONBLAST),
     LEVEL_UP_MOVE(1, MOVE_AURORA_BEAM),
     LEVEL_UP_MOVE(1, MOVE_BABY_DOLL_EYES),
     LEVEL_UP_MOVE(1, MOVE_CONFUSE_RAY),
@@ -1016,7 +1017,6 @@ static const struct LevelUpMove sNinetalesAlolanLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_SHEER_COLD),
     LEVEL_UP_MOVE(52, MOVE_GRUDGE),
     LEVEL_UP_MOVE(56, MOVE_BLIZZARD),
-    LEVEL_UP_MOVE(60, MOVE_MOONBLAST),
     LEVEL_UP_END
 };
 
@@ -23185,7 +23185,6 @@ static const struct LevelUpMove sSprigatitoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(15, MOVE_QUICK_ATTACK),
     LEVEL_UP_MOVE(17, MOVE_SEED_BOMB),
     LEVEL_UP_MOVE(21, MOVE_U_TURN),
-    LEVEL_UP_MOVE(22, MOVE_CREEPING_THORNS),
     LEVEL_UP_MOVE(25, MOVE_WORRY_SEED),
     LEVEL_UP_MOVE(28, MOVE_SLASH),
     LEVEL_UP_MOVE(32, MOVE_ENERGY_BALL),

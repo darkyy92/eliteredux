@@ -42813,6 +42813,9 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_TOXIC)
+        TM(MOVE_SHADOW_CLAW)
+        TM(MOVE_CUT)
+        TM(MOVE_SECRET_POWER)
         TMHM_LEARNSET_END
 
     [SPECIES_FLORAGATO] = TMHM_LEARNSET
