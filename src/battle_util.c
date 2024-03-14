@@ -9380,10 +9380,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             {
                 u32 target = GetBattlerBattleMoveTargetFlags(move, battler);
-                if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_ALL_BATTLERS || target == MOVE_TARGET_FOES_AND_ALLY)
+                if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_FOES_AND_ALLY)
                 {
                     // Move doesn't matter, just pick a single target move
                     gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
+                    if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker)) continue;
                 }
             }
 
@@ -15965,9 +15966,10 @@ bool8 isWonderRoomActive(void){
 }
 
 bool8 CanUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
-    if(IsBattlerAlive(sBattlerAttacker)                         &&
-       IsBattlerAlive(sBattlerTarget)                           &&
-       !gRoundStructs[sBattlerAttacker].attackCancelled)
+    if(sBattlerAttacker != sBattlerTarget
+        && IsBattlerAlive(sBattlerAttacker)
+        && IsBattlerAlive(sBattlerTarget)
+        && !gRoundStructs[sBattlerAttacker].attackCancelled)
         return TRUE;
     else
         return FALSE;
