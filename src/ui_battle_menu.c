@@ -1152,7 +1152,7 @@ static const u8 sText_Attack[]         = _("Atk");
 static const u8 sText_Defense[]        = _("Def");
 static const u8 sText_SpecialAttack[]  = _("SpA");
 static const u8 sText_SpecialDefense[] = _("SpD");
-static const u8 sText_Speed[]          = _("Spd");
+static const u8 sText_Speed[]          = _("Spe");
 static const u8 sText_Accuracy[]       = _("Acc");
 static const u8 sText_Evasion[]        = _("Eva");
 static const u8 sText_Critical[]       = _("Crt");
@@ -1320,7 +1320,7 @@ const u8 sText_Title_Type_One[]     = _("Type:\n{STR_VAR_1}");
 const u8 sText_Title_Type_Two[]     = _("Types:\n{STR_VAR_1}/ {STR_VAR_2}");
 const u8 sText_Title_Type_Three[]   = _("Types:\n{STR_VAR_1}/ {STR_VAR_2}/ {STR_VAR_3}");
 
-const u8 sText_Title_Nature[]        = _("Nature: {STR_VAR_1}\n({STR_VAR_2}+ {STR_VAR_3}-)");
+const u8 sText_Title_Nature[]        = _("Nature: {STR_VAR_1}\n(+{STR_VAR_2}, -{STR_VAR_3})");
 const u8 sText_Title_Nature_NoStat[] = _("Nature:\n{STR_VAR_1}");
 
 const u8 sText_Title_Held_Item[]    = _("Held Item: {STR_VAR_1}");

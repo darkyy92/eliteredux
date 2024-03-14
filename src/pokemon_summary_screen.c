@@ -3728,9 +3728,9 @@ static void BufferNatureString(void)
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
 	
 	if(ModifyMode)
-		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryNatureSlider, 4, 16, 88, 16);
+		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryNatureSlider, 4, 16, 120, 16);
 	
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)]);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNameWithEffectPointers[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)]);
 }
 
 
