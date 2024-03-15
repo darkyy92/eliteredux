@@ -1168,3 +1168,15 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Route_10/scripts.inc"
 
 	.include "data/maps/RockTunnel_1F/scripts.inc"
+
+	.include "data/maps/RockTunnel_B1F/scripts.inc"
+
+	.include "data/maps/LavenderTown/scripts.inc"
+
+	.include "data/maps/Route_11/scripts.inc"
+
+	.include "data/maps/Route_12/scripts.inc"
+
+	.include "data/maps/Route_12_NorthEntrance_1F/scripts.inc"
+
+	.include "data/maps/Route_12_Northentrance__2F/scripts.inc"

@@ -984,3 +984,14 @@ gTileset_RockTunnel::
 	.4byte gMetatiles_RockTunnel
 	.4byte gMetatileAttributes_RockTunnel
 	.4byte NULL
+
+	.align 2
+gTileset_VermilionCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_VermilionCity
+	.4byte gTilesetPalettes_VermilionCity
+	.4byte gMetatiles_VermilionCity
+	.4byte gMetatileAttributes_VermilionCity
+	.4byte NULL

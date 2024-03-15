@@ -100,6 +100,12 @@
 #define MAP_ROUTE_9                               (31 | (1 << 8))
 #define MAP_ROUTE_10                              (32 | (1 << 8))
 #define MAP_ROCK_TUNNEL_1F                        (33 | (1 << 8))
+#define MAP_ROCK_TUNNEL_B1F                       (34 | (1 << 8))
+#define MAP_LAVENDER_TOWN                         (35 | (1 << 8))
+#define MAP_ROUTE_11                              (36 | (1 << 8))
+#define MAP_ROUTE_12                              (37 | (1 << 8))
+#define MAP_ROUTE_12_NORTH_ENTRANCE_1F            (38 | (1 << 8))
+#define MAP_ROUTE_12_NORTHENTRANCE_2F             (39 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

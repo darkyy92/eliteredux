@@ -131,7 +131,13 @@
     "Route_5",
     "Route_9",
     "Route_10",
-    "RockTunnel_1F"
+    "RockTunnel_1F",
+    "RockTunnel_B1F",
+    "LavenderTown",
+    "Route_11",
+    "Route_12",
+    "Route_12_NorthEntrance_1F",
+    "Route_12_Northentrance__2F"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

@@ -2009,3 +2009,23 @@ gTilesetPalettes_RockTunnel::
 	.align 2
 gTilesetTiles_RockTunnel::
 	.incbin "data/tilesets/secondary/rocktunnel/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_VermilionCity::
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/vermilioncity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_VermilionCity::
+	.incbin "data/tilesets/secondary/vermilioncity/tiles.4bpp.lz"

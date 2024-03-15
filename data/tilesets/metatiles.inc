@@ -661,3 +661,10 @@ gMetatiles_RockTunnel::
 	.align 1
 gMetatileAttributes_RockTunnel::
 	.incbin "data/tilesets/secondary/rocktunnel/metatile_attributes.bin"
+	.align 1
+gMetatiles_VermilionCity::
+	.incbin "data/tilesets/secondary/vermilioncity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_VermilionCity::
+	.incbin "data/tilesets/secondary/vermilioncity/metatile_attributes.bin"
