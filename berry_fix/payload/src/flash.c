@@ -19,7 +19,7 @@ u8 EraseCurrentChunk(u16 a0, const struct SaveBlockChunk * a1);
 u8 TryReadAllSaveSectorsCurrentSlot(u16 a0, const struct SaveBlockChunk * a1);
 u8 ReadAllSaveSectorsCurrentSlot(u16 a0, const struct SaveBlockChunk * a1);
 u8 GetSaveValidStatus(const struct SaveBlockChunk * a1);
-u32 DoReadFlashWholeSection(u8 a0, struct SaveSector * a1);
+u32 ReadFlashSector(u8 a0, struct SaveSector * a1);
 u16 CalculateChecksum(const void *, u16);
 
 u16 gFirstSaveSector;
@@ -520,7 +520,7 @@ u8 ReadAllSaveSectorsCurrentSlot(u16 a1, const struct SaveBlockChunk *chunks)
 
     for (i = 0; i < NUM_SECTORS_PER_SAVE_SLOT; i++)
     {
-        DoReadFlashWholeSection(i + sector, gReadWriteSector);
+        ReadFlashSector(i + sector, gReadWriteSector);
         id = gReadWriteSector->id;
         if (id == 0)
             gFirstSaveSector = i;
@@ -554,7 +554,7 @@ u8 GetSaveValidStatus(const struct SaveBlockChunk *chunks)
     signatureValid = FALSE;
     for (sector = 0; sector < NUM_SECTORS_PER_SAVE_SLOT; sector++)
     {
-        DoReadFlashWholeSection(sector, gReadWriteSector);
+        ReadFlashSector(sector, gReadWriteSector);
         if (gReadWriteSector->signature == FILE_SIGNATURE)
         {
             signatureValid = TRUE;
@@ -584,7 +584,7 @@ u8 GetSaveValidStatus(const struct SaveBlockChunk *chunks)
     signatureValid = FALSE;
     for (sector = 0; sector < NUM_SECTORS_PER_SAVE_SLOT; sector++)
     {
-        DoReadFlashWholeSection(NUM_SECTORS_PER_SAVE_SLOT + sector, gReadWriteSector);
+        ReadFlashSector(NUM_SECTORS_PER_SAVE_SLOT + sector, gReadWriteSector);
         if (gReadWriteSector->signature == FILE_SIGNATURE)
         {
             signatureValid = TRUE;
@@ -664,7 +664,7 @@ u8 ReadSomeUnknownSectorAndVerify(u8 sector, u8 *data, u16 size)
     u16 i;
     struct SaveSector *section = eSaveSection;
 
-    DoReadFlashWholeSection(sector, section);
+    ReadFlashSector(sector, section);
     if (section->signature == FILE_SIGNATURE)
     {
         u16 checksum = CalculateChecksum(section->data, size);
@@ -685,7 +685,7 @@ u8 ReadSomeUnknownSectorAndVerify(u8 sector, u8 *data, u16 size)
     }
 }
 
-u32 DoReadFlashWholeSection(u8 sector, struct SaveSector *section)
+u32 ReadFlashSector(u8 sector, struct SaveSector *section)
 {
     ReadFlash(sector, 0, section->data, sizeof(struct SaveSector));
     return 1;

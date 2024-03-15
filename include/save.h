@@ -6,15 +6,12 @@
 #define SECTOR_FOOTER_SIZE 12
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SECTOR_FOOTER_SIZE)
 
-// Emerald changes this definition to be the sectors per slot.
-#define NUM_SECTORS_PER_SLOT 16
-
 // If the sector's signature field is not this value then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x8012025
 #define SPECIAL_SECTION_SENTINEL 0xB39D
 
 #define FULL_SAVE_SLOT 0xFFFF
-#define NUM_SAVE_SLOTS 2
+#define NUM_SAVE_SLOTS 1
 
 struct SaveSectionLocation
 {
@@ -51,7 +48,7 @@ enum
     SAVE_NORMAL,
     SAVE_LINK,
     //EREADER_SAVE, // deprecated in Emerald
-    SAVE_LINK2, // unknown 2nd link save
+    SAVE_LINK2, // unused 2nd link save
     SAVE_HALL_OF_FAME,
     SAVE_OVERWRITE_DIFFERENT_FILE,
     SAVE_HALL_OF_FAME_ERASE_BEFORE // unused
@@ -60,13 +57,13 @@ enum
 #define SECTOR_SIGNATURE_OFFSET offsetof(struct SaveSector, security) // signature
 #define SECTOR_COUNTER_OFFSET   offsetof(struct SaveSector, counter)
 
-#define SECTOR_ID_SAVEBLOCK2  0
-#define SECTOR_ID_SAVEBLOCK1_START 1
-#define SECTOR_ID_SAVEBLOCK1_END   4
-#define SECTOR_ID_PKMN_STORAGE_START 5
-#define SECTOR_ID_PKMN_STORAGE_END   13
-#define SECTOR_SAVE_SLOT_LENGTH 14
-// Save Slot 1: 0-13;  Save Slot 2: 14-27
+#define SECTOR_ID_SAVEBLOCK2_START    0 
+#define SECTOR_ID_SAVEBLOCK2_END      4
+#define SECTOR_ID_SAVEBLOCK1_START    5
+#define SECTOR_ID_SAVEBLOCK1_END     13
+#define SECTOR_ID_PKMN_STORAGE_START 14
+#define SECTOR_ID_PKMN_STORAGE_END   27
+#define NUM_SECTORS_PER_SLOT 28
 #define SECTOR_ID_HOF_1 28
 #define SECTOR_ID_HOF_2 29
 #define SECTOR_ID_TRAINER_HILL 30

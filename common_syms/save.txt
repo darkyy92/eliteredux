@@ -9,5 +9,4 @@ gSaveUnusedVar
 gSaveFileStatus
 gGameContinueCallback
 gRamSaveSectionLocations
-gSaveUnusedVar2
 gSaveAttemptStatus
