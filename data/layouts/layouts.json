@@ -5050,6 +5050,16 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route_5_SouthEntrance/border.bin",
       "blockdata_filepath": "data/layouts/Route_5_SouthEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_6_NORHT_ENTRANCE",
+      "name": "Route_6_NorhtEntrance_Layout",
+      "width": 9,
+      "height": 11,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_6_NorhtEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/Route_6_NorhtEntrance/map.bin"
     }
   ]
 }
