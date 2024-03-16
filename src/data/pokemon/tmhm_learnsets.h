@@ -42816,6 +42816,8 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SHADOW_CLAW)
         TM(MOVE_CUT)
         TM(MOVE_SECRET_POWER)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_LOW_SWEEP)
         TMHM_LEARNSET_END
 
     [SPECIES_FLORAGATO] = TMHM_LEARNSET
@@ -42830,6 +42832,11 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_TOXIC)
+        TM(MOVE_SHADOW_CLAW)
+        TM(MOVE_CUT)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_LOW_SWEEP)
+        TM(MOVE_SECRET_POWER)
         TMHM_LEARNSET_END
 
     [SPECIES_MEOWSCARADA] = TMHM_LEARNSET
@@ -42850,6 +42857,11 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_TOXIC)
+        TM(MOVE_SHADOW_CLAW)
+        TM(MOVE_CUT)
+        TM(MOVE_ROCK_TOMB)
+        TM(MOVE_LOW_SWEEP)
+        TM(MOVE_SECRET_POWER)
         TMHM_LEARNSET_END
 
     [SPECIES_FUECOCO] = TMHM_LEARNSET
@@ -42911,6 +42923,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_TOXIC)
+        TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
 
     [SPECIES_QUAXWELL] = TMHM_LEARNSET
@@ -42924,6 +42937,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_ENDURE)
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_TOXIC)
+        TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
 
     [SPECIES_QUAQUAVAL] = TMHM_LEARNSET
@@ -42942,6 +42956,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SLEEP_TALK)
         TM(MOVE_SWORDS_DANCE)
         TM(MOVE_TOXIC)
+        TM(MOVE_U_TURN)
         TMHM_LEARNSET_END
 
     [SPECIES_LECHONK] = TMHM_LEARNSET
