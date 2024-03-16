@@ -31229,12 +31229,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_AEGISLASH_REDUX] =
     {
-    .baseHP        =  60,
-    .baseAttack    =  50,
-    .baseDefense   =  140,
-    .baseSpeed     =  60,
-    .baseSpAttack  =  50,
-    .baseSpDefense =  140,
+    .baseHP         = 70,
+    .baseAttack     = 140,
+    .baseDefense    = 140,
+    .baseSpeed      = 20,
+    .baseSpAttack   = 70,
+    .baseSpDefense  = 60,
     .type1 = TYPE_FIGHTING,
     .type2 = TYPE_GHOST,
     .catchRate = 255,
