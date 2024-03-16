@@ -1180,3 +1180,11 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Route_12_NorthEntrance_1F/scripts.inc"
 
 	.include "data/maps/Route_12_Northentrance__2F/scripts.inc"
+
+	.include "data/maps/Route_11_EastEntrance_1F/scripts.inc"
+
+	.include "data/maps/VermilionCity/scripts.inc"
+
+	.include "data/maps/Route_6/scripts.inc"
+
+	.include "data/maps/Route_5_SouthEntrance/scripts.inc"

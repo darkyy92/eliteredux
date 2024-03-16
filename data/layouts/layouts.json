@@ -5010,6 +5010,46 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route_12_Northentrance__2F/border.bin",
       "blockdata_filepath": "data/layouts/Route_12_Northentrance__2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_11_EAST_ENTRANCE_1F",
+      "name": "Route_11_EastEntrance_1F_Layout",
+      "width": 13,
+      "height": 12,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_11_EastEntrance_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Route_11_EastEntrance_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERMILION_CITY",
+      "name": "VermilionCity_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_VermilionCity",
+      "border_filepath": "data/layouts/VermilionCity/border.bin",
+      "blockdata_filepath": "data/layouts/VermilionCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_6",
+      "name": "Route_6_Layout",
+      "width": 24,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_VermilionCity",
+      "border_filepath": "data/layouts/Route_6/border.bin",
+      "blockdata_filepath": "data/layouts/Route_6/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_5_SOUTH_ENTRANCE",
+      "name": "Route_5_SouthEntrance_Layout",
+      "width": 9,
+      "height": 11,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_5_SouthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/Route_5_SouthEntrance/map.bin"
     }
   ]
 }

@@ -137,7 +137,11 @@
     "Route_11",
     "Route_12",
     "Route_12_NorthEntrance_1F",
-    "Route_12_Northentrance__2F"
+    "Route_12_Northentrance__2F",
+    "Route_11_EastEntrance_1F",
+    "VermilionCity",
+    "Route_6",
+    "Route_5_SouthEntrance"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

@@ -106,6 +106,10 @@
 #define MAP_ROUTE_12                              (37 | (1 << 8))
 #define MAP_ROUTE_12_NORTH_ENTRANCE_1F            (38 | (1 << 8))
 #define MAP_ROUTE_12_NORTHENTRANCE_2F             (39 | (1 << 8))
+#define MAP_ROUTE_11_EAST_ENTRANCE_1F             (40 | (1 << 8))
+#define MAP_VERMILION_CITY                        (41 | (1 << 8))
+#define MAP_ROUTE_6                               (42 | (1 << 8))
+#define MAP_ROUTE_5_SOUTH_ENTRANCE                (43 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

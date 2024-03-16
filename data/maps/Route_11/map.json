@@ -17,13 +17,31 @@
       "direction": "right",
       "offset": -60,
       "map": "MAP_ROUTE_12"
+    },
+    {
+      "direction": "left",
+      "offset": -10,
+      "map": "MAP_VERMILION_CITY"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 65,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_11_EAST_ENTRANCE_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 58,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_11_EAST_ENTRANCE_1F",
+      "dest_warp_id": 2
+    }
   ],
   "coord_events": [
 
