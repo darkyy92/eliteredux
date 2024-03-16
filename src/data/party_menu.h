@@ -644,7 +644,7 @@ static const struct WindowTemplate sLevelUpSelectWindowTemplate =
     .tilemapLeft = 19,
     .tilemapTop = 5,
     .width = 10,
-    .height = 10,
+    .height = 14,
     .paletteNum = 14,
     .baseBlock = 0x2E9,
 };
@@ -855,6 +855,7 @@ enum
     MENU_TRADE1,
     MENU_TRADE2,
     MENU_TOSS,
+    MENU_SUB_LEVEL_UP,
     MENU_SUB_FIELD_MOVES,
     MENU_FIELD_MOVES,
 };
@@ -862,7 +863,7 @@ enum
 #define MENU_SUB_EVOLUTION   (MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT + 1)
 #define MENU_SUB_FORM_CHANGE (MENU_SUB_EVOLUTION + 1)
 #define MENU_EVOLUTIONS      (MENU_SUB_FORM_CHANGE + 1)
-#define MENU_FORM_CHANGE     (MENU_SUB_FORM_CHANGE + EVOS_PER_MON + 1)
+#define MENU_FORM_CHANGE     (MENU_SUB_FORM_CHANGE + EVOS_PER_MON + 1) // Forms has EVOS_PER_MON options
 
 enum
 {
@@ -934,9 +935,10 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED]   = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT]   = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
     [MENU_SUB_EVOLUTION]   = {gText_Evolution,   CursorCb_EvolutionSubMenu},
-    [MENU_EVOLUTIONS]      = {gSpeciesNames[1],  CursorCb_Evolution},
+    [MENU_EVOLUTIONS]      = {gText_Evolution,   CursorCb_Evolution},
     [MENU_SUB_FORM_CHANGE] = {gText_FormChange,  CursorCb_FormChangeSubMenu},
-    [MENU_FORM_CHANGE]     = {gSpeciesNames[1],  CursorCb_FormChange},
+    [MENU_FORM_CHANGE]     = {gText_FormChange,  CursorCb_FormChange},
+    [MENU_SUB_LEVEL_UP]    = {gText_LevelUp,     CursorCb_TryToLevelUpMenu},
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[]   = {MENU_SUMMARY,   MENU_SWITCH,    MENU_CANCEL1};
