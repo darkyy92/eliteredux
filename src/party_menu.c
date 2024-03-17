@@ -358,6 +358,7 @@ static void DisplayLevelUpStatsPg2(u8);
 static void Task_TryLearnNewMoves(u8);
 static void PartyMenuTryEvolution(u8);
 static void PartyMenuTryEvolutionFromSubMenu(u8);
+static void Task_HandleWhichLevelInput(u8 taskId);
 static void PartyMenuTryFormChangeFromSubMenu(u8);
 void BeginFormChangeScene(u8 taskId, u16 targetSpecies);
 static u16 GetEvolutionForMon(struct Pokemon *mon, u8 num);
@@ -433,6 +434,7 @@ static void CursorCb_HeldItemSubMenu(u8);
 static void CursorCb_FieldMovesSubMenu(u8);
 static void CursorCb_EvolutionSubMenu(u8);
 static void CursorCb_FormChangeSubMenu(u8);
+static void CursorCb_TryToLevelUpMenu(u8 taskId);
 static void CursorCb_FieldMove(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
@@ -440,6 +442,7 @@ static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
 static void CursorCb_Evolution(u8 taskId);
 static void CursorCb_FormChange(u8 taskId);
+static void ShowLevelUpSelectWindow(u8 slot);
 void SetArceusForm(struct Pokemon *mon);
 u16 GetArceusForm(struct Pokemon *mon);
 u16 GetSilvallyForm(struct Pokemon *mon);
@@ -2673,6 +2676,7 @@ static u8 DisplaySelectionWindow(u8 windowType)
         if (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES ||
             sPartyMenuInternal->actions[i] == MENU_SUB_EVOLUTION   ||
             sPartyMenuInternal->actions[i] == MENU_SUB_FORM_CHANGE ||
+            sPartyMenuInternal->actions[i] == MENU_SUB_LEVEL_UP    ||
             sPartyMenuInternal->actions[i] == MENU_SUB_MOVES)
             fontColorsId = 4; //Blue
         else
@@ -2986,6 +2990,15 @@ static void CursorCb_Evolution(u8 taskId)
     }
 }
 
+static void CursorCb_TryToLevelUpMenu(u8 taskId)
+{
+    FlagSet(FLAG_USED_CANDY_BOX);
+    DisplayPartyMenuStdMessage(PARTY_MSG_CHOSE_LEVEL);
+
+    ShowLevelUpSelectWindow(gPartyMenu.slotId);
+    gTasks[taskId].func = Task_HandleWhichLevelInput;
+}
+
 static void PartyMenuTryEvolutionFromSubMenu(u8 taskId)
 {
     u8 evolutionNum = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_EVOLUTIONS;
@@ -3079,6 +3092,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     u16 move;
     u16 species 		    = GetMonData(&mons[slotId], MON_DATA_SPECIES,  		 NULL);
     u8 level                = GetMonData(&mons[slotId], MON_DATA_LEVEL,          NULL);
+    u8 levelCap = GetLevelCap();
     u16 targetSpecies;
 
     sPartyMenuInternal->numActions = 0;
@@ -3120,7 +3134,11 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             }
         }
 
+        //Level Up
+        if (level < levelCap && enablePokemonChanges())
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_LEVEL_UP);
     }
+
     if(enablePokemonChanges())
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_FIELD_MOVES);
 
@@ -3252,7 +3270,6 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
             break;
         default:
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[2]);
-
             if(sPartyMenuInternal->actions[input] >= MENU_FORM_CHANGE)
                 sCursorOptions[MENU_FORM_CHANGE].func(taskId);
             else if(sPartyMenuInternal->actions[input] >= MENU_EVOLUTIONS)
@@ -5497,7 +5514,7 @@ static void ShowMoveSelectWindow(u8 slot)
     ScheduleBgCopyTilemapToVram(2);
 }
 
-#define MAX_CANDY_BOX_LEVELS 5
+#define MAX_CANDY_BOX_LEVELS 7
 
 static void ShowLevelUpSelectWindow(u8 slot)
 {
