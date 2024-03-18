@@ -6168,7 +6168,7 @@ static void Cmd_moveend(void)
                 gBattlerTarget = gActiveBattler;
                 gHitMarker &= ~(HITMARKER_SWAP_ATTACKER_TARGET);
             }
-            if (!gTurnStructs[gBattlerAttacker].dancerUsedMove)
+            if (!gProcessingExtraAttacks)
             {
                 gVolatileStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
                 gBattleStruct->lastMoveTarget[gBattlerAttacker] = gBattlerTarget;
@@ -6185,7 +6185,7 @@ static void Cmd_moveend(void)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
-                    if (!gTurnStructs[gBattlerAttacker].dancerUsedMove)
+                    if (!gProcessingExtraAttacks)
                     {
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
@@ -9439,13 +9439,11 @@ static void Cmd_various(void)
         while (gBattleStruct->soulheartBattlerId < gBattlersCount)
         {
             gStackBattler1 = gBattleStruct->soulheartBattlerId++;
-            if ((GetBattlerAbility(gBattleScripting.battler) == ABILITY_SOUL_HEART ||
-                 BattlerHasInnate(gBattleScripting.battler, ABILITY_SOUL_HEART))
-                && IsBattlerAlive(gBattleScripting.battler)
+            if (BATTLER_HAS_ABILITY(gStackBattler1, ABILITY_SOUL_HEART)
                 && !NoAliveMonsForEitherParty()
                 && CompareStat(gBattleScripting.battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                ChangeStatBuffsImplicit(StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                ChangeStatBuffs(gStackBattler1, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
                 SetStatChanger(STAT_SPATK, 1);
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUL_HEART;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
@@ -13548,11 +13546,11 @@ static void Cmd_trysetencore(void)
         || gLastMoves[gBattlerTarget] == MOVE_ENCORE
         || gLastMoves[gBattlerTarget] == MOVE_MIRROR_MOVE)
     {
-        i = 4;
+        i = MAX_MON_MOVES;
     }
 
     if (gVolatileStructs[gBattlerTarget].encoredMove == 0
-        && i != 4 && gBattleMons[gBattlerTarget].pp[i] != 0)
+        && i < MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
     {
         gVolatileStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gVolatileStructs[gBattlerTarget].encoredMovePos = i;

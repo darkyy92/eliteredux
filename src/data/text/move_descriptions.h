@@ -3637,6 +3637,82 @@ static const u8 sMoveTwoLineDescription_MoveShelter[] = _(
     "Sharply raises the Defense of\n"
     "the user and their partner.");
 
+static const u8 sMoveTwoLineDescription_MoveWildSwing[] = _(
+    "The user swings their weapon so hard that it sends the target back into its\n"
+    "pokeball and forces out another pokemon in its place.");
+
+static const u8 sMoveTwoLineDescription_MoveFemurBreaker[] = _(
+    "The foe is struck fearsomely on the legs.\n"
+    "Paralyzes the target.");
+
+static const u8 sMoveTwoLineDescription_MoveSqueakyHammer[] = _(
+    "The user hits the opponent with an oddly sounding attack.\n"
+    "20% chance to infatuate.");
+
+static const u8 sMoveTwoLineDescription_MovePrimitiveStrike[] = _(
+    "The foe is struck by one of the first attacks known in Pokemon history.\n"
+    "-2 priority.");
+
+static const u8 sMoveTwoLineDescription_MoveSmashingPumpkins[] = _(
+    "Smashes the ground in front of the opponent with a pumpkin filled\n"
+    "with nature's finest inside, setting up Grassy Terrain.");
+
+static const u8 sMoveTwoLineDescription_MoveAirborneSlam[] = _(
+    "Slams the user, always aiming for the head.\n"
+    "20% chance to confuse.");
+
+static const u8 sMoveTwoLineDescription_MoveSpineBreaker[] = _(
+    "The foe is struck fearsomely on the back.\n"
+    "30% chance to paralyze.");
+
+static const u8 sMoveTwoLineDescription_MoveCrackleSlam[] = _(
+    "Attacks with an electrically charged weapon.\n"
+    "Super effective against Steel types.");
+
+static const u8 sMoveTwoLineDescription_MoveSquallHammer[] = _(
+    "A hammering strike backed by a sudden violent gust of wind.\n"
+    "50% chance to remove entry hazards.");
+
+static const u8 sMoveTwoLineDescription_MoveMegatonHammer[] = _(
+    "A devistating blow delivered with a heavy weapon.\n"
+    "Hits a foe using moves like Protect.");
+
+static const u8 sMoveTwoLineDescription_MoveBatteringRam[] = _(
+    "Charges its whole body forwards with the force of a hammer.\n"
+    "Breaks any barrier like Light Screen and Reflect.");
+
+static const u8 sMoveTwoLineDescription_MovePitfall[] = _(
+    "An overhead strike that attempts to burry the opponent into the ground.\n"
+    "30% chance to trap the target and expose it.");
+
+static const u8 sMoveTwoLineDescription_MoveViralStrike[] = _(
+    "Attacks with a weaponized sickness. If the user is afflicted with a status condition\n"
+    "they pass that status condition onto the target and are cured of it.");
+
+static const u8 sMoveTwoLineDescription_MoveShadowHammer[] = _(
+    "The user forms a part of their body into a hammer and strikes.\n"
+    "33% recoil damage.");
+
+static const u8 sMoveTwoLineDescription_MoveBonk[] = _(
+    "The user incapacitates its opponent with a swift hammer strike, leaving the\n"
+    "opponent in a dazed state. 50% to cause drowsiness.");
+
+static const u8 sMoveTwoLineDescription_MoveMoltenStrike[] = _(
+    "A strong, heavy fist/hammer is struck down at the opponent.\n"
+    "Drops the user's Speed.");
+
+static const u8 sMoveTwoLineDescription_MoveMirageSlam[] = _(
+    "A psychedelic slam that shows the target it’s future.\n"
+    "Activates a 40bp Future Sight.");
+
+static const u8 sMoveTwoLineDescription_MoveEarthsplitter[] = _(
+    "The user strikes the ground relentlessly. Lowers the defense\n"
+    "of the target f it’s Grass, Ground, or Rock type.");
+
+static const u8 sMoveTwoLineDescription_MoveBeetleBash[] = _(
+    "The user brings its hammer into the air like a flying beetle, before smashing\n"
+    "it into its opponent. 30% to confuse the foe.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4566,6 +4642,25 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SPRINGTIDE_STORM - 1] = sMoveTwoLineDescription_MoveSpringtideStorm,
     [MOVE_DIRE_CLAW - 1] = sMoveTwoLineDescription_MoveDireClaw,
     [MOVE_SHELTER - 1] = sMoveTwoLineDescription_MoveShelter,
+    [MOVE_WILD_SWING - 1] = sMoveTwoLineDescription_MoveWildSwing,
+    [MOVE_FEMUR_BREAKER - 1] = sMoveTwoLineDescription_MoveFemurBreaker,
+    [MOVE_SQUEAKY_HAMMER - 1] = sMoveTwoLineDescription_MoveSqueakyHammer,
+    [MOVE_PRIMITIVE_STRIKE - 1] = sMoveTwoLineDescription_MovePrimitiveStrike,
+    [MOVE_SMASHING_PUMPKINS - 1] = sMoveTwoLineDescription_MoveSmashingPumpkins,
+    [MOVE_AIRBORNE_SLAM - 1] = sMoveTwoLineDescription_MoveAirborneSlam,
+    [MOVE_SPINE_BREAKER - 1] = sMoveTwoLineDescription_MoveSpineBreaker,
+    [MOVE_CRACKLE_SLAM - 1] = sMoveTwoLineDescription_MoveCrackleSlam,
+    [MOVE_SQUALL_HAMMER - 1] = sMoveTwoLineDescription_MoveSquallHammer,
+    [MOVE_MEGATON_HAMMER - 1] = sMoveTwoLineDescription_MoveMegatonHammer,
+    [MOVE_BATTERING_RAM - 1] = sMoveTwoLineDescription_MoveBatteringRam,
+    [MOVE_PITFALL - 1] = sMoveTwoLineDescription_MovePitfall,
+    [MOVE_VIRAL_STRIKE - 1] = sMoveTwoLineDescription_MoveViralStrike,
+    [MOVE_SHADOW_HAMMER - 1] = sMoveTwoLineDescription_MoveShadowHammer,
+    [MOVE_BONK - 1] = sMoveTwoLineDescription_MoveBonk,
+    [MOVE_MOLTEN_STRIKE - 1] = sMoveTwoLineDescription_MoveMoltenStrike,
+    [MOVE_MIRAGE_SLAM - 1] = sMoveTwoLineDescription_MoveMirageSlam,
+    [MOVE_EARTHSPLITTER - 1] = sMoveTwoLineDescription_MoveEarthsplitter,
+    [MOVE_BEETLE_BASH - 1] = sMoveTwoLineDescription_MoveBeetleBash,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5427,7 +5522,7 @@ static const u8 sMoveFourLineDescription_MoveRequiem[] = _("10% chance to curse.
 static const u8 sMoveFourLineDescription_MoveArmorCannon[] = _("Lowers user's Atk\nand Def.\nMega launcher.");
 static const u8 sMoveFourLineDescription_MoveBitterBlade[] = _("Heals 50% damage\ndone.\nKeen edge.");
 static const u8 sMoveFourLineDescription_MoveSoilDrain[] = _("Heals 50% damage\ndone.");
-static const u8 sMoveFourLineDescription_MoveGigatonHammer[] = _("Deals damage. Can't\nbe used twice in a row.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveGigatonHammer[] = _("Deals damage. Can't\nbe used twice in a\nrow.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MoveTripleDive[] = _("Hits 3 times.");
 static const u8 sMoveFourLineDescription_MoveJetPunch[] = _("+1 priority.\nIron fist.");
 static const u8 sMoveFourLineDescription_MoveRageFist[] = _("+20 base power per\ntime damaged. Max\n+60. Iron fist.");
@@ -5464,11 +5559,11 @@ static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retalia
 static const u8 sMoveFourLineDescription_MoveBloodMoon[] = _("The user unleashes the full brunt of its spirit\nfrom a full moon that shines as red as blood.\nThis move can't be used twice in a row.");
 static const u8 sMoveFourLineDescription_MoveAxeKick[] = _("The user attacks by kicking up into the air\nand slamming its heel down upon the target.\nThis may also confuse the target.\nIf it misses, the user takes damage instead.");
 static const u8 sMoveFourLineDescription_MoveBarbBarrage[] = _("The user launches countless toxic barbs\nThis may also poison the target.\nThis move's power is doubled\nif the target has a status condition.");
-static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("A move so paranormal that\nit smashes the realities around it.\nRemoves weather and terrain.\n-3 prio. Super Slammer boost.");
+static const u8 sMoveFourLineDescription_MoveSmashinRealities[] = _("Removes weather\nand terrain.\n-3 priority.\nHammer based.");
 static const u8 sMoveFourLineDescription_MoveCreepingThorns[] = _("Thorn-covered vines\nsurround the foe.\nThis hurts foes on\nswitch in.");
 static const u8 sMoveFourLineDescription_MoveMatchaGotcha[] = _("The user fires a blast of tea\nThe user's HP is restored by up to half\nthe damage taken by the target.\nThis may also leave the target with a burn.");
 static const u8 sMoveFourLineDescription_MoveSyrupBomb[] = _("The user sets off an explosion\nof sticky candy syrup, which coats\nthe target and causes the target's Speed\nstat to drop each turn for three turns.");
-static const u8 sMoveFourLineDescription_MoveIvyCudgel[] = _("The user strikes with an ivy-wrapped cudgel.\nThis move's type changes depending on the mask\nworn by the user, and it has a heightened\nchance of landing a critical hit.");
+static const u8 sMoveFourLineDescription_MoveIvyCudgel[] = _("Changes type based\non the mask worn\nby the user.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MoveElectroShot[] = _("The user gathers electricity on the first turn,\nboosting its Sp. Atk stat, then fires a high-voltage\nshot on the next turn. The shot\nwill be fired immediately in rain.");
 static const u8 sMoveFourLineDescription_MoveFickleBeam[] = _("The user shoots a beam of light\nto inflict damage. Sometimes all the user's\nheads shoot beams in unison,\ndoubling the move's power.");
 static const u8 sMoveFourLineDescription_MoveBurningBulwark[] = _("The user's intensely hot fur protects\nit from attacks and also burns\nany attacker that makes\ndirect contact with it.");
@@ -5479,7 +5574,7 @@ static const u8 sMoveFourLineDescription_MoveDragonCheer[] = _("The user raises 
 static const u8 sMoveFourLineDescription_MoveAlluringVoice[] = _("The user attacks the target using\nits angelic voice. This also confuses the\ntarget if its stats have been\nboosted during the turn.");
 static const u8 sMoveFourLineDescription_MoveMightyCleave[] = _("The user wields the light that has\naccumulated atop its head to cleave the target.\nThis move hits even if\nthe target protects itself.");
 static const u8 sMoveFourLineDescription_MoveTemperFlare[] = _("Spurred by desperation,\nthe user attacks the target.\nThis move's power is doubled if\nthe user's previous move failed.");
-static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user electrifies its body and drops\nonto the target to inflict damage.\nIf this move misses,\nthe user takes damage instead.");
+static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user takes 50%\nHP in recoil on miss.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attacks the target with\nunpleasant sound waves. For two turns,\nthe target is prevented from recovering HP\nthrough moves, Abilities, or held items.");
 static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to the target's movement\nand strikes, making the target flinch.\nThis move fails if the target\nis not readying a priority move.");
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
@@ -5494,6 +5589,25 @@ static const u8 sMoveFourLineDescription_MoveSandsearStorm[] = _("20% chance to 
 static const u8 sMoveFourLineDescription_MoveSpringtideStorm[] = _("30% chance to lower\nAttack. Always hits in\nrain. Hits both targets.\nWeather-based.");
 static const u8 sMoveFourLineDescription_MoveDireClaw[] = _("50% chance to sleep,\nparalyze, or poison.");
 static const u8 sMoveFourLineDescription_MoveShelter[] = _("Sharply raises the\nDefense of the user\nand their partner.");
+static const u8 sMoveFourLineDescription_MoveWildSwing[] = _("Forces the target to\nswitch. -6 priority.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveFemurBreaker[] = _("Paralyzes the target.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveSqueakyHammer[] = _("20% chance to\ninfatuate.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MovePrimitiveStrike[] = _("-2 priority.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveSmashingPumpkins[] = _("Deals damage and\nsets grassy terrain.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveAirborneSlam[] = _("20% chance to\nconfuse.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveSpineBreaker[] = _("30% chance to\nparalyze.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveCrackleSlam[] = _("Super effective\nagainst Steel types.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveSquallHammer[] = _("50% chance to clear\nhazards. -1 priority.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveMegatonHammer[] = _("Ignores protect.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveBatteringRam[] = _("Breaks barriers.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MovePitfall[] = _("30% chance to trap\nand make attacks\nalways hit the target.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveViralStrike[] = _("Transfers the user's\nstatus to the target,\ncuring the user.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveShadowHammer[] = _("33% recoil damage.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveBonk[] = _("50% chance to cause\ndrowsiness.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveMoltenStrike[] = _("Lowers the user's\nspeed.\nIron fist boost.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveMirageSlam[] = _("Predicts a 40bp\nFuture Sight.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveEarthsplitter[] = _("Lowers the defense\nof Grass, Ground,\nand Rock targets.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MoveBeetleBash[] = _("30% chance to\nconfuse.\nHammer-based.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6422,4 +6536,23 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SPRINGTIDE_STORM - 1] = sMoveFourLineDescription_MoveSpringtideStorm,
     [MOVE_DIRE_CLAW - 1] = sMoveFourLineDescription_MoveDireClaw,
     [MOVE_SHELTER - 1] = sMoveFourLineDescription_MoveShelter,
+    [MOVE_WILD_SWING - 1] = sMoveFourLineDescription_MoveWildSwing,
+    [MOVE_FEMUR_BREAKER - 1] = sMoveFourLineDescription_MoveFemurBreaker,
+    [MOVE_SQUEAKY_HAMMER - 1] = sMoveFourLineDescription_MoveSqueakyHammer,
+    [MOVE_PRIMITIVE_STRIKE - 1] = sMoveFourLineDescription_MovePrimitiveStrike,
+    [MOVE_SMASHING_PUMPKINS - 1] = sMoveFourLineDescription_MoveSmashingPumpkins,
+    [MOVE_AIRBORNE_SLAM - 1] = sMoveFourLineDescription_MoveAirborneSlam,
+    [MOVE_SPINE_BREAKER - 1] = sMoveFourLineDescription_MoveSpineBreaker,
+    [MOVE_CRACKLE_SLAM - 1] = sMoveFourLineDescription_MoveCrackleSlam,
+    [MOVE_SQUALL_HAMMER - 1] = sMoveFourLineDescription_MoveSquallHammer,
+    [MOVE_MEGATON_HAMMER - 1] = sMoveFourLineDescription_MoveMegatonHammer,
+    [MOVE_BATTERING_RAM - 1] = sMoveFourLineDescription_MoveBatteringRam,
+    [MOVE_PITFALL - 1] = sMoveFourLineDescription_MovePitfall,
+    [MOVE_VIRAL_STRIKE - 1] = sMoveFourLineDescription_MoveViralStrike,
+    [MOVE_SHADOW_HAMMER - 1] = sMoveFourLineDescription_MoveShadowHammer,
+    [MOVE_BONK - 1] = sMoveFourLineDescription_MoveBonk,
+    [MOVE_MOLTEN_STRIKE - 1] = sMoveFourLineDescription_MoveMoltenStrike,
+    [MOVE_MIRAGE_SLAM - 1] = sMoveFourLineDescription_MoveMirageSlam,
+    [MOVE_EARTHSPLITTER - 1] = sMoveFourLineDescription_MoveEarthsplitter,
+    [MOVE_BEETLE_BASH - 1] = sMoveFourLineDescription_MoveBeetleBash,
 };

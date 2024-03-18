@@ -3855,6 +3855,8 @@ extern const u8 gText_SideQuestReward_30[];
 extern const u8 gText_Evolution[];
 extern const u8 gText_De_Evolution[];
 extern const u8 gText_FormChange[];
+extern const u8 gText_LevelCap[];
+extern const u8 gText_LevelUp[];
 extern const u8 gText_GiveMegaStone[];
 extern const u8 gText_GiveMegaStone2[];
 
