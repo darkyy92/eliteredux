@@ -7308,20 +7308,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        //Well Baked Body
-        if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_WELL_BAKED_BODY)){
-            if (ShouldApplyOnHitAffect(battler)
-             && moveType == TYPE_FIRE
-             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WELL_BAKED_BODY;
-                SET_STATCHANGER(STAT_DEF, 2, FALSE);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
-                effect++;
-            }
-        }
-
         if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_COLD_REBOUND)){
             if(ShouldApplyOnHitAffect(gBattlerAttacker)
                 && IsMoveMakingContact(move, gBattlerAttacker)){
