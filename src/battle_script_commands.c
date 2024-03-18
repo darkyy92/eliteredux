@@ -6168,7 +6168,7 @@ static void Cmd_moveend(void)
                 gBattlerTarget = gActiveBattler;
                 gHitMarker &= ~(HITMARKER_SWAP_ATTACKER_TARGET);
             }
-            if (!gTurnStructs[gBattlerAttacker].dancerUsedMove)
+            if (!gProcessingExtraAttacks)
             {
                 gVolatileStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
                 gBattleStruct->lastMoveTarget[gBattlerAttacker] = gBattlerTarget;
@@ -6185,7 +6185,7 @@ static void Cmd_moveend(void)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
-                    if (!gTurnStructs[gBattlerAttacker].dancerUsedMove)
+                    if (!gProcessingExtraAttacks)
                     {
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
@@ -13546,11 +13546,11 @@ static void Cmd_trysetencore(void)
         || gLastMoves[gBattlerTarget] == MOVE_ENCORE
         || gLastMoves[gBattlerTarget] == MOVE_MIRROR_MOVE)
     {
-        i = 4;
+        i = MAX_MON_MOVES;
     }
 
     if (gVolatileStructs[gBattlerTarget].encoredMove == 0
-        && i != 4 && gBattleMons[gBattlerTarget].pp[i] != 0)
+        && i < MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
     {
         gVolatileStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gVolatileStructs[gBattlerTarget].encoredMovePos = i;
