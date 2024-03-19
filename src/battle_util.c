@@ -1590,6 +1590,11 @@ void SetActiveMultistringChooser(u8 messageId)
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].multistringChooser = messageId;
 }
 
+void SetActiveAbilityPopupOverride(u16 abilityPopupOverride)
+{
+    gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].abilityOverride = abilityPopupOverride;
+}
+
 void SetActiveStackBattler(u8 battler, u8 number)
 {
     switch (number)
@@ -6888,6 +6893,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || !(gBattleMoves[move].target & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
                 CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
             gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGIC_BOUNCE;
             gBattlescriptCurrInstr = BattleScript_DarkTypePreventsPrankster;
             effect = 1;
         }
@@ -6904,6 +6910,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         if (effect)
         {
+            SetActiveAbilityPopupOverride(gBattleScripting.abilityPopupOverwrite);
             if (gBattleScripting.battlerPopupOverwrite == BATTLE_PARTNER(battler))
                 gBattleScripting.battler = BATTLE_PARTNER(battler);
             else

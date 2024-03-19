@@ -3131,7 +3131,7 @@ static const u8 sMoveTwoLineDescription_MovePsychokinesis[] = _(
     "them at the opponent. Can Confuse.");
 
 static const u8 sMoveTwoLineDescription_MoveFertileFangs[] = _(
-    "User inserts it's ingraining fangs,\n"
+    "User inserts its ingraining fangs,\n"
     "10% chance to apply leech seed.");
 
 static const u8 sMoveTwoLineDescription_MoveScatterBlast[] = _(
@@ -3159,7 +3159,7 @@ static const u8 sMoveTwoLineDescription_MoveAquaBash[] = _(
     "20% flinch chance.");
 
 static const u8 sMoveTwoLineDescription_MoveTectonicFangs[] = _(
-    "User inserts it's ground shaking fangs.\n"
+    "User inserts its ground shaking fangs.\n"
     "10% chance to flinch.");
 
 static const u8 sMoveTwoLineDescription_MoveCupidShot[] = _(
@@ -3496,7 +3496,7 @@ static const u8 sMoveTwoLineDescription_MoveTrailblaze[] = _(
 
 static const u8 sMoveTwoLineDescription_MoveHyperDrill[] = _(
     "Spins and pierces the target\n"
-    "Hit's through protect.");
+    "Hits through protect.");
 
 static const u8 sMoveTwoLineDescription_MoveDoubleShock[] = _(
     "The user discharges all the electricity\n"
@@ -3579,7 +3579,7 @@ static const u8 sMoveTwoLineDescription_MoveTemperFlare[] = _(
     "if it missed the previous turn");
 
 static const u8 sMoveTwoLineDescription_MoveSupercellSlam[] = _(
-    "Tackles with it's shock\n"
+    "Tackles with its shock\n"
     "body. Hurts on miss.");
 
 static const u8 sMoveTwoLineDescription_MovePsychicNoise[] = _(
@@ -3702,12 +3702,12 @@ static const u8 sMoveTwoLineDescription_MoveMoltenStrike[] = _(
     "Drops the user's Speed.");
 
 static const u8 sMoveTwoLineDescription_MoveMirageSlam[] = _(
-    "A psychedelic slam that shows the target it’s future.\n"
+    "A psychedelic slam that shows the target its future.\n"
     "Activates a 40bp Future Sight.");
 
 static const u8 sMoveTwoLineDescription_MoveEarthsplitter[] = _(
     "The user strikes the ground relentlessly. Lowers the defense\n"
-    "of the target f it’s Grass, Ground, or Rock type.");
+    "of the target if it's Grass, Ground, or Rock type.");
 
 static const u8 sMoveTwoLineDescription_MoveBeetleBash[] = _(
     "The user brings its hammer into the air like a flying beetle, before smashing\n"
@@ -5448,7 +5448,7 @@ static const u8 sMoveFourLineDescription_MoveShockingEdge[] = _("Not done yet.")
 static const u8 sMoveFourLineDescription_MoveLightingSrike[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveVoltBolt[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MovePsychokinesis[] = _("Lifts up objects\nand hurls them at the\nopponent.30% Confuse.\nMega Launcher Boost.");
-static const u8 sMoveFourLineDescription_MoveFertileFangs[] = _("User inserts it's\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost.");
+static const u8 sMoveFourLineDescription_MoveFertileFangs[] = _("User inserts its\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost.");
 static const u8 sMoveFourLineDescription_MoveScatterBlast[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveJaggedPunch[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveCutsieSlap[] = _("Not done yet.");
@@ -5456,7 +5456,7 @@ static const u8 sMoveFourLineDescription_MoveFairySpheres[] = _("Not done yet.")
 static const u8 sMoveFourLineDescription_MoveBrambleBlast[] = _("20% chance to apply\nleech seed.\nArcher boost.");
 static const u8 sMoveFourLineDescription_MoveAsteroidDownfall[] = _("Launches a small\nasteroid onto the\ntarget. Cannot miss.\nMega Launcher Boost.");
 static const u8 sMoveFourLineDescription_MoveAquaBash[] = _("A mystical jab\nstrikes the foe.\n20% flinch chance.\nMighty Horn boost.");
-static const u8 sMoveFourLineDescription_MoveTectonicFangs[] = _("User inserts it's\nground shaking fangs,\n10% chance to flinch.\nStrong Jaw boost.");
+static const u8 sMoveFourLineDescription_MoveTectonicFangs[] = _("User inserts its\nground shaking fangs,\n10% chance to flinch.\nStrong Jaw boost.");
 static const u8 sMoveFourLineDescription_MoveCupidShot[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveClayDart[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveDiamondArrow[] = _("Not done yet.");

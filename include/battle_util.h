@@ -291,6 +291,7 @@ bool8 BattlerHasAbility(u8 battlerId, u8 attacker, u16 ability);
 u8 GetTurnBattler();
 void ReadActiveScriptInitialStackState();
 void SetActiveMultistringChooser(u8 messageId);
+void SetActiveAbilityPopupOverride(u16 messageId);
 void SetActiveStackBattler(u8 battler, u8 number);
 u16 GetInnateInSlot(u16 species, u8 position, u32 personality, u8 isPlayer);
 
