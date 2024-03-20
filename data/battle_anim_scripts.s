@@ -795,7 +795,7 @@ gBattleAnims_Moves::
 	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
 	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
-	.4byte Move_CUT @ MOVE_FROST_BRAND
+	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
 	.4byte Move_ICICLE_CRASH @ MOVE_GLACIER_CRASH
 	.4byte Move_SUPERSONIC @ MOVE_SUPERSONIC_SHOT
@@ -2229,6 +2229,27 @@ Move_POISON_JAB:
 	call PoisonBubblesEffect
 	waitforvisualfinish
 	blendoff
+	end
+
+Move_FROST_BRAND:
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	loadspritegfx ANIM_TAG_CUT
+	fadetobg BG_ICE
+	waitbgfadeout
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gFrostCutSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(0, 0, 25), 12, 0, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
+	call IceCrystalEffectLong
+	waitforvisualfinish
+	call UnsetPsychicBg
 	end
 
 Move_SHOCKING_EDGE:
