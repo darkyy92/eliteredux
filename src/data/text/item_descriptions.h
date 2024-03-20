@@ -3091,6 +3091,31 @@ static const u8 sKingleriteDesc[] = _(
     "Kingler to Mega\n"
     "Evolve in battle.");
 
+static const u8 sUrsaluniteDesc[] = _(
+    "This stone enables\n"
+    "Ursaring to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sKingambititeDesc[] = _(
+    "This stone enables\n"
+    "Kingambit to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sRibombiteDesc[] = _(
+    "This stone enables\n"
+    "Ribombee to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sScraftiteDesc[] = _(
+    "This stone enables\n"
+    "Scrafty to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sFroslassiteDesc[] = _(
+    "This stone enables\n"
+    "Froslass to Mega\n"
+    "Evolve in battle.");
+
 static const u8 sLaprasiteDesc[] = _(
     "This stone enables\n"
     "Lapras to Mega\n"
