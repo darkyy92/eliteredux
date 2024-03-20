@@ -813,7 +813,7 @@ gBattleAnims_Moves::
 	.4byte Move_POISON_STING @ MOVE_BRAMBLE_BLAST
 	.4byte Move_SMACK_DOWN @ MOVE_ASTEROID_DOWNFALL
 	.4byte Move_AQUA_TAIL @ MOVE_AQUA_BASH
-	.4byte Move_BUG_BITE @ MOVE_TECTONIC_FANGS
+	.4byte Move_TECTONIC_FANGS
 	.4byte Move_CUPID_SHOT
 	.4byte Move_THOUSAND_ARROWS @ MOVE_CLAY_DART
 	.4byte Move_THOUSAND_ARROWS @ MOVE_DIAMOND_ARROW
@@ -20888,6 +20888,48 @@ Move_BITE:
 	blendoff
 	delay 1
 	end
+
+Move_TECTONIC_FANGS:
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	fadetobg BG_IMPACT_OPPONENT
+	waitbgfadein
+	setalpha 12, 8
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, -32, -32, 1, 819, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 32, 32, 5, -819, -819, 10
+	call TectonicFangsRockFragments
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, 0, ANIM_TARGET, 1
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 7, 5, 2
+	waitforvisualfinish
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 32, -32, 7, -819, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, -32, 32, 3, 819, -819, 10
+	call TectonicFangsRockFragments
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, 0, ANIM_TARGET, 1
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 8, 4, 2
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+TectonicFangsEnd:
+	blendoff
+	delay 1
+	restorebg
+	waitbgfadein
+	end
+TectonicFangsRockFragments:
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 20, 24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 5, 0, -20, 24, 14, 1
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 5, 20, -24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, -5, 0, -20, -24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 30, 18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 30, -18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, 18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2
+	return
 
 Move_CRUNCH:
 	loadspritegfx ANIM_TAG_SHARP_TEETH
