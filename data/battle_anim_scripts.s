@@ -829,7 +829,7 @@ gBattleAnims_Moves::
 	.4byte Move_AURA_SPHERE @ MOVE_DRAKE_MISSILE
 	.4byte Move_PETAL_BLIZZARD @ MOVE_LOTUS_SHOWER
 	.4byte Move_HORN_ATTACK @ MOVE_JAGGED_HORNS
-	.4byte Move_ACID @ MOVE_BLOOD_SHOT
+	.4byte Move_BLOOD_SHOT
 	.4byte Move_FREEZE_DRY @ MOVE_FLASH_FREEZE
 	.4byte Move_SHADOW_CLAW @ MOVE_PHANTOM_GLOVES
 	.4byte Move_THOUSAND_ARROWS @ MOVE_HOMING_FLETCH
@@ -21597,6 +21597,40 @@ Move_ACID:
 	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
 	delay 10
 	createsprite gAcidPoisonDropletSpriteTemplate, ANIM_TARGET, 2, 27, -22, 0, 15, 50, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
+Move_BLOOD_SHOT:
+	loadspritegfx ANIM_TAG_POISON_BUBBLE
+	loadspritegfx ANIM_TAG_RED_PARTICLES
+	monbg ANIM_DEF_PARTNER
+	createsprite gBloodShotBubbleSpriteTemplate, ANIM_TARGET, 2, 20, 0, 40, 1, 0, 0, TRUE
+	playsewithpan SE_M_BUBBLE3, SOUND_PAN_ATTACKER
+	delay 5
+	createsprite gBloodShotBubbleSpriteTemplate, ANIM_TARGET, 2, 20, 0, 40, 1, 24, 0, TRUE
+	playsewithpan SE_M_BUBBLE3, SOUND_PAN_ATTACKER
+	delay 5
+	createsprite gBloodShotBubbleSpriteTemplate, ANIM_TARGET, 2, 20, 0, 40, 1, -24, 0, TRUE
+	playsewithpan SE_M_BUBBLE3, SOUND_PAN_ATTACKER
+	delay 15
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 2, 0, 10, 1
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_DEF_PARTNER, 2, 0, 10, 1
+	createvisualtask AnimTask_BlendColorCycle, 2, 20, 2, 2, 0, 12, RGB(30, 0, 0)
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 0, -22, 0, 15, 55, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, -26, -24, 0, 15, 55, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 15, -27, 0, 15, 50, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, -15, -17, 0, 10, 45, TRUE
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBloodDropletSpriteTemplate, ANIM_TARGET, 2, 27, -22, 0, 15, 50, TRUE
 	playsewithpan SE_M_BUBBLE, SOUND_PAN_TARGET
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
