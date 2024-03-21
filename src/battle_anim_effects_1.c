@@ -1542,6 +1542,17 @@ const struct SpriteTemplate gPixieSlashSpriteTemplate =
     .callback = AnimCuttingSlice,
 };
 
+const struct SpriteTemplate gFireSlashSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_CUT,
+    .paletteTag = ANIM_TAG_RED_HEART,
+    .oam = &gOamData_AffineOff_ObjBlend_32x32,
+    .anims = gCuttingSliceAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimCuttingSlice,
+};
+
 const struct SpriteTemplate gFrostCutSpriteTemplate =
 {
     .tileTag = ANIM_TAG_CUT,

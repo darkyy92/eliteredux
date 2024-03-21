@@ -821,7 +821,7 @@ gBattleAnims_Moves::
 	.4byte Move_POISON_STING @ MOVE_VENOM_BOLT
 	.4byte Move_FUMIGATION_BOMB
 	.4byte Move_DARK_PULSE @ MOVE_BLACK_MAGIC
-	.4byte Move_FIRE_LASH @ MOVE_FLAME_TONGUE
+	.4byte Move_FLAME_TONGUE
 	.4byte Move_FIRE_LASH @ MOVE_BLAZING_ARROW
 	.4byte Move_COMET_PUNCH @ MOVE_ROCKET_PUNCH
 	.4byte Move_STICKY_WEB @ MOVE_WEB_SHOT
@@ -2229,6 +2229,7 @@ Move_POISON_JAB:
 	call PoisonBubblesEffect
 	waitforvisualfinish
 	blendoff
+	call UnsetPsychicBg
 	end
 
 Move_PIXIE_SLASH:
@@ -2247,6 +2248,31 @@ Move_PIXIE_SLASH:
 	clearmonbg ANIM_TARGET
 	blendoff
 	waitforvisualfinish
+	call UnsetPsychicBg
+	end
+
+Move_FLAME_TONGUE::
+	loadspritegfx ANIM_TAG_CUT
+	loadspritegfx ANIM_TAG_RED_HEART  @red color
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	fadetobg BG_FIRE
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 5, -256, 0, 1, -1
+	waitbgfadeout
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gFireSlashSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(30, 0, 0), 12, 0, 1
+	waitforvisualfinish
+	call FireSpreadEffect
+	delay 4
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
+	setarg 7, 0xFFFF
 	call UnsetPsychicBg
 	end
 
