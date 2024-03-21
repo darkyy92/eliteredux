@@ -22550,7 +22550,7 @@ Move_LIGHTING_STRIKE:
 	loadspritegfx ANIM_TAG_SPARK_2
 LightingStrikeSetUp:
 	playsewithpan SE_M_FLY, SOUND_PAN_ATTACKER
-	createsprite gFlyBallUpSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 13, 336
+	createsprite gFlyBallYellowpSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 13, 336
 	waitforvisualfinish
 	delay 20
 LightingStrikeThunder:
