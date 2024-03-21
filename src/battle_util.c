@@ -11594,7 +11594,12 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     case MOVE_TARGET_OPPONENTS_FIELD:
         targetBattler = GetBattlerAtPosition((GetBattlerPosition(gBattlerAttacker) & BIT_SIDE) ^ BIT_SIDE);
         if (!IsBattlerAlive(targetBattler))
-            targetBattler ^= BIT_FLANK;
+        {
+            if (IsBattlerAlive(BATTLE_PARTNER(targetBattler)))
+                targetBattler = BATTLE_PARTNER(targetBattler);
+            else if (moveTarget == MOVE_TARGET_FOES_AND_ALLY && IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)))
+                targetBattler = BATTLE_PARTNER(gBattlerAttacker);
+        }
         break;
     case MOVE_TARGET_RANDOM:
         side = GetBattlerSide(gBattlerAttacker) ^ BIT_SIDE;
