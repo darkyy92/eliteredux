@@ -2993,6 +2993,7 @@ static void CursorCb_Evolution(u8 taskId)
 static void CursorCb_TryToLevelUpMenu(u8 taskId)
 {
     FlagSet(FLAG_USED_CANDY_BOX);
+    FlagSet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
     DisplayPartyMenuStdMessage(PARTY_MSG_CHOSE_LEVEL);
 
     ShowLevelUpSelectWindow(gPartyMenu.slotId);
@@ -5617,6 +5618,14 @@ static void ReturnToUseOnWhichMon(u8 taskId)
     DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
 }
 
+static void ReturnToPartyMenuScreen(u8 taskId)
+{
+    gTasks[taskId].func = Task_HandleChooseMonInput;
+    sPartyMenuInternal->exitCallback = NULL;
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    DisplayPartyMenuStdMessage(PARTY_MSG_CHOOSE_MON_OR_CANCEL);
+}
+
 static void TryUsePPItem(u8 taskId)
 {
     u16 move = MOVE_NONE;
@@ -5821,6 +5830,7 @@ static void CB2_ShowSummaryScreenToForgetMove(void)
 
 static void CB2_ReturnToPartyMenuWhileLearningMove(void)
 {
+
     if (gSpecialVar_ItemId == ITEM_RARE_CANDY && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
     {
         InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_USE_ITEM, TRUE, PARTY_MSG_NONE, Task_ReturnToPartyMenuWhileLearningMove, gPartyMenu.exitCallback);
@@ -5982,14 +5992,19 @@ static void Task_HandleWhichLevelInput(u8 taskId)
         if (input == MENU_B_PRESSED)
         {
             PlaySE(SE_SELECT);
-            ReturnToUseOnWhichMon(taskId);
+            if(FlagGet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN)){
+                FlagClear(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
+                ReturnToPartyMenuScreen(taskId);
+            }
+            else{
+                ReturnToUseOnWhichMon(taskId);
+            }
         }
         else
         {
             VarSet(VAR_CANDY_BOX_LEVEL, Menu_GetCursorPos());
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
             ItemUseCB_CandyBox(taskId, gTasks[taskId].func);
-            //gTasks[taskId].func = ItemUseCB_CandyBox;
         }
     }
 }
@@ -6436,6 +6451,7 @@ static void Task_TryLearnNewMoves(u8 taskId)
         RemoveLevelUpStatsWindow();
         learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
         gPartyMenu.learnMoveState = 1;
+
         switch (learnMove)
         {
         case 0: // No moves to learn
@@ -6508,7 +6524,11 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
     else
     {
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
+        if(FlagGet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN)){
+            FlagClear(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        }
+        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
         }
         else{
