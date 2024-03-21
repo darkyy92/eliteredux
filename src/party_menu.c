@@ -5520,7 +5520,6 @@ static void ShowMoveSelectWindow(u8 slot)
 static void ShowLevelUpSelectWindow(u8 slot)
 {
     u8 nextlevel, numlevels, i;
-    u8 levelCount = 0;
     u8 fontId = 1;
     u8 windowId = DisplaySelectionWindowNew(SELECTWINDOW_LEVEL_UP);
     u8 level = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL);
@@ -5540,18 +5539,16 @@ static void ShowLevelUpSelectWindow(u8 slot)
 
     for (i = 0; i < numlevels; i++)
     {
-        nextlevel++;
-        if(i == (numlevels - 1)){
+        if(i == 0){
             StringCopy(gStringVar1, sText_levelCap);
         }
         else{
+            nextlevel++;
             ConvertIntToDecimalStringN(gStringVar1, nextlevel, STR_CONV_MODE_RIGHT_ALIGN, 3);
         }
         AddTextPrinterParameterized(windowId, fontId, gStringVar1, 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
-        if(nextlevel <= GetLevelCap() && nextlevel <= MAX_LEVEL)
-            levelCount++;
     }
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, levelCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, numlevels, 0);
     ScheduleBgCopyTilemapToVram(2);
 }
 
