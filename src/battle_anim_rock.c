@@ -22,7 +22,46 @@ static void AnimStealthRockStep2(struct Sprite *sprite);
 static void AnimStealthRockRemove(struct Sprite *sprite);
 static void AnimStealthRockStep(struct Sprite *sprite);
 static void AnimStealthRock(struct Sprite *sprite);
+void AnimFallingFlowers_Step(struct Sprite *sprite);
 static u8 GetRolloutCounter(void);
+
+void AnimFallingFlowers(struct Sprite *sprite)
+{
+    if (gBattleAnimArgs[3] != 0)
+        SetAverageBattlerPositions(gBattleAnimTarget, 0, &sprite->x, &sprite->y);
+
+    sprite->x += gBattleAnimArgs[0];
+    sprite->y += 14;
+
+    //StartSpriteAnim(sprite, gBattleAnimArgs[1]);
+    //AnimateSprite(sprite);
+
+    sprite->data[0] = 0;
+    sprite->data[1] = 0;
+    sprite->data[2] = 4;
+    sprite->data[3] = 16;
+    sprite->data[4] = -70;
+    sprite->data[5] = gBattleAnimArgs[2];
+
+    StoreSpriteCallbackInData6(sprite, AnimFallingFlowers_Step);
+    sprite->callback = TranslateSpriteInEllipseOverDuration;
+    sprite->callback(sprite);
+}
+
+void AnimFallingFlowers_Step(struct Sprite *sprite)
+{
+    sprite->x += sprite->data[5];
+
+    sprite->data[0] = 192;
+    sprite->data[1] = sprite->data[5];
+    sprite->data[2] = 4;
+    sprite->data[3] = 32;
+    sprite->data[4] = -24;
+
+    StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
+    sprite->callback = TranslateSpriteInEllipseOverDuration;
+    sprite->callback(sprite);
+}
 
 static const union AnimCmd sAnim_FlyingRock_0[] =
 {
@@ -58,6 +97,17 @@ const struct SpriteTemplate gFallingRockSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimFallingRock,
+};
+
+const struct SpriteTemplate gFallingFlowerSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_FLOWER,
+    .paletteTag = ANIM_TAG_FLOWER,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gPetalDanceBigFlowerAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimFallingFlowers,
 };
 
 const struct SpriteTemplate gRockFragmentSpriteTemplate =

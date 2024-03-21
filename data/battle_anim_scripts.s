@@ -827,7 +827,7 @@ gBattleAnims_Moves::
 	.4byte Move_STICKY_WEB @ MOVE_WEB_SHOT
 	.4byte Move_AURA_SPHERE @ MOVE_AURA_FORCE
 	.4byte Move_AURA_SPHERE @ MOVE_DRAKE_MISSILE
-	.4byte Move_PETAL_BLIZZARD @ MOVE_LOTUS_SHOWER
+	.4byte Move_LOTUS_SHOWER
 	.4byte Move_HORN_ATTACK @ MOVE_JAGGED_HORNS
 	.4byte Move_BLOOD_SHOT
 	.4byte Move_FREEZE_DRY @ MOVE_FLASH_FREEZE
@@ -17826,6 +17826,56 @@ RockSlideRocks:
 	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
 	delay 2
 	createsprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, 30, 2, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	return
+
+Move_LOTUS_SHOWER:
+	loadspritegfx ANIM_TAG_FLOWER
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, 7, 1, 11, 1
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -5, 1, -5, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 5, 0, 6, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 19, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -23, 2, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 5, 50, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_DEF_PARTNER, 0, 5, 50, 1
+	delay 2
+	call LotusFlowersThrow
+	call LotusFlowersThrow
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
+LotusFlowersThrow:
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 28, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -10, 1, -5, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 10, 0, 6, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 24, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -32, 2, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 30, 2, 10, 1
 	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
 	delay 2
 	return
