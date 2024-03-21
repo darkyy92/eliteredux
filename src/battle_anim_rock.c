@@ -229,6 +229,17 @@ const struct SpriteTemplate gRockTombRockSpriteTemplate =
     .callback = AnimRockTomb,
 };
 
+const struct SpriteTemplate gBigRockTombRockSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_REALLY_BIG_ROCK,
+    .paletteTag = ANIM_TAG_REALLY_BIG_ROCK,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = sAnims_BasicRock,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimRockTomb,
+};
+
 static const union AffineAnimCmd sAffineAnim_BasicRock_0[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, -5, 5),

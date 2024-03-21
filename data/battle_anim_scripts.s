@@ -793,7 +793,7 @@ gBattleAnims_Moves::
 	.4byte Move_PIXIE_BEAM
 	.4byte Move_PIXIE_SLASH
 	.4byte Move_SEISMIC_BLADE
-	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
+	.4byte Move_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
@@ -2228,6 +2228,30 @@ Move_POISON_JAB:
 	waitforvisualfinish
 	call PoisonBubblesEffect
 	waitforvisualfinish
+	blendoff
+	call UnsetPsychicBg
+	end
+
+Move_MOUNTAIN_CHUNK:
+	loadspritegfx ANIM_TAG_REALLY_BIG_ROCK
+	loadspritegfx ANIM_TAG_ROCKS
+	createvisualtask AnimTask_ShakeBattleTerrain, 2, 2, 0, 10, 1
+	waitforvisualfinish
+	createsprite gBigRockTombRockSpriteTemplate, ANIM_TARGET, 66, 3, 6, 64, 82, 0
+	delay 8
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_TARGET
+MountainChunck_Bg:
+	setalpha 12, 8
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	launchtask AnimTask_PositionFissureBgOnBattler 0x5 0x3 0x1 0x5 0xffff
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	call StoneAxeRockFragments
+MountainChunck_End:
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 20, 1
+	createvisualtask AnimTask_ShakeBattleTerrain, 2, 2, 0, 10, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
 	blendoff
 	call UnsetPsychicBg
 	end
