@@ -806,7 +806,7 @@ gBattleAnims_Moves::
 	.4byte Move_VOLT_TACKLE @ MOVE_VOLT_BOLT
 	.4byte Move_STRENGTH @ MOVE_PSYCHOKINESIS
 	.4byte Move_LEECH_LIFE @ MOVE_FERTILE_FANGS
-	.4byte Move_ACCELEROCK @ MOVE_SCATTER_BLAST
+	.4byte Move_SCATTER_BLAST
 	.4byte Move_MACH_PUNCH @ MOVE_JAGGED_PUNCH
 	.4byte Move_CUTSIE_SLAP
 	.4byte Move_DOUBLE_SLAP @ MOVE_FAIRY_SPHERES
@@ -25516,6 +25516,18 @@ DiveAttackWaterDroplets:
 	createsprite gSprayWaterDropletSpriteTemplate, ANIM_TARGET, 5, 0, 1
 	createsprite gSprayWaterDropletSpriteTemplate, ANIM_TARGET, 5, 1, 1
 	return
+
+Move_SCATTER_BLAST:
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_STEALTH_ROCK
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 4, 6
+	delay 3
+	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
+	createsprite gRockBlastRockSpriteTemplate, ANIM_TARGET, 2, 16, 0, 0, 0, 25, 257
+	waitforvisualfinish
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 1
+	end
 
 Move_ROCK_BLAST:
 	loadspritegfx ANIM_TAG_ROCKS

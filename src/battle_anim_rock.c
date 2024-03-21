@@ -19,6 +19,7 @@ static void AnimParticleInVortex_Step(struct Sprite *sprite);
 static void AnimTask_LoadSandstormBackground_Step(u8 taskId);
 static void CreateRolloutDirtSprite(struct Task *task);
 static void AnimStealthRockStep2(struct Sprite *sprite);
+static void AnimStealthRockRemove(struct Sprite *sprite);
 static void AnimStealthRockStep(struct Sprite *sprite);
 static void AnimStealthRock(struct Sprite *sprite);
 static u8 GetRolloutCounter(void);
@@ -301,6 +302,17 @@ const struct SpriteTemplate gStoneEdgeSpriteTemplate =
     .callback = AnimParticleInVortex,
 };
 
+const struct SpriteTemplate gStealthRockFinishSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_STEALTH_ROCK,
+    .paletteTag = ANIM_TAG_STEALTH_ROCK,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimFallingRock,
+};
+
 const struct SpriteTemplate gStealthRockSpriteTemplate =
 {
     .tileTag = ANIM_TAG_STEALTH_ROCK,
@@ -386,6 +398,23 @@ static void AnimStealthRockStep2(struct Sprite *sprite)
         sprite->invisible ^= 1;
 
     if (++sprite->data[1] == 16)
+        DestroyAnimSprite(sprite);
+}
+
+static void AnimStealthRockRemove(struct Sprite *sprite)
+{
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        sprite->x -= gBattleAnimArgs[0];
+    else
+        sprite->x += gBattleAnimArgs[0];
+
+    sprite->y += gBattleAnimArgs[1];
+
+    //Remove the rocks
+    if (sprite->data[0] & 1)
+        sprite->invisible ^= 1;
+
+    if (++sprite->data[0] == 16)
         DestroyAnimSprite(sprite);
 }
 
