@@ -6017,7 +6017,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        return gBattleMons[gBattlerAttacker].hpType;
+        return gBattleMons[battlerAtk].hpType;
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
