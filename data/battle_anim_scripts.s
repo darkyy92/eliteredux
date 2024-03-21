@@ -965,7 +965,8 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_MIRAGE_SLAM
 	.4byte Move_NONE @ MOVE_EARTHSPLITTER
 	.4byte Move_NONE @ MOVE_BEETLE_BASH
-
+	.4byte Move_THORN_GARDEN
+	
 	.align 2
 gBattleAnims_StatusConditions::
 	.4byte Status_Poison                    @ B_ANIM_STATUS_PSN
@@ -21906,6 +21907,27 @@ Move_SPIKES:
 	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
 	createsprite gSpikesSpriteTemplate, ANIM_TARGET, 2, 20, 0, 24, 24, 30
 	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
+Move_THORN_GARDEN:
+	loadspritegfx ANIM_TAG_THORNS
+	loadspritegfx ANIM_TAG_VINE_2
+	fadetobg BG_GRASSY_TERRAIN
+	waitbgfadeout
+	monbg ANIM_DEF_PARTNER
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 24, 30
+	delay 10
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, -24, 24, 30
+	delay 10
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, 24, 24, 30
+	waitforvisualfinish
+	call UnsetPsychicBg
 	clearmonbg ANIM_DEF_PARTNER
 	end
 

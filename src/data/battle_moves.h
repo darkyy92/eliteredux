@@ -2330,6 +2330,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAGIC_COAT_AFFECTED,
         .split = SPLIT_STATUS,
     },
+    [MOVE_THORN_GARDEN] =
+    {
+        .effect = EFFECT_SPIKES,
+        .power = 0,
+        .type = TYPE_GRASS,
+        .accuracy = 0,
+        .pp = 20,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_OPPONENTS_FIELD,
+        .flags = FLAG_MAGIC_COAT_AFFECTED,
+        .split = SPLIT_STATUS,
+    },
     [MOVE_ZAP_CANNON] =
     {
         .effect = EFFECT_PARALYZE_HIT,
