@@ -13839,7 +13839,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(BattlerHasInnate(battlerAtk, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
 	// Psychic Mind
