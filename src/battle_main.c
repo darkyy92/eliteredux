@@ -3967,7 +3967,10 @@ static void TryDoEventsBeforeFirstTurn(void)
         gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInAbilitiesCounter++];
         // Primal Reversion
         if (TryPrimalReversion(gBattlerAttacker))
+        {
+            gBattleStruct->switchInAbilitiesCounter--;
             return;
+        }
         if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
             return;
     }
