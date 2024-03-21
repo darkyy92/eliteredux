@@ -3684,7 +3684,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                         {
                             gBattlescriptCurrInstr = BattleScript_MoveUsedIsAsleep;
                             gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                            effect = 2;
+                            effect = 1;
                         }
                     }
                     else
@@ -3706,6 +3706,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 {
                     gBattlescriptCurrInstr = BattleScript_MoveUsedIsFrozen;
                     gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+                    effect = 1;
                 }
                 else // unfreeze
                 {
@@ -3713,8 +3714,8 @@ u8 AtkCanceller_UnableToUseMove(void)
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveUsedUnfroze;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DEFROSTED;
+                    effect = 2;
                 }
-                effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
