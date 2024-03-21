@@ -792,7 +792,7 @@ gBattleAnims_Moves::
 	.4byte Move_BITE @ MOVE_DRACONIC_FANGS
 	.4byte Move_PIXIE_BEAM
 	.4byte Move_PIXIE_SLASH
-	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
+	.4byte Move_SEISMIC_BLADE
 	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_FROST_BRAND
@@ -2229,6 +2229,26 @@ Move_POISON_JAB:
 	call PoisonBubblesEffect
 	waitforvisualfinish
 	blendoff
+	call UnsetPsychicBg
+	end
+
+Move_SEISMIC_BLADE::
+	loadspritegfx ANIM_TAG_CUT
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+SeismicBlade_Bg:
+	setalpha 12, 8
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	launchtask AnimTask_PositionFissureBgOnBattler 0x5 0x3 0x1 0x5 0xffff
+SeismicBlade_End:
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(30, 20, 23), 12, 0, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
 	call UnsetPsychicBg
 	end
 
