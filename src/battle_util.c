@@ -11258,6 +11258,7 @@ case ITEMEFFECT_KINGSROCK:
             break;
         case HOLD_EFFECT_LIFE_ORB:
             if (gTurnStructs[gBattlerAttacker].damagedMons
+                && !gProcessingExtraAttacks
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && !BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker)
 				&& !(BattlerHasInnate(gBattlerAttacker, ABILITY_SHEER_FORCE)    && (gBattleMoves[gCurrentMove].flags & FLAG_SHEER_FORCE_BOOST))

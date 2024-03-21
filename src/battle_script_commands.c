@@ -5999,12 +5999,15 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_CHOICE_MOVE: // update choice band move
             if (gHitMarker & HITMARKER_OBEYS
+             && gChosenMove != MOVE_STRUGGLE
+             && gChosenMove
+             && !gProcessingExtraAttacks
+             && gBattlerAttacker == GetTurnBattler()
+             && (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF)
              && (HOLD_EFFECT_CHOICE(holdEffectAtk) ||
                 (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE) && gBattleMoves[gChosenMove].effect == EFFECT_RAMPAGE) ||
                  BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_GORILLA_TACTICS) ||
-                 BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAGE_POWER))
-             && gChosenMove != MOVE_STRUGGLE
-             && (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF))
+                 BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAGE_POWER)))
             {
                 if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE) && gBattleMoves[gChosenMove].effect == EFFECT_RAMPAGE)
                     gVolatileStructs[gBattlerAttacker].disciplineCounter = 3;
