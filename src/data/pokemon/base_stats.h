@@ -11755,7 +11755,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_GRASS,
 	.abilities = {ABILITY_RIPEN, ABILITY_AIR_BLOWER, ABILITY_UNBURDEN},
-	.innates = {ABILITY_AERILATE, ABILITY_GIANT_WINGS, ABILITY_BIG_LEAVES},
+	.innates = {ABILITY_AERIALIST, ABILITY_GIANT_WINGS, ABILITY_BIG_LEAVES},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },

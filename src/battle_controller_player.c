@@ -1979,6 +1979,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DRAGONFLY, moveNum))
                     abilityNullifiesDamage = TRUE;
 
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_AERIALIST, moveNum))
+                    abilityNullifiesDamage = TRUE;
+
                 if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
                     abilityNullifiesDamage = TRUE;
 
@@ -2349,6 +2352,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = FALSE;
                 }
                 else if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_DRAGONFLY, moveNum)){
+                    //Has Dragonfly
+                    abilityNullifiesDamage = FALSE;
+                }
+                else if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_AERIALIST, moveNum)){
                     //Has Dragonfly
                     abilityNullifiesDamage = FALSE;
                 }

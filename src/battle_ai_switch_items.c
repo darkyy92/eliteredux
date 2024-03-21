@@ -531,6 +531,7 @@ static u32 CalculateHazardDamage(void)
     if ((gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount > 0) 
        && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_LEVITATE)
        && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_DRAGONFLY)
+       && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_AERIALIST)
        && holdEffect != HOLD_EFFECT_AIR_BALLOON
        && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING))
     {

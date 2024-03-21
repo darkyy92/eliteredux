@@ -1283,6 +1283,8 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (BATTLER_HAS_ABILITY_FAST_AI(battlerId, ABILITY_DRAGONFLY))
         return FALSE;
+    else if (BATTLER_HAS_ABILITY_FAST_AI(battlerId, ABILITY_AERIALIST))
+        return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
     else
@@ -2619,13 +2621,23 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     u16 holdEffect = ItemId_GetHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM));
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
     bool8 isEnemyMon = GetBattlerSide(currBattler) == B_SIDE_OPPONENT;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     
     if (flags == 0)
         return FALSE;
     
     if (ability == ABILITY_MAGIC_GUARD || MonHasInnate(mon, ABILITY_MAGIC_GUARD, isEnemyMon) ||
-        ability == ABILITY_LEVITATE    || MonHasInnate(mon, ABILITY_LEVITATE, isEnemyMon)    ||
         holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+        return FALSE;
+
+    if (!(flags & SIDE_STATUS_STEALTH_ROCK)
+        && !IsGravityActive()
+        && !holdEffect == HOLD_EFFECT_IRON_BALL
+        && (ability == ABILITY_LEVITATE || MonHasInnate(mon, ABILITY_LEVITATE, isEnemyMon)
+            || ability == ABILITY_AERIALIST || MonHasInnate(mon, ABILITY_AERIALIST, isEnemyMon)
+            || ability == ABILITY_DRAGONFLY || MonHasInnate(mon, ABILITY_DRAGONFLY, isEnemyMon)
+            || holdEffect == HOLD_EFFECT_AIR_BALLOON
+            || gBaseStats[species].type1 == TYPE_FLYING || gBaseStats[species].type2 == TYPE_FLYING))
         return FALSE;
     
     if (flags & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK) && GetMonData(mon, MON_DATA_HP) < (GetMonData(mon, MON_DATA_MAX_HP) / 8))
