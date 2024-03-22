@@ -1022,6 +1022,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[ABILITIES_COUNT] =
     [ABILITY_PARROTING] = 1,
     [ABILITY_GALLANTRY] = 1,
     [ABILITY_ANTICIPATION] = 1,
+    [ABILITY_AERIALIST] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
@@ -3684,7 +3685,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                         {
                             gBattlescriptCurrInstr = BattleScript_MoveUsedIsAsleep;
                             gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                            effect = 2;
+                            effect = 1;
                         }
                     }
                     else
@@ -3706,6 +3707,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 {
                     gBattlescriptCurrInstr = BattleScript_MoveUsedIsFrozen;
                     gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+                    effect = 1;
                 }
                 else // unfreeze
                 {
@@ -3713,8 +3715,8 @@ u8 AtkCanceller_UnableToUseMove(void)
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MoveUsedUnfroze;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DEFROSTED;
+                    effect = 2;
                 }
-                effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
@@ -11257,6 +11259,7 @@ case ITEMEFFECT_KINGSROCK:
             break;
         case HOLD_EFFECT_LIFE_ORB:
             if (gTurnStructs[gBattlerAttacker].damagedMons
+                && !gProcessingExtraAttacks
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && !BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker)
 				&& !(BattlerHasInnate(gBattlerAttacker, ABILITY_SHEER_FORCE)    && (gBattleMoves[gCurrentMove].flags & FLAG_SHEER_FORCE_BOOST))
@@ -11592,7 +11595,12 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     case MOVE_TARGET_OPPONENTS_FIELD:
         targetBattler = GetBattlerAtPosition((GetBattlerPosition(gBattlerAttacker) & BIT_SIDE) ^ BIT_SIDE);
         if (!IsBattlerAlive(targetBattler))
-            targetBattler ^= BIT_FLANK;
+        {
+            if (IsBattlerAlive(BATTLE_PARTNER(targetBattler)))
+                targetBattler = BATTLE_PARTNER(targetBattler);
+            else if (moveTarget == MOVE_TARGET_FOES_AND_ALLY && IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)))
+                targetBattler = BATTLE_PARTNER(gBattlerAttacker);
+        }
         break;
     case MOVE_TARGET_RANDOM:
         side = GetBattlerSide(gBattlerAttacker) ^ BIT_SIDE;
@@ -11902,6 +11910,8 @@ bool32 IsBattlerGrounded(u8 battlerId)
     else if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
     else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_LEVITATE))
+        return FALSE;
+    else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_AERIALIST))
         return FALSE;
 	else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_DRAGONFLY)) //Dragonfly
         return FALSE;
@@ -13462,11 +13472,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
-	case ABILITY_LEVITATE:
-        if (moveType == TYPE_FLYING)
-        {
-            MulModifier(&modifier, UQ_4_12(1.25));
-        }
         break;
 		
 	case ABILITY_PSYCHIC_MIND:
@@ -13829,12 +13834,21 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Levitate
-	if(BattlerHasInnate(battlerAtk, ABILITY_LEVITATE)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AERIALIST)) {
+        if (moveType == TYPE_FLYING)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5 * 1.25));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2 * 1.25));
+        }
+    }
 	// Psychic Mind
 	if(BattlerHasInnate(battlerAtk, ABILITY_PSYCHIC_MIND)){
 		if (moveType == TYPE_PSYCHIC)
@@ -14799,14 +14813,14 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
         && !(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DESERT_SPIRIT) && IsBattlerWeatherAffected(battlerDef, WEATHER_SANDSTORM_ANY))) // Moves that ignore ground immunity
     {
-        if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEVITATE) || BATTLER_HAS_ABILITY(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Levitate as Ability
-            modifier = UQ_4_12(0.0);
-            immunityAbility = BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEVITATE) ? ABILITY_LEVITATE : ABILITY_DRAGONFLY;
-        }
-        else // Everything Else
-        {
-            modifier = UQ_4_12(0.0);
-        }
+        if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_LEVITATE))
+            immunityAbility = ABILITY_LEVITATE;
+        else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_AERIALIST))
+            immunityAbility = ABILITY_AERIALIST;
+        else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_DRAGONFLY))
+            immunityAbility = ABILITY_DRAGONFLY;
+        
+        modifier = UQ_4_12(0.0);
     }
     else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_MOUNTAINEER) && moveType == TYPE_ROCK)
     {
@@ -14895,7 +14909,7 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
         if (gBaseStats[speciesDef].type2 != gBaseStats[speciesDef].type1)
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gBaseStats[speciesDef].type2, 0, FALSE);
 
-        if (moveType == TYPE_GROUND && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_LEVITATE, abilityDef)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        if (moveType == TYPE_GROUND && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_LEVITATE, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_DRAGONFLY, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_AERIALIST, abilityDef)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
 		if (moveType == TYPE_ROCK && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_MOUNTAINEER, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_FURNACE, abilityDef)))
             modifier = UQ_4_12(0.0);

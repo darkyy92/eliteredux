@@ -783,7 +783,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_ZEPHYR_RUSH] = _("Zephyr Rush"),
     [MOVE_SHOCKING_JAB] = _("Shock Jab"),
     [MOVE_SHOCKING_EDGE] = _("Shock Edge"),
-    [MOVE_LIGHTING_SRIKE] = _("Light Strike"),
+    [MOVE_LIGHTING_STRIKE] = _("Light Strike"),
     [MOVE_VOLT_BOLT] = _("Volt Bolt"),
     [MOVE_PSYCHOKINESIS] = _("Psyckinesis"),
     [MOVE_FERTILE_FANGS] = _("FertileFangs"),
@@ -946,6 +946,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MIRAGE_SLAM] = _("Mirage Slam"),
     [MOVE_EARTHSPLITTER] = _("Earthspltter"),
     [MOVE_BEETLE_BASH] = _("Beelte Bash"),
+    [MOVE_THORN_GARDEN] = _("Thorn Garden"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1735,7 +1736,7 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_ZEPHYR_RUSH] = _("Zephyr Rush"),
     [MOVE_SHOCKING_JAB] = _("Shocking Jab"),
     [MOVE_SHOCKING_EDGE] = _("Shocking Edge"),
-    [MOVE_LIGHTING_SRIKE] = _("Lighting Strike"),
+    [MOVE_LIGHTING_STRIKE] = _("Lighting Strike"),
     [MOVE_VOLT_BOLT] = _("Volt Bolt"),
     [MOVE_PSYCHOKINESIS] = _("Psychokinesis"),
     [MOVE_FERTILE_FANGS] = _("Fertile Fangs"),
@@ -1898,4 +1899,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_MIRAGE_SLAM] = _("Mirage Slam"),
     [MOVE_EARTHSPLITTER] = _("Earthsplitter"),
     [MOVE_BEETLE_BASH] = _("Beetle Bash"),
+    [MOVE_THORN_GARDEN] = _("Thorn Garden"),
 };

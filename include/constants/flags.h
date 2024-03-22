@@ -1499,6 +1499,7 @@
 #define FLAG_TRAINER_YDA_MTPYRE                                     3058
 #define FLAG_TAG_BATTLE                                             3059
 #define FLAG_BATTLE_MENU_COMING_FROM_SUMMARY_SCREEN                 3060
+#define FLAG_LEVEL_UP_FROM_PARTY_SCREEN                             3061
 
 #define FLAGS_COUNT                                                 6135 //Added 3000 new flags
 

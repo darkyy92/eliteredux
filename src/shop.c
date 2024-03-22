@@ -349,6 +349,8 @@ static const u16 sAdoptionCenterInventory_OneBadges[] = {
 static const u16 sAdoptionCenterInventory_TwoBadges[] = {
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -366,6 +368,8 @@ static const u16 sAdoptionCenterInventory_ThreeBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -383,6 +387,8 @@ static const u16 sAdoptionCenterInventory_FourBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -400,6 +406,8 @@ static const u16 sAdoptionCenterInventory_FiveBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -419,6 +427,8 @@ static const u16 sAdoptionCenterInventory_SixBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -438,6 +448,8 @@ static const u16 sAdoptionCenterInventory_SevenBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -457,6 +469,8 @@ static const u16 sAdoptionCenterInventory_EightBadges[] = {
     SPECIES_SKARMORY_REDUX,
     SPECIES_PAWNIARD_REDUX,
     SPECIES_MACHOP_REDUX,
+    SPECIES_BUIZEL_REDUX,
+    SPECIES_HONEDGE_REDUX,
     SPECIES_SOLOSIS_REDUX,
     SPECIES_ABRA_REDUX,
     SPECIES_PANSAGE_REDUX,
@@ -732,6 +746,11 @@ const u8 sText_Title_PokemonDescription[] = _("The {STR_VAR_2}\nPokémon {STR_VA
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list)
 {
     const u8 *description;
+    u8 level = GetLevelCap();
+
+    if(level >= MAX_LEVEL)
+        level = MAX_LEVEL;
+
     if (onInit != TRUE)
         PlaySE(SE_SELECT);
 
@@ -758,7 +777,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
 
                 StringCopy(gStringVar1, gSpeciesNames[item]);
                 StringCopy(gStringVar2, gPokedexEntries[dexnum].categoryName);
-                ConvertIntToDecimalStringN(gStringVar3, GetLevelCap(), STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar3, level, STR_CONV_MODE_LEFT_ALIGN, 3);
                 StringExpandPlaceholders(gStringVar4, sText_Title_PokemonDescription);
 
                 description = gStringVar4;
@@ -1382,6 +1401,10 @@ static void BuyMenuConfirmPurchase(u8 taskId)
 static void BuyMenuTryMakePurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u8 level = GetLevelCap();
+
+    if(level >= MAX_LEVEL)
+        level = MAX_LEVEL;
 
     PutWindowTilemap(1);
 
@@ -1412,7 +1435,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
             }
         break;
         case MART_TYPE_MONS:{
-            bool8 couldGiveMon = ScriptGiveMon(tItemId, GetLevelCap(), ITEM_NONE, 0, 0, 0);
+            bool8 couldGiveMon = ScriptGiveMon(tItemId, level, ITEM_NONE, 0, 0, 0);
             if(couldGiveMon < 2){
                 BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
                 RecordItemPurchase(taskId);

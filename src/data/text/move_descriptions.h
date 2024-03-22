@@ -3120,7 +3120,7 @@ static const u8 sMoveTwoLineDescription_MoveShockingJab[] = _(
 static const u8 sMoveTwoLineDescription_MoveShockingEdge[] = _(
     "Not done yet.");
 
-static const u8 sMoveTwoLineDescription_MoveLightingSrike[] = _(
+static const u8 sMoveTwoLineDescription_MoveLightingStrike[] = _(
     "Not done yet.");
 
 static const u8 sMoveTwoLineDescription_MoveVoltBolt[] = _(
@@ -3354,7 +3354,8 @@ static const u8 sMoveTwoLineDescription_MoveChillyReception[] = _(
     "Sets hail and switches.");
 
 static const u8 sMoveTwoLineDescription_MoveIceSpinner[] = _(
-    "Deals damage and removes terrain.");
+    "Deals damage and removes\n"
+    "terrain.");
 
 static const u8 sMoveTwoLineDescription_MoveTidyUp[] = _(
     "Removes hazards. Boosts Atk\n"
@@ -3491,8 +3492,8 @@ static const u8 sMoveTwoLineDescription_MovePounce[] = _(
     "This also lowers the target's Speed stat.");
 
 static const u8 sMoveTwoLineDescription_MoveTrailblaze[] = _(
-    "The user attacks suddenly as if leaping out from tall grass.\n"
-    "Boosts user's Speed stat.");
+    "Deals damage and boosts\n"
+    "the user's Speed stat.");
 
 static const u8 sMoveTwoLineDescription_MoveHyperDrill[] = _(
     "Spins and pierces the target\n"
@@ -3587,8 +3588,8 @@ static const u8 sMoveTwoLineDescription_MovePsychicNoise[] = _(
     "waves. Target can't heal.");
 
 static const u8 sMoveTwoLineDescription_MoveUpperHand[] = _(
-    "Predicts and counter\n"
-    "attacks. attack may fail");
+    "Deals damage and flinches\n"
+    "if the target uses a prio. move.");
 
 static const u8 sMoveTwoLineDescription_MoveMalignantChain[] = _(
     "The user pours toxins into the target.\n"
@@ -3907,6 +3908,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MUD_SLAP - 1] = sMoveTwoLineDescription_MoveMudSlap,
     [MOVE_OCTAZOOKA - 1] = sMoveTwoLineDescription_MoveOctazooka,
     [MOVE_SPIKES - 1] = sMoveTwoLineDescription_MoveSpikes,
+    [MOVE_THORN_GARDEN - 1] = sMoveTwoLineDescription_MoveSpikes,
     [MOVE_ZAP_CANNON - 1] = sMoveTwoLineDescription_MoveZapCannon,
     [MOVE_FORESIGHT - 1] = sMoveTwoLineDescription_MoveForesight,
     [MOVE_DESTINY_BOND - 1] = sMoveTwoLineDescription_MoveDestinyBond,
@@ -4498,7 +4500,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ZEPHYR_RUSH - 1] = sMoveTwoLineDescription_MoveZephyrRush,
     [MOVE_SHOCKING_JAB - 1] = sMoveTwoLineDescription_MoveShockingJab,
     [MOVE_SHOCKING_EDGE - 1] = sMoveTwoLineDescription_MoveShockingEdge,
-    [MOVE_LIGHTING_SRIKE - 1] = sMoveTwoLineDescription_MoveLightingSrike,
+    [MOVE_LIGHTING_STRIKE - 1] = sMoveTwoLineDescription_MoveLightingStrike,
     [MOVE_VOLT_BOLT - 1] = sMoveTwoLineDescription_MoveVoltBolt,
     [MOVE_PSYCHOKINESIS - 1] = sMoveTwoLineDescription_MovePsychokinesis,
     [MOVE_FERTILE_FANGS - 1] = sMoveTwoLineDescription_MoveFertileFangs,
@@ -5445,7 +5447,7 @@ static const u8 sMoveFourLineDescription_MoveSupersonicShot[] = _("Not done yet.
 static const u8 sMoveFourLineDescription_MoveZephyrRush[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveShockingJab[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveShockingEdge[] = _("Not done yet.");
-static const u8 sMoveFourLineDescription_MoveLightingSrike[] = _("Not done yet.");
+static const u8 sMoveFourLineDescription_MoveLightingStrike[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MoveVoltBolt[] = _("Not done yet.");
 static const u8 sMoveFourLineDescription_MovePsychokinesis[] = _("Lifts up objects\nand hurls them at the\nopponent.30% Confuse.\nMega Launcher Boost.");
 static const u8 sMoveFourLineDescription_MoveFertileFangs[] = _("User inserts its\ningraining fangs.\n10% chance to apply leech seed.\nStrong Jaw boost.");
@@ -5542,7 +5544,7 @@ static const u8 sMoveFourLineDescription_MoveLuminaCrash[] = _("The user attacks
 static const u8 sMoveFourLineDescription_MoveOrderUp[] = _("The user attacks with elegant poise\nIf the user has a Tatsugiri in its mouth,\nthis move boosts one of the user's stats\nbased on the Tatsugiri's form.");
 static const u8 sMoveFourLineDescription_MoveSpicyExtract[] = _("The user emits an incredibly spicy extract\nsharply boosting the target's Attack stat\nand harshly lowering the target's Defense stat.");
 static const u8 sMoveFourLineDescription_MoveSpinOut[] = _("The user spins furiously by straining its legs,\ninflicting damage on the target.\nThis also harshly lowers the user's Speed stat.");
-static const u8 sMoveFourLineDescription_MoveSaltCure[] = _("The user salt cures the target,\ninflicting damage every turn.\nSteel and Water types are more strongly affected by this move.");
+static const u8 sMoveFourLineDescription_MoveSaltCure[] = _("Salt cures the target.\nTarget loses 1/8 HP\nper turn. Doubled if\nwater or steel type.");
 static const u8 sMoveFourLineDescription_MoveDoodle[] = _("The user captures the very essence\nof the target in a sketch.\nThis changes the Abilities of the user\nand its ally Pokémon to that of the target.");
 static const u8 sMoveFourLineDescription_MoveFilletAway[] = _("The user sharply boosts its Attack, Sp. Atk,\nand Speed stats by using its own HP.");
 static const u8 sMoveFourLineDescription_MoveRagingBull[] = _("The user performs a tackle like a raging bull.\nThis move's type depends on the user's form.\nIt can also break barriers,\nsuch as Light Screen and Reflect.");
@@ -5552,7 +5554,7 @@ static const u8 sMoveFourLineDescription_MoveRuination[] = _("The user summons a
 static const u8 sMoveFourLineDescription_MoveCollisionCourse[] = _("The user transforms and crashes to the ground,\ncausing a massive prehistoric explosion.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
 static const u8 sMoveFourLineDescription_MoveElectroDrift[] = _("The user races forward at ultrafast speeds,\npiercing its target with futuristic electricity.\nThis move's power is boosted\nmore than usual if it's a supereffective hit.");
 static const u8 sMoveFourLineDescription_MovePounce[] = _("The user attacks by pouncing on the target.\nThis also lowers the target's Speed stat.");
-static const u8 sMoveFourLineDescription_MoveTrailblaze[] = _("The user attacks suddenly as if leaping out from tall grass.\nThe user's nimble footwork boosts\nits Speed stat.");
+static const u8 sMoveFourLineDescription_MoveTrailblaze[] = _("Deals damage and\nboosts the user's\nSpeed stat.");
 static const u8 sMoveFourLineDescription_MoveHyperDrill[] = _("The user spins the pointed part of its body\nat high speed to pierce the target.\nThis attack can hit a target using\na move such as Protect or Detect.");
 static const u8 sMoveFourLineDescription_MoveDoubleShock[] = _("The user discharges all the electricity from its body\nto perform a high-damage attack.\nAfter using this move,\nthe user will no longer be Electric type.");
 static const u8 sMoveFourLineDescription_MoveComeuppance[] = _("The user retaliates with much greater force against\nthe opponent that last inflicted damage on it.");
@@ -5576,7 +5578,7 @@ static const u8 sMoveFourLineDescription_MoveMightyCleave[] = _("The user wields
 static const u8 sMoveFourLineDescription_MoveTemperFlare[] = _("Spurred by desperation,\nthe user attacks the target.\nThis move's power is doubled if\nthe user's previous move failed.");
 static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user takes 50%\nHP in recoil on miss.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attacks the target with\nunpleasant sound waves. For two turns,\nthe target is prevented from recovering HP\nthrough moves, Abilities, or held items.");
-static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("The user reacts to the target's movement\nand strikes, making the target flinch.\nThis move fails if the target\nis not readying a priority move.");
+static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("Flinches the target.\n+3 priority. Fails if the\ntarget doesn't use a\npriority move.");
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
 static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP to all\nallied battlers and\ncures their status.");
 static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n50% max HP recoil.");
@@ -5801,6 +5803,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_MUD_SLAP - 1] = sMoveFourLineDescription_MoveMudSlap,
     [MOVE_OCTAZOOKA - 1] = sMoveFourLineDescription_MoveOctazooka,
     [MOVE_SPIKES - 1] = sMoveFourLineDescription_MoveSpikes,
+    [MOVE_THORN_GARDEN - 1] = sMoveFourLineDescription_MoveSpikes,
     [MOVE_ZAP_CANNON - 1] = sMoveFourLineDescription_MoveZapCannon,
     [MOVE_FORESIGHT - 1] = sMoveFourLineDescription_MoveForesight,
     [MOVE_DESTINY_BOND - 1] = sMoveFourLineDescription_MoveDestinyBond,
@@ -6392,7 +6395,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_ZEPHYR_RUSH - 1] = sMoveFourLineDescription_MoveZephyrRush,
     [MOVE_SHOCKING_JAB - 1] = sMoveFourLineDescription_MoveShockingJab,
     [MOVE_SHOCKING_EDGE - 1] = sMoveFourLineDescription_MoveShockingEdge,
-    [MOVE_LIGHTING_SRIKE - 1] = sMoveFourLineDescription_MoveLightingSrike,
+    [MOVE_LIGHTING_STRIKE - 1] = sMoveFourLineDescription_MoveLightingStrike,
     [MOVE_VOLT_BOLT - 1] = sMoveFourLineDescription_MoveVoltBolt,
     [MOVE_PSYCHOKINESIS - 1] = sMoveFourLineDescription_MovePsychokinesis,
     [MOVE_FERTILE_FANGS - 1] = sMoveFourLineDescription_MoveFertileFangs,

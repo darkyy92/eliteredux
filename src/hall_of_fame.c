@@ -823,6 +823,10 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_SABLENITE_R)
                 return SPECIES_SABLEYE_MEGA_REDUX;
         break;
+        case SPECIES_URSALUNA:
+            if(item == ITEM_URSALUNITE)
+                return SPECIES_URSALUNA_MEGA;
+        break;
         case SPECIES_MAWILE_REDUX:
             if(item == ITEM_MAWILITE_R)
                 return SPECIES_MAWILE_MEGA_REDUX;

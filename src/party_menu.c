@@ -2993,6 +2993,7 @@ static void CursorCb_Evolution(u8 taskId)
 static void CursorCb_TryToLevelUpMenu(u8 taskId)
 {
     FlagSet(FLAG_USED_CANDY_BOX);
+    FlagSet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
     DisplayPartyMenuStdMessage(PARTY_MSG_CHOSE_LEVEL);
 
     ShowLevelUpSelectWindow(gPartyMenu.slotId);
@@ -5519,7 +5520,6 @@ static void ShowMoveSelectWindow(u8 slot)
 static void ShowLevelUpSelectWindow(u8 slot)
 {
     u8 nextlevel, numlevels, i;
-    u8 levelCount = 0;
     u8 fontId = 1;
     u8 windowId = DisplaySelectionWindowNew(SELECTWINDOW_LEVEL_UP);
     u8 level = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL);
@@ -5539,18 +5539,16 @@ static void ShowLevelUpSelectWindow(u8 slot)
 
     for (i = 0; i < numlevels; i++)
     {
-        nextlevel++;
-        if(i == (numlevels - 1)){
+        if(i == 0){
             StringCopy(gStringVar1, sText_levelCap);
         }
         else{
+            nextlevel++;
             ConvertIntToDecimalStringN(gStringVar1, nextlevel, STR_CONV_MODE_RIGHT_ALIGN, 3);
         }
         AddTextPrinterParameterized(windowId, fontId, gStringVar1, 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
-        if(nextlevel <= GetLevelCap() && nextlevel <= MAX_LEVEL)
-            levelCount++;
     }
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, levelCount, 0);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, numlevels, 0);
     ScheduleBgCopyTilemapToVram(2);
 }
 
@@ -5615,6 +5613,14 @@ static void ReturnToUseOnWhichMon(u8 taskId)
     sPartyMenuInternal->exitCallback = NULL;
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
+}
+
+static void ReturnToPartyMenuScreen(u8 taskId)
+{
+    gTasks[taskId].func = Task_HandleChooseMonInput;
+    sPartyMenuInternal->exitCallback = NULL;
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    DisplayPartyMenuStdMessage(PARTY_MSG_CHOOSE_MON_OR_CANCEL);
 }
 
 static void TryUsePPItem(u8 taskId)
@@ -5821,6 +5827,7 @@ static void CB2_ShowSummaryScreenToForgetMove(void)
 
 static void CB2_ReturnToPartyMenuWhileLearningMove(void)
 {
+
     if (gSpecialVar_ItemId == ITEM_RARE_CANDY && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
     {
         InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_USE_ITEM, TRUE, PARTY_MSG_NONE, Task_ReturnToPartyMenuWhileLearningMove, gPartyMenu.exitCallback);
@@ -5982,14 +5989,19 @@ static void Task_HandleWhichLevelInput(u8 taskId)
         if (input == MENU_B_PRESSED)
         {
             PlaySE(SE_SELECT);
-            ReturnToUseOnWhichMon(taskId);
+            if(FlagGet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN)){
+                FlagClear(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
+                ReturnToPartyMenuScreen(taskId);
+            }
+            else{
+                ReturnToUseOnWhichMon(taskId);
+            }
         }
         else
         {
             VarSet(VAR_CANDY_BOX_LEVEL, Menu_GetCursorPos());
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
             ItemUseCB_CandyBox(taskId, gTasks[taskId].func);
-            //gTasks[taskId].func = ItemUseCB_CandyBox;
         }
     }
 }
@@ -6436,6 +6448,7 @@ static void Task_TryLearnNewMoves(u8 taskId)
         RemoveLevelUpStatsWindow();
         learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
         gPartyMenu.learnMoveState = 1;
+
         switch (learnMove)
         {
         case 0: // No moves to learn
@@ -6508,7 +6521,11 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
     else
     {
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
+        if(FlagGet(FLAG_LEVEL_UP_FROM_PARTY_SCREEN)){
+            FlagClear(FLAG_LEVEL_UP_FROM_PARTY_SCREEN);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        }
+        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
         }
         else{

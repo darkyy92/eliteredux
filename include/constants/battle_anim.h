@@ -408,6 +408,7 @@
 #define ANIM_TAG_CUPID_SHOT                 (ANIM_SPRITES_START + 396)
 #define ANIM_TAG_DRAGON_ENERGY              (ANIM_SPRITES_START + 397)
 #define ANIM_TAG_FROST_BOLT_ARROW           (ANIM_SPRITES_START + 398)
+#define ANIM_TAG_THORNS                     (ANIM_SPRITES_START + 399)
 
 // battlers
 #define ANIM_ATTACKER    0

@@ -261,10 +261,10 @@ struct FieldTimer
     u8 wonderRoomTimer;
     u8 magicRoomTimer;
     u8 trickRoomTimer;
-    u8 inverseRoomTimer;
     u8 terrainTimer;
     u8 gravityTimer;
     u8 fairyLockTimer;
+    u8 inverseRoomTimer;
 };
 
 struct WishFutureKnock

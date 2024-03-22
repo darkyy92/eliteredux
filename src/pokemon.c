@@ -6184,11 +6184,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             // Candy Box
             if ((itemEffect[i] & ITEM3_LEVEL_UP) && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetLevelCap() && FlagGet(FLAG_USED_CANDY_BOX))
             {
-                if(VarGet(VAR_CANDY_BOX_LEVEL) == (VarGet(VAR_CANDY_BOX_NUM_LEVELS) - 1)){
+                if(VarGet(VAR_CANDY_BOX_LEVEL) == 0){
                     levelUp = GetLevelCap() - GetMonData(mon, MON_DATA_LEVEL, NULL);
                 }
                 else{
-                    levelUp = VarGet(VAR_CANDY_BOX_LEVEL);
+                    levelUp = VarGet(VAR_CANDY_BOX_LEVEL) - 1;
                     if(levelUp > CANDY_BOX_LEVELS)
                         levelUp = CANDY_BOX_LEVELS;
                 }

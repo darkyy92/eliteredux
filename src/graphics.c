@@ -719,6 +719,8 @@ const u32 gBattleInterfaceGfx_UnusedWindow4[] = INCBIN_U32("graphics/battle_inte
 const u32 gBattleAnimSpriteGfx_FurySwipes[] = INCBIN_U32("graphics/battle_anims/sprites/fury_swipes.4bpp.lz");
 const u32 gBattleAnimSpritePal_FurySwipes[] = INCBIN_U32("graphics/battle_anims/sprites/fury_swipes.gbapal.lz");
 
+const u32 gBattleAnimSpriteGfx_Thorns[] = INCBIN_U32("graphics/battle_anims/sprites/thorns.4bpp.lz");
+
 const u32 gBattleAnimSpriteGfx_Vine2[] = INCBIN_U32("graphics/battle_anims/sprites/vine_2.4bpp.lz");
 const u32 gBattleAnimSpritePal_Vine2[] = INCBIN_U32("graphics/battle_anims/sprites/vine_2.gbapal.lz");
 

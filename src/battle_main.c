@@ -3967,7 +3967,10 @@ static void TryDoEventsBeforeFirstTurn(void)
         gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInAbilitiesCounter++];
         // Primal Reversion
         if (TryPrimalReversion(gBattlerAttacker))
+        {
+            gBattleStruct->switchInAbilitiesCounter--;
             return;
+        }
         if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
             return;
     }
@@ -6017,7 +6020,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        return gBattleMons[gBattlerAttacker].hpType;
+        return gBattleMons[battlerAtk].hpType;
     }
     else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
