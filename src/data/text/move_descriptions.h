@@ -3714,6 +3714,18 @@ static const u8 sMoveTwoLineDescription_MoveBeetleBash[] = _(
     "The user brings its hammer into the air like a flying beetle, before smashing\n"
     "it into its opponent. 30% to confuse the foe.");
 
+static const u8 sMoveTwoLineDescription_MovePebbleShower[] = _(
+    "20% chance to flinch.\n"
+    "Hits both targets.");
+
+static const u8 sMoveTwoLineDescription_MoveRapidRiver[] = _(
+    "Hits twice.\n"
+    "Mega launcher boost.");
+
+static const u8 sMoveTwoLineDescription_MoveToxicNeedles[] = _(
+    "Hits 2-5 times. 10%\n"
+    "chance to poison.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -3908,7 +3920,6 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MUD_SLAP - 1] = sMoveTwoLineDescription_MoveMudSlap,
     [MOVE_OCTAZOOKA - 1] = sMoveTwoLineDescription_MoveOctazooka,
     [MOVE_SPIKES - 1] = sMoveTwoLineDescription_MoveSpikes,
-    [MOVE_THORN_GARDEN - 1] = sMoveTwoLineDescription_MoveSpikes,
     [MOVE_ZAP_CANNON - 1] = sMoveTwoLineDescription_MoveZapCannon,
     [MOVE_FORESIGHT - 1] = sMoveTwoLineDescription_MoveForesight,
     [MOVE_DESTINY_BOND - 1] = sMoveTwoLineDescription_MoveDestinyBond,
@@ -4663,6 +4674,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MIRAGE_SLAM - 1] = sMoveTwoLineDescription_MoveMirageSlam,
     [MOVE_EARTHSPLITTER - 1] = sMoveTwoLineDescription_MoveEarthsplitter,
     [MOVE_BEETLE_BASH - 1] = sMoveTwoLineDescription_MoveBeetleBash,
+    [MOVE_PEBBLE_SHOWER - 1] = sMoveTwoLineDescription_MovePebbleShower,
+    [MOVE_RAPID_RIVER - 1] = sMoveTwoLineDescription_MoveRapidRiver,
+    [MOVE_TOXIC_NEEDLES - 1] = sMoveTwoLineDescription_MoveToxicNeedles,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5610,6 +5624,9 @@ static const u8 sMoveFourLineDescription_MoveMoltenStrike[] = _("Lowers the user
 static const u8 sMoveFourLineDescription_MoveMirageSlam[] = _("Predicts a 40bp\nFuture Sight.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MoveEarthsplitter[] = _("Lowers the defense\nof Grass, Ground,\nand Rock targets.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MoveBeetleBash[] = _("30% chance to\nconfuse.\nHammer-based.");
+static const u8 sMoveFourLineDescription_MovePebbleShower[] = _("20% chance to flinch.\nHits both targets.");
+static const u8 sMoveFourLineDescription_MoveRapidRiver[] = _("Hits twice.\nMega launcher.");
+static const u8 sMoveFourLineDescription_MoveToxicNeedles[] = _("Hits 2-5 times. 10%\nchance to poison.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -5803,7 +5820,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_MUD_SLAP - 1] = sMoveFourLineDescription_MoveMudSlap,
     [MOVE_OCTAZOOKA - 1] = sMoveFourLineDescription_MoveOctazooka,
     [MOVE_SPIKES - 1] = sMoveFourLineDescription_MoveSpikes,
-    [MOVE_THORN_GARDEN - 1] = sMoveFourLineDescription_MoveSpikes,
     [MOVE_ZAP_CANNON - 1] = sMoveFourLineDescription_MoveZapCannon,
     [MOVE_FORESIGHT - 1] = sMoveFourLineDescription_MoveForesight,
     [MOVE_DESTINY_BOND - 1] = sMoveFourLineDescription_MoveDestinyBond,
@@ -6558,4 +6574,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_MIRAGE_SLAM - 1] = sMoveFourLineDescription_MoveMirageSlam,
     [MOVE_EARTHSPLITTER - 1] = sMoveFourLineDescription_MoveEarthsplitter,
     [MOVE_BEETLE_BASH - 1] = sMoveFourLineDescription_MoveBeetleBash,
+    [MOVE_PEBBLE_SHOWER - 1] = sMoveFourLineDescription_MovePebbleShower,
+    [MOVE_RAPID_RIVER - 1] = sMoveFourLineDescription_MoveRapidRiver,
+    [MOVE_TOXIC_NEEDLES - 1] = sMoveFourLineDescription_MoveToxicNeedles,
 };

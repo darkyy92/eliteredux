@@ -917,7 +917,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_AXE_KICK
 	.4byte Move_BARB_BARRAGE
 	.4byte Move_NONE @ MOVE_SMASHIN_REALITIES
-	.4byte Move_NONE @ MOVE_CREEPING_THORNS
+	.4byte Move_CREEPING_THORNS
 	.4byte Move_NONE @ MOVE_MATCHA_GOTCHA
 	.4byte Move_NONE @ MOVE_SYRUP_BOMB
 	.4byte Move_NONE @ MOVE_IVY_CUDGEL
@@ -965,8 +965,10 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_MIRAGE_SLAM
 	.4byte Move_NONE @ MOVE_EARTHSPLITTER
 	.4byte Move_NONE @ MOVE_BEETLE_BASH
-	.4byte Move_THORN_GARDEN
-	
+	.4byte Move_NONE @ MOVE_PEBBLE_SHOWER
+	.4byte Move_NONE @ MOVE_RAPID_RIVER
+	.4byte Move_NONE @ MOVE_TOXIC_NEEDLES
+
 	.align 2
 gBattleAnims_StatusConditions::
 	.4byte Status_Poison                    @ B_ANIM_STATUS_PSN
@@ -21910,7 +21912,7 @@ Move_SPIKES:
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
-Move_THORN_GARDEN:
+Move_CREEPING_THORNS:
 	loadspritegfx ANIM_TAG_THORNS
 	loadspritegfx ANIM_TAG_VINE_2
 	fadetobg BG_GRASSY_TERRAIN

@@ -946,7 +946,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MIRAGE_SLAM] = _("Mirage Slam"),
     [MOVE_EARTHSPLITTER] = _("Earthspltter"),
     [MOVE_BEETLE_BASH] = _("Beelte Bash"),
-    [MOVE_THORN_GARDEN] = _("Thorn Garden"),
+    [MOVE_PEBBLE_SHOWER] = _("PebbleShower"),
+    [MOVE_RAPID_RIVER] = _("Rapid River"),
+    [MOVE_TOXIC_NEEDLES] = _("ToxicNeedles"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1899,5 +1901,7 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_MIRAGE_SLAM] = _("Mirage Slam"),
     [MOVE_EARTHSPLITTER] = _("Earthsplitter"),
     [MOVE_BEETLE_BASH] = _("Beetle Bash"),
-    [MOVE_THORN_GARDEN] = _("Thorn Garden"),
+    [MOVE_PEBBLE_SHOWER] = _("Pebble Shower"),
+    [MOVE_RAPID_RIVER] = _("Rapid River"),
+    [MOVE_TOXIC_NEEDLES] = _("Toxic Needles"),
 };
