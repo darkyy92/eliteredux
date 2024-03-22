@@ -253,6 +253,17 @@ const struct SpriteTemplate gSpikesSpriteTemplate =
     .callback = AnimSpikes,
 };
 
+const struct SpriteTemplate gThornsSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_THORNS,
+    .paletteTag = ANIM_TAG_VINE_2,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSpikes,
+};
+
 const struct SpriteTemplate gToxicSpikesSpriteTemplate =
 {
     .tileTag = ANIM_TAG_TOXIC_SPIKES,

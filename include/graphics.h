@@ -10254,6 +10254,7 @@ extern const u32 gBattleAnimSpriteGfx_MudUnk[];
 extern const u32 gBattleAnimSpriteGfx_RainDrops[];
 extern const u32 gBattleAnimSpriteGfx_FurySwipes[];
 extern const u32 gBattleAnimSpriteGfx_Vine2[];
+extern const u32 gBattleAnimSpriteGfx_Thorns[];
 extern const u32 gBattleAnimSpriteGfx_Teeth[];
 extern const u32 gBattleAnimSpriteGfx_Bone2[];
 extern const u32 gBattleAnimSpriteGfx_WhiteBag[];

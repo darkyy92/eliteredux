@@ -792,8 +792,8 @@ gBattleAnims_Moves::
 	.4byte Move_BITE @ MOVE_DRACONIC_FANGS
 	.4byte Move_PIXIE_BEAM
 	.4byte Move_PIXIE_SLASH
-	.4byte Move_SACRED_SWORD @ MOVE_SEISMIC_BLADE
-	.4byte Move_ROCK_SLIDE @ MOVE_MOUNTAIN_CHUNK
+	.4byte Move_SEISMIC_BLADE
+	.4byte Move_MOUNTAIN_CHUNK
 	.4byte Move_ARCHER_SHOT
 	.4byte Move_FROST_BRAND
 	.4byte Move_FROST_BOLT
@@ -806,7 +806,7 @@ gBattleAnims_Moves::
 	.4byte Move_VOLT_TACKLE @ MOVE_VOLT_BOLT
 	.4byte Move_STRENGTH @ MOVE_PSYCHOKINESIS
 	.4byte Move_LEECH_LIFE @ MOVE_FERTILE_FANGS
-	.4byte Move_ACCELEROCK @ MOVE_SCATTER_BLAST
+	.4byte Move_SCATTER_BLAST
 	.4byte Move_MACH_PUNCH @ MOVE_JAGGED_PUNCH
 	.4byte Move_CUTSIE_SLAP
 	.4byte Move_DOUBLE_SLAP @ MOVE_FAIRY_SPHERES
@@ -827,7 +827,7 @@ gBattleAnims_Moves::
 	.4byte Move_STICKY_WEB @ MOVE_WEB_SHOT
 	.4byte Move_AURA_SPHERE @ MOVE_AURA_FORCE
 	.4byte Move_AURA_SPHERE @ MOVE_DRAKE_MISSILE
-	.4byte Move_PETAL_BLIZZARD @ MOVE_LOTUS_SHOWER
+	.4byte Move_LOTUS_SHOWER
 	.4byte Move_HORN_ATTACK @ MOVE_JAGGED_HORNS
 	.4byte Move_BLOOD_SHOT
 	.4byte Move_FREEZE_DRY @ MOVE_FLASH_FREEZE
@@ -917,7 +917,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_AXE_KICK
 	.4byte Move_BARB_BARRAGE
 	.4byte Move_NONE @ MOVE_SMASHIN_REALITIES
-	.4byte Move_NONE @ MOVE_CREEPING_THORNS
+	.4byte Move_CREEPING_THORNS
 	.4byte Move_NONE @ MOVE_MATCHA_GOTCHA
 	.4byte Move_NONE @ MOVE_SYRUP_BOMB
 	.4byte Move_NONE @ MOVE_IVY_CUDGEL
@@ -2232,6 +2232,50 @@ Move_POISON_JAB:
 	call PoisonBubblesEffect
 	waitforvisualfinish
 	blendoff
+	call UnsetPsychicBg
+	end
+
+Move_MOUNTAIN_CHUNK:
+	loadspritegfx ANIM_TAG_REALLY_BIG_ROCK
+	loadspritegfx ANIM_TAG_ROCKS
+	createvisualtask AnimTask_ShakeBattleTerrain, 2, 2, 0, 10, 1
+	waitforvisualfinish
+	createsprite gBigRockTombRockSpriteTemplate, ANIM_TARGET, 66, 3, 6, 64, 82, 0
+	delay 8
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_TARGET
+MountainChunck_Bg:
+	setalpha 12, 8
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	launchtask AnimTask_PositionFissureBgOnBattler 0x5 0x3 0x1 0x5 0xffff
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	call StoneAxeRockFragments
+MountainChunck_End:
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 20, 1
+	createvisualtask AnimTask_ShakeBattleTerrain, 2, 2, 0, 10, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	call UnsetPsychicBg
+	end
+
+Move_SEISMIC_BLADE::
+	loadspritegfx ANIM_TAG_CUT
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+SeismicBlade_Bg:
+	setalpha 12, 8
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	launchtask AnimTask_PositionFissureBgOnBattler 0x5 0x3 0x1 0x5 0xffff
+SeismicBlade_End:
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(30, 20, 23), 12, 0, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
 	call UnsetPsychicBg
 	end
 
@@ -17789,6 +17833,56 @@ RockSlideRocks:
 	delay 2
 	return
 
+Move_LOTUS_SHOWER:
+	loadspritegfx ANIM_TAG_FLOWER
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, 7, 1, 11, 1
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -5, 1, -5, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 5, 0, 6, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 19, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -23, 2, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 5, 50, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_DEF_PARTNER, 0, 5, 50, 1
+	delay 2
+	call LotusFlowersThrow
+	call LotusFlowersThrow
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
+LotusFlowersThrow:
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 28, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -10, 1, -5, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 10, 0, 6, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 24, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -32, 2, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingFlowerSpriteTemplate, ANIM_TARGET, 2, 30, 2, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	return
+
 Move_THIEF:
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
@@ -21818,6 +21912,27 @@ Move_SPIKES:
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
+Move_CREEPING_THORNS:
+	loadspritegfx ANIM_TAG_THORNS
+	loadspritegfx ANIM_TAG_VINE_2
+	fadetobg BG_GRASSY_TERRAIN
+	waitbgfadeout
+	monbg ANIM_DEF_PARTNER
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 24, 30
+	delay 10
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, -24, 24, 30
+	delay 10
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gThornsSpriteTemplate, ANIM_TARGET, 2, 20, 0, 24, 24, 30
+	waitforvisualfinish
+	call UnsetPsychicBg
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
 Move_MEGAHORN:
 	loadspritegfx ANIM_TAG_HORN_HIT_2
 	loadspritegfx ANIM_TAG_IMPACT
@@ -25519,6 +25634,18 @@ DiveAttackWaterDroplets:
 	createsprite gSprayWaterDropletSpriteTemplate, ANIM_TARGET, 5, 0, 1
 	createsprite gSprayWaterDropletSpriteTemplate, ANIM_TARGET, 5, 1, 1
 	return
+
+Move_SCATTER_BLAST:
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_STEALTH_ROCK
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 4, 6
+	delay 3
+	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
+	createsprite gRockBlastRockSpriteTemplate, ANIM_TARGET, 2, 16, 0, 0, 0, 25, 257
+	waitforvisualfinish
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 1
+	end
 
 Move_ROCK_BLAST:
 	loadspritegfx ANIM_TAG_ROCKS
