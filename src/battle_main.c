@@ -5317,6 +5317,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
 
                 return;
             }
+            else if 
         }
     }
 

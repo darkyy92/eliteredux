@@ -965,6 +965,9 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_MIRAGE_SLAM
 	.4byte Move_NONE @ MOVE_EARTHSPLITTER
 	.4byte Move_NONE @ MOVE_BEETLE_BASH
+	.4byte Move_NONE @ MOVE_PEBBLE_SHOWER
+	.4byte Move_NONE @ MOVE_RAPID_RIVER
+	.4byte Move_NONE @ MOVE_TOXIC_NEEDLES
 
 	.align 2
 gBattleAnims_StatusConditions::
