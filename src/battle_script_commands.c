@@ -3278,14 +3278,20 @@ void SetMoveEffect(bool32 primary, u32 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_BURN:
-            if (gCurrentMove == MOVE_BURNING_JEALOUSY && !gRoundStructs[gEffectBattler].statRaised)
-                break;
-
-            if ((GetBattlerAbility(gEffectBattler) == ABILITY_WATER_VEIL || GetBattlerAbility(gEffectBattler) == ABILITY_WATER_BUBBLE)
-              && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
-                gLastUsedAbility = GetBattlerAbility(gEffectBattler);
-                RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
+            u16 blockingAbility = 0;
+
+            if (gBattleMons[gEffectBattler].status1 & STATUS1_ANY || BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_COMATOSE)) break;
+
+            if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_WATER_VEIL)) blockingAbility = ABILITY_WATER_VEIL;
+            else if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_PURIFYING_WATERS)) blockingAbility = ABILITY_PURIFYING_WATERS;
+            else if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_THERMAL_EXCHANGE)) blockingAbility = ABILITY_THERMAL_EXCHANGE;
+            else if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_WATER_BUBBLE)) blockingAbility = ABILITY_WATER_BUBBLE;
+
+            if (blockingAbility && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            {
+                gLastUsedAbility = blockingAbility;
+                RecordAbilityBattle(gEffectBattler, blockingAbility);
 
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
@@ -3315,6 +3321,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
 
             statusChanged = TRUE;
+            }
             break;
         case STATUS1_FREEZE:
             if (!CanBeFrozen(gEffectBattler))
@@ -3324,12 +3331,20 @@ void SetMoveEffect(bool32 primary, u32 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_PARALYSIS:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_LIMBER)
+            {
+            u16 blockingAbility = 0;
+
+            if (gBattleMons[gEffectBattler].status1 & STATUS1_ANY || BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_COMATOSE)) break;
+
+            if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_LIMBER)) blockingAbility = ABILITY_LIMBER;
+            else if (BattlerHasAbility(gEffectBattler, gBattleScripting.battler, ABILITY_JUGGERNAUT)) blockingAbility = ABILITY_JUGGERNAUT;
+
+            if (blockingAbility)
             {
                 if (primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
                 {
-                    gLastUsedAbility = ABILITY_LIMBER;
-                    RecordAbilityBattle(gEffectBattler, ABILITY_LIMBER);
+                    gLastUsedAbility = blockingAbility;
+                    RecordAbilityBattle(gEffectBattler, blockingAbility);
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
@@ -3363,12 +3378,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STATUS_HAD_NO_EFFECT;
                 RESET_RETURN
             }
-            if (!CanParalyzeType(gBattleScripting.battler, gEffectBattler))
-                break;
             if (!CanBeParalyzed(gBattleScripting.battler, gEffectBattler))
                 break;
 
             statusChanged = TRUE;
+            }
             break;
         case STATUS1_TOXIC_POISON:
             if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
