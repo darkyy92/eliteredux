@@ -1,0 +1,41 @@
+{
+  "id": "MAP_ROUTE_7_EAST_ENTRANCE",
+  "name": "Route_7_EastEntrance",
+  "layout": "LAYOUT_ROUTE_7_EAST_ENTRANCE",
+  "music": "MUS_RG_PEWTER",
+  "region_map_section": "MAPSEC_ROUTE_7",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_7",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 11,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": 5
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

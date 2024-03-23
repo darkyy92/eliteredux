@@ -5090,6 +5090,56 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route_8_WestEntrance/border.bin",
       "blockdata_filepath": "data/layouts/Route_8_WestEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_7",
+      "name": "Route_7_Layout",
+      "width": 24,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/Route_7/border.bin",
+      "blockdata_filepath": "data/layouts/Route_7/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_7_EAST_ENTRANCE",
+      "name": "Route_7_EastEntrance_Layout",
+      "width": 13,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_7_EastEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/Route_7_EastEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_CELADON_CITY",
+      "name": "CeladonCity_Layout",
+      "width": 60,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/CeladonCity/border.bin",
+      "blockdata_filepath": "data/layouts/CeladonCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERGROUND_PATH_WEST_ENTRANCE",
+      "name": "UndergroundPath_WestEntrance_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/UndergroundPath_WestEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/UndergroundPath_WestEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERGROUND_PATH_EAST_WEST_TUNNEL",
+      "name": "UndergroundPath_EastWestTunnel_Layout",
+      "width": 80,
+      "height": 7,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_UnderGround_Entrance",
+      "border_filepath": "data/layouts/UndergroundPath_EastWestTunnel/border.bin",
+      "blockdata_filepath": "data/layouts/UndergroundPath_EastWestTunnel/map.bin"
     }
   ]
 }

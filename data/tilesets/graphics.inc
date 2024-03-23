@@ -2049,3 +2049,63 @@ gTilesetPalettes_SaffronCity::
 	.align 2
 gTilesetTiles_SaffronCity::
 	.incbin "data/tilesets/secondary/saffroncity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_CeladonCity::
+	.incbin "data/tilesets/secondary/celadoncity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/celadoncity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_CeladonCity::
+	.incbin "data/tilesets/secondary/celadoncity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_UndergroundPath::
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/undergroundpath/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_UndergroundPath::
+	.incbin "data/tilesets/secondary/undergroundpath/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_UnderGround_Entrance::
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/underground_entrance/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_UnderGround_Entrance::
+	.incbin "data/tilesets/secondary/underground_entrance/tiles.4bpp.lz"

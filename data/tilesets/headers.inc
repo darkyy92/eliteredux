@@ -1006,3 +1006,36 @@ gTileset_SaffronCity::
 	.4byte gMetatiles_SaffronCity
 	.4byte gMetatileAttributes_SaffronCity
 	.4byte NULL
+
+	.align 2
+gTileset_CeladonCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CeladonCity
+	.4byte gTilesetPalettes_CeladonCity
+	.4byte gMetatiles_CeladonCity
+	.4byte gMetatileAttributes_CeladonCity
+	.4byte NULL
+
+	.align 2
+gTileset_UndergroundPath::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_UndergroundPath
+	.4byte gTilesetPalettes_UndergroundPath
+	.4byte gMetatiles_UndergroundPath
+	.4byte gMetatileAttributes_UndergroundPath
+	.4byte NULL
+
+	.align 2
+gTileset_UnderGround_Entrance::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_UnderGround_Entrance
+	.4byte gTilesetPalettes_UnderGround_Entrance
+	.4byte gMetatiles_UnderGround_Entrance
+	.4byte gMetatileAttributes_UnderGround_Entrance
+	.4byte NULL

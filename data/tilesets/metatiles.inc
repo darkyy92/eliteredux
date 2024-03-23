@@ -675,3 +675,24 @@ gMetatiles_SaffronCity::
 	.align 1
 gMetatileAttributes_SaffronCity::
 	.incbin "data/tilesets/secondary/saffroncity/metatile_attributes.bin"
+	.align 1
+gMetatiles_CeladonCity::
+	.incbin "data/tilesets/secondary/celadoncity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_CeladonCity::
+	.incbin "data/tilesets/secondary/celadoncity/metatile_attributes.bin"
+	.align 1
+gMetatiles_UndergroundPath::
+	.incbin "data/tilesets/secondary/undergroundpath/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_UndergroundPath::
+	.incbin "data/tilesets/secondary/undergroundpath/metatile_attributes.bin"
+	.align 1
+gMetatiles_UnderGround_Entrance::
+	.incbin "data/tilesets/secondary/underground_entrance/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_UnderGround_Entrance::
+	.incbin "data/tilesets/secondary/underground_entrance/metatile_attributes.bin"

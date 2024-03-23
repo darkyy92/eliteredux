@@ -1196,3 +1196,13 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Route_8/scripts.inc"
 
 	.include "data/maps/Route_8_WestEntrance/scripts.inc"
+
+	.include "data/maps/Route_7/scripts.inc"
+
+	.include "data/maps/Route_7_EastEntrance/scripts.inc"
+
+	.include "data/maps/CeladonCity/scripts.inc"
+
+	.include "data/maps/UndergroundPath_WestEntrance/scripts.inc"
+
+	.include "data/maps/UndergroundPath_EastWestTunnel/scripts.inc"

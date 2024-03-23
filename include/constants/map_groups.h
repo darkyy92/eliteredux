@@ -114,6 +114,11 @@
 #define MAP_SAFFRON_CITY                          (45 | (1 << 8))
 #define MAP_ROUTE_8                               (46 | (1 << 8))
 #define MAP_ROUTE_8_WEST_ENTRANCE                 (47 | (1 << 8))
+#define MAP_ROUTE_7                               (48 | (1 << 8))
+#define MAP_ROUTE_7_EAST_ENTRANCE                 (49 | (1 << 8))
+#define MAP_CELADON_CITY                          (50 | (1 << 8))
+#define MAP_UNDERGROUND_PATH_WEST_ENTRANCE        (51 | (1 << 8))
+#define MAP_UNDERGROUND_PATH_EAST_WEST_TUNNEL     (52 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

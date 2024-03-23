@@ -145,7 +145,12 @@
     "Route_6_NorhtEntrance",
     "SaffronCity",
     "Route_8",
-    "Route_8_WestEntrance"
+    "Route_8_WestEntrance",
+    "Route_7",
+    "Route_7_EastEntrance",
+    "CeladonCity",
+    "UndergroundPath_WestEntrance",
+    "UndergroundPath_EastWestTunnel"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
