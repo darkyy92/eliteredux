@@ -9411,7 +9411,7 @@ static void Cmd_various(void)
         if (IsBattlerAlive(gBattlerAbility)
             && (i == ABILITY_RECEIVER || i == ABILITY_POWER_OF_ALCHEMY))
         {
-            if (IsRolePlayBannedAbility(gBattleMons[gActiveBattler].ability))
+            if (!IsRolePlayBannedAbility(gBattleMons[gActiveBattler].ability))
             {
                 gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[gActiveBattler].ability; // re-using the variable for trace
                 gBattleScripting.battler = gActiveBattler;
