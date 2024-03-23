@@ -3898,41 +3898,13 @@ BattleScript_PreserveMissedBitDoMoveAnim:
 BattleScript_EffectDreamEater::
 	attackcanceler
 	jumpifsubstituteblocks BattleScript_DreamEaterNoEffect
-	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_DreamEaterWorked
-	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_DreamEaterWorked
+	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_EffectAbsorb
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_EffectAbsorb
 BattleScript_DreamEaterNoEffect:
 	attackstring
 	ppreduce
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_WasntAffected
-BattleScript_DreamEaterWorked:
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
-	critcalc
-	damagecalc
-	adjustdamage
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
-	manipulatedamage DMG_TO_HP_FROM_MOVE
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-	healthbarupdate BS_ATTACKER
-	datahpupdate BS_ATTACKER
-	jumpifmovehadnoeffect BattleScript_DreamEaterTryFaintEnd
-	printstring STRINGID_PKMNDREAMEATEN
-	waitmessage B_WAIT_TIME_LONG
-BattleScript_DreamEaterTryFaintEnd:
-	tryfaintmon BS_TARGET, FALSE, NULL
-	goto BattleScript_MoveEnd
 
 BattleScript_EffectMirrorMove::
 	attackcanceler
