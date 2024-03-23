@@ -111,6 +111,9 @@
 #define MAP_ROUTE_6                               (42 | (1 << 8))
 #define MAP_ROUTE_5_SOUTH_ENTRANCE                (43 | (1 << 8))
 #define MAP_ROUTE_6_NORHT_ENTRANCE                (44 | (1 << 8))
+#define MAP_SAFFRON_CITY                          (45 | (1 << 8))
+#define MAP_ROUTE_8                               (46 | (1 << 8))
+#define MAP_ROUTE_8_WEST_ENTRANCE                 (47 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

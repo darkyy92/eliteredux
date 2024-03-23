@@ -1,9 +1,9 @@
 {
-  "id": "MAP_ROUTE_5_SOUTH_ENTRANCE",
-  "name": "Route_5_SouthEntrance",
-  "layout": "LAYOUT_ROUTE_5_SOUTH_ENTRANCE",
+  "id": "MAP_ROUTE_8_WEST_ENTRANCE",
+  "name": "Route_8_WestEntrance",
+  "layout": "LAYOUT_ROUTE_8_WEST_ENTRANCE",
   "music": "MUS_RG_PEWTER",
-  "region_map_section": "MAPSEC_ROUTE_5",
+  "region_map_section": "MAPSEC_ROUTE_8",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -18,18 +18,18 @@
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 9,
+      "x": 11,
+      "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_SAFFRON_CITY",
-      "dest_warp_id": 3
+      "dest_map": "MAP_ROUTE_8",
+      "dest_warp_id": 0
     },
     {
-      "x": 4,
-      "y": 1,
+      "x": 1,
+      "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE_5",
-      "dest_warp_id": 0
+      "dest_map": "MAP_SAFFRON_CITY",
+      "dest_warp_id": 2
     }
   ],
   "coord_events": [

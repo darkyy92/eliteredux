@@ -5060,6 +5060,36 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/Route_6_NorhtEntrance/border.bin",
       "blockdata_filepath": "data/layouts/Route_6_NorhtEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAFFRON_CITY",
+      "name": "SaffronCity_Layout",
+      "width": 66,
+      "height": 55,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SaffronCity",
+      "border_filepath": "data/layouts/SaffronCity/border.bin",
+      "blockdata_filepath": "data/layouts/SaffronCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_8",
+      "name": "Route_8_Layout",
+      "width": 72,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/Route_8/border.bin",
+      "blockdata_filepath": "data/layouts/Route_8/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_8_WEST_ENTRANCE",
+      "name": "Route_8_WestEntrance_Layout",
+      "width": 13,
+      "height": 9,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_8_WestEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/Route_8_WestEntrance/map.bin"
     }
   ]
 }

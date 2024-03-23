@@ -2029,3 +2029,23 @@ gTilesetPalettes_VermilionCity::
 	.align 2
 gTilesetTiles_VermilionCity::
 	.incbin "data/tilesets/secondary/vermilioncity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SaffronCity::
+	.incbin "data/tilesets/secondary/saffroncity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/saffroncity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SaffronCity::
+	.incbin "data/tilesets/secondary/saffroncity/tiles.4bpp.lz"

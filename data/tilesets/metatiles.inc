@@ -668,3 +668,10 @@ gMetatiles_VermilionCity::
 	.align 1
 gMetatileAttributes_VermilionCity::
 	.incbin "data/tilesets/secondary/vermilioncity/metatile_attributes.bin"
+	.align 1
+gMetatiles_SaffronCity::
+	.incbin "data/tilesets/secondary/saffroncity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SaffronCity::
+	.incbin "data/tilesets/secondary/saffroncity/metatile_attributes.bin"

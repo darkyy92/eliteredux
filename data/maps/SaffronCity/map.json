@@ -1,0 +1,62 @@
+{
+  "id": "MAP_SAFFRON_CITY",
+  "name": "SaffronCity",
+  "layout": "LAYOUT_SAFFRON_CITY",
+  "music": "MUS_RG_PEWTER",
+  "region_map_section": "MAPSEC_SAFFRON_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 34,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_6_NORHT_ENTRANCE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 35,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_6_NORHT_ENTRANCE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 58,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_8_WEST_ENTRANCE",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 34,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_5_SOUTH_ENTRANCE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 35,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_5_SOUTH_ENTRANCE",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

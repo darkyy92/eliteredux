@@ -1190,3 +1190,9 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/Route_5_SouthEntrance/scripts.inc"
 
 	.include "data/maps/Route_6_NorhtEntrance/scripts.inc"
+
+	.include "data/maps/SaffronCity/scripts.inc"
+
+	.include "data/maps/Route_8/scripts.inc"
+
+	.include "data/maps/Route_8_WestEntrance/scripts.inc"

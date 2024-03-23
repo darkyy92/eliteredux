@@ -995,3 +995,14 @@ gTileset_VermilionCity::
 	.4byte gMetatiles_VermilionCity
 	.4byte gMetatileAttributes_VermilionCity
 	.4byte NULL
+
+	.align 2
+gTileset_SaffronCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SaffronCity
+	.4byte gTilesetPalettes_SaffronCity
+	.4byte gMetatiles_SaffronCity
+	.4byte gMetatileAttributes_SaffronCity
+	.4byte NULL

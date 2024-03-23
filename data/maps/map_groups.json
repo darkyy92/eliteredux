@@ -142,7 +142,10 @@
     "VermilionCity",
     "Route_6",
     "Route_5_SouthEntrance",
-    "Route_6_NorhtEntrance"
+    "Route_6_NorhtEntrance",
+    "SaffronCity",
+    "Route_8",
+    "Route_8_WestEntrance"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
