@@ -5400,18 +5400,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(CheckAndSetSwitchInAbility(battler, ABILITY_DOWNLOAD)){
             u32 statId, opposingBattler;
             u32 opposingDef = 0, opposingSpDef = 0;
+            u8 isUnaware = BATTLER_HAS_ABILITY(battler, ABILITY_UNAWARE) || BATTLER_HAS_ABILITY(battler, ABILITY_CONTEMPT);
 
             opposingBattler = BATTLE_OPPOSITE(battler);
             for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
             {
                 if (IsBattlerAlive(opposingBattler))
                 {
-                    opposingDef += gBattleMons[opposingBattler].defense
-                                * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][0]
-                                / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][1];
-                    opposingSpDef += gBattleMons[opposingBattler].spDefense
-                                * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][0]
-                                / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
+                    opposingDef += CalculateStat(opposingBattler, STAT_DEF, 0, 0, TRUE, FALSE, isUnaware, FALSE);
+                    opposingSpDef += CalculateStat(opposingBattler, STAT_SPDEF, 0, 0, TRUE, FALSE, isUnaware, FALSE);
                 }
             }
 
@@ -10048,16 +10045,25 @@ bool32 CanBeBurned(u8 battlerId)
 
 bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget)
 {
+    if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
+    if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
+
+    if (!CanParalyzeType(battlerAttacker, battlerTarget)
+        || !CanBeParalyzedIgnoreType(battlerAttacker, battlerTarget))
+        return FALSE;
+    return TRUE;
+}
+
+bool32 CanBeParalyzedIgnoreType(u8 battlerAttacker, u8 battlerTarget)
+{
     u16 ability = GetBattlerAbility(battlerTarget);
 
-    if (gBattleMons[battlerTarget].status1 & !STATUS1_ANY && IsMyceliumMightActive(battlerAttacker))
-        return TRUE;
+    if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
+    if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
 
-    if ((!CanParalyzeType(battlerAttacker, battlerTarget))
-      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
+    if (gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
       || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability)
-      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerTarget)
       || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -13239,16 +13245,20 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
         if (secondaryStat == statEnum && statEnum != STAT_SPEED) statBase = statBase * 6 / 5;
         else if (secondaryStat == statEnum && statEnum == STAT_SPEED) 
         {
-            statBase *= gStatStageRatios[statStage][0];
-            statBase /= gStatStageRatios[statStage][1];
+            if (!gBattleMons[battler].status1 & STATUS1_BLEED) {
+                statBase *= gStatStageRatios[statStage][0];
+                statBase /= gStatStageRatios[statStage][1];
+            }
             statBase += CalculateStat(battler, secondaryStat, 0, move, isAttack, isCrit, isUnaware, TRUE) / 5;
             return statBase;
         }
         else if (secondaryStat) statBase += CalculateStat(battler, secondaryStat, 0, move, isAttack, isCrit, isUnaware, TRUE) / 5;
     }
 
-    statBase *= gStatStageRatios[statStage][0];
-    statBase /= gStatStageRatios[statStage][1];
+    if (!gBattleMons[battler].status1 & STATUS1_BLEED) {
+        statBase *= gStatStageRatios[statStage][0];
+        statBase /= gStatStageRatios[statStage][1];
+    }
     
     return statBase;
 }
@@ -15993,7 +16003,9 @@ u8 GetHighestStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
+                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            }
         }
         if (statVal > highestStat)
         {
@@ -16015,7 +16027,9 @@ u8 GetHighestAttackingStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
+                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            }
         }
         if (statVal > highestStat)
         {
@@ -16037,7 +16051,9 @@ u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
+                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
+            }
         }
         if (statVal > highestStat)
         {

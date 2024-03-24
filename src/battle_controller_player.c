@@ -2440,6 +2440,8 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
             case EFFECT_TOXIC:
             case EFFECT_POISON:
             case EFFECT_WILL_O_WISP:
+            case EFFECT_FROSTBITE:
+            case EFFECT_PARALYZE_IGNORE_TYPE:
             case EFFECT_PARALYZE:
                 return gBattleMons[targetId].status1 & STATUS1_ANY ? MOVE_EFFECTIVENESS_NONE : MOVE_EFFECTIVENESS_STATUS;
             case EFFECT_CONFUSE:
@@ -2484,6 +2486,10 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
         break;
         case EFFECT_WILL_O_WISP:
             if(!CanBeBurned(targetId))
+                moveNullified = TRUE;
+        break;
+        case EFFECT_PARALYZE_IGNORE_TYPE:
+            if(!CanBeParalyzedIgnoreType(userId, targetId))
                 moveNullified = TRUE;
         break;
         case EFFECT_PARALYZE:

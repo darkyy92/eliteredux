@@ -4902,8 +4902,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         speed *= 2;
 
     // stat stages
-    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
-    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+    if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
+        speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
+        speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
+    }
 
     return speed;
 }
