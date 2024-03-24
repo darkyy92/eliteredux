@@ -1995,7 +1995,7 @@ const u8 sText_Title_Status_Bad_Poison_Description[]       = _("Takes 1/16 of it
                                                                "turn, after which damage increases by\n"
                                                                "1/16 each time it takes poison damage.");
 const u8 sText_Title_Status_Bleed[]                        = _("Bleeding");
-const u8 sText_Title_Status_Bleed_Description[]            = _("Prevents healing, ignores stat changes,\n"
+const u8 sText_Title_Status_Bleed_Description[]            = _("Prevents healing, ignores stat buffs,\n"
                                                                "and will take 6% of its HP as damage.\n"
                                                                "Cured by healing moves.");
 

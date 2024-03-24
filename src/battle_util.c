@@ -13240,25 +13240,23 @@ u32 CalculateStat(u8 battler, u8 statEnum, u8 secondaryStat, u16 move, bool8 isA
     if (isUnaware) statStage = DEFAULT_STAT_STAGE;
     else if (isCrit && isAttack) statStage = max(statStage, DEFAULT_STAT_STAGE);
     else if (isCrit && !isAttack) statStage = min(statStage, DEFAULT_STAT_STAGE);
+
+    if (gBattleMons[battler].status1 & STATUS1_BLEED) statStage = min(statStage, DEFAULT_STAT_STAGE);
     
     if (!calculatingSecondary) {
         if (secondaryStat == statEnum && statEnum != STAT_SPEED) statBase = statBase * 6 / 5;
         else if (secondaryStat == statEnum && statEnum == STAT_SPEED) 
         {
-            if (!gBattleMons[battler].status1 & STATUS1_BLEED) {
-                statBase *= gStatStageRatios[statStage][0];
-                statBase /= gStatStageRatios[statStage][1];
-            }
+            statBase *= gStatStageRatios[statStage][0];
+            statBase /= gStatStageRatios[statStage][1];
             statBase += CalculateStat(battler, secondaryStat, 0, move, isAttack, isCrit, isUnaware, TRUE) / 5;
             return statBase;
         }
         else if (secondaryStat) statBase += CalculateStat(battler, secondaryStat, 0, move, isAttack, isCrit, isUnaware, TRUE) / 5;
     }
 
-    if (!gBattleMons[battler].status1 & STATUS1_BLEED) {
-        statBase *= gStatStageRatios[statStage][0];
-        statBase /= gStatStageRatios[statStage][1];
-    }
+    statBase *= gStatStageRatios[statStage][0];
+    statBase /= gStatStageRatios[statStage][1];
     
     return statBase;
 }
@@ -16003,9 +16001,10 @@ u8 GetHighestStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
-                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
-            }
+            u8 statStage = gBattleMons[battlerId].statStages[i];
+            if (gBattleMons[battlerId].status1 & STATUS1_BLEED) statStage = min(statStage, DEFAULT_STAT_STAGE);
+
+            statVal = statVal * gStatStageRatios[statStage][0] / gStatStageRatios[statStage][1];
         }
         if (statVal > highestStat)
         {
@@ -16027,9 +16026,10 @@ u8 GetHighestAttackingStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
-                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
-            }
+            u8 statStage = gBattleMons[battlerId].statStages[i];
+            if (gBattleMons[battlerId].status1 & STATUS1_BLEED) statStage = min(statStage, DEFAULT_STAT_STAGE);
+
+            statVal = statVal * gStatStageRatios[statStage][0] / gStatStageRatios[statStage][1];
         }
         if (statVal > highestStat)
         {
@@ -16051,9 +16051,10 @@ u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
         u16 statVal = *(&gBattleMons[battlerId].attack + (i - 1));
         if (includeStatStages)
         {
-            if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
-                statVal = statVal * gStatStageRatios[gBattleMons[battlerId].statStages[i]][0] / gStatStageRatios[gBattleMons[battlerId].statStages[i]][1];
-            }
+            u8 statStage = gBattleMons[battlerId].statStages[i];
+            if (gBattleMons[battlerId].status1 & STATUS1_BLEED) statStage = min(statStage, DEFAULT_STAT_STAGE);
+
+            statVal = statVal * gStatStageRatios[statStage][0] / gStatStageRatios[statStage][1];
         }
         if (statVal > highestStat)
         {

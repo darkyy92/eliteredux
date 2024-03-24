@@ -4815,6 +4815,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
     u32 speed = gBattleMons[battlerId].speed;
     u32 ability = GetBattlerAbility(battlerId);
     u32 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
+    u8 statStage = gBattleMons[battlerId].statStages[STAT_SPEED];
 
     // weather abilities
     if (WEATHER_HAS_EFFECT)
@@ -4902,10 +4903,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId, u8 calcType)
         speed *= 2;
 
     // stat stages
-    if (!gBattleMons[battlerId].status1 & STATUS1_BLEED) {
-        speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
-        speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
-    }
+    if (gBattleMons[battlerId].status1 & STATUS1_BLEED) statStage = min(statStage, DEFAULT_STAT_STAGE);
+
+    speed *= gStatStageRatios[statStage][0];
+    speed /= gStatStageRatios[statStage][1];
 
     return speed;
 }
