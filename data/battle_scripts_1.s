@@ -468,6 +468,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonCheer			  @ EFFECT_DRAGON_CHEER
 	.4byte BattleScript_EffectShelter				  @ EFFECT_SHELTER
 	.4byte BattleScript_EffectArgumentHitIfStatUp	  @ EFFECT_ARGUMENT_HIT_IF_STAT_UP
+	.4byte BattleScript_EffectUpperHand				  @ EFFECT_UPPER_HAND
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -12297,4 +12298,9 @@ BattleScript_EffectArgumentHitIfStatUp::
 	goto BattleScript_EffectHit
 BattleScript_EffectArgumentHitIfStatUp_DoEffect:
 	argumenttomoveeffect
+	goto BattleScript_EffectHit
+
+BattleScript_EffectUpperHand::
+	trypupperhand BS_TARGET, BattleScript_ButItFailedAtkStringPpReduce
+	setmoveeffect MOVE_EFFECT_FLINCH
 	goto BattleScript_EffectHit

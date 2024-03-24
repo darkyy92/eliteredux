@@ -11129,13 +11129,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
     [MOVE_UPPER_HAND] =
     {
-        .effect = EFFECT_PLACEHOLDER,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
-        .pp = 0,
-        .secondaryEffectChance = 0,
+        .effect = EFFECT_UPPER_HAND,
+        .power = 65,
+        .type = TYPE_FIGHTING,
+        .accuracy = 100,
+        .pp = 100,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
+        .priority = 3,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
     },
     [MOVE_MALIGNANT_CHAIN] =

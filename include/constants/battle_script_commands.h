@@ -245,6 +245,7 @@
 #define VARIOUS_RESTORE_STACK_STATE             164
 #define VARIOUS_SET_DRAGON_CHEER                165
 #define VARIOUS_GOTO_IF_STAT_UP                 166
+#define VARIOUS_TRY_UPPER_HAND                  167
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

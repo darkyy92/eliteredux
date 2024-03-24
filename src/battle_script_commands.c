@@ -11135,6 +11135,24 @@ static void Cmd_various(void)
         else gBattlescriptCurrInstr += 7;
         }
         return;
+    case VARIOUS_TRY_UPPER_HAND:
+        if (gCurrentTurnActionNumber >= GetBattlerTurnOrderNum(gActiveBattler))
+        {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            return;
+        }
+        {
+            u8 pranksterElevated = gRoundStructs[gActiveBattler].pranksterElevated;
+            s8 chosenMovePriority = GetChosenMovePriority(gActiveBattler, gBattleStruct->moveTarget[gActiveBattler]);
+            gRoundStructs[gActiveBattler].pranksterElevated = pranksterElevated;
+            if (chosenMovePriority > 0)
+            {
+                gBattlescriptCurrInstr += 7;
+                return;
+            }
+        }
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
