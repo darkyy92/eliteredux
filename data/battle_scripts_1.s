@@ -467,6 +467,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectVictoryDance			  @ EFFECT_VICTORY_DANCE
 	.4byte BattleScript_EffectDragonCheer			  @ EFFECT_DRAGON_CHEER
 	.4byte BattleScript_EffectShelter				  @ EFFECT_SHELTER
+	.4byte BattleScript_EffectArgumentHitIfStatUp	  @ EFFECT_ARGUMENT_HIT_IF_STAT_UP
 	
 BattleScript_EffectCourtChange:
 	attackcanceler
@@ -12290,3 +12291,10 @@ BattleScript_EffectShelter_Works:
 	seteffectprimary
 	readtargetfromstack4
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectArgumentHitIfStatUp::
+	jumpifstatup BS_TARGET, BattleScript_EffectArgumentHitIfStatUp_DoEffect
+	goto BattleScript_EffectHit
+BattleScript_EffectArgumentHitIfStatUp_DoEffect:
+	argumenttomoveeffect
+	goto BattleScript_EffectHit

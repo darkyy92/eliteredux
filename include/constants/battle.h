@@ -381,16 +381,15 @@
 #define MOVE_EFFECT_GLAIVE_RUSH            76
 #define MOVE_EFFECT_SALT_CURE              77
 #define MOVE_EFFECT_ORDER_UP               78
-#define MOVE_EFFECT_BURN_IF_STATUS_UP      79
-#define MOVE_EFFECT_WATER_PLEDGE           80
-#define MOVE_EFFECT_FIRE_PLEDGE            81
-#define MOVE_EFFECT_GRASS_PLEDGE           82
-#define MOVE_EFFECT_RAINBOW                83
-#define MOVE_EFFECT_FIRE_SEA               84
-#define MOVE_EFFECT_SWAMP                  85
-#define MOVE_EFFECT_SYRUP                  86
-#define MOVE_EFFECT_DIRE_CLAW              87
-#define NUM_MOVE_EFFECTS                   88
+#define MOVE_EFFECT_WATER_PLEDGE           79
+#define MOVE_EFFECT_FIRE_PLEDGE            80
+#define MOVE_EFFECT_GRASS_PLEDGE           81
+#define MOVE_EFFECT_RAINBOW                82
+#define MOVE_EFFECT_FIRE_SEA               83
+#define MOVE_EFFECT_SWAMP                  84
+#define MOVE_EFFECT_SYRUP                  85
+#define MOVE_EFFECT_DIRE_CLAW              86
+#define NUM_MOVE_EFFECTS                   87
 
 #define MOVE_EFFECT_IGNORE_TYPE_IMMUNITIES 0x2000
 #define MOVE_EFFECT_AFFECTS_USER        0x4000

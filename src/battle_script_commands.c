@@ -3528,26 +3528,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gBattlescriptCurrInstr++;
                 }
                 break;
-            case MOVE_EFFECT_BURN_IF_STATUS_UP:
-                {
-                    bool8 anyStatus;
-                    u8 i;
-                    gBattleScripting.moveEffect &= ~MOVE_EFFECT_BURN_IF_STATUS_UP;
-                    for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
-                    {
-                        if (gBattleMons[gEffectBattler].statStages[i] > DEFAULT_STAT_STAGE)
-                        {
-                            gBattleScripting.moveEffect = MOVE_EFFECT_BURN | affectsUser;
-                            SetMoveEffect(primary, certain);
-                            break;
-                        }
-                    }
-                    if (i >= NUM_BATTLE_STATS)
-                    {
-                        gBattlescriptCurrInstr++;
-                    }
-                }
-                break;
             case MOVE_EFFECT_WATER_PLEDGE:
                 if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
                 {
@@ -11137,6 +11117,22 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
             gStatuses4[gActiveBattler] |= STATUS4_DRAGON_CHEER;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
+        }
+        return;
+    case VARIOUS_GOTO_IF_STAT_UP:
+        {
+        u8 i;
+        if (!BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_UNAWARE)
+            && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_CONTEMPT)
+            && !gBattleMons[gActiveBattler].status1 & STATUS1_BLEED)
+        {
+            for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+            {
+                if (gBattleMons[gActiveBattler].statStages[i] > DEFAULT_STAT_STAGE) break;
+            }
+        }
+        if (i && i < NUM_BATTLE_STATS) gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else gBattlescriptCurrInstr += 7;
         }
         return;
     } // End of switch (gBattlescriptCurrInstr[2])

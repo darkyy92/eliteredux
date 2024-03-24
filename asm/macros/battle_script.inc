@@ -2290,3 +2290,8 @@
 	various \battler, VARIOUS_SET_DRAGON_CHEER
 	.4byte \failPtr
 	.endm
+
+	.macro jumpifstatup battler:req, ptr:req
+	various \battler, VARIOUS_GOTO_IF_STAT_UP
+	.4byte \ptr
+	.endm
