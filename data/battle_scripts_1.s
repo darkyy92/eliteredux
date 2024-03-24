@@ -3412,8 +3412,10 @@ BattleScript_EffectBerrySmash:
 	attackstring
 	ppreduce
 	setbyte sBERRY_OVERRIDE, TRUE
+	savetargettostack4
 	consumeberry BS_ATTACKER
 	setbyte sBERRY_OVERRIDE, FALSE
+	readtargetfromstack4
 	goto BattleScript_HitFromAccCheck
 BattleScript_EffectBerrySmashNoBerry:
 	setdynamictype BS_ATTACKER, 0
