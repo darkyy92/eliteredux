@@ -233,18 +233,19 @@ void HandleAction_UseMove(void)
         gCurrentMove = gChosenMove = gQueuedExtraAttackData[0].move;
         gCurrMovePos = gQueuedExtraAttackData[0].movePos;
         if (gCurrMovePos == MAX_MON_MOVES) gHitMarker |= HITMARKER_NO_PPDEDUCT;
-        gBattleStruct->moveTarget[gBattlerAttacker] = gQueuedExtraAttackData[0].target;
+        gBattlerTarget = gQueuedExtraAttackData[0].target;
     }
     else if (gRoundStructs[gBattlerAttacker].noValidMoves)
     {
         gRoundStructs[gBattlerAttacker].noValidMoves = FALSE;
         gCurrentMove = gChosenMove = MOVE_STRUGGLE;
         gHitMarker |= HITMARKER_NO_PPDEDUCT;
-        gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(MOVE_STRUGGLE, 0);
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(MOVE_STRUGGLE, 0);
     }
     else if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS || gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE)
     {
         gCurrentMove = gChosenMove = gLockedMoves[gBattlerAttacker];
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
     }
     // encore forces you to use the same move
     else if (gVolatileStructs[gBattlerAttacker].encoredMove != MOVE_NONE
@@ -252,7 +253,7 @@ void HandleAction_UseMove(void)
     {
         gCurrentMove = gChosenMove = gVolatileStructs[gBattlerAttacker].encoredMove;
         gCurrMovePos = gChosenMovePos = gVolatileStructs[gBattlerAttacker].encoredMovePos;
-        gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
     }
     // check if the encored move wasn't overwritten
     else if (gVolatileStructs[gBattlerAttacker].encoredMove != MOVE_NONE
@@ -263,16 +264,17 @@ void HandleAction_UseMove(void)
         gVolatileStructs[gBattlerAttacker].encoredMove = MOVE_NONE;
         gVolatileStructs[gBattlerAttacker].encoredMovePos = 0;
         gVolatileStructs[gBattlerAttacker].encoreTimer = 0;
-        gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
     }
     else if (gBattleMons[gBattlerAttacker].moves[gCurrMovePos] != gChosenMoveByBattler[gBattlerAttacker])
     {
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
-        gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker] = GetMoveTarget(gCurrentMove, 0);
     }
     else
     {
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
     }
 
     if (gBattleMons[gBattlerAttacker].hp != 0)
@@ -298,14 +300,14 @@ void HandleAction_UseMove(void)
     else if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
            && gSideTimers[side].followmeTimer == 0
            && (gBattleMoves[gCurrentMove].power != 0 || GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) != MOVE_TARGET_USER)
-           && ((GetBattlerAbility(gBattleStruct->moveTarget[gBattlerAttacker]) != ABILITY_LIGHTNING_ROD && !BattlerHasInnate(gBattleStruct->moveTarget[gBattlerAttacker], ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
-            || (GetBattlerAbility(gBattleStruct->moveTarget[gBattlerAttacker]) != ABILITY_STORM_DRAIN   && !BattlerHasInnate(gBattleStruct->moveTarget[gBattlerAttacker], ABILITY_STORM_DRAIN) && moveType == TYPE_WATER)))
+           && ((GetBattlerAbility(gBattlerTarget) != ABILITY_LIGHTNING_ROD && !BattlerHasInnate(gBattlerTarget, ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
+            || (GetBattlerAbility(gBattlerTarget) != ABILITY_STORM_DRAIN   && !BattlerHasInnate(gBattlerTarget, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER)))
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
             if (side != GetBattlerSide(gActiveBattler)
-                && gBattleStruct->moveTarget[gBattlerAttacker] != gActiveBattler
+                && gBattlerTarget != gActiveBattler
                 && (((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || BattlerHasInnate(gActiveBattler, ABILITY_LIGHTNING_ROD)) && moveType == TYPE_ELECTRIC)
                  || ((GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN   || BattlerHasInnate(gActiveBattler, ABILITY_STORM_DRAIN))   && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(gActiveBattler) < var
@@ -344,10 +346,6 @@ void HandleAction_UseMove(void)
                     if (IsBattlerAlive(gBattlerTarget))
                         break;
                 }
-            }
-            else
-            {
-                gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
             }
 
             if (!IsBattlerAlive(gBattlerTarget) || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER))
@@ -421,7 +419,6 @@ void HandleAction_UseMove(void)
     }
     else
     {
-        gBattlerTarget = gBattleStruct->moveTarget[gBattlerAttacker];
         if (!IsBattlerAlive(gBattlerTarget) || GetAbilityState(gBattlerTarget, ABILITY_COMMANDER) >= COMMANDER_ACTIVE)
         {
             if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
@@ -436,8 +433,6 @@ void HandleAction_UseMove(void)
             }
         }
     }
-
-    gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget;
 
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE && gRoundStructs[gBattlerAttacker].palaceUnableToUseMove)
     {
@@ -11630,8 +11625,6 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             targetBattler = gBattlerAttacker;
         break;
     }
-
-    gBattleStruct->moveTarget[gBattlerAttacker] = targetBattler;
 
     return targetBattler;
 }

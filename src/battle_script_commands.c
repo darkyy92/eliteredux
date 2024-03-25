@@ -8510,9 +8510,8 @@ static bool32 HasAttackerFaintedTarget(void)
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         && gBattleMoves[gCurrentMove].power != 0
         && (gLastHitBy[gBattlerTarget] == 0xFF || gLastHitBy[gBattlerTarget] == gBattlerAttacker)
-        && gBattleStruct->moveTarget[gBattlerAttacker] == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
-        && gCurrentTurnActionNumber == GetBattlerTurnOrderNum(gBattlerAttacker)
+        && GetTurnBattler() == gBattlerAttacker
         && (gChosenMove == gChosenMoveByBattler[gBattlerAttacker] || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos]))
         return TRUE;
     else
@@ -9943,7 +9942,7 @@ static void Cmd_various(void)
             {
                 gQueuedExtraAttackData[++gQueuedAttackCount] = (struct ExtraAttackActionStruct) {
                     .attacker = gActiveBattler,
-                    .target = gBattleStruct->moveTarget[gBattlerAttacker],
+                    .target = gBattlerTarget,
                     .move = gLastMoves[gActiveBattler],
                     .movePos = i,
                 };
