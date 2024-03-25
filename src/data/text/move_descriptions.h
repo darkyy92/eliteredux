@@ -3726,6 +3726,10 @@ static const u8 sMoveTwoLineDescription_MoveToxicNeedles[] = _(
     "Hits 2-5 times. 10%\n"
     "chance to poison.");
 
+static const u8 sMoveTwoLineDescription_MoveSmolderBash[] = _(
+    "A scorching jab that has\n"
+    "a 10% chance to burn.");
+
 // MOVE_NONE is ignored in this table. Make sure to always subtract 1 before getting the right pointer.
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 {
@@ -4677,6 +4681,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PEBBLE_SHOWER - 1] = sMoveTwoLineDescription_MovePebbleShower,
     [MOVE_RAPID_RIVER - 1] = sMoveTwoLineDescription_MoveRapidRiver,
     [MOVE_TOXIC_NEEDLES - 1] = sMoveTwoLineDescription_MoveToxicNeedles,
+    [MOVE_SMOLDER_BASH - 1] = sMoveTwoLineDescription_MoveSmolderBash,
 };
 
 static const u8 sMoveFourLineDescription_MovePound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5627,6 +5632,7 @@ static const u8 sMoveFourLineDescription_MoveBeetleBash[] = _("30% chance to\nco
 static const u8 sMoveFourLineDescription_MovePebbleShower[] = _("20% chance to flinch.\nHits both targets.");
 static const u8 sMoveFourLineDescription_MoveRapidRiver[] = _("Hits twice.\nMega launcher.");
 static const u8 sMoveFourLineDescription_MoveToxicNeedles[] = _("Hits 2-5 times. 10%\nchance to poison.");
+static const u8 sMoveFourLineDescription_MoveSmolderBash[] = _("Deals damage. 10%\nchance to burn.\nHorn-based.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND - 1] = sMoveFourLineDescription_MovePound,
@@ -6577,4 +6583,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_PEBBLE_SHOWER - 1] = sMoveFourLineDescription_MovePebbleShower,
     [MOVE_RAPID_RIVER - 1] = sMoveFourLineDescription_MoveRapidRiver,
     [MOVE_TOXIC_NEEDLES - 1] = sMoveFourLineDescription_MoveToxicNeedles,
+    [MOVE_SMOLDER_BASH - 1] = sMoveFourLineDescription_MoveSmolderBash,
 };
