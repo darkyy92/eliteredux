@@ -39644,3 +39644,15 @@ static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
     .moves = MOVE_EARTHQUAKE, MOVE_SHADOW_CLAW, MOVE_SUCKER_PUNCH, MOVE_BODY_PRESS
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_NewTrainer[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_BULBASAUR,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE
+    }
+};
