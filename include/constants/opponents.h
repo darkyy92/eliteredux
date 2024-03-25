@@ -885,6 +885,7 @@
 #define TRAINER_STEVEN_DOUBLES                         881
 #define TRAINER_STEVEN_DOUBLES_LEGENDS                 882
 
+#define TRAINER_NEW_TRAINER                            883
 #define TRAINERS_COUNT                                 1600
 #define MAX_OLD_TRAINERS_COUNT                         TRAINERS_COUNT + 1
 
