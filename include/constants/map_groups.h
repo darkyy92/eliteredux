@@ -119,6 +119,7 @@
 #define MAP_CELADON_CITY                          (50 | (1 << 8))
 #define MAP_UNDERGROUND_PATH_WEST_ENTRANCE        (51 | (1 << 8))
 #define MAP_UNDERGROUND_PATH_EAST_WEST_TUNNEL     (52 | (1 << 8))
+#define MAP_UNDERGROUND_PATH_EAST_ENTRANCE        (53 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

@@ -5140,6 +5140,16 @@
       "secondary_tileset": "gTileset_UnderGround_Entrance",
       "border_filepath": "data/layouts/UndergroundPath_EastWestTunnel/border.bin",
       "blockdata_filepath": "data/layouts/UndergroundPath_EastWestTunnel/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERGROUND_PATH_EAST_ENTRANCE",
+      "name": "UndergroundPath_EastEntrance_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/UndergroundPath_EastEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/UndergroundPath_EastEntrance/map.bin"
     }
   ]
 }

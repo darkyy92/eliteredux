@@ -1206,3 +1206,5 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/UndergroundPath_WestEntrance/scripts.inc"
 
 	.include "data/maps/UndergroundPath_EastWestTunnel/scripts.inc"
+
+	.include "data/maps/UndergroundPath_EastEntrance/scripts.inc"

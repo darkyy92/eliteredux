@@ -150,7 +150,8 @@
     "Route_7_EastEntrance",
     "CeladonCity",
     "UndergroundPath_WestEntrance",
-    "UndergroundPath_EastWestTunnel"
+    "UndergroundPath_EastWestTunnel",
+    "UndergroundPath_EastEntrance"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
