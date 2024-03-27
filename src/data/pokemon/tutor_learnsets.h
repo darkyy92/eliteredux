@@ -30059,7 +30059,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_MUD_SHOT)
         TUTOR(MOVE_COVET)
         TUTOR(MOVE_UPROAR)
-        TUTOR(MOVE_DOUBLE_EDGE)  
         TUTOR_LEARNSET_END
 
     [SPECIES_OINKOLOGNE] = TUTOR_LEARNSET
@@ -30074,7 +30073,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_MUD_SHOT)
         TUTOR(MOVE_COVET)
         TUTOR(MOVE_UPROAR)
-        TUTOR(MOVE_DOUBLE_EDGE)
         TUTOR(MOVE_EARTH_POWER)  
         TUTOR_LEARNSET_END
 
@@ -30089,7 +30087,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_KNOCK_OFF)
         TUTOR(MOVE_PAIN_SPLIT)
         TUTOR(MOVE_BUG_BITE)
-        TUTOR(MOVE_COUNTER)
         TUTOR(MOVE_GASTRO_ACID)
         TUTOR(MOVE_THROAT_CHOP)
         TUTOR(MOVE_SKITTER_SMACK)  
@@ -30106,7 +30103,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_KNOCK_OFF)
         TUTOR(MOVE_PAIN_SPLIT)
         TUTOR(MOVE_BUG_BITE)
-        TUTOR(MOVE_COUNTER)
         TUTOR(MOVE_GASTRO_ACID)
         TUTOR(MOVE_THROAT_CHOP)
         TUTOR(MOVE_SKITTER_SMACK)  
@@ -30183,7 +30179,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_KNOCK_OFF)
         TUTOR(MOVE_COACHING)
         TUTOR(MOVE_THROAT_CHOP)
-        TUTOR(MOVE_THUNDER_PUNCH)
         TUTOR(MOVE_AGILITY)
         TUTOR(MOVE_CLOSE_COMBAT)  
         TUTOR_LEARNSET_END
@@ -30242,7 +30237,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_BABY_DOLL_EYES)
         TUTOR(MOVE_PLAY_ROUGH)
         TUTOR(MOVE_BATON_PASS)
-        TUTOR(MOVE_DOUBLE_EDGE)
         TUTOR(MOVE_CRUNCH)
         TUTOR(MOVE_LAST_RESORT)  
         TUTOR_LEARNSET_END
@@ -30265,7 +30259,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_BABY_DOLL_EYES)
         TUTOR(MOVE_PLAY_ROUGH)
         TUTOR(MOVE_BATON_PASS)
-        TUTOR(MOVE_DOUBLE_EDGE)
         TUTOR(MOVE_CRUNCH)
         TUTOR(MOVE_LAST_RESORT)  
         TUTOR_LEARNSET_END
@@ -30320,7 +30313,6 @@ const union TutorUnion gTutorLearnsets[NUM_SPECIES] = {
         TUTOR(MOVE_HELPING_HAND)
         TUTOR(MOVE_UPROAR)
         TUTOR(MOVE_ICY_WIND)
-        TUTOR(MOVE_SWAGGER)
         TUTOR(MOVE_BRAVE_BIRD)
         TUTOR(MOVE_REVERSAL)  
         TUTOR_LEARNSET_END
