@@ -2212,7 +2212,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 #ifdef DEBUG_BUILD
                 if(FlagGet(FLAG_DEBUG_GODMODE))
-                    level = 10;
+                    level = 1;
                 #endif
 
                 if (trainerNum == TRAINER_OLDPLAYER)
