@@ -302,6 +302,7 @@ script EverGrandeCity_ChampionsRoom_EventScript_Steven{
 	msgbox(EverGrandeCity_ChampionsRoom_Text_IntroSpeech_Steven, MSGBOX_DEFAULT)
 	setvar(VAR_BATTLE_FIELD_EFFECT_TYPE, BATTLE_FIELD_EFFECT_ROOM)
 	if(flag(FLAG_SYS_GAME_CLEAR)){
+		setvar(VAR_0x8004, 45)
 		switch(var(VAR_ELITE_4_MODE)){
 			case 0:
 				trainerbattle_no_intro(TRAINER_STEVEN, EverGrandeCity_ChampionsRoom_Text_Defeat_Steven)
@@ -320,6 +321,7 @@ script EverGrandeCity_ChampionsRoom_EventScript_Steven{
 		}
 	}
 	else{
+		setvar(VAR_0x8004, 40)
 		trainerbattle_no_intro(TRAINER_STEVEN, EverGrandeCity_ChampionsRoom_Text_Defeat_Steven)
 	}
 	goto(EverGrandeCity_ChampionsRoom_EventScript_Defeated)

@@ -20,6 +20,7 @@ FortreeCity_Gym_EventScript_Winona:: @ 82165C8
 	call FortreeCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WINONA, FortreeCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, FortreeCity_Gym_EventScript_WinonaRematch
+	setvar VAR_0x8004, 15
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM51, FortreeCity_Gym_EventScript_GiveRoost
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
@@ -65,6 +66,7 @@ FortreeCity_Gym_EventScript_SetSingles::
 	msgbox FortreeCity_Gym_Text_WinonaAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq FortreeCity_Gym_EventScript_WinonaSinglesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WINONA_4, FortreeCity_Gym_Text_WinonaRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WINONA
 	releaseall
@@ -74,18 +76,21 @@ FortreeCity_Gym_EventScript_SetDoubles::
 	msgbox FortreeCity_Gym_Text_WinonaAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq FortreeCity_Gym_EventScript_WinonaDoublesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WINONA_5, FortreeCity_Gym_Text_WinonaRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WINONA
 	releaseall
 	end
 
 FortreeCity_Gym_EventScript_WinonaSinglesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WINONA_2, FortreeCity_Gym_Text_WinonaRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WINONA
 	releaseall
 	end
 
 FortreeCity_Gym_EventScript_WinonaDoublesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WINONA_3, FortreeCity_Gym_Text_WinonaRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WINONA
 	releaseall

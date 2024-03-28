@@ -300,16 +300,19 @@ LilycoveCity_EventScript_DeclineBrendanBattle:: @ 81E2ECD
 	end
 
 LilycoveCity_EventScript_BattleMayTreecko:: @ 81E2EDE
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
 LilycoveCity_EventScript_BattleMayTorchic:: @ 81E2EEE
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
 LilycoveCity_EventScript_BattleMayMudkip:: @ 81E2EFE
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end

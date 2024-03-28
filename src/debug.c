@@ -1662,18 +1662,12 @@ static void DebugAction_Util_ResetParty(u8 taskId)
     u8 i, j;
     u16 species = SPECIES_BULBASAUR;
     u16 oldSpecies = SPECIES_NONE;
-    bool8 makeAlpha = TRUE;
-    bool8 makeShiny = TRUE;
-
-    //Make Aplha
-    //SetMonData(&gPlayerParty[0], MON_DATA_IS_ALPHA, &makeAlpha);
-    //SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &makeShiny);
 
     // Party Mons
     for(i = 0; i < gPlayerPartyCount; i++)
     {
         oldSpecies = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
-        if(oldSpecies > SPECIES_CALYREX)
+        if(isSpeciesPlaceholderMon(oldSpecies))
             SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &species);
     }
 
@@ -1683,9 +1677,8 @@ static void DebugAction_Util_ResetParty(u8 taskId)
         for(j = 0; j < IN_BOX_COUNT; j++)
         {
             oldSpecies = GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SPECIES);
-            if(oldSpecies > SPECIES_CALYREX){
-                GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
-                ZeroBoxMonAt(i, j);
+            if(isSpeciesPlaceholderMon(oldSpecies)){
+                SetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SPECIES, &species);
             }
         }
     }

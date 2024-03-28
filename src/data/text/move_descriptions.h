@@ -1688,7 +1688,7 @@ static const u8 sMoveTwoLineDescription_MoveThunderFang[] = _(
 
 static const u8 sMoveTwoLineDescription_MoveIceFang[] = _(
     "May cause flinching or\n"
-    "leave the foe frozen.");
+    "leave the foe frostbiten.");
 
 static const u8 sMoveTwoLineDescription_MoveFireFang[] = _(
     "May cause flinching or\n"
@@ -5597,7 +5597,7 @@ static const u8 sMoveFourLineDescription_MoveMightyCleave[] = _("The user wields
 static const u8 sMoveFourLineDescription_MoveTemperFlare[] = _("Spurred by desperation,\nthe user attacks the target.\nThis move's power is doubled if\nthe user's previous move failed.");
 static const u8 sMoveFourLineDescription_MoveSupercellSlam[] = _("The user takes 50%\nHP in recoil on miss.\nHammer-based.");
 static const u8 sMoveFourLineDescription_MovePsychicNoise[] = _("The user attacks the target with\nunpleasant sound waves. For two turns,\nthe target is prevented from recovering HP\nthrough moves, Abilities, or held items.");
-static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("Flinches the target.\n+3 priority. Fails if the\ntarget doesn't use a\npriority move.");
+static const u8 sMoveFourLineDescription_MoveUpperHand[] = _("Flinches the target.\n+3 priority. Fails if\nthe target doesn't\nuse a priority move.");
 static const u8 sMoveFourLineDescription_MoveMalignantChain[] = _("The user pours toxins into the target\nby wrapping them in a toxic, corrosive chain.\nThis may also leave\nthe target badly poisoned.");
 static const u8 sMoveFourLineDescription_MoveLunarBlessing[] = _("Heals 25% HP to all\nallied battlers and\ncures their status.");
 static const u8 sMoveFourLineDescription_MoveChloroblast[] = _("Deals damage.\n50% max HP recoil.");

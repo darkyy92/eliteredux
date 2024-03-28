@@ -91,16 +91,19 @@ Route119_EventScript_BattleMay:: @ 81F450B
 	end
 
 Route119_EventScript_BattleMayTreecko:: @ 81F453A
+	setvar VAR_0x8004, 15
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TREECKO, Route119_Text_MayDefeat
 	goto Route119_EventScript_DefeatedMay
 	end
 
 Route119_EventScript_BattleMayTorchic:: @ 81F454A
+	setvar VAR_0x8004, 15
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TORCHIC, Route119_Text_MayDefeat
 	goto Route119_EventScript_DefeatedMay
 	end
 
 Route119_EventScript_BattleMayMudkip:: @ 81F455A
+	setvar VAR_0x8004, 15
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_MUDKIP, Route119_Text_MayDefeat
 	goto Route119_EventScript_DefeatedMay
 	end

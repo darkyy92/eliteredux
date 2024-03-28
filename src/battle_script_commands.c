@@ -7845,10 +7845,11 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     return moneyReward;
 }
 
+#define DEFAULT_BP_GAIN_PER_TRAINER 3
 static void Cmd_getmoneyreward(void)
 {
     if(VarGet(VAR_TRAINER_PRIZE_BP) == 0) 
-        VarSet(VAR_TRAINER_PRIZE_BP, 1);
+        VarSet(VAR_TRAINER_PRIZE_BP, DEFAULT_BP_GAIN_PER_TRAINER);
     GiveFrontierBattlePoints();
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 3, VarGet(VAR_TRAINER_PRIZE_BP));
     gBattlescriptCurrInstr++;

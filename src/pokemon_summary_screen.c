@@ -3490,7 +3490,7 @@ static void PrintInfoPage(void)
     if (dexNum == 0xFFFF)
         StringCopy(gStringVar1, gText_ThreeMarks);
     else
-        ConvertIntToDecimalStringN(gStringVar1, dexNum, STR_CONV_MODE_LEADING_ZEROS, 3);
+        ConvertIntToDecimalStringN(gStringVar1, dexNum, STR_CONV_MODE_LEADING_ZEROS, 4);
     x = GetStringCenterAlignXOffset(FONT_NORMAL, gStringVar1, 72) + 76;
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 16, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 

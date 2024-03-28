@@ -144,8 +144,8 @@ script Route102_EventScript_Gen8_NPC{
 }
 
 script Common_EventScript_GenericTrainer{
-	trainerbattle_single(TRAINER_NONE, format("Let's Fight"), format("I was defeated"))
-	msgbox(format("Post Battle Text"), MSGBOX_AUTOCLOSE)
+	trainerbattle_single(TRAINER_NONE, format("Let's Fight!"), format("I was defeated..."))
+	msgbox(format("I will try to get stronger for next time."), MSGBOX_AUTOCLOSE)
 	end
 }
 
