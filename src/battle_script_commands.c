@@ -12701,7 +12701,6 @@ bool8 IsBattlerImmuneToLowerStatsFromIntimidateClone(u8 battler, u8 stat, u16 ab
     if(checkOblivious){
         if(BATTLER_HAS_ABILITY(battler, ABILITY_OBLIVIOUS) ||
            BATTLER_HAS_ABILITY(battler, ABILITY_OWN_TEMPO) ||
-           BATTLER_HAS_ABILITY(battler, ABILITY_UNAWARE)   ||
            BATTLER_HAS_ABILITY(battler, ABILITY_OVERWHELM))
             return TRUE;
     }
