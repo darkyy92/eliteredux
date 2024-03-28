@@ -6016,6 +6016,8 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
                 return TYPE_FIRE;
             else if (gBattleWeather & WEATHER_HAIL_ANY)
                 return TYPE_ICE;
+            else if (gBattleWeather & B_WEATHER_FOG_PERMANENT)
+                return TYPE_FLYING;
             else
                 return TYPE_NORMAL;
         }
@@ -6163,6 +6165,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                 gBattleStruct->dynamicMoveType = TYPE_FIRE | 0x80;
             else if (gBattleWeather & WEATHER_HAIL_ANY)
                 gBattleStruct->dynamicMoveType = TYPE_ICE | 0x80;
+            else if (gBattleWeather & B_WEATHER_FOG_PERMANENT)
+                gBattleStruct->dynamicMoveType = TYPE_FLYING | 0x80;
             else
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL | 0x80;
         }
