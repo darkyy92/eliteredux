@@ -26902,6 +26902,7 @@ static const struct LevelUpMove sTyranitar_ReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
     LEVEL_UP_MOVE(5, MOVE_GROWL),
     LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_MOVE(63, MOVE_DIAMOND_STORM),
     LEVEL_UP_END
 };
 
@@ -26913,9 +26914,15 @@ static const struct LevelUpMove sPupitar_ReduxLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sLarvitar_ReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE(1, MOVE_LEER),
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
-    LEVEL_UP_MOVE(5, MOVE_GROWL),
+    LEVEL_UP_MOVE(3, MOVE_ROCK_THROW),
     LEVEL_UP_MOVE(10, MOVE_EMBER),
+    LEVEL_UP_MOVE(12, MOVE_SCARY_FACE),
+    LEVEL_UP_MOVE(14, MOVE_CHIP_AWAY),
+    LEVEL_UP_MOVE(15, MOVE_PEBBLE_SHOWER),
+    LEVEL_UP_MOVE(18, MOVE_FLAME_BURST),
+    LEVEL_UP_MOVE(21, MOVE_AMNESIA),
     LEVEL_UP_END
 };
 
