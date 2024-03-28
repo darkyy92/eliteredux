@@ -45,6 +45,7 @@ EverGrandeCity_PhoebesRoom_EventScript_Phoebe:: @ 82281CB
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
 	end
@@ -60,21 +61,25 @@ EverGrandeCity_PhoebesRoom_EventScript_PhoebeRematch::
 	case 3, EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoublesLegends
 
 EverGrandeCity_PhoebesRoom_EventScript_PhoebeSingles::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_PhoebesRoom_EventScript_PhoebeSinglesLegends::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_PHOEBE_3, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoubles::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_PHOEBE_2, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_PhoebesRoom_EventScript_PhoebeDoublesLegends::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_PHOEBE_4, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_DefeatedRematch
 	end

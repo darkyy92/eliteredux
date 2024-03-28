@@ -148,6 +148,7 @@ DewfordTown_Gym_EventScript_Brawly:: @ 81FC7C2
 	call DewfordTown_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch
+	setvar VAR_0x8004, 15
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM08, DewfordTown_Gym_EventScript_GiveBulkUp
 	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
@@ -198,6 +199,7 @@ DewfordTown_Gym_EventScript_SetSingles::
 	msgbox DewfordTown_Gym_Text_BrawlyAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq DewfordTown_Gym_EventScript_BrawlySinglesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_BRAWLY_3, DewfordTown_Gym_Text_BrawlyRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
@@ -207,18 +209,21 @@ DewfordTown_Gym_EventScript_SetDoubles::
 	msgbox DewfordTown_Gym_Text_BrawlyAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq DewfordTown_Gym_EventScript_BrawlyDoublesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_BRAWLY_5, DewfordTown_Gym_Text_BrawlyRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 
 DewfordTown_Gym_EventScript_BrawlySinglesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_BRAWLY_2, DewfordTown_Gym_Text_BrawlyRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 
 DewfordTown_Gym_EventScript_BrawlyDoublesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_BRAWLY_4, DewfordTown_Gym_Text_BrawlyRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall

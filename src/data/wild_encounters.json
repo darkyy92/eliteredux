@@ -15585,8 +15585,8 @@
                 "species": "SPECIES_CROBAT"
               },
               {
-                "min_level": 0,
-                "max_level": 0,
+                "min_level": 1,
+                "max_level": 1,
                 "species": "SPECIES_GARGANACL"
               },
               {

@@ -98,16 +98,19 @@ Route103_EventScript_RivalBrendanRematch:: @ 81EC434
 	end
 
 Route103_EventScript_StartMayBattleTreecko:: @ 81EC48E
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
 
 Route103_EventScript_StartMayBattleTorchic:: @ 81EC49E
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
 
 Route103_EventScript_StartMayBattleMudkip:: @ 81EC4AE
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
@@ -129,16 +132,19 @@ Route103_EventScript_StartBrendanBattleMudkip:: @ 81EC4DE
 
 @@@@@@@@@@@@@@@@@@@@@@@@ Rematch teams @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 Route103_EventScript_StartMayRematchTreecko:: @ 81EC48E
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, Route103_Text_MayRematchDefeated
 	goto Route103_EventScript_AfterMayRematch
 	end
 
 Route103_EventScript_StartMayRematchTorchic:: @ 81EC49E
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, Route103_Text_MayRematchDefeated
 	goto Route103_EventScript_AfterMayRematch
 	end
 
 Route103_EventScript_StartMayRematchMudkip:: @ 81EC4AE
+	setvar VAR_0x8004, 5
 	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_MUDKIP, Route103_Text_MayRematchDefeated
 	goto Route103_EventScript_AfterMayRematch
 	end

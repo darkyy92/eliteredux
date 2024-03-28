@@ -166,7 +166,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "TRAINER_NEW_TRAINER1",
       "script": "Common_EventScript_GenericTrainer",
-      "flag": "0"
+      "flag": "FLAG_ADVENTURE_STARTED"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
@@ -179,7 +179,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "TRAINER_NEW_TRAINER",
       "script": "Common_EventScript_GenericTrainer",
-      "flag": "0"
+      "flag": "FLAG_ADVENTURE_STARTED"
     }
   ],
   "warp_events": [

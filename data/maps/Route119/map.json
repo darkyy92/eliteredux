@@ -738,15 +738,15 @@
     },
     {
       "type": "secret_base",
-      "x": 31,
-      "y": 73,
+      "x": 34,
+      "y": 75,
       "elevation": 3,
       "secret_base_id": "SECRET_BASE_SHRUB4_1"
     },
     {
       "type": "secret_base",
-      "x": 16,
-      "y": 81,
+      "x": 34,
+      "y": 75,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_BLUE_CAVE3_3"
     },
@@ -774,15 +774,15 @@
     },
     {
       "type": "secret_base",
-      "x": 19,
-      "y": 76,
+      "x": 34,
+      "y": 75,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_TREE2_3"
     },
     {
       "type": "secret_base",
-      "x": 18,
-      "y": 76,
+      "x": 34,
+      "y": 75,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_TREE4_3"
     },

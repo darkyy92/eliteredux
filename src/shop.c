@@ -796,6 +796,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
 
 const u8 sText_BuyMenuPrintPriceInList_BattlePoints[] = _("{STR_VAR_1}");
 
+#define DEFAULT_POKEMON_PRICE 20
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
 {
     u8 x;
@@ -829,7 +830,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 u8 price = gBaseStats[itemId].shopPrice;
 
                 if(price == 0)
-                    price = 5;
+                    price = DEFAULT_POKEMON_PRICE;
                 ConvertIntToDecimalStringN(gStringVar1, price, STR_CONV_MODE_LEFT_ALIGN, 5);
                 if(VarGet(VAR_SHOP_MONEY_TYPE) == MART_MONEY_TYPE_NORMAL)
                     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
@@ -1249,7 +1250,7 @@ static void Task_BuyMenu(u8 taskId)
                 u8 price = gBaseStats[itemId].shopPrice;
 
                 if(price == 0)
-                    price = 5;
+                    price = DEFAULT_POKEMON_PRICE;
                 sShopData->totalCost = price;
             }
 

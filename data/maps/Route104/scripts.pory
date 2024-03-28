@@ -172,18 +172,21 @@ Route104_EventScript_RestoreMusic:: @ 81ECE31
 	return
 
 Route104_EventScript_BattleMayTreecko:: @ 81ECE36
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
 
 Route104_EventScript_BattleMayTorchic:: @ 81ECE49
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
 
 Route104_EventScript_BattleMayMudkip:: @ 81ECE5C
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated

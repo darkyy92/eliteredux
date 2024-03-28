@@ -45,6 +45,7 @@ EverGrandeCity_GlaciasRoom_EventScript_Glacia:: @ 8228469
 	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
 	end
@@ -60,21 +61,25 @@ EverGrandeCity_GlaciasRoom_EventScript_GlaciaRematch::
 	case 3, EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoublesLegends
 
 EverGrandeCity_GlaciasRoom_EventScript_GlaciaSingles::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_GlaciasRoom_EventScript_GlaciaSinglesLegends::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_GLACIA_3, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoubles::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_GLACIA_2, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
 	end
 
 EverGrandeCity_GlaciasRoom_EventScript_GlaciaDoublesLegends::
+	setvar VAR_0x8004, 30
 	trainerbattle_no_intro TRAINER_GLACIA_4, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_DefeatedRematch
 	end

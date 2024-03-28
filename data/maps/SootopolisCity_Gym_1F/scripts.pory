@@ -323,6 +323,7 @@ script SootopolisCity_Gym_1F_EventScript_Juan{
 		call(SootopolisCity_Gym_EventScript_CheckTrainers)
 		special(HealPlayerParty)
 		setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+		setvar(VAR_0x8004, 15)
 		starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, TAG_TEAM_WALLACE_JUAN_2, 0, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_EventScript_Juan_Battle_2)
 		clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
 	}
@@ -332,6 +333,7 @@ script SootopolisCity_Gym_1F_EventScript_Juan{
 }
 
 script SootopolisCity_Gym_1F_EventScript_Juan_Battle_2{
+	setvar(VAR_0x8004, 15)
 	starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
 	release
 	end
@@ -392,6 +394,7 @@ script SootopolisCity_Gym_1F_EventScript_JuanRematch{
 	multichoice(17, 6, MULTI_REMATCH_BATTLE_MODE, 0)
 	switch(var(VAR_RESULT)){
 		case 0:
+			setvar(VAR_0x8004, 10)
 			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
 			if(var(VAR_RESULT) == NO){
 				starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro
@@ -401,6 +404,7 @@ script SootopolisCity_Gym_1F_EventScript_JuanRematch{
 			}
 		break
 		case 1:
+			setvar(VAR_0x8004, 10)
 			msgbox(SootopolisCity_Gym_1F_Text_JuanAllowLegends, MSGBOX_YESNO)
 			if(var(VAR_RESULT) == NO){
 				starttagbattle(TRAINER_JUAN_3, TRAINER_WALLACE_3, TAG_TEAM_WALLACE_JUAN_REMATCH, 0) //No Intro

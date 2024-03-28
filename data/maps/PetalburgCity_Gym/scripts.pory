@@ -326,6 +326,7 @@ PetalburgCity_Gym_EventScript_SetSingles::
 	msgbox PetalburgCity_Gym_Text_NormanAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq PetalburgCity_Gym_EventScript_NormanSinglesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_NORMAN_4, PetalburgCity_Gym_Text_NormanRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
@@ -335,18 +336,21 @@ PetalburgCity_Gym_EventScript_SetDoubles::
 	msgbox PetalburgCity_Gym_Text_NormanAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq PetalburgCity_Gym_EventScript_NormanDoublesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_NORMAN_5, PetalburgCity_Gym_Text_NormanRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 
 PetalburgCity_Gym_EventScript_NormanSinglesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_NORMAN_2, PetalburgCity_Gym_Text_NormanRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 
 PetalburgCity_Gym_EventScript_NormanDoublesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_NORMAN_3, PetalburgCity_Gym_Text_NormanRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
@@ -391,6 +395,7 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry:: @ 8204E1D
 	
 PetalburgCity_Gym_EventScript_NormanBattle::
 	msgbox PetalburgCity_Gym_Text_NormanBattleIntro, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 15
 	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat
 	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
 	waitmessage

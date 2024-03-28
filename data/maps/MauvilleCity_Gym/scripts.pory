@@ -78,6 +78,7 @@ MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
 	call MauvilleCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MauvilleCity_Gym_EventScript_WattsonRematch
+	setvar VAR_0x8004, 15
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM72, MauvilleCity_Gym_EventScript_GiveVoltSwitch
 	compare VAR_NEW_MAUVILLE_STATE, 6
@@ -143,6 +144,7 @@ MauvilleCity_Gym_EventScript_SetSingles::
 	msgbox MauvilleCity_Gym_Text_WattsonAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq MauvilleCity_Gym_EventScript_WattsonSinglesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WATTSON_3, MauvilleCity_Gym_Text_WattsonRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
@@ -152,18 +154,21 @@ MauvilleCity_Gym_EventScript_SetDoubles::
 	msgbox MauvilleCity_Gym_Text_WattsonAllowLegends, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq MauvilleCity_Gym_EventScript_WattsonDoublesRematch
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WATTSON_5, MauvilleCity_Gym_Text_WattsonRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 
 MauvilleCity_Gym_EventScript_WattsonSinglesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WATTSON_2, MauvilleCity_Gym_Text_WattsonRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 
 MauvilleCity_Gym_EventScript_WattsonDoublesRematch::
+	setvar VAR_0x8004, 10
 	trainerbattle_no_intro TRAINER_WATTSON_4, MauvilleCity_Gym_Text_WattsonRematchDefeat
 	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
