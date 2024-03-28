@@ -562,6 +562,7 @@
 #define B_ANIM_SEA_OF_FIRE              36
 #define B_ANIM_SWAMP                    37
 #define B_ANIM_SYRUP_BOMB_SPEED_DROP    38
+#define B_ANIM_FOG_CONTINUES            39
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0
@@ -605,6 +606,7 @@
 #define ANIM_WEATHER_RAIN 2
 #define ANIM_WEATHER_SANDSTORM 3
 #define ANIM_WEATHER_HAIL 4
+#define ANIM_WEATHER_FOG 5
 
 // mon pal blend
 #define ANIM_PAL_BG             0x1

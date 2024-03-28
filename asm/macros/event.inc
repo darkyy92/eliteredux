@@ -1829,6 +1829,11 @@
     questmenu 0 0
     .endm
 
+	.macro getobjecteventextraid, type:req
+    .byte 0xed
+    .2byte \type
+    .endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

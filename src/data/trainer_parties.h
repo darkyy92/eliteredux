@@ -39656,3 +39656,15 @@ static const struct TrainerMonItemCustomMoves sParty_NewTrainer[] = {
     .moves = MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_NewTrainer1[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_BULBASAUR,
+    .heldItem = ITEM_NONE,
+    .ability = 0,
+    .evs = {},
+    .nature = NATURE_IMPISH,
+    .moves = MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE
+    }
+};

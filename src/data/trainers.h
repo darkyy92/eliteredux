@@ -12496,4 +12496,18 @@ const struct Trainer gTrainers[] = {
         .partySize = ARRAY_COUNT(sParty_NewTrainer),
         .party = {.ItemCustomMoves = sParty_NewTrainer},
     },
+
+    [TRAINER_NEW_TRAINER1] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
+        .trainerName = _("Timothy"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_NewTrainer1),
+        .party = {.ItemCustomMoves = sParty_NewTrainer1},
+    },
 };

@@ -582,7 +582,7 @@
 #define TRAINER_HARRISON                    578
 #define TRAINER_GRUNT_MT_CHIMNEY_2          579
 #define TRAINER_CLARENCE                    580
-#define TRAINER_BUFFEL                       581
+#define TRAINER_BUFFEL                      581
 #define TRAINER_NATE                        582
 #define TRAINER_KATHLEEN                    583
 #define TRAINER_CLIFFORD                    584
@@ -886,6 +886,7 @@
 #define TRAINER_STEVEN_DOUBLES_LEGENDS                 882
 
 #define TRAINER_NEW_TRAINER                            883
+#define TRAINER_NEW_TRAINER1                           884
 #define TRAINERS_COUNT                                 1600
 #define MAX_OLD_TRAINERS_COUNT                         TRAINERS_COUNT + 1
 
