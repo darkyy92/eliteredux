@@ -142,3 +142,35 @@ script Route102_EventScript_Gen8_NPC{
     release
     end
 }
+
+script Common_EventScript_GenericTrainer{
+	trainerbattle_single(TRAINER_NONE, format("Let's Fight"), format("I was defeated"))
+	msgbox(format("Post Battle Text"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Common_EventScript_FindItem{
+	getobjecteventextraid(GET_EXTRA_ID_DEFAULT)
+	finditem(VAR_RESULT)
+	end
+}
+
+script Common_EventScript_GiveItemBallBP{
+	getobjecteventextraid(GET_EXTRA_ID_BATTLE_POINTS)
+	removeobject(VAR_LAST_TALKED)
+	msgbox(format("{PLAYER} obtained {STR_VAR_1} Battle Point(s)"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Common_EventScript_GiveMon{
+    lock
+    faceplayer
+	getobjecteventextraid(GET_EXTRA_ID_POKEMON)
+	removeobject(VAR_LAST_TALKED)
+	givemon(VAR_RESULT, 10, ITEM_NONE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER} got a {STR_VAR_1}!"))
+	waitfanfare
+    release
+    end
+}

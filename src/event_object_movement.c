@@ -2663,6 +2663,7 @@ bool8 ObjectEventIsTrainerAndCloseToPlayer(struct ObjectEvent *objectEvent)
     s16 maxX;
     s16 minY;
     s16 maxY;
+    u8 approachRange;
 
     if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH))
     {
@@ -2672,13 +2673,19 @@ bool8 ObjectEventIsTrainerAndCloseToPlayer(struct ObjectEvent *objectEvent)
     {
         return FALSE;
     }
+
+    if(objectEvent->trainerRange_berryTreeId >= MAX_SIGHT_RADIUS)
+        approachRange = MAX_SIGHT_RADIUS;
+    else
+        approachRange = objectEvent->trainerRange_berryTreeId;
+
     PlayerGetDestCoords(&playerX, &playerY);
     objX = objectEvent->currentCoords.x;
     objY = objectEvent->currentCoords.y;
-    minX = objX - objectEvent->trainerRange_berryTreeId;
-    minY = objY - objectEvent->trainerRange_berryTreeId;
-    maxX = objX + objectEvent->trainerRange_berryTreeId;
-    maxY = objY + objectEvent->trainerRange_berryTreeId;
+    minX = objX - approachRange;
+    minY = objY - approachRange;
+    maxX = objX + approachRange;
+    maxY = objY + approachRange;
     if (minX > playerX || maxX < playerX || minY > playerY || maxY < playerY)
     {
         return FALSE;

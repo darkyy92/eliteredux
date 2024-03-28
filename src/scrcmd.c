@@ -52,6 +52,9 @@
 #include "quests.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
+#include "constants/battle_frontier.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(void);
@@ -2896,4 +2899,30 @@ bool8 ScrCmd_questmenu(struct ScriptContext *ctx)
     }
 
     return TRUE;
+}
+
+bool8 ScrCmd_getobjecteventextraid(struct ScriptContext *ctx)
+{
+    u8 caseId = ScriptReadByte(ctx);
+    u16 num = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].trainerRange_berryTreeId;
+
+    switch(caseId){
+        case GET_EXTRA_ID_BATTLE_POINTS:
+            if(num == 0)
+                num++;
+            
+            ConvertIntToDecimalStringN(gStringVar1, num, STR_CONV_MODE_LEFT_ALIGN, 3);
+            if (gSaveBlock2Ptr->frontier.battlePoints + num > MAX_BATTLE_FRONTIER_POINTS)
+                gSaveBlock2Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
+            else
+                gSaveBlock2Ptr->frontier.battlePoints = gSaveBlock2Ptr->frontier.battlePoints + num;
+            FlagSet(gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].flagId);
+        break;
+        case GET_EXTRA_ID_POKEMON:
+            StringCopy(gStringVar1, gSpeciesNames[num]);
+            FlagSet(gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].flagId);
+        break;
+    }
+    gSpecialVar_Result = num;
+    return FALSE;
 }

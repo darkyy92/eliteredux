@@ -719,6 +719,7 @@ SECTIONS {
         src/mgba_printf/mgba.o(.rodata);
         src/quests.o(.rodata);
         src/tmhm_struct.o(.rodata);
+        src/script.o(.rodata);
     } =0
 
     song_data :

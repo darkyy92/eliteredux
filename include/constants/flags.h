@@ -199,7 +199,7 @@
 #define FLAG_DECORATION_13                               186
 #define FLAG_DECORATION_14                               187
 #define FLAG_RECEIVED_POKENAV                            188
-#define FLAG_DELIVERED_STEVEN_LETTER                     186
+#define FLAG_DELIVERED_STEVEN_LETTER                     189
 #define FLAG_DEFEATED_WALLY_MAUVILLE                     190
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F              191
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP                 192

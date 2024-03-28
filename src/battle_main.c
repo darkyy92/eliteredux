@@ -661,7 +661,6 @@ static void CB2_InitBattleInternal(void)
     else
         SetMainCallback2(CB2_HandleStartBattle);
 
-
 	#if B_ENABLE_DEBUG == FALSE 
 		if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
 		{
@@ -2212,7 +2211,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 #ifdef DEBUG_BUILD
                 if(FlagGet(FLAG_DEBUG_GODMODE))
-                    level = 10;
+                    level = 1;
                 #endif
 
                 if (trainerNum == TRAINER_OLDPLAYER)
