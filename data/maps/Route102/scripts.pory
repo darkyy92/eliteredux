@@ -167,7 +167,20 @@ script Common_EventScript_GiveMon{
     faceplayer
 	getobjecteventextraid(GET_EXTRA_ID_POKEMON)
 	removeobject(VAR_LAST_TALKED)
-	givemon(VAR_RESULT, 10, ITEM_NONE)
+	givemon(VAR_RESULT, 0, ITEM_NONE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER} got a {STR_VAR_1}!"))
+	waitfanfare
+    release
+    end
+}
+
+script Common_EventScript_GiveMonFromPool{
+    lock
+    faceplayer
+	getobjecteventextraid(GET_EXTRA_ID_RANDOM_FROM_POOL)
+	removeobject(VAR_LAST_TALKED)
+	givemon(VAR_RESULT, 0, ITEM_NONE)
 	playfanfare(MUS_OBTAIN_ITEM)
 	message(format("{PLAYER} got a {STR_VAR_1}!"))
 	waitfanfare

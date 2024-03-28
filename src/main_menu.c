@@ -705,29 +705,8 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
     u8 i, j, itemcount;
     s16* data = gTasks[taskId].data;
 	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
-
-    if(VarGet(VAR_SAVE_VERSION) <= 1033){
-        if(FlagGet(FLAG_GOT_TM24_FROM_WATTSON) && VarGet(VAR_NEW_MAUVILLE_STATE) != 6) {
-            FlagClear(FLAG_GOT_TM24_FROM_WATTSON);
-        }
-
-        if(!FlagGet(FLAG_GOT_TM24_FROM_WATTSON) && FlagGet(FLAG_BADGE05_GET) && FlagGet(FLAG_HIDE_MAUVILLE_CITY_WATTSON)) {
-            FlagClear(FLAG_HIDE_MAUVILLE_CITY_WATTSON);
-            FlagSet(FLAG_HIDE_MAUVILLE_GYM_WATTSON);
-            FlagClear(FLAG_WATTSON_REMATCH_AVAILABLE);
-        }
-    }
-
-    if(!FlagGet(FLAG_UPDATED_MEGA_STONE_POCKET)){
-        for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
-        {
-            if(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId != ITEM_NONE){
-                itemcount = gSaveBlock1Ptr->bagPocket_MegaStones[i].quantity;
-                AddBagItem(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId, itemcount);
-            }
-        }
-        FlagSet(FLAG_UPDATED_MEGA_STONE_POCKET);
-    }
+	FlagClear(FLAG_TAG_BATTLE);
+    VarSet(VAR_TRAINER_PRIZE_BP, 0);
 
     if (!gPaletteFade.active)
     {

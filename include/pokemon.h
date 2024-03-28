@@ -482,5 +482,6 @@ bool8 IsEeveelution(u16 species);
 u16 getBaseSpeciesFromMega(u16 species);
 u16 GetFormShiftSpecies(u16 species);
 const u8* GetSpeciesLongName(u16 species);
+u16 GetRandomSpeciesFromPool(u8 id);
 
 #endif // GUARD_POKEMON_H

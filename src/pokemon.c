@@ -10229,3 +10229,39 @@ const u8* GetSpeciesLongName(u16 species)
             return NULL;
     }
 }
+
+u16 GetRandomSpeciesFromPool(u8 id){
+	u8 rand = Random();
+    switch(id){
+        case POKEMON_POOL_STARTERS:{
+			u16 PossibleSpecies[] = {
+				SPECIES_BULBASAUR,  SPECIES_CHARMANDER, SPECIES_SQUIRTLE,
+                SPECIES_CHIKORITA,  SPECIES_CYNDAQUIL,  SPECIES_TOTODILE,
+                SPECIES_TREECKO,    SPECIES_TORCHIC,    SPECIES_MUDKIP,
+                SPECIES_TURTWIG,    SPECIES_CHIMCHAR,   SPECIES_PIPLUP,
+                SPECIES_SNIVY,      SPECIES_TEPIG,      SPECIES_OSHAWOTT,
+                SPECIES_CHESPIN,    SPECIES_FENNEKIN,   SPECIES_FROAKIE,
+                SPECIES_ROWLET,     SPECIES_LITTEN,     SPECIES_POPPLIO,
+                SPECIES_GROOKEY,    SPECIES_SCORBUNNY,  SPECIES_SOBBLE,
+                SPECIES_SPRIGATITO, SPECIES_FUECOCO,    SPECIES_QUAXLY,
+			};
+			return PossibleSpecies[rand % (sizeof(PossibleSpecies)/sizeof(PossibleSpecies[0]))];
+        }
+        break;
+        default:{
+			u16 PossibleSpecies[] = {
+				SPECIES_BULBASAUR,  SPECIES_CHARMANDER, SPECIES_SQUIRTLE,
+                SPECIES_CHIKORITA,  SPECIES_CYNDAQUIL,  SPECIES_TOTODILE,
+                SPECIES_TREECKO,    SPECIES_TORCHIC,    SPECIES_MUDKIP,
+                SPECIES_TURTWIG,    SPECIES_CHIMCHAR,   SPECIES_PIPLUP,
+                SPECIES_SNIVY,      SPECIES_TEPIG,      SPECIES_OSHAWOTT,
+                SPECIES_CHESPIN,    SPECIES_FENNEKIN,   SPECIES_FROAKIE,
+                SPECIES_ROWLET,     SPECIES_LITTEN,     SPECIES_POPPLIO,
+                SPECIES_GROOKEY,    SPECIES_SCORBUNNY,  SPECIES_SOBBLE,
+                SPECIES_SPRIGATITO, SPECIES_FUECOCO,    SPECIES_QUAXLY,
+			};
+			return PossibleSpecies[rand % (sizeof(PossibleSpecies)/sizeof(PossibleSpecies[0]))];
+        }
+        break;
+    }
+}

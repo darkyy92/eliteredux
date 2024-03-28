@@ -1711,6 +1711,9 @@ bool8 ScrCmd_givemon(struct ScriptContext *ctx)
     u32 unkParam2 = ScriptReadWord(ctx);
     u8 unkParam3 = ScriptReadByte(ctx);
 
+    if(level == 0)
+        level = GetLevelCap();
+
     gSpecialVar_Result = ScriptGiveMon(species, level, item, unkParam1, unkParam2, unkParam3);
     return FALSE;
 }
@@ -2919,6 +2922,11 @@ bool8 ScrCmd_getobjecteventextraid(struct ScriptContext *ctx)
             FlagSet(gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].flagId);
         break;
         case GET_EXTRA_ID_POKEMON:
+            StringCopy(gStringVar1, gSpeciesNames[num]);
+            FlagSet(gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].flagId);
+        break;
+        case GET_EXTRA_ID_RANDOM_FROM_POOL:
+            num = GetRandomSpeciesFromPool(num);
             StringCopy(gStringVar1, gSpeciesNames[num]);
             FlagSet(gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].flagId);
         break;
