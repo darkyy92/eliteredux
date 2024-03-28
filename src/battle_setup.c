@@ -46,6 +46,8 @@
 #include "constants/maps.h"
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 enum
 {
@@ -1124,6 +1126,7 @@ void ResetTrainerOpponentIds(void)
 static void InitTrainerBattleVariables(void)
 {
     sTrainerBattleMode = 0;
+
     if (gApproachingTrainerId == 0)
     {
         sTrainerAIntroSpeech = NULL;
@@ -1590,6 +1593,11 @@ void PlayTrainerEncounterMusic(void)
 {
     u16 trainerId;
     u16 music;
+
+    if(gTrainerBattleOpponent_A == TRAINER_NONE){
+        u16 TrainerNum = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].trainerRange_berryTreeId;
+        gTrainerBattleOpponent_A = TrainerNum;
+    }
 
     if (gApproachingTrainerId == 0)
         trainerId = gTrainerBattleOpponent_A;

@@ -3,7 +3,11 @@
 #include "event_data.h"
 #include "mevent.h"
 #include "util.h"
+#include "string_util.h"
 #include "constants/map_scripts.h"
+#include "constants/battle_frontier.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 #define RAM_SCRIPT_MAGIC 51
 

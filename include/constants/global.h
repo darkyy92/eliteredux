@@ -151,4 +151,13 @@
 #define MACROS_OVERWRITE_NEXT_STRING                       7
 #define MACROS_CLEAN_OVERWRITEN_STRINGS                    8
 
+//Get Extra ID Stuff
+#define GET_EXTRA_ID_DEFAULT             0
+#define GET_EXTRA_ID_BATTLE_POINTS       1
+#define GET_EXTRA_ID_ITEM                2
+#define GET_EXTRA_ID_POKEMON             3
+#define GET_EXTRA_ID_RANDOM_FROM_POOL    4
+
+#define MAX_SIGHT_RADIUS 10
+
 #endif // GUARD_CONSTANTS_GLOBAL_H
