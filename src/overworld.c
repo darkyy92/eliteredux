@@ -1555,6 +1555,7 @@ void CB2_WhiteOut(void)
 
     if (++gMain.state >= 120)
     {
+        FlagClear(FLAG_TAG_BATTLE);
         FlagClear(FLAG_SYS_DISABLE_AUTOHEAL);
         FlagClear(FLAG_SYS_LOCKED_MODE);
         FieldClearVBlankHBlankCallbacks();

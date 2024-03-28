@@ -738,9 +738,19 @@
 	setvar VAR_TAG_TEAM_ID, \tagteamtextid
 	special DoSpecialTrainerBattle
 	waitstate
+	clearflag FLAG_TAG_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	switch VAR_RESULT
 	.if \event_script != FALSE
-		goto \event_script
+	case B_OUTCOME_WON, \event_script
 	.endif
+	case B_OUTCOME_FORFEITED, Common_EventScript_Lost
+	case B_OUTCOME_DREW, Common_EventScript_Lost
+	case B_OUTCOME_LOST, Common_EventScript_Lost
+	case B_OUTCOME_RAN, Common_EventScript_Lost
+    case B_OUTCOME_PLAYER_TELEPORTED, Common_EventScript_Lost
+	settrainerflag \trainer1
+	settrainerflag \trainer2
 	.endm
 
 	@ Starts a rematch battle, takes a trainer, intro text and loss text

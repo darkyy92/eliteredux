@@ -309,16 +309,82 @@ SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 	.string "And would you allow me to dance with\n"
 	.string "even stronger Legendary Pokémon?$"
 `
+script Common_EventScript_Lost{
+	fadescreen(FADE_TO_BLACK)
+	special(SetCB2WhiteOut)
+	waitstate
+}
 
 script SootopolisCity_Gym_1F_EventScript_Juan{
-	//call(SootopolisCity_Gym_EventScript_CheckTrainers)
-	goto_if_set(FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch)
-	starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_EventScript_JuanDefeated)
+	if(flag(FLAG_BADGE08_GET)){
+		goto_if_set(FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch)
+	}
+	else{
+		call(SootopolisCity_Gym_EventScript_CheckTrainers)
+		special(HealPlayerParty)
+		setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+		starttagbattle(TRAINER_JUAN_1, TRAINER_WALLACE, TAG_TEAM_WALLACE_JUAN_2, 0, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_EventScript_Juan_Battle_2)
+		clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+	}
+	goto(SootopolisCity_Gym_1F_EventScript_AfterBattle)
+	release
+	end
+}
+
+script SootopolisCity_Gym_1F_EventScript_Juan_Battle_2{
+	goto_if_defeated(TRAINER_WALLACE_2, SootopolisCity_Gym_1F_EventScript_AfterBattle)
+	goto_if_defeated(TRAINER_JUAN_2, SootopolisCity_Gym_1F_EventScript_AfterBattle)
+	starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
+	release
+	end
+}
+
+script SootopolisCity_Gym_1F_EventScript_AfterBattle{
 	goto_if_unset(FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald)
 	goto_if_unset(FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge)
 	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script SootopolisCity_Gym_1F_EventScript_Juan_Defeated{
+	if(flag(FLAG_BADGE08_GET)){
+		goto(SootopolisCity_Gym_1F_EventScript_AfterBattle)
+	}
+	else{
+		clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+		message(SootopolisCity_Gym_1F_Text_ReceivedRainBadge)
+		waitmessage
+		call(Common_EventScript_PlayGymBadgeFanfare)
+		msgbox(SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis, MSGBOX_DEFAULT)
+		closemessage
+		delay(30)
+		playfanfare(MUS_REGISTER_MATCH_CALL)
+		msgbox(SootopolisCity_Gym_1F_Text_RegisteredKabutops, MSGBOX_DEFAULT)
+		waitfanfare
+		closemessage
+		delay(30)
+		msgbox(SootopolisCity_Gym_1F_Text_TakeThis, MSGBOX_DEFAULT)
+		setflag(FLAG_DEFEATED_SOOTOPOLIS_GYM)
+		setflag(FLAG_BADGE08_GET)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_RESIDENTS)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_STEVEN)
+		setflag(FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE)
+		setvar(VAR_SOOTOPOLIS_CITY_STATE, 6)
+		clearflag(FLAG_HIDE_SOOTOPOLIS_CITY_MAN_1)
+		setvar(VAR_0x8008, 8)
+		call(Common_EventScript_SetGymTrainers)
+		call(SootopolisCity_Gym_1F_EventScript_GiveScald)
+		closemessage
+		delay(30)
+		playfanfare(MUS_REGISTER_MATCH_CALL)
+		msgbox(SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT)
+		waitfanfare
+		closemessage
+		delay(30)
+		setflag(FLAG_ENABLE_JUAN_MATCH_CALL)
+	}
+	return
 }
 
 script SootopolisCity_Gym_1F_EventScript_JuanRematch{
@@ -350,6 +416,7 @@ script SootopolisCity_Gym_1F_EventScript_JuanRematch{
 			goto(SootopolisCity_Gym_1F_EventScript_Exit)
 		break
 	}
+	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
 	releaseall
 	end
 }
@@ -405,6 +472,18 @@ text SootopolisCity_Gym_1F_Text_JuanDefeatRematch{
 //Please Change
 text SootopolisCity_Gym_1F_Text_WallaceDefeatRematch{
 	"Wallace Defeat Text Rematch"
+}
+
+text SootopolisCity_Gym_1F_Text_Juan_Round_2{
+	"Wow your strentgh is the real deal!"
+}
+
+text SootopolisCity_Gym_1F_Text_Wallace_Round_2{
+	"Let's show our full strength this time!"
+}
+
+text SootopolisCity_Gym_1F_Text_JuanIntro_2{
+	format("Let's go for round 2")
 }
 
 script SootopolisCity_Gym_1F_EventScript_GiveScald{
