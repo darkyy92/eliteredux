@@ -9921,7 +9921,7 @@ bool8 isSpeciesPlaceholderMon(u16 species){
         return FALSE;
     else if (species < SPECIES_SCIZOR_MEGA_REDUX + 1)
         return FALSE;
-    else if (species < SPECIES_WOOPER_PALDEAN + 1)
+    else if (species < SPECIES_BASCULIN_WHITESTRIPED + 1)
         return FALSE;
     else
         return TRUE;
