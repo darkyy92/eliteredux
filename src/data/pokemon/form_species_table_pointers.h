@@ -810,6 +810,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SCIZOR_REDUX] = sScizorFormSpeciesIdTable,
 
     [SPECIES_ESCARGINITE] = sEscarginiteFormSpeciesIdTable,
+    [SPECIES_ESCARGINITE_REDUX] = sEscarginiteFormSpeciesIdTable,
 
     [SPECIES_WOOPER_PALDEAN] = sWooperFormSpeciesIdTable,
 

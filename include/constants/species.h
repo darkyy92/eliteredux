@@ -1034,6 +1034,8 @@
 #define SPECIES_DUELUMBER 1027
 #define SPECIES_ESCARGINITE 1028
 
+#define LAST_VALID_SPECIES SPECIES_ESCARGINITE
+
 #define FORMS_START  1500
 
 // Megas
@@ -1530,6 +1532,8 @@
 // Castform Sand
 #define SPECIES_CASTFORM_SANDY              FORMS_START + 345
 
+#define LAST_VALID_STANDARD_FORM SPECIES_CASTFORM_SANDY
+
 // Custom Megas
 #define CUSTOM_MEGA_START                   FORMS_START + 600
 
@@ -1662,10 +1666,12 @@
 #define SPECIES_SCIZOR_REDUX                REDUX_FORMS_START + 65
 #define SPECIES_WOOPER_PALDEAN              REDUX_FORMS_START + 66
 #define SPECIES_BASCULIN_WHITESTRIPED       REDUX_FORMS_START + 67
+#define SPECIES_ESCARGINITE_REDUX           REDUX_FORMS_START + 68
 
-#define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
+#define LAST_REDUX_FORM                     SPECIES_ESCARGINITE_REDUX
+#define LAST_REDUX_FORM_SPACE               REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 
-#define SPECIES_EGG                         LAST_REDUX_FORM + 1
+#define SPECIES_EGG                         LAST_REDUX_FORM_SPACE + 1
 #define NUM_SPECIES                         SPECIES_EGG + 1
 
 // National Dex Index Defines
@@ -2694,7 +2700,14 @@
 #define NATIONAL_DEX_MUNKIDORI 1015
 #define NATIONAL_DEX_FEZANDIPITI 1016
 #define NATIONAL_DEX_OGERPON 1017
+#define NATIONAL_DEX_ARCHALUDON 1018
 #define NATIONAL_DEX_HYDRAPPLE 1019
+#define NATIONAL_DEX_GOUGING_FIRE 1020
+#define NATIONAL_DEX_RAGING_BOLT 1021
+#define NATIONAL_DEX_IRON_BOULDER 1022
+#define NATIONAL_DEX_IRON_CROWN 1023
+#define NATIONAL_DEX_TERAPAGOS 1024
+#define NATIONAL_DEX_PECHARUNT 1025
 #define NATIONAL_DEX_PHANTOWL 1026
 #define NATIONAL_DEX_DUELUMBER 1027
 #define NATIONAL_DEX_ESCARGINITE 1028

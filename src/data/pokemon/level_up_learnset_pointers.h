@@ -1557,6 +1557,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_WOOPER_PALDEAN] = sWooper_PaldeanLevelUpLearnset,
     [SPECIES_BASCULIN_WHITESTRIPED] = sBasculin_WhitestripedLevelUpLearnset,
     [SPECIES_HYDRAPPLE] = sHydrappleLevelUpLearnset,
+    [SPECIES_ESCARGINITE_REDUX] = sEscarginite_ReduxLevelUpLearnset,
     [SPECIES_ESCARGINITE] = sEscarginiteLevelUpLearnset,
     [SPECIES_DUELUMBER] = sDuelumberLevelUpLearnset,
     [SPECIES_PHANTOWL] = sPhantowlLevelUpLearnset,
