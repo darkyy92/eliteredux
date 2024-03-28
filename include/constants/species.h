@@ -1661,6 +1661,7 @@
 #define SPECIES_SCIZOR_MEGA_REDUX           REDUX_FORMS_START + 64
 #define SPECIES_SCIZOR_REDUX                REDUX_FORMS_START + 65
 #define SPECIES_WOOPER_PALDEAN              REDUX_FORMS_START + 66
+#define SPECIES_BASCULIN_WHITESTRIPED       REDUX_FORMS_START + 67
 
 #define LAST_REDUX_FORM                     REDUX_FORMS_START + 400 // To make temporary space for anything we need to add in the future
 

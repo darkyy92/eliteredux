@@ -643,6 +643,7 @@ static const u16 sAudinoFormSpeciesIdTable[] = {
 
 static const u16 sBasculinFormSpeciesIdTable[] = {
     SPECIES_BASCULIN,
+    SPECIES_BASCULIN_WHITESTRIPED,
     SPECIES_BASCULIN_BLUE_STRIPED,
     FORM_SPECIES_END,
 };
