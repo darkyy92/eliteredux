@@ -21,6 +21,11 @@ static const union AnimCmd sAnim_ESCARGINITE_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+static const union AnimCmd sAnim_HYDRAPPLE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 static const union AnimCmd sAnim_BASCULIN_WHITESTRIPED_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -95,6 +100,11 @@ static const union AnimCmd *const sAnims_DUELUMBER[] ={
 static const union AnimCmd *const sAnims_ESCARGINITE[] ={
     sAnim_GeneralFrame0,
     sAnim_ESCARGINITE_1,
+};
+
+static const union AnimCmd *const sAnims_HYDRAPPLE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_HYDRAPPLE_1,
 };
 
 static const union AnimCmd *const sAnims_BASCULIN_WHITESTRIPED[] ={
@@ -19533,6 +19543,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(ENAMORUS_THERIAN),
     ANIM_CMD(ESCARGINITE),
     ANIM_CMD(SCIZOR_REDUX),
+    ANIM_CMD(HYDRAPPLE),
     ANIM_CMD(BASCULIN_WHITESTRIPED),
     ANIM_CMD(ZOROARK_HISUIAN),
     ANIM_CMD(WOOPER_PALDEAN),

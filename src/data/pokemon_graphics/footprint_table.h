@@ -953,6 +953,7 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_WOOPER_PALDEAN] = gMonFootprint_Wooper_Paldean,
     [SPECIES_ZOROARK_HISUIAN] = gMonFootprint_Zoroark_Hisuian,
     [SPECIES_BASCULIN_WHITESTRIPED] = gMonFootprint_Basculin_Whitestriped,
+    [SPECIES_HYDRAPPLE] = gMonFootprint_Hydrapple,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
 };

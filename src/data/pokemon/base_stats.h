@@ -35004,6 +35004,38 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+    [SPECIES_HYDRAPPLE] =
+    {
+        .baseHP        = 106,
+        .baseAttack    = 80,
+        .baseDefense   = 110,
+        .baseSpeed     = 44,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 80,
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_DRAGON,
+        .catchRate = 255,
+        .expYield = 600,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 0,
+        .evYield_Defense   = 0,
+        .evYield_SpAttack  = 0,
+        .evYield_SpDefense = 0,
+        .evYield_Speed     = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 255,
+        .friendship = 100,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = { ABILITY_GLUTTONY, ABILITY_REGENERATOR, ABILITY_GOOEY},
+        .innates = { ABILITY_STICKY_HOLD, ABILITY_SHELL_ARMOR, ABILITY_AROMA_VEIL},
+        .bodyColor = BODY_COLOR_PINK,
+        .noFlip = FALSE,
+    },
+
     [SPECIES_POLTCHAGEIST] =
     {
         .baseHP        = 40,
