@@ -2064,6 +2064,7 @@ enum
     ENDTURN_SANDSTORM,
     ENDTURN_SUN,
     ENDTURN_HAIL,
+    ENDTURN_FOG,
     ENDTURN_GRAVITY,
     ENDTURN_WATER_SPORT,
     ENDTURN_MUD_SPORT,
@@ -2415,6 +2416,15 @@ u8 DoFieldEndTurnEffects(void)
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
+        case ENDTURN_FOG: // Fog cannot be ended, unless Defog is used
+            if (gBattleWeather & B_WEATHER_FOG_PERMANENT)
+            {
+                gBattlescriptCurrInstr = BattleScript_FogContinues;
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_TRICK_ROOM:
@@ -4254,6 +4264,7 @@ static const u16 sWeatherFlagsInfo[][3] =
     [ENUM_WEATHER_SANDSTORM]    = {WEATHER_SANDSTORM_TEMPORARY, WEATHER_SANDSTORM_PERMANENT, HOLD_EFFECT_SMOOTH_ROCK},
     [ENUM_WEATHER_HAIL]         = {WEATHER_HAIL_TEMPORARY,      WEATHER_HAIL_PERMANENT,      HOLD_EFFECT_ICY_ROCK},
     [ENUM_WEATHER_STRONG_WINDS] = {WEATHER_STRONG_WINDS,        WEATHER_STRONG_WINDS,        HOLD_EFFECT_NONE},
+    [ENUM_WEATHER_FOG]          = {B_WEATHER_FOG_PERMANENT,     B_WEATHER_FOG_PERMANENT,     HOLD_EFFECT_NONE},
 };
 
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
@@ -5087,6 +5098,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
                     gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+                    effect++;
+                }
+                break;
+            case WEATHER_FOG_DIAGONAL:
+            case WEATHER_FOG_HORIZONTAL:
+                if (!(gBattleWeather & B_WEATHER_FOG_PERMANENT))
+                {
+                    gBattleWeather = B_WEATHER_FOG_PERMANENT;
+                    gBattleScripting.animArg1 = B_ANIM_FOG_CONTINUES;
                     effect++;
                 }
                 break;
@@ -13027,7 +13047,7 @@ u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 fixedPower, u8 battlerAtk, u8 b
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_SOLARBEAM:
-        if (IsBattlerWeatherAffected(battlerAtk, (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY))
+        if (IsBattlerWeatherAffected(battlerAtk, (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY | B_WEATHER_FOG_PERMANENT))
             && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOLAR_FLARE)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOLAR_FLARE
             && !BattlerHasInnate(gBattlerAttacker, ABILITY_BIG_LEAVES)
