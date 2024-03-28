@@ -332,8 +332,6 @@ script SootopolisCity_Gym_1F_EventScript_Juan{
 }
 
 script SootopolisCity_Gym_1F_EventScript_Juan_Battle_2{
-	goto_if_defeated(TRAINER_WALLACE_2, SootopolisCity_Gym_1F_EventScript_AfterBattle)
-	goto_if_defeated(TRAINER_JUAN_2, SootopolisCity_Gym_1F_EventScript_AfterBattle)
 	starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
 	release
 	end
@@ -512,7 +510,7 @@ script SootopolisCity_Gym_EventScript_CheckTrainers{
 		 //!defeated(TRAINER_BETHANY) || 
 		 ) &&
 		 !flag(FLAG_BADGE08_GET))){
-		msgbox(format("Juan: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
+		msgbox(format("Juan: Sorry, but you need to defeat every trainer on this Gym before battling us."), MSGBOX_NPC)
 		release
 		end
 	}

@@ -1688,7 +1688,7 @@ static const u8 sMoveTwoLineDescription_MoveThunderFang[] = _(
 
 static const u8 sMoveTwoLineDescription_MoveIceFang[] = _(
     "May cause flinching or\n"
-    "leave the foe frozen.");
+    "leave the foe frostbiten.");
 
 static const u8 sMoveTwoLineDescription_MoveFireFang[] = _(
     "May cause flinching or\n"
