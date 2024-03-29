@@ -38744,12 +38744,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ESCARGINITE_REDUX] =
     {
-    .baseHP        =  90,
+    .baseHP        = 100,
     .baseAttack    =  50,
-    .baseDefense   =  130,
-    .baseSpeed     =  35,
-    .baseSpAttack  =  90,
-    .baseSpDefense =  105,
+    .baseDefense   =   150,
+    .baseSpeed     =  30,
+    .baseSpAttack  =   100,
+    .baseSpDefense =   70,
     .type1 = TYPE_GRASS,
     .type2 = TYPE_ROCK,
     .catchRate = 255,
@@ -38768,8 +38768,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_FAST,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-	.abilities = {ABILITY_SIMPLE, ABILITY_MOUNTAINEER, ABILITY_SHELL_ARMOR},
-	.innates = {ABILITY_MOLTEN_DOWN, ABILITY_FLASH_FIRE, ABILITY_MAGMA_ARMOR},
+	.abilities = {ABILITY_SHELL_ARMOR, ABILITY_LOOSE_ROCKS, ABILITY_POWER_CORE},
+	.innates = {ABILITY_OVERCOAT, ABILITY_HARVEST, ABILITY_IMPENETRABLE},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
