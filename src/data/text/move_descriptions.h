@@ -203,8 +203,8 @@ static const u8 sMoveTwoLineDescription_MoveAcid[] = _(
     "May lower Defense.");
 
 static const u8 sMoveTwoLineDescription_MoveEmber[] = _(
-    "A weak fire attack that may\n"
-    "inflict a burn.");
+    "A weak fire attack that burns\n"
+    "the target.");
 
 static const u8 sMoveTwoLineDescription_MoveFlamethrower[] = _(
     "A powerful fire attack that\n"
@@ -4735,7 +4735,7 @@ static const u8 sMoveFourLineDescription_MoveSupersonic[] = _("The user generate
 static const u8 sMoveFourLineDescription_MoveSonicBoom[] = _("The foe is hit with\na shock wave that\nalways inflicts 20-\nHP damage.");
 static const u8 sMoveFourLineDescription_MoveDisable[] = _("For a few turns,\nit prevents the foe\nfrom using the move\nit last used.");
 static const u8 sMoveFourLineDescription_MoveAcid[] = _("A harsh acid\nhits both foes.\n10% chance to\nlower SpDef.");
-static const u8 sMoveFourLineDescription_MoveEmber[] = _("The foe is attacked\nwith small flames.\n10% burn chance.");
+static const u8 sMoveFourLineDescription_MoveEmber[] = _("The foe is attacked\nwith small flames.\n100% burn chance.");
 static const u8 sMoveFourLineDescription_MoveFlamethrower[] = _("The foe is scorched\nwith intense flames.\n10% burn chance.");
 static const u8 sMoveFourLineDescription_MoveMist[] = _("The ally party is\nprotected by a\nmist that prevents\nstat reductions.");
 static const u8 sMoveFourLineDescription_MoveWaterGun[] = _("The foe is struck\nwith a lot of water\nMega Launcher boost");

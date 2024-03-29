@@ -816,6 +816,8 @@ static const u8 sText_WonderRoomStarts[] = _("A bizzarre area was\ncreated!");
 static const u8 sText_MagicRoomStarts[] = _("A bizzarre area was\ncreated!");
 static const u8 sText_OriginReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Origin Reversion!\nIt regained its origin form!");
 static const u8 sText_CrownedReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Restoration!\nIt's restored to its former glory!");
+static const u8 sText_FogIsDeep[] = _("Fog is deep…");
+static const u8 sText_FogWasBlownAway[] = _("The fog was blown away\nby Defog!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s Ability\nprevents switching!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -974,13 +976,9 @@ static const u8 sText_Your2[] = _("your");
 static const u8 sText_Opposing2[] = _("the opposing");
 const u8 gText_NoMoreRoomForPokemon[] = _("There's no more room for Pokémon!\pThe Pokémon Boxes are full and\ncan't accept any more!");
 const u8 gText_NicknameThisPokemon[] = _("Do you want to give a nickname to\nthis {STR_VAR_1}?");
-static const u8 sText_FogIsDeep[] = _("Fog is deep…");
-static const u8 sText_FogWasBlownAway[] = _("The fog was blown away\nby Defog!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
-    [STRINGID_FOGBLOWNAWAY - 12] = sText_FogWasBlownAway,
-    [STRINGID_FOGISDEEP - 12] = sText_FogIsDeep,
     [STRINGID_TRAINER1LOSETEXT - 12] = sText_Trainer1LoseText,
     [STRINGID_PKMNGAINEDEXP - 12] = sText_PkmnGainedEXP,
     [STRINGID_PKMNGREWTOLV - 12] = sText_PkmnGrewToLv,
@@ -1737,6 +1735,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_MAGICROOMSTARTS - 12] = sText_MagicRoomStarts,
     [STRINGID_ORIGIN_REVERSION - 12] = sText_OriginReversion,
     [STRINGID_CROWNED_REVERSION - 12] = sText_CrownedReversion,
+    [STRINGID_FOGISDEEP - 12] = sText_FogIsDeep,
+    [STRINGID_FOGBLOWNAWAY - 12] = sText_FogWasBlownAway,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
