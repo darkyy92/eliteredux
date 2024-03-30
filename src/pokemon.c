@@ -8315,21 +8315,12 @@ void MonRestorePP(struct Pokemon *mon)
 
 void SetMonPreventsSwitchingString(void)
 {
-    gLastUsedAbility = gBattleStruct->abilityPreventingSwitchout;
-
-    gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
-    gBattleTextBuff1[1] = B_BUFF_MON_NICK_WITH_PREFIX;
-    gBattleTextBuff1[2] = gBattleStruct->battlerPreventingSwitchout;
-    gBattleTextBuff1[4] = B_BUFF_EOS;
-
     if (GetBattlerSide(gBattleStruct->battlerPreventingSwitchout) == B_SIDE_PLAYER)
-        gBattleTextBuff1[3] = GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout]);
+        GetMonNickname(&gPlayerParty[GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout])], gStringVar1);
     else
-        gBattleTextBuff1[3] = gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout];
+        GetMonNickname(&gEnemyParty[gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout]], gStringVar1);
 
-    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff2, gBattlerInMenuId, GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[gBattlerInMenuId]))
-
-    BattleStringExpandPlaceholders(gText_PkmnsXPreventsSwitching, gStringVar4);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnsXPreventsSwitching);
 }
 
 static s32 GetWildMonTableIdInAlteringCave(u16 species)
