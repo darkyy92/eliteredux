@@ -1583,11 +1583,13 @@ void ReadActiveScriptInitialStackState()
 
 void SetActiveMultistringChooser(u8 messageId)
 {
+    gBattleCommunication[MULTISTRING_CHOOSER] = messageId;
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].multistringChooser = messageId;
 }
 
 void SetActiveAbilityPopupOverride(u16 abilityPopupOverride)
 {
+    gBattleScripting.abilityPopupOverwrite = abilityPopupOverride;
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].abilityOverride = abilityPopupOverride;
 }
 

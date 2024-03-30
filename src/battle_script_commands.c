@@ -9806,16 +9806,16 @@ static void Cmd_various(void)
                 case SPECIES_GIRATINA_ORIGIN:
                 case SPECIES_PALKIA_ORIGIN:
                 case SPECIES_DIALGA_ORIGIN:
-                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ORIGIN_REVERSION);
+                    SetActiveMultistringChooser(B_MSG_ORIGIN_REVERSION);
                     break;
 
                 case SPECIES_ZAMAZENTA_CROWNED_SHIELD:
                 case SPECIES_ZACIAN_CROWNED_SWORD:
-                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CROWNED_REVERSION);
+                    SetActiveMultistringChooser(B_MSG_CROWNED_REVERSION);
                     break;
 
                 default:
-                    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_REVERSION);
+                    SetActiveMultistringChooser(B_MSG_PRIMAL_REVERSION);
                     break;
             }
         }
