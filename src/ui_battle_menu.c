@@ -4029,8 +4029,8 @@ static void PrintSpeedTab(void)
                     }
                     x = x - 12;
                     x2 = 0;
-                    y++;
                 }
+                y++;
             }
             y++;
         }
