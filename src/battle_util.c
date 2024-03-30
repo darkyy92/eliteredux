@@ -1422,9 +1422,6 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             }
             else
                 gBattlerAbility = gBattlerTarget;
-
-            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_DEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
             
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_KingsWrathActivated;
@@ -1444,9 +1441,6 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             }
             else
                 gBattlerAbility = gBattlerTarget;
-
-            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-            ChangeStatBuffs(gBattlerAbility, StatBuffValue(1), STAT_SPDEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
             
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_QueensMourningActivated;
@@ -1583,11 +1577,13 @@ void ReadActiveScriptInitialStackState()
 
 void SetActiveMultistringChooser(u8 messageId)
 {
+    gBattleCommunication[MULTISTRING_CHOOSER] = messageId;
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].multistringChooser = messageId;
 }
 
 void SetActiveAbilityPopupOverride(u16 abilityPopupOverride)
 {
+    gBattleScripting.abilityPopupOverwrite = abilityPopupOverride;
     gBattleResources->battleScriptsStack->savedStackData[gBattleResources->battleScriptsStack->size].abilityOverride = abilityPopupOverride;
 }
 
@@ -5434,7 +5430,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER, NULL);
                 if (result)
                 {
                     SetStatChanger(statId, 1);
@@ -5475,7 +5471,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER, NULL);
                 if (result)
                 {
                     SetStatChanger(statId, 1);
@@ -5495,7 +5491,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER, NULL);
                     if (result)
                     {
                         SetStatChanger(statId, 1);
@@ -5516,7 +5512,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    s8 result = ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER, NULL);
                     if (result)
                     {
                         SetStatChanger(statId, 1);
@@ -6125,7 +6121,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             && IsBattlerAlive(battler)
             && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                ChangeStatBuffs(battler, StatBuffValue(2), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                ChangeStatBuffs(battler, StatBuffValue(2), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER, NULL);
                 SetStatChanger(STAT_SPEED, 2);
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPEED);
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
@@ -6451,11 +6447,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SPEED_BOOST)){
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gVolatileStructs[battler].isFirstTurn != 2)
                 {
-                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER, NULL);
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPEED_BOOST;
                     gBattlerAttacker = battler;
-                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
-                    gBattleScripting.animArg2 = 0;
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
                     gBattleScripting.battler = battler;
                     effect++;
@@ -7124,7 +7118,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                     SET_STATCHANGER(statId, 1, FALSE);
                     gTurnStructs[gBattlerAttacker].multiHitCounter = 0;
-                    ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                    ChangeStatBuffs(battler, StatBuffValue(1), statId, MOVE_EFFECT_AFFECTS_USER, NULL);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                 }
             }
@@ -7726,12 +7720,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && (moveType == TYPE_FIRE || moveType == TYPE_FLYING))
 			{
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INFLATABLE;
-				
-				ChangeStatBuffs(battler, StatBuffValue(1), STAT_DEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-                ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPDEF, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-				
-				gBattleScripting.animArg1 = 14 + STAT_DEF;
-				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_InflatableActivates);
 				gBattleScripting.battler = battler;
 				effect++;
@@ -7893,7 +7881,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGER_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_ATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -7916,7 +7904,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CROWNED_SWORD;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_ATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -7939,7 +7927,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TIPPING_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursor();
-				ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+				ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPATK, MOVE_EFFECT_AFFECTS_USER, NULL);
 				gBattleScripting.animArg1 = 14 + STAT_SPATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
@@ -8219,9 +8207,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gLastUsedAbility = ABILITY_GROWING_TOOTH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
-					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-					gBattleScripting.animArg1 = 14 + STAT_ATK;
-					gBattleScripting.animArg2 = 0;
+					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER, NULL);
 					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
 					gBattleScripting.battler = battler;
 					effect++;
@@ -8252,9 +8238,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 //Boosts Speed
                 if(CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)){
                     //If the ability is an innate overwrite the popout
-                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
-                    gBattleScripting.animArg2 = 0;
+                    ChangeStatBuffs(battler, StatBuffValue(1), STAT_SPEED, MOVE_EFFECT_AFFECTS_USER, NULL);
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
                     gBattleScripting.battler = battler;
                     effect++;
@@ -8275,9 +8259,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARDENED_SHEATH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
-					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
-					gBattleScripting.animArg1 = 14 + STAT_ATK;
-					gBattleScripting.animArg2 = 0;
+					ChangeStatBuffs(battler, StatBuffValue(1), STAT_ATK, MOVE_EFFECT_AFFECTS_USER, NULL);
 					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
 					gBattleScripting.battler = battler;
 					effect++;
@@ -8762,7 +8744,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     {
                         for(i = 1; i < NUM_STATS; i++){
                             if(gBattleMons[battler].statStages[i] < MAX_STAT_STAGE && i != STAT_DEF){
-                                ChangeStatBuffs(battler, StatBuffValue(1), i, MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_DONT_SET_BUFFERS, NULL);
+                                ChangeStatBuffs(battler, StatBuffValue(1), i, MOVE_EFFECT_AFFECTS_USER, NULL);
                                 effectActivated = TRUE;
                             }
                         }
