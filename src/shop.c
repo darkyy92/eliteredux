@@ -361,6 +361,7 @@ static const u16 sAdoptionCenterInventory_TwoBadges[] = {
 
 // 3 Badges
 static const u16 sAdoptionCenterInventory_ThreeBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
@@ -380,6 +381,7 @@ static const u16 sAdoptionCenterInventory_ThreeBadges[] = {
 
 // 4 Badges
 static const u16 sAdoptionCenterInventory_FourBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
@@ -399,6 +401,7 @@ static const u16 sAdoptionCenterInventory_FourBadges[] = {
 
 // 5 Badges
 static const u16 sAdoptionCenterInventory_FiveBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
@@ -418,8 +421,10 @@ static const u16 sAdoptionCenterInventory_FiveBadges[] = {
 
 // 6 Badges
 static const u16 sAdoptionCenterInventory_SixBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_DEINO_REDUX,
     SPECIES_GIBLE_REDUX,
+    SPECIES_LARVITAR_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
@@ -439,8 +444,10 @@ static const u16 sAdoptionCenterInventory_SixBadges[] = {
 
 // 7 Badges
 static const u16 sAdoptionCenterInventory_SevenBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_DEINO_REDUX,
     SPECIES_GIBLE_REDUX,
+    SPECIES_LARVITAR_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
@@ -460,8 +467,10 @@ static const u16 sAdoptionCenterInventory_SevenBadges[] = {
 
 // 8 Badges
 static const u16 sAdoptionCenterInventory_EightBadges[] = {
+    SPECIES_SLUGMA_REDUX,
     SPECIES_DEINO_REDUX,
     SPECIES_GIBLE_REDUX,
+    SPECIES_LARVITAR_REDUX,
     SPECIES_GROWLITHE_REDUX,
     SPECIES_SABLEYE_REDUX,
     SPECIES_MAWILE_REDUX,
