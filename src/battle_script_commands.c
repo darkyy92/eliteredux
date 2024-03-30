@@ -11241,42 +11241,42 @@ static void Cmd_setprotectlike(void)
             if (gBattleMoves[gCurrentMove].effect == EFFECT_ENDURE)
             {
                 gRoundStructs[gBattlerAttacker].endured = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BRACED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_BRACED_ITSELF);
             }
             else if (gCurrentMove == MOVE_DETECT || gCurrentMove == MOVE_PROTECT)
             {
                 gRoundStructs[gBattlerAttacker].protected = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_SPIKY_SHIELD)
             {
                 gRoundStructs[gBattlerAttacker].spikyShielded = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_KINGS_SHIELD)
             {
                 gRoundStructs[gBattlerAttacker].kingsShielded = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_BANEFUL_BUNKER)
             {
                 gRoundStructs[gBattlerAttacker].banefulBunkered = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_OBSTRUCT)
             {
                 gRoundStructs[gBattlerAttacker].obstructed = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_SILK_TRAP)
             {
                 gRoundStructs[gBattlerAttacker].silkTrapped = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
             else if (gCurrentMove == MOVE_BURNING_BULWARK)
             {
                 gRoundStructs[gBattlerAttacker].burningBulwark = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_ITSELF);
             }
 
             gVolatileStructs[gBattlerAttacker].protectUses++;
@@ -11288,28 +11288,28 @@ static void Cmd_setprotectlike(void)
             if (gCurrentMove == MOVE_WIDE_GUARD && !(gSideStatuses[side] & SIDE_STATUS_WIDE_GUARD))
             {
                 gSideStatuses[side] |= SIDE_STATUS_WIDE_GUARD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_TEAM);
                 gVolatileStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_QUICK_GUARD && !(gSideStatuses[side] & SIDE_STATUS_QUICK_GUARD))
             {
                 gSideStatuses[side] |= SIDE_STATUS_QUICK_GUARD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_TEAM);
                 gVolatileStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_CRAFTY_SHIELD && !(gSideStatuses[side] & SIDE_STATUS_CRAFTY_SHIELD))
             {
                 gSideStatuses[side] |= SIDE_STATUS_CRAFTY_SHIELD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_TEAM);
                 gVolatileStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_MAT_BLOCK && !(gSideStatuses[side] & SIDE_STATUS_MAT_BLOCK))
             {
                 gSideStatuses[side] |= SIDE_STATUS_MAT_BLOCK;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
+                SetActiveMultistringChooser(B_MSG_PROTECTED_TEAM);
                 fail = FALSE;
             }
         }
@@ -11318,10 +11318,10 @@ static void Cmd_setprotectlike(void)
     if (fail)
     {
         gVolatileStructs[gBattlerAttacker].protectUses = 0;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECT_FAILED;
+        SetActiveMultistringChooser(B_MSG_PROTECT_FAILED);
         gMoveResultFlags |= MOVE_RESULT_MISSED;
     }
-
+    
     gBattlescriptCurrInstr++;
 }
 
