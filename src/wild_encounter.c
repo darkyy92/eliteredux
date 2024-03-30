@@ -427,9 +427,9 @@ u16 MaybeFindSpecialMon(u8 area)
             break;
         case WILD_AREA_BERRY:
         case WILD_AREA_HONEY:
-            return SPECIES_SHAYMIN;
+            return (Random() % 2) ? SPECIES_SHAYMIN : SPECIES_CELEBI;
         case WILD_AREA_FISHING:
-            return SPECIES_PHIONE;
+            return (Random() % 2) ? SPECIES_PHIONE : SPECIES_MANAPHY;
     }
 
     return FALSE;
