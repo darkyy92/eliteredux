@@ -5,7 +5,7 @@
   "music": "MUS_GYM",
   "region_map_section": "MAPSEC_LAVARIDGE_TOWN",
   "requires_flash": false,
-  "weather": "WEATHER_FOG_HORIZONTAL",
+  "weather": "WEATHER_FOG_DIAGONAL",
   "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": false,
   "allow_escaping": false,
