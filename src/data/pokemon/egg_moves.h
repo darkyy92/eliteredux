@@ -4060,7 +4060,11 @@ const u16 gEggMoves[] = {
         MOVE_RECOVER,
         MOVE_MIST,
         MOVE_BARRIER,
-        MOVE_MIRROR_COAT),
+        MOVE_MIRROR_COAT,
+        MOVE_FLASH_FREEZE,
+        MOVE_ACCELEROCK,
+        MOVE_ICE_SPINNER,
+        MOVE_GLACIER_CRASH),
 
     egg_moves(NOIBAT,
         MOVE_DUAL_WINGBEAT, // new
