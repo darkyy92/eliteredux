@@ -1976,28 +1976,27 @@ static void DexNavFadeAndExit(void)
 static bool8 SpeciesInArray(u16 species, u8 section)
 {
     u32 i;
-    u16 dexNum = SpeciesToNationalPokedexNum(species);
     
     switch (section)
     {
     case 0: //land
         for (i = 0; i < LAND_WILD_COUNT; i++)
         {
-            if (SpeciesToNationalPokedexNum(sDexNavUiDataPtr->landSpecies[i]) == dexNum)
+            if (sDexNavUiDataPtr->landSpecies[i] == species)
                 return TRUE;
         }
         break;
     case 1: //water
         for (i = 0; i < WATER_WILD_COUNT; i++)
         {
-            if (SpeciesToNationalPokedexNum(sDexNavUiDataPtr->waterSpecies[i]) == dexNum)
+            if (sDexNavUiDataPtr->waterSpecies[i] == species)
                 return TRUE;
         }
         break;
     case 2: //hidden
         for (i = 0; i < HIDDEN_WILD_COUNT; i++)
         {
-            if (SpeciesToNationalPokedexNum(sDexNavUiDataPtr->hiddenSpecies[i]) == dexNum)
+            if (sDexNavUiDataPtr->hiddenSpecies[i] == species)
                 return TRUE;
         }
         break;
