@@ -14395,6 +14395,15 @@ static void Cmd_rapidspinfree(void)
     }
     else if (gSideStatuses[atkSide] & SIDE_STATUS_STEALTH_ROCK)
     {
+        switch (gSideTimers[atkSide].stealthRockType)
+        {
+            case TYPE_ROCK:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STEALTH_ROCK_FREE;
+                break;
+            case TYPE_GRASS:
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CREEPING_THORNS_FREE;
+                break;
+        }
         gSideStatuses[atkSide] &= ~(SIDE_STATUS_STEALTH_ROCK);
         gSideTimers[atkSide].stealthRockType = 0;
         BattleScriptPushCursor();
