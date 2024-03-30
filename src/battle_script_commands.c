@@ -12277,10 +12277,14 @@ s8 ChangeStatBuffs(u8 battler, s8 statValue, u32 statId, u32 flags, const u8 *BS
 static void Cmd_statbuffchange(void)
 {
     u16 flags = T1_READ_16(gBattlescriptCurrInstr + 1);
+    u8 result;
     const u8 *ptrBefore = gBattlescriptCurrInstr;
     const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
 
-    if (ChangeStatBuffsImplicit(GET_STAT_BUFF_VALUE_WITH_SIGN(gBattleScripting.statChanger), GET_STAT_BUFF_ID(gBattleScripting.statChanger), flags, jumpPtr))
+    result = ChangeStatBuffsImplicit(GET_STAT_BUFF_VALUE_WITH_SIGN(gBattleScripting.statChanger), GET_STAT_BUFF_ID(gBattleScripting.statChanger), flags, jumpPtr);
+    SetActiveMultistringChooser(gBattleCommunication[MULTISTRING_CHOOSER]);
+
+    if (result)
         gBattlescriptCurrInstr += 7;
     else if (gBattlescriptCurrInstr == ptrBefore) // Prevent infinite looping.
         gBattlescriptCurrInstr = jumpPtr;
