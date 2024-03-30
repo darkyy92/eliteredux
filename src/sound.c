@@ -378,6 +378,8 @@ void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode)
     u32 length;
     u32 pitch;
     u32 chorus;
+    
+    species = GET_BASE_SPECIES_ID(species);
 
     length = 140;
     v0 = FALSE;
