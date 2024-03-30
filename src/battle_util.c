@@ -5097,7 +5097,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
-            case WEATHER_FOG_DIAGONAL:
+            //case WEATHER_FOG_DIAGONAL:  // added to Lavaridge Gym; doesn't trigger B_WEATHER_FOG_PERMANENT
             case WEATHER_FOG_HORIZONTAL:
                 if (!(gBattleWeather & B_WEATHER_FOG_PERMANENT))
                 {

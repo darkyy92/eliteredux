@@ -2088,8 +2088,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         && ((defAbility != ABILITY_AIR_LOCK) && (defAbility != ABILITY_CLOUD_NINE))
         && ((defAllyAbility != ABILITY_AIR_LOCK) && (defAllyAbility != ABILITY_CLOUD_NINE)))
         {
-		    // if ((atkAbility != ABILITY_KEEN_EYE) && (atkAbility != ABILITY_ILLUMINATE) && (atkAbility != ABILITY_MINDS_EYE)) // Not official cases
-		    calc = (calc * 60) / 100; // 1.4 fog loss
+		    if ((atkAbility != ABILITY_ILLUMINATE) && (atkAbility != ABILITY_MINDS_EYE)
+            && (atkAbility != ABILITY_RADIANCE) && (atkAbility != ABILITY_PLASMA_LAMP))
+		    calc = (calc * 80) / 100; // 20% fog loss
         }
 	}
 
