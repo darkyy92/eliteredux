@@ -11462,7 +11462,7 @@ case ITEMEFFECT_KINGSROCK:
         switch (battlerHoldEffect)
         {
         case HOLD_EFFECT_TOXIC_ORB:
-            if (CanPoisonType(battlerId, battlerId))
+            if (CanBePoisoned(battlerId, battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
                 gBattleMons[battlerId].status1 = STATUS1_TOXIC_POISON;
