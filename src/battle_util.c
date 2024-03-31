@@ -9382,8 +9382,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Two Step
             if(CHECK_ABILITY(ABILITY_TWO_STEP)){
-
-                //Checks if the ability is triggered
                 if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                     gBattleMoves[move].flags & FLAG_DANCE)
                 {
