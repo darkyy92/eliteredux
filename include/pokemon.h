@@ -215,6 +215,8 @@ struct BattleMove
     u8 split;
     u16 argument;
     u32 flags2;
+    u8 parentalBondBanned:1;
+    u8 twoTurnMove:1;
 };
 
 struct SpindaSpot
