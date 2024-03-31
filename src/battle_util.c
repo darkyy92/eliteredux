@@ -7648,7 +7648,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Innards Out
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_INNARDS_OUT)){
             if (ShouldApplyOnHitAffect(gBattlerAttacker)
-             && !BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
+                && !IsBattlerAlive(battler)
+                && !BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_INNARDS_OUT;
                 gBattleMoveDamage = gTurnStructs[gBattlerTarget].dmg;
@@ -9610,6 +9611,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gStackBattler1 = commander;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_CommanderEnds;
+                    effect++;
                 }
             }
         break;
@@ -9617,12 +9619,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
     // Restore state in case of clobbering
     if (effect)
+    {
+        gBattlerAbility = battler;
         ReadActiveScriptInitialStackState();
+    }
 
     if (effect && gLastUsedAbility != 0xFF)
         RecordAbilityBattle(battler, gLastUsedAbility);
-    if (effect && caseID <= ABILITYEFFECT_MOVE_END)
-        gBattlerAbility = battler;
 
     return effect;
 }
