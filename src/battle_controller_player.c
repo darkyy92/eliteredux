@@ -2173,10 +2173,6 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_MOUNTAINEER, moveNum)){
                     abilityNullifiesDamage = TRUE;
                 }
-
-                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_FURNACE, moveNum)){
-                    abilityNullifiesDamage = TRUE;
-                }
             break;
             case TYPE_NORMAL:
                 /*if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){

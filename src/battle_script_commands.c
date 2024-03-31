@@ -7359,7 +7359,7 @@ static void Cmd_switchineffects(void)
     }
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
-        && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
+        && IsBattlerAffectedByHazards(gActiveBattler, gSideTimers[GetBattlerSide(gActiveBattler)].stealthRockType == TYPE_ROCK)
         && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
         && GetBattlerAbility(gActiveBattler) != ABILITY_IMPENETRABLE
 		&& !BattlerHasInnate(gActiveBattler, ABILITY_MAGIC_GUARD)
@@ -7384,7 +7384,7 @@ static void Cmd_switchineffects(void)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_ToxicSpikesAbsorbed;
         }
-        else if (IsBattlerAffectedByHazards(gActiveBattler, TRUE))
+        else if (IsBattlerAffectedByHazards(gActiveBattler, FALSE))
         {
             if (!(gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
                 && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL)

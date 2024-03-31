@@ -14943,7 +14943,7 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
 
         if (moveType == TYPE_GROUND && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_LEVITATE, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_DRAGONFLY, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_AERIALIST, abilityDef)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
-		if (moveType == TYPE_ROCK && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_MOUNTAINEER, abilityDef) || BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_FURNACE, abilityDef)))
+		if (moveType == TYPE_ROCK && (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_MOUNTAINEER, abilityDef)))
             modifier = UQ_4_12(0.0);
 		if ((moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG) && 
             (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_GIFTED_MIND, abilityDef))) 
@@ -15683,34 +15683,20 @@ void TrySaveExchangedItem(u8 battlerId, u16 stolenItem)
     #endif
 }
 
-bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 toxicSpikes)
+bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 stealthRock)
 {
     bool32 ret = TRUE;
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
-    if (toxicSpikes && 
-		holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
-		!IS_BATTLER_OF_TYPE(battlerId, TYPE_POISON))
+    if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
     {
         ret = FALSE;
         RecordItemEffectBattle(battlerId, holdEffect);
     }
-    else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-    {
-        ret = FALSE;
-        RecordItemEffectBattle(battlerId, holdEffect);
-    }
-	else if (GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST ||
-		BattlerHasInnate(gActiveBattler, ABILITY_SHIELD_DUST))
+	else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SHIELD_DUST))
     {
         ret = FALSE;
     }
-	else if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOUNTAINEER ||
-		BattlerHasInnate(gActiveBattler, ABILITY_MOUNTAINEER)) && !toxicSpikes)
-    {
-        ret = FALSE;
-    }
-    else if ((GetBattlerAbility(gActiveBattler) == ABILITY_FURNACE ||
-		BattlerHasInnate(gActiveBattler, ABILITY_FURNACE)) && !toxicSpikes)
+	else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_MOUNTAINEER) && stealthRock)
     {
         ret = FALSE;
     }
