@@ -3669,7 +3669,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 else
                 {
-                    static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_SLEEP, MOVE_EFFECT_PARALYSIS};
+                    static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_BLEED, MOVE_EFFECT_PARALYSIS};
                     gBattleScripting.moveEffect = sDireClawEffects[Random() % 3];
                     SetMoveEffect(primary, certain);
                 }
