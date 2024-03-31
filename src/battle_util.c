@@ -9380,6 +9380,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 
+            //Two Step
+            if(CHECK_ABILITY(ABILITY_TWO_STEP)){
+
+                //Checks if the ability is triggered
+                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                    gBattleMoves[move].flags & FLAG_DANCE)
+                {
+                    u8 target = gBattlerTarget;
+                    if (gBattlerAttacker == gBattlerTarget
+                        || (gBattlerTarget == BATTLE_PARTNER(gBattlerAttacker)
+                            && gBattleMoves[move].target == MOVE_TARGET_ALLY))
+                        target = GetMoveTarget(MOVE_REVELATION_DANCE, 0);
+
+                    if (CanUseExtraMove(gBattlerAttacker, target))
+                    {
+                        gBattlerTarget = target;
+                        return UseAttackerFollowUpMove(battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
+                    }
+                }
+            }
+
             if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
 
             //Volcano Rage
@@ -9437,16 +9458,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
                     (GetTypeBeforeUsingMove(move, battler) == TYPE_WATER)){
                     return UseAttackerFollowUpMove(battler, ABILITY_HIGH_TIDE, MOVE_SURF, 50, 0, 0);
-                }
-            }
-
-            //Two Step
-            if(CHECK_ABILITY(ABILITY_TWO_STEP)){
-
-                //Checks if the ability is triggered
-                if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-                    gBattleMoves[move].flags & FLAG_DANCE) {
-                    return UseAttackerFollowUpMove(battler, ABILITY_TWO_STEP, MOVE_REVELATION_DANCE, 50, 0, 0);
                 }
             }
             #undef CHECK_ABILITY
@@ -12340,7 +12351,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
     case EFFECT_TERRAIN_PULSE:
-        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && IsBattlerGrounded(gBattlerAttacker))
+        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && IsBattlerGrounded(battlerAtk))
             basePower *= 2;
         break;
     case EFFECT_RISING_VOLTAGE:
@@ -12352,21 +12363,21 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower = 120;
         break;
     case EFFECT_MISTY_TERRAIN_BOOST:
-        if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(gBattlerAttacker))
+        if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
             basePower = basePower * 13 / 10;
         break;
     case EFFECT_MISC_HIT:
         switch (gBattleMoves[move].argument)
         {
             case MISC_EFFECT_FAINTED_MON_BOOST:
-                basePower += 10 * gFaintedMonCount[GetBattlerSide(gBattlerAttacker)];
+                basePower += 10 * gFaintedMonCount[GetBattlerSide(battlerAtk)];
                 break;
             case MISC_EFFECT_ELECTRIC_TERRAIN_BOOST:
-                if (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_ELECTRIC_TERRAIN))
+                if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN))
                     basePower = basePower * 3 / 2;
                 break;
             case MISC_EFFECT_TOOK_DAMAGE_BOOST:
-                basePower += 20 * min(3, gBattleStruct->timesDamaged[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)]);
+                basePower += 20 * min(3, gBattleStruct->timesDamaged[gBattlerPartyIndexes[battlerAtk]][GetBattlerSide(battlerAtk)]);
                 break;
             case MISC_EFFECT_DOUBLE_DAMAGE:
                 basePower *= 1 + ((Random() % 100) < gBattleMoves[move].secondaryEffectChance);
