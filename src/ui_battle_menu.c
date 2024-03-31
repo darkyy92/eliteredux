@@ -1789,7 +1789,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     u8 moveType2 = TYPE_MYSTERY;
     bool32 updateFlags = FALSE;
     bool8 isStatusMove = gBattleMoves[move].split == SPLIT_STATUS;
-    bool8 isStab = FALSE;
+    u8 stab = 2;
     struct Pokemon *party;
 
     //Party
@@ -1817,8 +1817,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     }
 
     //Check Stab
-    if(IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType) && !isStatusMove)
-        isStab = TRUE;
+    stab = StabMultiplierInHalves(sMenuDataPtr->battlerId, moveType, GetBattlerAbility(sMenuDataPtr->battlerId), move);
     
     //Move Name
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move]);
@@ -1834,8 +1833,8 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     y++;
 
     //Stab Boost
-    if(isStab)
-        movePower = movePower * 1.5;
+    if(stab > 2)
+        movePower = movePower * stab / 2;
     
     switch(mode){
         case MOVE_MODE_NORMAL:
@@ -1884,7 +1883,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             //Stab
             if(!isStatusMove){ //No stab boost for status moves
-                if(isStab)
+                if(stab > 2)
                     StringCopy(gStringVar1, gText_Boost_True);
                 else
                     StringCopy(gStringVar1, gText_Boost_False);

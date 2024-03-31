@@ -14186,6 +14186,25 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     return ApplyModifier(modifier, defStat);
 }
 
+u8 StabMultiplierInHalves(u8 battler, u8 moveType, u16 ability, u16 move)
+{
+    if (move == MOVE_STRUGGLE) return 2;
+    if (IS_BATTLER_OF_TYPE(battler, moveType)
+	    || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_MYSTIC_POWER, ability)
+	    || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ARCANE_FORCE, ability)
+        || (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_LUNAR_ECLIPSE, ability) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK))
+        || (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_MOON_SPIRIT, ability) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK))
+        || (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_SOLAR_FLARE, ability) && moveType == TYPE_FIRE)
+		|| (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_AURORA_BOREALIS, ability) && moveType == TYPE_ICE))
+    {
+        if (BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ADAPTABILITY, ability))
+            return 4;
+        else
+            return 3;
+    }
+    return 2;
+}
+
 u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 typeEffectivenessModifier, bool32 isCrit, bool32 updateFlags)
 {
     u32 percentBoost;
@@ -14258,18 +14277,14 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     #undef CHECK_WEATHER_DOUBLE_BOOST
 
     // check stab
-    if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
-	     BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_MYSTIC_POWER, abilityAtk) ||
-	     BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ARCANE_FORCE, abilityAtk) ||
-         (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
-         (abilityAtk == ABILITY_MOON_SPIRIT && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (BattlerHasInnate(battlerAtk, ABILITY_MOON_SPIRIT) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
-         (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE) ||
-		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (BattlerHasInnate(battlerAtk, ABILITY_AURORA_BOREALIS) && moveType == TYPE_ICE))
+    switch (StabMultiplierInHalves(battlerAtk, moveType, abilityAtk, move))
     {
-        if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ADAPTABILITY, abilityAtk))
+        case 4:
             MulModifier(&finalModifier, UQ_4_12(2.0));
-        else
+            break;
+        case 3:
             MulModifier(&finalModifier, UQ_4_12(1.5));
+            break;
     }
 
     // reflect, light screen, aurora veil
