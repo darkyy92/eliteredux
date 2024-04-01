@@ -9235,8 +9235,7 @@ static void Cmd_various(void)
         MarkBattlerForControllerExec(gActiveBattler);
         break;
     case VARIOUS_TRY_ACTIVATE_RAMPAGE:
-        if ((GetBattlerAbility(gActiveBattler) == ABILITY_RAMPAGE ||
-             BattlerHasInnate(gActiveBattler, ABILITY_RAMPAGE))
+        if ((BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_RAMPAGE) || BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BERSERKER_RAGE))
           && HasAttackerFaintedTarget()
           && !NoAliveMonsForEitherParty())
         {
