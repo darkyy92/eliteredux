@@ -8692,6 +8692,7 @@ const union TmHmUnion gTMHMLearnsets[NUM_SPECIES] =
         TM(MOVE_SURF)
         TM(MOVE_WATERFALL)
         TM(MOVE_DIVE)
+        TM(MOVE_SWORDS_DANCE)
         TMHM_LEARNSET_END
 
     [SPECIES_SCIZOR] = TMHM_LEARNSET
