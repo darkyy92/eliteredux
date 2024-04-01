@@ -269,7 +269,7 @@
 #define ABILITY_MIMICRY 250 // Changes type on terrain.
 #define ABILITY_SCREEN_CLEANER 251 // Removes walls of light.
 #define ABILITY_STEELY_SPIRIT 252 // Boosts own and ally's Steel moves by 30%.
-#define ABILITY_PERISH_BODY 253 // Foe faints in 3 turns if hit.
+#define ABILITY_PERISH_BODY 253 // Pokémon and foe faint in 3 turns if hit.
 #define ABILITY_WANDERING_SPIRIT 254 // Trade abilities on contact.
 #define ABILITY_GORILLA_TACTICS 255 // Ups Attack by 50% and locks move.
 #define ABILITY_NEUTRALIZING_GAS 256 // All Abilities are nullified. Innates still work.
