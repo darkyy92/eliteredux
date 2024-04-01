@@ -9527,7 +9527,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_RECOIL_IF_MISS,
         .power = 100,
-        .type = TYPE_FIGHTING,
+        .type = TYPE_FLYING,
         .accuracy = 95,
         .pp = 10,
         .secondaryEffectChance = 0,
