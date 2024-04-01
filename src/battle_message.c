@@ -818,6 +818,8 @@ static const u8 sText_OriginReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Origin R
 static const u8 sText_CrownedReversion[] = _("{B_ATK_NAME_WITH_PREFIX}'s Restoration!\nIt's restored to its former glory!");
 static const u8 sText_FogIsDeep[] = _("The fog is deep…");
 static const u8 sText_FogWasBlownAway[] = _("The fog was blown away\nby Defog!");
+static const u8 sText_PkmnFrostbittenBy[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\ngave {B_EFF_NAME_WITH_PREFIX} frostbite!");
+static const u8 sText_PkmnBledBy[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s ability\nmade {B_EFF_NAME_WITH_PREFIX} bleed!");
 const u8 gText_PkmnsXPreventsSwitching[] = _("{STR_VAR_1}'s Ability\nprevents switching!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("Player defeated\n{B_LINK_OPPONENT1_NAME}!");
 static const u8 sText_TwoLinkTrainersDefeated[] = _("Player beat {B_LINK_OPPONENT1_NAME}\nand {B_LINK_OPPONENT2_NAME}!");
@@ -1737,6 +1739,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_CROWNED_REVERSION - 12] = sText_CrownedReversion,
     [STRINGID_FOGISDEEP - 12] = sText_FogIsDeep,
     [STRINGID_FOGBLOWNAWAY - 12] = sText_FogWasBlownAway,
+    [STRINGID_PKMNFROSTBITTENBY - 12] = sText_PkmnFrostbittenBy,
+    [STRINGID_PKMNBLEDBY - 12] = sText_PkmnBledBy,
 };
 
 const u16 gMentalHerbCureStringIds[] = 
@@ -2049,6 +2053,7 @@ const u16 gGotBurnedStringIds[] =
 const u16 gGotFrostbiteStringIds[] = 
 {
     [B_MSG_STATUSED] = STRINGID_PKMNGOTFROSTBITE,
+    [B_MSG_STATUSED_BY_ABILITY] = STRINGID_PKMNFROSTBITTENBY,
 };
 
 const u16 gFrostbiteHealedStringIds[] = 
@@ -2060,6 +2065,7 @@ const u16 gFrostbiteHealedStringIds[] =
 const u16 gBleedStartedStringIds[] = 
 {
     [B_MSG_STATUSED] = STRINGID_PKMNSTARTBLEED,
+    [B_MSG_STATUSED_BY_ABILITY] = STRINGID_PKMNBLEDBY,
 };
 
 const u16 gBleedHealedStringIds[] = 
