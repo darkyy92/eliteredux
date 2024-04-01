@@ -13261,12 +13261,12 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_EELEKTROSS,
+    .species = SPECIES_IRON_HANDS,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2,
-    .evs = {252, 0, 128, 0, 128, 0},
-    .nature = NATURE_BRAVE,
-    .moves = MOVE_PARABOLIC_CHARGE, MOVE_U_TURN, MOVE_HYDRO_PUMP, MOVE_SPARK
+    .ability = 0,
+    .evs = {252, 4, 0, 0, 252, 0},
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_PLASMA_FISTS, MOVE_MACH_PUNCH, MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH
     },
     {
     .lvl = 0,
@@ -13302,7 +13302,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .ability = 1,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
-    .moves = MOVE_MOUNTAIN_CHUNK, MOVE_FAKE_OUT, MOVE_STEALTH_ROCK, MOVE_THUNDER_PUNCH
+    .moves = MOVE_MOUNTAIN_CHUNK, MOVE_FAKE_OUT, MOVE_NUZZLE, MOVE_THUNDER_PUNCH
     }
 };
 
@@ -17720,12 +17720,12 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
 static const struct TrainerMonItemCustomMoves sParty_Flannery1Insane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_ROTOM_HEAT,
-    .heldItem = ITEM_TACTICAL_VEST,
-    .ability = 0,
-    .evs = {252, 0, 4, 252, 0, 0},
-    .nature = NATURE_CALM,
-    .moves = MOVE_EMBER, MOVE_FLAMETHROWER, MOVE_THUNDER_SHOCK, MOVE_VOLT_SWITCH
+    .species = SPECIES_NINETALES,
+    .heldItem = ITEM_HEAT_ROCK,
+    .ability = 2,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .nature = NATURE_TIMID,
+    .moves = MOVE_SOLAR_BEAM, MOVE_HYPNOSIS, MOVE_FLAMETHROWER, MOVE_MOONBLAST
     },
     {
     .lvl = 0,
@@ -17738,12 +17738,12 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_ARMAROUGE,
-    .heldItem = ITEM_ASSAULT_VEST,
+    .species = SPECIES_ENTEI,
+    .heldItem = ITEM_TACTICAL_VEST,
     .ability = 1,
     .evs = {252, 0, 0, 252, 0, 4},
-    .nature = NATURE_MODEST,
-    .moves = MOVE_EMBER, MOVE_PSYWAVE, MOVE_PSYSHOCK, MOVE_ARMOR_CANNON
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_ICE_FANG, MOVE_FIRE_FANG, MOVE_EXTREME_SPEED, MOVE_THUNDER_FANG
     },
     {
     .lvl = 0,
@@ -22951,13 +22951,13 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1Insane[] = { // Doub
     .ability = 2,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_ADAMANT,
-    .moves = MOVE_SKY_ATTACK, MOVE_U_TURN, MOVE_SKY_ATTACK, MOVE_SKY_ATTACK
+    .moves = MOVE_SKY_ATTACK, MOVE_DRILL_RUN, MOVE_SKY_ATTACK, MOVE_SKY_ATTACK
     },
     {
     .lvl = 0,
     .species = SPECIES_KILOWATTREL,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1,
+    .ability = 2,
     .evs = {4, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
     .moves = MOVE_RAZOR_WIND, MOVE_VOLT_SWITCH, MOVE_ELECTRO_BALL, MOVE_ROOST
