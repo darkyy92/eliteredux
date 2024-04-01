@@ -33227,7 +33227,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenInsane[] = { // Postg
     .ability = 1,
     .evs = {252, 0, 4, 0, 252, 0},
     .nature = NATURE_CAREFUL,
-    .moves = MOVE_BEHEMOTH_BASH, MOVE_ICE_FANG, MOVE_FIRE_FANG, MOVE_BODY_PRESS
+    .moves = MOVE_DOUBLE_IRON_BASH, MOVE_ICE_FANG, MOVE_FIRE_FANG, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,
