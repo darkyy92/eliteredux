@@ -16113,9 +16113,9 @@ u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
 
 u8 TranslateStatId(u8 statId, u8 battlerId)
 {
-    if ((statId & STAT_HIGHEST_ATTACKING) == STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if ((statId & STAT_HIGHEST_DEFENDING) == STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if ((statId & STAT_HIGHEST_TOTAL) == STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
     return statId;
 }
 
