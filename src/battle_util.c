@@ -14275,7 +14275,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_PERMANENT))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2 * 1.2, 1.2), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2, 0.5), dmg);
         else if (moveType == TYPE_WATER)
@@ -14284,7 +14284,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_TEMPORARY))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5 * 1.5, 1.5), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5, 0.5), dmg);
         else if (moveType == TYPE_WATER)
@@ -14293,7 +14293,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_PERMANENT))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2 * 1.2, 1.2), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
@@ -14302,7 +14302,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_TEMPORARY))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5 * 1.5, 1.5), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
