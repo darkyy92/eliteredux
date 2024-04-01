@@ -75,6 +75,7 @@ struct ResourceFlags
 struct VolatileStruct
 {
     u32 transformedMonPersonality;
+    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
     u16 disabledMove;
     u16 encoredMove;
     u8 protectUses;
@@ -84,28 +85,10 @@ struct VolatileStruct
     s8 stockpileBeforeDef;
     s8 stockpileBeforeSpDef;
     u8 substituteHP;
-    u32 abilityState[NUM_INNATE_PER_SPECIES + 1];
     bool8 switchInAbilityDone[NUM_INNATE_PER_SPECIES + 1];
-    u8 disableTimer:4;
-    u8 disableTimerStartValue:4;
-    u8 encoredMovePos;
-    u8 encoreTimer:4;
-    u8 encoreTimerStartValue:4;
-    u8 perishSongTimer:4;
-    u8 perishSongTimerStartValue:4;
-    u8 furyCutterCounter;
-    u8 rolloutTimer:4;
-    u8 rolloutTimerStartValue:4;
-    u8 chargeTimer:4;
-    u8 chargeTimerStartValue:4;
-    u8 tauntTimer:4;
-    u8 tauntTimer2:4;
     u8 battlerPreventingEscape;
     u8 battlerWithSureHit;
     u8 isFirstTurn;
-    u8 truantCounter:1;
-    u8 truantSwitchInHack:1;
-    u8 mimickedMoves:4;
     u8 rechargeTimer;
     u8 autotomizeCount;
     u8 slowStartTimer;
@@ -115,6 +98,23 @@ struct VolatileStruct
     u8 healBlockTimer;
     u8 laserFocusTimer;
     u8 throatChopTimer;
+    u8 encoredMovePos;
+    u8 furyCutterCounter;
+    u8 disableTimer:4;
+    u8 disableTimerStartValue:4;
+    u8 encoreTimer:4;
+    u8 encoreTimerStartValue:4;
+    u8 perishSongTimer:4;
+    u8 perishSongTimerStartValue:4;
+    u8 rolloutTimer:4;
+    u8 rolloutTimerStartValue:4;
+    u8 chargeTimer:4;
+    u8 chargeTimerStartValue:4;
+    u8 tauntTimer:4;
+    u8 tauntTimer2:4;
+    u8 truantCounter:1;
+    u8 truantSwitchInHack:1;
+    u8 mimickedMoves:4;
     u8 usedMoves:4;
     u8 wrapTurns;
     u8 noRetreat:1;
@@ -134,6 +134,10 @@ struct VolatileStruct
 
 struct RoundStruct
 {
+    u32 physicalDmg;
+    u32 specialDmg;
+    u8 physicalBattlerId;
+    u8 specialBattlerId;
     u32 protected:1;
     u32 spikyShielded:1;
     u32 kingsShielded:1;
@@ -169,12 +173,7 @@ struct RoundStruct
     u32 touchedProtectLike:1;
     u32 disableEjectPack:1;
     u32 statFell:1;
-    u32 pranksterElevated:1;
     u32 quickDraw:1;
-    u32 physicalDmg;
-    u32 specialDmg;
-    u8 physicalBattlerId;
-    u8 specialBattlerId;
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
     u32 angelsWrathProtected:1;
@@ -186,6 +185,17 @@ struct RoundStruct
 
 struct TurnStruct
 {
+    s32 dmg;
+    s32 physicalDmg;
+    s32 specialDmg;
+    s32 savedDmg;
+    u16 parentalBondTrigger; // Ability that triggered parental bond
+    u16 flungItem;
+    bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
+    u8 gemParam;
+    u8 physicalBattlerId;
+    u8 specialBattlerId;
+    u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u8 statLowered:1;
     u8 lightningRodRedirected:1;
     u8 restoredBattlerSprite: 1;
@@ -204,24 +214,14 @@ struct TurnStruct
     u8 parentalBondOn:3;
     u8 parentalBondInitialCount:3;
     u8 multiHitOn:1;
-    u8 gemParam;
     u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
     u8 dancerUsedMove:1;
     u8 announceNeutralizingGas:1;   // See Cmd_switchineffects
     u8 neutralizingGasRemoved:1;    // See VARIOUS_TRY_END_NEUTRALIZING_GAS
-    s32 dmg;
-    s32 physicalDmg;
-    s32 specialDmg;
-    s32 savedDmg;
-    u8 physicalBattlerId;
-    u8 specialBattlerId;
-    u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
-    u16 parentalBondTrigger; // Ability that triggered parental bond
+    u32 pranksterElevated:1;
     u8 mirrorHerbStat:4;
     u8 multiHitCounter:4;
     u8 shouldTriggerSwitchItem:1;
-    bool8 turnAbilityTriggers[NUM_INNATE_PER_SPECIES + 1];
-    u16 flungItem;
 };
 
 struct SideTimer
@@ -235,8 +235,6 @@ struct SideTimer
     u8 safeguardTimer;
     u8 safeguardBattlerId;
     u8 followmeTimer;
-    u8 followmeTarget:3;
-    u8 followmePowder:1; // Rage powder, does not affect grass type pokemon.
     u8 spikesAmount;
     u8 toxicSpikesAmount;
     u8 stealthRockType;
@@ -252,6 +250,8 @@ struct SideTimer
     u8 swampTimer;
     u8 fireSeaTimer;
     u8 rainbowTimer;
+    u8 followmeTarget:3;
+    u8 followmePowder:1; // Rage powder, does not affect grass type pokemon.
 };
 
 struct FieldTimer

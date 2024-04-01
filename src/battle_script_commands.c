@@ -11129,9 +11129,9 @@ static void Cmd_various(void)
             return;
         }
         {
-            u8 pranksterElevated = gRoundStructs[gActiveBattler].pranksterElevated;
+            u8 pranksterElevated = gTurnStructs[gActiveBattler].pranksterElevated;
             s8 chosenMovePriority = GetChosenMovePriority(gActiveBattler, gBattleStruct->moveTarget[gActiveBattler]);
-            gRoundStructs[gActiveBattler].pranksterElevated = pranksterElevated;
+            gTurnStructs[gActiveBattler].pranksterElevated = pranksterElevated;
             if (chosenMovePriority > 0)
             {
                 gBattlescriptCurrInstr += 7;

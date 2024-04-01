@@ -474,6 +474,16 @@ void HandleAction_UseMove(void)
     for (i = 0; i < gBattlersCount; i++)
         gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
 
+    if (gProcessingExtraAttacks)
+    {
+        gTurnStructs[gBattlerAttacker].pranksterElevated = FALSE;
+    }
+    else
+    {
+        // Sets prankster elevated
+        GetMovePriority(gBattlerAttacker, gCurrentMove, gBattlerTarget);
+    }
+
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
@@ -15852,7 +15862,7 @@ bool8 IsTwoStrikesMove(u16 move)
 bool32 BlocksPrankster(u16 move, u8 battlerPrankster, u8 battlerDef, bool32 checkTarget)
 {
     #if B_PRANKSTER_DARK_TYPES >= GEN_7
-    if (!gRoundStructs[battlerPrankster].pranksterElevated)
+    if (!gTurnStructs[battlerPrankster].pranksterElevated)
         return FALSE;
     if (GetBattlerSide(battlerPrankster) == GetBattlerSide(battlerDef))
         return FALSE;
