@@ -164,7 +164,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
+    else if ((BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_AMPLIFIER, ability) || BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_BASS_BOOSTED, ability))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -175,7 +175,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
 
 u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
 {
-    u16 ability = gBattleMons[battler].ability;
+    u16 ability = GetBattlerAbility(battler);
     if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ARTILLERY, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
@@ -184,7 +184,7 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
+    else if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_AMPLIFIER, ability) || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_BASS_BOOSTED, ability))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -473,6 +473,16 @@ void HandleAction_UseMove(void)
     // Record HP of each battler
     for (i = 0; i < gBattlersCount; i++)
         gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
+
+    if (gProcessingExtraAttacks)
+    {
+        gTurnStructs[gBattlerAttacker].pranksterElevated = FALSE;
+    }
+    else
+    {
+        // Sets prankster elevated
+        GetMovePriority(gBattlerAttacker, gCurrentMove, gBattlerTarget);
+    }
 
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
@@ -15852,7 +15862,7 @@ bool8 IsTwoStrikesMove(u16 move)
 bool32 BlocksPrankster(u16 move, u8 battlerPrankster, u8 battlerDef, bool32 checkTarget)
 {
     #if B_PRANKSTER_DARK_TYPES >= GEN_7
-    if (!gRoundStructs[battlerPrankster].pranksterElevated)
+    if (!gTurnStructs[battlerPrankster].pranksterElevated)
         return FALSE;
     if (GetBattlerSide(battlerPrankster) == GetBattlerSide(battlerDef))
         return FALSE;
@@ -16103,9 +16113,9 @@ u8 GetHighestDefendingStatId(u8 battlerId, u8 includeStatStages)
 
 u8 TranslateStatId(u8 statId, u8 battlerId)
 {
-    if ((statId & STAT_HIGHEST_ATTACKING) == STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if ((statId & STAT_HIGHEST_DEFENDING) == STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
-    if ((statId & STAT_HIGHEST_TOTAL) == STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_ATTACKING) return GetHighestAttackingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_DEFENDING) return GetHighestDefendingStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
+    if ((statId & STAT_HIGHEST_MASK) == STAT_HIGHEST_TOTAL) return GetHighestStatId(battlerId, statId & STAT_USE_STAT_BOOSTS_IN_CALC);
     return statId;
 }
 

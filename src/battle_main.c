@@ -4939,7 +4939,7 @@ s8 GetChosenMovePriority(u32 battlerId, u32 target)
 {
     u16 move = GetChosenMove(battlerId);
 
-    gRoundStructs[battlerId].pranksterElevated = 0;
+    gTurnStructs[battlerId].pranksterElevated = 0;
 
     return GetMovePriority(battlerId, move, target);
 }
@@ -4971,7 +4971,7 @@ s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
     // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || BattlerHasInnate(battlerId, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
     {
-        gRoundStructs[battlerId].pranksterElevated = 1;
+        gTurnStructs[battlerId].pranksterElevated = 1;
         priority++;
     }
 
@@ -5252,7 +5252,6 @@ static void SetActionsAndBattlersTurnOrder(void)
 static void TurnValuesCleanUp(bool8 clearRoundStruts)
 {
     s32 i;
-
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
         if (!clearRoundStruts)
