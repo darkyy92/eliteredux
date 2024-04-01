@@ -164,7 +164,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
+    else if ((BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_AMPLIFIER, ability) || BATTLER_HAS_ABILITY_FAST(gActiveBattler, ABILITY_BASS_BOOSTED, ability))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -175,7 +175,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
 
 u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
 {
-    u16 ability = gBattleMons[battler].ability;
+    u16 ability = GetBattlerAbility(battler);
     if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_ARTILLERY, ability)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
@@ -184,7 +184,7 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
          && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((BATTLER_HAS_ABILITY(ability, ABILITY_AMPLIFIER) || BATTLER_HAS_ABILITY(ability, ABILITY_BASS_BOOSTED))
+    else if ((BATTLER_HAS_ABILITY_FAST(battler, ABILITY_AMPLIFIER, ability) || BATTLER_HAS_ABILITY_FAST(battler, ABILITY_BASS_BOOSTED, ability))
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
