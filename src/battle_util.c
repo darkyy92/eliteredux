@@ -4336,42 +4336,47 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
     return FALSE;
 }
 
+// Ability,     form >, form <=, hp divided
+static const u16 sHpTransformations[][4] =
+{
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR,               SPECIES_MINIOR_CORE_RED,              2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE,   SPECIES_MINIOR_CORE_BLUE,             2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN,  SPECIES_MINIOR_CORE_GREEN,            2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_CORE_INDIGO,           2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE,           2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET,           2},
+    {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW,           2},
+    {ABILITY_SCHOOLING,    SPECIES_WISHIWASHI_SCHOOL,    SPECIES_WISHIWASHI,                   4},
+    {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GORGING,            2},
+    {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GULPING,            1},
+};
+
 bool32 ShouldChangeFormHpBased(u32 battler)
 {
-    // Ability,     form >, form <=, hp divided
-    static const u16 forms[][4] =
-    {
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR,               SPECIES_MINIOR_CORE_RED,              2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE,   SPECIES_MINIOR_CORE_BLUE,             2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN,  SPECIES_MINIOR_CORE_GREEN,            2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_CORE_INDIGO,           2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE,           2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET,           2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW,           2},
-        {ABILITY_SCHOOLING,    SPECIES_WISHIWASHI_SCHOOL,    SPECIES_WISHIWASHI,                   4},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GORGING,            2},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GULPING,            1},
-    };
     u32 i;
 
-    for (i = 0; i < ARRAY_COUNT(forms); i++)
+    for (i = 0; i < ARRAY_COUNT(sHpTransformations); i++)
     {
-        if (GetBattlerAbility(battler) == forms[i][0] || BattlerHasInnate(battler, forms[i][0]))
+        if (GetBattlerAbility(battler) == sHpTransformations[i][0] || BattlerHasInnate(battler, sHpTransformations[i][0]))
         {
-            if (gBattleMons[battler].species == forms[i][2]
-                && gBattleMons[battler].hp > gBattleMons[battler].maxHP / forms[i][3])
+            if (gBattleMons[battler].species == sHpTransformations[i][2]
+                && gBattleMons[battler].hp > gBattleMons[battler].maxHP / sHpTransformations[i][3])
             {
-                gBattleScripting.abilityPopupOverwrite = forms[i][0];
-                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][1]);
-                gBattleMons[battler].species = forms[i][1];
+                if (sHpTransformations[i][0] == ABILITY_SHIELDS_DOWN && GetAbilityState(battler, ABILITY_SHIELDS_DOWN))
+                {
+                    return FALSE;
+                }
+                gBattleScripting.abilityPopupOverwrite = sHpTransformations[i][0];
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, sHpTransformations[i][1]);
+                gBattleMons[battler].species = sHpTransformations[i][1];
                 return TRUE;
             }
-            if (gBattleMons[battler].species == forms[i][1]
-                && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / forms[i][3])
+            if (gBattleMons[battler].species == sHpTransformations[i][1]
+                && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / sHpTransformations[i][3])
             {
-                gBattleScripting.abilityPopupOverwrite = forms[i][0];
-                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, forms[i][2]);
-                gBattleMons[battler].species = forms[i][2];
+                gBattleScripting.abilityPopupOverwrite = sHpTransformations[i][0];
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, sHpTransformations[i][2]);
+                gBattleMons[battler].species = sHpTransformations[i][2];
                 return TRUE;
             }
         }
@@ -8150,6 +8155,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
         break;
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_SHIELDS_DOWN)
+            && gBattleMoves[move].effect == EFFECT_SHELL_SMASH)
+        {
+            u8 i;
+            for (i = 0; i < ARRAY_COUNT(sHpTransformations); i++)
+            {
+                if (sHpTransformations[i][0] == ABILITY_SHIELDS_DOWN && gBattleMons[battler].species == sHpTransformations[i][1])
+                    break;
+            }
+            
+            if (i < ARRAY_COUNT(sHpTransformations))
+            {
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, sHpTransformations[i][2]);
+                SetAbilityState(battler, ABILITY_SHIELDS_DOWN, TRUE);
+                gBattleMons[battler].species = sHpTransformations[i][2];
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SHIELDS_DOWN;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
+                effect++;
+            }
+        }
 
         if (BATTLER_HAS_ABILITY(battler, ABILITY_GULP_MISSILE))
         {
@@ -14249,7 +14275,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_PERMANENT))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2 * 1.2, 1.2), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2, 0.5), dmg);
         else if (moveType == TYPE_WATER)
@@ -14258,7 +14284,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_RAIN_TEMPORARY))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5 * 1.5, 1.5), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5, 0.5), dmg);
         else if (moveType == TYPE_WATER)
@@ -14267,7 +14293,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_PERMANENT))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.2), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.2 * 1.2, 1.2), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.2), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
@@ -14276,7 +14302,7 @@ u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u
     else if (IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_TEMPORARY))
     {
         if (gBattleMoves[move].effect == EFFECT_WEATHER_BOOST)
-            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            dmg = ApplyModifier(CHECK_WEATHER_DOUBLE_BOOST(1.5 * 1.5, 1.5), dmg);
         else if (moveType == TYPE_FIRE)
             dmg = ApplyModifier(UQ_4_12(1.5), dmg);
         else if (moveType == TYPE_WATER && !BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NIKA))
