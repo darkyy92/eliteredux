@@ -4940,7 +4940,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_TANDEMAUS] =
     {
         .size = 0,
-        .y_offset =  0
+        .y_offset =  16
     },
     [SPECIES_MAUSHOLD] =
     {
