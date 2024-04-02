@@ -2955,7 +2955,7 @@ static void SetPartyMonHeldItemSelectionActions(struct Pokemon *mons, u8 slotId)
 
     for (i = 0; i < EVOS_PER_MON; i++)
     {
-        j = EVOS_PER_MON - i;
+        j = EVOS_PER_MON - i - 1;
 
         if (gEvolutionTable[species][j].method == EVO_MEGA_EVOLUTION){
             canMegaEvolve2 = TRUE;
