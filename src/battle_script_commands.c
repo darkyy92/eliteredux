@@ -1880,7 +1880,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
     u8 moveType;
 
-        if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS && gVolatileStructs[battlerDef].battlerWithSureHit == battlerAtk)
+    if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS && gVolatileStructs[battlerDef].battlerWithSureHit == battlerAtk)
+        return 101;
+    if (gStatuses3[battlerDef] & STATUS3_TELEKINESIS && !IsBattlerGrounded(battlerDef))
         return 101;
     else if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
         return 101;
@@ -5768,9 +5770,10 @@ static void Cmd_moveend(void)
                 {
                     bool8 change = FALSE;
                     gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                    gStackBattler3 = gBattlerAttacker;
+                    gStackBattler4 = gBattlerTarget;
+                    gBattlerAttacker = gStackBattler4;
+                    gBattlerTarget = gStackBattler3;
 
                     for(j = 1; j < NUM_STATS; j++){
                         if(gBattleMons[gBattlerTarget].statStages[j] > 0)
@@ -5783,14 +5786,19 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_AngelsWrathProtectEffect;
                         effect = 1;
                     }
+                    else
+                    {
+                        gBattlerAttacker = gStackBattler3;
+                        gBattlerTarget = gStackBattler4;
+                    }
                 }
                 else if (gRoundStructs[gBattlerTarget].banefulBunkered)
                 {
                     gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
+                    gBattleScripting.moveEffect = MOVE_EFFECT_POISON;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BANEFUL_BUNKER);
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
+                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
                     effect = 1;
                 }
                 else if (gRoundStructs[gBattlerTarget].silkTrapped)
@@ -5805,10 +5813,10 @@ static void Cmd_moveend(void)
                 else if (gRoundStructs[gBattlerTarget].burningBulwark)
                 {
                     gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleScripting.moveEffect = MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER;
+                    gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BURNING_BULWARK);
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
+                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
                     effect = 1;
                 }
                 else if (gRoundStructs[gBattlerTarget].beakBlastCharge)
@@ -5819,10 +5827,7 @@ static void Cmd_moveend(void)
                 }
                 else if (gRoundStructs[gBattlerTarget].obstructed && gCurrentMove != MOVE_SUCKER_PUNCH)
                 {
-                    gRoundStructs[gBattlerAttacker].touchedProtectLike = 0;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                    gRoundStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_DEF_MINUS_2;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;

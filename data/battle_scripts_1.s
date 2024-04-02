@@ -10931,7 +10931,7 @@ BattleScript_SpikyShieldRet::
 
 BattleScript_KingsShieldEffect::
 	swapbattlerandtargetvia34
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_SAFEGUARD
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	seteffectsecondary
 	setmoveeffect 0
@@ -10944,13 +10944,7 @@ BattleScript_AngelsWrathProtectEffect::
 	waitanimation
 	printstring STRINGID_ANGELS_WRATH_PROTECT_EFFECT
 	waitmessage B_WAIT_TIME_SHORT
-	return
-
-BattleScript_BanefulBunkerEffect::
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_SAFEGUARD | HITMARKER_PASSIVE_DAMAGE
-	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
-	seteffectsecondary
-	setmoveeffect 0
+	restoreattackerandtargetfrom34
 	return
 
 BattleScript_CuteCharmActivates::
