@@ -172,6 +172,20 @@
       "elevation": 0,
       "dest_map": "MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB",
       "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_MT_PYRE_SUMMIT",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE112",
+      "dest_warp_id": 3
     }
   ],
   "coord_events": [

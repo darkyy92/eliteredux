@@ -334,7 +334,7 @@ script SootopolisCity_Gym_1F_EventScript_Juan{
 
 script SootopolisCity_Gym_1F_EventScript_Juan_Battle_2{
 	setvar(VAR_0x8004, 15)
-	starttagbattle(TRAINER_JUAN_5, TRAINER_WALLACE_5, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
+	starttagbattle(TRAINER_JUAN_2, TRAINER_WALLACE_2, TAG_TEAM_WALLACE_JUAN, 0, SootopolisCity_Gym_1F_Text_JuanIntro_2, SootopolisCity_Gym_1F_EventScript_Juan_Defeated)
 	release
 	end
 }
