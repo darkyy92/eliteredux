@@ -887,6 +887,7 @@
 
 #define TRAINER_NEW_TRAINER                            883
 #define TRAINER_NEW_TRAINER1                           884
+#define TRAINER_NEW_TRAINER11                          885
 #define TRAINERS_COUNT                                 1600
 #define MAX_OLD_TRAINERS_COUNT                         TRAINERS_COUNT + 1
 
