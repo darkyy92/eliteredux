@@ -9463,6 +9463,7 @@ BattleScript_OnTailwindStart::
 	callifability BS_ATTACKER_PARTNER, ABILITY_WIND_POWER, BattleScript_DoWindPower
 	return
 BattleScript_DoWindRider:
+	getbattler BS_ABILITY_BATTLER
 	raisehighestattackingstat BS_ABILITY_BATTLER, 1, BattleScript_Return
 	showabilitypopup BS_ABILITY_BATTLER
 	setgraphicalstatchangevalues
@@ -9475,6 +9476,10 @@ BattleScript_DoWindPower::
 	jumpifstatus3 BS_ABILITY_BATTLER, STATUS3_CHARGED_UP, BattleScript_Return
 	call BattleScript_AbilityPopUp
 	waitmessage B_WAIT_TIME_SHORT
+	saveattackertostack3
+	copybyte gBattlerAttacker, gBattlerAbility
+	setcharge
+	readattackerfromstack3
 	printstring STRINGID_CHARGEABILITYBATTLER
 	waitmessage B_WAIT_TIME_LONG
 	return

@@ -4577,6 +4577,19 @@ bool32 TryPrimalReversion(u8 battlerId)
     return FALSE;
 }
 
+void DisableSwitchInAbility(battlerId, ability)
+{
+    switch (BattlerHasInnateOrAbility(battlerId, ability))
+    {
+        case BATTLER_INNATE:
+            gVolatileStructs[battlerId].switchInAbilityDone[GetBattlerInnateNum(battlerId, ability) + 1] = TRUE;
+            return;
+        case BATTLER_ABILITY:
+            gVolatileStructs[battlerId].switchInAbilityDone[0] = TRUE;
+            return;
+    }
+}
+
 bool8 CheckAndSetSwitchInAbility(u8 battlerId, u16 ability)
 {
     switch (BattlerHasInnateOrAbility(battlerId, ability))
@@ -5874,6 +5887,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
             gSideTimers[GetBattlerSide(battler)].tailwindBattlerId = gBattlerAttacker;
             gSideTimers[GetBattlerSide(battler)].tailwindTimer = 3;
+            // Prevents double activation of Wind Rider
+            DisableSwitchInAbility(battler, ABILITY_WIND_RIDER);
+            DisableSwitchInAbility(BATTLE_PARTNER(battler), ABILITY_WIND_RIDER);
             BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
             effect++;
         }

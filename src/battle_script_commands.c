@@ -4450,7 +4450,7 @@ static void Cmd_jumpifability(void)
     {
     default:
         battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
-        if (BATTLER_HAS_ABILITY(battlerId, ability) && IsBattlerAlive(battlerId))
+        if (BATTLER_HAS_ABILITY(battlerId, ability))
             hasAbility = TRUE;
         break;
     case BS_ATTACKER_SIDE:
@@ -10708,7 +10708,7 @@ static void Cmd_various(void)
 
         if (!CompareStat(gActiveBattler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
-        else if (ChangeStatBuffsImplicit(GET_STAT_BUFF_VALUE_WITH_SIGN(gBattleScripting.statChanger), GET_STAT_BUFF_ID(gBattleScripting.statChanger), 0, 0))
+        else if (ChangeStatBuffs(gActiveBattler, GET_STAT_BUFF_VALUE_WITH_SIGN(gBattleScripting.statChanger), GET_STAT_BUFF_ID(gBattleScripting.statChanger), MOVE_EFFECT_AFFECTS_USER, 0))
             gBattlescriptCurrInstr = gBattlescriptCurrInstr + 8;
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
