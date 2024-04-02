@@ -2423,6 +2423,8 @@ u8 DoFieldEndTurnEffects(void)
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
+            gBattleStruct->turnCountersTracker++;
+            break;
         case ENDTURN_FOG: // Fog cannot be ended, unless Defog is used
             if (gBattleWeather & B_WEATHER_FOG_PERMANENT)
             {
@@ -2430,8 +2432,6 @@ u8 DoFieldEndTurnEffects(void)
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
-            gBattleStruct->turnCountersTracker++;
-            break;
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_TRICK_ROOM:
