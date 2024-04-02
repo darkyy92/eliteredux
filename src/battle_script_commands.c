@@ -13138,8 +13138,9 @@ static void Cmd_transformdataexecution(void)
 static void Cmd_setsubstitute(void)
 {
     u32 hp = gBattleMons[gBattlerAttacker].maxHP / 4;
-    if (gBattleMons[gBattlerAttacker].maxHP / 4 == 0)
-        hp = 1;
+    u32 damage = gBattleMons[gBattlerAttacker].maxHP / ((gBattleMoves[gCurrentMove].effect == EFFECT_SHED_TAIL) ? 2 : 4);
+    damage = max(damage, 1);
+    hp = max(hp, 1);
 
     if (gBattleMons[gBattlerAttacker].hp <= hp)
     {
@@ -13148,13 +13149,11 @@ static void Cmd_setsubstitute(void)
     }
     else
     {
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4; // one bit value will only work for pokemon which max hp can go to 1020(which is more than possible in games)
-        if (gBattleMoveDamage == 0)
-            gBattleMoveDamage = 1;
+        gBattleMoveDamage = damage; // one bit value will only work for pokemon which max hp can go to 1020(which is more than possible in games)
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_SUBSTITUTE;
         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_WRAPPED);
-        gVolatileStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage;
+        gVolatileStructs[gBattlerAttacker].substituteHP = hp;
         SetActiveMultistringChooser(B_MSG_SET_SUBSTITUTE);
         gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE;
     }
