@@ -23163,6 +23163,7 @@ static const struct LevelUpMove sBasculegionLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSneaslerLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_DIRE_CLAW),
+    LEVEL_UP_MOVE(1, MOVE_FAKE_OUT),
     LEVEL_UP_MOVE(1, MOVE_COVET),
     LEVEL_UP_MOVE(1, MOVE_FLING),
     LEVEL_UP_MOVE(1, MOVE_LEER),
