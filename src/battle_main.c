@@ -3397,13 +3397,18 @@ void SwitchInClearSetData(void)
         if (gStatuses3[gActiveBattler] & STATUS3_POWER_TRICK)
             SWAP(gBattleMons[gActiveBattler].attack, gBattleMons[gActiveBattler].defense, i);
     }
+    else if (gBattleMoves[gCurrentMove].effect == EFFECT_SHED_TAIL)
+    {
+        gBattleMons[gActiveBattler].status2 &= STATUS2_SUBSTITUTE;
+        gStatuses3[gActiveBattler] = 0;
+        gStatuses4[gActiveBattler] = 0;
+    }
     else
     {
         gBattleMons[gActiveBattler].status2 = 0;
         gStatuses3[gActiveBattler] = 0;
+        gStatuses4[gActiveBattler] = 0;
     }
-    
-    gStatuses4[gActiveBattler] = 0;
 
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -3440,6 +3445,10 @@ void SwitchInClearSetData(void)
         gVolatileStructs[gActiveBattler].perishSongTimer = VolatileStructCopy.perishSongTimer;
         gVolatileStructs[gActiveBattler].perishSongTimerStartValue = VolatileStructCopy.perishSongTimerStartValue;
         gVolatileStructs[gActiveBattler].battlerPreventingEscape = VolatileStructCopy.battlerPreventingEscape;
+    }
+    else if (gBattleMoves[gCurrentMove].effect == EFFECT_SHED_TAIL)
+    {
+        gVolatileStructs[gActiveBattler].substituteHP = VolatileStructCopy.substituteHP;
     }
 
     gMoveResultFlags = 0;

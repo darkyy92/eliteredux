@@ -7977,8 +7977,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2
              && (gTurnStructs[gBattlerAttacker].multiHitCounter == 0 || gTurnStructs[gBattlerAttacker].multiHitCounter == 1)
-             && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
-             && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+             && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove)))
             {
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGER_SHELL;
                 BattleScriptPushCursor();

@@ -22,6 +22,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "mgba_printf/mgba.h"
 
 // iwram
 u32 gMonShrinkDuration;

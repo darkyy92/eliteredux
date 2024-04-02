@@ -28,6 +28,8 @@
 #include "constants/rgb.h"
 #include "constants/battle_palace.h"
 #include "constants/abilities.h"
+#include "constants/battle_move_effects.h"
+#include "mgba_printf/mgba.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_SE1;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
@@ -1030,7 +1032,7 @@ void LoadBattleMonGfxAndAnimate(u8 battlerId, bool8 loadMonSprite, u8 spriteId)
 
 void TrySetBehindSubstituteSpriteBit(u8 battlerId, u16 move)
 {
-    if (move == MOVE_SUBSTITUTE)
+    if (gBattleMoves[move].effect == EFFECT_SUBSTITUTE || gBattleMoves[move].effect == EFFECT_SHED_TAIL)
         gBattleSpritesDataPtr->battlerData[battlerId].behindSubstitute = 1;
 }
 

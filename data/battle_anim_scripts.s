@@ -848,7 +848,7 @@ gBattleAnims_Moves::
 	.4byte Move_NONE @ MOVE_WHIRLING_STRIKES
 	.4byte Move_NONE @ MOVE_MIND_BREAK
 	.4byte Move_NONE @ MOVE_WYRM_WIND
-	.4byte Move_NONE @ MOVE_SHED_TAIL
+	.4byte Move_SUBSTITUTE @ MOVE_SHED_TAIL
 	.4byte Move_NONE @ MOVE_BERRY_SMASH
 	.4byte Move_HYDRO_STEAM
 	.4byte Move_NONE @ MOVE_FIRE_HYDRO_STEAM
