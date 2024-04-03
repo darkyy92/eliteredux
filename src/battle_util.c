@@ -4038,7 +4038,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TEN_HITS)
             {
                 gTurnStructs[gBattlerAttacker].multiHitCounter = 10;
-				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 2, 0)
             }
             #if B_BEAT_UP_DMG >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
@@ -7134,6 +7134,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             else if (effect == 2) // Boost Stat ability;
             {
+                SetActiveAbilityPopupOverride(gBattleScripting.abilityPopupOverwrite);
                 if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
                     if ((gRoundStructs[gBattlerAttacker].notFirstStrike))
