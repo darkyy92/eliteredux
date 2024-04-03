@@ -167,6 +167,13 @@
       "elevation": 4,
       "dest_map": "MAP_VICTORY_ROAD_B1F",
       "dest_warp_id": 4
+    },
+    {
+      "x": 14,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_VICTORY_ROAD_1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
