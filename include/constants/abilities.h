@@ -112,7 +112,7 @@
 #define ABILITY_SUPER_LUCK 105 // Raises critical-hit ratio of moves by one level.
 #define ABILITY_AFTERMATH 106 // When fainted by a contact move, damages the foe.
 #define ABILITY_ANTICIPATION 107 // Senses dangerous moves. Blocks a single super effective hit.
-#define ABILITY_FOREWARN 108 // Determines a foe's move.
+#define ABILITY_FOREWARN 108 // Predicts a 50 BP attack on switch-in.
 #define ABILITY_UNAWARE 109 // Ignores foe's stat changes.
 #define ABILITY_TINTED_LENS 110 // “not very effective” deals normal damage.
 #define ABILITY_FILTER 111 // Weakens “supereffective” by 35%.
