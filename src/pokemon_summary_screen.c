@@ -5187,26 +5187,10 @@ static void PrintMoveDetails(u16 move)
         {
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, sText_Power, 8, POWER_AND_ACCURACY_Y, 0, 1);
 
-            if (move == MOVE_HIDDEN_POWER && CONFIG_SHOW_HIDDEN_POWER_STATS && B_HIDDEN_POWER_DMG < GEN_6)
-            {
-                u8 powerBits = ((GetMonData(mon, MON_DATA_HP_IV) & 2) >> 1)
-                        | ((GetMonData(mon, MON_DATA_ATK_IV) & 2) << 0)
-                        | ((GetMonData(mon, MON_DATA_DEF_IV) & 2) << 1)
-                        | ((GetMonData(mon, MON_DATA_SPEED_IV) & 2) << 2)
-                        | ((GetMonData(mon, MON_DATA_SPATK_IV)& 2) << 3)
-                        | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 2) << 4);
-
-                u8 powerForHiddenPower = (40 * powerBits) / 63 + 30;
-
-                ConvertIntToDecimalStringN(gStringVar1, powerForHiddenPower, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            }
+            if (gBattleMoves[move].power < 2)
+                StringCopy(gStringVar1, gText_ThreeDashes);
             else
-            {
-                if (gBattleMoves[move].power < 2)
-                    StringCopy(gStringVar1, gText_ThreeDashes);
-                else
-                    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            }
+                ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1, 84, POWER_AND_ACCURACY_Y, 0, 0);
 
