@@ -43,7 +43,9 @@
 
 struct HallofFameMon
 {
-    u32 tid;
+    u32 tid:30;
+    u32 isShiny:1;
+    u32 isAlpha:1;
     u32 personality;
     u16 species;
     u8 lvl;
@@ -914,6 +916,8 @@ static void Task_Hof_InitMonData(u8 taskId)
             sHofMonPtr->mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
             sHofMonPtr->mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
             sHofMonPtr->mon[i].lvl = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+            sHofMonPtr->mon[i].isShiny = GetMonData(&gPlayerParty[i], MON_DATA_IS_SHINY);
+            sHofMonPtr->mon[i].isAlpha = GetMonData(&gPlayerParty[i], MON_DATA_IS_ALPHA);
             GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nick);
             for (j = 0; j < POKEMON_NAME_LENGTH; j++)
             {
@@ -924,6 +928,8 @@ static void Task_Hof_InitMonData(u8 taskId)
         else
         {
             sHofMonPtr->mon[i].species = SPECIES_NONE;
+            sHofMonPtr->mon[i].isShiny = FALSE;
+            sHofMonPtr->mon[i].isAlpha = FALSE;
             sHofMonPtr->mon[i].tid = 0;
             sHofMonPtr->mon[i].personality = 0;
             sHofMonPtr->mon[i].lvl = 0;
@@ -1052,7 +1058,7 @@ static void Task_Hof_DisplayMon(u8 taskId)
     if (currMon->species == SPECIES_EGG)
         destY += 10;
 
-    spriteId = CreatePicSprite2(currMon->species, currMon->tid, currMon->personality, 1, startX, startY, currMonId, 0xFFFF);
+    spriteId = CreatePicSprite2(currMon->species, currMon->tid, currMon->personality, 1, startX, startY, currMonId, 0xFFFF, currMon->isShiny, currMon->isAlpha);
     gSprites[spriteId].tDestinationX = destX;
     gSprites[spriteId].tDestinationY = destY;
     gSprites[spriteId].data[0] = 0;
@@ -1400,7 +1406,7 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
             if (currMon->species == SPECIES_EGG)
                 posY += 10;
 
-            spriteId = CreateMonPicSprite(currMon->species, currMon->tid, currMon->personality, 1, posX, posY, i, 0xFFFF);
+            spriteId = CreateMonPicSprite(currMon->species, currMon->tid, currMon->personality, 1, posX, posY, i, 0xFFFF, currMon->isShiny, currMon->isAlpha);
             gSprites[spriteId].oam.priority = 1;
             gTasks[taskId].tMonSpriteId(i) = spriteId;
         }

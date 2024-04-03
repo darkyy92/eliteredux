@@ -5117,10 +5117,6 @@ const u16 gEggMoves[] = {
         MOVE_ENERGY_WAVE),
 
     egg_moves(QWILFISH_HISUIAN,
-        MOVE_DRAGON_CLAW,
-        MOVE_FIRE_PUNCH,
-        MOVE_ICE_PUNCH,
-        MOVE_THUNDER_PUNCH,
         MOVE_SUPERSONIC,
         MOVE_BUBBLE_BEAM,
         MOVE_HAZE,
