@@ -22796,6 +22796,7 @@ static const struct LevelUpMove sPanpourReduxLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSimipourReduxLevelUpLearnset[] = {
     LEVEL_UP_MOVE(0, MOVE_PSYSTRIKE),
+    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),
     LEVEL_UP_MOVE(1, MOVE_BUBBLE_BEAM),
     LEVEL_UP_MOVE(1, MOVE_PSYCHOKINESIS),
     LEVEL_UP_MOVE(1, MOVE_FAKE_OUT),
