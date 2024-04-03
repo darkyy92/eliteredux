@@ -799,13 +799,13 @@ static void Task_ShowAiPoints(u8 taskId)
                                                  gBattleMons[data->aiBattlerId].otId,
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
-                                                 39, 130, 15, 0xFFFF);
+                                                 39, 130, 15, 0xFFFF, FALSE, FALSE);
         #else
         data->aiMonSpriteId = CreateMonPicSprite(gBattleMons[data->aiBattlerId].species,
                                                  gBattleMons[data->aiBattlerId].otId,
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
-                                                 39, 130, 15, 0xFFFF);
+                                                 39, 130, 15, 0xFFFF, FALSE, FALSE);
         #endif
         data->aiViewState++;
         break;
@@ -922,13 +922,13 @@ static void Task_ShowAiKnowledge(u8 taskId)
                                                  gBattleMons[data->aiBattlerId].otId,
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
-                                                 39, 130, 15, 0xFFFF);
+                                                 39, 130, 15, 0xFFFF, FALSE, FALSE);
         #else
         data->aiMonSpriteId = CreateMonPicSprite(gBattleMons[data->aiBattlerId].species,
                                                  gBattleMons[data->aiBattlerId].otId,
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
-                                                 39, 130, 15, 0xFFFF);
+                                                 39, 130, 15, 0xFFFF, FALSE, FALSE);
         #endif
         data->aiViewState++;
         break;
