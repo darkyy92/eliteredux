@@ -5726,7 +5726,7 @@ static void Cmd_moveend(void)
     choicedMoveAtk = &gBattleStruct->choicedMove[gBattlerAttacker];
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
-    if (AbilityBattleEffects(ABILITYEFFECT_COPY_STATS, gBattlerAttacker, 0, 0, 0)) return;
+    if (AbilityBattleEffects(ABILITYEFFECT_COPY_STATS, 0, 0, 0, 0)) return;
 
     do
     {
@@ -7431,6 +7431,9 @@ static void Cmd_switchineffects(void)
             gVolatileStructs[gActiveBattler].truantCounter = 1;
 
         gVolatileStructs[gActiveBattler].truantSwitchInHack = 0;
+        
+        if (AbilityBattleEffects(ABILITYEFFECT_COPY_STATS, 0, 0, 0, 0))
+            return;
 
         if (TryPrimalReversion(gActiveBattler)
             || AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0)
@@ -10808,6 +10811,7 @@ static void Cmd_various(void)
                     if (!state.announced)
                     {
                         gBattleScripting.abilityPopupOverwrite = ABILITY_EGOIST;
+                        gBattlerAbility = battler;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AbilityPopUpAndWait;
                         state.announced = TRUE;
@@ -10850,7 +10854,7 @@ static void Cmd_various(void)
                         {
                             if (!state.announced)
                             {
-                                gBattlerAttacker = gActiveBattler;
+                                gBattlerAbility = gActiveBattler;
                                 gBattleScripting.abilityPopupOverwrite = ABILITY_SHARING_IS_CARING;
                                 BattleScriptPushCursor();
                                 gBattlescriptCurrInstr = BattleScript_AbilityPopUpAndWait;
