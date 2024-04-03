@@ -2930,6 +2930,8 @@ static void SetPartyMonHeldItemSelectionActions(struct Pokemon *mons, u8 slotId)
     u16 megaEvoItem2 = ITEM_NONE;
 
     if(helditem != ITEM_NONE){
+        //Give Item - Replace in this instance
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_GIVE);
         //Take Item
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TAKE_ITEM);
         //Move Item
