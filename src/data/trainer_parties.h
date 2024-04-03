@@ -35582,7 +35582,7 @@ static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_GYARADOS,
-    .heldItem = ITEM_GYARADOSITE_Y,
+    .heldItem = ITEM_GYARADOSITE,
     .ability = 2,
     .evs = {4, 252, 0, 0, 0, 252},
     .nature = NATURE_JOLLY,
