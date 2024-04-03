@@ -4038,7 +4038,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_TEN_HITS)
             {
                 gTurnStructs[gBattlerAttacker].multiHitCounter = 10;
-				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 2, 0)
             }
             #if B_BEAT_UP_DMG >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
