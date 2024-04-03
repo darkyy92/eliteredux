@@ -66,14 +66,14 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
-      "x": 5,
-      "y": 86,
+      "x": 4,
+      "y": 87,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "1",
+      "trainer_sight_or_berry_tree_id": "2",
       "script": "Route119_EventScript_Greg",
       "flag": "0"
     },
@@ -515,13 +515,6 @@
       "elevation": 0,
       "dest_map": "MAP_SECRET_DUNGEON",
       "dest_warp_id": 0
-    },
-    {
-      "x": 7,
-      "y": 88,
-      "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": 4
     }
   ],
   "coord_events": [
@@ -738,20 +731,6 @@
     },
     {
       "type": "secret_base",
-      "x": 34,
-      "y": 75,
-      "elevation": 3,
-      "secret_base_id": "SECRET_BASE_SHRUB4_1"
-    },
-    {
-      "type": "secret_base",
-      "x": 34,
-      "y": 75,
-      "elevation": 0,
-      "secret_base_id": "SECRET_BASE_BLUE_CAVE3_3"
-    },
-    {
-      "type": "secret_base",
       "x": 16,
       "y": 28,
       "elevation": 0,
@@ -764,20 +743,6 @@
       "elevation": 3,
       "item": "ITEM_ULTRA_BALL",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_119_ULTRA_BALL"
-    },
-    {
-      "type": "secret_base",
-      "x": 34,
-      "y": 75,
-      "elevation": 0,
-      "secret_base_id": "SECRET_BASE_TREE2_3"
-    },
-    {
-      "type": "secret_base",
-      "x": 34,
-      "y": 75,
-      "elevation": 0,
-      "secret_base_id": "SECRET_BASE_TREE4_3"
     },
     {
       "type": "secret_base",
