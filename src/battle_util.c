@@ -7134,6 +7134,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             else if (effect == 2) // Boost Stat ability;
             {
+                SetActiveAbilityPopupOverride(gBattleScripting.abilityPopupOverwrite);
                 if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
                     if ((gRoundStructs[gBattlerAttacker].notFirstStrike))
