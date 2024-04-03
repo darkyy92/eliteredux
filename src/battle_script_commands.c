@@ -11517,6 +11517,11 @@ static void Cmd_manipulatedamage(void)
         gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
         break;
     case DMG_BIG_ROOT:
+        if (BATTLER_HEALING_BLOCKED(gBattlerAttacker))
+        {
+            gBattleMoveDamage = 0;
+            break;
+        }
         gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
         break;
     case DMG_1_2_ATTACKER_HP:
@@ -11530,6 +11535,11 @@ static void Cmd_manipulatedamage(void)
 			gBattleMoveDamage = gBattleMoveDamage * 0.5;
         break;
     case DMG_TO_HP_FROM_ABILITY:
+        if (BATTLER_HEALING_BLOCKED(gBattlerAttacker))
+        {
+            gBattleMoveDamage = 0;
+            break;
+        }
         if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_NOSFERATU))
             gBattleMoveDamage = (gHpDealt / 2);
         else if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_HYDRO_CIRCUIT))
@@ -11553,6 +11563,11 @@ static void Cmd_manipulatedamage(void)
         gBattleMoveDamage = gBattleMoveDamage * -1;
         break;
     case DMG_TO_HP_FROM_MOVE:
+        if (BATTLER_HEALING_BLOCKED(gBattlerAttacker))
+        {
+            gBattleMoveDamage = 0;
+            break;
+        }
         if (gBattleMoves[gCurrentMove].argument != 0)
             gBattleMoveDamage = (gHpDealt * gBattleMoves[gCurrentMove].argument / 100);
         else
