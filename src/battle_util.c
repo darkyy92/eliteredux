@@ -874,6 +874,7 @@ void ClearMiscTurnFlags() {
     gBattleCommunication[4] = 0;
     gBattleScripting.multihitMoveEffect = 0;
     gBattleResources->battleScriptsStack->size = 0;
+    gBattleScripting.acceleratedTwoTurn = 0;
 }
 
 void HandleAction_TryFinish(void)
@@ -4360,8 +4361,6 @@ static const u16 sHpTransformations[][4] =
     {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET,           2},
     {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW,           2},
     {ABILITY_SCHOOLING,    SPECIES_WISHIWASHI_SCHOOL,    SPECIES_WISHIWASHI,                   4},
-    {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GORGING,            2},
-    {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GULPING,            1},
 };
 
 bool32 ShouldChangeFormHpBased(u32 battler)
@@ -7227,39 +7226,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         if (BattlerHasAbility(battler, gBattlerAttacker, ABILITY_GULP_MISSILE))
         {
-            if (ShouldApplyOnHitAffect(battler))
+            u16 species = gBattleMons[gBattlerTarget].species;
+            if (ShouldApplyOnHitAffect(battler) && (species == SPECIES_CRAMORANT_GORGING || species == SPECIES_CRAMORANT_GULPING))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_GULP_MISSILE;
-                if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GORGING)
+                gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = species;
+                UpdateAbilityStateIndicesForNewSpecies(battler, SPECIES_CRAMORANT);
+                gBattleMons[battler].species = SPECIES_CRAMORANT;
+                if (!BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
                 {
-                    gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
-                    UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CRAMORANT);
-                    gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (!BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
-                    {
-                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                    }
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_GulpMissileGorging;
-                    effect++;
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
                 }
-                else if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GULPING)
-                {
-                    gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
-                    UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, SPECIES_CRAMORANT);
-                    gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (!BATTLER_HAS_MAGIC_GUARD(gBattlerAttacker))
-                    {
-                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                    }
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_GulpMissileGulping;
-                    effect++;
-                }
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = (species == SPECIES_CRAMORANT_GORGING) ? BattleScript_GulpMissileGorging : BattleScript_GulpMissileGulping;
+                effect++;
             }
         }
 
@@ -8208,9 +8190,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         if (BATTLER_HAS_ABILITY(battler, ABILITY_GULP_MISSILE))
         {
-            if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
-             && ShouldChangeFormHpBased(gBattlerAttacker))
+            if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED)
+                || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER
+                || (gCurrentMove == MOVE_DIVE && gBattleScripting.acceleratedTwoTurn))
+                && gBattleMons[battler].species == SPECIES_CRAMORANT)
             {
+                u16 newSpecies = gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2 ?
+                    SPECIES_CRAMORANT_GORGING : SPECIES_CRAMORANT_GULPING;
+                UpdateAbilityStateIndicesForNewSpecies(gActiveBattler, newSpecies);
+                gBattleMons[battler].species = newSpecies;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_GULP_MISSILE;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerFormChange;

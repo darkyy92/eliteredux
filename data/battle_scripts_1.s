@@ -4790,9 +4790,7 @@ BattleScript_EffectTwoTurnSecondary::
 	seteffectprimary
 	setmoveeffect 0
 	goto BattleScript_EffectTwoTurnsAttackCheckSkipCharge
-	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_EffectTwoTurnSecondarySecondTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
+	twoturnmoveacceleratecheck
 BattleScript_EffectTwoTurnSecondarySecondTurn:
 	attackcanceler
 	setmoveeffect MOVE_EFFECT_CHARGING
@@ -4812,9 +4810,7 @@ BattleScript_EffectTwoTurnsAttack::
 BattleScript_EffectTwoTurnsAttackContinue:
 	call BattleScriptFirstChargingTurn
 BattleScript_EffectTwoTurnsAttackCheckSkipCharge:
-	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_TwoTurnMovesSecondTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
+	twoturnmoveacceleratecheck
 	goto BattleScript_TwoTurnMovesSecondTurn
 BattleScript_EffectTwoTurnsAttackSkyAttack:
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SKY_ATTACK
@@ -4834,9 +4830,7 @@ BattleScript_EffectGeomancy:
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_GeomancySecondTurn
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_GEOMANCY
 	call BattleScriptFirstChargingTurn
-	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_GeomancySecondTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
+	twoturnmoveacceleratecheck
 BattleScript_GeomancySecondTurn:
 	attackcanceler
 	setmoveeffect MOVE_EFFECT_CHARGING
@@ -6177,9 +6171,7 @@ BattleScript_FirstTurnFly::
 BattleScript_FirstTurnSemiInvulnerable::
 	call BattleScriptFirstChargingTurn
 	setsemiinvulnerablebit
-	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, BattleScript_SecondTurnSemiInvulnerable
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
+	twoturnmoveacceleratecheck
 BattleScript_SecondTurnSemiInvulnerable::
 	attackcanceler
 	setmoveeffect MOVE_EFFECT_CHARGING
