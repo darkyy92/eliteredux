@@ -8594,14 +8594,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if (BATTLER_HAS_ABILITY(battler, ABILITY_NOISE_CANCEL))
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_RADIO_JAM))
         {
             if (ShouldApplyOnHitAffect(gBattlerTarget)
              && CanBeDisabled(gBattlerTarget)
 			 && (gBattleMoves[move].flags & FLAG_SOUND)
              && (Random() % 100) < 20) {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_NOISE_CANCEL;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_RADIO_JAM;
                 gBattleScripting.moveEffect = MOVE_EFFECT_DISABLE;
+                BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
                 effect++;
