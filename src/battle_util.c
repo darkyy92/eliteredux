@@ -8602,6 +8602,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && (Random() % 100) < 20) {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_RADIO_JAM;
                 gBattleScripting.moveEffect = MOVE_EFFECT_DISABLE;
+                BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
                 effect++;

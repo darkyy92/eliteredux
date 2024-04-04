@@ -3999,6 +3999,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_DISABLE:
                 if (CanBeDisabled(gBattlerTarget))
                 {
+                    DisableLastUsedMove(gBattlerTarget);
                     BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_MoveWasDisabledMessage;
                 }
