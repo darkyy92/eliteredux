@@ -260,13 +260,6 @@
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
       "dest_warp_id": 0
-    },
-    {
-      "x": 20,
-      "y": 5,
-      "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": 3
     }
   ],
   "coord_events": [
