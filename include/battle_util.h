@@ -116,14 +116,20 @@ struct StatCopyState
     bool8 announced:1;
 };
 
+struct CudChewState
+{
+    u16 itemId;
+    bool8 setThisTurn:1;
+    bool8 activating:1;
+};
+
 union AbilityStates
 {
     struct ParadoxBoost paradoxBoost;
     struct StatCopyState statCopyState;
+    struct CudChewState cudChewState;
     u32 intValue;
 };
-
-#define CUD_CHEW_CURRENT_TURN (1 << 15)
 
 #define IS_IRON_FIST(attacker, moveToCheck) (gBattleMoves[moveToCheck].flags & FLAG_IRON_FIST_BOOST || (BATTLER_HAS_ABILITY(attacker, ABILITY_BRAWLING_WYVERN) && IS_MOVE_TYPE(moveToCheck, TYPE_DRAGON)))
 

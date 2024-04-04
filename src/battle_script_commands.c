@@ -7941,14 +7941,21 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
     return FALSE;
 }
 
-static void SetCudChew(u32 battlerId, u32 itemId)
+void SetCudChew(u32 battlerId, u32 itemId)
 {
     if (ItemId_GetPocket(itemId) == POCKET_BERRIES
         && BATTLER_HAS_ABILITY(battlerId, ABILITY_CUD_CHEW)
-        && GetAbilityState(battlerId, ABILITY_CUD_CHEW) == 0
         && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]])
     {
-        SetAbilityState(battlerId, ABILITY_CUD_CHEW, itemId | CUD_CHEW_CURRENT_TURN);
+        struct CudChewState state = GetAbilityStateAs(battlerId, ABILITY_CUD_CHEW).cudChewState;
+        if (state.activating)
+        {
+            SetAbilityStateAs(battlerId, ABILITY_CUD_CHEW, (union AbilityStates) { .cudChewState = { 0 }});
+        }
+        else if (!state.itemId)
+        {
+            SetAbilityStateAs(battlerId, ABILITY_CUD_CHEW, (union AbilityStates) { .cudChewState = { .itemId = itemId, .setThisTurn = TRUE }});
+        }
     }
 }
 

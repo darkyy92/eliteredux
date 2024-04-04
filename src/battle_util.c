@@ -6692,22 +6692,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             if (BATTLER_HAS_ABILITY(battler, ABILITY_CUD_CHEW))
             {
-                u32 itemId = GetAbilityState(battler, ABILITY_CUD_CHEW);
-                if (itemId & CUD_CHEW_CURRENT_TURN)
+                struct CudChewState state = GetAbilityStateAs(battler, ABILITY_CUD_CHEW).cudChewState;
+                if (state.setThisTurn)
                 {
-                    SetAbilityState(battler, ABILITY_CUD_CHEW, itemId & ~CUD_CHEW_CURRENT_TURN);
+                    SetAbilityStateAs(battler, ABILITY_CUD_CHEW, (union AbilityStates) { .cudChewState = { .itemId = state.itemId } });
                 }
-                else
+                else if (state.itemId)
                 {
                     // attacker temporarily gains their item
                     gBattleStruct->changedItems[battler] = gBattleMons[battler].item;
-                    gBattleMons[battler].item = itemId;
+                    gBattleMons[battler].item = state.itemId;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_CUD_CHEW;
-                    gBattlerAttacker = battler;
+
+                    SetAbilityStateAs(battler, ABILITY_CUD_CHEW, (union AbilityStates) { .cudChewState = { .activating = TRUE } });
                     
                     BattleScriptPushCursorAndCallback(BattleScript_CudChew);
                     effect++;
-
                 }
             }
 
@@ -11566,7 +11566,10 @@ case ITEMEFFECT_KINGSROCK:
 
     // Berry was successfully used on a Pokemon.
     if (effect && (gLastUsedItem >= FIRST_BERRY_INDEX && gLastUsedItem <= LAST_BERRY_INDEX))
+    {
         gBattleStruct->ateBerry[battlerId & BIT_SIDE] |= gBitTable[gBattlerPartyIndexes[battlerId]];
+        SetCudChew(battlerId, gLastUsedItem);
+    }
 
     return effect;
 }
