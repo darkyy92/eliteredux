@@ -2001,7 +2001,9 @@ const u16 gEggMoves[] = {
         MOVE_BULLET_PUNCH,
         MOVE_DRAIN_PUNCH,
         MOVE_SECRET_POWER,
-        MOVE_QUICK_GUARD),
+        MOVE_QUICK_GUARD,
+        MOVE_MEGA_KICK,
+        MOVE_AXE_KICK),
 
     egg_moves(ELECTRIKE,
         MOVE_CRUNCH,
