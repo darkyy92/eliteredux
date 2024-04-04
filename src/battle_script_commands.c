@@ -16250,6 +16250,11 @@ static void Cmd_trysetcaughtmondexflags(void)
 static void Cmd_displaydexinfo(void)
 {
     u16 species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL);
+    u16 dexnum = SpeciesToNationalPokedexNum(species);
+    u32 otId = gBattleMons[GetCatchingBattler()].otId;
+    u32 personality = gBattleMons[GetCatchingBattler()].personality;
+    bool8 isShiny = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_IS_SHINY, NULL);
+    bool8 isAlpha = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_IS_ALPHA, NULL);
 
     switch (gBattleCommunication[0])
     {
@@ -16261,9 +16266,7 @@ static void Cmd_displaydexinfo(void)
         if (!gPaletteFade.active)
         {
             FreeAllWindowBuffers();
-            gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(SpeciesToNationalPokedexNum(species),
-                                                                        gBattleMons[GetCatchingBattler()].otId,
-                                                                        gBattleMons[GetCatchingBattler()].personality);
+            gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(species, dexnum, otId, personality, isShiny, isAlpha);
             gBattleCommunication[0]++;
         }
         break;

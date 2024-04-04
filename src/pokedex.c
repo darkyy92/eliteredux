@@ -50,6 +50,8 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "tmhm_struct.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 enum
 {
@@ -4285,31 +4287,36 @@ static void HighlightSubmenuScreenSelectBarItem(u8 a, u16 b)
 }
 
 #define tState         data[0]
-#define tDexNum        data[1]
+#define tSpecies       data[1]
 #define tPalTimer      data[2]
 #define tMonSpriteId   data[3]
-#define tOtIdLo        data[12]
-#define tOtIdHi        data[13]
+#define tIsShiny       data[12]
+#define tIsAlpha       data[13]
 #define tPersonalityLo data[14]
 #define tPersonalityHi data[15]
 
-u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality)
+u8 DisplayCaughtMonDexPage(u16 species, u16 dexNum, u32 otId, u32 personality, bool8 isShiny, bool8 isAlpha)
 {
     u8 taskId = CreateTask(Task_DisplayCaughtMonDexPage, 0);
 
     gTasks[taskId].tState = 0;
-    gTasks[taskId].tDexNum = dexNum;
-    gTasks[taskId].tOtIdLo = otId;
-    gTasks[taskId].tOtIdHi = otId >> 16;
+    gTasks[taskId].tSpecies = species;
     gTasks[taskId].tPersonalityLo = personality;
     gTasks[taskId].tPersonalityHi = personality >> 16;
+    gTasks[taskId].tIsShiny = isShiny;
+    gTasks[taskId].tIsAlpha = isAlpha;
     return taskId;
 }
 
 static void Task_DisplayCaughtMonDexPage(u8 taskId)
 {
     u8 spriteId;
-    u16 dexNum = gTasks[taskId].tDexNum;
+    u16 species   = gTasks[taskId].tSpecies;
+    u16 dexNum    = SpeciesToNationalPokedexNum(species);
+    bool8 isShiny = gTasks[taskId].tIsShiny;
+    bool8 isAlpha = gTasks[taskId].tIsAlpha;
+    u32 otId = getShinyOdds();
+    u32 personality = 0xFF;
 
     switch (gTasks[taskId].tState)
     {
@@ -4331,12 +4338,10 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         break;
     case 1:
         LoadTilesetTilemapHGSS(INFO_SCREEN);
-        // DecompressAndLoadBgGfxUsingHeap(3, gPokedexMenu_Gfx, 0x2000, 0, 0);
-        // CopyToBgTilemapBuffer(3, gPokedexInfoScreen_Tilemap, 0, 0);
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
-        PrintFootprint(WIN_FOOTPRINT, gTasks[taskId].tDexNum);
+        PrintFootprint(WIN_FOOTPRINT, dexNum);
         CopyWindowToVram(WIN_FOOTPRINT, 2);
         ResetPaletteFade();
         LoadPokedexBgPalette(FALSE);
@@ -4353,7 +4358,11 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        spriteId = CreateMonSpriteFromNationalDexNumber(dexNum, 48, 56, 0);
+        MgbaOpen();
+        MgbaPrintf(MGBA_LOG_WARN, "CreateMonPicSprite species: %d, dexNum: %d, otId: %d, personality: %d, isShiny: %d, isAlpha: %d", species, dexNum, otId, personality, isShiny, isAlpha);
+        MgbaClose();
+
+        spriteId = CreateMonPicSprite(species, otId, personality, TRUE, 48, 56, 0, 0xFFFF, isShiny, isAlpha);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
@@ -4415,8 +4424,8 @@ static void Task_ExitCaughtMonPage(u8 taskId)
         u8 paletteNum;
         const u32 *lzPaletteData;
         void *buffer;
-        bool8 isShiny = FALSE;
-        bool8 isAlpha = FALSE;
+        bool8 isShiny = gTasks[taskId].tIsShiny;
+        bool8 isAlpha = gTasks[taskId].tIsAlpha;
 
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
         FreeAllWindowBuffers();
@@ -4427,8 +4436,7 @@ static void Task_ExitCaughtMonPage(u8 taskId)
         if (buffer)
             Free(buffer);
 
-        species = NationalPokedexNumToSpecies(gTasks[taskId].tDexNum);
-        otId = ((u16)gTasks[taskId].tOtIdHi << 16) | (u16)gTasks[taskId].tOtIdLo;
+        species = gTasks[taskId].tSpecies;
         personality = ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo;
         paletteNum = gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum;
         lzPaletteData = GetMonSpritePal(species, personality, isShiny);
@@ -4451,11 +4459,11 @@ static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 }
 
 #undef tState
-#undef tDexNum
+#undef tSpecies
 #undef tPalTimer
 #undef tMonSpriteId
-#undef tOtIdLo
-#undef tOtIdHi
+#undef tIsShiny
+#undef tIsAlpha
 #undef tPersonalityLo
 #undef tPersonalityHi
 
