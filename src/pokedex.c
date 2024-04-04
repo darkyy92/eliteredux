@@ -4358,10 +4358,6 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        MgbaOpen();
-        MgbaPrintf(MGBA_LOG_WARN, "CreateMonPicSprite species: %d, dexNum: %d, otId: %d, personality: %d, isShiny: %d, isAlpha: %d", species, dexNum, otId, personality, isShiny, isAlpha);
-        MgbaClose();
-
         spriteId = CreateMonPicSprite(species, otId, personality, TRUE, 48, 56, 0, 0xFFFF, isShiny, isAlpha);
         gSprites[spriteId].oam.priority = 0;
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
