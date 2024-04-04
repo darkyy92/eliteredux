@@ -39,6 +39,7 @@
 #define sBERRY_OVERRIDE              sSWITCH_CASE + 1
 #define sBATTLER_OVERRIDE            sBERRY_OVERRIDE + 1
 #define sEFFECT_CHANCE               sBATTLER_OVERRIDE + 2 // Missing forceFalseSwipeEffect
+#define sACCELERATED_TWO_TURN        sEFFECT_CHANCE + 3
 
 #define cMULTISTRING_CHOOSER         gBattleCommunication + 5
 #define cMISS_TYPE                   gBattleCommunication + 6

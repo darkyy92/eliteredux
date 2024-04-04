@@ -3303,6 +3303,7 @@ static void BattleStartClearSetData(void)
     gBattleScripting.switchInBattlerOverwrite = MAX_BATTLERS_COUNT;
     gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
     gBattleScripting.monCaught = FALSE;
+    gBattleScripting.acceleratedTwoTurn = FALSE;
 
     gBattleOutcome = 0;
     gBattleControllerExecFlags = 0;
