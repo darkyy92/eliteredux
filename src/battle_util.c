@@ -7827,6 +7827,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		
+		//Weak Armor
+        // Needs to come before stamina so that it resolves last
+		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_WEAK_ARMOR)){
+            if (ShouldApplyOnHitAffect(battler)
+             && IS_MOVE_PHYSICAL(gCurrentMove)
+             && (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) // Don't activate if speed cannot be raised
+               || CompareStat(battler, STAT_DEF, MIN_STAT_STAGE, CMP_GREATER_THAN))) // Don't activate if defense cannot be lowered
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEAK_ARMOR;
+                if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE && CanBattlerSwitch(gBattlerAttacker))
+                    gRoundStructs[battler].disableEjectPack = TRUE;  // Set flag for target
+
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_WeakArmorActivates;
+                effect++;
+            }
+		}
+		
 		// Stamina
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_STAMINA) && ShouldApplyOnHitAffect(battler)){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STAMINA;
@@ -8143,23 +8161,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_GooeyActivates;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-                effect++;
-            }
-		}
-		
-		//Weak Armor
-		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_WEAK_ARMOR)){
-            if (ShouldApplyOnHitAffect(battler)
-             && IS_MOVE_PHYSICAL(gCurrentMove)
-             && (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) // Don't activate if speed cannot be raised
-               || CompareStat(battler, STAT_DEF, MIN_STAT_STAGE, CMP_GREATER_THAN))) // Don't activate if defense cannot be lowered
-            {
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEAK_ARMOR;
-                if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE && CanBattlerSwitch(gBattlerAttacker))
-                    gRoundStructs[battler].disableEjectPack = TRUE;  // Set flag for target
-
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_WeakArmorActivates;
                 effect++;
             }
 		}
