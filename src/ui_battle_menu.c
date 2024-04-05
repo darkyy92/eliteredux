@@ -224,6 +224,8 @@ struct MenuResources
     bool8 partySelectorMode;
     u8 partyMenuSelectorID_X;
     u8 partyMenuSelectorID_Y;
+    bool8 isDoubleBattle;
+    bool8 partyIconsCreated;
 };
 
 enum WindowIds
@@ -389,6 +391,7 @@ static const u32 sMenu_Tilemap_Doubles_Battler_Abilities[]  = INCBIN_U32("graphi
 static const u32 sMenu_Tilemap_Singles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field.bin.lz");
 static const u32 sMenu_Tilemap_Doubles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field.bin.lz");
 static const u32 sMenu_Tilemap_Party_Info[]                 = INCBIN_U32("graphics/ui_menus/battle_menu/tilemap_field_party.bin.lz");
+static const u32 sMenu_Tilemap_Doubles_Party_Info[]         = INCBIN_U32("graphics/ui_menus/battle_menu/tilemap_doubles_field_party.bin.lz");
 //
 static const u32 sMenu_Tilemap_Singles_Speed[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field_speed.bin.lz");
 static const u32 sMenu_Tilemap_Doubles_Speed[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field_speed.bin.lz");
@@ -455,6 +458,11 @@ void UI_Battle_Menu_Init(MainCallback callback)
     }
 
     // initialize stuff
+    if(IsDoubleBattle() || FlagGet(FLAG_TAG_BATTLE))
+        sMenuDataPtr->isDoubleBattle = TRUE;
+    else
+        sMenuDataPtr->isDoubleBattle = FALSE;
+    
     sMenuDataPtr->gfxLoadState          = 0;
     sMenuDataPtr->moveModeId            = 0;
     sMenuDataPtr->tabId                 = 0;
@@ -952,7 +960,7 @@ static bool8 Menu_DoGfxSetup(void)
         //Start 
         ShowSpeciesIcon(0);
         ShowSpeciesIcon(1);
-        if(IsDoubleBattle()){
+        if(sMenuDataPtr->isDoubleBattle){
             ShowSpeciesIcon(2);
             ShowSpeciesIcon(3);
         }
@@ -1006,7 +1014,7 @@ void LoadTilemapFromMode(void)
     if(sMenuDataPtr->modeId != MODE_FIELD){
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
-                if(IsDoubleBattle())
+                if(sMenuDataPtr->isDoubleBattle)
                     LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Status, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Battler_Status, sBg1TilemapBuffer);
@@ -1014,13 +1022,13 @@ void LoadTilemapFromMode(void)
             case TAB_ABILITIES:
             case TAB_MOVES:
             case TAB_DAMAGE_CALCULATOR:
-                if(IsDoubleBattle())
+                if(sMenuDataPtr->isDoubleBattle)
                     LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Abilities, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Battler_Abilities, sBg1TilemapBuffer);
             break;
             default:
-                if(IsDoubleBattle())
+                if(sMenuDataPtr->isDoubleBattle)
                     LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
@@ -1030,18 +1038,21 @@ void LoadTilemapFromMode(void)
     else{
         switch(sMenuDataPtr->fieldTabId){
             case TAB_PARTY:
+            if(sMenuDataPtr->isDoubleBattle)
+                LZDecompressWram(sMenu_Tilemap_Doubles_Party_Info, sBg1TilemapBuffer);
+            else
                 LZDecompressWram(sMenu_Tilemap_Party_Info, sBg1TilemapBuffer);
             break;
             case TAB_FIELD:
             case TAB_PLAYER_SIDE:
             case TAB_ENEMY_SIDE:
-                if(IsDoubleBattle())
+                if(sMenuDataPtr->isDoubleBattle)
                     LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
             break;
             case TAB_SPEED:
-                if(IsDoubleBattle())
+                if(sMenuDataPtr->isDoubleBattle)
                     LZDecompressWram(sMenu_Tilemap_Doubles_Speed, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer);
@@ -1101,7 +1112,7 @@ static bool8 Menu_LoadGraphics(void)
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            if(IsDoubleBattle())
+            if(sMenuDataPtr->isDoubleBattle)
                 LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Status, sBg1TilemapBuffer);
             else
                 LZDecompressWram(sMenu_Tilemap_Singles_Battler_Status, sBg1TilemapBuffer);
@@ -1224,10 +1235,19 @@ static void SpriteCB_Selector(struct Sprite *sprite)
     sprite->data[0] += 8;
 }
 
+static void SpriteCB_PartyMons(struct Sprite *sprite)
+{
+    if(sMenuDataPtr->modeId != MODE_FIELD || sMenuDataPtr->fieldTabId != TAB_PARTY)
+        sprite->invisible = TRUE;
+    else
+        sprite->invisible = FALSE;
+}
+
 static const u32 gBattleSelector_Gfx[] = INCBIN_U32("graphics/ui_menus/battle_menu/fields/selector.4bpp.lz");
 static const u16 gBattleSelector_Pal[] = INCBIN_U16("graphics/ui_menus/battle_menu/fields/selector.gbapal");
 
 static const struct SpritePalette sBattleMenuSelectorSpritePalette[] = {gBattleSelector_Pal, PAL_UI_SPRITES};
+
 //Selector
 void FreeSelectorSprite(void)
 {
@@ -1264,27 +1284,6 @@ static void CreateSelectorSprite(void)
     gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR]].oam.priority = 0;
 }
 
-static void ShowItemIcon(u16 itemId, u8 x, u8 y)
-{
-    u8 itemSpriteId;
-    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
-
-    if (*spriteId == SPRITE_NONE && itemId != ITEM_NONE)
-    {
-        FreeSpriteTilesByTag(TAG_ITEM_ICON - 1);
-        FreeSpritePaletteByTag(TAG_ITEM_ICON - 1);
-        itemSpriteId = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
-        sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM] = itemSpriteId;
-        
-        if (itemSpriteId != MAX_SPRITES)
-        {
-            *spriteId = itemSpriteId;
-            gSprites[itemSpriteId].x2 = x;
-            gSprites[itemSpriteId].y2 = y;
-        }
-    }
-}
-
 static void FreeItemIconSprite(void)
 {
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
@@ -1296,6 +1295,29 @@ static void FreeItemIconSprite(void)
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
         sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM] = SPRITE_NONE;
+    }
+}
+
+static void ShowItemIcon(u16 itemId, u8 x, u8 y)
+{
+    u8 itemSpriteId;
+    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
+
+    FreeItemIconSprite();
+
+    if (*spriteId == SPRITE_NONE && itemId != ITEM_NONE)
+    {
+        FreeSpriteTilesByTag(TAG_ITEM_ICON );
+        FreeSpritePaletteByTag(TAG_ITEM_ICON);
+        itemSpriteId = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+        sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM] = itemSpriteId;
+        
+        if (itemSpriteId != MAX_SPRITES)
+        {
+            *spriteId = itemSpriteId;
+            gSprites[itemSpriteId].x2 = x;
+            gSprites[itemSpriteId].y2 = y;
+        }
     }
 }
 const u8 sText_Title_Nothing[]    = _("");
@@ -2791,7 +2813,7 @@ static void PrintDamageCalulatorTab(void){
     u16 move;
     u8 target = BATTLE_OPPOSITE(sMenuDataPtr->battlerId);
     
-    if(sMenuDataPtr->dmgCalculatorTarget != 0 && IsDoubleBattle())
+    if(sMenuDataPtr->dmgCalculatorTarget != 0 && sMenuDataPtr->isDoubleBattle)
         target = BATTLE_OPPOSITE(BATTLE_PARTNER(sMenuDataPtr->battlerId));
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
@@ -3139,14 +3161,18 @@ static void PrintPartyTab(){
     else
         AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_PartyInfoSelect);
 
-    //Player Mon Icons
-    for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
-        ShowSpeciesIconParty(i, FALSE, PARTY_POKEMON_ICON_X + ((i % 3) * PARTY_POKEMON_SPACE_X), PARTY_POKEMON_ICON_Y + ((i / 3) * PARTY_POKEMON_SPACE_Y));
-    }
+    if(!sMenuDataPtr->partyIconsCreated){
+        //Player Mon Icons
+        for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
+            ShowSpeciesIconParty(i, FALSE, PARTY_POKEMON_ICON_X + ((i % 3) * PARTY_POKEMON_SPACE_X), PARTY_POKEMON_ICON_Y + ((i / 3) * PARTY_POKEMON_SPACE_Y));
+        }
 
-    //Enemy Mon Icons
-    for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
-        ShowSpeciesIconParty(i, TRUE, PARTY_POKEMON_ICON_X + ((i % 3) * PARTY_POKEMON_SPACE_X), PARTY_POKEMON_ICON_Y_2 + ((i / 3)  * PARTY_POKEMON_SPACE_Y));
+        //Enemy Mon Icons
+        for(i = 0; i < NUM_PARTY_ICONS_SHOWN; i++){
+            ShowSpeciesIconParty(i, TRUE, PARTY_POKEMON_ICON_X + ((i % 3) * PARTY_POKEMON_SPACE_X), PARTY_POKEMON_ICON_Y_2 + ((i / 3)  * PARTY_POKEMON_SPACE_Y));
+        }
+
+        sMenuDataPtr->partyIconsCreated = TRUE;
     }
 
     //Selector
@@ -4357,7 +4383,7 @@ static u8 ShowSpeciesIcon(u8 num)
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_2];
         break;
         case 2:
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3] = CreateMonIcon(species, SpriteCallbackDummy, POKEMON_ICON_X, POKEMON_ICON_3_Y, 0, personality);
                         
                 gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3]].invisible = FALSE;
@@ -4365,7 +4391,7 @@ static u8 ShowSpeciesIcon(u8 num)
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3];
         break;
         case 3:
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4] = CreateMonIcon(species, SpriteCallbackDummy, POKEMON_ICON_X, POKEMON_ICON_4_Y, 0, personality);
                         
                 gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4]].invisible = FALSE;
@@ -4416,7 +4442,7 @@ static u8 ShowSpeciesIconSpeed(u8 battler, u8 x, u8 y)
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_2_SPEED];
         break;
         case 2:
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
                         
                 gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED]].invisible = FALSE;
@@ -4424,7 +4450,7 @@ static u8 ShowSpeciesIconSpeed(u8 battler, u8 x, u8 y)
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED];
         break;
         case 3:
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
                         
                 gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4_SPEED]].invisible = FALSE;
@@ -4439,6 +4465,7 @@ static u8 ShowSpeciesIconParty(u8 num, bool8 isEnemyParty, u8 x, u8 y)
     struct Pokemon *party = NULL;
 	u16 species;
     u32 personality;
+    u8 spriteId;
 
     if(isEnemyParty)
         party = gEnemyParty;
@@ -4454,24 +4481,25 @@ static u8 ShowSpeciesIconParty(u8 num, bool8 isEnemyParty, u8 x, u8 y)
         return 0;
 
     if(isEnemyParty){
-        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] != SPRITE_NONE)//Already created
+        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] != SPRITE_NONE) //Already created
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num];
         
-        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num] = CreateMonIcon(species, SpriteCB_PartyMons, x, y, 0, personality);
                     
-        gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER]].invisible = FALSE;
-        return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER];
+        gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY] + num].invisible = FALSE;
+        spriteId = sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_ENEMY + num];
     }
     else{
-        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] != SPRITE_NONE)//Already created
+        if(sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] != SPRITE_NONE) //Already created
             return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num];
         
-        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num] = CreateMonIcon(species, SpriteCB_PartyMons, x, y, 0, personality);
                     
         gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num]].invisible = FALSE;
-        return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num];
+        spriteId = sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_PARTY_PLAYER + num];
     }
-
+     
+    return spriteId;
 }
 
 static void FreeEveryPartyMonIconSprite(void)
@@ -4495,8 +4523,14 @@ static void FreePartySpeciesIconSprite(u8 num, bool8 isEnemyMon)
 
     if (*spriteId != SPRITE_NONE)
     {
-        FreeSpriteTilesByTag(TAG_ICON_PARTY_PLAYER   + num - 1);
-        FreeSpritePaletteByTag(TAG_ICON_PARTY_PLAYER + num - 1);
+        if(isEnemyMon){
+            FreeSpriteTilesByTag(TAG_ICON_PARTY_ENEMY   + num);
+            FreeSpritePaletteByTag(TAG_ICON_PARTY_ENEMY + num);
+        }
+        else{
+            FreeSpriteTilesByTag(TAG_ICON_PARTY_PLAYER   + num);
+            FreeSpritePaletteByTag(TAG_ICON_PARTY_PLAYER + num);
+        }
         FreeSpriteOamMatrix(&gSprites[*spriteId]);
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
@@ -4655,7 +4689,7 @@ static void PrintPage(void){
     LoadTabPalette();
     FreeItemIconSprite();
     FreeEveryMonIconSprite();
-    FreeEveryPartyMonIconSprite();
+    //FreeEveryPartyMonIconSprite();
     if(sMenuDataPtr->modeId != MODE_FIELD)
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
@@ -4794,7 +4828,7 @@ static void Task_MenuMain(u8 taskId)
                     PrintMoveTab();
                 break;
                 case TAB_DAMAGE_CALCULATOR:
-                    if(IsDoubleBattle()){
+                    if(sMenuDataPtr->isDoubleBattle){
                         if(sMenuDataPtr->dmgCalculatorTarget != MAX_TARGETS - 1)
                             sMenuDataPtr->dmgCalculatorTarget++;
                         else
@@ -4838,7 +4872,7 @@ static void Task_MenuMain(u8 taskId)
                 break;
                 case TAB_SPEED:
                     //Scrolling since we only have 2 spaces, will be changed in the future, lacks ability to change targets
-                    if(IsDoubleBattle()){
+                    if(sMenuDataPtr->isDoubleBattle){
                         if(sMenuDataPtr->speedModeId != gBattlersCount - 2)
                             sMenuDataPtr->speedModeId++;
                         else
@@ -4870,7 +4904,7 @@ static void Task_MenuMain(u8 taskId)
             PrintPartyTab();
         }
         else{
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 if(sMenuDataPtr->modeId != NUM_MODES - 1)
                     sMenuDataPtr->modeId++;
                 else
@@ -4896,7 +4930,7 @@ static void Task_MenuMain(u8 taskId)
             PrintPartyTab();
         }
         else{
-            if(IsDoubleBattle()){
+            if(sMenuDataPtr->isDoubleBattle){
                 if(sMenuDataPtr->modeId != 0)
                     sMenuDataPtr->modeId--;
                 else

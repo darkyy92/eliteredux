@@ -2300,3 +2300,11 @@
 	various \battler, VARIOUS_TRY_UPPER_HAND
 	.4byte \ptr
 	.endm
+
+	.macro twoturnmoveacceleratecheck
+	jumpifability BS_ATTACKER, ABILITY_ACCELERATE, twoturnmoveacceleratecheck_\@
+	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
+	call BattleScript_PowerHerbActivation
+twoturnmoveacceleratecheck_\@:
+	setbyte sACCELERATED_TWO_TURN, 1
+	.endm
