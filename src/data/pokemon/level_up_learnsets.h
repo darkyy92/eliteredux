@@ -23187,6 +23187,7 @@ static const struct LevelUpMove sSneaslerLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sOverqwilLevelUpLearnset[] = {
+    LEVEL_UP_MOVE(0, MOVE_TOXIC_NEEDLES),
     LEVEL_UP_MOVE(1, MOVE_POISON_STING),
     LEVEL_UP_MOVE(1, MOVE_TACKLE),
     LEVEL_UP_MOVE(4, MOVE_HARDEN),

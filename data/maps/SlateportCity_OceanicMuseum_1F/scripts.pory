@@ -4,6 +4,10 @@ raw `
 SlateportCity_OceanicMuseum_1F_MapScripts:: @ 820AD95
 	.byte 0
 
+SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant:: @ 820AD96
+	msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_NPC
+	end
+
 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeLeft:: @ 820AD9F
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
@@ -386,11 +390,4 @@ SlateportCity_OceanicMuseum_1F_Text_DepthMeasuringMachine: @ 820BA9C
 `
 text SlateportCity_OceanicMuseum_1F_Text_Got_Clauncher{
 	format("{PLAYER} got a {COLOR BLUE}Clauncher{COLOR DARK_GRAY} as a gift!")
-}
-
-script SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant{
-	lock
-	faceplayer
-	msgbox(format("Welcome to the Oceanic Museum. Please enjoy yourself"), MSGBOX_NPC)
-	end
 }

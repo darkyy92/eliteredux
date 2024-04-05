@@ -221,7 +221,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_SLATEPORT_MUSEUM_1F_STATE",
+      "var_value": "0",
+      "script": "SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_SLATEPORT_MUSEUM_1F_STATE",
+      "var_value": "0",
+      "script": "SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeRight"
+    }
   ],
   "bg_events": [
     {

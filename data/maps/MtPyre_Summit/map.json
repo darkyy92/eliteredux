@@ -88,7 +88,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "MtPyre_Summit_EventScript_Grunt3",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
@@ -101,7 +101,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "MtPyre_Summit_EventScript_Grunt4",
       "flag": "FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA"
     },
@@ -218,13 +218,6 @@
       "elevation": 3,
       "dest_map": "MAP_MT_PYRE_EXTERIOR",
       "dest_warp_id": 1
-    },
-    {
-      "x": 27,
-      "y": 11,
-      "elevation": 0,
-      "dest_map": "MAP_MT_PYRE_SUMMIT",
-      "dest_warp_id": 0
     }
   ],
   "coord_events": [
