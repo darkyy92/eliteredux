@@ -8589,6 +8589,21 @@ bool32 IsShieldsDownProtected(u32 battler)
 
 u32 IsAbilityStatusProtected(u32 battler)
 {
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_SHIELDS_DOWN))
+    {
+        switch (gBattleMons[battler].species)
+        {
+            case SPECIES_MINIOR:
+            case SPECIES_MINIOR_METEOR_BLUE:
+            case SPECIES_MINIOR_METEOR_GREEN:
+            case SPECIES_MINIOR_METEOR_INDIGO:
+            case SPECIES_MINIOR_METEOR_ORANGE:
+            case SPECIES_MINIOR_METEOR_VIOLET:
+            case SPECIES_MINIOR_METEOR_YELLOW:
+                return TRUE;
+        }
+    }
+
     return IsFlowerVeilProtected(battler)
         || IsLeafGuardProtected(battler)
         || IsDesertCloakProtected(battler)

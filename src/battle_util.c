@@ -10042,6 +10042,15 @@ bool8 CanBeDisabled(u8 battlerId)
     return TRUE;
 }
 
+bool32 CanGetStatus(u8 battlerId)
+{
+    if (gBattleMons[battlerId].status1) return FALSE;
+    if (IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN)) return FALSE;
+    if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD) return FALSE;
+    if (IsAbilityStatusProtected(battlerId)) return FALSE;
+    return TRUE;
+}
+
 bool32 CanSleep(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
@@ -10049,13 +10058,12 @@ bool32 CanSleep(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_INSOMNIA, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VITAL_SPIRIT, ability)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityOnSide(battlerId, ABILITY_SWEET_VEIL)
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN))
+      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN))
         return FALSE;
     return TRUE;
 }
@@ -10066,14 +10074,11 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 
     if (gBattleMons[battlerTarget].status1 & !STATUS1_ANY && IsMyceliumMightActive(battlerAttacker))
         return TRUE;
+
+    if (CanGetStatus(battlerTarget)) return FALSE;
         
     if (!(CanPoisonType(battlerAttacker, battlerTarget))
-     || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_IMMUNITY, ability)
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || IsAbilityStatusProtected(battlerTarget)
-     || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
+     || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_IMMUNITY, ability))
         return FALSE;
     return TRUE;
 }
@@ -10085,15 +10090,13 @@ bool32 CanBeBurned(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_VEIL, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_PURIFYING_WATERS, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_BUBBLE, ability)
-      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_THERMAL_EXCHANGE, ability)
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_THERMAL_EXCHANGE, ability))
         return FALSE;
     return TRUE;
 }
@@ -10102,6 +10105,8 @@ bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget)
 {
     if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
     if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
+
+    if (CanGetStatus(battlerTarget)) return FALSE;
 
     if (!CanParalyzeType(battlerAttacker, battlerTarget)
         || !CanBeParalyzedIgnoreType(battlerAttacker, battlerTarget))
@@ -10116,11 +10121,10 @@ bool32 CanBeParalyzedIgnoreType(u8 battlerAttacker, u8 battlerTarget)
     if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
     if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
 
-    if (gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
-      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability)
-      || IsAbilityStatusProtected(battlerTarget)
-      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
+    if (CanGetStatus(battlerTarget)) return FALSE;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability))
         return FALSE;
     return TRUE;
 }
@@ -10128,13 +10132,12 @@ bool32 CanBeParalyzedIgnoreType(u8 battlerAttacker, u8 battlerTarget)
 bool32 CanBeFrozen(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
+
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MAGMA_ARMOR, battlerId)
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MAGMA_ARMOR, battlerId))
         return FALSE;
     return TRUE;
 }
@@ -10144,11 +10147,10 @@ bool32 CanGetFrostbite(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD)
         return FALSE;
     return TRUE;
 }
@@ -10158,12 +10160,10 @@ bool32 CanBleed(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
-        || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST)
-        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-        || gBattleMons[battlerId].status1 & STATUS1_ANY
-        || IsAbilityStatusProtected(battlerId)
-        || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+        || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
         return FALSE;
     return TRUE;
 }
