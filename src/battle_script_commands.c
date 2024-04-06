@@ -8589,6 +8589,21 @@ bool32 IsShieldsDownProtected(u32 battler)
 
 u32 IsAbilityStatusProtected(u32 battler)
 {
+    if (BATTLER_HAS_ABILITY(battler, ABILITY_SHIELDS_DOWN))
+    {
+        switch (gBattleMons[battler].species)
+        {
+            case SPECIES_MINIOR:
+            case SPECIES_MINIOR_METEOR_BLUE:
+            case SPECIES_MINIOR_METEOR_GREEN:
+            case SPECIES_MINIOR_METEOR_INDIGO:
+            case SPECIES_MINIOR_METEOR_ORANGE:
+            case SPECIES_MINIOR_METEOR_VIOLET:
+            case SPECIES_MINIOR_METEOR_YELLOW:
+                return TRUE;
+        }
+    }
+
     return IsFlowerVeilProtected(battler)
         || IsLeafGuardProtected(battler)
         || IsDesertCloakProtected(battler)
@@ -9217,6 +9232,7 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
+        if (BATTLER_HEALING_BLOCKED(gActiveBattler)) break;
         if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_JAWS_OF_CARNAGE) ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUL_EATER)      ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER)       ||
@@ -10708,7 +10724,7 @@ static void Cmd_various(void)
         }
 
         gActiveBattler = IsAbilityOnField(ABILITY_SHARING_IS_CARING) - 1;
-        if (gActiveBattler > 0)
+        if ((s8)gActiveBattler >= 0)
         {
             struct StatCopyState state = GetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING).statCopyState;
             if (state.inProgress)
@@ -10736,7 +10752,8 @@ static void Cmd_various(void)
                                 gBattlescriptCurrInstr = BattleScript_AbilityPopUpAndWait;
                                 state.announced = TRUE;
                                 state.stat--;
-                                break;
+                                SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
+                                return;
                             }
                             gBattlerAttacker = state.battler;
                             SetStatChanger(state.stat, change);
@@ -10749,9 +10766,12 @@ static void Cmd_various(void)
                             {
                                 gBattlescriptCurrInstr = BattleScript_PerformStatDown;
                             }
-                            break;
+                            SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
+                            return;
                         }
                     }
+
+                    if (state.stat >= NUM_BATTLE_STATS) state.stat = 0;
                 }
                 if (state.battler >= gBattlersCount) state = (struct StatCopyState) {0};
                 SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
@@ -11078,7 +11098,11 @@ static void Cmd_setprotectlike(void)
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
         notLastTurn = FALSE;
 
-    if (sProtectSuccessRates[gVolatileStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
+    if (gVolatileStructs[gBattlerAttacker].protectUses > 3)
+    {
+        fail = TRUE;
+    }
+    else if (sProtectSuccessRates[gVolatileStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
     {
         if (!gBattleMoves[gCurrentMove].argument) // Protects one mon only.
         {
@@ -15151,24 +15175,24 @@ static void Cmd_switchoutabilities(void)
     if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_CURE)
         || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_SELF_REPAIR))
     {
-        u16 ability = gBattleScripting.switchInBattlerOverwrite;
+        u16 ability = gBattleScripting.abilityPopupOverwrite;
         if (gBattleMons[gActiveBattler].status1 & STATUS1_ANY) {
             if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_RECOVERY) || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_REGENERATOR)) {
-                if (gBattleScripting.switchInBattlerOverwrite == ABILITY_NATURAL_RECOVERY)
+                if (gBattleScripting.abilityPopupOverwrite == ABILITY_NATURAL_RECOVERY)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NATURAL_RECOVERY_EXITS;
                 else {
                     gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
-                    gBattleScripting.switchInBattlerOverwrite = ability;
+                    gBattleScripting.abilityPopupOverwrite = ability;
                 }
                 BattleScriptPush(gBattlescriptCurrInstr);
                 gBattlescriptCurrInstr = BattleScript_NaturalRecoveryExits;
             }
-        }
-        else
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
-            BattleScriptPush(gBattlescriptCurrInstr);
-            gBattlescriptCurrInstr = BattleScript_NaturalCureExits;
+            else
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
+                BattleScriptPush(gBattlescriptCurrInstr);
+                gBattlescriptCurrInstr = BattleScript_NaturalCureExits;
+            }
         }
     }
 

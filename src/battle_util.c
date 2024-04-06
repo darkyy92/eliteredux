@@ -7827,6 +7827,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		
+		//Weak Armor
+        // Needs to come before stamina so that it resolves last
+		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_WEAK_ARMOR)){
+            if (ShouldApplyOnHitAffect(battler)
+             && IS_MOVE_PHYSICAL(gCurrentMove)
+             && (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) // Don't activate if speed cannot be raised
+               || CompareStat(battler, STAT_DEF, MIN_STAT_STAGE, CMP_GREATER_THAN))) // Don't activate if defense cannot be lowered
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEAK_ARMOR;
+                if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE && CanBattlerSwitch(gBattlerAttacker))
+                    gRoundStructs[battler].disableEjectPack = TRUE;  // Set flag for target
+
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_WeakArmorActivates;
+                effect++;
+            }
+		}
+		
 		// Stamina
 		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_STAMINA) && ShouldApplyOnHitAffect(battler)){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STAMINA;
@@ -8143,23 +8161,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_GooeyActivates;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-                effect++;
-            }
-		}
-		
-		//Weak Armor
-		if(BattlerHasAbility(battler, gBattlerAttacker, ABILITY_WEAK_ARMOR)){
-            if (ShouldApplyOnHitAffect(battler)
-             && IS_MOVE_PHYSICAL(gCurrentMove)
-             && (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) // Don't activate if speed cannot be raised
-               || CompareStat(battler, STAT_DEF, MIN_STAT_STAGE, CMP_GREATER_THAN))) // Don't activate if defense cannot be lowered
-            {
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WEAK_ARMOR;
-                if (gBattleMoves[gCurrentMove].effect == EFFECT_HIT_ESCAPE && CanBattlerSwitch(gBattlerAttacker))
-                    gRoundStructs[battler].disableEjectPack = TRUE;  // Set flag for target
-
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_WeakArmorActivates;
                 effect++;
             }
 		}
@@ -9379,10 +9380,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             battler = IsAbilityOnField(ABILITY_SHARING_IS_CARING) - 1;
-            if ((s8)battler > 0)
+            if ((s8)battler >= 0)
             {
                 found = TRUE;
-                SetAbilityStateAs(i, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                SetAbilityStateAs(battler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
             }
 
             if (found)
@@ -9400,19 +9401,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
         case ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE:
             #define CHECK_ABILITY(ability) (CheckAndSetOncePerTurnAbility(battler, ability))
-
-            //Weather Cast
-            if(CHECK_ABILITY(ABILITY_FORECAST)){
-                switch (move) {
-                    case MOVE_SUNNY_DAY:
-                    case MOVE_RAIN_DANCE:
-                    case MOVE_SANDSTORM:
-                    case MOVE_HAIL:
-                        gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
-                        if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
-                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
-                }
-            }
 
             {
                 u32 target = GetBattlerBattleMoveTargetFlags(move, battler);
@@ -9444,6 +9432,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+
+            //Weather Cast
+            if(CHECK_ABILITY(ABILITY_FORECAST)){
+                switch (move) {
+                    case MOVE_SUNNY_DAY:
+                    case MOVE_RAIN_DANCE:
+                    case MOVE_SANDSTORM:
+                    case MOVE_HAIL:
+                        if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
+                }
+            }
 
             //Volcano Rage
             if(CHECK_ABILITY(ABILITY_VOLCANO_RAGE)){
@@ -10042,6 +10042,15 @@ bool8 CanBeDisabled(u8 battlerId)
     return TRUE;
 }
 
+bool32 CanGetStatus(u8 battlerId)
+{
+    if (gBattleMons[battlerId].status1) return FALSE;
+    if (IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN)) return FALSE;
+    if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD) return FALSE;
+    if (IsAbilityStatusProtected(battlerId)) return FALSE;
+    return TRUE;
+}
+
 bool32 CanSleep(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
@@ -10049,13 +10058,12 @@ bool32 CanSleep(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_INSOMNIA, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_VITAL_SPIRIT, ability)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityOnSide(battlerId, ABILITY_SWEET_VEIL)
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN))
+      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_ELECTRIC_TERRAIN))
         return FALSE;
     return TRUE;
 }
@@ -10066,14 +10074,11 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 
     if (gBattleMons[battlerTarget].status1 & !STATUS1_ANY && IsMyceliumMightActive(battlerAttacker))
         return TRUE;
+
+    if (CanGetStatus(battlerTarget)) return FALSE;
         
     if (!(CanPoisonType(battlerAttacker, battlerTarget))
-     || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_IMMUNITY, ability)
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || IsAbilityStatusProtected(battlerTarget)
-     || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
+     || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_IMMUNITY, ability))
         return FALSE;
     return TRUE;
 }
@@ -10085,15 +10090,13 @@ bool32 CanBeBurned(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_VEIL, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_PURIFYING_WATERS, ability)
       || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_WATER_BUBBLE, ability)
-      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_THERMAL_EXCHANGE, ability)
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_THERMAL_EXCHANGE, ability))
         return FALSE;
     return TRUE;
 }
@@ -10102,6 +10105,8 @@ bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget)
 {
     if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
     if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
+
+    if (CanGetStatus(battlerTarget)) return FALSE;
 
     if (!CanParalyzeType(battlerAttacker, battlerTarget)
         || !CanBeParalyzedIgnoreType(battlerAttacker, battlerTarget))
@@ -10116,11 +10121,10 @@ bool32 CanBeParalyzedIgnoreType(u8 battlerAttacker, u8 battlerTarget)
     if (gBattleMons[battlerTarget].status1 & STATUS1_ANY) return FALSE;
     if (IsMyceliumMightActive(battlerAttacker)) return TRUE;
 
-    if (gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
-      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability)
-      || IsAbilityStatusProtected(battlerTarget)
-      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
+    if (CanGetStatus(battlerTarget)) return FALSE;
+
+    if (BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_LIMBER, ability)
+      || BATTLER_HAS_ABILITY_FAST(battlerTarget, ABILITY_JUGGERNAUT, ability))
         return FALSE;
     return TRUE;
 }
@@ -10128,13 +10132,12 @@ bool32 CanBeParalyzedIgnoreType(u8 battlerAttacker, u8 battlerTarget)
 bool32 CanBeFrozen(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
+
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MAGMA_ARMOR, battlerId)
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || BATTLER_HAS_ABILITY_FAST(battlerId, ABILITY_MAGMA_ARMOR, battlerId))
         return FALSE;
     return TRUE;
 }
@@ -10144,11 +10147,10 @@ bool32 CanGetFrostbite(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD)
         return FALSE;
     return TRUE;
 }
@@ -10158,12 +10160,10 @@ bool32 CanBleed(u8 battlerId)
     if (gBattleMons[battlerId].status1 & !STATUS1_ANY && IsMyceliumMightActive(gBattlerAttacker))
         return TRUE;
 
+    if (CanGetStatus(battlerId)) return FALSE;
+
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ROCK)
-        || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST)
-        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
-        || gBattleMons[battlerId].status1 & STATUS1_ANY
-        || IsAbilityStatusProtected(battlerId)
-        || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+        || IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
         return FALSE;
     return TRUE;
 }
@@ -15151,18 +15151,19 @@ bool32 CanMegaEvolve(u8 battlerId)
     itemId  = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     // Check if trainer already mega evolved a pokemon.
-    if (mega->alreadyEvolved[battlerPosition] &&
-        ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB && 
-        GetBattlerSide(battlerId) == B_SIDE_PLAYER) //There can be a lot of primal mons per battle, it's only checked with the player
-        return FALSE;
-
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        if (IsPartnerMonFromSameTrainer(battlerId)
-            && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB //There can be a lot of primal mons per battle
-            && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & 1 << BATTLE_PARTNER(battlerId)))
-            )
+    if(GetBattlerSide(battlerId) == B_SIDE_PLAYER){
+        //There can be a lot of primal mons per battle, it's only checked with the player
+        if (mega->alreadyEvolved[battlerPosition] &&
+            ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB) 
             return FALSE;
+
+        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        {
+            if (IsPartnerMonFromSameTrainer(battlerId)
+                && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB //There can be a lot of primal mons per battle
+                && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & 1 << BATTLE_PARTNER(battlerId))))
+                return FALSE;
+        }
     }
 
     // Check if there is an entry in the evolution table for regular Mega Evolution.
