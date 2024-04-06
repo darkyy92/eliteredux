@@ -10724,7 +10724,7 @@ static void Cmd_various(void)
         }
 
         gActiveBattler = IsAbilityOnField(ABILITY_SHARING_IS_CARING) - 1;
-        if (gActiveBattler > 0)
+        if ((s8)gActiveBattler >= 0)
         {
             struct StatCopyState state = GetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING).statCopyState;
             if (state.inProgress)
@@ -10752,7 +10752,8 @@ static void Cmd_various(void)
                                 gBattlescriptCurrInstr = BattleScript_AbilityPopUpAndWait;
                                 state.announced = TRUE;
                                 state.stat--;
-                                break;
+                                SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
+                                return;
                             }
                             gBattlerAttacker = state.battler;
                             SetStatChanger(state.stat, change);
@@ -10765,9 +10766,12 @@ static void Cmd_various(void)
                             {
                                 gBattlescriptCurrInstr = BattleScript_PerformStatDown;
                             }
-                            break;
+                            SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });
+                            return;
                         }
                     }
+
+                    if (state.stat >= NUM_BATTLE_STATS) state.stat = 0;
                 }
                 if (state.battler >= gBattlersCount) state = (struct StatCopyState) {0};
                 SetAbilityStateAs(gActiveBattler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = state });

@@ -679,7 +679,7 @@ struct BattleStruct
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     bool8 singleuseability[PARTY_SIZE][NUM_INNATE_PER_SPECIES + 1][2]; // For the sake of Instruct
-    s8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_NATURE_STATS];
+    s8 statChangesToCheck[MAX_BATTLERS_COUNT][NUM_BATTLE_STATS - 1];
     u8 timesDamaged[PARTY_SIZE][2];
 };
 

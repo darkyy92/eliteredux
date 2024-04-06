@@ -9380,10 +9380,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             battler = IsAbilityOnField(ABILITY_SHARING_IS_CARING) - 1;
-            if ((s8)battler > 0)
+            if ((s8)battler >= 0)
             {
                 found = TRUE;
-                SetAbilityStateAs(i, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
+                SetAbilityStateAs(battler, ABILITY_SHARING_IS_CARING, (union AbilityStates) { .statCopyState = (struct StatCopyState) { .inProgress = TRUE } });
             }
 
             if (found)
