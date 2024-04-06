@@ -9402,19 +9402,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITYEFFECT_ATTACKER_FOLLOWUP_MOVE:
             #define CHECK_ABILITY(ability) (CheckAndSetOncePerTurnAbility(battler, ability))
 
-            //Weather Cast
-            if(CHECK_ABILITY(ABILITY_FORECAST)){
-                switch (move) {
-                    case MOVE_SUNNY_DAY:
-                    case MOVE_RAIN_DANCE:
-                    case MOVE_SANDSTORM:
-                    case MOVE_HAIL:
-                        gBattlerTarget = GetMoveTarget(MOVE_WEATHER_BALL, 0);
-                        if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
-                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
-                }
-            }
-
             {
                 u32 target = GetBattlerBattleMoveTargetFlags(move, battler);
                 if (target == MOVE_TARGET_BOTH || target == MOVE_TARGET_FOES_AND_ALLY)
@@ -9445,6 +9432,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+
+            //Weather Cast
+            if(CHECK_ABILITY(ABILITY_FORECAST)){
+                switch (move) {
+                    case MOVE_SUNNY_DAY:
+                    case MOVE_RAIN_DANCE:
+                    case MOVE_SANDSTORM:
+                    case MOVE_HAIL:
+                        if (!CanUseExtraMove(gBattlerAttacker, gBattlerTarget)) break;
+                        return UseAttackerFollowUpMove(battler, ABILITY_FORECAST, MOVE_WEATHER_BALL, 0, 0, 0);
+                }
+            }
 
             //Volcano Rage
             if(CHECK_ABILITY(ABILITY_VOLCANO_RAGE)){
