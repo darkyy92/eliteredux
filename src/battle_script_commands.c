@@ -15170,24 +15170,24 @@ static void Cmd_switchoutabilities(void)
     if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_CURE)
         || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_SELF_REPAIR))
     {
-        u16 ability = gBattleScripting.switchInBattlerOverwrite;
+        u16 ability = gBattleScripting.abilityPopupOverwrite;
         if (gBattleMons[gActiveBattler].status1 & STATUS1_ANY) {
             if (CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_NATURAL_RECOVERY) || CheckAndSetSwitchInAbility(gActiveBattler, ABILITY_REGENERATOR)) {
-                if (gBattleScripting.switchInBattlerOverwrite == ABILITY_NATURAL_RECOVERY)
+                if (gBattleScripting.abilityPopupOverwrite == ABILITY_NATURAL_RECOVERY)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NATURAL_RECOVERY_EXITS;
                 else {
                     gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
-                    gBattleScripting.switchInBattlerOverwrite = ability;
+                    gBattleScripting.abilityPopupOverwrite = ability;
                 }
                 BattleScriptPush(gBattlescriptCurrInstr);
                 gBattlescriptCurrInstr = BattleScript_NaturalRecoveryExits;
             }
-        }
-        else
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
-            BattleScriptPush(gBattlescriptCurrInstr);
-            gBattlescriptCurrInstr = BattleScript_NaturalCureExits;
+            else
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = ability == ABILITY_SELF_REPAIR ? B_MSG_SELF_REPAIR_EXITS : B_MSG_NATURAL_CURE_EXITS;
+                BattleScriptPush(gBattlescriptCurrInstr);
+                gBattlescriptCurrInstr = BattleScript_NaturalCureExits;
+            }
         }
     }
 

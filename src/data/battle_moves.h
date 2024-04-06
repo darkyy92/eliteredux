@@ -10803,7 +10803,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
         .flags = FLAG_SNATCH_AFFECTED,
-        .split = SPLIT_PHYSICAL,
+        .split = SPLIT_STATUS,
     },
     [MOVE_RAGING_BULL] =
     {
