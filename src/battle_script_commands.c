@@ -1872,10 +1872,6 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     u8 defParam = GetBattlerHoldEffectParam(battlerDef);
     u32 atkAbility = GetBattlerAbility(battlerAtk);
     u32 defAbility = GetBattlerAbility(battlerDef);
-    u32 atkAlly = BATTLE_PARTNER(battlerAtk);
-    u32 defAlly = BATTLE_PARTNER(battlerDef);
-    u32 atkAllyAbility = GetBattlerAbility(atkAlly);
-    u32 defAllyAbility = GetBattlerAbility(defAlly);
     u32 atkHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
     u32 defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
     u8 moveType;
@@ -2042,17 +2038,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    if (gBattleWeather & B_WEATHER_FOG_PERMANENT) 
+    if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG_PERMANENT) 
 	{
-        if (((atkAbility != ABILITY_AIR_LOCK) && (atkAbility != ABILITY_CLOUD_NINE))
-        && ((atkAllyAbility != ABILITY_AIR_LOCK) && (atkAllyAbility != ABILITY_CLOUD_NINE))
-        && ((defAbility != ABILITY_AIR_LOCK) && (defAbility != ABILITY_CLOUD_NINE))
-        && ((defAllyAbility != ABILITY_AIR_LOCK) && (defAllyAbility != ABILITY_CLOUD_NINE)))
-        {
-		    if ((atkAbility != ABILITY_ILLUMINATE) && (atkAbility != ABILITY_MINDS_EYE)
-            && (atkAbility != ABILITY_RADIANCE) && (atkAbility != ABILITY_PLASMA_LAMP))
+        if ((atkAbility != ABILITY_ILLUMINATE) && (atkAbility != ABILITY_MINDS_EYE)
+        && (atkAbility != ABILITY_RADIANCE) && (atkAbility != ABILITY_PLASMA_LAMP))
 		    calc = (calc * 80) / 100; // 20% fog loss
-        }
 	}
 
         return min(calc, 100);
