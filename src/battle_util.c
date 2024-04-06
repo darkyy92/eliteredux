@@ -2801,8 +2801,12 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ABILITIES:  // end turn abilities
-            if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, gLastResultingMoves[gActiveBattler]))
+            {
+            u16 move = gLastResultingMoves[gActiveBattler];
+            if (move == 0xFFFF) move = 0;
+            if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, move))
                 effect++;
+            }
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ITEMS1:  // item effects
@@ -6775,7 +6779,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 
             if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BLOOD_PRICE)) {
-                if (gBattleMoves[move].split != SPLIT_STATUS
+                if (move && gBattleMoves[move].split != SPLIT_STATUS
                     && !BATTLER_HAS_MAGIC_GUARD(gActiveBattler)
                     && !gRoundStructs[gActiveBattler].confusionSelfDmg)
                 {
