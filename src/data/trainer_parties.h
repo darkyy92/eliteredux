@@ -32346,9 +32346,9 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     .species = SPECIES_SUICUNE,
     .heldItem = ITEM_LIGHT_CLAY,
     .ability = 0,
-    .evs = {252, 0, 4, 0, 0, 252},
+    .evs = {8, 0, 0, 252, 0, 252},
     .nature = NATURE_TIMID,
-    .moves = MOVE_SCALD, MOVE_RAIN_DANCE, MOVE_ICY_WIND, MOVE_TAILWIND
+    .moves = MOVE_SCALD, MOVE_RAIN_DANCE, MOVE_ICE_BEAM, MOVE_TAILWIND
     },
     {
     .lvl = 0,
