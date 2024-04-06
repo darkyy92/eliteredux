@@ -15151,18 +15151,19 @@ bool32 CanMegaEvolve(u8 battlerId)
     itemId  = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     // Check if trainer already mega evolved a pokemon.
-    if (mega->alreadyEvolved[battlerPosition] &&
-        ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB && 
-        GetBattlerSide(battlerId) == B_SIDE_PLAYER) //There can be a lot of primal mons per battle, it's only checked with the player
-        return FALSE;
-
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        if (IsPartnerMonFromSameTrainer(battlerId)
-            && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB //There can be a lot of primal mons per battle
-            && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & 1 << BATTLE_PARTNER(battlerId)))
-            )
+    if(GetBattlerSide(battlerId) == B_SIDE_PLAYER){
+        //There can be a lot of primal mons per battle, it's only checked with the player
+        if (mega->alreadyEvolved[battlerPosition] &&
+            ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB) 
             return FALSE;
+
+        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        {
+            if (IsPartnerMonFromSameTrainer(battlerId)
+                && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB //There can be a lot of primal mons per battle
+                && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & 1 << BATTLE_PARTNER(battlerId))))
+                return FALSE;
+        }
     }
 
     // Check if there is an entry in the evolution table for regular Mega Evolution.
