@@ -9232,6 +9232,7 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
+        if (BATTLER_HEALING_BLOCKED(gActiveBattler)) break;
         if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_JAWS_OF_CARNAGE) ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUL_EATER)      ||
             BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER)       ||
