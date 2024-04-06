@@ -1312,6 +1312,11 @@ static const u8 sNeverMeltIceDesc[] = _(
     "raises the power of\n"
     "Ice-type moves.");
 
+static const u8 sFairyFeatherDesc[] = _(
+    "A hold item that\n"
+    "raises the power of\n"
+    "Fairy-type moves.");
+
 static const u8 sSpellTagDesc[] = _(
     "A hold item that\n"
     "raises the power of\n"

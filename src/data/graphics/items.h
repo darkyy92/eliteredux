@@ -573,6 +573,9 @@ const u32 gItemIconPalette_PoisonBarb[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_NeverMeltIce[] = INCBIN_U32("graphics/items/icons/never_melt_ice.4bpp.lz");
 const u32 gItemIconPalette_NeverMeltIce[] = INCBIN_U32("graphics/items/icon_palettes/never_melt_ice.gbapal.lz");
 
+const u32 gItemIcon_FairyFeather[] = INCBIN_U32("graphics/items/icons/never_melt_ice.4bpp.lz");
+const u32 gItemIconPalette_FairyFeather[] = INCBIN_U32("graphics/items/icon_palettes/never_melt_ice.gbapal.lz");
+
 const u32 gItemIcon_SpellTag[] = INCBIN_U32("graphics/items/icons/spell_tag.4bpp.lz");
 const u32 gItemIconPalette_SpellTag[] = INCBIN_U32("graphics/items/icon_palettes/spell_tag.gbapal.lz");
 

@@ -3071,6 +3071,19 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    [ITEM_FAIRY_FEATHER] =
+    {
+        .name = _("Fairy Feather"),
+        .itemId = ITEM_FAIRY_FEATHER,
+        .price = 1000,
+        .holdEffect = HOLD_EFFECT_FAIRY_POWER,
+        .holdEffectParam = 20,
+        .description = sFairyFeatherDesc,
+        .pocket = POCKET_BATTLE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_SPELL_TAG] =
     {
         .name = _("Spell Tag"),

@@ -8895,6 +8895,8 @@ extern const u32 gItemIcon_PoisonBarb[];
 extern const u32 gItemIconPalette_PoisonBarb[];
 extern const u32 gItemIcon_NeverMeltIce[];
 extern const u32 gItemIconPalette_NeverMeltIce[];
+extern const u32 gItemIcon_FairyFeather[];
+extern const u32 gItemIconPalette_FairyFeather[];
 extern const u32 gItemIcon_SpellTag[];
 extern const u32 gItemIconPalette_SpellTag[];
 extern const u32 gItemIcon_TwistedSpoon[];
