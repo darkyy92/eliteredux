@@ -16472,7 +16472,10 @@ static void Cmd_trygetbaddreamstarget(void)
     else if (BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_PEACEFUL_SLUMBER))
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 9);
     else
+    {
+        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gBattleScripting.abilityPopupOverwrite);
         gBattlescriptCurrInstr += 13;
+    }
 }
 
 static void Cmd_tryworryseed(void)
