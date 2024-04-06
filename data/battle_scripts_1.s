@@ -6002,7 +6002,7 @@ BattleScript_EffectFilletAway::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_EffectFilletAway_TryLoseHp
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
 BattleScript_EffectFilletAway_TryLoseHp:
-	trylosepercenthp BS_ATTACKER, 33, BattleScript_ButItFailed
+	trylosepercenthp BS_ATTACKER, 50, BattleScript_ButItFailed
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	attackanimation
 	waitanimation

@@ -10826,20 +10826,19 @@ static void Cmd_various(void)
     case VARIOUS_TRY_LOSE_PERCENT_HP:
     {
         u8 percentHp = gBattlescriptCurrInstr[3];
-        u32 hpLost = gBattleMons[gActiveBattler].maxHP * percentHp / 100;
+        u32 hpLost = gBattleMons[gActiveBattler].hp * percentHp / 100;
+
+        if (gBattleMons[gActiveBattler].hp <= 1)
+        {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
+            return;
+        }
 
         if (!hpLost)
             hpLost = 1;
-
-        if (gBattleMons[gActiveBattler].hp > hpLost)
-        {
-            gBattleMoveDamage = hpLost;
-            gBattlescriptCurrInstr += 8;
-        }
-        else
-        {
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
-        }
+            
+        gBattleMoveDamage = hpLost;
+        gBattlescriptCurrInstr += 8;
         return;
     }
     case VARIOUS_SWAP_SIDE_EFFECTS:
