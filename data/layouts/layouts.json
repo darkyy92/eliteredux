@@ -5150,6 +5150,36 @@
       "secondary_tileset": "gTileset_Generic_Building2",
       "border_filepath": "data/layouts/UndergroundPath_EastEntrance/border.bin",
       "blockdata_filepath": "data/layouts/UndergroundPath_EastEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_16",
+      "name": "Route_16_Layout",
+      "width": 48,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/Route_16/border.bin",
+      "blockdata_filepath": "data/layouts/Route_16/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_17",
+      "name": "Route_17_Layout",
+      "width": 24,
+      "height": 160,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/Route_17/border.bin",
+      "blockdata_filepath": "data/layouts/Route_17/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_18",
+      "name": "Route_18_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/Route_18/border.bin",
+      "blockdata_filepath": "data/layouts/Route_18/map.bin"
     }
   ]
 }
