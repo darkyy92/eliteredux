@@ -23,6 +23,13 @@
       "elevation": 0,
       "dest_map": "MAP_SEAFOAM_ISLANDS_B2F",
       "dest_warp_id": 2
+    },
+    {
+      "x": 12,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_SEAFOAM_ISLANDS_B4F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
