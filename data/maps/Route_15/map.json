@@ -1,0 +1,52 @@
+{
+  "id": "MAP_ROUTE_15",
+  "name": "Route_15",
+  "layout": "LAYOUT_ROUTE_15",
+  "music": "MUS_RG_ROUTE11",
+  "region_map_section": "MAPSEC_ROUTE_15",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": -10,
+      "map": "MAP_FUCHSIA_CITY"
+    },
+    {
+      "direction": "right",
+      "offset": -40,
+      "map": "MAP_ROUTE_14"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 16,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_15_WEST_ENTRANCE_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 9,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_15_WEST_ENTRANCE_1F",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

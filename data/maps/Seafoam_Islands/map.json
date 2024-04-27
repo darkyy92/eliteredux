@@ -1,0 +1,48 @@
+{
+  "id": "MAP_SEAFOAM_ISLANDS",
+  "name": "Seafoam_Islands",
+  "layout": "LAYOUT_SEAFOAM_ISLANDS",
+  "music": "MUS_RG_VIRIDIAN_FOREST",
+  "region_map_section": "MAPSEC_SEAFOAM_ISLANDS",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_20",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_20",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_SEAFOAM_ISLANDS_B1F",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

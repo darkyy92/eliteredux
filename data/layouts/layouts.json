@@ -5180,6 +5180,166 @@
       "secondary_tileset": "gTileset_CeladonCity",
       "border_filepath": "data/layouts/Route_18/border.bin",
       "blockdata_filepath": "data/layouts/Route_18/map.bin"
+    },
+    {
+      "id": "LAYOUT_FUCHSIA_CITY",
+      "name": "FuchsiaCity_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/FuchsiaCity/border.bin",
+      "blockdata_filepath": "data/layouts/FuchsiaCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_15",
+      "name": "Route_15_Layout",
+      "width": 72,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/Route_15/border.bin",
+      "blockdata_filepath": "data/layouts/Route_15/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_14",
+      "name": "Route_14_Layout",
+      "width": 24,
+      "height": 60,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/Route_14/border.bin",
+      "blockdata_filepath": "data/layouts/Route_14/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_13",
+      "name": "Route_13_Layout",
+      "width": 72,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/Route_13/border.bin",
+      "blockdata_filepath": "data/layouts/Route_13/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_15_WEST_ENTRANCE_1F",
+      "name": "Route_15_WestEntrance_1F_Layout",
+      "width": 13,
+      "height": 12,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_15_WestEntrance_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Route_15_WestEntrance_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_18_EAST_ENTRANCE_1F",
+      "name": "Route_18_EastEntrance_1F_Layout",
+      "width": 13,
+      "height": 12,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_18_EastEntrance_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Route_18_EastEntrance_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_16_NORTH_ENTRANCE",
+      "name": "Route_16_NorthEntrance_Layout",
+      "width": 13,
+      "height": 18,
+      "primary_tileset": "gTileset_Building_Frlg",
+      "secondary_tileset": "gTileset_Generic_Building2",
+      "border_filepath": "data/layouts/Route_16_NorthEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/Route_16_NorthEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_21_NORTH",
+      "name": "Route_21_North_Layout",
+      "width": 24,
+      "height": 50,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_PalletTown",
+      "border_filepath": "data/layouts/Route_21_North/border.bin",
+      "blockdata_filepath": "data/layouts/Route_21_North/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_21_SOUTH",
+      "name": "Route_21_South_Layout",
+      "width": 24,
+      "height": 50,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CinnabarIsland",
+      "border_filepath": "data/layouts/Route_21_South/border.bin",
+      "blockdata_filepath": "data/layouts/Route_21_South/map.bin"
+    },
+    {
+      "id": "LAYOUT_CINNABAR_ISLAND",
+      "name": "CinnabarIsland_Layout",
+      "width": 24,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CinnabarIsland",
+      "border_filepath": "data/layouts/CinnabarIsland/border.bin",
+      "blockdata_filepath": "data/layouts/CinnabarIsland/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_20",
+      "name": "Route_20_Layout",
+      "width": 120,
+      "height": 20,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_CinnabarIsland",
+      "border_filepath": "data/layouts/Route_20/border.bin",
+      "blockdata_filepath": "data/layouts/Route_20/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAFOAM_ISLANDS",
+      "name": "Seafoam_Islands_Layout",
+      "width": 38,
+      "height": 24,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/Seafoam_Islands/border.bin",
+      "blockdata_filepath": "data/layouts/Seafoam_Islands/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAFOAM_ISLANDS_B1F",
+      "name": "SeafoamIslands_B1F_Layout",
+      "width": 38,
+      "height": 23,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/SeafoamIslands_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/SeafoamIslands_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAFOAM_ISLANDS_B2F",
+      "name": "SeafoamIslands_B2F_Layout",
+      "width": 38,
+      "height": 24,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/SeafoamIslands_B2F/border.bin",
+      "blockdata_filepath": "data/layouts/SeafoamIslands_B2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAFOAM_ISLANDS_B3F",
+      "name": "SeafoamIslands_B3F_Layout",
+      "width": 38,
+      "height": 24,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/SeafoamIslands_B3F/border.bin",
+      "blockdata_filepath": "data/layouts/SeafoamIslands_B3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAFOAM_ISLANDS_B4F",
+      "name": "SeafoamIslands_B4F_Layout",
+      "width": 38,
+      "height": 24,
+      "primary_tileset": "gTileset_General_FRLG",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/SeafoamIslands_B4F/border.bin",
+      "blockdata_filepath": "data/layouts/SeafoamIslands_B4F/map.bin"
     }
   ]
 }

@@ -17,13 +17,31 @@
       "direction": "up",
       "offset": 0,
       "map": "MAP_ROUTE_17"
+    },
+    {
+      "direction": "right",
+      "offset": -10,
+      "map": "MAP_FUCHSIA_CITY"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 48,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_18_EAST_ENTRANCE_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 41,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_18_EAST_ENTRANCE_1F",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 

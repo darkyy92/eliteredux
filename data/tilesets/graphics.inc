@@ -2109,3 +2109,63 @@ gTilesetPalettes_UnderGround_Entrance::
 	.align 2
 gTilesetTiles_UnderGround_Entrance::
 	.incbin "data/tilesets/secondary/underground_entrance/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FuchsiaCity::
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/fuchsiacity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FuchsiaCity::
+	.incbin "data/tilesets/secondary/fuchsiacity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_CinnabarIsland::
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/cinnabarisland/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_CinnabarIsland::
+	.incbin "data/tilesets/secondary/cinnabarisland/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SeafoamIslands::
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/seafoamislands/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SeafoamIslands::
+	.incbin "data/tilesets/secondary/seafoamislands/tiles.4bpp.lz"
